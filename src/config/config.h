@@ -110,6 +110,8 @@
 #define EVENT_BIT_FALL        (1 << 0)      ///< Bit : Chute détectée
 #define EVENT_BIT_VITALS      (1 << 1)      ///< Bit : Signes vitaux mis à jour
 #define EVENT_BIT_OTA_READY   (1 << 2)      ///< Bit : Mise à jour OTA prête
+#define EVENT_OTA_READY       (1 << 2)      ///< Alias pour EVENT_BIT_OTA_READY
+#define EVENT_OTA_FAIL        (1 << 3)      ///< Bit : Échec OTA
 /** @} */
 
 /** @name EEPROM I2C (CAT24M01W)

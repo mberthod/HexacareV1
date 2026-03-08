@@ -11,7 +11,6 @@
 #include "config/pins_lexacare.h"
 #include "rtos/queues_events.h"
 #include "system/log_dual.h"
-#include "comm/ota_mesh.h"
 #include <Arduino.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -95,11 +94,6 @@ static void sensorSimulationTask(void *pvParameters) {
     log_dual_println("[TASK] sensorSim running (Core 1)");
     TickType_t last = xTaskGetTickCount();
     for (;;) {
-        if (ota_mesh_is_ota_in_progress()) {
-            vTaskDelayUntil(&last, pdMS_TO_TICKS(SENSOR_SIM_PERIOD_MS));
-            last = xTaskGetTickCount();
-            continue;
-        }
         LexaFullFrame_t frame_to_send;
         if (s_mutex && xSemaphoreTake(s_mutex, pdMS_TO_TICKS(100)) == pdTRUE) {
             fill_frame(&s_frame);

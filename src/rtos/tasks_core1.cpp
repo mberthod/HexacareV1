@@ -16,6 +16,9 @@
 #include "sensors/analog_handler.h"
 #include "sensors/tmp117_handler.h"
 #include "system/system_state.h"
+#include "comm/routing_manager.h"
+#include "lexacare_protocol.h"
+#include "comm/mesh_tree_protocol.h"
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <Arduino.h>
@@ -39,6 +42,21 @@ void task_lidar(void *pvParameters) {
             // Signalement immédiat en cas de chute
             if (system_state_get_fall_detected())
                 xEventGroupSetBits(g_system_events, EVENT_FALL_DETECTED);
+            
+            // V2: Envoyer les données au parent via Unicast (Tree Mesh)
+            // On construit une LexaFullFrame (compatible V1) et on l'envoie dans MSG_DATA
+            LexaFullFrame_t frame;
+            // Remplir la frame avec les données système (à implémenter proprement avec un getter global)
+            // Pour l'instant, on suppose que system_state a tout
+            // ... (logique de remplissage simplifiée)
+            
+            uint8_t parent_mac[6];
+            if (routing_get_parent_mac(parent_mac)) {
+                // routing_send_unicast(parent_mac, MSG_DATA, (uint8_t*)&frame, sizeof(frame));
+                // Note: L'envoi direct depuis Core 1 est possible si routing_send_unicast est thread-safe
+                // Sinon, passer par g_queue_espnow_tx comme avant
+                xQueueSend(g_queue_espnow_tx, &frame, 0);
+            }
         }
         vTaskDelay(pdMS_TO_TICKS(20));
     }

@@ -3,10 +3,10 @@
  * @brief ROOT : sortie JSON pour trames Data ; entrée OTA UART pour ota_tree_manager.
  */
 
-#include "lexacare_protocol.h"
-#include "comm/mesh_tree_protocol.h"
+#include "comm/serial_gateway.h"
 #include "comm/ota_tree_manager.h"
 #include "config/config.h"
+#include "lexacare_protocol.h"
 #include "system/log_dual.h"
 #include <Arduino.h>
 #include <ArduinoJson.h>
@@ -29,6 +29,8 @@ enum SerialGatewayState {
 };
 
 static bool s_serial_gateway_init_done = false;
+static uint32_t s_msg_id_seq = 0;
+/** True pendant la réception OTA Série (0x01 + header + chunks) : le mesh ne doit pas injecter OTA dans ota_mesh. */
 static volatile bool s_ota_serial_receiving = false;
 
 // Handles des tâches à suspendre (non utilisé dans V2 car ota_tree_manager gère la concurrence via état)
@@ -36,14 +38,26 @@ static volatile bool s_ota_serial_receiving = false;
 // static TaskHandle_t s_task_tx = nullptr;
 // static TaskHandle_t s_task_sensor = nullptr;
 
-// int serial_gateway_is_ota_serial_receiving(void) {
-//     return s_ota_serial_receiving ? 1 : 0;
-// }
+int serial_gateway_is_ota_serial_receiving(void) {
+    return s_ota_serial_receiving ? 1 : 0;
+}
 
 void serial_gateway_register_tasks_for_ota_suspend(TaskHandle_t mesh_handle, TaskHandle_t tx_handle, TaskHandle_t sensor_handle) {
     // s_task_mesh = mesh_handle;
     // s_task_tx = tx_handle;
     // s_task_sensor = sensor_handle;
+}
+
+static int hex_to_binary(const char *hex, size_t hex_len, uint8_t *out, size_t out_size) {
+    if (hex_len % 2 != 0 || out_size < hex_len / 2) return -1;
+    for (size_t i = 0; i < hex_len && i / 2 < out_size; i += 2) {
+        char c1 = hex[i], c2 = hex[i + 1];
+        int v1 = (c1 >= '0' && c1 <= '9') ? (c1 - '0') : (c1 >= 'A' && c1 <= 'F') ? (c1 - 'A' + 10) : (c1 >= 'a' && c1 <= 'f') ? (c1 - 'a' + 10) : -1;
+        int v2 = (c2 >= '0' && c2 <= '9') ? (c2 - '0') : (c2 >= 'A' && c2 <= 'F') ? (c2 - 'A' + 10) : (c2 >= 'a' && c2 <= 'f') ? (c2 - 'a' + 10) : -1;
+        if (v1 < 0 || v2 < 0) return -1;
+        out[i / 2] = (uint8_t)((v1 << 4) | v2);
+    }
+    return (int)(hex_len / 2);
 }
 
 void serial_gateway_send_data_json(const void *frame, uint32_t fw_ver) {
@@ -69,6 +83,35 @@ void serial_gateway_send_data_json(const void *frame, uint32_t fw_ver) {
     if (n > 0) {
         Serial.println(buf);
     }
+}
+
+static void process_line(char *line, size_t len) {
+    if (len < sizeof(OTA_CHUNK_PREFIX) - 1) return;
+    if (memcmp(line, OTA_CHUNK_PREFIX, sizeof(OTA_CHUNK_PREFIX) - 1) != 0) return;
+    char *p = line + sizeof(OTA_CHUNK_PREFIX) - 1;
+    unsigned long idx = strtoul(p, &p, 10);
+    if (*p != ':') return;
+    p++;
+    unsigned long total = strtoul(p, &p, 10);
+    if (*p != ':') return;
+    p++;
+    if (idx > 0xFFFF || total > 0xFFFF || total == 0) return;
+    size_t hex_len = strlen(p);
+    while (hex_len > 0 && (p[hex_len - 1] == '\r' || p[hex_len - 1] == '\n')) hex_len--;
+    if (hex_len != OTA_HEX_LEN) return;
+
+    uint8_t data[OTA_CHUNK_DATA_SIZE];
+    int bin_len = hex_to_binary(p, hex_len, data, sizeof(data));
+    if (bin_len != (int)OTA_CHUNK_DATA_SIZE) return;
+
+    // TODO: Adapter pour OTA Tree Manager si on veut supporter le mode texte
+    // Pour l'instant, on se concentre sur le mode binaire (0x01/0x02)
+    // OtaChunkPayload payload;
+    // payload.chunkIndex = (uint16_t)idx;
+    // payload.totalChunks = (uint16_t)total;
+    // memcpy(payload.data, data, OTA_CHUNK_DATA_SIZE);
+    
+    // ...
 }
 
 int serial_gateway_init(void) {
@@ -112,7 +155,23 @@ void serial_gateway_task(void *pv) {
             }
             
             // Sinon, traitement ligne texte (ex: config, commandes futures)
-            // ... (code existant simplifié ou supprimé si non utilisé)
+            line_buf[0] = (char)(b & 0xFF);
+            pos = 1;
+            while (Serial.available() > 0 && pos < sizeof(line_buf) - 1) {
+                char c = (char)Serial.read();
+                if (c == '\n' || c == '\r') {
+                    if (pos > 0) {
+                        line_buf[pos] = '\0';
+                        process_line(line_buf, pos);
+                    }
+                    pos = 0;
+                    break;
+                }
+                line_buf[pos++] = c;
+            }
+            if (pos > 0 && Serial.available() == 0) {
+                vTaskDelay(pdMS_TO_TICKS(10));
+            }
             continue;
         }
 
@@ -128,7 +187,7 @@ void serial_gateway_task(void *pv) {
                 ota_md5[32] = '\0';
                 
                 char buf[100];
-                snprintf(buf, sizeof(buf), "[SERIE] Header OK: size=%lu, chunks=%u. MD5=%.8s...", ota_total_size, ota_total_chunks, ota_md5);
+                snprintf(buf, sizeof(buf), "[SERIE] Header OK: size=%lu, chunks=%u. MD5=%.8s...", (unsigned long)ota_total_size, (unsigned)ota_total_chunks, ota_md5);
                 log_dual_println(buf);
                 
                 ota_chunk_idx = 0;
@@ -153,7 +212,7 @@ void serial_gateway_task(void *pv) {
                 
                 if (ota_chunk_idx % 50 == 0) {
                     char buf[64];
-                    snprintf(buf, sizeof(buf), "[SERIE] Chunk %u/%u recu.", ota_chunk_idx, ota_total_chunks);
+                    snprintf(buf, sizeof(buf), "[SERIE] Chunk %u/%u recu.", (unsigned)ota_chunk_idx, (unsigned)ota_total_chunks);
                     log_dual_println(buf);
                 }
 
