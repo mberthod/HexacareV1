@@ -23,7 +23,7 @@ extern "C" {
 TaskHandle_t sensor_sim_get_task_handle(void);
 
 /** Taille de pile pour la tâche de simulation. */
-#define SENSOR_SIM_TASK_STACK 2048
+#define SENSOR_SIM_TASK_STACK 5120
 
 /** Période de génération (ms). */
 #define SENSOR_SIM_PERIOD_MS  1000

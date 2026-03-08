@@ -56,7 +56,7 @@ Sur l’ESP32-S3, la réception des données **depuis le PC vers la carte** (OTA
    - **Adaptateur TX** → **Broche 44 (RX)** de la carte
    - **Adaptateur RX** → **Broche 43 (TX)** de la carte
    - **GND** → **GND**
-   - Réglage : **115200 bauds**.
+   - Réglage : **921600 bauds**.
 
 2. Brancher l’adaptateur USB-UART au PC (la carte peut rester alimentée par son câble USB habituel).
 
@@ -165,7 +165,7 @@ Le **clignotement** vert ou ambre en fonctionnement normal indique simplement qu
 
 ### OTA Série / Mesh : le script envoie mais rien ne s’affiche côté ROOT
 
-- Sur **ESP32-S3**, la réception PC → carte ne fonctionne **pas** via l’USB natif. Il faut connecter le script au **port UART** (adaptateur USB-UART sur **broches RX 44 / TX 43**, 115200 bauds).
+- Sur **ESP32-S3**, la réception PC → carte ne fonctionne **pas** via l’USB natif. Il faut connecter le script au **port UART** (adaptateur USB-UART sur **broches RX 44 / TX 43**, 921600 bauds).
 - Vérifier que le port sélectionné dans le script est bien celui de l’**adaptateur UART** branché sur les broches 43/44, et non le port USB de la carte.
 - Après connexion, vous devez voir les logs dans « Log série » et le message « En attente octet mode… » ; le bouton **« Test liaison (0xFF) »** doit faire apparaître « Octet mode reçu: 0xFF » côté ROOT.
 
@@ -229,7 +229,7 @@ Cette section précise le format des données envoyées par le PC vers la carte 
 ### 9.1 Périmètre
 
 - **Sens OTA :** uniquement **PC → ROOT**. Le ROOT reçoit les commandes OTA sur l’**UART (broches RX44/TX43)** et envoie les logs/JSON vers le PC sur ce même UART (et sur l’USB).
-- **Débit :** 115200 bauds (défini dans `src/system/log_dual.h` et `tools/lexacare_monitor.py`).
+- **Débit :** 921600 bauds (défini dans `src/system/log_dual.h` et `tools/lexacare_monitor.py`).
 - **Autres commandes :** aucune autre commande binaire n’est gérée côté firmware (pas de ping, pas de « get version » binaire). Les seules données binaires reçues par le ROOT sont la **séquence OTA** décrite ci-dessous.
 
 ### 9.2 Séquence OTA (PC → ROOT) – format binaire
@@ -330,7 +330,7 @@ Le script Python lit avec `readline()` (timeout 1 s) et affiche tout dans la fen
 
 | Élément           | Côté Python                                                  | Côté firmware                                     |
 |-------------------|--------------------------------------------------------------|---------------------------------------------------|
-| Baud rate         | 115200                                                       | 115200 (log_dual)                                 |
+| Baud rate         | 921600                                                       | 921600 (log_dual)                                 |
 | Ordre d’envoi     | 1 (mode) + 38 (header) + N×200 (chunks)                      | Lecture stricte dans cet ordre                    |
 | Endianness header | `struct.pack("<I", size)`, `struct.pack("<H", total_chunks)` | Lecture octets 0–3 LE, 4–5 LE                     |
 | Taille bloc       | 200                                                          | `OTA_CHUNK_DATA_SIZE` = 200                       |
@@ -351,7 +351,7 @@ Le script `tools/lexacare_monitor.py` a été vérifié point par point avec le 
 | MD5 | 32 octets ASCII hex (offset 6), comparaison `memcmp` | `hashlib.md5(data).hexdigest().encode("ascii")` (32 caractères minuscules) | OK |
 | Taille header | 38 = 4+2+32 | `OTA_ADV_HEADER_SIZE = 38`, `len(header) == 38` | OK |
 | Taille chunk | 200 octets lus à chaque fois | `OTA_CHUNK_SIZE = 200`, dernier bloc complété à 200 avec `0xFF` | OK |
-| Baud rate | 115200 (log_dual) | `BAUD_SERIAL = 115200` à l’ouverture du port | OK |
+| Baud rate | 921600 (log_dual) | `BAUD_SERIAL = 921600` à l’ouverture du port | OK |
 | Pas de texte / séparateur | Lecture binaire stricte | `send_raw()` sans `\n` ni encodage texte | OK |
 
 Le script est **compatible** avec le protocole firmware. Si l’OTA ne se déclenche pas (aucun log côté ROOT), la cause est à chercher côté liaison (port USB, câble, pilote) ou réception USB sur l’ESP32-S3 ; utiliser le bouton « Test liaison (0xFF) » pour vérifier que les octets envoyés par le PC arrivent bien au ROOT.

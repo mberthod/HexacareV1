@@ -50,7 +50,7 @@ TOPIC_DATA = "lexacare/mesh/data"
 TOPIC_OTA = "lexacare/mesh/ota"
 HTTP_PORT = 8000
 PC_IP = "192.168.1.15"  # À adapter avec ipconfig / ifconfig
-BAUD_SERIAL = 115200
+BAUD_SERIAL = 921600
 
 
 class FirmwareServer(threading.Thread):
@@ -73,13 +73,14 @@ class FirmwareServer(threading.Thread):
 class SerialReader(threading.Thread):
     """Thread de lecture du port série (une ligne = un JSON de trame mesh ou log)."""
 
-    def __init__(self, port, baudrate, callback, log_callback, serial_log_callback=None):
+    def __init__(self, port, baudrate, callback, log_callback, serial_log_callback=None, topology_callback=None):
         super().__init__(daemon=True)
         self.port = port
         self.baudrate = baudrate
         self.callback = callback
         self.log_callback = log_callback
         self.serial_log_callback = serial_log_callback  # affichage brut série dans la fenêtre dédiée
+        self.topology_callback = topology_callback  # appelé avec le JSON des lignes [TOPOLOGY]
         self.running = True
         self.ser = None
 
@@ -95,7 +96,14 @@ class SerialReader(threading.Thread):
                     if line:
                         if self.serial_log_callback:
                             self.serial_log_callback(line + "\n")
-                        if "{" in line and "}" in line:
+                        if line.startswith("[TOPOLOGY]"):
+                            try:
+                                json_str = line[10:].strip()
+                                if json_str and self.topology_callback:
+                                    self.topology_callback(json_str)
+                            except Exception:
+                                pass
+                        elif "{" in line and "}" in line:
                             # Extraire le JSON (ligne pure ou préfixe type "[LEXACARE] ...")
                             start = line.index("{")
                             end = line.rindex("}") + 1
@@ -125,17 +133,18 @@ class SerialReader(threading.Thread):
 class LexacareApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Lexacare V1 - Console (Série + MQTT)")
+        self.root.title("Lexacare V2 - Console (Série + Tree Mesh)")
         self.root.geometry("1200x750")
         self.root.configure(bg="#f0f2f5")
 
         self.nodes = {}
+        self.topology = {}  # node_id (int/str) -> {"parentId": int or None, "layer": int}
         self.selected_file = tk.StringVar(value="Aucun fichier sélectionné")
         self.full_path = None
         self.serial_thread = None
         self.logs_paused = False
-        # Tags pour filtrage du log série (par défaut [MESH] masqué pour éviter le flood)
-        self.LOG_SERIAL_TAG_IDS = ["BOOT", "SERIE", "OTA", "MESH", "MAIN", "TASK", "ERREUR", "SCRIPT", "AUTRE"]
+        # Tags pour filtrage du log série (ROUTING = logs ESP-IDF "ROUTING:", TOPOLOGY = lignes [TOPOLOGY])
+        self.LOG_SERIAL_TAG_IDS = ["BOOT", "SERIE", "OTA", "MESH", "ROUTING", "TOPOLOGY", "MAIN", "TASK", "ERREUR", "SCRIPT", "AUTRE"]
         self.log_serial_tag_vars = {}  # id -> tk.BooleanVar
         self.log_serial_show_all_var = tk.BooleanVar(value=False)
 
@@ -174,14 +183,16 @@ class LexacareApp:
         )
         self.lbl_mqtt.pack(side="right", padx=10)
 
-        # --- Tableau des nœuds (données mesh) ---
+        # --- Tableau des nœuds (données mesh) + Architecture réseau ---
         table_frame = tk.Frame(self.root, bg="#f0f2f5")
         table_frame.pack(fill="both", expand=True, padx=10, pady=5)
 
-        columns = ("id", "seen", "vbat", "fall", "temp", "hr", "ver")
+        columns = ("id", "seen", "parent", "layer", "vbat", "fall", "temp", "hr", "ver")
         self.tree = ttk.Treeview(table_frame, columns=columns, show="headings")
         self.tree.heading("id", text="Node ID")
         self.tree.heading("seen", text="Dernière vue")
+        self.tree.heading("parent", text="Parent")
+        self.tree.heading("layer", text="Couche")
         self.tree.heading("vbat", text="Batterie (mV)")
         self.tree.heading("fall", text="Chute %")
         self.tree.heading("temp", text="Temp °C")
@@ -189,11 +200,31 @@ class LexacareApp:
         self.tree.heading("ver", text="Version")
 
         for col in columns:
-            self.tree.column(col, anchor="center", width=100)
+            self.tree.column(col, anchor="center", width=80)
         self.tree.pack(fill="both", expand=True, side="left")
         scrollbar = ttk.Scrollbar(table_frame, orient="vertical", command=self.tree.yview)
         self.tree.configure(yscroll=scrollbar.set)
         scrollbar.pack(side="right", fill="y")
+
+        # --- Panneau Architecture réseau (arbre des nœuds) ---
+        arch_frame = tk.LabelFrame(
+            self.root,
+            text=" Architecture réseau (Tree Mesh) ",
+            font=("Segoe UI", 10, "bold"),
+            bg="#ffffff",
+            padx=8,
+            pady=8,
+        )
+        arch_frame.pack(fill="x", padx=10, pady=5)
+        self.tree_arch = ttk.Treeview(arch_frame, columns=("layer",), show="tree headings", height=8)
+        self.tree_arch.heading("#0", text="Nœud")
+        self.tree_arch.heading("layer", text="Couche")
+        self.tree_arch.column("#0", width=200)
+        self.tree_arch.column("layer", width=60)
+        scroll_arch = ttk.Scrollbar(arch_frame, orient="vertical", command=self.tree_arch.yview)
+        self.tree_arch.pack(side="left", fill="both", expand=True)
+        scroll_arch.pack(side="right", fill="y")
+        self.tree_arch.configure(yscrollcommand=scroll_arch.set)
 
         # --- Panneau OTA ---
         ota_frame = tk.LabelFrame(
@@ -300,7 +331,7 @@ class LexacareApp:
         tag_toolbar = tk.Frame(right_log_frame, bg="#f0f2f5", height=28)
         tag_toolbar.pack(side="top", fill="x", padx=2, pady=2)
         tk.Label(tag_toolbar, text="Tags à afficher :", bg="#f0f2f5", font=("Segoe UI", 8)).pack(side="left", padx=(0, 6))
-        defaults = {"BOOT": True, "SERIE": True, "OTA": True, "MESH": False, "MAIN": True, "TASK": True, "ERREUR": True, "SCRIPT": True, "AUTRE": True}
+        defaults = {"BOOT": True, "SERIE": True, "OTA": True, "MESH": False, "ROUTING": True, "TOPOLOGY": True, "MAIN": True, "TASK": True, "ERREUR": True, "SCRIPT": True, "AUTRE": True}
         for tag_id in self.LOG_SERIAL_TAG_IDS:
             var = tk.BooleanVar(value=defaults.get(tag_id, True))
             self.log_serial_tag_vars[tag_id] = var
@@ -340,17 +371,20 @@ class LexacareApp:
         self.txt_logs.see(tk.END)
 
     def _serial_log_tag_from_line(self, line):
-        """Retourne le tag de la ligne (ex. '[BOOT]') ou '[AUTRE]' si aucun tag reconnu."""
-        line = (line or "").strip()
-        if line.startswith("["):
-            end = line.find("]", 1)
+        """Retourne le tag de la ligne (ex. '[BOOT]', '[ROUTING]') ou '[AUTRE]' si aucun tag reconnu."""
+        line_raw = (line or "").strip()
+        if line_raw.startswith("[TOPOLOGY]"):
+            return "[TOPOLOGY]"
+        if line_raw.startswith("["):
+            end = line_raw.find("]", 1)
             if end > 0:
-                tag = line[: end + 1]
-                # Normaliser en majuscules pour la clé (BOOT, SERIE, ...)
+                tag = line_raw[: end + 1]
                 tag_upper = tag.upper()
                 for id_ in self.LOG_SERIAL_TAG_IDS:
                     if tag_upper == f"[{id_}]":
                         return f"[{id_}]"
+        if " ROUTING:" in line_raw or line_raw.startswith("ROUTING:"):
+            return "[ROUTING]"
         return "[AUTRE]"
 
     def _serial_log_should_show(self, line):
@@ -393,7 +427,8 @@ class LexacareApp:
                 messagebox.showerror("Erreur", "Sélectionnez un port.")
                 return
             self.serial_thread = SerialReader(
-                port, BAUD_SERIAL, self.process_data, self.log, self.append_serial_log
+                port, BAUD_SERIAL, self.process_data, self.log, self.append_serial_log,
+                topology_callback=self.process_topology,
             )
             self.serial_thread.start()
             self.btn_serial.config(text="Déconnecter", bg="#f28b82")
@@ -419,20 +454,25 @@ class LexacareApp:
         """Traite une ligne JSON reçue (trame mesh convertie par le ROOT)."""
         try:
             data = json.loads(raw_json)
-            # nodeId = nodeShortId (nombre) côté firmware
             node_id = data.get("nodeId", data.get("nodeShortId", "?"))
             node_key = str(node_id)
+            parent_id = data.get("parentId")
+            layer = data.get("layer", 0)
+            if parent_id is not None and (parent_id == 0xFFFF or parent_id == 65535):
+                parent_id = None
+            self.topology[node_key] = {"parentId": parent_id, "layer": layer}
 
-            # tempExt est déjà en °C dans le JSON firmware
             temp = data.get("tempExt", 0)
             if isinstance(temp, (int, float)):
                 temp_str = f"{temp:.1f}°C"
             else:
                 temp_str = str(temp)
-
+            parent_str = str(parent_id) if parent_id is not None else "—"
             info = [
                 node_key,
                 time.strftime("%H:%M:%S"),
+                parent_str,
+                str(layer),
                 str(data.get("vBat", 0)),
                 str(data.get("probFallLidar", 0)),
                 temp_str,
@@ -440,10 +480,61 @@ class LexacareApp:
                 str(data.get("fw_ver", "?")),
             ]
             self.root.after(0, self.update_tree, node_key, info)
+            self.root.after(0, self.refresh_architecture)
         except json.JSONDecodeError:
             pass
         except Exception:
             pass
+
+    def process_topology(self, raw_json):
+        """Met à jour la topologie à partir d'une ligne [TOPOLOGY] du ROOT."""
+        try:
+            data = json.loads(raw_json)
+            root_id = data.get("root")
+            nodes = data.get("nodes", [])
+            self.topology = {}
+            if root_id is not None:
+                self.topology[str(root_id)] = {"parentId": None, "layer": 0}
+            for n in nodes:
+                nid = n.get("id")
+                if nid is not None:
+                    pid = n.get("parentId")
+                    if pid == 0xFFFF or pid == 65535:
+                        pid = None
+                    self.topology[str(nid)] = {"parentId": pid, "layer": n.get("layer", 0)}
+            self.root.after(0, self.refresh_architecture)
+        except json.JSONDecodeError:
+            pass
+        except Exception:
+            pass
+
+    def refresh_architecture(self):
+        """Reconstruit l'arbre d'architecture à partir de self.topology."""
+        for i in self.tree_arch.get_children(""):
+            self.tree_arch.delete(i)
+        if not self.topology:
+            return
+
+        def _norm_parent(pid):
+            if pid is None or pid == 0xFFFF or pid == 65535:
+                return None
+            return str(pid)
+
+        # Insérer par couche (layer 0 d'abord, puis 1, 2...) pour que le parent existe toujours
+        by_layer = {}
+        for nid, info in self.topology.items():
+            layer = info.get("layer", 0)
+            by_layer.setdefault(layer, []).append((nid, info))
+        inserted = set()
+        for layer in sorted(by_layer.keys()):
+            for nid, info in by_layer[layer]:
+                pid = _norm_parent(info.get("parentId"))
+                parent_iid = "" if (pid is None or pid not in self.topology) else pid
+                if parent_iid != "" and parent_iid not in inserted:
+                    continue
+                label = f"Nœud {nid}" + (" (ROOT)" if layer == 0 else "")
+                self.tree_arch.insert(parent_iid, "end", iid=nid, text=label, values=(layer,))
+                inserted.add(nid)
 
     def update_tree(self, node_id, info):
         if node_id in self.nodes:
@@ -497,9 +588,11 @@ class LexacareApp:
                 if len(chunk) < OTA_CHUNK_SIZE:
                     chunk = chunk + b"\xff" * (OTA_CHUNK_SIZE - len(chunk))
                 ser_reader.send_raw(chunk)
-                # Pause en OTA Série pour laisser le ROOT lire + écrire en flash (éviter débordement buffer UART)
+                # Throttle pour que le ROOT lise et écrive en flash (éviter débordement buffer UART)
                 if mode == OTA_MODE_SERIAL_ROOT:
-                    time.sleep(0.028)  # ~28 ms/chunk : ROOT peut suivre (lecture UART + Update.write)
+                    time.sleep(0.022)  # ~22 ms/chunk : ROOT suit (lecture UART + écriture flash)
+                else:
+                    time.sleep(0.015)  # OTA Mesh : ROOT reçoit par série puis diffuse ; throttle pour ne pas perdre de chunks
                 if (i + 1) % 50 == 0 or i == total_chunks - 1:
                     self.root.after(0, lambda n=i + 1, t=total_chunks: self.log(f"[SERIE] Chunk {n}/{t} envoyé."))
             if mode == OTA_MODE_SERIAL_ROOT:

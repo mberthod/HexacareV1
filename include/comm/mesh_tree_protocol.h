@@ -1,7 +1,17 @@
 /**
  * @file mesh_tree_protocol.h
- * @brief Protocole V2 pour réseau en arbre (jusqu'à 1000+ nœuds).
- * Fini le broadcast massif, place à l'unicast parent-enfant.
+ * @brief Le Code de la Route (Règles de Circulation).
+ * 
+ * @details
+ * Ce fichier définit les panneaux de signalisation du réseau.
+ * Il liste tous les types de messages que les boîtiers peuvent s'échanger pour gérer le trafic.
+ * 
+ * Les principaux panneaux (Messages) sont :
+ * - **MSG_BEACON ("Je suis là")** : Un chef crie "Je suis là, j'ai de la place !" pour que les autres le trouvent.
+ * - **MSG_JOIN_REQ ("Je peux venir ?")** : Un soldat demande à un chef s'il peut rejoindre son équipe.
+ * - **MSG_HEARTBEAT ("Toujours vivant")** : Un petit "ping" régulier pour dire qu'on n'est pas tombé en panne.
+ * - **MSG_DATA ("Voici des infos")** : Le transport des données capteurs vers le PC.
+ * - **MSG_OTA_... ("Mise à jour")** : Toute une famille de messages pour gérer le téléchargement du nouveau logiciel.
  */
 
  #ifndef MESH_TREE_PROTOCOL_H
@@ -18,6 +28,7 @@
      MSG_JOIN_REQ = 0x11,    // Demande d'un orphelin pour rejoindre un parent
      MSG_JOIN_ACK = 0x12,    // Acceptation du parent
      MSG_HEARTBEAT = 0x13,   // Ping de maintien de connexion (enfant -> parent)
+    MSG_HEARTBEAT_ACK = 0x14, // Réponse du parent au heartbeat (évite STATE_ORPHAN)
     MSG_DATA = 0x20,        // Données capteurs (remontent vers le ROOT)
     MSG_OTA_ADV = 0x30,     // Annonce de mise à jour (descend vers les enfants)
     MSG_OTA_REQ = 0x32,     // Demande d'un chunk par un enfant (montant)
@@ -39,7 +50,12 @@
  // Payload d'un Beacon (diffusé périodiquement par les nœuds connectés)
 struct __attribute__((packed)) BeaconPayload {
     uint8_t currentChildrenCount; // Pour que l'orphelin choisisse le parent le moins chargé
-    int8_t  rssi;                 // Réservé pour calcul
+    int8_t  rssi;                 // Réservé pour calcul (ex: -80 = bon)
+};
+
+// Payload de JOIN_ACK (parent envoie la couche assignée à l'enfant)
+struct __attribute__((packed)) JoinAckPayload {
+    uint8_t assigned_layer; // Couche assignée (parent_layer + 1)
 };
 
 // Payload pour demander un chunk OTA (MSG_OTA_REQ)

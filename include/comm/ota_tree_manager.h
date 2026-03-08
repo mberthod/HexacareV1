@@ -19,6 +19,9 @@
 // Initialisation
 void ota_tree_init(void);
 
+/** À appeler juste avant réception UART : 0x01 = OTA Série (ROOT seul), 0x02 = OTA Mesh (diffusion). */
+void ota_tree_set_uart_mode(uint8_t mode);
+
 // Tâche principale (machine à états réception/distribution)
 void ota_tree_task(void *pv);
 

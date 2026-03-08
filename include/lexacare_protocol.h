@@ -1,11 +1,24 @@
 /**
  * @file lexacare_protocol.h
- * @brief Protocole binaire Lexacare : EspNowMeshHeader, LexaFullFrame, OTA_ADV/OTA_CHUNK, CRC16-CCITT.
+ * @brief Le Dictionnaire (Définition du Langage Commun).
+ * 
  * @details
- * Mesh ESP-NOW : en-tête 8 octets (msgId, msgType, ttl, sourceNodeId) + payload (Data 32 octets,
- * OtaAdvPayload 38 octets, OtaChunkPayload 204 octets). Limite 250 octets par paquet.
- * LexaFullFrame : vitaux, environnement, détection chute ; CRC16 sur les 30 premiers octets.
- * Facteurs d'échelle JSON : tempExt/100, humidity/100, pressure→800+pressure/10, vBat (mV).
+ * Pour que les boîtiers puissent se comprendre, ils doivent parler exactement la même langue.
+ * Ce fichier définit la grammaire et le vocabulaire de cette langue binaire.
+ * 
+ * Il définit deux "phrases" principales :
+ * 
+ * 1. **L'Enveloppe (EspNowMeshHeader)** :
+ *    - C'est ce qui est écrit sur l'enveloppe du courrier.
+ *    - Qui l'envoie ? (Source ID)
+ *    - C'est quel type de courrier ? (Données, Mise à jour...)
+ *    - Combien de temps peut-il voyager ? (TTL)
+ * 
+ * 2. **La Lettre (LexaFullFrame)** :
+ *    - C'est le contenu du courrier, les données utiles.
+ *    - Contient tout : Pouls, Température, Batterie, Alerte Chute...
+ *    - Tout est compressé au maximum pour tenir dans 32 octets (très petit !).
+ *    - Exemple : La température 25.5°C est stockée comme le nombre entier 2550.
  */
 
 #ifndef LEXACARE_PROTOCOL_H
@@ -68,7 +81,9 @@ struct __attribute__((packed)) LexaFullFrame {
     uint8_t  volumeOccupancy; ///< Lidar volume index (0-255)
     uint16_t vBat;            ///< Tension batterie (mV)
     uint16_t sensorFlags;     ///< Bitfield état capteurs
-    uint8_t  reserved[7];     ///< Réservé
+    uint16_t parentId;        ///< ID du parent (pour topologie)
+    uint8_t  layer;           ///< Couche réseau (pour topologie)
+    uint8_t  reserved[4];     ///< Réservé (7 - 2 - 1 = 4)
     uint16_t crc16;           ///< CRC16-CCITT (False), calculé sur les 30 premiers octets
 };
 

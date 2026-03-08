@@ -14,7 +14,7 @@ extern "C" {
 #endif
 
 /** Baud rate commun pour USB et UART0. */
-#define LOG_DUAL_BAUD 115200
+#define LOG_DUAL_BAUD 921600
 
 /**
  * @brief Initialise Serial (USB) et UART0 (pins LOG). À appeler en premier dans setup().

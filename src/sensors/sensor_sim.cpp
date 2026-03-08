@@ -1,9 +1,19 @@
 /**
  * @file sensor_sim.cpp
- * @brief Génération de trames LexaFullFrame simulées (vitaux, env, edge) sur Core 1.
- * @details Tâche sensorSimulationTask épinglée sur APP_CPU. Période SENSOR_SIM_PERIOD_MS.
- * La ressource partagée s_frame (et s_has_frame) est protégée par s_mutex ; toute écriture
- * (dans la tâche) et toute lecture (sensor_sim_get_latest_frame, appelée depuis Core 0) se font sous mutex.
+ * @brief L'Acteur (Simulateur de Capteurs).
+ * 
+ * @details
+ * En l'absence de vrais patients et de vrais capteurs physiques branchés sur la carte,
+ * ce module joue la comédie. Il invente des données réalistes pour tester le système.
+ * 
+ * Il génère artificiellement :
+ * - **Signaux Vitaux** : Rythme cardiaque et respiratoire qui varient doucement (comme une sinusoïde).
+ * - **Environnement** : Température, humidité, pression (avec un peu de bruit aléatoire).
+ * - **Détection de Chute** : Simule une chute de temps en temps (probabilité aléatoire).
+ * - **Batterie** : Simule une tension de batterie.
+ * 
+ * C'est essentiel pour vérifier que le réseau transporte bien les données sans avoir besoin
+ * de brancher 50 capteurs réels.
  */
 
 #include "sensor_sim.h"
@@ -33,12 +43,34 @@ static uint32_t s_tick = 0;
 static uint8_t s_prob_fall_lidar = 0;
 static uint32_t s_next_fall_event = 0;
 
+/**
+ * @brief Récupère l'identifiant court du boîtier.
+ *
+ * @details
+ * L'identité d'un boîtier est son adresse MAC (6 octets, ex: AA:BB:CC:DD:EE:FF).
+ * Pour simplifier, on utilise souvent juste les 2 derniers octets (ex: EEFF) comme surnom.
+ * Cette fonction lit l'adresse MAC et extrait ce surnom.
+ *
+ * @param out Où stocker le résultat (2 octets).
+ */
 static void get_node_short_id(uint16_t *out) {
     uint8_t mac[6];
     esp_read_mac(mac, ESP_MAC_WIFI_STA);
     *out = (uint16_t)((mac[4] << 8) | mac[5]);
 }
 
+/**
+ * @brief Remplit une trame avec des données simulées.
+ *
+ * @details
+ * C'est ici que la magie de la simulation opère.
+ * La fonction invente des données cohérentes :
+ * - **Cœur/Respiration** : Utilise des formules mathématiques (sinus) pour faire varier les valeurs doucement, comme un vrai corps humain.
+ * - **Environnement** : Ajoute un peu de hasard (bruit) autour de valeurs moyennes (22°C, etc.).
+ * - **Chute** : Tire un dé pour décider si une chute doit être simulée.
+ *
+ * @param f La trame à remplir.
+ */
 static void fill_frame(LexaFullFrame_t *f) {
     memset(f, 0, sizeof(LexaFullFrame_t));
     get_node_short_id(&f->nodeShortId);
@@ -89,8 +121,20 @@ static void fill_frame(LexaFullFrame_t *f) {
     lexaframe_fill_crc(f);
 }
 
+/**
+ * @brief La Tâche de Simulation (Le Metteur en Scène).
+ *
+ * @details
+ * Cette tâche tourne en permanence sur le Cœur 1 (pour ne pas gêner le réseau sur le Cœur 0).
+ *
+ * Toutes les secondes (1000ms) :
+ * 1. Elle appelle `fill_frame` pour créer une nouvelle scène (nouvelles données).
+ * 2. Elle met ces données dans une boîte sécurisée (`s_frame`) protégée par un cadenas (`mutex`).
+ * 3. Elle envoie une copie de ces données à la tâche d'envoi (`dataTxTask`) pour qu'elles soient diffusées.
+ */
 static void sensorSimulationTask(void *pvParameters) {
     (void)pvParameters;
+    vTaskDelay(pdMS_TO_TICKS(100)); // Laisser le temps au système de démarrer
     log_dual_println("[TASK] sensorSim running (Core 1)");
     TickType_t last = xTaskGetTickCount();
     for (;;) {
@@ -117,6 +161,13 @@ static void sensorSimulationTask(void *pvParameters) {
     }
 }
 
+/**
+ * @brief Démarrage de la simulation.
+ *
+ * @details
+ * Crée le cadenas (Mutex) pour protéger les données partagées.
+ * Lance l'ouvrier (Tâche) `sensorSimulationTask` sur le Cœur 1.
+ */
 void sensor_sim_task_start(void) {
     if (s_mutex == nullptr) {
         s_mutex = xSemaphoreCreateMutex();
@@ -136,10 +187,29 @@ void sensor_sim_task_start(void) {
         ESP_LOGE(TAG_SIM, "Echec creation task sensorSim");
 }
 
+/**
+ * @brief Récupère la poignée de la tâche (pour la manipuler).
+ *
+ * @details
+ * Permet à d'autres parties du code de mettre en pause ou reprendre la simulation si besoin.
+ */
 TaskHandle_t sensor_sim_get_task_handle(void) {
     return s_sensor_sim_handle;
 }
 
+/**
+ * @brief Lecture sécurisée de la dernière trame simulée.
+ *
+ * @details
+ * Cette fonction est utilisée par le Cœur 0 pour lire ce que le Cœur 1 a produit.
+ * Comme les deux cœurs travaillent en même temps, il faut être prudent pour ne pas lire
+ * une donnée pendant qu'elle est en train d'être modifiée.
+ *
+ * Elle utilise le cadenas (`mutex`) : "Attends que j'ai fini d'écrire avant de lire !".
+ *
+ * @param frame_out Où copier les données.
+ * @return 1 si ça a marché, 0 sinon.
+ */
 int sensor_sim_get_latest_frame(LexaFullFrame_t *frame_out) {
     if (!frame_out) return 0;
     if (!s_mutex) return 0;
