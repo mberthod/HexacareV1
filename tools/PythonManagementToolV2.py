@@ -8,19 +8,24 @@ import time
 import struct
 import hashlib
 import os
+import re
 
 BAUD_RATE = 115200
 
-class MeshManagerV2:
+class MeshManagerV2Advanced:
     def __init__(self, root):
         self.root = root
-        self.root.title("Hexacare V2 - Tree Mesh Manager (1000+ Nodes)")
-        self.root.geometry("1100x600")
+        self.root.title("Hexacare V2 - Advanced Tree Mesh Manager")
+        self.root.geometry("1200x700")
         
         self.nodes = {}
         self.serial_thread = None
         self.ser = None
         self.running = False
+        
+        # Synchronisation OTA
+        self.ota_in_progress = False
+        self.ota_ack_event = threading.Event()
         
         self.setup_ui()
 
@@ -37,10 +42,14 @@ class MeshManagerV2:
         self.btn_connect = tk.Button(top_frame, text="Connecter", command=self.toggle_connection, bg="#e8f0fe")
         self.btn_connect.pack(side="left", padx=5)
 
-        self.btn_ota = tk.Button(top_frame, text="Lancer OTA Arbre (Tree)", command=self.trigger_ota, bg="#fbbc04")
+        self.btn_ota = tk.Button(top_frame, text="Lancer OTA Arbre (Sécurisé)", command=self.trigger_ota, bg="#fbbc04")
         self.btn_ota.pack(side="right", padx=5)
 
-        # Treeview (Now includes Layer and Parent ID for Mesh Tree monitoring)
+        self.progress_var = tk.DoubleVar()
+        self.progress_bar = ttk.Progressbar(top_frame, variable=self.progress_var, maximum=100)
+        self.progress_bar.pack(side="right", fill="x", expand=True, padx=20)
+
+        # Treeview (Monitoring des noeuds)
         cols = ("node", "layer", "parent", "battery", "hr", "temp", "status")
         self.tree = ttk.Treeview(self.root, columns=cols, show="headings")
         self.tree.heading("node", text="Node ID")
@@ -55,10 +64,10 @@ class MeshManagerV2:
         self.tree.pack(fill="both", expand=True, padx=10, pady=10)
         
         # Log Console
-        self.log_console = tk.Text(self.root, height=10, bg="#1e1e2e", fg="#a6e3a1")
+        self.log_console = tk.Text(self.root, height=15, bg="#1e1e2e", fg="#a6e3a1", font=("Consolas", 10))
         self.log_console.pack(fill="x", padx=10, pady=5)
 
-    def log(self, msg):
+    def log(self, msg, color="#a6e3a1"):
         self.log_console.insert(tk.END, f"[{time.strftime('%H:%M:%S')}] {msg}\n")
         self.log_console.see(tk.END)
 
@@ -71,7 +80,7 @@ class MeshManagerV2:
         else:
             port = self.cb_ports.get()
             try:
-                self.ser = serial.Serial(port, BAUD_RATE, timeout=1)
+                self.ser = serial.Serial(port, BAUD_RATE, timeout=0.1)
                 self.running = True
                 self.serial_thread = threading.Thread(target=self.read_serial, daemon=True)
                 self.serial_thread.start()
@@ -81,21 +90,44 @@ class MeshManagerV2:
                 messagebox.showerror("Erreur", str(e))
 
     def read_serial(self):
+        buffer = ""
+        # Regex pour trouver des objets JSON valides même noyés dans du texte cassé
+        json_pattern = re.compile(r'\{[^{}]*"nodeId"[^{}]*\}')
+
         while self.running and self.ser.is_open:
             try:
                 if self.ser.in_waiting:
-                    line = self.ser.readline().decode('utf-8', errors='ignore').strip()
-                    if line.startswith("{") and line.endswith("}"):
-                        self.parse_json(line)
-                    else:
-                        self.root.after(0, self.log, line)
+                    raw_data = self.ser.read(self.ser.in_waiting).decode('utf-8', errors='ignore')
+                    buffer += raw_data
+                    
+                    # Traitement ligne par ligne
+                    while '\n' in buffer:
+                        line, buffer = buffer.split('\n', 1)
+                        line = line.strip()
+                        
+                        if not line: continue
+
+                        # Gestion de l'accusé de réception OTA (ACK)
+                        if "OTA_CHUNK_OK" in line:
+                            self.ota_ack_event.set()
+                        
+                        # Recherche de JSON valides dans la ligne
+                        match = json_pattern.search(line)
+                        if match:
+                            self.parse_json(match.group(0))
+                            # On logge la ligne sans le JSON pour éviter de polluer l'écran
+                            clean_line = line.replace(match.group(0), "").strip()
+                            if clean_line:
+                                self.root.after(0, self.log, clean_line)
+                        else:
+                            # Log standard
+                            self.root.after(0, self.log, line)
             except Exception as e:
                 pass
 
     def parse_json(self, raw):
         try:
             data = json.loads(raw)
-            # Adapté pour le nouveau Tree Protocol
             node_id = str(data.get("nodeId", "?"))
             layer = str(data.get("layer", "?"))
             parent = str(data.get("parentId", "ROOT" if layer == "1" else "?"))
@@ -112,19 +144,23 @@ class MeshManagerV2:
                 else:
                     self.nodes[node_id] = self.tree.insert("", "end", values=vals)
             self.root.after(0, update)
-        except Exception:
-            pass
+        except json.JSONDecodeError:
+            pass # Ignorer les faux positifs de la regex
 
     def trigger_ota(self):
         if not self.running:
             messagebox.showwarning("Erreur", "Connectez-vous d'abord.")
             return
+        if self.ota_in_progress:
+            messagebox.showwarning("Erreur", "OTA déjà en cours.")
+            return
+
         file_path = filedialog.askopenfilename(filetypes=[("Binary", "*.bin")])
         if file_path:
-            threading.Thread(target=self.send_ota, args=(file_path,), daemon=True).start()
+            threading.Thread(target=self.send_ota_secure, args=(file_path,), daemon=True).start()
 
-    def send_ota(self, path):
-        # Format identique à votre V1, mais le firmware V2 gérera la propagation en arbre
+    def send_ota_secure(self, path):
+        self.ota_in_progress = True
         try:
             with open(path, "rb") as f: data = f.read()
             size = len(data)
@@ -132,24 +168,46 @@ class MeshManagerV2:
             md5 = hashlib.md5(data).hexdigest()
             
             header = struct.pack("<I", size) + struct.pack("<H", chunks) + md5.encode("ascii")
-            self.root.after(0, self.log, f"Lancement OTA (Arbre)... Taille: {size}b, MD5: {md5[:6]}")
+            self.root.after(0, self.log, f"--- DÉBUT OTA SÉCURISÉ --- Taille: {size}b, Chunks: {chunks}")
             
-            self.ser.write(bytes([0x02])) # 0x02 = Mode OTA Mesh
+            # 1. Envoi de la commande de passage en mode OTA (pour couper les capteurs)
+            self.ser.write(bytes([0x02])) 
             time.sleep(0.5)
+            
+            # 2. Envoi du Header
             self.ser.write(header)
             time.sleep(0.5)
             
+            # 3. Envoi des chunks avec attente d'ACK
             for i in range(chunks):
                 chunk = data[i*200 : (i+1)*200]
-                chunk = chunk + b'\xff' * (200 - len(chunk))
+                chunk = chunk + b'\xff' * (200 - len(chunk)) # Padding
+                
+                self.ota_ack_event.clear() # Reset l'événement
                 self.ser.write(chunk)
-                time.sleep(0.03) # Délai pour éviter le buffer overflow série
+                
+                # Attente de la réponse "OTA_CHUNK_OK" de l'ESP32 (Timeout de 2 secondes)
+                ack_received = self.ota_ack_event.wait(2.0)
+                
+                if not ack_received:
+                    self.root.after(0, self.log, f" ERREUR CRITIQUE: Timeout au chunk {i}/{chunks}. Annulation OTA.")
+                    self.ota_in_progress = False
+                    return
+                
+                # Mise à jour UI tous les 10 chunks
+                if i % 10 == 0:
+                    pct = (i / chunks) * 100
+                    self.root.after(0, self.progress_var.set, pct)
             
-            self.root.after(0, self.log, "Transfert OTA terminé vers le ROOT. Propagation dans l'arbre en cours...")
+            self.root.after(0, self.progress_var.set, 100)
+            self.root.after(0, self.log, "--- OTA UART TERMINÉ AVEC SUCCÈS. Propagation Mesh en cours... ---")
+        
         except Exception as e:
-            self.root.after(0, self.log, f"Erreur OTA: {e}")
+            self.root.after(0, self.log, f"Erreur fatale OTA: {e}")
+        finally:
+            self.ota_in_progress = False
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = MeshManagerV2(root)
+    app = MeshManagerV2Advanced(root)
     root.mainloop()

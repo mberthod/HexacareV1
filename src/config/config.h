@@ -144,7 +144,7 @@
 #define LEXACARE_MESH_ESPNOW_FLOODING 1  ///< 1 = mesh ESP-NOW par inondation (cache 50 msgId, TTL, jitter)
 #define LEXACARE_MESH_PAINLESS        0  ///< Désactivé (legacy painlessMesh)
 #define LEXACARE_MESH_32B             0  ///< Désactivé
-#define LEXACARE_THIS_NODE_IS_GATEWAY 1  ///< 1 = passerelle (Node 0) : Serial JSON + OTA depuis PC ; 0 = nœud
+#define LEXACARE_THIS_NODE_IS_GATEWAY 0  ///< 1 = passerelle (Node 0) : Serial JSON + OTA depuis PC ; 0 = nœud
 #define LEXACARE_MESH_SSID     "LexacareMesh"
 #define LEXACARE_MESH_PASSWORD "LexacareMeshSecret"
 #define LEXACARE_MESH_PORT     (5555)
