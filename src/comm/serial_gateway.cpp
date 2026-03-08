@@ -65,6 +65,8 @@ static bool s_serial_gateway_init_done = false;
 static uint32_t s_msg_id_seq = 0;
 /** True pendant la réception OTA Série (0x01 + header + chunks) : le mesh ne doit pas injecter OTA dans ota_mesh. */
 static volatile bool s_ota_serial_receiving = false;
+/** Mode OTA en cours : 0x01 = ROOT seul, 0x02 = Mesh (propagation). */
+static uint8_t s_ota_uart_mode = 0;
 
 // Handles des tâches à suspendre (non utilisé dans V2 car ota_tree_manager gère la concurrence via état)
 // static TaskHandle_t s_task_mesh = nullptr;
@@ -314,6 +316,7 @@ void serial_gateway_task(void *pv) {
 
                 // Processus OTA distincts : 0x01 = ROOT seul (série), 0x02 = tous les nœuds (mesh)
                 if (b == 0x01) {
+                    s_ota_uart_mode = 0x01;
                     log_dual_printf("[SERIE] OTA 0x01 = ROOT seul (LED violet). Attente en-tete 38 octets...\r\n");
                     s_ota_serial_receiving = true;
                     ota_tree_set_uart_mode(0x01);
@@ -324,6 +327,7 @@ void serial_gateway_task(void *pv) {
                     break;
                 }
                 if (b == 0x02) {
+                    s_ota_uart_mode = 0x02;
                     log_dual_printf("[SERIE] OTA 0x02 = Mesh (ROOT puis diffusion, LED bleu). Attente en-tete 38 octets...\r\n");
                     s_ota_serial_receiving = true;
                     ota_tree_set_uart_mode(0x02);
@@ -386,6 +390,9 @@ void serial_gateway_task(void *pv) {
 
                 if (ota_chunk_idx >= ota_total_chunks) {
                     log_dual_println("[SERIE] OTA UART terminee.");
+                    if (s_ota_uart_mode == OTA_SERIAL_MODE_MESH) {
+                        ota_tree_start_propagation(ota_total_size, ota_total_chunks, ota_md5);
+                    }
                     s_ota_serial_receiving = false;
                     state = SERIAL_STATE_IDLE;
                 }

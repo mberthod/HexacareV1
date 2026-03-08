@@ -55,11 +55,27 @@ static char s_expected_md5[33] = {0};
 /** 0x01 = OTA Série (ROOT seul, pas de diffusion), 0x02 = OTA Mesh (ROOT puis diffusion). */
 static uint8_t s_uart_ota_mode = 0;
 
-// Pour la distribution
+// Côté enfant (DOWNLOADING / PULL) : chunk attendu et handle OTA
+static uint16_t s_current_expected_chunk = 0;
+static uint16_t s_total_chunks = 0;
+static esp_ota_handle_t s_update_handle = 0;
+static TickType_t s_last_chunk_tick = 0;
+#define OTA_REQ_TIMEOUT_MS 500
+
+// Pour la distribution (PROPAGATING)
 static std::vector<ChildInfo> s_targets;
 static size_t s_current_target_idx = 0;
 static bool s_current_child_done = false;
 static uint32_t s_last_req_time = 0;
+
+/** Envoie MSG_OTA_REQ(requested_chunk_index) au parent. */
+static void send_ota_req(uint16_t chunk_index) {
+    uint8_t parent_mac[6];
+    if (!routing_get_parent_mac(parent_mac)) return;
+    OtaReqPayload req;
+    req.requested_chunk_index = chunk_index;
+    routing_send_unicast(parent_mac, MSG_OTA_REQ, (uint8_t *)&req, sizeof(req));
+}
 
 /**
  * @brief Initialisation du Gestionnaire de Mise à Jour.
@@ -80,6 +96,19 @@ void ota_tree_init(void) {
 
 void ota_tree_set_uart_mode(uint8_t mode) {
     s_uart_ota_mode = (mode == 0x01 || mode == 0x02) ? mode : 0;
+}
+
+void ota_tree_start_propagation(uint32_t total_size, uint16_t total_chunks, const char *md5) {
+    if (s_state != OTA_RECEIVING_UART) return;
+    s_total_size = total_size;
+    s_total_chunks = total_chunks;
+    if (md5) strncpy(s_expected_md5, md5, 32);
+    s_expected_md5[32] = '\0';
+    s_state = OTA_DISTRIBUTING;
+    s_targets = routing_get_children();
+    s_current_target_idx = 0;
+    s_current_child_done = false;
+    ESP_LOGI(TAG, "Propagation demarree: %u chunks vers %u enfant(s).", (unsigned)s_total_chunks, (unsigned)s_targets.size());
 }
 
 /**
@@ -124,102 +153,132 @@ void ota_tree_on_uart_chunk(uint32_t offset, const uint8_t *data, uint16_t len, 
 
     if (s_written_size >= s_total_size)
     {
-        s_state = OTA_DISTRIBUTING;
+        s_total_chunks = (uint16_t)((s_total_size + OTA_CHUNK_DATA_SIZE - 1) / OTA_CHUNK_DATA_SIZE);
         if (s_uart_ota_mode == 0x01) {
             // OTA Série : ROOT seul, pas de diffusion -> reboot immédiat
             ESP_LOGI(TAG, "Reception UART terminee (mode Serie ROOT). Pas de diffusion.");
+            s_state = OTA_DISTRIBUTING;
             s_targets.clear();
-        } else {
-            // OTA Mesh : ROOT diffuse aux enfants
-            ESP_LOGI(TAG, "Reception UART terminee. Passage en mode DISTRIBUTION Mesh.");
-            s_targets = routing_get_children();
+            s_current_target_idx = 0;
+            s_current_child_done = false;
         }
-        s_current_target_idx = 0;
-        s_current_child_done = false;
+        /* Mode 0x02 : la propagation est démarrée par ota_tree_start_propagation() depuis serial_gateway. */
     }
 }
 
 /**
- * @brief Réception d'une annonce de mise à jour (Publicité).
+ * @brief Réception d'une annonce de mise à jour (Publicité) - démarre le PULL.
  *
  * @details
- * Appelé quand un boîtier reçoit un message "Hé ! J'ai une mise à jour pour toi !" de son chef.
- * Il note la taille et la signature, et se prépare à télécharger.
+ * Si IDLE : obtient la partition OTA, appelle esp_ota_begin, stocke total_chunks,
+ * passe en DOWNLOADING et envoie la première requête MSG_OTA_REQ(0).
  */
 static void handle_ota_adv(const uint8_t *src_mac, const uint8_t *payload) {
+    if (!payload) return;
     OtaAdvPayload *adv = (OtaAdvPayload *)payload;
-    if (s_state == OTA_IDLE)
-    {
-        ESP_LOGI(TAG, "Recu OTA ADV. Taille: %lu. Passage en RECEIVING_MESH", adv->totalSize);
-        s_state = OTA_RECEIVING_MESH;
-        s_total_size = adv->totalSize;
-        memcpy(s_expected_md5, adv->md5Hex, 32);
-        s_written_size = 0;
-        led_manager_set_state(LED_STATE_OTA);
-        // On demandera le premier chunk dans la loop
+    if (s_state != OTA_IDLE) return;
+
+    s_update_partition = esp_ota_get_next_update_partition(NULL);
+    if (!s_update_partition) {
+        ESP_LOGE(TAG, "Pas de partition OTA pour reception mesh.");
+        return;
     }
+    s_total_size = adv->totalSize;
+    s_total_chunks = adv->totalChunks;
+    memcpy(s_expected_md5, adv->md5Hex, 32);
+    s_current_expected_chunk = 0;
+    s_written_size = 0;
+
+    esp_err_t err = esp_ota_begin(s_update_partition, s_total_size, &s_update_handle);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "esp_ota_begin failed %d", err);
+        return;
+    }
+    ESP_LOGI(TAG, "Recu OTA ADV. Taille: %lu, chunks: %u. Passage en DOWNLOADING.", (unsigned long)s_total_size, (unsigned)s_total_chunks);
+    s_state = OTA_RECEIVING_MESH;
+    s_last_chunk_tick = xTaskGetTickCount();
+    led_manager_set_state(LED_STATE_OTA);
+    send_ota_req(0);
 }
 
 /**
- * @brief Réception d'un morceau de mise à jour (Chunk) par la radio.
+ * @brief Réception d'un chunk OTA par la radio (PULL) - écriture séquentielle avec retry.
  *
  * @details
- * Appelé quand un boîtier reçoit un bout de fichier de son chef.
- * Il l'écrit dans sa mémoire Flash au bon endroit.
+ * Vérifie chunk_index == current_expected_chunk. Si oui : esp_ota_write, incrémente,
+ * demande le suivant ou termine (esp_ota_end, set_boot_partition, MSG_OTA_DONE, restart).
  */
 static void handle_ota_chunk(const uint8_t *payload, uint16_t len) {
-    if (s_state != OTA_RECEIVING_MESH)
-        return;
+    if (s_state != OTA_RECEIVING_MESH || !payload || len < (uint16_t)(sizeof(uint16_t) + sizeof(uint8_t))) return;
 
     OtaChunkPayload *chunk = (OtaChunkPayload *)payload;
-    uint32_t offset = chunk->chunkIndex * 200; // Attention: chunkIndex est u16, data 200
-    // Note: Dans le protocole V1 c'était chunkIndex * 200. Ici on garde la compatibilité.
+    if (chunk->chunk_index != s_current_expected_chunk) return; /* Ignorer ou retry géré par timeout */
 
-    if (esp_partition_write(s_update_partition, offset, chunk->data, len - sizeof(uint16_t) * 2) == ESP_OK)
-    {
-        s_written_size += (len - sizeof(uint16_t) * 2);
-        led_flash_rx();
-        // Logique simplifiée : on incrémente juste.
-        // Vrai système : bitmap pour savoir quel chunk manque.
+    uint8_t write_len = chunk->chunk_size;
+    if (write_len > 200) write_len = 200;
+
+    if (esp_ota_write(s_update_handle, chunk->data, write_len) != ESP_OK) {
+        ESP_LOGE(TAG, "esp_ota_write failed chunk %u", (unsigned)chunk->chunk_index);
+        return;
+    }
+    s_last_chunk_tick = xTaskGetTickCount();
+    s_written_size += write_len;
+    led_flash_rx();
+
+    s_current_expected_chunk++;
+
+    if (s_current_expected_chunk >= s_total_chunks) {
+        /* Réception complète : fin OTA, validation, reboot */
+        if (esp_ota_end(s_update_handle) != ESP_OK) {
+            ESP_LOGE(TAG, "esp_ota_end failed");
+            led_manager_set_state(LED_STATE_ERROR);
+            return;
+        }
+        uint8_t parent_mac[6];
+        if (routing_get_parent_mac(parent_mac))
+            routing_send_unicast(parent_mac, MSG_OTA_DONE, nullptr, 0);
+        if (s_update_partition && esp_ota_set_boot_partition(s_update_partition) == ESP_OK) {
+            ESP_LOGI(TAG, "OTA mesh OK. Reboot dans 2s.");
+            vTaskDelay(pdMS_TO_TICKS(2000));
+        }
+        esp_restart();
+    } else {
+        send_ota_req(s_current_expected_chunk);
     }
 }
 
 /**
- * @brief Traitement d'une demande de morceau (Requête).
+ * @brief Traitement d'une demande de chunk (MSG_OTA_REQ) - serveur lit la partition et envoie MSG_OTA_CHUNK.
  *
  * @details
- * Appelé quand un soldat demande à son chef : "Envoie-moi le bout numéro 42 stp".
- * Le chef va lire ce bout dans sa propre mémoire et l'envoyer au soldat.
+ * Lit le bloc demandé depuis la partition OTA (req->requested_chunk_index * 200),
+ * taille 200 ou moins pour le dernier chunk. Envoie OtaChunkPayload en unicast à l'enfant.
  */
 static void handle_ota_req(const uint8_t *src_mac, const uint8_t *payload) {
-    if (s_state != OTA_DISTRIBUTING)
-        return;
+    if (s_state != OTA_DISTRIBUTING || !s_update_partition || !payload) return;
+    if (s_current_target_idx >= s_targets.size()) return;
+    if (memcmp(src_mac, s_targets[s_current_target_idx].mac, 6) != 0) return;
 
-    // Vérifier que c'est l'enfant en cours
-    if (s_current_target_idx < s_targets.size())
-    {
-        if (memcmp(src_mac, s_targets[s_current_target_idx].mac, 6) == 0)
-        {
-            OtaReqPayload *req = (OtaReqPayload *)payload;
+    OtaReqPayload *req = (OtaReqPayload *)payload;
+    uint16_t idx = req->requested_chunk_index;
+    if (idx >= s_total_chunks) return;
+    uint32_t offset = (uint32_t)idx * OTA_CHUNK_DATA_SIZE;
+    uint32_t remaining = (s_total_size > offset) ? (s_total_size - offset) : 0;
+    uint16_t read_len = (remaining > OTA_CHUNK_DATA_SIZE) ? OTA_CHUNK_DATA_SIZE : (uint16_t)remaining;
+    if (read_len == 0) return;
 
-            // Lire le chunk en flash
-            uint8_t buffer[250];
-            OtaChunkPayload *chunk = (OtaChunkPayload *)(buffer + sizeof(TreeMeshHeader)); // Astuce pour offset
-            // On prépare juste le payload
-            uint8_t chunkData[200];
-            if (esp_partition_read(s_update_partition, req->offset, chunkData, req->length) == ESP_OK)
-            {
-                // Construire réponse MSG_OTA_CHUNK
-                OtaChunkPayload resp;
-                resp.chunkIndex = req->offset / 200;
-                resp.totalChunks = s_total_size / 200; // Approx
-                memcpy(resp.data, chunkData, req->length);
+    uint8_t chunkData[200];
+    if (esp_partition_read(s_update_partition, offset, chunkData, read_len) != ESP_OK) return;
 
-                routing_send_unicast(src_mac, MSG_OTA_CHUNK, (uint8_t *)&resp, sizeof(OtaChunkPayload));
-                s_last_req_time = xTaskGetTickCount();
-            }
-        }
-    }
+    OtaChunkPayload resp;
+    resp.chunk_index = idx;
+    resp.chunk_size = (uint8_t)read_len;
+    memcpy(resp.data, chunkData, read_len);
+    if (read_len < 200) memset(resp.data + read_len, 0, 200 - read_len);
+
+    size_t payload_len = (size_t)(sizeof(uint16_t) + sizeof(uint8_t) + read_len);
+    routing_send_unicast(src_mac, MSG_OTA_CHUNK, (uint8_t *)&resp, (uint16_t)payload_len);
+    s_last_req_time = xTaskGetTickCount();
 }
 
 /**
@@ -287,34 +346,12 @@ void ota_tree_task(void *pv) {
     {
         if (s_state == OTA_RECEIVING_MESH)
         {
-            // Demander le prochain chunk manquant
-            // Simplification: on demande séquentiellement
-            if (s_written_size < s_total_size)
+            /* Timeout 500 ms : renvoyer la requête du chunk attendu (résilience perte paquets). */
+            TickType_t now = xTaskGetTickCount();
+            if ((now - s_last_chunk_tick) >= pdMS_TO_TICKS(OTA_REQ_TIMEOUT_MS))
             {
-                uint8_t parent_mac[6];
-                if (routing_get_parent_mac(parent_mac))
-                {
-                    OtaReqPayload req;
-                    req.offset = s_written_size;
-                    req.length = (s_total_size - s_written_size > 200) ? 200 : (s_total_size - s_written_size);
-                    routing_send_unicast(parent_mac, MSG_OTA_REQ, (uint8_t *)&req, sizeof(req));
-                    vTaskDelay(pdMS_TO_TICKS(100)); // Throttle
-                }
-            }
-            else
-            {
-                // Fini !
-                ESP_LOGI(TAG, "Reception Mesh terminee. Verification...");
-                // TODO: Verify MD5
-                uint8_t parent_mac[6];
-                if (routing_get_parent_mac(parent_mac))
-                {
-                    routing_send_unicast(parent_mac, MSG_OTA_DONE, nullptr, 0);
-                }
-                s_state = OTA_DISTRIBUTING;
-                s_targets = routing_get_children();
-                s_current_target_idx = 0;
-                s_current_child_done = false;
+                send_ota_req(s_current_expected_chunk);
+                s_last_chunk_tick = now;
             }
         }
         else if (s_state == OTA_DISTRIBUTING)
@@ -326,7 +363,7 @@ void ota_tree_task(void *pv) {
                 {
                     OtaAdvPayload adv;
                     adv.totalSize = s_total_size;
-                    adv.totalChunks = s_total_size / 200; // Approx
+                    adv.totalChunks = s_total_chunks;
                     memcpy(adv.md5Hex, s_expected_md5, 32);
                     routing_send_unicast(s_targets[s_current_target_idx].mac, MSG_OTA_ADV, (uint8_t *)&adv, sizeof(adv));
 

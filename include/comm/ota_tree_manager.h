@@ -22,6 +22,9 @@ void ota_tree_init(void);
 /** À appeler juste avant réception UART : 0x01 = OTA Série (ROOT seul), 0x02 = OTA Mesh (diffusion). */
 void ota_tree_set_uart_mode(uint8_t mode);
 
+/** Démarre la propagation après réception UART complète (mode 0x02). À appeler depuis serial_gateway. */
+void ota_tree_start_propagation(uint32_t total_size, uint16_t total_chunks, const char *md5);
+
 // Tâche principale (machine à états réception/distribution)
 void ota_tree_task(void *pv);
 

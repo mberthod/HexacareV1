@@ -58,15 +58,14 @@ struct __attribute__((packed)) JoinAckPayload {
     uint8_t assigned_layer; // Couche assignée (parent_layer + 1)
 };
 
-// Payload pour demander un chunk OTA (MSG_OTA_REQ)
+/** Payload pour demander un chunk OTA (MSG_OTA_REQ) - mécanisme PULL par index. */
 struct __attribute__((packed)) OtaReqPayload {
-    uint32_t offset;        // Offset demandé
-    uint16_t length;        // Taille demandée (max 200)
+    uint16_t requested_chunk_index;  ///< Index du chunk demandé (0-based)
 };
 
 /**
  * @struct OtaAdvPayload
- * @brief Annonce OTA (taille, nombre de chunks, MD5). Suit EspNowMeshHeader quand msgType == OTA_ADV.
+ * @brief Annonce OTA (taille, nombre de chunks, MD5). Suit TreeMeshHeader quand msgType == MSG_OTA_ADV.
  */
 struct __attribute__((packed)) OtaAdvPayload {
     uint32_t totalSize;      ///< Taille totale du binaire (octets)
@@ -78,15 +77,15 @@ struct __attribute__((packed)) OtaAdvPayload {
 
 /**
  * @struct OtaChunkPayload
- * @brief Bloc OTA (200 octets de données). Suit EspNowMeshHeader quand msgType == OTA_CHUNK.
+ * @brief Bloc OTA (chunk_index + chunk_size + 200 octets). Suit TreeMeshHeader quand msgType == MSG_OTA_CHUNK.
  */
 struct __attribute__((packed)) OtaChunkPayload {
-    uint16_t chunkIndex;     ///< Numéro du bloc (0-based)
-    uint16_t totalChunks;    ///< Nombre total de blocs
+    uint16_t chunk_index;    ///< Numéro du bloc (0-based)
+    uint8_t  chunk_size;     ///< Nombre d'octets valides dans data[] (généralement 200)
     uint8_t  data[200];      ///< Données du firmware
 };
 
-#define OTA_CHUNK_PAYLOAD_SIZE (sizeof(struct OtaChunkPayload))  /* 2+2+200 = 204 */
+#define OTA_CHUNK_PAYLOAD_SIZE (sizeof(struct OtaChunkPayload))  /* 2+1+200 = 203 */
 #define OTA_CHUNK_DATA_SIZE    200
 
 // Payload de données (remplace LexaFullFrame pour inclure la topologie)
