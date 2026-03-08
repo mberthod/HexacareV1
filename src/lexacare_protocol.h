@@ -47,30 +47,7 @@ struct __attribute__((packed)) EspNowMeshHeader {
 static_assert(sizeof(struct EspNowMeshHeader) == ESPNOW_MESH_HEADER_SIZE, "EspNowMeshHeader must be 8 bytes");
 #endif
 
-/**
- * @struct OtaAdvPayload
- * @brief Annonce OTA (taille, nombre de chunks, MD5). Suit EspNowMeshHeader quand msgType == OTA_ADV.
- */
-struct __attribute__((packed)) OtaAdvPayload {
-    uint32_t totalSize;      ///< Taille totale du binaire (octets)
-    uint16_t totalChunks;    ///< Nombre total de blocs (200 octets chacun)
-    uint8_t  md5Hex[32];     ///< MD5 du binaire en hex ASCII (32 caractères)
-};
-
-#define OTA_ADV_PAYLOAD_SIZE  (sizeof(struct OtaAdvPayload))  /* 4+2+32 = 38 */
-
-/**
- * @struct OtaChunkPayload
- * @brief Bloc OTA (200 octets de données). Suit EspNowMeshHeader quand msgType == OTA_CHUNK.
- */
-struct __attribute__((packed)) OtaChunkPayload {
-    uint16_t chunkIndex;     ///< Numéro du bloc (0-based)
-    uint16_t totalChunks;    ///< Nombre total de blocs
-    uint8_t  data[200];      ///< Données du firmware
-};
-
-#define OTA_CHUNK_PAYLOAD_SIZE (sizeof(struct OtaChunkPayload))  /* 2+2+200 = 204 */
-#define OTA_CHUNK_DATA_SIZE    200
+// OTA payloads removed from here, see mesh_tree_protocol.h
 
 /**
  * @struct LexaFullFrame
@@ -104,8 +81,7 @@ _Static_assert(sizeof(struct LexaFullFrame) == LEXA_FRAME_SIZE, "LexaFullFrame m
 
 typedef struct LexaFullFrame LexaFullFrame_t;
 typedef struct EspNowMeshHeader EspNowMeshHeader_t;
-typedef struct OtaAdvPayload OtaAdvPayload_t;
-typedef struct OtaChunkPayload OtaChunkPayload_t;
+// OTA typedefs removed from here, see mesh_tree_protocol.h
 
 #ifdef __cplusplus
 extern "C" {

@@ -1,0 +1,29 @@
+/**
+ * @file ota_tree_manager.h
+ * @brief Gestionnaire OTA "Store & Forward" pour topologie en arbre.
+ * 
+ * Stratégie :
+ * 1. Le nœud reçoit l'update complet (soit par UART si ROOT, soit par son Parent).
+ * 2. Il stocke tout en flash (partition OTA).
+ * 3. Une fois complet et vérifié, il devient "Serveur de distribution".
+ * 4. Il contacte ses enfants UN PAR UN pour leur pousser la mise à jour.
+ * 5. Une fois tous les enfants servis (ou timeout), il reboote sur la nouvelle partition.
+ */
+
+#ifndef OTA_TREE_MANAGER_H
+#define OTA_TREE_MANAGER_H
+
+#include <stdint.h>
+#include "mesh_tree_protocol.h"
+
+// Initialisation
+void ota_tree_init(void);
+
+// Tâche principale (machine à états réception/distribution)
+void ota_tree_task(void *pv);
+
+// Entrées (événements)
+void ota_tree_on_uart_chunk(uint32_t offset, const uint8_t* data, uint16_t len, uint32_t totalSize, const char* md5);
+void ota_tree_on_mesh_message(const uint8_t* src_mac, uint8_t msgType, const uint8_t* payload, uint16_t len);
+
+#endif

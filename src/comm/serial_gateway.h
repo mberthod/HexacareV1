@@ -44,7 +44,7 @@ void serial_gateway_task(void *pv);
  * @return 1 si le ROOT reçoit des chunks OTA depuis le Serial, 0 sinon.
  * @details Tant que 1, le mesh ne doit pas injecter OTA_ADV/OTA_CHUNK dans ota_mesh (éviter mélange avec les chunks série).
  */
-int serial_gateway_is_ota_serial_receiving(void);
+// int serial_gateway_is_ota_serial_receiving(void);
 
 /**
  * @brief Enregistre les tâches à suspendre pendant OTA Série (seule serial_gateway_task reste active).

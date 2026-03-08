@@ -1,0 +1,86 @@
+/**
+ * @file mesh_tree_protocol.h
+ * @brief Protocole V2 pour réseau en arbre (jusqu'à 1000+ nœuds).
+ * Fini le broadcast massif, place à l'unicast parent-enfant.
+ */
+
+ #ifndef MESH_TREE_PROTOCOL_H
+ #define MESH_TREE_PROTOCOL_H
+ 
+ #include <stdint.h>
+ 
+ #define MESH_MAGIC_BYTE 0xAB
+ #define MAX_CHILDREN_PER_NODE 20
+ 
+ // Types de messages réseau
+ enum MeshMsgType {
+     MSG_BEACON = 0x10,      // Diffusé par les parents pour annoncer leur présence
+     MSG_JOIN_REQ = 0x11,    // Demande d'un orphelin pour rejoindre un parent
+     MSG_JOIN_ACK = 0x12,    // Acceptation du parent
+     MSG_HEARTBEAT = 0x13,   // Ping de maintien de connexion (enfant -> parent)
+    MSG_DATA = 0x20,        // Données capteurs (remontent vers le ROOT)
+    MSG_OTA_ADV = 0x30,     // Annonce de mise à jour (descend vers les enfants)
+    MSG_OTA_REQ = 0x32,     // Demande d'un chunk par un enfant (montant)
+    MSG_OTA_CHUNK = 0x31,   // Bloc de mise à jour (descend vers les enfants)
+    MSG_OTA_DONE = 0x33     // Signal que l'enfant a fini sa mise à jour
+};
+ 
+ // En-tête de routage (10 octets)
+ struct __attribute__((packed)) TreeMeshHeader {
+     uint8_t  magic;         // MESH_MAGIC_BYTE
+     uint8_t  msgType;       // MeshMsgType
+     uint16_t srcNodeId;     // ID de l'émetteur d'origine (fin de la MAC)
+     uint16_t destNodeId;    // ID de la destination (0x0000 = ROOT, 0xFFFF = Broadcast)
+     uint8_t  layer;         // Couche réseau (0 = ROOT, 1 = connecté au root, etc.)
+     uint8_t  ttl;           // Time To Live
+     uint16_t payloadLen;    // Taille de la suite
+ };
+ 
+ // Payload d'un Beacon (diffusé périodiquement par les nœuds connectés)
+struct __attribute__((packed)) BeaconPayload {
+    uint8_t currentChildrenCount; // Pour que l'orphelin choisisse le parent le moins chargé
+    int8_t  rssi;                 // Réservé pour calcul
+};
+
+// Payload pour demander un chunk OTA (MSG_OTA_REQ)
+struct __attribute__((packed)) OtaReqPayload {
+    uint32_t offset;        // Offset demandé
+    uint16_t length;        // Taille demandée (max 200)
+};
+
+/**
+ * @struct OtaAdvPayload
+ * @brief Annonce OTA (taille, nombre de chunks, MD5). Suit EspNowMeshHeader quand msgType == OTA_ADV.
+ */
+struct __attribute__((packed)) OtaAdvPayload {
+    uint32_t totalSize;      ///< Taille totale du binaire (octets)
+    uint16_t totalChunks;    ///< Nombre total de blocs (200 octets chacun)
+    uint8_t  md5Hex[32];     ///< MD5 du binaire en hex ASCII (32 caractères)
+};
+
+#define OTA_ADV_PAYLOAD_SIZE  (sizeof(struct OtaAdvPayload))  /* 4+2+32 = 38 */
+
+/**
+ * @struct OtaChunkPayload
+ * @brief Bloc OTA (200 octets de données). Suit EspNowMeshHeader quand msgType == OTA_CHUNK.
+ */
+struct __attribute__((packed)) OtaChunkPayload {
+    uint16_t chunkIndex;     ///< Numéro du bloc (0-based)
+    uint16_t totalChunks;    ///< Nombre total de blocs
+    uint8_t  data[200];      ///< Données du firmware
+};
+
+#define OTA_CHUNK_PAYLOAD_SIZE (sizeof(struct OtaChunkPayload))  /* 2+2+200 = 204 */
+#define OTA_CHUNK_DATA_SIZE    200
+
+// Payload de données (remplace LexaFullFrame pour inclure la topologie)
+ struct __attribute__((packed)) DataPayload {
+     uint16_t parentId;       // Qui est mon parent actuel (pour le monitoring Python)
+     uint16_t vBat;
+     uint8_t  heartRate;
+     uint8_t  probFall;
+     int16_t  tempExt;
+     // ... autres données capteurs
+ };
+ 
+ #endif
