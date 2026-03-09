@@ -14,7 +14,9 @@
 #define OTA_TREE_MANAGER_H
 
 #include <stdint.h>
-#include "mesh_tree_protocol.h"
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include "mesh/mesh_tree_protocol.h"
 
 // Initialisation
 void ota_tree_init(void);
@@ -22,8 +24,14 @@ void ota_tree_init(void);
 /** À appeler juste avant réception UART : 0x01 = OTA Série (ROOT seul), 0x02 = OTA Mesh (diffusion). */
 void ota_tree_set_uart_mode(uint8_t mode);
 
-/** Démarre la propagation après réception UART complète (mode 0x02). À appeler depuis serial_gateway. */
+/** Démarre la propagation après réception UART complète (mode 0x02 legacy). */
 void ota_tree_start_propagation(uint32_t total_size, uint16_t total_chunks, const char *md5);
+
+/** Callback appelé quand l'OTA mesh (0x02) est terminé sur le ROOT (tous REBOOT_ACK reçus). Reprendre les tâches. */
+void ota_tree_register_mesh_done_cb(void (*cb)(void));
+
+/** Enregistre les tâches à suspendre quand un enfant entre en mode OTA mesh (réception ENTER). */
+void ota_tree_register_tasks_for_mesh_suspend(TaskHandle_t h1, TaskHandle_t h2, TaskHandle_t h3, TaskHandle_t h4);
 
 // Tâche principale (machine à états réception/distribution)
 void ota_tree_task(void *pv);
@@ -31,5 +39,8 @@ void ota_tree_task(void *pv);
 // Entrées (événements)
 void ota_tree_on_uart_chunk(uint32_t offset, const uint8_t* data, uint16_t len, uint32_t totalSize, const char* md5);
 void ota_tree_on_mesh_message(const uint8_t* src_mac, uint8_t msgType, const uint8_t* payload, uint16_t len);
+
+/** (ROOT, mode 0x02) True quand le chunk courant a été propagé (tous CHUNK_ACK reçus). serial_gateway attend avant de lire le chunk suivant. */
+bool ota_tree_ready_for_next_chunk(void);
 
 #endif

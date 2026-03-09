@@ -32,7 +32,7 @@ void log_dual_write(const uint8_t *buf, size_t len);
 void log_dual_print(const char *str);
 
 /**
- * @brief Envoie une chaîne C + \\n sur les deux liens.
+ * @brief Envoie une chaîne C + \n sur les deux liens.
  */
 void log_dual_println(const char *str);
 

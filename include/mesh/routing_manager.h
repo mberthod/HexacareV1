@@ -11,7 +11,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <vector>
-#include "mesh_tree_protocol.h"
+#include "mesh/mesh_tree_protocol.h"
 
 /** Table de routage locale (équivalent MeshChildNode_t du CDC). */
 struct ChildInfo {

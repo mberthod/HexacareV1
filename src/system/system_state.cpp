@@ -7,7 +7,7 @@
  * Il centralise les signes vitaux, les tensions, et les alertes de chute.
  */
 
-#include "system_state.h"
+#include "system/system_state.h"
 #include <string.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/semphr.h>

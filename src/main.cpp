@@ -30,12 +30,12 @@
 #include "system/log_dual.h"
 #include "system/led_manager.h"
 #include "lexacare_protocol.h"
-#include "comm/espnow_mesh.h"
-#include "comm/routing_manager.h"
-#include "comm/ota_tree_manager.h"
-#include "comm/serial_gateway.h"
+#include "mesh/espnow_mesh.h"
+#include "mesh/routing_manager.h"
+#include "OTA/ota_tree_manager.h"
+#include "mesh/serial_gateway.h"
 #include "rtos/queues_events.h"
-#include "sensors/sensor_sim.h"
+#include "sensors/sensor_sim.h"  /* sensor_sim_get_task_handle() pour OTA locale */
 #include <Wire.h>
 #include <nvs_flash.h>
 #include <esp_log.h>
@@ -53,6 +53,22 @@ static const char *TAG_MAIN = "MAIN";
 // Donc on n'a plus besoin de on_espnow_recv ici.
 
 // Tâche d'envoi des données capteurs (générées localement)
+/**
+ * @brief Tâche d'émission des données capteurs vers le parent ou la passerelle série.
+ *
+ * @details
+ * Cette tâche consomme les trames LexaFullFrame_t déposées dans la file g_queue_espnow_tx.
+ * - Si le nœud est ROOT (passerelle), les données sont sérialisées et envoyées sur la liaison série au PC.
+ * - Sinon, les trames sont transmises par unicast ESP-NOW au parent mesh.
+ * Avant l'envoi, la couche (layer) et l'identifiant du parent (parentId) sont injectés dans la trame,
+ * puis le CRC est recalculé.
+ * Un feedback visuel (led_flash_yellow_rx) est déclenché à chaque envoi.
+ *
+ * Fonctionne en tâche FreeRTOS, blocante sur la queue.
+ *
+ * @param pv Paramètre inutilisé (conforme FreeRTOS).
+ */
+
 static void dataTxTask(void *pv)
 {
     LexaFullFrame_t frame;
@@ -68,7 +84,7 @@ static void dataTxTask(void *pv)
             // Si ROOT, direct série
             if (LEXACARE_THIS_NODE_IS_GATEWAY)
             {
-                serial_gateway_send_data_json(&frame, 0);
+                serial_gateway_send_data_json(&frame);
                 led_flash_yellow_rx(); // Feedback visuel (simulé comme réception locale)
                 vTaskDelay(pdMS_TO_TICKS(1)); /* Yield pour éviter WDT (Serial peut bloquer) */
             }
@@ -146,20 +162,93 @@ void setup()
         led_manager_set_state(LED_STATE_SCANNING);
         log_dual_println("[BOOT] Mode NODE");
     }
+    /*
+     * ---------------------------------------------------------------------------
+     *  RÉPARTITION DES TÂCHES ENTRE LES DEUX CŒURS DE L'ESP32-S3 :
+     *
+     *  - Core 0 (Pro CPU) : Gestion du réseau, de la topologie Mesh, OTA, transfert radio.
+     *      -> routing_task         : Découverte et gestion du réseau Mesh, parent/enfants.
+     *      -> ota_tree_task        : Mise à jour OTA (over-the-air) en arborescence.
+     *      -> dataTxTask           : Expédition des trames capteurs/diagnostic au parent ou Root (Gateway).
+     *      -> serial_gateway_task* : Interface USB avec le backend si GATEWAY.
+     *
+     *  - Core 1 (App CPU) : Traitement temps réel des capteurs, gestion de la LED, et tâches accessoires.
+     *      -> led_manager_task      : Animation RGB de la LED en fonction de l’état du système/statut radio.
+     *      -> sensor_sim_task_start : Injection de données simulées pour tests/émulation capteurs.
+     *      -> (Et toutes futures tâches d'analyse capteurs temps réel)
+     *
+     *  => Cette organisation permet de garantir que le traitement radio (WiFi/ESP-NOW)
+     *     - critique en temps réel - n’est jamais bloqué par la lecture ou le calcul intensif
+     *     sur les capteurs ou par l’animation de la LED RGB.
+     *
+     *  Accès aux données partagées :
+     *      - Toutes les interactions avec l’état global du système utilisent
+     *        le module 'system_state' (thread-safe avec mutex FreeRTOS).
+     *      - La communication inter-tâches utilise files (Queues) et EventGroups.
+     * ---------------------------------------------------------------------------
+     */
 
-    // Tâches
-    xTaskCreatePinnedToCore(led_manager_task, "LedMgr", 2048, NULL, 1, NULL, 1); // Core 1 pour ne pas bloquer radio
-    xTaskCreatePinnedToCore(routing_task, "Routing", 4096, NULL, 3, NULL, 0);
-    xTaskCreatePinnedToCore(ota_tree_task, "OTA_Tree", 4096, NULL, 2, NULL, 0);
-    xTaskCreatePinnedToCore(dataTxTask, "DataTx", 3072, NULL, 1, NULL, 0);
+    // ----------------------------------------------------------------------------------------
+    // Tâches FreeRTOS principales lancées au démarrage :
+    //
+    // 1. led_manager_task (Core 1)
+    //    - Gère l'affichage de la LED RGB en fonction de l'état du système.
+    //    - Assure la signalisation des flashs RX/TX, l'état connecté, le mode racine, les erreurs, etc.
+    //    - Met à jour la LED à une fréquence rapide sans bloquer la radio.
+    //
+    // 2. routing_task (Core 0)
+    //    - S'occupe de la découverte des voisins Mesh, du suivi de la topologie réseau, et des changements de parent.
+    //    - Gère la remontée/descente d'informations pour trouver le ROOT du réseau.
+    //
+    // 3. ota_tree_task (Core 0)
+    //    - Supervise la distribution des mises à jour OTA via le Tree Mesh.
+    //    - Peut propager les paquets OTA à travers la hiérarchie des nœuds.
+    //
+    // 4. dataTxTask (Core 0)
+    //    - S'occupe de l'envoi asynchrone des données capteurs et trames de diagnostic vers le parent ou le gateway.
+    //    - Récupère les données à transmettre via la file g_queue_espnow_tx.
+    //
+    // 5. sensor_sim_task_start (Core 1)
+    //    - Simule les capteurs pour des tests (Lidar, Radar, Audio, etc.) puis injecte les données dans le flot normal.
+    //    - Peut être remplacé par les vraies tâches capteurs sur une cible réelle.
+    //
+    // 6. serial_gateway_task (Core 0, seulement sur GATEWAY)
+    //    - Gère l'interface série USB pour connexion avec le backend ou outils PC.
+    //    - Permet la récupération des logs, la topologie du mesh, le flash OTA, etc.
+    //
+    // Notes :
+    //  - Les tâches sont réparties sur les deux cœurs pour garantir la réactivité de la radio.
+    //  - Tous les accès à l’état système global sont protégés par mutex (voir system_state).
+    // ----------------------------------------------------------------------------------------
+    TaskHandle_t h_routing = NULL;
+    TaskHandle_t h_ota_tree = NULL;
+    TaskHandle_t h_data_tx = NULL;
 
-    // Simulation Capteurs (Core 1) - envoie des trames vers série (ROOT) ou parent (NODE)
+    xTaskCreatePinnedToCore(led_manager_task, "LedMgr", 2048, NULL, 1, NULL, 1);
+    xTaskCreatePinnedToCore(routing_task, "Routing", 4096, NULL, 3, &h_routing, 0);
+    xTaskCreatePinnedToCore(ota_tree_task, "OTA_Tree", 4096, NULL, 2, &h_ota_tree, 0);
+    xTaskCreatePinnedToCore(dataTxTask, "DataTx", 3072, NULL, 1, &h_data_tx, 0);
+
     sensor_sim_task_start();
+    // Cette section lance toutes les tâches principales du firmware, chacune étant dédiée à une responsabilité précise.
+    // Par exemple, la tâche led_manager_task, épinglée sur le Core 1, gère la LED RGB en actualisant son état toutes les 50ms :
+    // - Elle affiche différentes couleurs et effets (clignotement, pulsation, changement rapide) pour indiquer les états importants du système,
+    //   comme la connexion réseau, la détection d'erreur, le mode OTA, ou la réception/envoi de messages.
+    // - Un système de flash prioritaire permet à la LED d'indiquer immédiatement une communication RX/TX,
+    //   en interrompant brièvement l'effet visuel courant pour afficher une couleur dédiée durant 50ms.
+    // - La logique inclut aussi des effets de pulsation au lieu de simples allumages fixes afin de rendre les changements d'état plus perceptibles.
+    // Le découplage de cette gestion sur un cœur dédié évite ainsi de perturber la radio ou d'introduire de la latence dans le traitement des capteurs.
+
+
+    /* Tous les nœuds (ROOT et enfants) : enregistrer les tâches à suspendre quand un enfant reçoit OTA_MESH_ENTER,
+       pour stopper tout trafic ESP-NOW (beacons, heartbeats, data) pendant l'OTA mesh. */
+    ota_tree_register_tasks_for_mesh_suspend(h_routing, h_ota_tree, h_data_tx, sensor_sim_get_task_handle());
 
     if (LEXACARE_THIS_NODE_IS_GATEWAY)
     {
-        // Serial Gateway pour OTA UART (Core 0) - pile 6 Ko (buffers JSON + topologie)
         xTaskCreatePinnedToCore(serial_gateway_task, "SerialGW", 6144, NULL, 2, NULL, 0);
+        serial_gateway_register_tasks_for_ota_suspend(h_routing, h_ota_tree, h_data_tx, sensor_sim_get_task_handle());
+        ota_tree_register_mesh_done_cb(serial_gateway_resume_tasks_after_ota_mesh);
     }
 
     log_dual_println("[BOOT] System Ready");

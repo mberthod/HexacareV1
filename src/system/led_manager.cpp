@@ -16,7 +16,7 @@
  * - **Flash BLANC** : "J'ai envoyé un message".
  */
 
-#include "led_manager.h"
+#include "system/led_manager.h"
 #include "config/config.h"
 #include "config/pins_lexacare.h"
 #include <Adafruit_NeoPixel.h>
@@ -95,9 +95,21 @@ void led_manager_task(void *pv) {
                     else color = s_pixel.Color(80, 0, 120);
                     break;
                 case LED_STATE_OTA_MESH:
-                    // OTA Mesh (0x02) : Bleu pulsé = ROOT reçoit puis diffuse au mesh
                     if ((counter % 6) < 3) color = s_pixel.Color(0, 100, 255);
                     else color = s_pixel.Color(0, 50, 150);
+                    break;
+                case LED_STATE_OTA_MESH_ROOT:
+                    // OTA Mesh ROOT : orange fixe (tâches arrêtées, réception chunks)
+                    color = s_pixel.Color(255, 165, 0);
+                    break;
+                case LED_STATE_OTA_MESH_CHILD:
+                    // OTA Mesh enfant : rouge fade vers bleu (respiration)
+                    {
+                        float t = (counter % 80) / 80.0f;
+                        uint8_t r = (uint8_t)(255 * (1.0f - t));
+                        uint8_t b = (uint8_t)(100 + 155 * t);
+                        color = s_pixel.Color(r, 0, b);
+                    }
                     break;
                 case LED_STATE_ORPHAN:
                     // Perte parent : flash Orange/Rouge (reconnexion en cours)

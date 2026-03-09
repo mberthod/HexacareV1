@@ -8,7 +8,7 @@
  * la durée de vie de l'EEPROM et la rapidité d'accès.
  */
 
-#include "eeprom_logger.h"
+#include "system/eeprom_logger.h"
 #include "config/config.h"
 #include "config/pins_lexacare.h"
 #include <Wire.h>

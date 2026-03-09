@@ -33,7 +33,12 @@
     MSG_OTA_ADV = 0x30,     // Annonce de mise à jour (descend vers les enfants)
     MSG_OTA_REQ = 0x32,     // Demande d'un chunk par un enfant (montant)
     MSG_OTA_CHUNK = 0x31,   // Bloc de mise à jour (descend vers les enfants)
-    MSG_OTA_DONE = 0x33     // Signal que l'enfant a fini sa mise à jour
+    MSG_OTA_DONE = 0x33,    // Signal que l'enfant a fini sa mise à jour
+    // OTA Mesh en vague (propagation chunk par chunk, ACK remontée)
+    MSG_OTA_MESH_ENTER = 0x34,   // Entrée en mode OTA mesh (propagation, timeout 15 min)
+    MSG_OTA_CHUNK_ACK   = 0x35,  // ACK chunk reçu et écrit (remonte vers parent)
+    MSG_OTA_MESH_REBOOT  = 0x36, // Commande reboot (propagation jusqu'aux feuilles)
+    MSG_OTA_MESH_REBOOT_ACK = 0x37 // ACK reboot reçu (remonte, puis reboot)
 };
  
  // En-tête de routage (10 octets)
@@ -87,6 +92,17 @@ struct __attribute__((packed)) OtaChunkPayload {
 
 #define OTA_CHUNK_PAYLOAD_SIZE (sizeof(struct OtaChunkPayload))  /* 2+1+200 = 203 */
 #define OTA_CHUNK_DATA_SIZE    200
+
+/** Payload ACK chunk (MSG_OTA_CHUNK_ACK) : remonte au parent après écriture flash. */
+struct __attribute__((packed)) OtaChunkAckPayload {
+    uint16_t chunk_index;  ///< Index du chunk acquitté
+};
+
+/** Payload entrée mode OTA mesh (MSG_OTA_MESH_ENTER) : même structure que ADV (taille, chunks, MD5). */
+#define OTA_MESH_ENTER_PAYLOAD_SIZE  (sizeof(struct OtaAdvPayload))  /* 38 */
+
+/** Timeout global OTA mesh (ms). */
+#define OTA_MESH_TIMEOUT_MS  (15 * 60 * 1000)  /* 15 minutes */
 
 // Payload de données (remplace LexaFullFrame pour inclure la topologie)
  struct __attribute__((packed)) DataPayload {

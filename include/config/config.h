@@ -42,6 +42,11 @@
 /** @name OTA
  *  @{ */
 #define OTA_SKIP_MD5_VERIFY   (1)    ///< 1 = ignorer vérif MD5 et boot quand même (test uniquement, risqué)
+/** @name OTA Mesh (0x02) – sécurisation
+ *  @{ */
+#define OTA_MESH_ACCEPT_ONLY_FROM_PARENT  (1)  ///< 1 = n'accepter OTA_ADV que depuis le parent (évite injection)
+#define OTA_MESH_VERIFY_MD5               (1)  ///< 1 = vérifier MD5 de l'image avant set_boot_partition (intégrité)
+/** @} */
 /** @} */
 
 /** @name Lidar (VL53L8CX)
@@ -144,7 +149,7 @@
 #define LEXACARE_MESH_ESPNOW_FLOODING 1  ///< 1 = mesh ESP-NOW par inondation (cache 50 msgId, TTL, jitter)
 #define LEXACARE_MESH_PAINLESS        0  ///< Désactivé (legacy painlessMesh)
 #define LEXACARE_MESH_32B             0  ///< Désactivé
-#define LEXACARE_THIS_NODE_IS_GATEWAY 1  ///< 1 = passerelle (Node 0) : Serial JSON + OTA depuis PC ; 0 = nœud
+#define LEXACARE_THIS_NODE_IS_GATEWAY 0  ///< 1 = passerelle (Node 0) : Serial JSON + OTA depuis PC ; 0 = nœud
 #define LEXACARE_MESH_SSID     "LexacareMesh"
 #define LEXACARE_MESH_PASSWORD "LexacareMeshSecret"
 #define LEXACARE_MESH_PORT     (5555)
@@ -153,7 +158,7 @@
 /** @name OTA ESP-NOW (partitions default_16MB.csv)
  *  Push par Série vers Gateway, propagation par flooding. Chunks 200 octets.
  *  @{ */
-#define CURRENT_FW_VERSION       4       ///< Version firmware (NVS "system" / "fw_ver")
+#define CURRENT_FW_VERSION      1       ///< Version firmware (NVS "system" / "fw_ver")
 #define OTA_CHUNK_DATA_BYTES    200     ///< Octets de données par OTA_CHUNK (OtaChunkPayload.data)
 #define OTA_MAX_SIZE             (6*1024*1024)  ///< Limite binaire 6.4 Mo (slot app0/app1)
 #if LEXACARE_MESH_PAINLESS

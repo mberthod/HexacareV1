@@ -24,9 +24,9 @@
 #include "sensors/tmp117_handler.h"
 #include "sensors/sensor_sim.h"
 #include "system/system_state.h"
-#include "comm/routing_manager.h"
+#include "mesh/routing_manager.h"
 #include "lexacare_protocol.h"
-#include "comm/mesh_tree_protocol.h"
+#include "mesh/mesh_tree_protocol.h"
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <Arduino.h>

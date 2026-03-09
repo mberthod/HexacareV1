@@ -17,10 +17,10 @@
  * - C'est des données ? -> `serial_gateway` (si c'est le ROOT) ou renvoi au parent.
  */
 
-#include "comm/espnow_mesh.h"
-#include "comm/routing_manager.h"
-#include "comm/ota_tree_manager.h"
-#include "comm/serial_gateway.h"
+#include "mesh/espnow_mesh.h"
+#include "mesh/routing_manager.h"
+#include "OTA/ota_tree_manager.h"
+#include "mesh/serial_gateway.h"
 #include "system/led_manager.h"
 #include "config/config.h"
 #include "lexacare_protocol.h"
@@ -58,7 +58,7 @@ static void on_espnow_recv(const uint8_t * mac_addr, const uint8_t *data, int le
             if (len - sizeof(TreeMeshHeader) >= sizeof(LexaFullFrame_t)) {
                 // TODO: Passer aussi les infos de topologie (srcNodeId, layer) au serial gateway
                 // Pour l'instant on passe juste la frame brute
-                serial_gateway_send_data_json(data + sizeof(TreeMeshHeader), 0);
+                serial_gateway_send_data_json((void *)(data + sizeof(TreeMeshHeader)));
             }
         } else {
             // NOEUD: Forward upstream vers parent (TTL décrémenté, CDC)

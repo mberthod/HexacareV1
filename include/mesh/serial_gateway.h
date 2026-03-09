@@ -30,7 +30,7 @@ int serial_gateway_init(void);
  * @param fw_ver Version firmware à inclure dans le JSON.
  * @details Exemple : {"nodeId":"0xABCD","vBat":3700,"probFallLidar":15,"tempExt":2250,"fw_ver":"1.0"}
  */
-void serial_gateway_send_data_json(const void *frame, uint32_t fw_ver);
+void serial_gateway_send_data_json(const void *frame);
 
 /**
  * @brief Point d'entrée de la tâche qui lit le port série et parse les commandes (OTA_CHUNK:...).
@@ -47,13 +47,17 @@ void serial_gateway_task(void *pv);
 // int serial_gateway_is_ota_serial_receiving(void);
 
 /**
- * @brief Enregistre les tâches à suspendre pendant OTA Série (seule serial_gateway_task reste active).
- * @param mesh_handle Tâche mesh_flooding_task (ou NULL).
- * @param tx_handle Tâche espnowTxTask (ou NULL).
+ * @brief Enregistre les tâches à suspendre pendant OTA locale (0x01) — seule serial_gateway_task reste active.
+ * @param routing_handle Tâche routing_task (ou NULL).
+ * @param ota_handle Tâche ota_tree_task (ou NULL).
+ * @param data_tx_handle Tâche dataTxTask (ou NULL).
  * @param sensor_handle Tâche sensor_sim (ou NULL, ex. sensor_sim_get_task_handle()).
- * @details À appeler depuis setup() après création des tâches. Pendant réception 0x01 + chunks, ces tâches sont suspendues puis reprises à la fin.
+ * @details À appeler depuis setup() après création des tâches. Dès réception de 0x01, ces tâches sont suspendues pour un flux OTA série très rapide ; à la fin le nœud reboote (pas de reprise).
  */
-void serial_gateway_register_tasks_for_ota_suspend(TaskHandle_t mesh_handle, TaskHandle_t tx_handle, TaskHandle_t sensor_handle);
+void serial_gateway_register_tasks_for_ota_suspend(TaskHandle_t routing_handle, TaskHandle_t ota_handle, TaskHandle_t data_tx_handle, TaskHandle_t sensor_handle);
+
+/** Reprend les tâches après fin OTA mesh (0x02) sur le ROOT. À enregistrer via ota_tree_register_mesh_done_cb(). */
+void serial_gateway_resume_tasks_after_ota_mesh(void);
 
 #ifdef __cplusplus
 }

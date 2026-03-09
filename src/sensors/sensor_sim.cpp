@@ -118,6 +118,9 @@ static void fill_frame(LexaFullFrame_t *f) {
     /* sensorFlags : bits simulés (ex. lidar=0, radar=1, audio=2, env=3) */
     f->sensorFlags = 0x000F;
 
+    /* Version firmware locale : utilisée par le mesh/OTA pour savoir si le nœud doit être mis à jour */
+    f->fw_ver = (uint16_t)CURRENT_FW_VERSION;
+
     lexaframe_fill_crc(f);
 }
 

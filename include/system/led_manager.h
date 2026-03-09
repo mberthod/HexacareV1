@@ -16,8 +16,10 @@ enum LedState {
     LED_STATE_ROOT,         // Fixe ou lent (Violet)
     LED_STATE_OTA,          // Alerte générique (Orange)
     LED_STATE_OTA_SERIAL,   // OTA Série (0x01) : ROOT seul, violet pulsé
-    LED_STATE_OTA_MESH,     // OTA Mesh (0x02) : ROOT diffuse, bleu pulsé
-    LED_STATE_ORPHAN,       // Perte parent : flash Orange/Rouge (reconnexion)
+    LED_STATE_OTA_MESH,       // OTA générique (orange)
+    LED_STATE_OTA_MESH_ROOT,  // OTA Mesh (0x02) ROOT : orange fixe, tâches arrêtées
+    LED_STATE_OTA_MESH_CHILD, // OTA Mesh enfant : rouge fade vers bleu
+    LED_STATE_ORPHAN,         // Perte parent : flash Orange/Rouge (reconnexion)
     LED_STATE_ERROR         // Rouge fixe
 };
 

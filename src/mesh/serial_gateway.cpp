@@ -18,9 +18,9 @@
  *    - Il découpe ce logiciel en petits paquets et les donne au gestionnaire de mise à jour (`ota_tree_manager`).
  */
 
-#include "comm/serial_gateway.h"
-#include "comm/ota_tree_manager.h"
-#include "comm/routing_manager.h"
+#include "mesh/serial_gateway.h"
+#include "OTA/ota_tree_manager.h"
+#include "mesh/routing_manager.h"
 #include "config/config.h"
 #include "system/led_manager.h"
 #include "lexacare_protocol.h"
@@ -65,13 +65,16 @@ static bool s_serial_gateway_init_done = false;
 static uint32_t s_msg_id_seq = 0;
 /** True pendant la réception OTA Série (0x01 + header + chunks) : le mesh ne doit pas injecter OTA dans ota_mesh. */
 static volatile bool s_ota_serial_receiving = false;
-/** Mode OTA en cours : 0x01 = ROOT seul, 0x02 = Mesh (propagation). */
+/** Mode OTA en cours : 0x01 = ROOT seul (locale, très rapide), 0x02 = Mesh (propagation). */
 static uint8_t s_ota_uart_mode = 0;
 
-// Handles des tâches à suspendre (non utilisé dans V2 car ota_tree_manager gère la concurrence via état)
-// static TaskHandle_t s_task_mesh = nullptr;
-// static TaskHandle_t s_task_tx = nullptr;
-// static TaskHandle_t s_task_sensor = nullptr;
+/** Handles des tâches à suspendre pendant OTA locale (0x01) pour dédier le CPU/série à la réception. */
+static TaskHandle_t s_task_routing = nullptr;
+static TaskHandle_t s_task_ota_tree = nullptr;
+static TaskHandle_t s_task_data_tx = nullptr;
+static TaskHandle_t s_task_sensor = nullptr;
+
+static void serial_gateway_suspend_tasks_for_ota_local(void);
 
 /**
  * @brief Vérifie si une mise à jour est en cours de réception par le câble USB.
@@ -88,18 +91,28 @@ int serial_gateway_is_ota_serial_receiving(void) {
 }
 
 /**
- * @brief Enregistre les tâches à mettre en pause (Obsolète).
- *
- * @details
- * Cette fonction servait dans l'ancienne version à dire "Chut !" aux autres ouvriers.
- * Dans la nouvelle version (V2), les ouvriers sont assez intelligents pour se taire tout seuls
- * quand ils voient que le chef est occupé.
- * On la garde pour la compatibilité, mais elle ne fait plus grand-chose.
+ * @brief Enregistre les tâches à suspendre pendant OTA locale (0x01).
  */
-void serial_gateway_register_tasks_for_ota_suspend(TaskHandle_t mesh_handle, TaskHandle_t tx_handle, TaskHandle_t sensor_handle) {
-    // s_task_mesh = mesh_handle;
-    // s_task_tx = tx_handle;
-    // s_task_sensor = sensor_handle;
+void serial_gateway_register_tasks_for_ota_suspend(TaskHandle_t routing_handle, TaskHandle_t ota_handle, TaskHandle_t data_tx_handle, TaskHandle_t sensor_handle) {
+    s_task_routing = routing_handle;
+    s_task_ota_tree = ota_handle;
+    s_task_data_tx = data_tx_handle;
+    s_task_sensor = sensor_handle;
+}
+
+/** Suspend toutes les tâches enregistrées (0x01 et 0x02). */
+static void serial_gateway_suspend_tasks_for_ota_local(void) {
+    if (s_task_routing)  vTaskSuspend(s_task_routing);
+    if (s_task_ota_tree) vTaskSuspend(s_task_ota_tree);
+    if (s_task_data_tx)  vTaskSuspend(s_task_data_tx);
+    if (s_task_sensor)   vTaskSuspend(s_task_sensor);
+}
+
+void serial_gateway_resume_tasks_after_ota_mesh(void) {
+    if (s_task_routing)  vTaskResume(s_task_routing);
+    if (s_task_ota_tree) vTaskResume(s_task_ota_tree);
+    if (s_task_data_tx)  vTaskResume(s_task_data_tx);
+    if (s_task_sensor)   vTaskResume(s_task_sensor);
 }
 
 /**
@@ -161,8 +174,39 @@ static void topology_add_node(uint16_t id, uint16_t parentId, uint8_t layer) {
         s_topo_n++;
     }
 }
+/**
+ * @brief Ajoute ou met à jour un nœud dans le cache de la topologie mesh.
+ *
+ * Cette fonction enregistre un nœud du réseau mesh dans le cache interne du gateway,
+ * utilisé pour le suivi en temps réel de la topologie du mesh (relations parent/enfant, numéro de couche, dernier "seen").
+ *
+ * - Si le nœud (identifié par son ID) existe déjà dans le cache, sa parentId, layer et lastSeen sont mis à jour.
+ * - Sinon, s'il reste de la place, un nouvel enregistrement est ajouté dans la table (s_topo).
+ *
+ * Le cache de topologie permet&nbsp;:
+ *   - à la gateway de connaitre la structure actuelle du réseau ;
+ *   - d’exporter des messages de type [TOPOLOGY] sur la sortie série/JSON ;
+ *   - d’afficher des visualisations/réseaux sur le logiciel PC.
+ *
+ * @param id        Identifiant court du nœud (uint16_t, généralement extrait du MAC via routing).
+ * @param parentId  Identifiant du parent (uint16_t) du nœud. 0 si racine (ROOT).
+ * @param layer     Profondeur dans l’arbre mesh (0 = ROOT, 1 = enfants directs du ROOT, etc.)
+ * 
+ * @remarks
+ *  - La taille maximale du cache est fixée à TOPO_MAX.
+ *  - La valeur de lastSeen utilise xTaskGetTickCount() (ticks FreeRTOS, monotones).
+ *  - Si la table est pleine, tout nouvel ajout est ignoré.
+ * 
+ * @see serial_gateway_send_topology_json()
+ * @see TOPO_MAX
+ * @see s_topo
+ * @see s_topo_n
+ */
 
-void serial_gateway_send_data_json(const void *frame, uint32_t fw_ver) {
+void serial_gateway_send_data_json(const void *frame) {
+    /* Pendant OTA locale (0x01), ne rien envoyer sur Serial pour ne pas perturber réception/écriture flash */
+    if (s_ota_serial_receiving) return;
+
     const LexaFullFrame_t *f = (const LexaFullFrame_t *)frame;
     topology_add_node((uint16_t)f->nodeShortId, (uint16_t)f->parentId, (uint8_t)f->layer);
 
@@ -185,11 +229,13 @@ void serial_gateway_send_data_json(const void *frame, uint32_t fw_ver) {
     doc["volumeOccupancy"] = f->volumeOccupancy;
     doc["vBat"] = f->vBat;
     doc["sensorFlags"] = f->sensorFlags;
-    doc["fw_ver"] = (unsigned)fw_ver;
+    /* Version firmware : priorité à la trame (chaque nœud envoie sa version pour OTA), sinon paramètre (compat ancien firmware) */
+    doc["fw_ver"] = (unsigned)f->fw_ver;
     
     char buf[512];
     size_t n = serializeJson(doc, buf, sizeof(buf));
     if (n > 0) {
+        Serial.print("[MESH] ");
         Serial.println(buf);
     }
 }
@@ -314,11 +360,12 @@ void serial_gateway_task(void *pv) {
                 int b = Serial.read();
                 bytesRead++;
 
-                // Processus OTA distincts : 0x01 = ROOT seul (série), 0x02 = tous les nœuds (mesh)
+                // Flux OTA distincts : 0x01 = locale (série seule, très rapide), 0x02 = mesh (ROOT diffuse)
                 if (b == 0x01) {
                     s_ota_uart_mode = 0x01;
-                    log_dual_printf("[SERIE] OTA 0x01 = ROOT seul (LED violet). Attente en-tete 38 octets...\r\n");
+                    log_dual_printf("[SERIE] OTA locale (0x01) : suspension des tâches, attente en-tete 38 octets...\r\n");
                     s_ota_serial_receiving = true;
+                    serial_gateway_suspend_tasks_for_ota_local(); /* Stopper écoute/envoi pour dédier CPU/série à l'OTA */
                     ota_tree_set_uart_mode(0x01);
                     ota_tree_init();
                     led_manager_set_state(LED_STATE_OTA_SERIAL);
@@ -328,11 +375,12 @@ void serial_gateway_task(void *pv) {
                 }
                 if (b == 0x02) {
                     s_ota_uart_mode = 0x02;
-                    log_dual_printf("[SERIE] OTA 0x02 = Mesh (ROOT puis diffusion, LED bleu). Attente en-tete 38 octets...\r\n");
+                    log_dual_printf("[SERIE] OTA 0x02 = Mesh (ROOT orange fixe, tâches arrêtées, propagation en vague). Attente en-tete 38 octets...\r\n");
                     s_ota_serial_receiving = true;
+                    serial_gateway_suspend_tasks_for_ota_local();
                     ota_tree_set_uart_mode(0x02);
                     ota_tree_init();
-                    led_manager_set_state(LED_STATE_OTA_MESH);
+                    led_manager_set_state(LED_STATE_OTA_MESH_ROOT);
                     state = SERIAL_STATE_OTA_HEADER;
                     ota_count = 0;
                     break;
@@ -371,18 +419,34 @@ void serial_gateway_task(void *pv) {
         }
 
         if (state == SERIAL_STATE_OTA_CHUNK) {
+            /* --- OTA Mesh (0x02) : règle "1 chunk en vol" pour cohérence ROOT/script ---
+             * On ne lit jamais le chunk N+1 tant que le chunk N n'a pas été propagé (CHUNK_ACK
+             * de tous les enfants + CHUNK_PROPAGATED émis). Attente AVANT lecture des 200 octets
+             * (pour ota_chunk_idx > 0) + filet de sécurité après on_uart_chunk. */
+            /* Mode 0x02 : un seul chunk en vol. Attendre que le chunk précédent soit propagé (CHUNK_ACK reçus)
+               AVANT de lire les 200 octets suivants, pour éviter de vider le buffer série. */
+            if (s_ota_uart_mode == OTA_SERIAL_MODE_MESH && ota_chunk_idx > 0) {
+                const TickType_t timeout_ticks = pdMS_TO_TICKS(120000);
+                TickType_t deadline = xTaskGetTickCount() + timeout_ticks;
+                while (!ota_tree_ready_for_next_chunk() && (xTaskGetTickCount() < deadline))
+                    vTaskDelay(pdMS_TO_TICKS(20));
+            }
             while (Serial.available() > 0 && ota_count < OTA_CHUNK_DATA_SIZE) {
                 ota_buf[ota_count++] = (uint8_t)Serial.read();
             }
             if (ota_count >= OTA_CHUNK_DATA_SIZE) {
-                // Envoyer le chunk au manager OTA Tree
                 uint32_t offset = ota_chunk_idx * OTA_CHUNK_DATA_SIZE;
                 ota_tree_on_uart_chunk(offset, ota_buf, OTA_CHUNK_DATA_SIZE, ota_total_size, ota_md5);
-                
                 ota_chunk_idx++;
                 ota_count = 0;
-                
-                if (ota_chunk_idx % 50 == 0) {
+                /* Double garde : attendre aussi après envoi du chunk (CHUNK_ACK de tous les enfants) avant de considérer le prochain. */
+                if (s_ota_uart_mode == OTA_SERIAL_MODE_MESH) {
+                    const TickType_t timeout_ticks = pdMS_TO_TICKS(120000);
+                    TickType_t deadline = xTaskGetTickCount() + timeout_ticks;
+                    while (!ota_tree_ready_for_next_chunk() && (xTaskGetTickCount() < deadline))
+                        vTaskDelay(pdMS_TO_TICKS(20));
+                }
+                if (ota_chunk_idx % 200 == 0 || ota_chunk_idx >= ota_total_chunks) {
                     char buf[64];
                     snprintf(buf, sizeof(buf), "[SERIE] Chunk %u/%u recu.", (unsigned)ota_chunk_idx, (unsigned)ota_total_chunks);
                     log_dual_println(buf);
@@ -391,7 +455,7 @@ void serial_gateway_task(void *pv) {
                 if (ota_chunk_idx >= ota_total_chunks) {
                     log_dual_println("[SERIE] OTA UART terminee.");
                     if (s_ota_uart_mode == OTA_SERIAL_MODE_MESH) {
-                        ota_tree_start_propagation(ota_total_size, ota_total_chunks, ota_md5);
+                        /* Flux 0x02 en vague : CHUNK_PROPAGATED émis par ota_tree après chaque chunk. Pas de start_propagation. */
                     }
                     s_ota_serial_receiving = false;
                     state = SERIAL_STATE_IDLE;
