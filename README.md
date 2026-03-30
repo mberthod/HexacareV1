@@ -44,7 +44,7 @@ Firmware de test pour **ESP32-S3 (16 MB Flash)** : mesh pur **ESP-NOW par inonda
 
 ## Comportement Gateway (Node 0)
 
-- Défini par `LEXACARE_THIS_NODE_IS_GATEWAY` (config) ou `nodeShortId == 0`.
+- Défini par `g_lexacare_this_node_is_gateway` (config) ou `nodeShortId == 0`.
 - **Sortie** : pour chaque paquet **Data** reçu (et nouveau selon cache), décode LexaFullFrame, vérifie CRC16, formate en JSON et envoie une ligne sur Serial (log_dual). Clés : `nodeId`, `vBat`, `probFallLidar`, `tempExt`, `fw_ver`, etc.
 - **Entrée** : `serialGatewayTask` lit le port Série pour l’OTA : d’abord 38 octets (OTA start : totalSize, totalChunks, MD5 hex), puis blocs de 200 octets (chunks). Chaque bloc est encapsulé en OTA_ADV (une fois) puis OTA_CHUNK et envoyé en broadcast.
 
@@ -76,7 +76,7 @@ pio run -t upload
 ## Configuration (`src/config/config.h`)
 
 - **LEXACARE_MESH_ESPNOW_FLOODING** : 1 = mesh ESP-NOW par inondation (mode actuel).
-- **LEXACARE_THIS_NODE_IS_GATEWAY** : 1 = nœud passerelle (Serial JSON + réception OTA depuis PC).
+- **g_lexacare_this_node_is_gateway** : 1 = nœud passerelle (Serial JSON + réception OTA depuis PC).
 - **ESPNOW_MSG_CACHE_SIZE** : 50 (cache anti-doublon).
 - **ESPNOW_TTL_DEFAULT** : 10.
 - **ESPNOW_JITTER_MS_MIN / MAX** : 5 / 50.

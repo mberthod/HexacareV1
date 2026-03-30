@@ -1,17 +1,17 @@
 /**
  * @file main.cpp
  * @brief Le Chef d'Orchestre du système Lexacare (Point d'entrée).
- * 
+ *
  * @details
  * Imaginez ce fichier comme le chef d'orchestre d'un grand concert.
  * Son rôle est de :
  * 1. Préparer la scène (Initialiser le matériel : mémoire, LEDs, Radio).
  * 2. Recruter les musiciens (Créer les "Tâches" indépendantes qui font le travail).
  * 3. Donner le coup d'envoi (Lancer le système).
- * 
+ *
  * Il ne joue pas les instruments lui-même, mais il s'assure que tout le monde est prêt
  * et synchronisé.
- * 
+ *
  * Les "Musiciens" (Tâches) qu'il recrute sont :
  * - `routing_task` : Le GPS, qui gère la carte du réseau.
  * - `ota_tree_task` : Le Facteur, qui distribue les mises à jour logicielles.
@@ -32,10 +32,10 @@
 #include "lexacare_protocol.h"
 #include "mesh/espnow_mesh.h"
 #include "mesh/routing_manager.h"
-#include "OTA/ota_tree_manager.h"
+#include "OTA/official_ota_manager.h"
 #include "mesh/serial_gateway.h"
 #include "rtos/queues_events.h"
-#include "sensors/sensor_sim.h"  /* sensor_sim_get_task_handle() pour OTA locale */
+#include "sensors/sensor_sim.h" /* sensor_sim_get_task_handle() pour OTA locale */
 #include <Wire.h>
 #include <nvs_flash.h>
 #include <esp_log.h>
@@ -47,6 +47,9 @@
 // Adafruit_NeoPixel pixel(1, TEST_LED_PIN, NEO_GRB + NEO_KHZ800);
 
 static const char *TAG_MAIN = "MAIN";
+
+/** Rôle ROOT/NODE : défini au tout début de setup() par lecture de GPIO 1 (pull-up ; LOW = ROOT). */
+bool g_lexacare_this_node_is_gateway = false;
 
 // Callback ESP-NOW global (redirection vers espnow_mesh.cpp qui gère le dispatch)
 // Note: Dans la nouvelle architecture, c'est espnow_mesh.cpp qui enregistre le callback.
@@ -82,10 +85,10 @@ static void dataTxTask(void *pv)
             lexaframe_fill_crc(&frame); // Recalculer le CRC car on a modifié la trame
 
             // Si ROOT, direct série
-            if (LEXACARE_THIS_NODE_IS_GATEWAY)
+            if (g_lexacare_this_node_is_gateway)
             {
                 serial_gateway_send_data_json(&frame);
-                led_flash_yellow_rx(); // Feedback visuel (simulé comme réception locale)
+                led_flash_yellow_rx();        // Feedback visuel (simulé comme réception locale)
                 vTaskDelay(pdMS_TO_TICKS(1)); /* Yield pour éviter WDT (Serial peut bloquer) */
             }
             else
@@ -104,24 +107,63 @@ static void dataTxTask(void *pv)
 
 void setup()
 {
+    /* Dès le démarrage : GPIO 1 en entrée avec pull-up. LOW = ROOT, HIGH / non câblé = NODE. */
+    pinMode(PIN_ROOT_NODE_SEL, INPUT_PULLUP);
+    delay(5); /* Laisse le pull-up se stabiliser */
+    g_lexacare_this_node_is_gateway = (digitalRead(PIN_ROOT_NODE_SEL) == LOW);
+
     delay(1000);
     // Serial.begin(921600); // Déjà fait dans log_dual_init si activé, ou serial_gateway_init
     log_dual_init();
     /* Marquer cette app comme valide pour éviter un rollback après OTA */
     esp_ota_mark_app_valid_cancel_rollback();
     /* Afficher la cause du reset précédent (aide au debug des boot loops) */
-    switch (esp_reset_reason()) {
-        case ESP_RST_PANIC:    log_dual_println("[BOOT] Reset precedent: PANIC/Exception"); break;
-        case ESP_RST_INT_WDT:  log_dual_println("[BOOT] Reset precedent: Watchdog interrupt"); break;
-        case ESP_RST_TASK_WDT: log_dual_println("[BOOT] Reset precedent: Watchdog tâche"); break;
-        case ESP_RST_WDT:      log_dual_println("[BOOT] Reset precedent: Watchdog"); break;
-        case ESP_RST_BROWNOUT: log_dual_println("[BOOT] Reset precedent: Brownout"); break;
-        case ESP_RST_SW:      log_dual_println("[BOOT] Reset precedent: Software"); break;
-        case ESP_RST_POWERON:  log_dual_println("[BOOT] Reset precedent: Power-on"); break;
-        default:              log_dual_printf("[BOOT] Reset precedent: %d\r\n", (int)esp_reset_reason()); break;
+    switch (esp_reset_reason())
+    {
+    case ESP_RST_PANIC:
+        log_dual_println("[BOOT] Reset precedent: PANIC/Exception");
+        break;
+    case ESP_RST_INT_WDT:
+        log_dual_println("[BOOT] Reset precedent: Watchdog interrupt");
+        break;
+    case ESP_RST_TASK_WDT:
+        log_dual_println("[BOOT] Reset precedent: Watchdog tâche");
+        break;
+    case ESP_RST_WDT:
+        log_dual_println("[BOOT] Reset precedent: Watchdog");
+        break;
+    case ESP_RST_BROWNOUT:
+        log_dual_println("[BOOT] Reset precedent: Brownout");
+        break;
+    case ESP_RST_SW:
+        log_dual_println("[BOOT] Reset precedent: Software");
+        break;
+    case ESP_RST_POWERON:
+        log_dual_println("[BOOT] Reset precedent: Power-on");
+        break;
+    default:
+        log_dual_printf("[BOOT] Reset precedent: %d\r\n", (int)esp_reset_reason());
+        break;
     }
     log_dual_println("[BOOT] Lexacare V2 - Tree Mesh");
     log_dual_printf("[BOOT] Serial USB @ %u baud - debug actif\r\n", (unsigned)LOG_DUAL_BAUD);
+    log_dual_printf("[BOOT] CURRENT_FW_VERSION=%u\r\n", (unsigned)CURRENT_FW_VERSION);
+    const esp_partition_t *running = esp_ota_get_running_partition();
+    const esp_partition_t *boot = esp_ota_get_boot_partition();
+    if (running)
+    {
+        log_dual_printf("[BOOT] Running partition: label=%s addr=0x%lx size=%lu\r\n",
+                        running->label,
+                        (unsigned long)running->address,
+                        (unsigned long)running->size);
+    }
+    if (boot)
+    {
+        log_dual_printf("[BOOT] Boot partition: label=%s addr=0x%lx size=%lu\r\n",
+                        boot->label,
+                        (unsigned long)boot->address,
+                        (unsigned long)boot->size);
+    }
 
     // Init LED Manager
     led_manager_init();
@@ -147,10 +189,32 @@ void setup()
     }
     ESP_LOGI(TAG_MAIN, "ESP-NOW Init OK (Channel %d)", ESPNOW_CHANNEL);
 
-    routing_init();
-    ota_tree_init();
+    official_ota_init();
 
-    if (LEXACARE_THIS_NODE_IS_GATEWAY)
+    routing_init();
+/*
+ * ROOT (Node 0) : pont série. Sortie = JSON pour MSG_TYPE_DATA.
+ *
+ * @details
+ * Cette section configure le noeud comme ROOT (chef de réseau) dans le mesh Lexacare Tree.
+ * Elle doit être appelée uniquement sur le noeud passerelle (Gateway), c'est-à-dire l'unique racine du réseau.
+ *
+ * **Effets principaux :**
+ * - Attribue au noeud la couche 0 (s_my_layer = 0), signifiant qu'il est la racine du réseau mesh.
+ * - Met à jour l'état interne du routeur (s_state) en le passant à STATE_CONNECTED, indiquant une connexion stable.
+ * - Déclenche l'animation LED spéciale "ROOT" via led_manager_set_state(LED_STATE_ROOT) pour signaler visuellement à l'utilisateur
+ *   que ce noeud est désormais chef du réseau.
+ * - Affiche un message informatif dans les logs série via ESP_LOGI, avec confirmation d'entrée en mode ROOT.
+ *
+ * **Utilisation typique :**
+ * - Appelée dans la séquence d'initialisation du firmware lorsque le flag g_lexacare_this_node_is_gateway est à true.
+ *
+ * @see routing_set_root()
+ * @see led_manager_set_state()
+ * @see g_lexacare_this_node_is_gateway
+ * @see STATE_CONNECTED
+ */
+    if (g_lexacare_this_node_is_gateway)
     {
         routing_set_root(); // Configurer comme ROOT pour le mesh
         serial_gateway_init();
@@ -161,6 +225,7 @@ void setup()
     {
         led_manager_set_state(LED_STATE_SCANNING);
         log_dual_println("[BOOT] Mode NODE");
+        official_ota_responder_start();
     }
     /*
      * ---------------------------------------------------------------------------
@@ -168,7 +233,6 @@ void setup()
      *
      *  - Core 0 (Pro CPU) : Gestion du réseau, de la topologie Mesh, OTA, transfert radio.
      *      -> routing_task         : Découverte et gestion du réseau Mesh, parent/enfants.
-     *      -> ota_tree_task        : Mise à jour OTA (over-the-air) en arborescence.
      *      -> dataTxTask           : Expédition des trames capteurs/diagnostic au parent ou Root (Gateway).
      *      -> serial_gateway_task* : Interface USB avec le backend si GATEWAY.
      *
@@ -208,11 +272,11 @@ void setup()
     //    - S'occupe de l'envoi asynchrone des données capteurs et trames de diagnostic vers le parent ou le gateway.
     //    - Récupère les données à transmettre via la file g_queue_espnow_tx.
     //
-    // 5. sensor_sim_task_start (Core 1)
+    // 4. sensor_sim_task_start (Core 1)
     //    - Simule les capteurs pour des tests (Lidar, Radar, Audio, etc.) puis injecte les données dans le flot normal.
     //    - Peut être remplacé par les vraies tâches capteurs sur une cible réelle.
     //
-    // 6. serial_gateway_task (Core 0, seulement sur GATEWAY)
+    // 5. serial_gateway_task (Core 0, seulement sur GATEWAY)
     //    - Gère l'interface série USB pour connexion avec le backend ou outils PC.
     //    - Permet la récupération des logs, la topologie du mesh, le flash OTA, etc.
     //
@@ -221,12 +285,10 @@ void setup()
     //  - Tous les accès à l’état système global sont protégés par mutex (voir system_state).
     // ----------------------------------------------------------------------------------------
     TaskHandle_t h_routing = NULL;
-    TaskHandle_t h_ota_tree = NULL;
     TaskHandle_t h_data_tx = NULL;
 
     xTaskCreatePinnedToCore(led_manager_task, "LedMgr", 2048, NULL, 1, NULL, 1);
     xTaskCreatePinnedToCore(routing_task, "Routing", 4096, NULL, 3, &h_routing, 0);
-    xTaskCreatePinnedToCore(ota_tree_task, "OTA_Tree", 4096, NULL, 2, &h_ota_tree, 0);
     xTaskCreatePinnedToCore(dataTxTask, "DataTx", 3072, NULL, 1, &h_data_tx, 0);
 
     sensor_sim_task_start();
@@ -239,16 +301,10 @@ void setup()
     // - La logique inclut aussi des effets de pulsation au lieu de simples allumages fixes afin de rendre les changements d'état plus perceptibles.
     // Le découplage de cette gestion sur un cœur dédié évite ainsi de perturber la radio ou d'introduire de la latence dans le traitement des capteurs.
 
-
-    /* Tous les nœuds (ROOT et enfants) : enregistrer les tâches à suspendre quand un enfant reçoit OTA_MESH_ENTER,
-       pour stopper tout trafic ESP-NOW (beacons, heartbeats, data) pendant l'OTA mesh. */
-    ota_tree_register_tasks_for_mesh_suspend(h_routing, h_ota_tree, h_data_tx, sensor_sim_get_task_handle());
-
-    if (LEXACARE_THIS_NODE_IS_GATEWAY)
+    if (g_lexacare_this_node_is_gateway)
     {
-        xTaskCreatePinnedToCore(serial_gateway_task, "SerialGW", 6144, NULL, 2, NULL, 0);
-        serial_gateway_register_tasks_for_ota_suspend(h_routing, h_ota_tree, h_data_tx, sensor_sim_get_task_handle());
-        ota_tree_register_mesh_done_cb(serial_gateway_resume_tasks_after_ota_mesh);
+        xTaskCreatePinnedToCore(serial_gateway_task, "SerialGW", 8192, NULL, 2, NULL, 0);
+        serial_gateway_register_tasks_for_ota_suspend(h_routing, NULL, h_data_tx, sensor_sim_get_task_handle());
     }
 
     log_dual_println("[BOOT] System Ready");

@@ -1,12 +1,12 @@
 /**
  * @file tasks_core1.cpp
  * @brief L'Usine de Traitement (Tâches Temps Réel - Core 1).
- * 
+ *
  * @details
  * L'ESP32-S3 possède deux cerveaux (Cœurs).
  * - **Le Cœur 0 (Pro CPU)** : S'occupe du Wifi, du Mesh et de la gestion globale (Le Manager).
  * - **Le Cœur 1 (App CPU)** : S'occupe du travail intensif et mathématique (L'Ouvrier spécialisé).
- * 
+ *
  * Ce fichier définit toutes les tâches qui tournent sur le Cœur 1 pour ne pas ralentir le réseau :
  * 1. **Lidar** : Analyse les distances pour détecter les chutes.
  * 2. **Radar** : Analyse les ondes pour trouver la respiration.
@@ -44,33 +44,39 @@
  * Si la distance change brutalement, elle crie "CHUTE DÉTECTÉE !".
  * Elle envoie aussi régulièrement un résumé (min/max/moyenne) au système central.
  */
-void task_lidar(void *pvParameters) {
+void task_lidar(void *pvParameters)
+{
     (void)pvParameters;
-    for (;;) {
+    for (;;)
+    {
         int n = lidar_handler_read_frame();
-        if (n > 0) {
+        if (n > 0)
+        {
             lidar_handler_update_fall_detection();
             matrix_summary_t sum = {};
             lidar_handler_get_summary(&sum.min_mm, &sum.max_mm, &sum.sum_mm, &sum.valid_zones);
             sum.last_update_ms = millis();
             system_state_set_matrix_summary(&sum);
-            
+
             // Signalement immédiat en cas de chute
             if (system_state_get_fall_detected())
                 xEventGroupSetBits(g_system_events, EVENT_FALL_DETECTED);
-            
+
             // V2: Envoyer les données au parent via Unicast (Tree Mesh)
             // On construit une LexaFullFrame (compatible V1) et on l'envoie dans MSG_DATA
             LexaFullFrame_t frame;
             // Remplir la frame avec les données système (à implémenter proprement avec un getter global)
             // Pour l'instant, on suppose que system_state a tout
             sensor_sim_get_latest_frame(&frame); // Utiliser la fonction existante qui copie s_frame
-            
+
             uint8_t parent_mac[6];
-            if (routing_get_parent_mac(parent_mac)) {
+            if (routing_get_parent_mac(parent_mac))
+            {
                 // Envoi direct Unicast au parent
-                routing_send_unicast(parent_mac, MSG_DATA, (uint8_t*)&frame, sizeof(frame));
-            } else {
+                routing_send_unicast(parent_mac, MSG_DATA, (uint8_t *)&frame, sizeof(frame));
+            }
+            else
+            {
                 // Si pas de parent (ex: ROOT ou orphelin), on peut quand même envoyer en queue TX pour traitement local (ex: Serial Gateway)
                 // Mais routing_send_unicast gère l'envoi radio.
                 // Si on est ROOT, on n'a pas de parent.
@@ -97,9 +103,11 @@ void task_lidar(void *pvParameters) {
  * Le radar est capable de "voir" la poitrine bouger pour mesurer la respiration,
  * même à travers une couette.
  */
-void task_radar(void *pvParameters) {
+void task_radar(void *pvParameters)
+{
     (void)pvParameters;
-    for (;;) {
+    for (;;)
+    {
         radar_decoder_poll();
         vTaskDelay(pdMS_TO_TICKS(10));
     }
@@ -118,9 +126,11 @@ void task_radar(void *pvParameters) {
  * Elle ne comprend pas les mots (confidentialité), mais elle détecte les cris
  * ou les bruits sourds (choc) qui pourraient confirmer une chute.
  */
-void task_audio(void *pvParameters) {
+void task_audio(void *pvParameters)
+{
     (void)pvParameters;
-    for (;;) {
+    for (;;)
+    {
         audio_handler_process();
         vTaskDelay(pdMS_TO_TICKS(5));
     }
@@ -139,9 +149,11 @@ void task_audio(void *pvParameters) {
  * - Elle mesure la tension de la batterie (pour savoir quand recharger).
  * - Elle mesure la température interne (pour éviter la surchauffe).
  */
-void task_analog(void *pvParameters) {
+void task_analog(void *pvParameters)
+{
     (void)pvParameters;
-    for (;;) {
+    for (;;)
+    {
         analog_handler_update();
         tmp117_handler_read_temp_c();
         vTaskDelay(pdMS_TO_TICKS(200));
@@ -160,7 +172,8 @@ void task_analog(void *pvParameters) {
  * et les envoie travailler dans l'usine n°1 (Core 1).
  * C'est le coup de sifflet de début de journée.
  */
-void tasks_core1_start(void) {
+void tasks_core1_start(void)
+{
     xTaskCreatePinnedToCore(task_lidar, "TaskLidar", TASK_LIDAR_STACK, NULL, TASK_PRIO_LIDAR, NULL, CORE_APP);
     xTaskCreatePinnedToCore(task_radar, "TaskRadar", TASK_RADAR_STACK, NULL, TASK_PRIO_RADAR, NULL, CORE_APP);
     xTaskCreatePinnedToCore(task_audio, "TaskAudio", TASK_AUDIO_STACK, NULL, TASK_PRIO_AUDIO, NULL, CORE_APP);

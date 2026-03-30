@@ -29,23 +29,15 @@
      MSG_JOIN_ACK = 0x12,    // Acceptation du parent
      MSG_HEARTBEAT = 0x13,   // Ping de maintien de connexion (enfant -> parent)
     MSG_HEARTBEAT_ACK = 0x14, // Réponse du parent au heartbeat (évite STATE_ORPHAN)
-    MSG_DATA = 0x20,        // Données capteurs (remontent vers le ROOT)
-    MSG_OTA_ADV = 0x30,     // Annonce de mise à jour (descend vers les enfants)
-    MSG_OTA_REQ = 0x32,     // Demande d'un chunk par un enfant (montant)
-    MSG_OTA_CHUNK = 0x31,   // Bloc de mise à jour (descend vers les enfants)
-    MSG_OTA_DONE = 0x33,    // Signal que l'enfant a fini sa mise à jour
-    // OTA Mesh en vague (propagation chunk par chunk, ACK remontée)
-    MSG_OTA_MESH_ENTER = 0x34,   // Entrée en mode OTA mesh (propagation, timeout 15 min)
-    MSG_OTA_CHUNK_ACK   = 0x35,  // ACK chunk reçu et écrit (remonte vers parent)
-    MSG_OTA_MESH_REBOOT  = 0x36, // Commande reboot (propagation jusqu'aux feuilles)
-    MSG_OTA_MESH_REBOOT_ACK = 0x37 // ACK reboot reçu (remonte, puis reboot)
+    MSG_DATA = 0x20         // Données capteurs (remontent vers le ROOT)
+    // OTA géré par espnow_ota (librairie officielle), plus de types OTA custom ici
 };
  
  // En-tête de routage (10 octets)
  struct __attribute__((packed)) TreeMeshHeader {
      uint8_t  magic;         // MESH_MAGIC_BYTE
      uint8_t  msgType;       // MeshMsgType
-     uint16_t srcNodeId;     // ID de l'émetteur d'origine (fin de la MAC)
+     uint8_t  srcMac[6];     // Adresse MAC de l'émetteur d'origine
      uint16_t destNodeId;    // ID de la destination (0x0000 = ROOT, 0xFFFF = Broadcast)
      uint8_t  layer;         // Couche réseau (0 = ROOT, 1 = connecté au root, etc.)
      uint8_t  ttl;           // Time To Live
@@ -63,46 +55,10 @@ struct __attribute__((packed)) JoinAckPayload {
     uint8_t assigned_layer; // Couche assignée (parent_layer + 1)
 };
 
-/** Payload pour demander un chunk OTA (MSG_OTA_REQ) - mécanisme PULL par index. */
-struct __attribute__((packed)) OtaReqPayload {
-    uint16_t requested_chunk_index;  ///< Index du chunk demandé (0-based)
-};
-
-/**
- * @struct OtaAdvPayload
- * @brief Annonce OTA (taille, nombre de chunks, MD5). Suit TreeMeshHeader quand msgType == MSG_OTA_ADV.
- */
-struct __attribute__((packed)) OtaAdvPayload {
-    uint32_t totalSize;      ///< Taille totale du binaire (octets)
-    uint16_t totalChunks;    ///< Nombre total de blocs (200 octets chacun)
-    uint8_t  md5Hex[32];     ///< MD5 du binaire en hex ASCII (32 caractères)
-};
-
-#define OTA_ADV_PAYLOAD_SIZE  (sizeof(struct OtaAdvPayload))  /* 4+2+32 = 38 */
-
-/**
- * @struct OtaChunkPayload
- * @brief Bloc OTA (chunk_index + chunk_size + 200 octets). Suit TreeMeshHeader quand msgType == MSG_OTA_CHUNK.
- */
-struct __attribute__((packed)) OtaChunkPayload {
-    uint16_t chunk_index;    ///< Numéro du bloc (0-based)
-    uint8_t  chunk_size;     ///< Nombre d'octets valides dans data[] (généralement 200)
-    uint8_t  data[200];      ///< Données du firmware
-};
-
-#define OTA_CHUNK_PAYLOAD_SIZE (sizeof(struct OtaChunkPayload))  /* 2+1+200 = 203 */
-#define OTA_CHUNK_DATA_SIZE    200
-
-/** Payload ACK chunk (MSG_OTA_CHUNK_ACK) : remonte au parent après écriture flash. */
-struct __attribute__((packed)) OtaChunkAckPayload {
-    uint16_t chunk_index;  ///< Index du chunk acquitté
-};
-
-/** Payload entrée mode OTA mesh (MSG_OTA_MESH_ENTER) : même structure que ADV (taille, chunks, MD5). */
-#define OTA_MESH_ENTER_PAYLOAD_SIZE  (sizeof(struct OtaAdvPayload))  /* 38 */
-
-/** Timeout global OTA mesh (ms). */
-#define OTA_MESH_TIMEOUT_MS  (15 * 60 * 1000)  /* 15 minutes */
+/** Taille en-tête OTA UART (totalSize 4 + totalChunks 2 + md5Hex 32 = 38). */
+#define OTA_ADV_PAYLOAD_SIZE  38
+/** Taille d'un chunk OTA (octets). */
+#define OTA_CHUNK_DATA_SIZE  200
 
 // Payload de données (remplace LexaFullFrame pour inclure la topologie)
  struct __attribute__((packed)) DataPayload {
@@ -114,4 +70,17 @@ struct __attribute__((packed)) OtaChunkAckPayload {
      // ... autres données capteurs
  };
  
+
+/**
+ * @struct RoutingTable 
+ * @brief Contient l'identifiant du parent, la liste des enfants et leur nombre.
+ */
+struct __attribute__((packed)) RoutingTable {
+    uint16_t parentId;       ///< ID du parent actuel
+    uint16_t childrenId[20];  ///< IDs des enfants (max 8 enfants)
+    uint8_t numChildren;     ///< Nombre d'enfants effectifs
+};
+
+#define ROUTING_TABLE_SIZE (sizeof(struct RoutingTable))  /* 2+20+1 = 23 */ // 2 octets pour le parentId, 20 octets pour les enfants, 1 octet pour le nombre d'enfants
+
  #endif

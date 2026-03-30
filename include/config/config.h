@@ -39,6 +39,14 @@
 #define QUEUE_ESPNOW_TX_LEN   (4)     ///< Taille queue TX (trames Data)
 /** @} */
 
+/** @name Accusé réception DATA (Tree Mesh)
+ *  Chaque MSG_DATA envoyé attend un MSG_JOIN_ACK en retour du parent.
+ *  @{ */
+#define ROUTING_DATA_ACK_ENABLE       (1)    ///< 1 = attendre un JOIN_ACK sur chaque MSG_DATA
+#define ROUTING_DATA_ACK_TIMEOUT_MS   (400)  ///< Timeout attente ACK par tentative
+#define ROUTING_DATA_ACK_RETRY_MAX    (5)    ///< Nombre max de renvois si ACK manquant
+/** @} */
+
 /** @name OTA
  *  @{ */
 #define OTA_SKIP_MD5_VERIFY   (1)    ///< 1 = ignorer vérif MD5 et boot quand même (test uniquement, risqué)
@@ -149,7 +157,13 @@
 #define LEXACARE_MESH_ESPNOW_FLOODING 1  ///< 1 = mesh ESP-NOW par inondation (cache 50 msgId, TTL, jitter)
 #define LEXACARE_MESH_PAINLESS        0  ///< Désactivé (legacy painlessMesh)
 #define LEXACARE_MESH_32B             0  ///< Désactivé
-#define LEXACARE_THIS_NODE_IS_GATEWAY 0  ///< 1 = passerelle (Node 0) : Serial JSON + OTA depuis PC ; 0 = nœud
+
+/** GPIO ROOT/NODE : lu au tout début de setup(). Pull-up activé ; LOW = ROOT, HIGH (ou flottant) = NODE. */
+#define PIN_ROOT_NODE_SEL             (1)
+
+/** Variable runtime : 1 = ROOT (passerelle), 0 = NODE. Définie dans main.cpp, lue depuis GPIO 1 à l'init. */
+extern bool g_lexacare_this_node_is_gateway;
+
 #define LEXACARE_MESH_SSID     "LexacareMesh"
 #define LEXACARE_MESH_PASSWORD "LexacareMeshSecret"
 #define LEXACARE_MESH_PORT     (5555)
@@ -158,7 +172,7 @@
 /** @name OTA ESP-NOW (partitions default_16MB.csv)
  *  Push par Série vers Gateway, propagation par flooding. Chunks 200 octets.
  *  @{ */
-#define CURRENT_FW_VERSION      1       ///< Version firmware (NVS "system" / "fw_ver")
+#define CURRENT_FW_VERSION      12       ///< Version firmware (NVS "system" / "fw_ver")
 #define OTA_CHUNK_DATA_BYTES    200     ///< Octets de données par OTA_CHUNK (OtaChunkPayload.data)
 #define OTA_MAX_SIZE             (6*1024*1024)  ///< Limite binaire 6.4 Mo (slot app0/app1)
 #if LEXACARE_MESH_PAINLESS

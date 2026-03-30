@@ -1,0 +1,5 @@
+## Dépendance pour OTA officiel espnow_ota (distribution firmware via ESP-NOW).
+## Utilisé avec la plateforme espressif32 / ESP-IDF component manager.
+description: "Lexacare mesh + OTA officiel Espressif"
+dependencies:
+  espressif/esp-now: "^2.5.0"

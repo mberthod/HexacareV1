@@ -13,10 +13,10 @@
 #include <vector>
 #include "mesh/mesh_tree_protocol.h"
 
-/** Table de routage locale (équivalent MeshChildNode_t du CDC). */
+/** Table de routage locale : clé = adresse MAC ; nodeId dérivé de la MAC (affichage). */
 struct ChildInfo {
     uint8_t  mac[6];
-    uint16_t nodeId;
+    uint16_t nodeId;         /* Dérivé de mac[4:5] pour affichage / compat (routing_get_my_id, etc.) */
     uint32_t lastSeen;       /* last_heartbeat_timestamp (ticks) */
     bool     is_active;
 };
@@ -42,8 +42,14 @@ bool routing_send_unicast(const uint8_t* dest_mac, uint8_t msgType, const uint8_
 /** Remontée des données vers le parent (TTL décrémenté). */
 void routing_forward_upstream(const uint8_t* data, size_t len);
 
-/** Descente : envoi vers un nœud cible (ROOT/intermédiaire). */
+/** Descente : envoi vers un nœud cible par ID court (dérivé MAC). */
 void routing_route_downstream(uint16_t target_id, const uint8_t* data, size_t len);
+
+/** Propagation : envoi des données à tous les enfants directs (par adresse MAC). */
+void routing_propagate_to_children(const uint8_t* data, size_t len);
+
+/** Envoi vers un enfant identifié par son adresse MAC. */
+bool routing_send_to_child_mac(const uint8_t* dest_mac, const uint8_t* data, size_t len);
 
 /** API pour les autres modules */
 std::vector<ChildInfo> routing_get_children(void);

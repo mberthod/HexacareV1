@@ -16,7 +16,8 @@ QueueHandle_t g_queue_espnow_tx = NULL;
 /**
  * @brief Crée les objets FreeRTOS si non déjà existants.
  */
-void queues_events_init(void) {
+void queues_events_init(void)
+{
     if (g_system_events == NULL)
         g_system_events = xEventGroupCreate();
     if (g_queue_vitals == NULL)

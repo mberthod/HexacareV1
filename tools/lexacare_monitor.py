@@ -5,13 +5,10 @@
 Fonctionnement avec le firmware Lexacare V2 (ROOT) :
 - Données mesh : le ROOT envoie une ligne JSON par trame reçue (nodeId, parentId, layer,
   vBat, probFallLidar, tempExt, fw_ver, heartRate, humidity, etc.).
-- Mise à jour locale OTA (0x01) : flux très rapide, port série uniquement. Au démarrage le firmware
-  stoppe toutes les tâches (routage, envoi, capteurs) ; seule la réception OTA tourne. À la fin :
-  vérification puis reboot sur le nouveau firmware. LED violette pendant la réception.
-- OTA Mesh (0x02) : "Lancer OTA Mesh" envoie 0x02 + en-tête 38 octets + chunks 200 octets.
-  Le ROOT écrit en flash puis appelle ota_tree_start_propagation() : il envoie MSG_OTA_ADV
-  à ses enfants. Les enfants demandent les chunks (MSG_OTA_REQ) et reçoivent MSG_OTA_CHUNK
-  (mécanisme PULL, timeout 500 ms). LED bleue sur le ROOT pendant la réception/diffusion.
+- 0x01 (OTA Série locale) est ignoré par le firmware ; seul 0x02 est pris en charge.
+- OTA (mode unique 0x02) : "Lancer OTA Mesh" envoie 0x02 + en-tête 38 octets + chunks 200 octets.
+  Le ROOT écrit en flash (esp_ota_*), envoie OTA_CHUNK_OK <idx> par chunk, puis diffuse espnow_ota
+  aux enfants et redémarre. Le script attend OTA_CHUNK_OK avant d'envoyer le chunk suivant.
 - Voir les nœuds en OTA : 1) LED sur chaque carte (ROOT violet/bleu, enfants orange puis 4× vert).
   2) Dans l’onglet Logs série, cocher le tag OTA pour afficher les messages OTA_TREE (ex. "Envoi ADV
   vers enfant...", "Enfant X a fini sa MAJ").
@@ -42,7 +39,7 @@ from tkinter import ttk, filedialog, messagebox
 
 # Format OTA série (aligné firmware Hexacare V2 - serial_gateway + mesh_tree_protocol.h)
 # Protocole: [1 octet mode] [38 octets header] [N × 200 octets chunks]
-#   mode: 0x01 = OTA Série (flash ROOT seul, LED violette), 0x02 = OTA Mesh (ROOT diffuse, LED bleue)
+#   mode: 0x02 uniquement (OTA Mesh : ROOT reçoit UART, écrit flash, diffuse espnow_ota, puis reboot)
 #   header: totalSize (4 octets LE) + totalChunks (2 octets LE) + MD5 hex ASCII (32 octets)
 #   chunks: données .bin, dernier bloc complété à 200 octets (0xFF)
 # Côté mesh (ESP32↔ESP32) : ADV/REQ/CHUNK avec requested_chunk_index, chunk_index, chunk_size (firmware).
@@ -50,6 +47,9 @@ OTA_ADV_HEADER_SIZE = 38   # 4 + 2 + 32 = OTA_ADV_PAYLOAD_SIZE firmware
 OTA_CHUNK_SIZE = 200       # OTA_CHUNK_DATA_SIZE firmware
 OTA_MODE_SERIAL_ROOT = 0x01  # OTA Série : ROOT seul
 OTA_MODE_MESH = 0x02         # OTA Mesh : ROOT puis propagation PULL vers enfants
+OTA_SERIAL_CHUNK_DELAY_MS = 12
+OTA_MESH_INTER_CHUNK_DELAY_MS = 35
+OTA_MESH_ACK_TIMEOUT_MS = 120000
 
 # --- CONFIGURATION PAR DÉFAUT ---
 MQTT_BROKER = "localhost"
@@ -89,7 +89,8 @@ class SerialReader(threading.Thread):
         self.log_callback = log_callback
         self.serial_log_callback = serial_log_callback
         self.topology_callback = topology_callback
-        self.ota_mesh_ack_queue = ota_mesh_ack_queue  # queue pour [OTA_MESH] CHUNK_PROPAGATED n (index)
+        self.ota_mesh_ack_queue = ota_mesh_ack_queue  # queue pour OTA_CHUNK_OK <index> (ACK UART firmware)
+        self.last_mesh_ack_idx = -1
         self.running = True
         self.ser = None
 
@@ -105,13 +106,22 @@ class SerialReader(threading.Thread):
                     if line:
                         if self.serial_log_callback:
                             self.serial_log_callback(line + "\n")
-                        if "[OTA_MESH] CHUNK_PROPAGATED" in line and self.ota_mesh_ack_queue is not None:
-                            m = re.search(r"CHUNK_PROPAGATED\s+(\d+)", line)
-                            if m:
+                        if self.ota_mesh_ack_queue is not None:
+                            ack_idx = None
+                            if "OTA_CHUNK_OK" in line:
+                                m = re.search(r"OTA_CHUNK_OK\s+(\d+)", line)
+                                if m:
+                                    ack_idx = int(m.group(1))
+                            if ack_idx is not None and ack_idx > self.last_mesh_ack_idx:
+                                self.last_mesh_ack_idx = ack_idx
                                 try:
-                                    self.ota_mesh_ack_queue.put_nowait(int(m.group(1)))
+                                    self.ota_mesh_ack_queue.put_nowait(ack_idx)
                                 except queue.Full:
-                                    pass
+                                    try:
+                                        self.ota_mesh_ack_queue.get_nowait()
+                                        self.ota_mesh_ack_queue.put_nowait(ack_idx)
+                                    except queue.Empty:
+                                        pass
                         if line.startswith("[TOPOLOGY]"):
                             try:
                                 json_str = line[10:].strip()
@@ -145,12 +155,20 @@ class SerialReader(threading.Thread):
             self.ser.write(data)
             self.ser.flush()
 
+    def reset_ota_mesh_ack_state(self):
+        """Réinitialise l'index ACK OTA mesh pour une nouvelle session."""
+        self.last_mesh_ack_idx = -1
+
 
 class LexacareApp:
     def __init__(self, root):
         self.root = root
         self.root.title("Lexacare V2 - Console (Série + Tree Mesh)")
-        self.root.geometry("1200x750")
+        self.root.geometry("1400x900")
+        try:
+            self.root.state("zoomed")  # Démarrage maximisé (Windows)
+        except Exception:
+            pass
         self.root.configure(bg="#f0f2f5")
 
         self.nodes = {}
@@ -159,7 +177,15 @@ class LexacareApp:
         self.full_path = None
         self.serial_thread = None
         self.logs_paused = False
-        self.ota_mesh_ack_queue = queue.Queue()
+        self.ota_mesh_ack_queue = queue.Queue(maxsize=8192)
+        self.ota_session = None
+        self.ota_cancel_requested = False
+        self.ota_popup = None
+        self.ota_popup_progress = None
+        self.ota_popup_label = None
+        self.ota_popup_text = None
+        self.ota_popup_btn_cancel = None
+        self.ota_popup_btn_close = None
         # Tags pour filtrage du log série (ROUTING = logs ESP-IDF "ROUTING:", TOPOLOGY = lignes [TOPOLOGY])
         self.LOG_SERIAL_TAG_IDS = ["BOOT", "SERIE", "OTA", "MESH", "ROUTING", "TOPOLOGY", "MAIN", "TASK", "ERREUR", "SCRIPT", "AUTRE"]
         self.log_serial_tag_vars = {}  # id -> tk.BooleanVar
@@ -272,13 +298,14 @@ class LexacareApp:
             bg="#fbbc04",
         )
         self.btn_ota_local.grid(row=0, column=2, padx=10, pady=5)
-        tk.Button(
+        self.btn_ota_mesh = tk.Button(
             ota_frame,
             text="Lancer OTA Mesh",
             command=lambda: self.trigger_ota_mesh(),
             bg="#1a73e8",
             fg="white",
-        ).grid(row=0, column=3, padx=10, pady=5)
+        )
+        self.btn_ota_mesh.grid(row=0, column=3, padx=10, pady=5)
         self.btn_test_serial = tk.Button(
             ota_frame,
             text="Test liaison (0xFF)",
@@ -290,7 +317,7 @@ class LexacareApp:
 
         tk.Label(
             ota_frame,
-            text="OTA Série (0x01) = flash ROOT seul, LED violette. OTA Mesh (0x02) = ROOT reçoit puis diffuse (PULL), LED bleue ; nœuds : LED orange (téléchargement) puis 4× vert si OK. Local (0x01)=rapide, Mesh (0x02)=diffusion. LED violet/bleu. Mise à jour locale (0x01) = nœud seul, très rapide. OTA Mesh (0x02) = ROOT diffuse. LED violet/bleu ; l’état 4× vert = OK.",
+            text="OTA Série (0x01) = flash ROOT seul, LED violette. OTA Mesh (0x02) = ROOT reçoit puis diffuse (PULL), LED bleue ; nœuds : LED orange (téléchargement) puis 4× vert si OK. Local (0x01)=rapide, Mesh (0x02)=diffusion. LED violet/bleu. Mode unique 0x02 : ROOT recoit UART, flash, OTA_CHUNK_OK, puis espnow_ota. OTA Mesh (0x02) = ROOT diffuse. LED violet/bleu ; l’état 4× vert = OK.",
             bg="#ffffff",
             fg="#666",
             font=("Segoe UI", 9),
@@ -332,7 +359,7 @@ class LexacareApp:
         left_log_frame.pack(side="left", fill="both", expand=True, padx=(0, 4))
         scroll_log = ttk.Scrollbar(left_log_frame)
         self.txt_logs = tk.Text(
-            left_log_frame, height=10, bg="#202124", fg="#8ab4f8", font=("Consolas", 9),
+            left_log_frame, height=18, bg="#202124", fg="#8ab4f8", font=("Consolas", 9),
             yscrollcommand=scroll_log.set,
         )
         scroll_log.config(command=self.txt_logs.yview)
@@ -368,7 +395,7 @@ class LexacareApp:
         ).pack(side="left", padx=(8, 0))
         scroll_serial = ttk.Scrollbar(right_log_frame)
         self.txt_serial_logs = tk.Text(
-            right_log_frame, height=10, bg="#1e1e2e", fg="#a6e3a1", font=("Consolas", 9),
+            right_log_frame, height=18, bg="#1e1e2e", fg="#a6e3a1", font=("Consolas", 9),
             yscrollcommand=scroll_serial.set,
         )
         scroll_serial.config(command=self.txt_serial_logs.yview)
@@ -422,10 +449,18 @@ class LexacareApp:
             return var.get()
         return self.log_serial_tag_vars.get("AUTRE", tk.BooleanVar(value=True)).get() if self.log_serial_tag_vars else True
 
+    def _abort_ota_from_serial(self):
+        """Appelé quand le ROOT envoie une erreur OTA (en-tete invalide, etc.) pour arrêter d'envoyer des chunks."""
+        if self.ota_session:
+            self._finish_ota_session(False, "[SERIE] Session OTA interrompue : le ROOT a signale une erreur (en-tete invalide ou desync).")
+
     def append_serial_log(self, text):
         """Ajoute du texte dans la fenêtre des logs série (thread-safe), en respectant le filtre par tag."""
         if self.logs_paused:
             return
+        # Si le ROOT signale une erreur OTA pendant une session, abandonner pour ne plus envoyer de chunks (evite desync)
+        if self.ota_session and ("[SERIE] ERREUR" in text or "en-tete invalide" in text or "Flush RX" in text):
+            self.root.after(0, self._abort_ota_from_serial)
         def _append():
             if self.logs_paused:
                 return
@@ -573,92 +608,312 @@ class LexacareApp:
             self.full_path = f
             self.selected_file.set(f.split("/")[-1].split("\\")[-1])
 
-    def _ota_worker(self, mode):
-        """Thread : envoi mode (1 byte) + en-tête 38 octets + blocs 200 octets. mode=OTA_MODE_SERIAL_ROOT ou OTA_MODE_MESH."""
+    def _set_ota_controls_enabled(self, enabled):
+        state = "normal" if enabled else "disabled"
+        self.btn_ota_local.config(state=state)
+        self.btn_ota_mesh.config(state=state)
+
+    def _append_ota_popup_log(self, message):
+        if self.ota_popup_text and self.ota_popup_text.winfo_exists():
+            t = time.strftime("%H:%M:%S")
+            self.ota_popup_text.insert(tk.END, f"[{t}] {message}\n")
+            self.ota_popup_text.see(tk.END)
+
+    def _update_ota_progress(self, done_chunks, total_chunks, text):
+        pct = int((done_chunks * 100) / total_chunks) if total_chunks > 0 else 0
+        self.progress_ota.config(value=pct)
+        self.lbl_ota_progress.config(text=text)
+        if self.ota_popup_progress and self.ota_popup_progress.winfo_exists():
+            self.ota_popup_progress.config(value=pct)
+        if self.ota_popup_label and self.ota_popup_label.winfo_exists():
+            self.ota_popup_label.config(text=text)
+
+    def _create_ota_popup(self, title, total_chunks, size, md5):
+        if self.ota_popup and self.ota_popup.winfo_exists():
+            self.ota_popup.destroy()
+
+        self.ota_popup = tk.Toplevel(self.root)
+        self.ota_popup.title(title)
+        self.ota_popup.geometry("760x460")
+        self.ota_popup.transient(self.root)
+        self.ota_popup.grab_set()
+
+        info = tk.Frame(self.ota_popup, bg="#ffffff")
+        info.pack(fill="x", padx=10, pady=8)
+        tk.Label(
+            info,
+            text=f"{title} | Taille={size} octets | Chunks={total_chunks} | MD5={md5[:8]}...",
+            bg="#ffffff",
+            fg="#202124",
+            font=("Segoe UI", 10, "bold"),
+            anchor="w",
+        ).pack(fill="x")
+
+        self.ota_popup_progress = ttk.Progressbar(self.ota_popup, maximum=100, length=700, mode="determinate")
+        self.ota_popup_progress.pack(fill="x", padx=10, pady=(4, 6))
+        self.ota_popup_label = tk.Label(self.ota_popup, text="Initialisation OTA...", bg="#ffffff", fg="#333", font=("Segoe UI", 10))
+        self.ota_popup_label.pack(fill="x", padx=10, pady=(0, 8))
+
+        log_frame = tk.Frame(self.ota_popup, bg="#ffffff")
+        log_frame.pack(fill="both", expand=True, padx=10, pady=4)
+        scroll = ttk.Scrollbar(log_frame)
+        self.ota_popup_text = tk.Text(
+            log_frame,
+            height=16,
+            bg="#101820",
+            fg="#a5d6a7",
+            font=("Consolas", 9),
+            yscrollcommand=scroll.set,
+        )
+        scroll.config(command=self.ota_popup_text.yview)
+        self.ota_popup_text.pack(side="left", fill="both", expand=True)
+        scroll.pack(side="right", fill="y")
+
+        btns = tk.Frame(self.ota_popup, bg="#ffffff")
+        btns.pack(fill="x", padx=10, pady=8)
+        self.ota_popup_btn_cancel = tk.Button(
+            btns, text="Annuler", bg="#ea4335", fg="white", command=self._request_ota_cancel
+        )
+        self.ota_popup_btn_cancel.pack(side="left", padx=(0, 8))
+        self.ota_popup_btn_close = tk.Button(
+            btns, text="Fermer", state="disabled", command=self._close_ota_popup
+        )
+        self.ota_popup_btn_close.pack(side="left")
+
+        self.ota_popup.protocol("WM_DELETE_WINDOW", self._request_ota_cancel)
+
+    def _close_ota_popup(self):
+        if self.ota_popup and self.ota_popup.winfo_exists():
+            try:
+                self.ota_popup.grab_release()
+            except Exception:
+                pass
+            self.ota_popup.destroy()
+        self.ota_popup = None
+        self.ota_popup_progress = None
+        self.ota_popup_label = None
+        self.ota_popup_text = None
+        self.ota_popup_btn_cancel = None
+        self.ota_popup_btn_close = None
+
+    def _request_ota_cancel(self):
+        if not self.ota_session:
+            self._close_ota_popup()
+            return
+        self.ota_cancel_requested = True
+        self.log("[SERIE] Annulation OTA demandée par l'utilisateur.")
+        self._append_ota_popup_log("Annulation demandée...")
+
+    def _finish_ota_session(self, success, message):
+        if self.ota_session:
+            total = self.ota_session["total_chunks"]
+            done = self.ota_session["chunk_idx"]
+            if success:
+                self._update_ota_progress(total, total, message)
+            else:
+                self._update_ota_progress(done, total, message)
+        self.log(message)
+        self._append_ota_popup_log(message)
+        if self.ota_popup_btn_cancel and self.ota_popup_btn_cancel.winfo_exists():
+            self.ota_popup_btn_cancel.config(state="disabled")
+        if self.ota_popup_btn_close and self.ota_popup_btn_close.winfo_exists():
+            self.ota_popup_btn_close.config(state="normal")
+        if self.ota_popup and self.ota_popup.winfo_exists():
+            try:
+                self.ota_popup.grab_release()
+            except Exception:
+                pass
+        self._set_ota_controls_enabled(True)
+        self.ota_session = None
+        self.ota_cancel_requested = False
+
+    def _start_ota_session(self, mode):
         path = self.full_path
         ser_reader = self.serial_thread
         if not path or not os.path.isfile(path):
-            self.root.after(0, lambda: self.log("[SERIE] OTA : aucun fichier .bin sélectionné."))
+            messagebox.showwarning("Fichier manquant", "Sélectionnez un fichier .bin avant de lancer l'OTA.")
             return
         if not ser_reader or not ser_reader.ser or not ser_reader.ser.is_open:
-            self.root.after(0, lambda: self.log("[SERIE] OTA : port série non connecté."))
+            messagebox.showwarning("Non connecté", "Connectez d'abord le port série.")
             return
-        name = "Mise à jour locale OTA" if mode == OTA_MODE_SERIAL_ROOT else "OTA Mesh"
-        try:
-            with open(path, "rb") as f:
-                data = f.read()
-            size = len(data)
-            total_chunks = (size + OTA_CHUNK_SIZE - 1) // OTA_CHUNK_SIZE
-            md5 = hashlib.md5(data).hexdigest()
-            if len(md5) != 32:
-                self.root.after(0, lambda: self.log("[SERIE] Erreur : MD5 invalide."))
-                return
-            header = struct.pack("<I", size) + struct.pack("<H", total_chunks) + md5.encode("ascii")
-            if len(header) != OTA_ADV_HEADER_SIZE:
-                self.root.after(0, lambda: self.log("[SERIE] Erreur : en-tête invalide (≠ 38 octets)."))
-                return
-            # Envoi octet de mode (1 byte) puis pause pour laisser le ROOT le lire et logger
-            mode_hex = "0x01" if mode == OTA_MODE_SERIAL_ROOT else "0x02"
-            self.root.after(0, lambda: self.log(f"[SERIE] Envoi 1 octet mode {mode_hex} ({name}) vers le port..."))
-            self.root.after(0, lambda: self.progress_ota.config(value=0))
-            self.root.after(0, lambda: self.lbl_ota_progress.config(text=""))
-            ser_reader.send_raw(bytes([mode]))
-            time.sleep(0.15 if mode == OTA_MODE_SERIAL_ROOT else 0.2)
-            self.root.after(0, lambda: self.log(f"[SERIE] Envoi en-tête 38 octets : taille={size}, chunks={total_chunks}, MD5={md5[:8]}..."))
-            ser_reader.send_raw(header)
-            ack_queue = getattr(self, "ota_mesh_ack_queue", None)
-            if mode == OTA_MODE_SERIAL_ROOT:
-                time.sleep(0.2)
+        if self.ota_session is not None:
+            messagebox.showwarning("OTA en cours", "Une session OTA est déjà en cours.")
+            return
+
+        with open(path, "rb") as f:
+            data = f.read()
+        size = len(data)
+        total_chunks = (size + OTA_CHUNK_SIZE - 1) // OTA_CHUNK_SIZE
+        md5 = hashlib.md5(data).hexdigest()
+        header = struct.pack("<I", size) + struct.pack("<H", total_chunks) + md5.encode("ascii")
+        if len(header) != OTA_ADV_HEADER_SIZE:
+            self.log("[SERIE] Erreur : en-tête OTA invalide.")
+            return
+
+        if mode == OTA_MODE_MESH:
+            if hasattr(ser_reader, "reset_ota_mesh_ack_state"):
+                ser_reader.reset_ota_mesh_ack_state()
+            while not self.ota_mesh_ack_queue.empty():
+                try:
+                    self.ota_mesh_ack_queue.get_nowait()
+                except queue.Empty:
+                    break
+
+        name = "Mise à jour locale OTA (0x01)" if mode == OTA_MODE_SERIAL_ROOT else "OTA Mesh (0x02)"
+        self._create_ota_popup(name, total_chunks, size, md5)
+        self._set_ota_controls_enabled(False)
+        self.ota_cancel_requested = False
+        self.progress_ota.config(value=0)
+        self.lbl_ota_progress.config(text="")
+        self.ota_session = {
+            "mode": mode,
+            "name": name,
+            "ser_reader": ser_reader,
+            "data": data,
+            "size": size,
+            "total_chunks": total_chunks,
+            "md5": md5,
+            "header": header,
+            "phase": "send_mode",
+            "chunk_idx": 0,
+            "expected_ack": -1,
+            "ack_deadline": 0.0,
+            "stale_count": 0,
+        }
+        self.log(f"[SERIE] Démarrage {name}: session non-thread, popup dédiée, debug fin activé.")
+        self._append_ota_popup_log("Session créée. Préparation envoi mode + header.")
+        self.root.after(30, self._ota_step)
+
+    def _ota_step(self):
+        s = self.ota_session
+        if not s:
+            return
+
+        if self.ota_cancel_requested:
+            self._finish_ota_session(False, "[SERIE] OTA annulée par l'utilisateur.")
+            return
+
+        ser_reader = s["ser_reader"]
+        if not ser_reader or not ser_reader.ser or not ser_reader.ser.is_open:
+            self._finish_ota_session(False, "[SERIE] OTA interrompue: port série fermé.")
+            return
+
+        mode = s["mode"]
+        mode_hex = "0x01" if mode == OTA_MODE_SERIAL_ROOT else "0x02"
+
+        if s["phase"] == "send_mode":
+            # Envoi sync 3x0x02 pour OTA Mesh (firmware exige 3 octets 0x02 pour éviter faux déclenchements)
+            if mode == OTA_MODE_MESH:
+                ser_reader.send_raw(bytes([0x02, 0x02, 0x02]))
             else:
-                time.sleep(0.3)
-                while ack_queue and not ack_queue.empty():
-                    try:
-                        ack_queue.get_nowait()
-                    except queue.Empty:
-                        break
+                ser_reader.send_raw(bytes([mode]))
+            self._append_ota_popup_log(f"Mode envoyé: {mode_hex}" + (" (3x0x02 sync)" if mode == OTA_MODE_MESH else ""))
+            self.log(f"[SERIE] OTA {mode_hex}: octet mode envoyé.")
+            s["phase"] = "send_header"
+            self.root.after(250 if mode == OTA_MODE_SERIAL_ROOT else 300, self._ota_step)
+            return
+
+        if s["phase"] == "send_header":
+            ser_reader.send_raw(s["header"])
+            self._append_ota_popup_log(
+                f"Header envoyé (38 octets): size={s['size']} chunks={s['total_chunks']} md5={s['md5'][:8]}..."
+            )
+            self.log(
+                f"[SERIE] OTA {mode_hex}: header envoyé, chunks={s['total_chunks']}."
+            )
+            s["phase"] = "send_chunk"
+            self.root.after(350 if mode == OTA_MODE_SERIAL_ROOT else 500, self._ota_step)
+            return
+
+        if s["phase"] == "send_chunk":
+            i = s["chunk_idx"]
+            total = s["total_chunks"]
+            if i >= total:
+                if mode == OTA_MODE_SERIAL_ROOT:
+                    self._finish_ota_session(True, "[SERIE] OTA locale: envoi terminé. Le nœud finalise puis redémarre.")
+                else:
+                    self._finish_ota_session(True, "[SERIE] OTA Mesh: tous les chunks ont été propagés.")
+                return
+
+            start = i * OTA_CHUNK_SIZE
+            chunk = s["data"][start:start + OTA_CHUNK_SIZE]
+            if len(chunk) < OTA_CHUNK_SIZE:
+                chunk = chunk + b"\xff" * (OTA_CHUNK_SIZE - len(chunk))
+            ser_reader.send_raw(chunk)
+
+            if i < 3 or (i + 1) % 25 == 0 or (i + 1) == total:
+                self.log(f"[SERIE] OTA {mode_hex}: chunk {i + 1}/{total} envoyé.")
+                self._append_ota_popup_log(f"Chunk envoyé: {i + 1}/{total}")
+
             if mode == OTA_MODE_SERIAL_ROOT:
-                for i in range(total_chunks):
-                    start = i * OTA_CHUNK_SIZE
-                    chunk = data[start : start + OTA_CHUNK_SIZE]
-                    if len(chunk) < OTA_CHUNK_SIZE:
-                        chunk = chunk + b"\xff" * (OTA_CHUNK_SIZE - len(chunk))
-                    ser_reader.send_raw(chunk)
-                    time.sleep(0.004)
-                    if (i + 1) % 50 == 0 or i == total_chunks - 1:
-                        self.root.after(0, lambda n=i + 1, t=total_chunks: self.log(f"[SERIE] Chunk {n}/{t} envoyé."))
-                self.root.after(0, lambda: self.progress_ota.config(value=100))
-                self.root.after(0, lambda: self.log("[SERIE] Envoi terminé. Nœud vérifie puis redémarre (LED violette → 4× vert si OK)."))
-            else:
-                # OTA Mesh (0x02) : 1 envoi = 1 chunk ; attente CHUNK_PROPAGATED (index i) avant le suivant
-                for i in range(total_chunks):
-                    start = i * OTA_CHUNK_SIZE
-                    chunk = data[start : start + OTA_CHUNK_SIZE]
-                    if len(chunk) < OTA_CHUNK_SIZE:
-                        chunk = chunk + b"\xff" * (OTA_CHUNK_SIZE - len(chunk))
-                    if (i % 100) == 0 or i < 3:
-                        self.root.after(0, lambda n=i + 1, t=total_chunks, ii=i: self.log(f"[SERIE] Envoi chunk {n}/{t}, attente CHUNK_PROPAGATED {ii}..."))
-                    ser_reader.send_raw(chunk)
-                    try:
-                        if ack_queue is not None:
-                            got = ack_queue.get(timeout=120)
-                            if i == 0 and got == 0:
-                                self.root.after(0, lambda: self.log("[SERIE] Premier CHUNK_PROPAGATED reçu (index 0), synchro OK."))
-                            if got != i:
-                                self.root.after(0, lambda g=got, ii=i: self.log(f"[SERIE] Erreur sync: reçu CHUNK_PROPAGATED {g}, attendu {ii}. Arrêt."))
-                                break
-                    except queue.Empty:
-                        self.root.after(0, lambda: self.log("[SERIE] Timeout 120 s en attente de CHUNK_PROPAGATED. Arrêt."))
-                        break
-                    pct = int((i + 1) * 100 / total_chunks)
-                    self.root.after(0, lambda p=pct, n=i + 1, t=total_chunks: (
-                        self.progress_ota.config(value=p),
-                        self.lbl_ota_progress.config(text=f"Chunk {n}/{t} propagé ({p} %)"),
-                    ))
-                self.root.after(0, lambda: self.progress_ota.config(value=100))
-                self.root.after(0, lambda: self.lbl_ota_progress.config(text="Propagation terminée. En attente des REBOOT_ACK..."))
-                self.root.after(0, lambda: self.log("[SERIE] OTA Mesh : tous les chunks propagés. Enfants redémarrent, ROOT reprend."))
-        except Exception as e:
-            self.root.after(0, lambda: self.log(f"[SERIE] Erreur : {e}"))
+                s["chunk_idx"] += 1
+                self._update_ota_progress(
+                    s["chunk_idx"],
+                    total,
+                    f"OTA locale: chunk {s['chunk_idx']}/{total} envoyé",
+                )
+                self.root.after(OTA_SERIAL_CHUNK_DELAY_MS, self._ota_step)
+                return
+
+            # Mode mesh : attendre explicitement CHUNK_PROPAGATED index i
+            s["phase"] = "wait_ack"
+            s["expected_ack"] = i
+            s["ack_deadline"] = time.time() + (OTA_MESH_ACK_TIMEOUT_MS / 1000.0)
+            s["stale_count"] = 0
+            self._update_ota_progress(i, total, f"OTA Mesh: attente ACK chunk {i}/{total - 1}...")
+            self.root.after(15, self._ota_step)
+            return
+
+        if s["phase"] == "wait_ack":
+            expected = s["expected_ack"]
+            while True:
+                try:
+                    got = self.ota_mesh_ack_queue.get_nowait()
+                except queue.Empty:
+                    break
+
+                if got < expected:
+                    s["stale_count"] += 1
+                    if s["stale_count"] <= 2 or (s["stale_count"] % 40) == 0:
+                        msg = f"[SERIE] ACK stale ignoré: reçu {got}, attendu {expected} (x{s['stale_count']})."
+                        self.log(msg)
+                        self._append_ota_popup_log(msg)
+                    continue
+                if got > expected:
+                    self._finish_ota_session(
+                        False,
+                        f"[SERIE] Erreur synchro OTA Mesh: ACK {got} reçu mais {expected} attendu.",
+                    )
+                    return
+
+                # got == expected
+                s["chunk_idx"] += 1
+                total = s["total_chunks"]
+                if expected == 0:
+                    self.log("[SERIE] OTA Mesh: premier OTA_CHUNK_OK (0) reçu, synchro OK.")
+                    self._append_ota_popup_log("Premier OTA_CHUNK_OK reçu (index 0).")
+                if s["chunk_idx"] < 3 or (s["chunk_idx"] % 25) == 0 or s["chunk_idx"] == total:
+                    self._append_ota_popup_log(
+                        f"ACK validé chunk {expected}. Progression {s['chunk_idx']}/{total}"
+                    )
+                self._update_ota_progress(
+                    s["chunk_idx"],
+                    total,
+                    f"OTA Mesh: chunk {s['chunk_idx']}/{total} propagé",
+                )
+                s["phase"] = "send_chunk"
+                self.root.after(OTA_MESH_INTER_CHUNK_DELAY_MS, self._ota_step)
+                return
+
+            if time.time() >= s["ack_deadline"]:
+                self._finish_ota_session(
+                    False,
+                    f"[SERIE] Timeout {OTA_MESH_ACK_TIMEOUT_MS//1000}s en attente de OTA_CHUNK_OK {expected}.",
+                )
+                return
+
+            self.root.after(20, self._ota_step)
+            return
 
     def test_serial_link(self):
         """Envoie un octet 0xFF pour tester si le ROOT reçoit (doit afficher 'Octet mode reçu: 0xFF' + 'Mode inconnu')."""
@@ -673,28 +928,12 @@ class LexacareApp:
             self.log(f"[SERIE] Erreur test : {e}")
 
     def trigger_ota_local(self):
-        """Mise à jour locale OTA : nœud connecté uniquement, flux très rapide (0x01). Tâches stoppées côté firmware."""
-        if not self.serial_thread or not self.serial_thread.ser or not self.serial_thread.ser.is_open:
-            messagebox.showwarning("Non connecté", "Connectez d'abord le port série au nœud.")
-            return
-        if not self.full_path or not os.path.isfile(self.full_path):
-            messagebox.showwarning("Fichier manquant", "Sélectionnez un fichier .bin avant de lancer l'OTA.")
-            return
-        self.log("[SERIE] Mise à jour locale OTA (0x01) : envoi rapide → nœud stoppe les tâches, reçoit, vérifie, reboot.")
-        t = threading.Thread(target=self._ota_worker, args=(OTA_MODE_SERIAL_ROOT,), daemon=True)
-        t.start()
+        """Mise à jour locale OTA (0x01) sans thread dédié OTA: popup progression + annulation."""
+        self._start_ota_session(OTA_MODE_SERIAL_ROOT)
 
     def trigger_ota_mesh(self):
-        """Mise à jour des nœuds par le mesh (ROOT reçoit par série et diffuse sur le mesh, mode 0x02)."""
-        if not self.serial_thread or not self.serial_thread.ser or not self.serial_thread.ser.is_open:
-            messagebox.showwarning("Non connecté", "Connectez d'abord le port série au nœud ROOT.")
-            return
-        if not self.full_path or not os.path.isfile(self.full_path):
-            messagebox.showwarning("Fichier manquant", "Sélectionnez un fichier .bin avant de lancer l'OTA.")
-            return
-        self.log("[SERIE] Démarrage OTA Mesh : envoi 0x02 + 38 octets + chunks → ROOT diffuse sur le mesh.")
-        t = threading.Thread(target=self._ota_worker, args=(OTA_MODE_MESH,), daemon=True)
-        t.start()
+        """OTA Mesh (0x02) sans thread dédié OTA: popup progression + annulation + attente ACK séquentielle."""
+        self._start_ota_session(OTA_MODE_MESH)
 
 
 if __name__ == "__main__":

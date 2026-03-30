@@ -8,6 +8,7 @@
 
 #include "mesh/routing_manager.h"
 #include "system/led_manager.h"
+#include "config/config.h"
 #include <esp_now.h>
 #include <esp_wifi.h>
 #include <esp_log.h>
@@ -16,7 +17,7 @@
 #include <string.h>
 #include <algorithm>
 
-static const char* TAG = "ROUTING";
+static const char *TAG = "ROUTING";
 /**
  * @defgroup RoutingManager Routage Mesh - Gestionnaire de Routage (routing_manager)
  * @ingroup Mesh
@@ -106,7 +107,8 @@ static const char* TAG = "ROUTING";
  *
  * Cette énumération garantit le suivi précis de l'état interne et la robustesse face aux événements réseau ou aux perturbations.
  */
-enum NodeState {
+enum NodeState
+{
     /**
      * @brief État d'initialisation.
      *
@@ -156,7 +158,6 @@ enum NodeState {
     STATE_ORPHAN
 };
 
-
 /**
  * @brief État interne du routeur.
  *
@@ -191,7 +192,7 @@ static uint8_t s_my_layer_previous = 255; /* Pour loop avoidance (rejeter layer 
  * Elle est utilisée pour identifier de façon unique chaque nœud dans le réseau.
  * @see NodeState
  */
-static uint16_t s_my_id = 0;
+static uint8_t s_my_mac[6] = {0};
 /**
  * @brief Adresse MAC du parent connecté.
  *
@@ -200,20 +201,14 @@ static uint16_t s_my_id = 0;
  * @see NodeState
  */
 static uint8_t s_parent_mac[6] = {0};
-/**
- * @brief Identifiant unique du parent connecté.
- *
- * Variable globale stockant l'identifiant unique du parent connecté au nœud courant.
- * Elle est utilisée pour identifier de façon unique le parent connecté.
- */
-static uint16_t s_parent_id = 0;
+
 /**
  * @brief Dernier tick où on a reçu HEARTBEAT_ACK.
  *
  * Variable globale stockant le dernier tick où on a reçu HEARTBEAT_ACK du parent connecté.
  * Elle est utilisée pour surveiller la connexion au parent.
  */
-static uint32_t s_last_heartbeat_ack = 0;  /* Dernier tick où on a reçu HEARTBEAT_ACK */
+static uint32_t s_last_heartbeat_ack = 0; /* Dernier tick où on a reçu HEARTBEAT_ACK */
 static uint32_t s_last_heartbeat_send = 0;
 static uint8_t s_heartbeat_fail_count = 0;
 /**
@@ -229,10 +224,12 @@ static std::vector<ChildInfo> s_children;
  * Variable globale stockant le meilleur candidat parent pour la connexion.
  * Elle est utilisée pour sélectionner le meilleur parent pour la connexion.
  */
-static uint16_t s_best_parent_candidate = 0;
+static uint8_t s_best_parent_candidate[6] = {0};
 static uint8_t s_best_layer = 255;
 static uint8_t s_best_parent_mac[6] = {0};
 static uint8_t s_best_children_count = 255;
+/** Compteur d'ACK DATA (réutilise MSG_JOIN_ACK) reçu depuis le parent courant. */
+static volatile uint32_t s_data_join_ack_counter = 0;
 
 /**
  * @brief Ajoute un parent comme pair ESP-NOW.
@@ -240,41 +237,59 @@ static uint8_t s_best_children_count = 255;
  * Cette fonction ajoute un parent comme pair ESP-NOW si celui-ci n'est pas déjà enregistré.
  * Elle est utilisée pour ajouter le parent comme pair ESP-NOW pour l'envoi de trames.
  */
-static void add_parent_as_peer(const uint8_t* mac) {
-    if (!mac || esp_now_is_peer_exist(mac)) return;
+static void add_parent_as_peer(const uint8_t *mac)
+{
+    if (!mac || esp_now_is_peer_exist(mac))
+        return;
     esp_now_peer_info_t peerInfo = {};
     memcpy(peerInfo.peer_addr, mac, 6);
     peerInfo.channel = 0;
     peerInfo.encrypt = false;
-    if (esp_now_add_peer(&peerInfo) == ESP_OK) {
+    if (esp_now_add_peer(&peerInfo) == ESP_OK)
+    {
         ESP_LOGD(TAG, "Peer parent ajoute");
     }
 }
 
 /**
- * @brief Met à jour un enfant connecté.
- *
- * Cette fonction met à jour un enfant connecté dans la liste des enfants connectés.
- * Elle est utilisée pour mettre à jour l'état d'un enfant connecté.
+ * @brief Dérive un identifiant court 16 bits depuis une adresse MAC (affichage / compat).
+ * Utilisé pour nodeId dans ChildInfo et pour routing_get_my_id / routing_get_parent_id.
  */
-static void update_child(uint16_t childId, const uint8_t* mac) {
+static uint16_t mac_to_short_id(const uint8_t *mac)
+{
+    if (!mac) return 0;
+    return (uint16_t)((mac[4] << 8) | mac[5]);
+}
+
+/**
+ * @brief Met à jour un enfant connecté (identifié uniquement par son adresse MAC).
+ *
+ * Recherche par MAC ; si trouvé, met à jour lastSeen et is_active.
+ * Sinon ajoute un nouvel enfant avec nodeId dérivé de la MAC (affichage).
+ */
+static void update_child(const uint8_t *mac)
+{
+    if (!mac) return;
     uint32_t now = xTaskGetTickCount();
-    for (auto& child : s_children) {
-        if (child.nodeId == childId) {
+    for (auto &child : s_children)
+    {
+        if (memcmp(child.mac, mac, 6) == 0)
+        {
             child.lastSeen = now;
             child.is_active = true;
             return;
         }
     }
-    if (s_children.size() < MAX_CHILDREN_PER_NODE) {
+    if (s_children.size() < MAX_CHILDREN_PER_NODE)
+    {
         ChildInfo c;
         memcpy(c.mac, mac, 6);
-        c.nodeId = childId;
+        c.nodeId = mac_to_short_id(mac);
         c.lastSeen = now;
         c.is_active = true;
         s_children.push_back(c);
         add_parent_as_peer(mac);
-        ESP_LOGI(TAG, "Nouvel enfant: %04X", childId);
+        ESP_LOGI(TAG, "Nouvel enfant MAC %02X:%02X:%02X:%02X:%02X:%02X (id %04X)", mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], (unsigned)c.nodeId);
     }
 }
 
@@ -284,27 +299,35 @@ static void update_child(uint16_t childId, const uint8_t* mac) {
  * Cette fonction vérifie les timeouts enfants (30 s) et heartbeat manqués (3 → ORPHAN).
  * Elle est utilisée pour vérifier les timeouts enfants et heartbeat manqués.
  */
-static void routing_check_timeouts(void) {
+static void routing_check_timeouts(void)
+{
     uint32_t now = xTaskGetTickCount();
     TickType_t timeout = pdMS_TO_TICKS(ROUTING_CHILD_TIMEOUT_MS);
 
     /* Parent : retirer les enfants sans heartbeat depuis 30 s */
     auto it = s_children.begin();
-    while (it != s_children.end()) {
-        if ((now - it->lastSeen) > timeout) {
+    while (it != s_children.end())
+    {
+        if ((now - it->lastSeen) > timeout)
+        {
             esp_now_del_peer(it->mac);
             ESP_LOGW(TAG, "Enfant perdu (timeout 30s): %04X", it->nodeId);
             it = s_children.erase(it);
-        } else {
+        }
+        else
+        {
             ++it;
         }
     }
 
     /* Enfant : si 3 heartbeats sans ACK → ORPHAN */
-    if (s_state == STATE_CONNECTED && s_my_layer != 0) {
-        if ((now - s_last_heartbeat_ack) > pdMS_TO_TICKS(ROUTING_HEARTBEAT_INTERVAL_MS + 2000)) {
+    if (s_state == STATE_CONNECTED && s_my_layer != 0)
+    {
+        if ((now - s_last_heartbeat_ack) > pdMS_TO_TICKS(ROUTING_HEARTBEAT_INTERVAL_MS + 2000))
+        {
             s_heartbeat_fail_count++;
-            if (s_heartbeat_fail_count >= ROUTING_HEARTBEAT_FAIL_ORPHAN) {
+            if (s_heartbeat_fail_count >= ROUTING_HEARTBEAT_FAIL_ORPHAN)
+            {
                 ESP_LOGW(TAG, "Parent perdu (3 heartbeats sans ACK) -> ORPHAN");
                 s_state = STATE_ORPHAN;
                 led_manager_set_state(LED_STATE_ORPHAN);
@@ -319,14 +342,15 @@ static void routing_check_timeouts(void) {
  * Cette fonction reconnexion après perte du parent.
  * Elle est utilisée pour réinitialiser les variables de routage et devenir orphelin.
  */
-static void routing_orphan_recovery(void) {
+static void routing_orphan_recovery(void)
+{
     s_my_layer_previous = s_my_layer;
     s_my_layer = 255;
-    s_parent_id = 0;
+    memset(s_parent_mac, 0, 6);
     memset(s_parent_mac, 0, 6);
     s_heartbeat_fail_count = 0;
     s_best_layer = 255;
-    s_best_parent_candidate = 0;
+    memset(s_best_parent_candidate, 0, 6);
     memset(s_best_parent_mac, 0, 6);
     s_state = STATE_SCANNING;
     led_manager_set_state(LED_STATE_SCANNING);
@@ -339,12 +363,12 @@ static void routing_orphan_recovery(void) {
  * Cette fonction initialise le routage.
  * Elle est utilisée pour initialiser le routage.
  */
-void routing_init(void) {
-    uint8_t mac[6];
-    esp_read_mac(mac, ESP_MAC_WIFI_STA);
-    s_my_id = (uint16_t)((mac[4] << 8) | mac[5]);
+void routing_init(void)
+{
+    //uint8_t mac[6];
+    esp_read_mac(s_my_mac, ESP_MAC_WIFI_STA);
     s_state = STATE_INIT;
-    ESP_LOGI(TAG, "Init Routing. My ID: %04X", s_my_id);
+    ESP_LOGI(TAG, "Init Routing. My MAC: %02X:%02X:%02X:%02X:%02X:%02X", s_my_mac[0], s_my_mac[1], s_my_mac[2], s_my_mac[3], s_my_mac[4], s_my_mac[5]);
 }
 
 /**
@@ -361,14 +385,15 @@ void routing_init(void) {
  * - Affiche un message informatif dans les logs série via ESP_LOGI, avec confirmation d'entrée en mode ROOT.
  *
  * **Utilisation typique :**
- * - Appelée dans la séquence d'initialisation du firmware lorsque le flag LEXACARE_THIS_NODE_IS_GATEWAY est à true.
+ * - Appelée dans la séquence d'initialisation du firmware lorsque le flag g_lexacare_this_node_is_gateway est à true.
  *
  * @see routing_init()
  * @see led_manager_set_state()
- * @see LEXACARE_THIS_NODE_IS_GATEWAY
+ * @see g_lexacare_this_node_is_gateway
  * @see STATE_CONNECTED
  */
-void routing_set_root(void) {
+void routing_set_root(void)
+{
     s_my_layer = 0;
     s_state = STATE_CONNECTED;
     led_manager_set_state(LED_STATE_ROOT);
@@ -378,7 +403,7 @@ void routing_set_root(void) {
 /**
  * @brief Envoie un paquet unicast à un nœud du mesh en utilisant ESP-NOW.
  *
- * Cette fonction encapsule une charge utile arbitraire (payload) dans l'entête TreeMeshHeader puis  
+ * Cette fonction encapsule une charge utile arbitraire (payload) dans l'entête TreeMeshHeader puis
  * l'envoie à une adresse MAC spécifique (dest_mac) à l'aide du protocole ESP-NOW.
  * Elle gère automatiquement l'ajout du pair ESP-NOW si celui-ci n'est pas déjà enregistré,
  * prépare l'entête réseau, copie la charge utile, puis effectue la transmission.
@@ -416,7 +441,7 @@ void routing_set_root(void) {
 /**
  * @brief Envoie un paquet unicast à un nœud du mesh en utilisant ESP-NOW.
  *
- * Cette fonction encapsule une charge utile arbitraire (payload) dans l'entête TreeMeshHeader puis  
+ * Cette fonction encapsule une charge utile arbitraire (payload) dans l'entête TreeMeshHeader puis
  * l'envoie à une adresse MAC spécifique (dest_mac) à l'aide du protocole ESP-NOW.
  * Elle gère automatiquement l'ajout du pair ESP-NOW si celui-ci n'est pas déjà enregistré,
  * prépare l'entête réseau, copie la charge utile, puis effectue la transmission.
@@ -450,28 +475,79 @@ void routing_set_root(void) {
  * @see routing_forward_upstream()
  * @see routing_route_downstream()
  */
-bool routing_send_unicast(const uint8_t* dest_mac, uint8_t msgType, const uint8_t* payload, uint16_t len) {
+bool routing_send_unicast(const uint8_t *dest_mac, uint8_t msgType, const uint8_t *payload, uint16_t len)
+{
     uint8_t buffer[250];
-    if (!dest_mac || sizeof(TreeMeshHeader) + len > sizeof(buffer)) return false;
+    if (!dest_mac || sizeof(TreeMeshHeader) + len > sizeof(buffer))
+        return false;
 
-    TreeMeshHeader* hdr = (TreeMeshHeader*)buffer;
+    TreeMeshHeader *hdr = (TreeMeshHeader *)buffer;
     hdr->magic = MESH_MAGIC_BYTE;
     hdr->msgType = msgType;
-    hdr->srcNodeId = s_my_id;
-    hdr->destNodeId = 0;
+    memcpy(hdr->srcMac, s_my_mac, 6);
+    hdr->destNodeId = 0xFFFF; // Broadcast pour tous les nœuds
     hdr->layer = s_my_layer;
     hdr->ttl = 15;
     hdr->payloadLen = len;
-    if (len > 0 && payload) memcpy(buffer + sizeof(TreeMeshHeader), payload, len);
+    if (len > 0 && payload)
+        memcpy(buffer + sizeof(TreeMeshHeader), payload, len);
 
-    if (!esp_now_is_peer_exist(dest_mac)) {
-        esp_now_peer_info_t peerInfo = {};
-        memcpy(peerInfo.peer_addr, dest_mac, 6);
-        peerInfo.channel = 0;
-        peerInfo.encrypt = false;
-        if (esp_now_add_peer(&peerInfo) != ESP_OK) return false;
+    auto send_once = [&]() -> bool
+    {
+        if (!esp_now_is_peer_exist(dest_mac))
+        {
+            esp_now_peer_info_t peerInfo = {};
+            memcpy(peerInfo.peer_addr, dest_mac, 6);
+            peerInfo.channel = 0;
+            peerInfo.encrypt = false;
+            if (esp_now_add_peer(&peerInfo) != ESP_OK)
+                return false;
+        }
+        return esp_now_send(dest_mac, buffer, sizeof(TreeMeshHeader) + len) == ESP_OK;
+    };
+
+#if ROUTING_DATA_ACK_ENABLE
+    /* Règle demandée: chaque MSG_DATA doit être acquitté par un JOIN_ACK du parent. */
+    if (msgType == MSG_DATA && s_my_layer != 0)
+    {
+        const TickType_t timeout_ticks = pdMS_TO_TICKS(ROUTING_DATA_ACK_TIMEOUT_MS);
+        for (uint8_t attempt = 0; attempt <= ROUTING_DATA_ACK_RETRY_MAX; ++attempt)
+        {
+            const uint32_t ack_before = s_data_join_ack_counter;
+            if (!send_once())
+            {
+                ESP_LOGW(TAG, "MSG_DATA envoi KO (tentative %u/%u).",
+                         (unsigned)(attempt + 1), (unsigned)(ROUTING_DATA_ACK_RETRY_MAX + 1));
+                continue;
+            }
+
+            TickType_t t0 = xTaskGetTickCount();
+            while ((xTaskGetTickCount() - t0) < timeout_ticks)
+            {
+                if (s_data_join_ack_counter > ack_before)
+                {
+                    if (attempt > 0)
+                    {
+                        ESP_LOGW(TAG, "MSG_DATA ACK recu apres retry %u/%u.",
+                                 (unsigned)attempt, (unsigned)ROUTING_DATA_ACK_RETRY_MAX);
+                    }
+                    return true;
+                }
+                vTaskDelay(pdMS_TO_TICKS(5));
+            }
+
+            ESP_LOGW(TAG, "Timeout ACK MSG_DATA (%ums) tentative %u/%u -> renvoi.",
+                     (unsigned)ROUTING_DATA_ACK_TIMEOUT_MS,
+                     (unsigned)(attempt + 1),
+                     (unsigned)(ROUTING_DATA_ACK_RETRY_MAX + 1));
+        }
+        ESP_LOGE(TAG, "MSG_DATA abandonne: aucun JOIN_ACK recu apres %u tentatives.",
+                 (unsigned)(ROUTING_DATA_ACK_RETRY_MAX + 1));
+        return false;
     }
-    return esp_now_send(dest_mac, buffer, sizeof(TreeMeshHeader) + len) == ESP_OK;
+#endif
+
+    return send_once();
 }
 
 /**
@@ -502,22 +578,29 @@ bool routing_send_unicast(const uint8_t* dest_mac, uint8_t msgType, const uint8_
  * @see esp_now_send()
  * @see routing_get_parent_mac()
  */
-void routing_forward_upstream(const uint8_t* data, size_t len) {
-    if (!data || len < sizeof(TreeMeshHeader)) return;
-    TreeMeshHeader* h = (TreeMeshHeader*)data;
-    if (h->magic != MESH_MAGIC_BYTE || h->ttl == 0) return;
-    if (s_my_layer == 0) return; /* ROOT ne forward pas en upstream */
+void routing_forward_upstream(const uint8_t *data, size_t len)
+{
+    if (!data || len < sizeof(TreeMeshHeader))
+        return;
+    TreeMeshHeader *h = (TreeMeshHeader *)data;
+    if (h->magic != MESH_MAGIC_BYTE || h->ttl == 0)
+        return;
+    if (s_my_layer == 0)
+        return; /* ROOT ne forward pas en upstream */
     uint8_t parent_mac[6];
-    if (!routing_get_parent_mac(parent_mac)) return;
+    if (!routing_get_parent_mac(parent_mac))
+        return;
 
     /* Décrémenter TTL (copie pour ne pas modifier le buffer original si partagé) */
     uint8_t buf[250];
-    if (len > sizeof(buf)) return;
+    if (len > sizeof(buf))
+        return;
     memcpy(buf, data, len);
-    TreeMeshHeader* h2 = (TreeMeshHeader*)buf;
+    TreeMeshHeader *h2 = (TreeMeshHeader *)buf;
     h2->ttl--;
 
-    if (!esp_now_is_peer_exist(parent_mac)) add_parent_as_peer(parent_mac);
+    if (!esp_now_is_peer_exist(parent_mac))
+        add_parent_as_peer(parent_mac);
     esp_now_send(parent_mac, buf, len);
 }
 
@@ -545,16 +628,58 @@ void routing_forward_upstream(const uint8_t* data, size_t len) {
  * @see esp_now_send()
  * @see routing_get_children()
  */
-void routing_route_downstream(uint16_t target_id, const uint8_t* data, size_t len) {
-    if (!data || len < sizeof(TreeMeshHeader)) return;
-    for (const auto& c : s_children) {
-        if (c.nodeId == target_id && c.is_active) {
-            if (!esp_now_is_peer_exist(c.mac)) add_parent_as_peer(c.mac);
+void routing_route_downstream(uint16_t target_id, const uint8_t *data, size_t len)
+{
+    if (!data || len < sizeof(TreeMeshHeader))
+        return;
+    for (const auto &c : s_children)
+    {
+        if (mac_to_short_id(c.mac) == target_id && c.is_active)
+        {
+            if (!esp_now_is_peer_exist(c.mac))
+                add_parent_as_peer(c.mac);
             esp_now_send(c.mac, data, len);
             return;
         }
     }
     ESP_LOGD(TAG, "route_downstream: cible %04X pas dans enfants directs", target_id);
+}
+
+/**
+ * @brief Envoie les données à tous les enfants directs (par adresse MAC).
+ * Utilisé pour la propagation OTA, commandes mesh, etc.
+ */
+void routing_propagate_to_children(const uint8_t *data, size_t len)
+{
+    if (!data || len == 0)
+        return;
+    for (const auto &c : s_children)
+    {
+        if (!c.is_active)
+            continue;
+        if (!esp_now_is_peer_exist(c.mac))
+            add_parent_as_peer(c.mac);
+        esp_now_send(c.mac, (uint8_t *)data, len);
+    }
+}
+
+/**
+ * @brief Envoie les données à un nœud enfant identifié par son adresse MAC.
+ */
+bool routing_send_to_child_mac(const uint8_t *dest_mac, const uint8_t *data, size_t len)
+{
+    if (!dest_mac || !data || len == 0)
+        return false;
+    for (const auto &c : s_children)
+    {
+        if (memcmp(c.mac, dest_mac, 6) == 0 && c.is_active)
+        {
+            if (!esp_now_is_peer_exist(c.mac))
+                add_parent_as_peer(c.mac);
+            return (esp_now_send(c.mac, (uint8_t *)data, len) == ESP_OK);
+        }
+    }
+    return false;
 }
 
 /**
@@ -586,72 +711,92 @@ void routing_route_downstream(uint16_t target_id, const uint8_t* data, size_t le
  * @see routing_get_parent_mac()
  * @see routing_send_unicast()
  */
-void on_mesh_receive(const uint8_t* mac, const uint8_t* data, int len) {
-    if (!mac || !data || len < (int)sizeof(TreeMeshHeader)) return;
-    TreeMeshHeader* hdr = (TreeMeshHeader*)data;
-    if (hdr->magic != MESH_MAGIC_BYTE) return;
+void on_mesh_receive(const uint8_t *mac, const uint8_t *data, int len)
+{
+    if (!mac || !data || len < (int)sizeof(TreeMeshHeader))
+        return;
+    TreeMeshHeader *hdr = (TreeMeshHeader *)data;
+    if (hdr->magic != MESH_MAGIC_BYTE)
+        return;
 
     /* ---------- SCANNING : collecte des Beacons pour évaluation ---------- */
-    if (s_state == STATE_SCANNING && hdr->msgType == MSG_BEACON) {
-        if (len < (int)(sizeof(TreeMeshHeader) + sizeof(BeaconPayload))) return;
-        BeaconPayload* b = (BeaconPayload*)(data + sizeof(TreeMeshHeader));
+    if (s_state == STATE_SCANNING && hdr->msgType == MSG_BEACON)
+    {
+        if (len < (int)(sizeof(TreeMeshHeader) + sizeof(BeaconPayload)))
+            return;
+        BeaconPayload *b = (BeaconPayload *)(data + sizeof(TreeMeshHeader));
         /* Loop avoidance : rejeter si layer >= ma couche précédente */
-        if (hdr->layer >= s_my_layer_previous) return;
-        if (b->currentChildrenCount >= MAX_CHILDREN_PER_NODE) return;
+        if (hdr->layer >= s_my_layer_previous)
+            return;
+        if (b->currentChildrenCount >= MAX_CHILDREN_PER_NODE)
+            return;
         /* Meilleur candidat : couche la plus basse, puis moins d'enfants */
-        if (hdr->layer < s_best_layer || (hdr->layer == s_best_layer && b->currentChildrenCount < s_best_children_count)) {
+        if (hdr->layer < s_best_layer || (hdr->layer == s_best_layer && b->currentChildrenCount < s_best_children_count))
+        {
             s_best_layer = hdr->layer;
             s_best_children_count = b->currentChildrenCount;
-            s_best_parent_candidate = hdr->srcNodeId;
-            memcpy(s_best_parent_mac, mac, 6);
+            memcpy(s_best_parent_candidate, hdr->srcMac, 6);
             led_manager_set_state(LED_STATE_SCANNING);
-            ESP_LOGD(TAG, "Beacon recu parent %04X layer=%u enfants=%u", hdr->srcNodeId, (unsigned)hdr->layer, (unsigned)b->currentChildrenCount);
+            ESP_LOGD(TAG, "Beacon recu parent %02X:%02X:%02X:%02X:%02X:%02X layer=%u enfants=%u", hdr->srcMac[0], hdr->srcMac[1], hdr->srcMac[2], hdr->srcMac[3], hdr->srcMac[4], hdr->srcMac[5], (unsigned)hdr->layer, (unsigned)b->currentChildrenCount);
         }
         return;
     }
 
     /* ---------- JOINING : réception JOIN_ACK avec couche assignée ---------- */
-    if (s_state == STATE_JOINING && hdr->msgType == MSG_JOIN_ACK && hdr->srcNodeId == s_best_parent_candidate) {
+    if (s_state == STATE_JOINING && hdr->msgType == MSG_JOIN_ACK && memcmp(hdr->srcMac, s_best_parent_candidate, 6) == 0)
+    {
         uint8_t assigned = hdr->layer + 1; /* Par défaut : parent_layer + 1 */
-        if (len >= (int)(sizeof(TreeMeshHeader) + sizeof(JoinAckPayload))) {
-            JoinAckPayload* j = (JoinAckPayload*)(data + sizeof(TreeMeshHeader));
+        if (len >= (int)(sizeof(TreeMeshHeader) + sizeof(JoinAckPayload)))
+        {
+            JoinAckPayload *j = (JoinAckPayload *)(data + sizeof(TreeMeshHeader));
             assigned = j->assigned_layer;
         }
         s_state = STATE_CONNECTED;
-        s_parent_id = hdr->srcNodeId;
-        memcpy(s_parent_mac, mac, 6);
+        memcpy(s_parent_mac, hdr->srcMac, 6);
         s_my_layer = assigned;
         s_last_heartbeat_ack = xTaskGetTickCount();
         s_heartbeat_fail_count = 0;
-        add_parent_as_peer(mac);
-        ESP_LOGI(TAG, "Connecte au parent %04X, couche assignee: %u", s_parent_id, assigned);
+        add_parent_as_peer(hdr->srcMac);
+        ESP_LOGI(TAG, "Connecte au parent %02X:%02X:%02X:%02X:%02X:%02X, couche assignee: %u", s_parent_mac[0], s_parent_mac[1], s_parent_mac[2], s_parent_mac[3], s_parent_mac[4], s_parent_mac[5], assigned);
         led_manager_set_state(LED_STATE_CONNECTED);
         return;
     }
 
+    /* ---------- CONNECTED : JOIN_ACK utilisé comme ACK de MSG_DATA ---------- */
+    if (s_state == STATE_CONNECTED && s_my_layer != 0 && hdr->msgType == MSG_JOIN_ACK && memcmp(hdr->srcMac, s_parent_mac, 6) == 0)
+    {
+        s_data_join_ack_counter++;
+        s_last_heartbeat_ack = xTaskGetTickCount();
+        ESP_LOGD(TAG, "ACK DATA (JOIN_ACK) recu du parent.");
+        return;
+    }
+
     /* ---------- CONNECTED / ROOT : JOIN_REQ, HEARTBEAT, HEARTBEAT_ACK ---------- */
-    if (s_state == STATE_CONNECTED || s_my_layer == 0) {
-        if (hdr->msgType == MSG_JOIN_REQ) {
-            if (s_children.size() < MAX_CHILDREN_PER_NODE) {
-                update_child(hdr->srcNodeId, mac);
+    if (s_state == STATE_CONNECTED || s_my_layer == 0)
+    {
+        if (hdr->msgType == MSG_DATA)
+        {
+            /* Dès réception de DATA d'un enfant: ACK immédiat demandé (JOIN_ACK). */
+            update_child((const uint8_t *)hdr->srcMac);
+            JoinAckPayload j;
+            j.assigned_layer = s_my_layer + 1;
+            routing_send_unicast((const uint8_t *)hdr->srcMac, MSG_JOIN_ACK, (const uint8_t *)&j, sizeof(j));
+            ESP_LOGD(TAG, "DATA recu de %02X:%02X:%02X:%02X:%02X:%02X -> JOIN_ACK renvoye.",
+                     hdr->srcMac[0], hdr->srcMac[1], hdr->srcMac[2], hdr->srcMac[3], hdr->srcMac[4], hdr->srcMac[5]);
+            return;
+        }
+
+        if (hdr->msgType == MSG_JOIN_REQ)
+        {
+            if (s_children.size() < MAX_CHILDREN_PER_NODE)
+            {
+                update_child((const uint8_t *)hdr->srcMac);
                 JoinAckPayload j;
                 j.assigned_layer = s_my_layer + 1;
-                routing_send_unicast(mac, MSG_JOIN_ACK, (const uint8_t*)&j, sizeof(j));
+                routing_send_unicast((const uint8_t *)hdr->srcMac, MSG_JOIN_ACK, (const uint8_t *)&j, sizeof(j));
             }
             return;
         }
-        if (hdr->msgType == MSG_HEARTBEAT) {
-            update_child(hdr->srcNodeId, mac);
-            /* Réponse explicite HEARTBEAT_ACK (CDC) */
-            routing_send_unicast(mac, MSG_HEARTBEAT_ACK, nullptr, 0);
-            return;
-        }
-    }
-
-    /* ---------- Enfant : réception HEARTBEAT_ACK du parent ---------- */
-    if (s_state == STATE_CONNECTED && s_my_layer != 0 && hdr->msgType == MSG_HEARTBEAT_ACK && hdr->srcNodeId == s_parent_id) {
-        s_last_heartbeat_ack = xTaskGetTickCount();
-        s_heartbeat_fail_count = 0;
     }
 }
 
@@ -672,7 +817,8 @@ void on_mesh_receive(const uint8_t* mac, const uint8_t* data, int len) {
  * @see ROUTING_BEACON_INTERVAL_MS_MIN
  * @see ROUTING_BEACON_INTERVAL_MS_MAX
  */
-static uint32_t beacon_interval_ms(void) {
+static uint32_t beacon_interval_ms(void)
+{
     uint32_t base = ROUTING_BEACON_INTERVAL_MS_MAX - ROUTING_BEACON_INTERVAL_MS_MIN;
     return ROUTING_BEACON_INTERVAL_MS_MIN + (esp_random() % (base + 1));
 }
@@ -695,71 +841,86 @@ static uint32_t beacon_interval_ms(void) {
  *
  * @param[in] pv Paramètre inutilisé (conforme FreeRTOS).
  */
-void routing_task(void* pv) {
+void routing_task(void *pv)
+{
     (void)pv;
     TickType_t last_beacon = 0;
     TickType_t last_heartbeat = 0;
     uint32_t next_beacon_ms = beacon_interval_ms();
 
-    if (s_my_layer == 0) {
+    if (s_my_layer == 0)
+    {
         s_state = STATE_CONNECTED;
         led_manager_set_state(LED_STATE_ROOT);
-    } else if (s_state == STATE_INIT) {
+    }
+    else if (s_state == STATE_INIT)
+    {
         s_state = STATE_SCANNING;
         led_manager_set_state(LED_STATE_SCANNING);
     }
 
-    while (1) {
+    while (1)
+    {
         routing_check_timeouts();
 
-        if (s_state == STATE_ORPHAN) {
+        if (s_state == STATE_ORPHAN)
+        {
             routing_orphan_recovery();
             continue;
         }
 
-        if (s_state == STATE_SCANNING && s_my_layer != 0) {
+        if (s_state == STATE_SCANNING && s_my_layer != 0)
+        {
             led_manager_set_state(LED_STATE_SCANNING);
             s_best_layer = 255;
             s_best_children_count = 255;
             vTaskDelay(pdMS_TO_TICKS(500));
             /* Évaluation : si on a un candidat, passer en JOINING */
-            if (s_best_layer != 255) {
+            if (s_best_layer != 255)
+            {
+                memcpy(s_best_parent_mac, s_best_parent_candidate, 6);
                 s_state = STATE_JOINING;
                 add_parent_as_peer(s_best_parent_mac);
                 routing_send_unicast(s_best_parent_mac, MSG_JOIN_REQ, nullptr, 0);
-                ESP_LOGI(TAG, "JOIN_REQ envoye au parent %04X (layer %u)", s_best_parent_candidate, (unsigned)s_best_layer);
+                ESP_LOGI(TAG, "JOIN_REQ envoye au parent %02X:%02X:%02X:%02X:%02X:%02X (layer %u)", s_best_parent_mac[0], s_best_parent_mac[1], s_best_parent_mac[2], s_best_parent_mac[3], s_best_parent_mac[4], s_best_parent_mac[5], (unsigned)s_best_layer);
             }
             continue;
         }
 
-        if (s_state == STATE_JOINING) {
+        if (s_state == STATE_JOINING)
+        {
             ESP_LOGI(TAG, "Etat JOINING (attente JOIN_ACK %u ms)...", (unsigned)ROUTING_JOIN_WAIT_MS);
             vTaskDelay(pdMS_TO_TICKS(ROUTING_JOIN_WAIT_MS));
-            if (s_state != STATE_CONNECTED) {
+            if (s_state != STATE_CONNECTED)
+            {
                 ESP_LOGW(TAG, "JOIN timeout -> SCANNING");
                 s_state = STATE_SCANNING;
             }
             continue;
         }
 
-        if (s_state == STATE_CONNECTED) {
+        if (s_state == STATE_CONNECTED)
+        {
             TickType_t now = xTaskGetTickCount();
 
             /* Heartbeat vers parent toutes les 10 s (CDC) */
-            if (s_my_layer != 0) {
-                if ((now - last_heartbeat) >= pdMS_TO_TICKS(ROUTING_HEARTBEAT_INTERVAL_MS)) {
+            if (s_my_layer != 0)
+            {
+                if ((now - last_heartbeat) >= pdMS_TO_TICKS(ROUTING_HEARTBEAT_INTERVAL_MS))
+                {
                     routing_send_unicast(s_parent_mac, MSG_HEARTBEAT, nullptr, 0);
                     last_heartbeat = now;
                 }
             }
 
             /* Beacon broadcast 2–5 s avec jitter (CDC) */
-            if ((now - last_beacon) >= pdMS_TO_TICKS(next_beacon_ms)) {
+            if ((now - last_beacon) >= pdMS_TO_TICKS(next_beacon_ms))
+            {
                 BeaconPayload b;
                 b.currentChildrenCount = (uint8_t)s_children.size();
                 b.rssi = 0;
                 uint8_t broadcast[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-                routing_send_unicast(broadcast, MSG_BEACON, (uint8_t*)&b, sizeof(b));
+                routing_send_unicast(broadcast, MSG_BEACON, (uint8_t *)&b, sizeof(b));
                 ESP_LOGD(TAG, "Beacon envoye layer=%u enfants=%u", (unsigned)s_my_layer, (unsigned)s_children.size());
                 last_beacon = now;
                 next_beacon_ms = beacon_interval_ms();
@@ -785,7 +946,8 @@ void routing_task(void* pv) {
  *
  * @see ChildInfo
  */
-std::vector<ChildInfo> routing_get_children(void) {
+std::vector<ChildInfo> routing_get_children(void)
+{
     return s_children;
 }
 
@@ -809,35 +971,41 @@ std::vector<ChildInfo> routing_get_children(void) {
  * @see STATE_CONNECTED
  * @see s_parent_mac
  */
-bool routing_get_parent_mac(uint8_t* mac_out) {
-    if (!mac_out || s_state != STATE_CONNECTED || s_my_layer == 0) return false;
-    memcpy(mac_out, s_parent_mac, 6);
+bool routing_get_parent_mac(uint8_t *mac_out)
+{
+    if (!mac_out || s_state != STATE_CONNECTED || s_my_layer == 0)
+        return false;
+    memcpy(static_cast<void *>(mac_out), s_parent_mac, 6);
     return true;
 }
 
 /**
- * @brief Récupère l'identifiant unique du nœud courant.
- *
- * Cette fonction retourne l'identifiant unique du nœud courant.
- * Elle est utilisée pour obtenir l'identifiant unique du nœud pour la gestion des OTA,
- * la diffusion des trames, etc.
- *
- * **Fonctionnement détaillé&nbsp;:**
- * - Retourne l'identifiant unique du nœud stocké dans la variable globale s_my_id.
- *
- * @return Identifiant unique du nœud courant.
- *
- * @see s_my_id
+ * @brief Récupère l'identifiant court 16 bits du nœud (dérivé de la MAC).
  */
-uint16_t routing_get_my_id(void) {
-    return s_my_id;
+uint16_t routing_get_my_id(void)
+{
+    return mac_to_short_id(s_my_mac);
 }
 
-uint8_t routing_get_layer(void) {
+/**
+ * @brief Récupère l'identifiant court 16 bits du parent (dérivé de la MAC). 0xFFFF si pas de parent.
+ */
+uint16_t routing_get_parent_id(void)
+{
+    if (s_my_layer == 0)
+        return 0xFFFF;
+    return mac_to_short_id(s_parent_mac);
+}
+
+/**
+ * @brief Récupère l'adresse MAC du nœud courant.
+ */
+uint8_t *routing_get_my_mac(void)
+{
+    return (uint8_t *)s_my_mac;
+}
+
+uint8_t routing_get_layer(void)
+{
     return s_my_layer;
-}
-
-uint16_t routing_get_parent_id(void) {
-    if (s_state != STATE_CONNECTED || s_my_layer == 0) return 0xFFFF;
-    return s_parent_id;
 }
