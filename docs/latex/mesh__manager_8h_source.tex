@@ -1,0 +1,72 @@
+\doxysection{mesh\+\_\+manager.\+h}
+\hypertarget{mesh__manager_8h_source}{}\label{mesh__manager_8h_source}\index{components/mesh\_network/include/mesh\_manager.h@{components/mesh\_network/include/mesh\_manager.h}}
+\mbox{\hyperlink{mesh__manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ mesh\_manager.h}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Interface\ publique\ du\ gestionnaire\ de\ réseau\ maillé\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Topologie\ arborescente\ (Tree\ Mesh)\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00006}00006\ \textcolor{comment}{\ *\ \ \ -\/\ Chaque\ nœud\ maintient\ une\ liste\ de\ pairs\ (peers).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ -\/\ Sélection\ du\ parent\ :\ peer\ avec\ le\ RSSI\ le\ plus\ élevé\ parmi\ ceux}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ \ \ ayant\ un\ hop\_to\_root\ minimal.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ -\/\ Chiffrement\ :\ PMK/LMK\ ESP-\/NOW\ (couche\ hardware)\ +\ AES-\/128-\/CBC}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ \ \ sur\ le\ payload\ applicatif\ (couche\ logicielle,\ mbedTLS).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00011}00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00012}00012\ \textcolor{comment}{\ *\ Clé\ AES-\/128\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ Provisionnée\ en\ NVS\ (namespace\ "{}lexacare"{},\ clé\ "{}aes\_key"{})\ lors}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ de\ la\ fabrication.\ Si\ absente,\ une\ clé\ par\ défaut\ est\ utilisée}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00015}00015\ \textcolor{comment}{\ *\ \ \ (NON\ recommandé\ en\ production).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00016}00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00018}00018\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{system__types_8h}{system\_types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00022}00022\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00023}00023\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00024}00024\ \textcolor{comment}{\ *\ @defgroup\ group\_mesh\ Réseau\ maillé\ \&\ OTA}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00025}00025\ \textcolor{comment}{\ *\ @brief\ Communication\ entre\ nœuds\ (ESP-\/NOW),\ chiffrement\ applicatif,\ et\ mise\ à\ jour\ OTA.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00026}00026\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00027}00027\ \textcolor{comment}{\ *\ Idée\ simple\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00028}00028\ \textcolor{comment}{\ *\ -\/\ le\ Wi‑Fi\ sert\ ici\ de\ transport\ local\ (ESP‑NOW)\ pour\ relier\ des\ nœuds\ sans\ infrastructure}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00029}00029\ \textcolor{comment}{\ *\ -\/\ la\ sécurité\ est\ renforcée\ par\ un\ chiffrement\ applicatif\ (AES)\ en\ plus\ d'ESP‑NOW}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00030}00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00031}00031\ \textcolor{comment}{\ *\ @\{}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00034}00034\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00035}00035\ \textcolor{comment}{\ *\ mesh\_manager\_init}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00036}00036\ \textcolor{comment}{\ *\ @brief\ Initialise\ le\ Wi-\/Fi\ en\ mode\ Station\ et\ configure\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00037}00037\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00038}00038\ \textcolor{comment}{\ *\ Séquence\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00039}00039\ \textcolor{comment}{\ *\ \ \ 1.\ esp\_netif\_create\_default\_wifi\_sta().}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00040}00040\ \textcolor{comment}{\ *\ \ \ 2.\ esp\_wifi\_init()\ +\ esp\_wifi\_set\_mode(WIFI\_MODE\_STA).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00041}00041\ \textcolor{comment}{\ *\ \ \ 3.\ esp\_wifi\_start().}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00042}00042\ \textcolor{comment}{\ *\ \ \ 4.\ esp\_now\_init()\ +\ esp\_now\_set\_pmk()\ (PMK\ 16\ octets).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00043}00043\ \textcolor{comment}{\ *\ \ \ 5.\ Enregistrement\ des\ callbacks\ rx/tx\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00044}00044\ \textcolor{comment}{\ *\ \ \ 6.\ Chargement\ de\ la\ clé\ AES\ depuis\ NVS.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00045}00045\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00046}00046\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00047}00047\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ l'initialisation\ réussit.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00048}00048\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00049}00049\ esp\_err\_t\ \mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{mesh\_manager\_init}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00051}00051\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00052}00052\ \textcolor{comment}{\ *\ mesh\_task\_start}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00053}00053\ \textcolor{comment}{\ *\ @brief\ Crée\ la\ tâche\ Task\_Mesh\_Com\ épinglée\ sur\ le\ Core\ 0.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00054}00054\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00055}00055\ \textcolor{comment}{\ *\ La\ tâche\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00056}00056\ \textcolor{comment}{\ *\ \ \ -\/\ Écoute\ ai\_to\_mesh\_queue\ (portMAX\_DELAY).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00057}00057\ \textcolor{comment}{\ *\ \ \ -\/\ Chiffre\ le\ payload\ en\ AES-\/128-\/CBC\ (IV\ aléatoire\ +\ mbedTLS).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00058}00058\ \textcolor{comment}{\ *\ \ \ -\/\ Calcule\ le\ CRC16\ sur\ la\ trame\ lexacare\_frame\_t.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00059}00059\ \textcolor{comment}{\ *\ \ \ -\/\ Envoie\ via\ esp\_now\_send()\ vers\ le\ MAC\ du\ pair\ parent.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00060}00060\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00061}00061\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00062}00062\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ la\ tâche\ est\ créée\ avec\ succès.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00063}00063\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00064}00064\ esp\_err\_t\ \mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{mesh\_task\_start}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00065}00065\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8h_source_l00066}00066\ \textcolor{comment}{/**\ @\}\ */}\ \textcolor{comment}{/*\ end\ of\ group\_mesh\ */}}
+
+\end{DoxyCode}

@@ -1,0 +1,114 @@
+\doxysection{components/sensor\+\_\+acq/uld/platform.h File Reference}
+\hypertarget{platform_8h}{}\label{platform_8h}\index{components/sensor\_acq/uld/platform.h@{components/sensor\_acq/uld/platform.h}}
+
+
+Adaptateur plateforme pour l\textquotesingle{}ULD ST VL53\+L8\+CX (STSW-\/\+IMG040).  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include "{}vl53l8cx\+\_\+platform.\+h"{}}\newline
+Include dependency graph for platform.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{platform_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{platform_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}}~1
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{platform_8h_a999e10c40544016ca68ce5fbb3ea620c}{VL53\+L8\+CX\+\_\+\+Swap\+Buffer}} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buffer, uint16\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Swap endianess par mots 32 bits (implémentation typique ST). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Adaptateur plateforme pour l\textquotesingle{}ULD ST VL53\+L8\+CX (STSW-\/\+IMG040). 
+
+L\textquotesingle{}ULD ST inclut un fichier {\ttfamily \doxylink{platform_8h}{platform.\+h}} que le client doit fournir. Dans ce firmware, la couche plateforme (SPI) est implémentée par \+: \doxylink{vl53l8cx__platform_8h}{components/sensor\+\_\+acq/include/vl53l8cx\+\_\+platform.\+h}
+
+Ce fichier fait le lien entre l\textquotesingle{}ULD (API ST) et l\textquotesingle{}implémentation ESP-\/\+IDF. 
+
+Definition in file \mbox{\hyperlink{platform_8h_source}{platform.\+h}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{platform_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{platform_8h_a31cf133aaf6b500062702a5a898eb137}\index{platform.h@{platform.h}!VL53L8CX\_NB\_TARGET\_PER\_ZONE@{VL53L8CX\_NB\_TARGET\_PER\_ZONE}}
+\index{VL53L8CX\_NB\_TARGET\_PER\_ZONE@{VL53L8CX\_NB\_TARGET\_PER\_ZONE}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_NB\_TARGET\_PER\_ZONE}{VL53L8CX\_NB\_TARGET\_PER\_ZONE}}
+{\footnotesize\ttfamily \label{platform_8h_a31cf133aaf6b500062702a5a898eb137} 
+\#define VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE~1}
+
+
+
+Definition at line \mbox{\hyperlink{platform_8h_source_l00019}{19}} of file \mbox{\hyperlink{platform_8h_source}{platform.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00055}{\+\_\+vl53l8cx\+\_\+program\+\_\+output\+\_\+config()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00170}{lidar\+\_\+read\+\_\+sensor()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{platform_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{platform_8h_a999e10c40544016ca68ce5fbb3ea620c}\index{platform.h@{platform.h}!VL53L8CX\_SwapBuffer@{VL53L8CX\_SwapBuffer}}
+\index{VL53L8CX\_SwapBuffer@{VL53L8CX\_SwapBuffer}!platform.h@{platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_SwapBuffer()}{VL53L8CX\_SwapBuffer()}}
+{\footnotesize\ttfamily \label{platform_8h_a999e10c40544016ca68ce5fbb3ea620c} 
+void VL53\+L8\+CX\+\_\+\+Swap\+Buffer (\begin{DoxyParamCaption}\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{buffer}{, }\item[{uint16\+\_\+t}]{size}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Swap endianess par mots 32 bits (implémentation typique ST). 
+
+L\textquotesingle{}ULD manipule des buffers bruts (endianness capteur) et attend que la plateforme fournisse cette primitive. 
+
+Definition at line \mbox{\hyperlink{platform_8h_source_l00034}{34}} of file \mbox{\hyperlink{platform_8h_source}{platform.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (!buffer)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{/*\ Swap\ par\ blocs\ de\ 4\ octets\ (uint32\_t)\ */}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ (uint16\_t)(i\ +\ 3U)\ <\ size;\ i\ =\ (uint16\_t)(i\ +\ 4U))\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ b0\ =\ buffer[i\ +\ 0U];}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ b1\ =\ buffer[i\ +\ 1U];}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ buffer[i\ +\ 0U]\ =\ buffer[i\ +\ 3U];}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ buffer[i\ +\ 1U]\ =\ buffer[i\ +\ 2U];}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ buffer[i\ +\ 2U]\ =\ b1;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ buffer[i\ +\ 3U]\ =\ b0;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00094}{\+\_\+vl53l8cx\+\_\+send\+\_\+offset\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00164}{\+\_\+vl53l8cx\+\_\+send\+\_\+xtalk\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01308}{vl53l8cx\+\_\+dci\+\_\+write\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{platform_8h_a999e10c40544016ca68ce5fbb3ea620c_icgraph}
+\end{center}
+\end{figure}

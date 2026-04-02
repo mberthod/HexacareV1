@@ -1,0 +1,7 @@
+<map id="components/sensor_acq/include/radar_driver.h" name="components/sensor_acq/include/radar_driver.h">
+<area shape="rect" id="Node000001" title="Interface publique du driver Radar HLK&#45;LD6002 — UART + TinyFrame." alt="" coords="99,5,262,48"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="5,96,169,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,61,110,98,107,94,146,57"/>
+<area shape="rect" id="Node000003" href="$radar__driver_8c.html" title="Driver UART HLK&#45;LD6002 — protocole TinyFrame, ring buffer UART." alt="" coords="193,96,357,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="215,57,255,94,251,98,212,61"/>
+</map>

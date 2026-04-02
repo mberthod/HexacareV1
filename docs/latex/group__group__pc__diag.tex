@@ -1,0 +1,92 @@
+\doxysection{Diagnostic PC (JSON) }
+\hypertarget{group__group__pc__diag}{}\label{group__group__pc__diag}\index{Diagnostic PC (JSON)@{Diagnostic PC (JSON)}}
+
+
+Sortie USB en JSON lisible + commandes simples depuis l\textquotesingle{}outil PC.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{pc__diag_8c}{pc\+\_\+diag.\+c}}
+\begin{DoxyCompactList}\small\item\em Interface PC USB-\/\+JTAG — Rapport JSON temps réel (Lexacare Studio). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}{pc\+\_\+diag\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Sortie USB en JSON lisible + commandes simples depuis l\textquotesingle{}outil PC. 
+
+Ce module sert de “fenêtre” sur le firmware \+:
+\begin{DoxyItemize}
+\item envoie un état régulier (santé système + mesures capteurs)
+\item permet quelques actions (récupérer/effacer les logs) sans recompiler 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{group__group__pc__diag_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}\index{Diagnostic PC (JSON)@{Diagnostic PC (JSON)}!pc\_diag\_task\_start@{pc\_diag\_task\_start}}
+\index{pc\_diag\_task\_start@{pc\_diag\_task\_start}!Diagnostic PC (JSON)@{Diagnostic PC (JSON)}}
+\doxysubsubsection{\texorpdfstring{pc\_diag\_task\_start()}{pc\_diag\_task\_start()}}
+{\footnotesize\ttfamily \label{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828} 
+esp\+\_\+err\+\_\+t pc\+\_\+diag\+\_\+task\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00410}{410}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00411\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \mbox{\hyperlink{structpc__diag__ctx__t}{pc\_diag\_ctx\_t}}\ *task\_ctx\ =\ calloc(1,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structpc__diag__ctx__t}{pc\_diag\_ctx\_t}}));}
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task\_ctx)\ \textcolor{keywordflow}{return}\ ESP\_ERR\_NO\_MEM;}
+\DoxyCodeLine{00414\ \ \ \ \ task\_ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_a79bef5f2311a3cd60ed3637da856dca3}{sys\_ctx}}\ \ =\ ctx;}
+\DoxyCodeLine{00415\ \ \ \ \ task\_ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_a99340926ee0e4be2f5ed76b84fe61387}{has\_event}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ BaseType\_t\ ret\ =\ xTaskCreatePinnedToCore(}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pc__diag_8c_ab830ffc28d0b4ab9661b47a0cd4fe943}{task\_diag\_pc}},}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Task\_Diag\_PC"{}},}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a5486258f1f34d3baeda92a74b63c27c3}{TASK\_STACK\_SIZE}},}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ task\_ctx,}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\_PRIORITY}},}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ NULL,}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\_CORE}});}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ free(task\_ctx);}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ création\ Task\_Diag\_PC"{}});}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{00430\ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Diag\_PC\ créée\ (Core\ \%d,\ prio\ \%d,\ sensor@1Hz\ sys@5Hz)"{}},}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\_CORE}},\ \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\_PRIORITY}});}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00435\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pc__diag_8c_source_l00086}{pc\+\_\+diag\+\_\+ctx\+\_\+t\+::has\+\_\+event}}, \mbox{\hyperlink{pc__diag_8c_source_l00084}{pc\+\_\+diag\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00073}{TASK\+\_\+\+CORE}}, \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00072}{TASK\+\_\+\+PRIORITY}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00071}{TASK\+\_\+\+STACK\+\_\+\+SIZE}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=273pt]{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828_icgraph}
+\end{center}
+\end{figure}

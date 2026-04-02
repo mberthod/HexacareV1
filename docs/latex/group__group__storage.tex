@@ -1,0 +1,397 @@
+\doxysection{Stockage \& Logs }
+\hypertarget{group__group__storage}{}\label{group__group__storage}\index{Stockage \& Logs@{Stockage \& Logs}}
+
+
+Gestion du stockage local (SPIFFS) et mécanismes de log/panic.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{littlefs__manager_8c}{littlefs\+\_\+manager.\+c}}
+\begin{DoxyCompactList}\small\item\em Gestion du montage SPIFFS sur la partition "{}storage"{}. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{log__writer_8c}{log\+\_\+writer.\+c}}
+\begin{DoxyCompactList}\small\item\em Log circulaire sur Little\+FS — rotation automatique à 900 Ko. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{panic__handler_8c}{panic\+\_\+handler.\+c}}
+\begin{DoxyCompactList}\small\item\em Capture des paniques système et écriture dans Little\+FS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}}~"{}/spiffs"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\+\_\+\+PARTITION}}~"{}storage"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\+\_\+\+FILE\+\_\+\+PATH}}~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}} "{}/app.\+log"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\+\_\+\+FILE\+\_\+\+PATH}}~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}} "{}/panic.\+log"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gacdf328884296fb814beeb53fba7c46dc}{LOG\+\_\+\+MAX\+\_\+\+SIZE\+\_\+\+BYTES}}~(900\+UL \texorpdfstring{$\ast$}{*} 1024UL)
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga6cf29cf5f005b00e6650f6e7369d3c98}{LOG\+\_\+\+TRIM\+\_\+\+PERCENT}}~10
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga963f6be03bc9dc7db1ea5c6fa5fab9a8}{LITTLEFS\+\_\+\+MOUNT\+\_\+\+POINT}}~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gafc0cfe84cc1ef21ab7db1eb5bc86b484}{LITTLEFS\+\_\+\+PARTITION}}~\mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\+\_\+\+PARTITION}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c}{littlefs\+\_\+manager\+\_\+init}} (void)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e}{log\+\_\+write}} (const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{panic\+\_\+handler\+\_\+install}} (void)
+\item 
+void \mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestion du stockage local (SPIFFS) et mécanismes de log/panic. 
+
+Pourquoi ce module existe \+:
+\begin{DoxyItemize}
+\item conserver des traces (logs) même si le PC n\textquotesingle{}est pas connecté
+\item aider au diagnostic après un redémarrage inattendu (panic handler) 
+\end{DoxyItemize}
+
+\label{doc-define-members}
+\Hypertarget{group__group__storage_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__group__storage_ga963f6be03bc9dc7db1ea5c6fa5fab9a8}\index{Stockage \& Logs@{Stockage \& Logs}!LITTLEFS\_MOUNT\_POINT@{LITTLEFS\_MOUNT\_POINT}}
+\index{LITTLEFS\_MOUNT\_POINT@{LITTLEFS\_MOUNT\_POINT}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{LITTLEFS\_MOUNT\_POINT}{LITTLEFS\_MOUNT\_POINT}}
+{\footnotesize\ttfamily \label{group__group__storage_ga963f6be03bc9dc7db1ea5c6fa5fab9a8} 
+\#define LITTLEFS\+\_\+\+MOUNT\+\_\+\+POINT~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}}}
+
+
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00042}{42}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+\Hypertarget{group__group__storage_gafc0cfe84cc1ef21ab7db1eb5bc86b484}\index{Stockage \& Logs@{Stockage \& Logs}!LITTLEFS\_PARTITION@{LITTLEFS\_PARTITION}}
+\index{LITTLEFS\_PARTITION@{LITTLEFS\_PARTITION}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{LITTLEFS\_PARTITION}{LITTLEFS\_PARTITION}}
+{\footnotesize\ttfamily \label{group__group__storage_gafc0cfe84cc1ef21ab7db1eb5bc86b484} 
+\#define LITTLEFS\+\_\+\+PARTITION~\mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\+\_\+\+PARTITION}}}
+
+
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00043}{43}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+\Hypertarget{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}\index{Stockage \& Logs@{Stockage \& Logs}!LOG\_FILE\_PATH@{LOG\_FILE\_PATH}}
+\index{LOG\_FILE\_PATH@{LOG\_FILE\_PATH}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{LOG\_FILE\_PATH}{LOG\_FILE\_PATH}}
+{\footnotesize\ttfamily \label{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead} 
+\#define LOG\+\_\+\+FILE\+\_\+\+PATH~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}} "{}/app.\+log"{}}
+
+
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00036}{36}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00276}{cmd\+\_\+clear\+\_\+logs()}}, \mbox{\hyperlink{pc__diag_8c_source_l00252}{cmd\+\_\+download\+\_\+logs()}}, \mbox{\hyperlink{log__writer_8c_source_l00039}{log\+\_\+trim\+\_\+file()}}, and \mbox{\hyperlink{log__writer_8c_source_l00103}{log\+\_\+write()}}.
+
+\Hypertarget{group__group__storage_gacdf328884296fb814beeb53fba7c46dc}\index{Stockage \& Logs@{Stockage \& Logs}!LOG\_MAX\_SIZE\_BYTES@{LOG\_MAX\_SIZE\_BYTES}}
+\index{LOG\_MAX\_SIZE\_BYTES@{LOG\_MAX\_SIZE\_BYTES}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{LOG\_MAX\_SIZE\_BYTES}{LOG\_MAX\_SIZE\_BYTES}}
+{\footnotesize\ttfamily \label{group__group__storage_gacdf328884296fb814beeb53fba7c46dc} 
+\#define LOG\+\_\+\+MAX\+\_\+\+SIZE\+\_\+\+BYTES~(900\+UL \texorpdfstring{$\ast$}{*} 1024UL)}
+
+Seuil de rotation 
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00038}{38}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{log__writer_8c_source_l00103}{log\+\_\+write()}}.
+
+\Hypertarget{group__group__storage_ga6cf29cf5f005b00e6650f6e7369d3c98}\index{Stockage \& Logs@{Stockage \& Logs}!LOG\_TRIM\_PERCENT@{LOG\_TRIM\_PERCENT}}
+\index{LOG\_TRIM\_PERCENT@{LOG\_TRIM\_PERCENT}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{LOG\_TRIM\_PERCENT}{LOG\_TRIM\_PERCENT}}
+{\footnotesize\ttfamily \label{group__group__storage_ga6cf29cf5f005b00e6650f6e7369d3c98} 
+\#define LOG\+\_\+\+TRIM\+\_\+\+PERCENT~10}
+
+\% d\textquotesingle{}entrées à supprimer 
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00039}{39}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{log__writer_8c_source_l00039}{log\+\_\+trim\+\_\+file()}}.
+
+\Hypertarget{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}\index{Stockage \& Logs@{Stockage \& Logs}!PANIC\_FILE\_PATH@{PANIC\_FILE\_PATH}}
+\index{PANIC\_FILE\_PATH@{PANIC\_FILE\_PATH}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{PANIC\_FILE\_PATH}{PANIC\_FILE\_PATH}}
+{\footnotesize\ttfamily \label{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61} 
+\#define PANIC\+\_\+\+FILE\+\_\+\+PATH~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}} "{}/panic.\+log"{}}
+
+
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00037}{37}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}.
+
+\Hypertarget{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}\index{Stockage \& Logs@{Stockage \& Logs}!STORAGE\_MOUNT\_POINT@{STORAGE\_MOUNT\_POINT}}
+\index{STORAGE\_MOUNT\_POINT@{STORAGE\_MOUNT\_POINT}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_MOUNT\_POINT}{STORAGE\_MOUNT\_POINT}}
+{\footnotesize\ttfamily \label{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e} 
+\#define STORAGE\+\_\+\+MOUNT\+\_\+\+POINT~"{}/spiffs"{}}
+
+
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00034}{34}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{littlefs__manager_8c_source_l00036}{littlefs\+\_\+manager\+\_\+init()}}.
+
+\Hypertarget{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}\index{Stockage \& Logs@{Stockage \& Logs}!STORAGE\_PARTITION@{STORAGE\_PARTITION}}
+\index{STORAGE\_PARTITION@{STORAGE\_PARTITION}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{STORAGE\_PARTITION}{STORAGE\_PARTITION}}
+{\footnotesize\ttfamily \label{group__group__storage_gae8d37ae33fe87928970a494318e6ea32} 
+\#define STORAGE\+\_\+\+PARTITION~"{}storage"{}}
+
+
+
+Definition at line \mbox{\hyperlink{sys__storage_8h_source_l00035}{35}} of file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{littlefs__manager_8c_source_l00036}{littlefs\+\_\+manager\+\_\+init()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__group__storage_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c}\index{Stockage \& Logs@{Stockage \& Logs}!littlefs\_manager\_init@{littlefs\_manager\_init}}
+\index{littlefs\_manager\_init@{littlefs\_manager\_init}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{littlefs\_manager\_init()}{littlefs\_manager\_init()}}
+{\footnotesize\ttfamily \label{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c} 
+esp\+\_\+err\+\_\+t littlefs\+\_\+manager\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{littlefs__manager_8c_source_l00036}{36}} of file \mbox{\hyperlink{littlefs__manager_8c_source}{littlefs\+\_\+manager.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{/*\ Configuration\ complète\ du\ montage\ SPIFFS\ */}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ esp\_vfs\_spiffs\_conf\_t\ conf\ =\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ .base\_path\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\_MOUNT\_POINT}},}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ .partition\_label\ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\_PARTITION}},}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ .max\_files\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 8,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ .format\_if\_mount\_failed\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00044\ \ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ esp\_err\_t\ ret\ =\ esp\_vfs\_spiffs\_register(\&conf);}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_FAIL)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ du\ montage\ ou\ du\ formatage\ de\ SPIFFS"{}});}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_ERR\_NOT\_FOUND)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Partition\ '\%s'\ introuvable\ dans\ la\ table\ de\ partitions"{}},}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\_PARTITION}});}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Erreur\ montage\ SPIFFS\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ post-\/montage\ de\ l'espace\ disponible\ */}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\_bytes\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ used\_bytes\ \ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_spiffs\_info(\mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\_PARTITION}},\ \&total\_bytes,\ \&used\_bytes));}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}SPIFFS\ monté\ sur\ '\%s'\ —\ \%u\ Ko\ total,\ \%u\ Ko\ utilisés,\ \%u\ Ko\ libres"{}},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\_MOUNT\_POINT}},}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned})(total\_bytes\ /\ 1024),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned})(used\_bytes\ \ /\ 1024),}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned})((total\_bytes\ -\/\ used\_bytes)\ /\ 1024));}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00071\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{sys__storage_8h_source_l00034}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}}, \mbox{\hyperlink{sys__storage_8h_source_l00035}{STORAGE\+\_\+\+PARTITION}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=277pt]{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e}\index{Stockage \& Logs@{Stockage \& Logs}!log\_write@{log\_write}}
+\index{log\_write@{log\_write}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{log\_write()}{log\_write()}}
+{\footnotesize\ttfamily \label{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e} 
+esp\+\_\+err\+\_\+t log\+\_\+write (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{msg}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{log__writer_8c_source_l00103}{103}} of file \mbox{\hyperlink{log__writer_8c_source}{log\+\_\+writer.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (!msg)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_ARG;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{/*\ Création\ du\ mutex\ lors\ du\ premier\ appel\ (init\ paresseuse)\ */}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}})\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}}\ =\ xSemaphoreCreateMutex();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}})\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_NO\_MEM;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}\ (xSemaphoreTake(\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}},\ pdMS\_TO\_TICKS(200))\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_TIMEOUT;}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{/*\ Horodatage\ en\ secondes\ depuis\ le\ boot\ */}}
+\DoxyCodeLine{00122\ \ \ \ \ int64\_t\ us\ \ \ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{double}\ \ secs\ =\ (double)us\ /\ 1e6;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ FILE\ *f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}a"{}});}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!f)\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ xSemaphoreGive(\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}});}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}[\%10.3f]\ \%s\(\backslash\)n"{}},\ secs,\ msg);}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{long}\ current\_pos\ =\ ftell(f);}
+\DoxyCodeLine{00133\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{/*\ Déclenchement\ de\ la\ rotation\ si\ le\ seuil\ est\ dépassé\ */}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_pos\ >=\ (\textcolor{keywordtype}{long})\mbox{\hyperlink{group__group__storage_gacdf328884296fb814beeb53fba7c46dc}{LOG\_MAX\_SIZE\_BYTES}})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__writer_8c_ae0ac97690097ce6c8a58e71519ec779c}{log\_trim\_file}}(current\_pos);}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ xSemaphoreGive(\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}});}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00142\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{sys__storage_8h_source_l00036}{LOG\+\_\+\+FILE\+\_\+\+PATH}}, \mbox{\hyperlink{sys__storage_8h_source_l00038}{LOG\+\_\+\+MAX\+\_\+\+SIZE\+\_\+\+BYTES}}, \mbox{\hyperlink{log__writer_8c_source_l00039}{log\+\_\+trim\+\_\+file()}}, and \mbox{\hyperlink{log__writer_8c_source_l00028}{s\+\_\+mutex}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}\index{Stockage \& Logs@{Stockage \& Logs}!panic\_handler\_check\_on\_boot@{panic\_handler\_check\_on\_boot}}
+\index{panic\_handler\_check\_on\_boot@{panic\_handler\_check\_on\_boot}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{panic\_handler\_check\_on\_boot()}{panic\_handler\_check\_on\_boot()}}
+{\footnotesize\ttfamily \label{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f} 
+void panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00080}{80}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ !=\ \mbox{\hyperlink{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}{PANIC\_MAGIC\_VALUE}})\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Aucun\ crash\ précédent\ détecté\ */}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Crash\ détecté\ lors\ du\ précédent\ boot\ —\ écriture\ dans\ panic.log"{}});}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{/*\ Formatage\ du\ message\ avec\ horodatage\ */}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{char}\ entry[256];}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{double}\ secs\ =\ (double)\mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{s\_panic\_time\_us}}\ /\ 1e6;}
+\DoxyCodeLine{00092\ \ \ \ \ snprintf(entry,\ \textcolor{keyword}{sizeof}(entry),}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[\%10.3f]\ PANIC:\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ secs,\ \mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}});}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{/*\ Écriture\ bloquante/synchrone\ dans\ panic.log\ */}}
+\DoxyCodeLine{00097\ \ \ \ \ FILE\ *f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}a"{}});}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (f)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ fwrite(entry,\ 1,\ strlen(entry),\ f);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ fflush(f);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Entrée\ de\ panique\ écrite\ dans\ \%s"{}},\ \mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\_FILE\_PATH}});}
+\DoxyCodeLine{00103\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Impossible\ d'ouvrir\ \%s"{}},\ \mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\_FILE\_PATH}});}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{/*\ Effacement\ du\ flag\ pour\ ne\ pas\ réécrire\ au\ prochain\ boot\ */}}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ =\ 0;}
+\DoxyCodeLine{00109\ \ \ \ \ memset(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}}));}
+\DoxyCodeLine{00110\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{sys__storage_8h_source_l00037}{PANIC\+\_\+\+FILE\+\_\+\+PATH}}, \mbox{\hyperlink{panic__handler_8c_source_l00043}{PANIC\+\_\+\+MAGIC\+\_\+\+VALUE}}, \mbox{\hyperlink{panic__handler_8c_source_l00039}{s\+\_\+panic\+\_\+magic}}, \mbox{\hyperlink{panic__handler_8c_source_l00040}{s\+\_\+panic\+\_\+msg}}, \mbox{\hyperlink{panic__handler_8c_source_l00041}{s\+\_\+panic\+\_\+time\+\_\+us}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=282pt]{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}\index{Stockage \& Logs@{Stockage \& Logs}!panic\_handler\_install@{panic\_handler\_install}}
+\index{panic\_handler\_install@{panic\_handler\_install}!Stockage \& Logs@{Stockage \& Logs}}
+\doxysubsubsection{\texorpdfstring{panic\_handler\_install()}{panic\_handler\_install()}}
+{\footnotesize\ttfamily \label{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc} 
+esp\+\_\+err\+\_\+t panic\+\_\+handler\+\_\+install (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00066}{66}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_register\_shutdown\_handler(\mbox{\hyperlink{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60}{shutdown\_handler}}));}
+\DoxyCodeLine{00069\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Shutdown\ handler\ installé"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00071\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{panic__handler_8c_source_l00052}{shutdown\+\_\+handler()}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=318pt]{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=281pt]{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc_icgraph}
+\end{center}
+\end{figure}

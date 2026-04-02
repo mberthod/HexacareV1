@@ -1,0 +1,837 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="vl53l8cx__plugin__detection__thresholds_8h" kind="file" language="C++">
+    <compoundname>vl53l8cx_plugin_detection_thresholds.h</compoundname>
+    <includes refid="vl53l8cx__api_8h" local="yes">vl53l8cx_api.h</includes>
+    <includedby refid="vl53l8cx__plugin__detection__thresholds_8c" local="yes">components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>vl53l8cx_platform.h</label>
+        <link refid="vl53l8cx__platform_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>platform.h</label>
+        <link refid="platform_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>vl53l8cx_api.h</label>
+        <link refid="vl53l8cx__api_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h</label>
+        <link refid="vl53l8cx__plugin__detection__thresholds_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c</label>
+        <link refid="vl53l8cx__plugin__detection__thresholds_8c"/>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h</label>
+        <link refid="vl53l8cx__plugin__detection__thresholds_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_v_l53_l8_c_x___detection_thresholds" prot="public">VL53L8CX_DetectionThresholds</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a3431c934f6b6fc6a3c5398e1d7ee13c0" prot="public" static="no">
+        <name>VL53L8CX_NB_THRESHOLDS</name>
+        <initializer>((uint8_t)64U)</initializer>
+        <briefdescription>
+<para>Macro VL53L8CX_NB_THRESHOLDS indicates the number of checkers. This value cannot be changed. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Copyright (c) 2021 STMicroelectronics. All rights reserved.</para>
+<para>This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-IS. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="23" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="23" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a5969bbb3c4aec39ed8afe72d2b5054ef" prot="public" static="no">
+        <name>VL53L8CX_DCI_DET_THRESH_CONFIG</name>
+        <initializer>((uint16_t)0x5488U)</initializer>
+        <briefdescription>
+<para>Inner Macro for API. Not for user, only for development. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="29" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a8a37113c3ac519fa4234ce98ecc8f375" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="28" endline="57">vl53l8cx_set_detection_thresholds_enable</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a6b9d2db8dd1a3d59e9d9aede293ffa98" prot="public" static="no">
+        <name>VL53L8CX_DCI_DET_THRESH_GLOBAL_CONFIG</name>
+        <initializer>((uint16_t)0xB6E0U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="30" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a8047236fff33ada64ae74743af9b6fbc" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="15" endline="26">vl53l8cx_get_detection_thresholds_enable</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a8a37113c3ac519fa4234ce98ecc8f375" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="28" endline="57">vl53l8cx_set_detection_thresholds_enable</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1adc5c97ffff5592acc249ee129e291417" prot="public" static="no">
+        <name>VL53L8CX_DCI_DET_THRESH_START</name>
+        <initializer>((uint16_t)0xB6E8U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="31" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a73fb30c1c9f8f019f0ae7bae08fa4125" prot="public" static="no">
+        <name>VL53L8CX_DCI_DET_THRESH_VALID_STATUS</name>
+        <initializer>((uint16_t)0xB9F0U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="32" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a75a65f06ece7b17a54a5c098d9200612" prot="public" static="no">
+        <name>VL53L8CX_LAST_THRESHOLD</name>
+        <initializer>((uint8_t)128U)</initializer>
+        <briefdescription>
+<para>Macro VL53L8CX_LAST_THRESHOLD is used to indicate the end of checkers programming. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="39" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a527c7cb13f0fb1a010a9e9e280ed4b32" prot="public" static="no">
+        <name>VL53L8CX_DISTANCE_MM</name>
+        <initializer>((uint8_t)1U)</initializer>
+        <briefdescription>
+<para>The following macro are used to define the &apos;param_type&apos; of a checker. They indicate what is the measurement to catch. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="46" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a56370b7a35933b31d2d801f496a897db" prot="public" static="no">
+        <name>VL53L8CX_SIGNAL_PER_SPAD_KCPS</name>
+        <initializer>((uint8_t)2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="47" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="47" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a26b0d73380c261a29acda36f2f95c61a" prot="public" static="no">
+        <name>VL53L8CX_RANGE_SIGMA_MM</name>
+        <initializer>((uint8_t)4U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="48" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1aa114e13ef88cf6111be4ad98a56af4a6" prot="public" static="no">
+        <name>VL53L8CX_AMBIENT_PER_SPAD_KCPS</name>
+        <initializer>((uint8_t)8U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="49" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1addca04cf14e4706e716db8775d47a97f" prot="public" static="no">
+        <name>VL53L8CX_NB_TARGET_DETECTED</name>
+        <initializer>((uint8_t)9U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="50" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a73255cd3f280fdea260e5b8c712e819d" prot="public" static="no">
+        <name>VL53L8CX_TARGET_STATUS</name>
+        <initializer>((uint8_t)12U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="51" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a509ba5bae1ca387910f5cbfc1fae1c97" prot="public" static="no">
+        <name>VL53L8CX_NB_SPADS_ENABLED</name>
+        <initializer>((uint8_t)13U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="52" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="52" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a6b9df666c83e8a124e9e3b354ef727a7" prot="public" static="no">
+        <name>VL53L8CX_MOTION_INDICATOR</name>
+        <initializer>((uint8_t)19U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="53" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="53" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1af21675d730f319f70b080a18b448b983" prot="public" static="no">
+        <name>VL53L8CX_IN_WINDOW</name>
+        <initializer>((uint8_t)0U)</initializer>
+        <briefdescription>
+<para>The following macro are used to define the &apos;type&apos; of a checker. They indicate the window of measurements, defined by low and a high thresholds. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="61" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a71fe25c67374664328db27d3dda64b30" prot="public" static="no">
+        <name>VL53L8CX_OUT_OF_WINDOW</name>
+        <initializer>((uint8_t)1U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="62" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1ab708a3ded980c6c82b18341f79ae56cf" prot="public" static="no">
+        <name>VL53L8CX_LESS_THAN_EQUAL_MIN_CHECKER</name>
+        <initializer>((uint8_t)2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="63" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a17ff1938db221fdc58f459b703cbebb9" prot="public" static="no">
+        <name>VL53L8CX_GREATER_THAN_MAX_CHECKER</name>
+        <initializer>((uint8_t)3U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="64" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a60d1be406ff1350ef22e8b4b1313444f" prot="public" static="no">
+        <name>VL53L8CX_EQUAL_MIN_CHECKER</name>
+        <initializer>((uint8_t)4U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="65" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1acc400999711b31a565540252163f1be8" prot="public" static="no">
+        <name>VL53L8CX_NOT_EQUAL_MIN_CHECKER</name>
+        <initializer>((uint8_t)5U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="66" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1a10036201bf4845fceecda805f9f77b04" prot="public" static="no">
+        <name>VL53L8CX_OPERATION_NONE</name>
+        <initializer>((uint8_t)0U)</initializer>
+        <briefdescription>
+<para>The following macro are used to define multiple checkers in the same zone, using operators. Please note that the first checker MUST always be a OR operation. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="74" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1aac9f69f6a6e06e016a9f48feba38eadb" prot="public" static="no">
+        <name>VL53L8CX_OPERATION_OR</name>
+        <initializer>((uint8_t)0U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="75" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__detection__thresholds_8h_1aa501bb82d778c01670e90730df4055ec" prot="public" static="no">
+        <name>VL53L8CX_OPERATION_AND</name>
+        <initializer>((uint8_t)2U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="76" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="vl53l8cx__plugin__detection__thresholds_8h_1a8047236fff33ada64ae74743af9b6fbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_detection_thresholds_enable</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t *p_enabled)</argsstring>
+        <name>vl53l8cx_get_detection_thresholds_enable</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_enabled</declname>
+        </param>
+        <briefdescription>
+<para>This function allows indicating if the detection thresholds are enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_enabled : Set to 1 if enabled, or 0 if disable. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if OK</para>
+</simplesect>
+Copyright (c) 2021 STMicroelectronics. All rights reserved.</para>
+<para>This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-IS. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="109" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c" bodystart="15" bodyend="26" declfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" declline="109" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9d2db8dd1a3d59e9d9aede293ffa98" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="30">VL53L8CX_DCI_DET_THRESH_GLOBAL_CONFIG</references>
+        <references refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__detection__thresholds_8h_1a8a37113c3ac519fa4234ce98ecc8f375" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_detection_thresholds_enable</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t enabled)</argsstring>
+        <name>vl53l8cx_set_detection_thresholds_enable</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>enabled</declname>
+        </param>
+        <briefdescription>
+<para>This function allows enable the detection thresholds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>enabled : Set to 1 to enable, or 0 to disable thresholds. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if programming is OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="120" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c" bodystart="28" bodyend="57" declfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" declline="120" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a5969bbb3c4aec39ed8afe72d2b5054ef" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="29">VL53L8CX_DCI_DET_THRESH_CONFIG</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9d2db8dd1a3d59e9d9aede293ffa98" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="30">VL53L8CX_DCI_DET_THRESH_GLOBAL_CONFIG</references>
+        <references refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" compoundref="vl53l8cx__api_8c" startline="1363" endline="1379">vl53l8cx_dci_replace_data</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__detection__thresholds_8h_1a9feff6ad7013dd7b146c6712995a48b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_detection_thresholds</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, VL53L8CX_DetectionThresholds *p_thresholds)</argsstring>
+        <name>vl53l8cx_get_detection_thresholds</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___detection_thresholds" kindref="compound">VL53L8CX_DetectionThresholds</ref> *</type>
+          <declname>p_thresholds</declname>
+        </param>
+        <briefdescription>
+<para>This function allows getting the detection thresholds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_DetectionThresholds)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_thresholds : Array of 64 thresholds. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if programming is OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="131" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c" bodystart="59" bodyend="105" declfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" declline="131" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="89">VL53L8CX_DetectionThresholds::param_high_thresh</references>
+        <references refid="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="87">VL53L8CX_DetectionThresholds::param_low_thresh</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1aa114e13ef88cf6111be4ad98a56af4a6" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="49">VL53L8CX_AMBIENT_PER_SPAD_KCPS</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1adc5c97ffff5592acc249ee129e291417" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="31">VL53L8CX_DCI_DET_THRESH_START</references>
+        <references refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a527c7cb13f0fb1a010a9e9e280ed4b32" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="46">VL53L8CX_DISTANCE_MM</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9df666c83e8a124e9e3b354ef727a7" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="53">VL53L8CX_MOTION_INDICATOR</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a509ba5bae1ca387910f5cbfc1fae1c97" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="52">VL53L8CX_NB_SPADS_ENABLED</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a3431c934f6b6fc6a3c5398e1d7ee13c0" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="23">VL53L8CX_NB_THRESHOLDS</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a26b0d73380c261a29acda36f2f95c61a" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="48">VL53L8CX_RANGE_SIGMA_MM</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a56370b7a35933b31d2d801f496a897db" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="47">VL53L8CX_SIGNAL_PER_SPAD_KCPS</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__detection__thresholds_8h_1acba78b79e001bc10424bf4ab4d18bfb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_detection_thresholds</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, VL53L8CX_DetectionThresholds *p_thresholds)</argsstring>
+        <name>vl53l8cx_set_detection_thresholds</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___detection_thresholds" kindref="compound">VL53L8CX_DetectionThresholds</ref> *</type>
+          <declname>p_thresholds</declname>
+        </param>
+        <briefdescription>
+<para>This function allows programming the detection thresholds. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_DetectionThresholds)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_thresholds : Array of 64 thresholds. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if programming is OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="142" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c" bodystart="107" bodyend="160" declfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" declline="142" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___detection_thresholds_1a4f25aad8a1407ad6e564e73beb775529" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="91">VL53L8CX_DetectionThresholds::measurement</references>
+        <references refid="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="89">VL53L8CX_DetectionThresholds::param_high_thresh</references>
+        <references refid="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="87">VL53L8CX_DetectionThresholds::param_low_thresh</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1aa114e13ef88cf6111be4ad98a56af4a6" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="49">VL53L8CX_AMBIENT_PER_SPAD_KCPS</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1adc5c97ffff5592acc249ee129e291417" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="31">VL53L8CX_DCI_DET_THRESH_START</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a73fb30c1c9f8f019f0ae7bae08fa4125" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="32">VL53L8CX_DCI_DET_THRESH_VALID_STATUS</references>
+        <references refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" compoundref="vl53l8cx__api_8c" startline="1308" endline="1361">vl53l8cx_dci_write_data</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a527c7cb13f0fb1a010a9e9e280ed4b32" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="46">VL53L8CX_DISTANCE_MM</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9df666c83e8a124e9e3b354ef727a7" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="53">VL53L8CX_MOTION_INDICATOR</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a509ba5bae1ca387910f5cbfc1fae1c97" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="52">VL53L8CX_NB_SPADS_ENABLED</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a3431c934f6b6fc6a3c5398e1d7ee13c0" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="23">VL53L8CX_NB_THRESHOLDS</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a26b0d73380c261a29acda36f2f95c61a" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="48">VL53L8CX_RANGE_SIGMA_MM</references>
+        <references refid="vl53l8cx__plugin__detection__thresholds_8h_1a56370b7a35933b31d2d801f496a897db" compoundref="vl53l8cx__plugin__detection__thresholds_8h" startline="47">VL53L8CX_SIGNAL_PER_SPAD_KCPS</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__detection__thresholds_8h_1ae4c15a43cd88235693d15493db9712bd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_detection_thresholds_auto_stop</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t *p_auto_stop)</argsstring>
+        <name>vl53l8cx_get_detection_thresholds_auto_stop</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_auto_stop</declname>
+        </param>
+        <briefdescription>
+<para>This function is used to enable or disable the auto-stop feature. When ToF runs in autonomous mode with detection threshold, the sensor only emits an interrupt (INT pin) when a threshold is reached. Interrupt is raised when the measurement is completed. It is possible to abort the ranging without waiting for end of measurement completed by enabling the auto-stop. The sensor emits an interrupt and quickly aborts the measurements in progress. Please note that <ref refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" kindref="member">vl53l8cx_stop_ranging()</ref> function needs to be used after interrupt raised for a clean stop. This function is used to get the auto_stop flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_auto_stop : Pointer of auto-stop feature, 0 disabled (default) or 1 enabled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if programming is OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="162" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c" bodystart="162" bodyend="173" declfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" declline="162" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8h_1abee27aed0af985ff05436e4a2ffa8579" compoundref="vl53l8cx__api_8h" startline="179">VL53L8CX_DCI_PIPE_CONTROL</references>
+        <references refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__detection__thresholds_8h_1a784306df2a9c03610e120ddd67dc465d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_detection_thresholds_auto_stop</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t auto_stop)</argsstring>
+        <name>vl53l8cx_set_detection_thresholds_auto_stop</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>auto_stop</declname>
+        </param>
+        <briefdescription>
+<para>This function is used to enable or disable the auto-stop feature. When ToF runs in autonomous mode with detection threshold, the sensor only emits an interrupt (INT pin) when a threshold is reached. Interrupt is raised when the measurement is completed. It is possible to abort the ranging without waiting for end of measurement completed by enabling the auto-stop. The sensor emits an interrupt and quickly aborts the measurements in progress. Please note that <ref refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" kindref="member">vl53l8cx_stop_ranging()</ref> function needs to be used after interrupt raised for a clean stop. This function is used to set the auto_stop flag. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_auto_stop : Pointer of auto-stop feature, 0 disabled (default) or 1 enabled. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if programming is OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="182" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c" bodystart="175" bodyend="187" declfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" declline="182" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a30a47d8990430ecbc960040d8950c88a" compoundref="vl53l8cx__api_8h" startline="291">VL53L8CX_Configuration::is_auto_stop_enabled</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8h_1abee27aed0af985ff05436e4a2ffa8579" compoundref="vl53l8cx__api_8h" startline="179">VL53L8CX_DCI_PIPE_CONTROL</references>
+        <references refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" compoundref="vl53l8cx__api_8c" startline="1363" endline="1379">vl53l8cx_dci_replace_data</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/>*<sp/>Copyright<sp/>(c)<sp/>2021<sp/>STMicroelectronics.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/><sp/>*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/>*<sp/>This<sp/>software<sp/>is<sp/>licensed<sp/>under<sp/>terms<sp/>that<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>LICENSE<sp/>file</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/>*<sp/>in<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>software<sp/>component.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/>*<sp/>If<sp/>no<sp/>LICENSE<sp/>file<sp/>comes<sp/>with<sp/>this<sp/>software,<sp/>it<sp/>is<sp/>provided<sp/>AS-IS.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/>******************************************************************************</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VL53L8CX_PLUGIN_DETECTION_THRESHOLDS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_PLUGIN_DETECTION_THRESHOLDS_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vl53l8cx__api_8h" kindref="compound">vl53l8cx_api.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Macro<sp/>VL53L8CX_NB_THRESHOLDS<sp/>indicates<sp/>the<sp/>number<sp/>of<sp/>checkers.<sp/>This</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>value<sp/>cannot<sp/>be<sp/>changed.</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="vl53l8cx__plugin__detection__thresholds_8h_1a3431c934f6b6fc6a3c5398e1d7ee13c0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_NB_THRESHOLDS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)64U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="25"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Inner<sp/>Macro<sp/>for<sp/>API.<sp/>Not<sp/>for<sp/>user,<sp/>only<sp/>for<sp/>development.</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="vl53l8cx__plugin__detection__thresholds_8h_1a5969bbb3c4aec39ed8afe72d2b5054ef" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DCI_DET_THRESH_CONFIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)0x5488U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9d2db8dd1a3d59e9d9aede293ffa98" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DCI_DET_THRESH_GLOBAL_CONFIG<sp/><sp/><sp/>((uint16_t)0xB6E0U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="vl53l8cx__plugin__detection__thresholds_8h_1adc5c97ffff5592acc249ee129e291417" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DCI_DET_THRESH_START<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)0xB6E8U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="vl53l8cx__plugin__detection__thresholds_8h_1a73fb30c1c9f8f019f0ae7bae08fa4125" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DCI_DET_THRESH_VALID_STATUS<sp/><sp/><sp/><sp/>((uint16_t)0xB9F0U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="34"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Macro<sp/>VL53L8CX_LAST_THRESHOLD<sp/>is<sp/>used<sp/>to<sp/>indicate<sp/>the<sp/>end<sp/>of<sp/>checkers</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>programming.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="vl53l8cx__plugin__detection__thresholds_8h_1a75a65f06ece7b17a54a5c098d9200612" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_LAST_THRESHOLD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)128U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="41"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>@brief<sp/>The<sp/>following<sp/>macro<sp/>are<sp/>used<sp/>to<sp/>define<sp/>the<sp/>&apos;param_type&apos;<sp/>of<sp/>a<sp/>checker.</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>They<sp/>indicate<sp/>what<sp/>is<sp/>the<sp/>measurement<sp/>to<sp/>catch.</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="vl53l8cx__plugin__detection__thresholds_8h_1a527c7cb13f0fb1a010a9e9e280ed4b32" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DISTANCE_MM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)1U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="vl53l8cx__plugin__detection__thresholds_8h_1a56370b7a35933b31d2d801f496a897db" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_SIGNAL_PER_SPAD_KCPS<sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)2U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="vl53l8cx__plugin__detection__thresholds_8h_1a26b0d73380c261a29acda36f2f95c61a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_RANGE_SIGMA_MM<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)4U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="vl53l8cx__plugin__detection__thresholds_8h_1aa114e13ef88cf6111be4ad98a56af4a6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_AMBIENT_PER_SPAD_KCPS<sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)8U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="vl53l8cx__plugin__detection__thresholds_8h_1addca04cf14e4706e716db8775d47a97f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_NB_TARGET_DETECTED<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)9U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="vl53l8cx__plugin__detection__thresholds_8h_1a73255cd3f280fdea260e5b8c712e819d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_TARGET_STATUS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)12U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="vl53l8cx__plugin__detection__thresholds_8h_1a509ba5bae1ca387910f5cbfc1fae1c97" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_NB_SPADS_ENABLED<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)13U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9df666c83e8a124e9e3b354ef727a7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_MOTION_INDICATOR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)19U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="55"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>@brief<sp/>The<sp/>following<sp/>macro<sp/>are<sp/>used<sp/>to<sp/>define<sp/>the<sp/>&apos;type&apos;<sp/>of<sp/>a<sp/>checker.</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>They<sp/>indicate<sp/>the<sp/>window<sp/>of<sp/>measurements,<sp/>defined<sp/>by<sp/>low<sp/>and<sp/>a<sp/>high</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>thresholds.</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="vl53l8cx__plugin__detection__thresholds_8h_1af21675d730f319f70b080a18b448b983" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_IN_WINDOW<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)0U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="vl53l8cx__plugin__detection__thresholds_8h_1a71fe25c67374664328db27d3dda64b30" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_OUT_OF_WINDOW<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)1U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="vl53l8cx__plugin__detection__thresholds_8h_1ab708a3ded980c6c82b18341f79ae56cf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_LESS_THAN_EQUAL_MIN_CHECKER<sp/>((uint8_t)2U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="vl53l8cx__plugin__detection__thresholds_8h_1a17ff1938db221fdc58f459b703cbebb9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_GREATER_THAN_MAX_CHECKER<sp/><sp/><sp/>((uint8_t)3U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="vl53l8cx__plugin__detection__thresholds_8h_1a60d1be406ff1350ef22e8b4b1313444f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_EQUAL_MIN_CHECKER<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)4U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="vl53l8cx__plugin__detection__thresholds_8h_1acc400999711b31a565540252163f1be8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_NOT_EQUAL_MIN_CHECKER<sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)5U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="68"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>@brief<sp/>The<sp/>following<sp/>macro<sp/>are<sp/>used<sp/>to<sp/>define<sp/>multiple<sp/>checkers<sp/>in<sp/>the<sp/>same</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>zone,<sp/>using<sp/>operators.<sp/>Please<sp/>note<sp/>that<sp/>the<sp/>first<sp/>checker<sp/>MUST<sp/>always<sp/>be<sp/>a<sp/>OR</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>operation.</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="vl53l8cx__plugin__detection__thresholds_8h_1a10036201bf4845fceecda805f9f77b04" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_OPERATION_NONE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)0U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="vl53l8cx__plugin__detection__thresholds_8h_1aac9f69f6a6e06e016a9f48feba38eadb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_OPERATION_OR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)0U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="vl53l8cx__plugin__detection__thresholds_8h_1aa501bb82d778c01670e90730df4055ec" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_OPERATION_AND<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint8_t)2U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="78"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Structure<sp/>VL53L8CX_DetectionThresholds<sp/>contains<sp/>a<sp/>single<sp/>threshold.</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>This<sp/>structure<sp/><sp/>is<sp/>never<sp/>used<sp/>alone,<sp/>it<sp/>must<sp/>be<sp/>used<sp/>as<sp/>an<sp/>array<sp/>of<sp/>64</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>thresholds<sp/>(defined<sp/>by<sp/>macro<sp/>VL53L8CX_NB_THRESHOLDS).</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="struct_v_l53_l8_c_x___detection_thresholds" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Low<sp/>threshold<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" kindref="member">param_low_thresh</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>High<sp/>threshold<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" kindref="member">param_high_thresh</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Measurement<sp/>to<sp/>catch<sp/>(VL53L8CX_MEDIAN_RANGE_MM,...)*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="struct_v_l53_l8_c_x___detection_thresholds_1a4f25aad8a1407ad6e564e73beb775529" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds_1a4f25aad8a1407ad6e564e73beb775529" kindref="member">measurement</ref>;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Windows<sp/>type<sp/>(VL53L8CX_IN_WINDOW,<sp/>VL53L8CX_OUT_WINDOW,<sp/>...)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="struct_v_l53_l8_c_x___detection_thresholds_1af00d77a5ecedd53e6cdfa203cf33a8c7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds_1af00d77a5ecedd53e6cdfa203cf33a8c7" kindref="member">type</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Zone<sp/>id.<sp/>Please<sp/>read<sp/>VL53L5<sp/>user<sp/>manual<sp/>to<sp/>find<sp/>the<sp/>zone<sp/>id.Set<sp/>macro</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>VL53L8CX_LAST_THRESHOLD<sp/>to<sp/>indicates<sp/>the<sp/>end<sp/>of<sp/>checkers<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="struct_v_l53_l8_c_x___detection_thresholds_1aacadf9a05c6fa51ca0f17d2198b45920" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds_1aacadf9a05c6fa51ca0f17d2198b45920" kindref="member">zone_num</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Mathematics<sp/>operation<sp/>(AND/OR).<sp/>The<sp/>first<sp/>threshold<sp/>is<sp/>always<sp/>OR.*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="struct_v_l53_l8_c_x___detection_thresholds_1a04f92990545ed160717fdf3379c48991" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds_1a04f92990545ed160717fdf3379c48991" kindref="member">mathematic_operation</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}<ref refid="struct_v_l53_l8_c_x___detection_thresholds" kindref="compound">VL53L8CX_DetectionThresholds</ref>;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="101"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>allows<sp/>indicating<sp/>if<sp/>the<sp/>detection<sp/>thresholds<sp/>are</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>enabled.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>*p_enabled<sp/>:<sp/>Set<sp/>to<sp/>1<sp/>if<sp/>enabled,<sp/>or<sp/>0<sp/>if<sp/>disable.</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>OK</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__detection__thresholds_8h_1a8047236fff33ada64ae74743af9b6fbc" kindref="member">vl53l8cx_get_detection_thresholds_enable</ref>(</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_enabled);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="113"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>allows<sp/>enable<sp/>the<sp/>detection<sp/>thresholds.</highlight></codeline>
+<codeline lineno="115"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>enabled<sp/>:<sp/>Set<sp/>to<sp/>1<sp/>to<sp/>enable,<sp/>or<sp/>0<sp/>to<sp/>disable<sp/>thresholds.</highlight></codeline>
+<codeline lineno="117"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>programming<sp/>is<sp/>OK</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__detection__thresholds_8h_1a8a37113c3ac519fa4234ce98ecc8f375" kindref="member">vl53l8cx_set_detection_thresholds_enable</ref>(</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>enabled);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="124"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>allows<sp/>getting<sp/>the<sp/>detection<sp/>thresholds.</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_DetectionThresholds)<sp/>*p_thresholds<sp/>:<sp/>Array<sp/>of<sp/>64<sp/>thresholds.</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>programming<sp/>is<sp/>OK</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__detection__thresholds_8h_1a9feff6ad7013dd7b146c6712995a48b0" kindref="member">vl53l8cx_get_detection_thresholds</ref>(</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds" kindref="compound">VL53L8CX_DetectionThresholds</ref><sp/><sp/><sp/><sp/>*p_thresholds);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="135"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>allows<sp/>programming<sp/>the<sp/>detection<sp/>thresholds.</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_DetectionThresholds)<sp/>*p_thresholds<sp/>:<sp/><sp/>Array<sp/>of<sp/>64<sp/>thresholds.</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>programming<sp/>is<sp/>OK</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__detection__thresholds_8h_1acba78b79e001bc10424bf4ab4d18bfb9" kindref="member">vl53l8cx_set_detection_thresholds</ref>(</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___detection_thresholds" kindref="compound">VL53L8CX_DetectionThresholds</ref><sp/><sp/><sp/><sp/>*p_thresholds);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="146"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="147"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>is<sp/>used<sp/>to<sp/>enable<sp/>or<sp/>disable<sp/>the<sp/>auto-stop<sp/>feature.</highlight></codeline>
+<codeline lineno="148"><highlight class="comment"><sp/>*<sp/>When<sp/>ToF<sp/>runs<sp/>in<sp/>autonomous<sp/>mode<sp/>with<sp/>detection<sp/>threshold,<sp/>the<sp/>sensor</highlight></codeline>
+<codeline lineno="149"><highlight class="comment"><sp/>*<sp/>only<sp/>emits<sp/>an<sp/>interrupt<sp/>(INT<sp/>pin)<sp/>when<sp/>a<sp/>threshold<sp/>is<sp/>reached.<sp/>Interrupt</highlight></codeline>
+<codeline lineno="150"><highlight class="comment"><sp/>*<sp/>is<sp/>raised<sp/>when<sp/>the<sp/>measurement<sp/>is<sp/>completed.<sp/>It<sp/>is<sp/>possible<sp/>to<sp/>abort<sp/>the<sp/>ranging</highlight></codeline>
+<codeline lineno="151"><highlight class="comment"><sp/>*<sp/>without<sp/>waiting<sp/>for<sp/>end<sp/>of<sp/>measurement<sp/>completed<sp/>by<sp/>enabling<sp/>the<sp/>auto-stop.<sp/>The</highlight></codeline>
+<codeline lineno="152"><highlight class="comment"><sp/>*<sp/>sensor<sp/>emits<sp/>an<sp/>interrupt<sp/>and<sp/>quickly<sp/>aborts<sp/>the<sp/>measurements<sp/>in<sp/>progress.<sp/>Please</highlight></codeline>
+<codeline lineno="153"><highlight class="comment"><sp/>*<sp/>note<sp/>that<sp/>vl53l8cx_stop_ranging()<sp/>function<sp/>needs<sp/>to<sp/>be<sp/>used<sp/>after<sp/>interrupt<sp/>raised</highlight></codeline>
+<codeline lineno="154"><highlight class="comment"><sp/>*<sp/>for<sp/>a<sp/>clean<sp/>stop.</highlight></codeline>
+<codeline lineno="155"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>is<sp/>used<sp/>to<sp/>get<sp/>the<sp/>auto_stop<sp/>flag.</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>*p_auto_stop<sp/>:<sp/><sp/>Pointer<sp/>of<sp/>auto-stop<sp/>feature,<sp/>0<sp/>disabled</highlight></codeline>
+<codeline lineno="158"><highlight class="comment"><sp/>*<sp/>(default)<sp/>or<sp/>1<sp/>enabled.</highlight></codeline>
+<codeline lineno="159"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>programming<sp/>is<sp/>OK</highlight></codeline>
+<codeline lineno="160"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__detection__thresholds_8h_1ae4c15a43cd88235693d15493db9712bd" kindref="member">vl53l8cx_get_detection_thresholds_auto_stop</ref>(</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_auto_stop);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="166"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>is<sp/>used<sp/>to<sp/>enable<sp/>or<sp/>disable<sp/>the<sp/>auto-stop<sp/>feature.</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/>*<sp/>When<sp/>ToF<sp/>runs<sp/>in<sp/>autonomous<sp/>mode<sp/>with<sp/>detection<sp/>threshold,<sp/>the<sp/>sensor</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/>*<sp/>only<sp/>emits<sp/>an<sp/>interrupt<sp/>(INT<sp/>pin)<sp/>when<sp/>a<sp/>threshold<sp/>is<sp/>reached.<sp/>Interrupt</highlight></codeline>
+<codeline lineno="170"><highlight class="comment"><sp/>*<sp/>is<sp/>raised<sp/>when<sp/>the<sp/>measurement<sp/>is<sp/>completed.<sp/>It<sp/>is<sp/>possible<sp/>to<sp/>abort<sp/>the<sp/>ranging</highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/>*<sp/>without<sp/>waiting<sp/>for<sp/>end<sp/>of<sp/>measurement<sp/>completed<sp/>by<sp/>enabling<sp/>the<sp/>auto-stop.<sp/>The</highlight></codeline>
+<codeline lineno="172"><highlight class="comment"><sp/>*<sp/>sensor<sp/>emits<sp/>an<sp/>interrupt<sp/>and<sp/>quickly<sp/>aborts<sp/>the<sp/>measurements<sp/>in<sp/>progress.<sp/>Please</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/>note<sp/>that<sp/>vl53l8cx_stop_ranging()<sp/>function<sp/>needs<sp/>to<sp/>be<sp/>used<sp/>after<sp/>interrupt<sp/>raised</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/>*<sp/>for<sp/>a<sp/>clean<sp/>stop.</highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/>*<sp/>This<sp/>function<sp/>is<sp/>used<sp/>to<sp/>set<sp/>the<sp/>auto_stop<sp/>flag.</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>*p_auto_stop<sp/>:<sp/><sp/>Pointer<sp/>of<sp/>auto-stop<sp/>feature,<sp/>0<sp/>disabled</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/>*<sp/>(default)<sp/>or<sp/>1<sp/>enabled.</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>programming<sp/>is<sp/>OK</highlight></codeline>
+<codeline lineno="180"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__detection__thresholds_8h_1a784306df2a9c03610e120ddd67dc465d" kindref="member">vl53l8cx_set_detection_thresholds_auto_stop</ref>(</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>auto_stop);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>VL53L8CX_PLUGIN_DETECTION_THRESHOLDS_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h"/>
+  </compounddef>
+</doxygen>

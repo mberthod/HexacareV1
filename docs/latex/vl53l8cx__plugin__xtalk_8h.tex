@@ -1,0 +1,875 @@
+\doxysection{components/sensor\+\_\+acq/uld/vl53l8cx\+\_\+plugin\+\_\+xtalk.h File Reference}
+\hypertarget{vl53l8cx__plugin__xtalk_8h}{}\label{vl53l8cx__plugin__xtalk_8h}\index{components/sensor\_acq/uld/vl53l8cx\_plugin\_xtalk.h@{components/sensor\_acq/uld/vl53l8cx\_plugin\_xtalk.h}}
+{\ttfamily \#include "{}vl53l8cx\+\_\+api.\+h"{}}\newline
+Include dependency graph for vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=286pt]{vl53l8cx__plugin__xtalk_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{vl53l8cx__plugin__xtalk_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_af034a41d1f991766148316a5e48927da}{VL53\+L8\+CX\+\_\+\+FW\+\_\+\+NBTAR\+\_\+\+XTALK}}~2
+\begin{DoxyCompactList}\small\item\em Inner internal number of targets. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_af56f2c5de217da4a1399361b0db9d39f}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+CAL\+\_\+\+CFG}}~((uint16\+\_\+t)0x5470U)
+\begin{DoxyCompactList}\small\item\em Inner Macro for plugin. Not for user, only for development. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_abaa177db90ba502772328a3b4d990fe0}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+XTALK\+\_\+\+CFG}}~((uint16\+\_\+t)0x\+AD94U)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_a616b96ba97c939f5b72fde6f84b78177}{vl53l8cx\+\_\+calibrate\+\_\+xtalk}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint16\+\_\+t reflectance\+\_\+percent, uint8\+\_\+t nb\+\_\+samples, uint16\+\_\+t distance\+\_\+mm)
+\begin{DoxyCompactList}\small\item\em This function starts the VL53\+L8\+CX sensor in order to calibrate Xtalk. This calibration is recommended is user wants to use a coverglass. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_a638fa39db7d6506992b20388f9880b47}{vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+xtalk\+\_\+data)
+\begin{DoxyCompactList}\small\item\em This function gets the Xtalk buffer. The buffer is available after using the function \doxylink{vl53l8cx__plugin__xtalk_8h_a616b96ba97c939f5b72fde6f84b78177}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_a0a1083d1f57251df3c70caabedd68f41}{vl53l8cx\+\_\+set\+\_\+caldata\+\_\+xtalk}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+xtalk\+\_\+data)
+\begin{DoxyCompactList}\small\item\em This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_a93cab7c0d8a298a1c2b0206ffc1fa664}{vl53l8cx\+\_\+get\+\_\+xtalk\+\_\+margin}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint32\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+xtalk\+\_\+margin)
+\begin{DoxyCompactList}\small\item\em This function gets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_a8d182a0a999996a2c3606a8076ca3b9b}{vl53l8cx\+\_\+set\+\_\+xtalk\+\_\+margin}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint32\+\_\+t xtalk\+\_\+margin)
+\begin{DoxyCompactList}\small\item\em This function sets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53\+L8\+CX\+\_\+\+GET\+\_\+\+XTALK\+\_\+\+CMD}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Command used to get Xtalk calibration data. \end{DoxyCompactList}\item 
+static const uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeb44e0540e4cb5244ad45fa479ecb65b}{VL53\+L8\+CX\+\_\+\+CALIBRATE\+\_\+\+XTALK}} \mbox{[}$\,$\mbox{]}
+\begin{DoxyCompactList}\small\item\em Command used to get run Xtalk calibration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-define-members}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_af56f2c5de217da4a1399361b0db9d39f}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!VL53L8CX\_DCI\_CAL\_CFG@{VL53L8CX\_DCI\_CAL\_CFG}}
+\index{VL53L8CX\_DCI\_CAL\_CFG@{VL53L8CX\_DCI\_CAL\_CFG}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_DCI\_CAL\_CFG}{VL53L8CX\_DCI\_CAL\_CFG}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_af56f2c5de217da4a1399361b0db9d39f} 
+\#define VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+CAL\+\_\+\+CFG~((uint16\+\_\+t)0x5470U)}
+
+
+
+Inner Macro for plugin. Not for user, only for development. 
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00032}{32}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}.
+
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_abaa177db90ba502772328a3b4d990fe0}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!VL53L8CX\_DCI\_XTALK\_CFG@{VL53L8CX\_DCI\_XTALK\_CFG}}
+\index{VL53L8CX\_DCI\_XTALK\_CFG@{VL53L8CX\_DCI\_XTALK\_CFG}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_DCI\_XTALK\_CFG}{VL53L8CX\_DCI\_XTALK\_CFG}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_abaa177db90ba502772328a3b4d990fe0} 
+\#define VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+XTALK\+\_\+\+CFG~((uint16\+\_\+t)0x\+AD94U)}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00033}{33}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00332}{vl53l8cx\+\_\+get\+\_\+xtalk\+\_\+margin()}}, and \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00347}{vl53l8cx\+\_\+set\+\_\+xtalk\+\_\+margin()}}.
+
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_af034a41d1f991766148316a5e48927da}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!VL53L8CX\_FW\_NBTAR\_XTALK@{VL53L8CX\_FW\_NBTAR\_XTALK}}
+\index{VL53L8CX\_FW\_NBTAR\_XTALK@{VL53L8CX\_FW\_NBTAR\_XTALK}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_FW\_NBTAR\_XTALK}{VL53L8CX\_FW\_NBTAR\_XTALK}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_af034a41d1f991766148316a5e48927da} 
+\#define VL53\+L8\+CX\+\_\+\+FW\+\_\+\+NBTAR\+\_\+\+XTALK~2}
+
+
+
+Inner internal number of targets. 
+
+Copyright (c) 2021 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00023}{23}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_a616b96ba97c939f5b72fde6f84b78177}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!vl53l8cx\_calibrate\_xtalk@{vl53l8cx\_calibrate\_xtalk}}
+\index{vl53l8cx\_calibrate\_xtalk@{vl53l8cx\_calibrate\_xtalk}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_calibrate\_xtalk()}{vl53l8cx\_calibrate\_xtalk()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_a616b96ba97c939f5b72fde6f84b78177} 
+uint8\+\_\+t vl53l8cx\+\_\+calibrate\+\_\+xtalk (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint16\+\_\+t}]{reflectance\+\_\+percent}{, }\item[{uint8\+\_\+t}]{nb\+\_\+samples}{, }\item[{uint16\+\_\+t}]{distance\+\_\+mm}{}\end{DoxyParamCaption})}
+
+
+
+This function starts the VL53\+L8\+CX sensor in order to calibrate Xtalk. This calibration is recommended is user wants to use a coverglass. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (uint16\+\_\+t)} & reflectance\+\_\+percent \+: Target reflectance in percent. This value is include between 1 and 99\%. For a better efficiency, ST recommends a 3\% target reflectance. \\
+\hline
+{\em (uint8\+\_\+t)} & nb\+\_\+samples \+: Nb of samples used for calibration. A higher number of samples means a higher accuracy, but it increases the calibration time. Minimum is 1 and maximum is 16. \\
+\hline
+{\em (uint16\+\_\+t)} & distance\+\_\+mm \+: Target distance in mm. The minimum allowed distance is 600mm, and maximum is 3000mm. The target must stay in Full FOV, so short distance are easier for calibration. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if calibration OK, 127 if an argument has an incorrect value, or 255 is something failed. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{147}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00152\ \{}
+\DoxyCodeLine{00153\ \ \ \ \ uint16\_t\ timeout\ =\ 0;}
+\DoxyCodeLine{00154\ \ \ \ \ uint8\_t\ cmd[]\ =\ \{0x00,\ 0x03,\ 0x00,\ 0x00\};}
+\DoxyCodeLine{00155\ \ \ \ \ uint8\_t\ footer[]\ =\ \{0x00,\ 0x00,\ 0x00,\ 0x0F,\ 0x00,\ 0x01,\ 0x03,\ 0x04\};}
+\DoxyCodeLine{00156\ \ \ \ \ uint8\_t\ continue\_loop\ =\ 1,\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ uint8\_t\ resolution,\ frequency,\ target\_order,\ sharp\_prct,\ ranging\_mode;}
+\DoxyCodeLine{00159\ \ \ \ \ uint32\_t\ integration\_time\_ms,\ xtalk\_margin;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ uint16\_t\ reflectance\ =\ reflectance\_percent;}
+\DoxyCodeLine{00162\ \ \ \ \ uint8\_t\ samples\ =\ nb\_samples;}
+\DoxyCodeLine{00163\ \ \ \ \ uint16\_t\ distance\ =\ distance\_mm;}
+\DoxyCodeLine{00164\ \ \ \ \ uint8\_t\ *default\_xtalk\_ptr;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{/*\ Get\ initial\ configuration\ */}}
+\DoxyCodeLine{00167\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a0a552d3fdea8a1a38c1642eb7b5cc4d5}{vl53l8cx\_get\_resolution}}(p\_dev,\ \&resolution);}
+\DoxyCodeLine{00168\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_ab1329ff55825bc53ce30e1e2a65ea1ea}{vl53l8cx\_get\_ranging\_frequency\_hz}}(p\_dev,\ \&frequency);}
+\DoxyCodeLine{00169\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a34666a7d3778693b09b6586c2e5ac88b}{vl53l8cx\_get\_integration\_time\_ms}}(p\_dev,\ \&integration\_time\_ms);}
+\DoxyCodeLine{00170\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a487baf06564d780210b117e34d8e0c41}{vl53l8cx\_get\_sharpener\_percent}}(p\_dev,\ \&sharp\_prct);}
+\DoxyCodeLine{00171\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a2718a6b0468c8a794c273344afac36c7}{vl53l8cx\_get\_target\_order}}(p\_dev,\ \&target\_order);}
+\DoxyCodeLine{00172\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a93cab7c0d8a298a1c2b0206ffc1fa664}{vl53l8cx\_get\_xtalk\_margin}}(p\_dev,\ \&xtalk\_margin);}
+\DoxyCodeLine{00173\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a277352277a30567f668aa0e2728b36ce}{vl53l8cx\_get\_ranging\_mode}}(p\_dev,\ \&ranging\_mode);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{/*\ Check\ input\ arguments\ validity\ */}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordflow}{if}(((reflectance\ <\ (uint16\_t)1)\ ||\ (reflectance\ >\ (uint16\_t)99))}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ ||\ ((distance\ <\ (uint16\_t)600)\ ||\ (distance\ >\ (uint16\_t)3000))}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ ||\ ((samples\ <\ (uint8\_t)1)\ ||\ (samples\ >\ (uint8\_t)16)))}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8h_a5e9841e5918ff72e9392c926e9716898}{VL53L8CX\_STATUS\_INVALID\_PARAM}};}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a75ec684bc81068955b37aaac1dfcf4f8}{vl53l8cx\_set\_resolution}}(p\_dev,}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53L8CX\_RESOLUTION\_8X8}});}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Send\ Xtalk\ calibration\ buffer\ */}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (void)memcpy(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeb44e0540e4cb5244ad45fa479ecb65b}{VL53L8CX\_CALIBRATE\_XTALK}},}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeb44e0540e4cb5244ad45fa479ecb65b}{VL53L8CX\_CALIBRATE\_XTALK}}));}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ 0x2c28,}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)\textcolor{keyword}{sizeof}(\mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeb44e0540e4cb5244ad45fa479ecb65b}{VL53L8CX\_CALIBRATE\_XTALK}}));}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a46caf15b3ffb2e47f9a5d1beeb6f751b}{\_vl53l8cx\_poll\_for\_answer}}(p\_dev,}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a085dc2b61b48ed8d364612236efda914}{VL53L8CX\_UI\_CMD\_STATUS}},\ 0x3);}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Format\ input\ argument\ */}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ reflectance\ =\ reflectance\ *\ (uint16\_t)16;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ distance\ =\ distance\ *\ (uint16\_t)4;}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Update\ required\ fields\ */}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_af56f2c5de217da4a1399361b0db9d39f}{VL53L8CX\_DCI\_CAL\_CFG}},\ 8,}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\&distance,\ 2,\ 0x00);}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_af56f2c5de217da4a1399361b0db9d39f}{VL53L8CX\_DCI\_CAL\_CFG}},\ 8,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\&reflectance,\ 2,0x02);}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_af56f2c5de217da4a1399361b0db9d39f}{VL53L8CX\_DCI\_CAL\_CFG}},\ 8,}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\&samples,\ 1,\ 0x04);}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Program\ output\ for\ Xtalk\ calibration\ */}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_ada5ef9bbc3fcdd3b8f681d08943c8d10}{\_vl53l8cx\_program\_output\_config}}(p\_dev);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Start\ ranging\ session\ */}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a42a5546522d7e26f08fc09394d450071}{VL53L8CX\_UI\_CMD\_END}}\ -\/\ (uint16\_t)(4\ -\/\ 1),}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)cmd,\ \textcolor{keyword}{sizeof}(cmd));}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a46caf15b3ffb2e47f9a5d1beeb6f751b}{\_vl53l8cx\_poll\_for\_answer}}(p\_dev,}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a085dc2b61b48ed8d364612236efda914}{VL53L8CX\_UI\_CMD\_STATUS}},\ 0x3);}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Wait\ for\ end\ of\ calibration\ */}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248}{VL53L8CX\_RdMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ 4);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[0]\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a808f141fa4ac8097df405bea9c7914ad}{VL53L8CX\_STATUS\_ERROR}})}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Coverglass\ too\ good\ for\ Xtalk\ calibration\ */}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[2]\ >=\ (uint8\_t)0x7f)\ \&\&}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((uint16\_t)(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[3]\ \&\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)0x80)\ >>\ 7)\ ==\ (uint16\_t)1))}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ default\_xtalk\_ptr\ =\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9a8b925205c6e9ec22ae28ad972ab64a}{default\_xtalk}};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (void)memcpy(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}{xtalk\_data}},\ }
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ default\_xtalk\_ptr,}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}{xtalk\_data}}));}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8h_a89d07e895fc3200073cf30f210197257}{VL53L8CX\_STATUS\_XTALK\_FAILED}};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue\_loop\ =\ (uint8\_t)0;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(timeout\ >=\ (uint16\_t)400)}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8h_a808f141fa4ac8097df405bea9c7914ad}{VL53L8CX\_STATUS\_ERROR}};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue\_loop\ =\ (uint8\_t)0;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeout++;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_a03e447cf6ff03fb5be303b919a099751}{VL53L8CX\_WaitMs}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ 50);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}\textcolor{keywordflow}{while}\ (continue\_loop\ ==\ (uint8\_t)1);}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{/*\ Save\ Xtalk\ data\ into\ the\ Xtalk\ buffer\ */}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ (void)memcpy(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53L8CX\_GET\_XTALK\_CMD}},}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53L8CX\_GET\_XTALK\_CMD}}));}
+\DoxyCodeLine{00259\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ 0x2fb8,}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ }
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)\textcolor{keyword}{sizeof}(\mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53L8CX\_GET\_XTALK\_CMD}}));}
+\DoxyCodeLine{00262\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a46caf15b3ffb2e47f9a5d1beeb6f751b}{\_vl53l8cx\_poll\_for\_answer}}(p\_dev,\mbox{\hyperlink{vl53l8cx__api_8h_a085dc2b61b48ed8d364612236efda914}{VL53L8CX\_UI\_CMD\_STATUS}},\ 0x03);}
+\DoxyCodeLine{00263\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248}{VL53L8CX\_RdMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ \mbox{\hyperlink{vl53l8cx__api_8h_a1ef45836ad668a7c7847e2b49a7dd9a0}{VL53L8CX\_UI\_CMD\_START}},}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}}\ +\ (uint16\_t)4);}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \ \ \ \ (void)memcpy(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}{xtalk\_data}}[0]),\ \&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[8]),}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}}\ -\/\ (uint16\_t)8);}
+\DoxyCodeLine{00269\ \ \ \ \ (void)memcpy(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}{xtalk\_data}}[\mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ (uint16\_t)8]),\ footer,\ \textcolor{keyword}{sizeof}(footer));}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{comment}{/*\ Reset\ default\ buffer\ */}}
+\DoxyCodeLine{00273\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ 0x2c34,}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9b2c9675e763360fc0c8865b31595c18}{default\_configuration}},}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_ae857ccc32e3c8185ea47e22605283fc1}{VL53L8CX\_CONFIGURATION\_SIZE}});}
+\DoxyCodeLine{00276\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a46caf15b3ffb2e47f9a5d1beeb6f751b}{\_vl53l8cx\_poll\_for\_answer}}(p\_dev,\mbox{\hyperlink{vl53l8cx__api_8h_a085dc2b61b48ed8d364612236efda914}{VL53L8CX\_UI\_CMD\_STATUS}},\ 0x03);}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{comment}{/*\ Reset\ initial\ configuration\ */}}
+\DoxyCodeLine{00279\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a75ec684bc81068955b37aaac1dfcf4f8}{vl53l8cx\_set\_resolution}}(p\_dev,\ resolution);}
+\DoxyCodeLine{00280\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_aa498a79da766ce9f30d4518403bfbc96}{vl53l8cx\_set\_ranging\_frequency\_hz}}(p\_dev,\ frequency);}
+\DoxyCodeLine{00281\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_abcb4f3ccc4813f4aa1851c2d5844641a}{vl53l8cx\_set\_integration\_time\_ms}}(p\_dev,\ integration\_time\_ms);}
+\DoxyCodeLine{00282\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a1a4fb3cfa2082032b917b539e244338a}{vl53l8cx\_set\_sharpener\_percent}}(p\_dev,\ sharp\_prct);}
+\DoxyCodeLine{00283\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a65ac9339ec503998ca8fc5003f649e53}{vl53l8cx\_set\_target\_order}}(p\_dev,\ target\_order);}
+\DoxyCodeLine{00284\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a8d182a0a999996a2c3606a8076ca3b9b}{vl53l8cx\_set\_xtalk\_margin}}(p\_dev,\ xtalk\_margin);}
+\DoxyCodeLine{00285\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a90f6b7f5130cf36350701771f991bdbf}{vl53l8cx\_set\_ranging\_mode}}(p\_dev,\ ranging\_mode);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00288\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00021}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00055}{\+\_\+vl53l8cx\+\_\+program\+\_\+output\+\_\+config()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00281}{VL53\+L8\+CX\+\_\+\+Configuration\+::default\+\_\+configuration}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00283}{VL53\+L8\+CX\+\_\+\+Configuration\+::default\+\_\+xtalk}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00275}{VL53\+L8\+CX\+\_\+\+Configuration\+::platform}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00142}{VL53\+L8\+CX\+\_\+\+CALIBRATE\+\_\+\+XTALK}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00159}{VL53\+L8\+CX\+\_\+\+CONFIGURATION\+\_\+\+SIZE}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00032}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+CAL\+\_\+\+CFG}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01363}{vl53l8cx\+\_\+dci\+\_\+replace\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01016}{vl53l8cx\+\_\+get\+\_\+integration\+\_\+time\+\_\+ms()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00990}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+frequency\+\_\+hz()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01125}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00910}{vl53l8cx\+\_\+get\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01055}{vl53l8cx\+\_\+get\+\_\+sharpener\+\_\+percent()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01092}{vl53l8cx\+\_\+get\+\_\+target\+\_\+order()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00117}{VL53\+L8\+CX\+\_\+\+GET\+\_\+\+XTALK\+\_\+\+CMD}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00332}{vl53l8cx\+\_\+get\+\_\+xtalk\+\_\+margin()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00065}{VL53\+L8\+CX\+\_\+\+Rd\+Multi()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00044}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01031}{vl53l8cx\+\_\+set\+\_\+integration\+\_\+time\+\_\+ms()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01003}{vl53l8cx\+\_\+set\+\_\+ranging\+\_\+frequency\+\_\+hz()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01146}{vl53l8cx\+\_\+set\+\_\+ranging\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00925}{vl53l8cx\+\_\+set\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01070}{vl53l8cx\+\_\+set\+\_\+sharpener\+\_\+percent()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01105}{vl53l8cx\+\_\+set\+\_\+target\+\_\+order()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00347}{vl53l8cx\+\_\+set\+\_\+xtalk\+\_\+margin()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00095}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+ERROR}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00094}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAM}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00091}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+XTALK\+\_\+\+FAILED}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00183}{VL53\+L8\+CX\+\_\+\+UI\+\_\+\+CMD\+\_\+\+END}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00182}{VL53\+L8\+CX\+\_\+\+UI\+\_\+\+CMD\+\_\+\+START}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00181}{VL53\+L8\+CX\+\_\+\+UI\+\_\+\+CMD\+\_\+\+STATUS}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00147}{VL53\+L8\+CX\+\_\+\+Wait\+Ms()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00101}{VL53\+L8\+CX\+\_\+\+Wr\+Multi()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00161}{VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+BUFFER\+\_\+\+SIZE}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00287}{VL53\+L8\+CX\+\_\+\+Configuration\+::xtalk\+\_\+data}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__xtalk_8h_a616b96ba97c939f5b72fde6f84b78177_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_a638fa39db7d6506992b20388f9880b47}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!vl53l8cx\_get\_caldata\_xtalk@{vl53l8cx\_get\_caldata\_xtalk}}
+\index{vl53l8cx\_get\_caldata\_xtalk@{vl53l8cx\_get\_caldata\_xtalk}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_get\_caldata\_xtalk()}{vl53l8cx\_get\_caldata\_xtalk()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_a638fa39db7d6506992b20388f9880b47} 
+uint8\+\_\+t vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+xtalk\+\_\+data}{}\end{DoxyParamCaption})}
+
+
+
+This function gets the Xtalk buffer. The buffer is available after using the function \doxylink{vl53l8cx__plugin__xtalk_8h_a616b96ba97c939f5b72fde6f84b78177}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L5 configuration structure. \\
+\hline
+{\em (uint8\+\_\+t)} & \texorpdfstring{$\ast$}{*}p\+\_\+xtalk\+\_\+data \+: Buffer with a size defined by macro VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+SIZE. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if buffer reading OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00290}{290}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00293\ \{}
+\DoxyCodeLine{00294\ \ \ \ \ uint8\_t\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}},\ resolution;}
+\DoxyCodeLine{00295\ \ \ \ \ uint8\_t\ footer[]\ =\ \{0x00,\ 0x00,\ 0x00,\ 0x0F,\ 0x00,\ 0x01,\ 0x03,\ 0x04\};}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a0a552d3fdea8a1a38c1642eb7b5cc4d5}{vl53l8cx\_get\_resolution}}(p\_dev,\ \&resolution);}
+\DoxyCodeLine{00298\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a75ec684bc81068955b37aaac1dfcf4f8}{vl53l8cx\_set\_resolution}}(p\_dev,\ \mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53L8CX\_RESOLUTION\_8X8}});}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ (void)memcpy(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53L8CX\_GET\_XTALK\_CMD}},}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53L8CX\_GET\_XTALK\_CMD}}));}
+\DoxyCodeLine{00302\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ 0x2fb8,}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}{VL53L8CX\_GET\_XTALK\_CMD}}));}
+\DoxyCodeLine{00304\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_a46caf15b3ffb2e47f9a5d1beeb6f751b}{\_vl53l8cx\_poll\_for\_answer}}(p\_dev,\mbox{\hyperlink{vl53l8cx__api_8h_a085dc2b61b48ed8d364612236efda914}{VL53L8CX\_UI\_CMD\_STATUS}},\ 0x03);}
+\DoxyCodeLine{00305\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248}{VL53L8CX\_RdMulti}}(\&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}),\ \mbox{\hyperlink{vl53l8cx__api_8h_a1ef45836ad668a7c7847e2b49a7dd9a0}{VL53L8CX\_UI\_CMD\_START}},}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}}\ +\ (uint16\_t)4);}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ (void)memcpy(\&(p\_xtalk\_data[0]),\ \&(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[8]),}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}}-\/(uint16\_t)8);}
+\DoxyCodeLine{00311\ \ \ \ \ (void)memcpy(\&(p\_xtalk\_data[\mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}}\ -\/\ (uint16\_t)8]),}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ footer,\ \textcolor{keyword}{sizeof}(footer));}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a75ec684bc81068955b37aaac1dfcf4f8}{vl53l8cx\_set\_resolution}}(p\_dev,\ resolution);}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00317\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00021}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00275}{VL53\+L8\+CX\+\_\+\+Configuration\+::platform}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00910}{vl53l8cx\+\_\+get\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00117}{VL53\+L8\+CX\+\_\+\+GET\+\_\+\+XTALK\+\_\+\+CMD}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00065}{VL53\+L8\+CX\+\_\+\+Rd\+Multi()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00044}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00925}{vl53l8cx\+\_\+set\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00182}{VL53\+L8\+CX\+\_\+\+UI\+\_\+\+CMD\+\_\+\+START}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00181}{VL53\+L8\+CX\+\_\+\+UI\+\_\+\+CMD\+\_\+\+STATUS}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00101}{VL53\+L8\+CX\+\_\+\+Wr\+Multi()}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00161}{VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+BUFFER\+\_\+\+SIZE}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__xtalk_8h_a638fa39db7d6506992b20388f9880b47_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_a93cab7c0d8a298a1c2b0206ffc1fa664}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!vl53l8cx\_get\_xtalk\_margin@{vl53l8cx\_get\_xtalk\_margin}}
+\index{vl53l8cx\_get\_xtalk\_margin@{vl53l8cx\_get\_xtalk\_margin}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_get\_xtalk\_margin()}{vl53l8cx\_get\_xtalk\_margin()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_a93cab7c0d8a298a1c2b0206ffc1fa664} 
+uint8\+\_\+t vl53l8cx\+\_\+get\+\_\+xtalk\+\_\+margin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+xtalk\+\_\+margin}{}\end{DoxyParamCaption})}
+
+
+
+This function gets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (uint32\+\_\+t)} & \texorpdfstring{$\ast$}{*}p\+\_\+xtalk\+\_\+margin \+: Xtalk margin in kcps/spads. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if reading OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00332}{332}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00335\ \{}
+\DoxyCodeLine{00336\ \ \ \ \ uint8\_t\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a622e5a7b1ab7b329bb6eee40429599da}{vl53l8cx\_dci\_read\_data}}(p\_dev,\ (uint8\_t*)p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_abaa177db90ba502772328a3b4d990fe0}{VL53L8CX\_DCI\_XTALK\_CFG}},\ 16);}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ (void)memcpy(p\_xtalk\_margin,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},\ 4);}
+\DoxyCodeLine{00342\ \ \ \ \ *p\_xtalk\_margin\ =\ *p\_xtalk\_margin/(uint32\_t)2048;}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00345\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00033}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+XTALK\+\_\+\+CFG}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__xtalk_8h_a93cab7c0d8a298a1c2b0206ffc1fa664_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{vl53l8cx__plugin__xtalk_8h_a93cab7c0d8a298a1c2b0206ffc1fa664_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_a0a1083d1f57251df3c70caabedd68f41}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!vl53l8cx\_set\_caldata\_xtalk@{vl53l8cx\_set\_caldata\_xtalk}}
+\index{vl53l8cx\_set\_caldata\_xtalk@{vl53l8cx\_set\_caldata\_xtalk}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_set\_caldata\_xtalk()}{vl53l8cx\_set\_caldata\_xtalk()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_a0a1083d1f57251df3c70caabedd68f41} 
+uint8\+\_\+t vl53l8cx\+\_\+set\+\_\+caldata\+\_\+xtalk (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+xtalk\+\_\+data}{}\end{DoxyParamCaption})}
+
+
+
+This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L5 configuration structure. \\
+\hline
+{\em (uint8\+\_\+t)} & \texorpdfstring{$\ast$}{*}p\+\_\+xtalk\+\_\+data \+: Buffer with a size defined by macro VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+SIZE. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if buffer OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00319}{319}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00322\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ uint8\_t\ resolution,\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a0a552d3fdea8a1a38c1642eb7b5cc4d5}{vl53l8cx\_get\_resolution}}(p\_dev,\ \&resolution);}
+\DoxyCodeLine{00326\ \ \ \ \ (void)memcpy(p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}{xtalk\_data}},\ p\_xtalk\_data,\ \mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53L8CX\_XTALK\_BUFFER\_SIZE}});}
+\DoxyCodeLine{00327\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a75ec684bc81068955b37aaac1dfcf4f8}{vl53l8cx\_set\_resolution}}(p\_dev,\ resolution);}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00330\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8c_source_l00910}{vl53l8cx\+\_\+get\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00925}{vl53l8cx\+\_\+set\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00161}{VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+BUFFER\+\_\+\+SIZE}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00287}{VL53\+L8\+CX\+\_\+\+Configuration\+::xtalk\+\_\+data}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__xtalk_8h_a0a1083d1f57251df3c70caabedd68f41_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_a8d182a0a999996a2c3606a8076ca3b9b}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!vl53l8cx\_set\_xtalk\_margin@{vl53l8cx\_set\_xtalk\_margin}}
+\index{vl53l8cx\_set\_xtalk\_margin@{vl53l8cx\_set\_xtalk\_margin}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_set\_xtalk\_margin()}{vl53l8cx\_set\_xtalk\_margin()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_a8d182a0a999996a2c3606a8076ca3b9b} 
+uint8\+\_\+t vl53l8cx\+\_\+set\+\_\+xtalk\+\_\+margin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint32\+\_\+t}]{xtalk\+\_\+margin}{}\end{DoxyParamCaption})}
+
+
+
+This function sets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (uint32\+\_\+t)} & xtalk\+\_\+margin \+: New Xtalk margin in kcps/spads. Min value is 0 kcps/spads, and max is 10.\+000 kcps/spads \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if set margin is OK, or 127 is the margin is invalid. 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00347}{347}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00350\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ uint8\_t\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ uint32\_t\ margin\_kcps\ =\ xtalk\_margin;}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordflow}{if}(margin\_kcps\ >\ (uint32\_t)10000)}
+\DoxyCodeLine{00355\ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8h_a5e9841e5918ff72e9392c926e9716898}{VL53L8CX\_STATUS\_INVALID\_PARAM}};}
+\DoxyCodeLine{00357\ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00359\ \ \ \ \ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ margin\_kcps\ =\ margin\_kcps*(uint32\_t)2048;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_abaa177db90ba502772328a3b4d990fe0}{VL53L8CX\_DCI\_XTALK\_CFG}},\ 16,}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\&margin\_kcps,\ 4,\ 0x00);}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00367\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01363}{vl53l8cx\+\_\+dci\+\_\+replace\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00033}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+XTALK\+\_\+\+CFG}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00094}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+INVALID\+\_\+\+PARAM}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__xtalk_8h_a8d182a0a999996a2c3606a8076ca3b9b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{vl53l8cx__plugin__xtalk_8h_a8d182a0a999996a2c3606a8076ca3b9b_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_aeb44e0540e4cb5244ad45fa479ecb65b}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!VL53L8CX\_CALIBRATE\_XTALK@{VL53L8CX\_CALIBRATE\_XTALK}}
+\index{VL53L8CX\_CALIBRATE\_XTALK@{VL53L8CX\_CALIBRATE\_XTALK}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_CALIBRATE\_XTALK}{VL53L8CX\_CALIBRATE\_XTALK}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_aeb44e0540e4cb5244ad45fa479ecb65b} 
+const uint8\+\_\+t VL53\+L8\+CX\+\_\+\+CALIBRATE\+\_\+\+XTALK\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Command used to get run Xtalk calibration. 
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00142}{142}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ 0x54,\ 0x50,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00144\ \ \ \ \ 0x00,\ 0x04,\ 0x08,\ 0x08,}
+\DoxyCodeLine{00145\ \ \ \ \ 0x00,\ 0x00,\ 0x04,\ 0x04,}
+\DoxyCodeLine{00146\ \ \ \ \ 0xAD,\ 0x30,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00147\ \ \ \ \ 0x03,\ 0x01,\ 0x06,\ 0x03,}
+\DoxyCodeLine{00148\ \ \ \ \ 0x00,\ 0x00,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00149\ \ \ \ \ 0xAD,\ 0x38,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00150\ \ \ \ \ 0x01,\ 0xE0,\ 0x01,\ 0x40,}
+\DoxyCodeLine{00151\ \ \ \ \ 0x00,\ 0x10,\ 0x00,\ 0x10,}
+\DoxyCodeLine{00152\ \ \ \ \ 0x01,\ 0x00,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00153\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x01,}
+\DoxyCodeLine{00154\ \ \ \ \ 0x54,\ 0x58,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00155\ \ \ \ \ 0x04,\ 0x1A,\ 0x02,\ 0x00,}
+\DoxyCodeLine{00156\ \ \ \ \ 0x54,\ 0x5C,\ 0x01,\ 0x40,}
+\DoxyCodeLine{00157\ \ \ \ \ 0x00,\ 0x01,\ 0x00,\ 0x51,}
+\DoxyCodeLine{00158\ \ \ \ \ 0x00,\ 0x00,\ 0x0F,\ 0xA0,}
+\DoxyCodeLine{00159\ \ \ \ \ 0x0F,\ 0xA0,\ 0x03,\ 0xE8,}
+\DoxyCodeLine{00160\ \ \ \ \ 0x02,\ 0x80,\ 0x1F,\ 0x40,}
+\DoxyCodeLine{00161\ \ \ \ \ 0x00,\ 0x00,\ 0x05,\ 0x00,}
+\DoxyCodeLine{00162\ \ \ \ \ 0x54,\ 0x70,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00163\ \ \ \ \ 0x03,\ 0x20,\ 0x03,\ 0x20,}
+\DoxyCodeLine{00164\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x08,}
+\DoxyCodeLine{00165\ \ \ \ \ 0x54,\ 0x78,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00166\ \ \ \ \ 0x01,\ 0x1B,\ 0x00,\ 0x21,}
+\DoxyCodeLine{00167\ \ \ \ \ 0x00,\ 0x33,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00168\ \ \ \ \ 0x02,\ 0x00,\ 0x00,\ 0x01,}
+\DoxyCodeLine{00169\ \ \ \ \ 0x04,\ 0x01,\ 0x08,\ \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_af034a41d1f991766148316a5e48927da}{VL53L8CX\_FW\_NBTAR\_XTALK}},}
+\DoxyCodeLine{00170\ \ \ \ \ 0x54,\ 0x88,\ 0x01,\ 0x40,}
+\DoxyCodeLine{00171\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00172\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00173\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00174\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00175\ \ \ \ \ 0x00,\ 0x00,\ 0x08,\ 0x00,}
+\DoxyCodeLine{00176\ \ \ \ \ 0xAD,\ 0x48,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00177\ \ \ \ \ 0x01,\ 0xF4,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00178\ \ \ \ \ 0x03,\ 0x06,\ 0x00,\ 0x10,}
+\DoxyCodeLine{00179\ \ \ \ \ 0x08,\ 0x08,\ 0x08,\ 0x08,}
+\DoxyCodeLine{00180\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x08,}
+\DoxyCodeLine{00181\ \ \ \ \ 0xAD,\ 0x60,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00182\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00183\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00184\ \ \ \ \ 0x20,\ 0x1F,\ 0x01,\ 0xF4,}
+\DoxyCodeLine{00185\ \ \ \ \ 0x00,\ 0x00,\ 0x1D,\ 0x0A,}
+\DoxyCodeLine{00186\ \ \ \ \ 0xAD,\ 0x70,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00187\ \ \ \ \ 0x08,\ 0x00,\ 0x1F,\ 0x40,}
+\DoxyCodeLine{00188\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x01,}
+\DoxyCodeLine{00189\ \ \ \ \ 0xAD,\ 0x78,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00190\ \ \ \ \ 0x00,\ 0xA0,\ 0x03,\ 0x20,}
+\DoxyCodeLine{00191\ \ \ \ \ 0x00,\ 0x01,\ 0x01,\ 0x90,}
+\DoxyCodeLine{00192\ \ \ \ \ 0xAD,\ 0x80,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00193\ \ \ \ \ 0x00,\ 0x00,\ 0x28,\ 0x00,}
+\DoxyCodeLine{00194\ \ \ \ \ 0xAD,\ 0x84,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00195\ \ \ \ \ 0x00,\ 0x00,\ 0x32,\ 0x00,}
+\DoxyCodeLine{00196\ \ \ \ \ 0x03,\ 0x20,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00197\ \ \ \ \ 0xAD,\ 0x8C,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00198\ \ \ \ \ 0x02,\ 0x58,\ 0xFF,\ 0x38,}
+\DoxyCodeLine{00199\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0C,}
+\DoxyCodeLine{00200\ \ \ \ \ 0xAD,\ 0x94,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00201\ \ \ \ \ 0x00,\ 0x01,\ 0x90,\ 0x00,}
+\DoxyCodeLine{00202\ \ \ \ \ 0xFF,\ 0xFF,\ 0xFC,\ 0x00,}
+\DoxyCodeLine{00203\ \ \ \ \ 0x00,\ 0x00,\ 0x04,\ 0x00,}
+\DoxyCodeLine{00204\ \ \ \ \ 0x00,\ 0x00,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00205\ \ \ \ \ 0xAD,\ 0xA4,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{00206\ \ \ \ \ 0x04,\ 0x80,\ 0x06,\ 0x1A,}
+\DoxyCodeLine{00207\ \ \ \ \ 0x00,\ 0x80,\ 0x05,\ 0x80,}
+\DoxyCodeLine{00208\ \ \ \ \ 0x00,\ 0x00,\ 0x01,\ 0x06,}
+\DoxyCodeLine{00209\ \ \ \ \ 0xAD,\ 0xB0,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{00210\ \ \ \ \ 0x04,\ 0x80,\ 0x06,\ 0x1A,}
+\DoxyCodeLine{00211\ \ \ \ \ 0x19,\ 0x00,\ 0x05,\ 0x80,}
+\DoxyCodeLine{00212\ \ \ \ \ 0x00,\ 0x00,\ 0x01,\ 0x90,}
+\DoxyCodeLine{00213\ \ \ \ \ 0xAD,\ 0xBC,\ 0x04,\ 0x40,}
+\DoxyCodeLine{00214\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00215\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00216\ \ \ \ \ 0x00,\ 0x12,\ 0x00,\ 0x25,}
+\DoxyCodeLine{00217\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x06,}
+\DoxyCodeLine{00218\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x05,}
+\DoxyCodeLine{00219\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x05,}
+\DoxyCodeLine{00220\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x06,}
+\DoxyCodeLine{00221\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x04,}
+\DoxyCodeLine{00222\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0F,}
+\DoxyCodeLine{00223\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x5A,}
+\DoxyCodeLine{00224\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00225\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x09,}
+\DoxyCodeLine{00226\ \ \ \ \ 0x0B,\ 0x0C,\ 0x0B,\ 0x0B,}
+\DoxyCodeLine{00227\ \ \ \ \ 0x03,\ 0x03,\ 0x11,\ 0x05,}
+\DoxyCodeLine{00228\ \ \ \ \ 0x01,\ 0x01,\ 0x01,\ 0x01,}
+\DoxyCodeLine{00229\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00230\ \ \ \ \ 0x00,\ 0x0D,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00231\ \ \ \ \ 0xAE,\ 0x00,\ 0x01,\ 0x04,}
+\DoxyCodeLine{00232\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x04,}
+\DoxyCodeLine{00233\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x08,}
+\DoxyCodeLine{00234\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0A,}
+\DoxyCodeLine{00235\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0C,}
+\DoxyCodeLine{00236\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0D,}
+\DoxyCodeLine{00237\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0E,}
+\DoxyCodeLine{00238\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x08,}
+\DoxyCodeLine{00239\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x08,}
+\DoxyCodeLine{00240\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x10,}
+\DoxyCodeLine{00241\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x10,}
+\DoxyCodeLine{00242\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x20,}
+\DoxyCodeLine{00243\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x20,}
+\DoxyCodeLine{00244\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x06,}
+\DoxyCodeLine{00245\ \ \ \ \ 0x00,\ 0x00,\ 0x05,\ 0x0A,}
+\DoxyCodeLine{00246\ \ \ \ \ 0x02,\ 0x00,\ 0x0C,\ 0x08,}
+\DoxyCodeLine{00247\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00248\ \ \ \ \ 0xAE,\ 0x40,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00249\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFF,}
+\DoxyCodeLine{00250\ \ \ \ \ 0xAE,\ 0x44,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00251\ \ \ \ \ 0x00,\ 0x10,\ 0x04,\ 0x01,}
+\DoxyCodeLine{00252\ \ \ \ \ 0xAE,\ 0x48,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00253\ \ \ \ \ 0x00,\ 0x00,\ 0x10,\ 0x00,}
+\DoxyCodeLine{00254\ \ \ \ \ 0xAE,\ 0x4C,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00255\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x01,}
+\DoxyCodeLine{00256\ \ \ \ \ 0xAE,\ 0x50,\ 0x01,\ 0x40,}
+\DoxyCodeLine{00257\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x14,}
+\DoxyCodeLine{00258\ \ \ \ \ 0x04,\ 0x00,\ 0x28,\ 0x00,}
+\DoxyCodeLine{00259\ \ \ \ \ 0x03,\ 0x20,\ 0x6C,\ 0x00,}
+\DoxyCodeLine{00260\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00261\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00262\ \ \ \ \ 0xAE,\ 0x64,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00263\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x01,}
+\DoxyCodeLine{00264\ \ \ \ \ 0xAE,\ 0xD8,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00265\ \ \ \ \ 0x00,\ 0xC8,\ 0x05,\ 0xDC,}
+\DoxyCodeLine{00266\ \ \ \ \ 0x00,\ 0x00,\ 0x0C,\ 0xCD,}
+\DoxyCodeLine{00267\ \ \ \ \ 0x01,\ 0x04,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00268\ \ \ \ \ 0x00,\ 0x01,\ 0x26,\ 0x01,}
+\DoxyCodeLine{00269\ \ \ \ \ 0xB5,\ 0x50,\ 0x02,\ 0x82,}
+\DoxyCodeLine{00270\ \ \ \ \ 0xA3,\ 0xE8,\ 0xA3,\ 0xB8,}
+\DoxyCodeLine{00271\ \ \ \ \ 0xA4,\ 0x38,\ 0xA4,\ 0x28,}
+\DoxyCodeLine{00272\ \ \ \ \ 0xA6,\ 0x48,\ 0xA4,\ 0x48,}
+\DoxyCodeLine{00273\ \ \ \ \ 0xA7,\ 0x88,\ 0xA7,\ 0x48,}
+\DoxyCodeLine{00274\ \ \ \ \ 0xAC,\ 0x10,\ 0xA7,\ 0x90,}
+\DoxyCodeLine{00275\ \ \ \ \ 0x99,\ 0xBC,\ 0x99,\ 0xB4,}
+\DoxyCodeLine{00276\ \ \ \ \ 0x9A,\ 0xFC,\ 0x9A,\ 0xBC,}
+\DoxyCodeLine{00277\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00278\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00279\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00280\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00281\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00282\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00283\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00284\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00285\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00286\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00287\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00288\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00289\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00290\ \ \ \ \ 0xB5,\ 0xA0,\ 0x02,\ 0x82,}
+\DoxyCodeLine{00291\ \ \ \ \ 0x00,\ 0x88,\ 0x03,\ 0x00,}
+\DoxyCodeLine{00292\ \ \ \ \ 0x00,\ 0x82,\ 0x00,\ 0x82,}
+\DoxyCodeLine{00293\ \ \ \ \ 0x04,\ 0x04,\ 0x04,\ 0x08,}
+\DoxyCodeLine{00294\ \ \ \ \ 0x00,\ 0x80,\ 0x04,\ 0x01,}
+\DoxyCodeLine{00295\ \ \ \ \ 0x09,\ 0x02,\ 0x09,\ 0x08,}
+\DoxyCodeLine{00296\ \ \ \ \ 0x04,\ 0x04,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00297\ \ \ \ \ 0x04,\ 0x01,\ 0x04,\ 0x01,}
+\DoxyCodeLine{00298\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00299\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00300\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00301\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00302\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00303\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00304\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00305\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00306\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00307\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00308\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00309\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00310\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00311\ \ \ \ \ 0xB5,\ 0xF0,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00312\ \ \ \ \ 0x00,\ 0x04,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00313\ \ \ \ \ 0xB3,\ 0x9C,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00314\ \ \ \ \ 0x40,\ 0x00,\ 0x05,\ 0x1E,}
+\DoxyCodeLine{00315\ \ \ \ \ 0x02,\ 0x1B,\ 0x08,\ 0x7C,}
+\DoxyCodeLine{00316\ \ \ \ \ 0x80,\ 0x00,\ 0x12,\ 0x01,}
+\DoxyCodeLine{00317\ \ \ \ \ 0x00,\ 0x01,\ 0x08,\ 0x00,}
+\DoxyCodeLine{00318\ \ \ \ \ 0xB6,\ 0xC0,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{00319\ \ \ \ \ 0x00,\ 0x00,\ 0x60,\ 0x00,}
+\DoxyCodeLine{00320\ \ \ \ \ 0x00,\ 0x00,\ 0x20,\ 0x00,}
+\DoxyCodeLine{00321\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00322\ \ \ \ \ 0xAE,\ 0xA8,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00323\ \ \ \ \ 0x00,\ 0x00,\ 0x04,\ 0x05,}
+\DoxyCodeLine{00324\ \ \ \ \ 0xAE,\ 0xAC,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00325\ \ \ \ \ 0x01,\ 0x00,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00326\ \ \ \ \ 0x00,\ 0x02,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00327\ \ \ \ \ 0xAE,\ 0xB4,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00328\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00329\ \ \ \ \ 0xAE,\ 0xB8,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00330\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00331\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00332\ \ \ \ \ 0xAE,\ 0xC0,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00333\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00334\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00335\ \ \ \ \ 0xAE,\ 0xC8,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00336\ \ \ \ \ 0x08,\ 0x01,\ 0x01,\ 0x08,}
+\DoxyCodeLine{00337\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x08,}
+\DoxyCodeLine{00338\ \ \ \ \ 0xAE,\ 0xD0,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00339\ \ \ \ \ 0x01,\ 0x08,\ 0x08,\ 0x08,}
+\DoxyCodeLine{00340\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x01,}
+\DoxyCodeLine{00341\ \ \ \ \ 0xB5,\ 0xF4,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00342\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00343\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00344\ \ \ \ \ 0xB5,\ 0xFC,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00345\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00346\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00347\ \ \ \ \ 0xB6,\ 0x04,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00348\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00349\ \ \ \ \ 0xB6,\ 0x08,\ 0x00,\ 0x44,}
+\DoxyCodeLine{00350\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00351\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00352\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00353\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00354\ \ \ \ \ 0xB6,\ 0x18,\ 0x00,\ 0x44,}
+\DoxyCodeLine{00355\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00356\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00357\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00358\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00359\ \ \ \ \ 0xB6,\ 0x28,\ 0x00,\ 0x44,}
+\DoxyCodeLine{00360\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00361\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00362\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00363\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00364\ \ \ \ \ 0xB6,\ 0x38,\ 0x00,\ 0x44,}
+\DoxyCodeLine{00365\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00366\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00367\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00368\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00369\ \ \ \ \ 0xB6,\ 0x48,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00370\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00371\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00372\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00373\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00374\ \ \ \ \ 0xB6,\ 0x58,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00375\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00376\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00377\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00378\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00379\ \ \ \ \ 0xB6,\ 0x68,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00380\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00381\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00382\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00383\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00384\ \ \ \ \ 0x54,\ 0x70,\ 0x00,\ 0x80,}
+\DoxyCodeLine{00385\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,}
+\DoxyCodeLine{00386\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x02,}
+\DoxyCodeLine{00387\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0F,}
+\DoxyCodeLine{00388\ \ \ \ \ 0x00,\ 0x01,\ 0x03,\ 0xD4}
+\DoxyCodeLine{00389\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}.
+
+\Hypertarget{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5}\index{vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}!VL53L8CX\_GET\_XTALK\_CMD@{VL53L8CX\_GET\_XTALK\_CMD}}
+\index{VL53L8CX\_GET\_XTALK\_CMD@{VL53L8CX\_GET\_XTALK\_CMD}!vl53l8cx\_plugin\_xtalk.h@{vl53l8cx\_plugin\_xtalk.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_GET\_XTALK\_CMD}{VL53L8CX\_GET\_XTALK\_CMD}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__xtalk_8h_aeae226bcd520b899b7d88b50310b99d5} 
+const uint8\+\_\+t VL53\+L8\+CX\+\_\+\+GET\+\_\+\+XTALK\+\_\+\+CMD\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ 0x54,\ 0x00,\ 0x00,\ 0x40,}
+\DoxyCodeLine{\ \ \ \ 0x9F,\ 0xD8,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{\ \ \ \ 0x9F,\ 0xE4,\ 0x01,\ 0x40,}
+\DoxyCodeLine{\ \ \ \ 0x9F,\ 0xF8,\ 0x00,\ 0x40,}
+\DoxyCodeLine{\ \ \ \ 0x9F,\ 0xFC,\ 0x04,\ 0x04,}
+\DoxyCodeLine{\ \ \ \ 0xA0,\ 0xFC,\ 0x01,\ 0x00,}
+\DoxyCodeLine{\ \ \ \ 0xA1,\ 0x0C,\ 0x01,\ 0x00,}
+\DoxyCodeLine{\ \ \ \ 0xA1,\ 0x1C,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{\ \ \ \ 0xA1,\ 0x28,\ 0x09,\ 0x02,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x48,\ 0x00,\ 0x40,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x4C,\ 0x00,\ 0x81,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x54,\ 0x00,\ 0x81,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x5C,\ 0x00,\ 0x81,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x64,\ 0x00,\ 0x81,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x6C,\ 0x00,\ 0x84,}
+\DoxyCodeLine{\ \ \ \ 0xA2,\ 0x8C,\ 0x00,\ 0x82,}
+\DoxyCodeLine{\ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0F,}
+\DoxyCodeLine{\ \ \ \ 0x07,\ 0x02,\ 0x00,\ 0x44}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Command used to get Xtalk calibration data. 
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source_l00117}{117}} of file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h_source}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ 0x54,\ 0x00,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00119\ \ \ \ \ 0x9F,\ 0xD8,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{00120\ \ \ \ \ 0x9F,\ 0xE4,\ 0x01,\ 0x40,}
+\DoxyCodeLine{00121\ \ \ \ \ 0x9F,\ 0xF8,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00122\ \ \ \ \ 0x9F,\ 0xFC,\ 0x04,\ 0x04,}
+\DoxyCodeLine{00123\ \ \ \ \ 0xA0,\ 0xFC,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00124\ \ \ \ \ 0xA1,\ 0x0C,\ 0x01,\ 0x00,}
+\DoxyCodeLine{00125\ \ \ \ \ 0xA1,\ 0x1C,\ 0x00,\ 0xC0,}
+\DoxyCodeLine{00126\ \ \ \ \ 0xA1,\ 0x28,\ 0x09,\ 0x02,}
+\DoxyCodeLine{00127\ \ \ \ \ 0xA2,\ 0x48,\ 0x00,\ 0x40,}
+\DoxyCodeLine{00128\ \ \ \ \ 0xA2,\ 0x4C,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00129\ \ \ \ \ 0xA2,\ 0x54,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00130\ \ \ \ \ 0xA2,\ 0x5C,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00131\ \ \ \ \ 0xA2,\ 0x64,\ 0x00,\ 0x81,}
+\DoxyCodeLine{00132\ \ \ \ \ 0xA2,\ 0x6C,\ 0x00,\ 0x84,}
+\DoxyCodeLine{00133\ \ \ \ \ 0xA2,\ 0x8C,\ 0x00,\ 0x82,}
+\DoxyCodeLine{00134\ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x0F,}
+\DoxyCodeLine{00135\ \ \ \ \ 0x07,\ 0x02,\ 0x00,\ 0x44}
+\DoxyCodeLine{00136\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, and \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00290}{vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk()}}.
+

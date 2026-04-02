@@ -1,0 +1,19 @@
+<map id="components/sensor_acq/include/lidar_driver.h" name="components/sensor_acq/include/lidar_driver.h">
+<area shape="rect" id="Node000001" title="Interface publique du driver LIDAR VL53L8CX — acquisition et fusion 8×32." alt="" coords="316,5,479,48"/>
+<area shape="rect" id="Node000002" href="$system__types_8h.html" title="Contrat de données partagé entre tous les composants du firmware LexaCare V1." alt="" coords="282,96,396,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="385,50,359,85,355,82,380,47"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="420,96,495,123"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="415,47,441,82,437,85,411,50"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,171,70,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="283,126,85,173,84,167,281,121"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="94,171,168,197"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="303,126,182,168,181,163,302,121"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="192,171,334,197"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="327,125,289,162,285,158,324,121"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="358,171,474,197"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="354,121,394,158,390,162,350,125"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="498,171,622,197"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="378,121,508,163,506,168,377,126"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="646,171,778,197"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="397,119,633,165,632,170,396,124"/>
+</map>

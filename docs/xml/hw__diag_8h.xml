@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="hw__diag_8h" kind="file" language="C++">
+    <compoundname>hw_diag.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="yes">driver/i2c_master.h</includes>
+    <includedby refid="hw__diag_8c" local="yes">components/hw_diag/hw_diag.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>components/hw_diag/include/hw_diag.h</label>
+        <link refid="hw__diag_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/hw_diag/hw_diag.c</label>
+        <link refid="hw__diag_8c"/>
+      </node>
+      <node id="1">
+        <label>components/hw_diag/include/hw_diag.h</label>
+        <link refid="hw__diag_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="enum">
+      <member refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kind="enum"><name>hw_diag_result_t</name></member>
+    </sectiondef>
+    <sectiondef kind="func">
+      <member refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kind="function"><name>hw_diag_run</name></member>
+      <member refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kind="function"><name>hw_diag_init_sensor_bus</name></member>
+      <member refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kind="function"><name>hw_diag_pca9555_set_power</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du diagnostic matériel au démarrage. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run()</ref> doit être appelée dans <ref refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" kindref="member">app_main()</ref> AVANT la création des tâches FreeRTOS. Elle initialise les bus I2C partagés et remplit les champs lidar_ok[] et radar_ok de <ref refid="structsys__context__t" kindref="compound">sys_context_t</ref>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>hw_diag.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>diagnostic<sp/>matériel<sp/>au<sp/>démarrage.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>hw_diag_run()<sp/>doit<sp/>être<sp/>appelée<sp/>dans<sp/>app_main()<sp/>AVANT<sp/>la<sp/>création</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>des<sp/>tâches<sp/>FreeRTOS.<sp/>Elle<sp/>initialise<sp/>les<sp/>bus<sp/>I2C<sp/>partagés<sp/>et</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>remplit<sp/>les<sp/>champs<sp/>lidar_ok[]<sp/>et<sp/>radar_ok<sp/>de<sp/>sys_context_t.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/i2c_master.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="16"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_hw_diag<sp/>Diagnostic<sp/>Matériel</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Vérifications<sp/>au<sp/>démarrage<sp/>:<sp/>bus,<sp/>capteurs,<sp/>et<sp/>expandeur<sp/>PCA9555.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>Raison<sp/>d&apos;être<sp/>:</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>-<sp/>détecter<sp/>tôt<sp/>les<sp/>problèmes<sp/>de<sp/>câblage<sp/>ou<sp/>d&apos;alimentation</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>-<sp/>éviter<sp/>de<sp/>lancer<sp/>des<sp/>tâches<sp/>qui<sp/>bloqueraient<sp/>si<sp/>un<sp/>périphérique<sp/>est<sp/>absent</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>-<sp/>produire<sp/>un<sp/>rapport<sp/>lisible<sp/>(JSON)<sp/>pour<sp/>accélérer<sp/>le<sp/>diagnostic<sp/>côté<sp/>PC</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>hw_diag_result_t</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Masque<sp/>de<sp/>bits<sp/>indiquant<sp/>les<sp/>composants<sp/>défaillants.</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>HW_DIAG_OK<sp/>(0)<sp/>=<sp/>tout<sp/>fonctionne.</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="34" refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd" kindref="member">HW_DIAG_OK</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0x00,</highlight></codeline>
+<codeline lineno="35" refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" kindref="member">HW_DIAG_LIDAR_PARTIAL</ref><sp/>=<sp/>0x01,<sp/></highlight><highlight class="comment">/**&lt;<sp/>Au<sp/>moins<sp/>un<sp/>LIDAR<sp/>absent<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" kindref="member">HW_DIAG_LIDAR_ALL</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>0x02,<sp/></highlight><highlight class="comment">/**&lt;<sp/>Aucun<sp/>LIDAR<sp/>détecté<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" kindref="member">HW_DIAG_RADAR_MISSING</ref><sp/>=<sp/>0x04,<sp/></highlight><highlight class="comment">/**&lt;<sp/>Radar<sp/>LD6002<sp/>non<sp/>détecté<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}<sp/><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>hw_diag_run</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Exécute<sp/>le<sp/>diagnostic<sp/>matériel<sp/>complet<sp/>et<sp/>remplit<sp/>sys_context_t.</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>Séquence<sp/>:</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>Initialise<sp/>I2C_NUM_0<sp/>(SDA=8,<sp/>SCL=9)<sp/>et<sp/>I2C_NUM_1<sp/>(SDA=16,<sp/>SCL=15).</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>Met<sp/>tous<sp/>les<sp/>LPn<sp/>à<sp/>0<sp/>(reset<sp/>global<sp/>de<sp/>tous<sp/>les<sp/>VL53L8CX).</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>Active<sp/>les<sp/>LIDARs<sp/>un<sp/>par<sp/>un<sp/>:<sp/>LPn=1,<sp/>attente<sp/>5<sp/>ms,</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>probe<sp/>I2C<sp/>à<sp/>LIDAR_I2C_ADDR_DEFAULT<sp/>(0x29),</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>si<sp/>OK<sp/>→<sp/>réassigne<sp/>l&apos;adresse<sp/>à<sp/>(LIDAR_I2C_ADDR_BASE<sp/>+<sp/>i).</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4.<sp/>Configure<sp/>UART2<sp/>à<sp/>1382400<sp/>bauds<sp/>(LD6002).</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>Écoute<sp/>RX<sp/>pendant<sp/>2000<sp/>ms<sp/>et<sp/>valide<sp/>la<sp/>trame<sp/>TinyFrame.</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/><sp/><sp/>5.<sp/>Formate<sp/>le<sp/>rapport<sp/>JSON<sp/>avec<sp/>cJSON<sp/>et<sp/>l&apos;imprime<sp/>sur<sp/>la<sp/>console.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/><sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système<sp/>(rempli<sp/>par<sp/>cette<sp/>fonction).</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>@return<sp/><sp/><sp/><sp/><sp/>Masque<sp/>hw_diag_result_t<sp/>(0<sp/>=<sp/>succès<sp/>total).</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref><sp/><ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>hw_diag_init_sensor_bus</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>bus<sp/>I2C_NUM_1<sp/>(SDA=10,<sp/>SCL=9)<sp/>dédié<sp/>aux</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>capteurs<sp/>environnementaux<sp/>(HDC1080,<sp/>BME280,<sp/>MLX90640).</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>À<sp/>appeler<sp/>depuis<sp/>app_main()<sp/>après<sp/>hw_diag_run().</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>Le<sp/>handle<sp/>retourné<sp/>doit<sp/>être<sp/>passé<sp/>aux<sp/>drivers<sp/>(hdc1080_init,<sp/>bme280_init).</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>@param<sp/>out_handle<sp/><sp/>Pointeur<sp/>vers<sp/>le<sp/>handle<sp/>de<sp/>bus<sp/>à<sp/>remplir.</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kindref="member">hw_diag_init_sensor_bus</ref>(i2c_master_bus_handle_t<sp/>*out_handle);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>hw_diag_pca9555_set_power</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Active<sp/>ou<sp/>désactive<sp/>une<sp/>alimentation<sp/>sous-système<sp/>via</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>le<sp/>PCA9555D<sp/>Port<sp/>1<sp/>(IO1.4–IO1.7).</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>Exemples<sp/>:</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/><sp/><sp/>hw_diag_pca9555_set_power(PCA9555_BIT_PWR_MIC,<sp/><sp/><sp/>true);<sp/><sp/>→<sp/>alim<sp/>micro<sp/>ON</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/><sp/><sp/>hw_diag_pca9555_set_power(PCA9555_BIT_PWR_RADAR,<sp/>true);<sp/><sp/>→<sp/>alim<sp/>radar<sp/>ON</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/><sp/><sp/>hw_diag_pca9555_set_power(PCA9555_BIT_PWR_FAN,<sp/><sp/><sp/>false);<sp/>→<sp/>ventilateur<sp/>OFF</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>Prérequis<sp/>:<sp/>hw_diag_run()<sp/>doit<sp/>avoir<sp/>été<sp/>appelée.</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>@param<sp/>port1_bit<sp/><sp/>Masque<sp/>de<sp/>bit<sp/>Port<sp/>1<sp/>(PCA9555_BIT_PWR_*).</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/>*<sp/>@param<sp/>enable<sp/><sp/><sp/><sp/><sp/>true<sp/>=<sp/>mettre<sp/>à<sp/>1,<sp/>false<sp/>=<sp/>mettre<sp/>à<sp/>0.</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kindref="member">hw_diag_pca9555_set_power</ref>(uint8_t<sp/>port1_bit,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>enable);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="90"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_hw_diag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/hw_diag/include/hw_diag.h"/>
+  </compounddef>
+</doxygen>

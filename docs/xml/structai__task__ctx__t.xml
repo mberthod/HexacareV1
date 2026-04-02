@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structai__task__ctx__t" kind="struct" language="C++" prot="public">
+    <compoundname>ai_task_ctx_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" prot="public" static="no" mutable="no">
+        <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+        <definition>sys_context_t* ai_task_ctx_t::sys_ctx</definition>
+        <argsstring></argsstring>
+        <name>sys_ctx</name>
+        <qualifiedname>ai_task_ctx_t::sys_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="83" column="19" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="83" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ai_task_ctx_t::dist_history[CONFIG_AI_HISTORY_LEN]</definition>
+        <argsstring>[CONFIG_AI_HISTORY_LEN]</argsstring>
+        <name>dist_history</name>
+        <qualifiedname>ai_task_ctx_t::dist_history</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="86" column="12" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="86" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ai_task_ctx_t::history_head</definition>
+        <argsstring></argsstring>
+        <name>history_head</name>
+        <qualifiedname>ai_task_ctx_t::history_head</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="87" column="12" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="87" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ai_task_ctx_t::history_full</definition>
+        <argsstring></argsstring>
+        <name>history_full</name>
+        <qualifiedname>ai_task_ctx_t::history_full</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="88" column="12" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="88" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="1">
+        <label>ai_task_ctx_t</label>
+        <link refid="structai__task__ctx__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sys_ctx</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>enviro_data_t</label>
+        <link refid="structenviro__data__t"/>
+      </node>
+      <node id="4">
+        <label>lidar_matrix_t</label>
+        <link refid="structlidar__matrix__t"/>
+      </node>
+      <node id="7">
+        <label>mic_data_t</label>
+        <link refid="structmic__data__t"/>
+      </node>
+      <node id="5">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="3">
+        <label>sensor_frame_t</label>
+        <link refid="structsensor__frame__t"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lidar</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>radar</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sys_context_t</label>
+        <link refid="structsys__context__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>latest_sensor</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>enviro</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mic</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/ai_engine/fall_detection_ai.cc" line="82" column="1" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="82" bodyend="94"/>
+    <listofallmembers>
+      <member refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" prot="public" virt="non-virtual"><scope>ai_task_ctx_t</scope><name>dist_history</name></member>
+      <member refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" prot="public" virt="non-virtual"><scope>ai_task_ctx_t</scope><name>history_full</name></member>
+      <member refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" prot="public" virt="non-virtual"><scope>ai_task_ctx_t</scope><name>history_head</name></member>
+      <member refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" prot="public" virt="non-virtual"><scope>ai_task_ctx_t</scope><name>sys_ctx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

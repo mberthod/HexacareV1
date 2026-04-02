@@ -1,0 +1,116 @@
+\doxysection{panic\+\_\+handler.\+c}
+\hypertarget{panic__handler_8c_source}{}\label{panic__handler_8c_source}\index{components/sys\_storage/panic\_handler.c@{components/sys\_storage/panic\_handler.c}}
+\mbox{\hyperlink{panic__handler_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ panic\_handler.c}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_storage}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Capture\ des\ paniques\ système\ et\ écriture\ dans\ LittleFS.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Architecture\ :}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ Le\ système\ ESP-\/IDF\ ne\ permet\ pas\ un\ accès\ fiable\ au\ système\ de\ fichiers}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ pendant\ une\ panique\ matérielle\ (le\ heap\ peut\ être\ corrompu).\ La\ stratégie}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ adoptée\ est\ donc\ à\ deux\ niveaux\ :}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00010}00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ Niveau\ 1\ —\ shutdown\ handler\ (redémarrages\ propres\ via\ esp\_restart())\ :}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ \ \ Appelé\ avant\ le\ reset.\ Écrit\ un\ message\ de\ redémarrage\ dans\ panic.log.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00013}00013\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ Niveau\ 2\ —\ RTC\ memory\ (paniques\ matérielles,\ watchdog)\ :}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00015}00015\ \textcolor{comment}{\ *\ \ \ \ \ Lors\ d'une\ panique,\ un\ flag\ et\ un\ message\ courts\ sont\ stockés\ en}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ \ \ RTC\_DATA\_ATTR\ (survit\ au\ reset\ sans\ coupure\ secteur).}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ \ \ Au\ prochain\ boot,\ panic\_handler\_check\_on\_boot()\ lit\ ce\ flag\ et}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ \ \ l'écrit\ dans\ panic.log\ avant\ d'effacer\ le\ flag.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00019}00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00020}00020\ \textcolor{comment}{\ *\ Note\ :\ CONFIG\_ESP\_SYSTEM\_PANIC\_PRINT\_REBOOT=y\ dans\ sdkconfig.defaults}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00021}00021\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ garantit\ que\ le\ backtrace\ complet\ est\ imprimé\ sur\ la\ console\ UART}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00022}00022\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ avant\ le\ redémarrage\ —\ complément\ indispensable\ pour\ le\ débogage.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00023}00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sys__storage_8h}{sys\_storage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}esp\_system.h"{}}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}esp\_timer.h"{}}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}esp\_task\_wdt.h"{}}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00030}00030\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00031}00031\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00032}00032\ \textcolor{preprocessor}{\#include\ <time.h>}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00034}\mbox{\hyperlink{panic__handler_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00034}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}panic\_handler"{}};}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00036}00036\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00037}00037\ \textcolor{comment}{\ *\ Variables\ RTC\ —\ survivent\ au\ reset\ sans\ coupure\ secteur}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00038}00038\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00039}\mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{00039}}\ \textcolor{keyword}{static}\ RTC\_DATA\_ATTR\ uint32\_t\ \mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00040}\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{00040}}\ \textcolor{keyword}{static}\ RTC\_DATA\_ATTR\ \textcolor{keywordtype}{char}\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}}[192];}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00041}\mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{00041}}\ \textcolor{keyword}{static}\ RTC\_DATA\_ATTR\ int64\_t\ \ \mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{s\_panic\_time\_us}};}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00043}\mbox{\hyperlink{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}{00043}}\ \textcolor{preprocessor}{\#define\ PANIC\_MAGIC\_VALUE\ \ 0xDEADCAFEU}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00045}00045\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00046}00046\ \textcolor{comment}{\ *\ shutdown\_handler\ (interne)}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00047}00047\ \textcolor{comment}{\ *\ @brief\ Appelée\ par\ esp\_restart()\ —\ redémarrage\ propre.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00048}00048\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00049}00049\ \textcolor{comment}{\ *\ Positionne\ le\ flag\ RTC\ avec\ un\ message\ de\ redémarrage\ volontaire.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00050}00050\ \textcolor{comment}{\ *\ La\ trame\ sera\ écrite\ dans\ panic.log\ au\ prochain\ boot.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00051}00051\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00052}\mbox{\hyperlink{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60}{00052}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60}{shutdown\_handler}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00053}00053\ \{}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00054}00054\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ \ \ =\ \mbox{\hyperlink{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}{PANIC\_MAGIC\_VALUE}};}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00055}00055\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{s\_panic\_time\_us}}\ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00056}00056\ \ \ \ \ strncpy(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}},\ \textcolor{stringliteral}{"{}Redémarrage\ propre\ via\ esp\_restart()"{}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}})\ -\/\ 1);}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00057}00057\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00058}00058\ \}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00060}00060\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00061}00061\ \textcolor{comment}{\ *\ panic\_handler\_install}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00062}00062\ \textcolor{comment}{\ *\ @brief\ Installe\ le\ shutdown\ handler\ et\ initialise\ les\ variables\ RTC.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00063}00063\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00064}00064\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ l'installation\ réussit.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00065}00065\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00066}\mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{00066}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{panic\_handler\_install}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00067}00067\ \{}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00068}00068\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_register\_shutdown\_handler(\mbox{\hyperlink{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60}{shutdown\_handler}}));}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00069}00069\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Shutdown\ handler\ installé"{}});}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00071}00071\ \}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00073}00073\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00074}00074\ \textcolor{comment}{\ *\ panic\_handler\_check\_on\_boot}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00075}00075\ \textcolor{comment}{\ *\ @brief\ Vérifie\ le\ flag\ RTC\ et\ écrit\ l'info\ dans\ panic.log\ si\ présent.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00076}00076\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00077}00077\ \textcolor{comment}{\ *\ Doit\ être\ appelée\ APRÈS\ littlefs\_manager\_init()\ pour\ que\ le}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00078}00078\ \textcolor{comment}{\ *\ système\ de\ fichiers\ soit\ disponible.}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00079}00079\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00080}\mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{00080}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\_handler\_check\_on\_boot}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00081}00081\ \{}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00082}00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ !=\ \mbox{\hyperlink{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}{PANIC\_MAGIC\_VALUE}})\ \{}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Aucun\ crash\ précédent\ détecté\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00085}00085\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00087}00087\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Crash\ détecté\ lors\ du\ précédent\ boot\ —\ écriture\ dans\ panic.log"{}});}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00089}00089\ \ \ \ \ \textcolor{comment}{/*\ Formatage\ du\ message\ avec\ horodatage\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{char}\ entry[256];}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00091}00091\ \ \ \ \ \textcolor{keywordtype}{double}\ secs\ =\ (double)\mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{s\_panic\_time\_us}}\ /\ 1e6;}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00092}00092\ \ \ \ \ snprintf(entry,\ \textcolor{keyword}{sizeof}(entry),}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}[\%10.3f]\ PANIC:\ \%s\(\backslash\)n"{}},}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ secs,\ \mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}});}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00096}00096\ \ \ \ \ \textcolor{comment}{/*\ Écriture\ bloquante/synchrone\ dans\ panic.log\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00097}00097\ \ \ \ \ FILE\ *f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}a"{}});}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00098}00098\ \ \ \ \ \textcolor{keywordflow}{if}\ (f)\ \{}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00099}00099\ \ \ \ \ \ \ \ \ fwrite(entry,\ 1,\ strlen(entry),\ f);}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ fflush(f);}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Entrée\ de\ panique\ écrite\ dans\ \%s"{}},\ \mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\_FILE\_PATH}});}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00103}00103\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Impossible\ d'ouvrir\ \%s"{}},\ \mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\_FILE\_PATH}});}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00105}00105\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00107}00107\ \ \ \ \ \textcolor{comment}{/*\ Effacement\ du\ flag\ pour\ ne\ pas\ réécrire\ au\ prochain\ boot\ */}}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00108}00108\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00109}00109\ \ \ \ \ memset(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}}));}
+\DoxyCodeLine{\Hypertarget{panic__handler_8c_source_l00110}00110\ \}}
+
+\end{DoxyCode}

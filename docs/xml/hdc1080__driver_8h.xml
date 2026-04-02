@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="hdc1080__driver_8h" kind="file" language="C++">
+    <compoundname>hdc1080_driver.h</compoundname>
+    <includes local="yes">driver/i2c_master.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="hdc1080__driver_8c" local="yes">components/sensor_acq/hdc1080_driver.c</includedby>
+    <includedby refid="lidar__driver_8c" local="yes">components/sensor_acq/lidar_driver.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>components/sensor_acq/include/hdc1080_driver.h</label>
+        <link refid="hdc1080__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="3">
+        <label>esp_err.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/sensor_acq/hdc1080_driver.c</label>
+        <link refid="hdc1080__driver_8c"/>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/include/hdc1080_driver.h</label>
+        <link refid="hdc1080__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="4">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <member refid="group__group__sensor__acq_1gaf0cf6b62cc46031dbcb698408b50aa26" kind="define"><name>HDC1080_I2C_ADDR</name></member>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="hdc1080__driver_8h_1a331ca8cf79867f6f9ebe86978bfc6cc5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t hdc1080_init</definition>
+        <argsstring>(i2c_master_bus_handle_t bus)</argsstring>
+        <name>hdc1080_init</name>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>bus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/hdc1080_driver.h" line="40" column="11" bodyfile="components/sensor_acq/hdc1080_driver.c" bodystart="72" bodyend="119" declfile="components/sensor_acq/include/hdc1080_driver.h" declline="40" declcolumn="11"/>
+        <references refid="hdc1080__driver_8c_1ab025caf4a87b11d7b58286867b8ed4b6" compoundref="hdc1080__driver_8c" startline="31">HDC1080_DEVICE_ID</references>
+        <references refid="group__group__sensor__acq_1gaf0cf6b62cc46031dbcb698408b50aa26" compoundref="hdc1080__driver_8h" startline="28">HDC1080_I2C_ADDR</references>
+        <references refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" compoundref="hw__diag_8c" startline="32">I2C_TIMEOUT_MS</references>
+        <references refid="bme280__driver_8c_1a679325263fb326462f7410d3292171be" compoundref="bme280__driver_8c" startline="27">REG_CONFIG</references>
+        <references refid="hdc1080__driver_8c_1a7536bef148067419de8358bcd473349a" compoundref="hdc1080__driver_8c" startline="29">REG_DEVICE_ID</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="hdc1080__driver_8c_1aec3bb76ffc0e6e65ff45ed34f55f3d8a" compoundref="hdc1080__driver_8c" startline="40" endline="49">write_register</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hdc1080__driver_8h_1ac89c7243caa6524ab2c35eb7133483ff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t hdc1080_read</definition>
+        <argsstring>(float *temp_c, float *humidity_pct)</argsstring>
+        <name>hdc1080_read</name>
+        <param>
+          <type>float *</type>
+          <declname>temp_c</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>humidity_pct</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/hdc1080_driver.h" line="52" column="11" bodyfile="components/sensor_acq/hdc1080_driver.c" bodystart="124" bodyend="149" declfile="components/sensor_acq/include/hdc1080_driver.h" declline="52" declcolumn="11"/>
+        <references refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" compoundref="hdc1080__driver_8c" startline="54" endline="67">read_bytes</references>
+        <references refid="hdc1080__driver_8c_1a9814a9d9688d062990aa6633e8cb3d8e" compoundref="hdc1080__driver_8c" startline="25">REG_TEMPERATURE</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver Texas Instruments HDC1080 — Température et Humidité relative. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Interface I2C via driver/i2c_master.h (ESP-IDF v5+). Adresse I2C 7 bits : 0x40 (fixe sur HDC1080).</para>
+<para>Caractéristiques :<itemizedlist>
+<listitem><para>Température : −40 °C → +125 °C, résolution 14 bits (±0.2 °C typ.)</para>
+</listitem><listitem><para>Humidité : 0 % → 100 % RH, résolution 14 bits (±2 % typ.)</para>
+</listitem><listitem><para>Temps d&apos;acquisition : ~15 ms (mode 14 bits) </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>hdc1080_driver.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Driver<sp/>Texas<sp/>Instruments<sp/>HDC1080<sp/>—<sp/>Température<sp/>et<sp/>Humidité<sp/>relative.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Interface<sp/>I2C<sp/>via<sp/>driver/i2c_master.h<sp/>(ESP-IDF<sp/>v5+).</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Adresse<sp/>I2C<sp/>7<sp/>bits<sp/>:<sp/>0x40<sp/>(fixe<sp/>sur<sp/>HDC1080).</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>Caractéristiques<sp/>:</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Température<sp/><sp/>:<sp/>−40<sp/>°C<sp/>→<sp/>+125<sp/>°C,<sp/>résolution<sp/>14<sp/>bits<sp/>(±0.2<sp/>°C<sp/>typ.)</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Humidité<sp/><sp/><sp/><sp/><sp/>:<sp/>0<sp/>%<sp/>→<sp/>100<sp/>%<sp/>RH,<sp/><sp/><sp/>résolution<sp/>14<sp/>bits<sp/>(±2<sp/>%<sp/>typ.)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Temps<sp/>d&apos;acquisition<sp/>:<sp/>~15<sp/>ms<sp/>(mode<sp/>14<sp/>bits)</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/i2c_master.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="23"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Capteur<sp/>environnemental<sp/>HDC1080<sp/>(température/humidité).</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="group__group__sensor__acq_1gaf0cf6b62cc46031dbcb698408b50aa26" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HDC1080_I2C_ADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x40<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Adresse<sp/>I2C<sp/>7<sp/>bits<sp/>du<sp/>HDC1080<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>hdc1080_init</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>HDC1080<sp/>et<sp/>vérifie<sp/>le<sp/>Device<sp/>ID<sp/>(0x1050).</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>Configure<sp/>le<sp/>capteur<sp/>en<sp/>mode<sp/>acquisition<sp/>séquentielle<sp/>14<sp/>bits</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>(température<sp/>puis<sp/>humidité<sp/>en<sp/>un<sp/>seul<sp/>tir).</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@param<sp/>bus<sp/><sp/><sp/><sp/><sp/>Handle<sp/>du<sp/>bus<sp/>I2C<sp/>maître.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>le<sp/>capteur<sp/>est<sp/>détecté<sp/>et<sp/>configuré.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal">esp_err_t<sp/><ref refid="hdc1080__driver_8h_1a331ca8cf79867f6f9ebe86978bfc6cc5" kindref="member">hdc1080_init</ref>(i2c_master_bus_handle_t<sp/>bus);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>hdc1080_read</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Déclenche<sp/>une<sp/>acquisition<sp/>et<sp/>lit<sp/>température<sp/>+<sp/>humidité.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>Bloque<sp/>~15<sp/>ms<sp/>pendant<sp/>l&apos;acquisition<sp/>(vTaskDelay).</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>@param<sp/>temp_c<sp/><sp/><sp/><sp/><sp/><sp/><sp/>Pointeur<sp/>vers<sp/>la<sp/>température<sp/>résultante<sp/>(°C).</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>@param<sp/>humidity_pct<sp/>Pointeur<sp/>vers<sp/>l&apos;humidité<sp/>résultante<sp/>(%).</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal">esp_err_t<sp/><ref refid="hdc1080__driver_8h_1ac89c7243caa6524ab2c35eb7133483ff" kindref="member">hdc1080_read</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*temp_c,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*humidity_pct);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/include/hdc1080_driver.h"/>
+  </compounddef>
+</doxygen>

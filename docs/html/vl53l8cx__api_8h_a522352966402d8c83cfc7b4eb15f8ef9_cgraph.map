@@ -1,0 +1,9 @@
+<map id="vl53l8cx_get_ranging_data" name="vl53l8cx_get_ranging_data">
+<area shape="rect" id="Node000001" title="This function gets the ranging data, using the selected output and the resolution." alt="" coords="5,31,181,57"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="240,5,376,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,31,224,26,225,31,182,36"/>
+<area shape="rect" id="Node000004" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="229,56,387,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="182,52,214,56,213,61,181,57"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="435,5,502,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="376,16,419,16,419,21,376,21"/>
+</map>

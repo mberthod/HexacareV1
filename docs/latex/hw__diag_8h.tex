@@ -1,0 +1,51 @@
+\doxysection{components/hw\+\_\+diag/include/hw\+\_\+diag.h File Reference}
+\hypertarget{hw__diag_8h}{}\label{hw__diag_8h}\index{components/hw\_diag/include/hw\_diag.h@{components/hw\_diag/include/hw\_diag.h}}
+
+
+Interface publique du diagnostic matériel au démarrage.  
+
+
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \#include "{}driver/i2c\+\_\+master.\+h"{}}\newline
+Include dependency graph for hw\+\_\+diag.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{hw__diag_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{hw__diag_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\+\_\+diag\+\_\+result\+\_\+t}} \{ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd}{HW\+\_\+\+DIAG\+\_\+\+OK}} = 0x00
+, \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+PARTIAL}} = 0x01
+, \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+ALL}} = 0x02
+, \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\+\_\+\+DIAG\+\_\+\+RADAR\+\_\+\+MISSING}} = 0x04
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\+\_\+diag\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\+\_\+diag\+\_\+run}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}{hw\+\_\+diag\+\_\+init\+\_\+sensor\+\_\+bus}} (i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t \texorpdfstring{$\ast$}{*}out\+\_\+handle)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\+\_\+diag\+\_\+pca9555\+\_\+set\+\_\+power}} (uint8\+\_\+t port1\+\_\+bit, bool enable)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface publique du diagnostic matériel au démarrage. 
+
+\doxylink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\+\_\+diag\+\_\+run()} doit être appelée dans \doxylink{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main()} AVANT la création des tâches Free\+RTOS. Elle initialise les bus I2C partagés et remplit les champs lidar\+\_\+ok\mbox{[}\mbox{]} et radar\+\_\+ok de \doxylink{structsys__context__t}{sys\+\_\+context\+\_\+t}. 
+
+Definition in file \mbox{\hyperlink{hw__diag_8h_source}{hw\+\_\+diag.\+h}}.
+

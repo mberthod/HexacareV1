@@ -1,0 +1,242 @@
+\doxysection{bme280\+\_\+driver.\+c}
+\hypertarget{bme280__driver_8c_source}{}\label{bme280__driver_8c_source}\index{components/sensor\_acq/bme280\_driver.c@{components/sensor\_acq/bme280\_driver.c}}
+\mbox{\hyperlink{bme280__driver_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ bme280\_driver.c}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_sensor\_acq}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Driver\ Bosch\ BME280\ —\ Température,\ Pression,\ Humidité.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Implémentation\ de\ l'algorithme\ de\ compensation\ entier\ 32/64\ bits}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00007}00007\ \textcolor{comment}{\ *\ issu\ du\ datasheet\ Bosch\ BME280\ (v1.24,\ Appendix\ A).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00009}00009\ \textcolor{comment}{\ *\ Mode\ forced\ (single-\/shot)\ :\ déclenche\ une\ mesure\ puis\ passe\ en\ sleep.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00010}00010\ \textcolor{comment}{\ *\ Oversampling\ T×2,\ P×4,\ H×4\ —\ filtre\ IIR\ ×\ 4.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00011}00011\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{bme280__driver_8h}{bme280\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00019}\mbox{\hyperlink{bme280__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00019}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}bme280"{}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00021}00021\ \textcolor{comment}{/*\ ───\ Registres\ ─────────────────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00022}\mbox{\hyperlink{bme280__driver_8c_abead2f4994c6f3b4a3b9ca286d00f13b}{00022}}\ \textcolor{preprocessor}{\#define\ REG\_CHIP\_ID\ \ \ \ \ \ \ 0xD0}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00023}\mbox{\hyperlink{bme280__driver_8c_ad6a95c96a883b809b1bf9c16446d0735}{00023}}\ \textcolor{preprocessor}{\#define\ REG\_RESET\ \ \ \ \ \ \ \ \ 0xE0}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00024}\mbox{\hyperlink{bme280__driver_8c_a35a180cecaeed7cbc9d43967175c27af}{00024}}\ \textcolor{preprocessor}{\#define\ REG\_CTRL\_HUM\ \ \ \ \ \ 0xF2}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00025}\mbox{\hyperlink{bme280__driver_8c_a2306dddc82e5e58f23bd44c1086a5b6f}{00025}}\ \textcolor{preprocessor}{\#define\ REG\_STATUS\ \ \ \ \ \ \ \ 0xF3}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00026}\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{00026}}\ \textcolor{preprocessor}{\#define\ REG\_CTRL\_MEAS\ \ \ \ \ 0xF4}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00027}\mbox{\hyperlink{bme280__driver_8c_a679325263fb326462f7410d3292171be}{00027}}\ \textcolor{preprocessor}{\#define\ REG\_CONFIG\ \ \ \ \ \ \ \ 0xF5}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00028}\mbox{\hyperlink{bme280__driver_8c_aa9a9ac08251af88d8be2fc413a314758}{00028}}\ \textcolor{preprocessor}{\#define\ REG\_DATA\_START\ \ \ \ 0xF7\ \ \ }\textcolor{comment}{/*\ 0xF7..0xFC\ :\ pression\ +\ temp\ +\ humidité\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00029}\mbox{\hyperlink{bme280__driver_8c_a03cdc303f5ebe098120b2bf5f8c64c30}{00029}}\ \textcolor{preprocessor}{\#define\ REG\_CALIB\_00\ \ \ \ \ \ 0x88\ \ \ }\textcolor{comment}{/*\ 0x88..0x9F\ :\ trim\ T\ +\ P\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00030}\mbox{\hyperlink{bme280__driver_8c_a05dee12d2078d827dffeb7ca69ec94db}{00030}}\ \textcolor{preprocessor}{\#define\ REG\_CALIB\_H1\ \ \ \ \ \ 0xA1}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00031}\mbox{\hyperlink{bme280__driver_8c_a2005256d905b8f41c0e09a6d4deda357}{00031}}\ \textcolor{preprocessor}{\#define\ REG\_CALIB\_H2\ \ \ \ \ \ 0xE1\ \ \ }\textcolor{comment}{/*\ 0xE1..0xE7\ :\ trim\ H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00033}\mbox{\hyperlink{bme280__driver_8c_aa9471d8f9c99880c3b85360017908e6b}{00033}}\ \textcolor{preprocessor}{\#define\ BME280\_CHIP\_ID\ \ \ \ 0x60}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00034}\mbox{\hyperlink{bme280__driver_8c_ac8c61bd2fdc391886d8da5c2de78292a}{00034}}\ \textcolor{preprocessor}{\#define\ I2C\_TIMEOUT\_MS\ \ \ \ 20}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00035}\mbox{\hyperlink{bme280__driver_8c_a424850e29936186a531e726ec1ce9c00}{00035}}\ \textcolor{preprocessor}{\#define\ MEAS\_DELAY\_MS\ \ \ \ \ 10\ \ \ \ \ }\textcolor{comment}{/*\ Attente\ conversion\ (worst-\/case\ \string~9.4\ ms)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00037}00037\ \textcolor{comment}{/*\ ───\ Coefficients\ de\ calibration\ ───────────────────────────────────────────\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00038}\mbox{\hyperlink{structbme280__calib__t}{00038}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00039}\mbox{\hyperlink{structbme280__calib__t_a62dfde40d14ceeed381c5f2e375f9d8c}{00039}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structbme280__calib__t_a62dfde40d14ceeed381c5f2e375f9d8c}{T1}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_aaddf8fb904f0da0f690dc52b9a837ee3}{T2}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_a07937a05f7a32c12d734a5d91a608422}{T3}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00040}\mbox{\hyperlink{structbme280__calib__t_a0a7fa21fd2e1592cdf1969b6c47de668}{00040}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structbme280__calib__t_a0a7fa21fd2e1592cdf1969b6c47de668}{P1}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_a943a22c01591539274e24075cefe90f8}{P2}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_a9ce2ae55329dcc4539228b1ddc07d05b}{P3}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_a24d173f6266bbc7c794eddbac46e261a}{P4}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00041}\mbox{\hyperlink{structbme280__calib__t_ae8b9627a8ea6cf96eb7013b1f8a45f94}{00041}}\ \ \ \ \ int16\_t\ \ \mbox{\hyperlink{structbme280__calib__t_ae8b9627a8ea6cf96eb7013b1f8a45f94}{P5}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_ad13c4c343380150b4fd6febc117004fe}{P6}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_afeb172524de13c0ae965eadbef5c1280}{P7}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_af18d6e4e995bfaab9b0eb450890e8c0f}{P8}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_a1484085b19d4d6d955460df879b53c0d}{P9}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00042}\mbox{\hyperlink{structbme280__calib__t_ad57cb71e99083dc1fe99b6a76fde464b}{00042}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structbme280__calib__t_ad57cb71e99083dc1fe99b6a76fde464b}{H1}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_a3cb1ea2a9ac7c706ab8c12f84b392c97}{H2}};\ uint8\_t\ \mbox{\hyperlink{structbme280__calib__t_a7637bab3c27446ffc5d09d0f97911048}{H3}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00043}\mbox{\hyperlink{structbme280__calib__t_a56d94c17f395e2e3d89f84d0ca35e62e}{00043}}\ \ \ \ \ int16\_t\ \ \mbox{\hyperlink{structbme280__calib__t_a56d94c17f395e2e3d89f84d0ca35e62e}{H4}};\ int16\_t\ \mbox{\hyperlink{structbme280__calib__t_aac598aa7fe7b10cd422ec8761022eacb}{H5}};\ int8\_t\ \mbox{\hyperlink{structbme280__calib__t_a07e689fa0aa6b2062c784110c450e2ee}{H6}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00044}00044\ \}\ \mbox{\hyperlink{structbme280__calib__t}{bme280\_calib\_t}};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00046}\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{00046}}\ \textcolor{keyword}{static}\ i2c\_master\_dev\_handle\_t\ \mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}}\ \ \ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00047}\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{00047}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structbme280__calib__t}{bme280\_calib\_t}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00049}00049\ \textcolor{comment}{/*\ ───\ Helpers\ I2C\ ────────────────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00051}\mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{00051}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(uint8\_t\ reg,\ uint8\_t\ val)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00052}00052\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00053}00053\ \ \ \ \ uint8\_t\ buf[2]\ =\ \{reg,\ val\};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00054}00054\ \ \ \ \ \textcolor{keywordflow}{return}\ i2c\_master\_transmit(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ buf,\ 2,\ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00055}00055\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00057}\mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{00057}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(uint8\_t\ reg,\ uint8\_t\ *out,\ \textcolor{keywordtype}{size\_t}\ len)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00058}00058\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00059}00059\ \ \ \ \ esp\_err\_t\ ret\ =\ i2c\_master\_transmit(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ \&reg,\ 1,}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00061}00061\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00062}00062\ \ \ \ \ \textcolor{keywordflow}{return}\ i2c\_master\_receive(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ out,\ len,}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00064}00064\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00066}00066\ \textcolor{comment}{/*\ ───\ Lecture\ calibration\ ────────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00068}\mbox{\hyperlink{bme280__driver_8c_a7c57f6d05791a5304f415dcefc16ba45}{00068}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8c_a7c57f6d05791a5304f415dcefc16ba45}{read\_calibration}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00069}00069\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00070}00070\ \ \ \ \ uint8\_t\ c[26]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00071}00071\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_a03cdc303f5ebe098120b2bf5f8c64c30}{REG\_CALIB\_00}},\ c,\ 24);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00074}00074\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T1\ =\ (uint16\_t)(c[1]\ \ <<\ 8\ |\ c[0]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00075}00075\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T2\ =\ (int16\_t)\ (c[3]\ \ <<\ 8\ |\ c[2]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00076}00076\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T3\ =\ (int16\_t)\ (c[5]\ \ <<\ 8\ |\ c[4]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00077}00077\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P1\ =\ (uint16\_t)(c[7]\ \ <<\ 8\ |\ c[6]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00078}00078\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P2\ =\ (int16\_t)\ (c[9]\ \ <<\ 8\ |\ c[8]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00079}00079\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P3\ =\ (int16\_t)\ (c[11]\ <<\ 8\ |\ c[10]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00080}00080\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P4\ =\ (int16\_t)\ (c[13]\ <<\ 8\ |\ c[12]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00081}00081\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P5\ =\ (int16\_t)\ (c[15]\ <<\ 8\ |\ c[14]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00082}00082\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P6\ =\ (int16\_t)\ (c[17]\ <<\ 8\ |\ c[16]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00083}00083\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P7\ =\ (int16\_t)\ (c[19]\ <<\ 8\ |\ c[18]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00084}00084\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P8\ =\ (int16\_t)\ (c[21]\ <<\ 8\ |\ c[20]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00085}00085\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P9\ =\ (int16\_t)\ (c[23]\ <<\ 8\ |\ c[22]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00087}00087\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_a05dee12d2078d827dffeb7ca69ec94db}{REG\_CALIB\_H1}},\ c,\ 1);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00088}00088\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00089}00089\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H1\ =\ c[0];}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00091}00091\ \ \ \ \ uint8\_t\ h[7]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00092}00092\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_a2005256d905b8f41c0e09a6d4deda357}{REG\_CALIB\_H2}},\ h,\ 7);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00093}00093\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00094}00094\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H2\ =\ (int16\_t)\ (h[1]\ <<\ 8\ |\ h[0]);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00095}00095\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H3\ =\ h[2];}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00096}00096\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H4\ =\ (int16\_t)\ ((h[3]\ <<\ 4)\ |\ (h[4]\ \&\ 0x0F));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00097}00097\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H5\ =\ (int16\_t)\ ((h[5]\ <<\ 4)\ |\ (h[4]\ >>\ 4));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00098}00098\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H6\ =\ (int8\_t)\ \ h[6];}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00103}00103\ \textcolor{comment}{/*\ ───\ Algorithme\ de\ compensation\ Bosch\ (datasheet\ v1.24\ Appendix\ A)\ ───────\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00105}\mbox{\hyperlink{bme280__driver_8c_a5fcb00fce7b72710da16705b1552e335}{00105}}\ \textcolor{keyword}{static}\ int32\_t\ \mbox{\hyperlink{bme280__driver_8c_a5fcb00fce7b72710da16705b1552e335}{s\_t\_fine}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00107}\mbox{\hyperlink{bme280__driver_8c_a1e19f2f464d29d4636de9f80611ea19d}{00107}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{bme280__driver_8c_a1e19f2f464d29d4636de9f80611ea19d}{compensate\_temperature}}(int32\_t\ raw\_t)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00108}00108\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00109}00109\ \ \ \ \ int32\_t\ var1\ =\ ((((raw\_t\ >>\ 3)\ -\/\ ((int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T1\ <<\ 1)))\ *}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T2)\ >>\ 11;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00111}00111\ \ \ \ \ int32\_t\ var2\ =\ (((((raw\_t\ >>\ 4)\ -\/\ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T1)\ *}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ((raw\_t\ >>\ 4)\ -\/\ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T1))\ >>\ 12)\ *}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.T3)\ >>\ 14;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00114}00114\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a5fcb00fce7b72710da16705b1552e335}{s\_t\_fine}}\ =\ var1\ +\ var2;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00115}00115\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{float})((\mbox{\hyperlink{bme280__driver_8c_a5fcb00fce7b72710da16705b1552e335}{s\_t\_fine}}\ *\ 5\ +\ 128)\ >>\ 8)\ /\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00116}00116\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00118}\mbox{\hyperlink{bme280__driver_8c_a126e932030b8c2df71f1c9cd3aecb04b}{00118}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{bme280__driver_8c_a126e932030b8c2df71f1c9cd3aecb04b}{compensate\_pressure}}(int32\_t\ raw\_p)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00119}00119\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00120}00120\ \ \ \ \ int64\_t\ var1\ =\ (int64\_t)\mbox{\hyperlink{bme280__driver_8c_a5fcb00fce7b72710da16705b1552e335}{s\_t\_fine}}\ -\/\ 128000;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00121}00121\ \ \ \ \ int64\_t\ var2\ =\ var1\ *\ var1\ *\ (int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P6;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00122}00122\ \ \ \ \ var2\ +=\ (var1\ *\ (int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P5)\ <<\ 17;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00123}00123\ \ \ \ \ var2\ +=\ ((int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P4)\ <<\ 35;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00124}00124\ \ \ \ \ var1\ \ =\ ((var1\ *\ var1\ *\ (int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P3)\ >>\ 8)\ +}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ ((var1\ *\ (int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P2)\ <<\ 12);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00126}00126\ \ \ \ \ var1\ \ =\ (((int64\_t)1\ <<\ 47)\ +\ var1)\ *\ (int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P1\ >>\ 33;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{if}\ (var1\ ==\ 0)\ \textcolor{keywordflow}{return}\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00128}00128\ \ \ \ \ int64\_t\ p\ =\ 1048576\ -\/\ raw\_p;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00129}00129\ \ \ \ \ p\ =\ (((p\ <<\ 31)\ -\/\ var2)\ *\ 3125)\ /\ var1;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00130}00130\ \ \ \ \ var1\ =\ ((int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P9\ *\ (p\ >>\ 13)\ *\ (p\ >>\ 13))\ >>\ 25;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00131}00131\ \ \ \ \ var2\ =\ ((int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P8\ *\ p)\ >>\ 19;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00132}00132\ \ \ \ \ p\ =\ ((p\ +\ var1\ +\ var2)\ >>\ 8)\ +\ ((int64\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.P7\ <<\ 4);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{float})p\ /\ 25600.0f;\ \ \textcolor{comment}{/*\ hPa\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00134}00134\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00136}\mbox{\hyperlink{bme280__driver_8c_aa8f85514b39b120751b2ba443a19c4cc}{00136}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{bme280__driver_8c_aa8f85514b39b120751b2ba443a19c4cc}{compensate\_humidity}}(int32\_t\ raw\_h)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00137}00137\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00138}00138\ \ \ \ \ int32\_t\ v\ =\ \mbox{\hyperlink{bme280__driver_8c_a5fcb00fce7b72710da16705b1552e335}{s\_t\_fine}}\ -\/\ 76800;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00139}00139\ \ \ \ \ v\ =\ (((((raw\_h\ <<\ 14)\ -\/\ ((int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H4\ <<\ 20)\ -\/}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ ((int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H5\ *\ v))\ +\ 16384)\ >>\ 15)\ *}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00141}00141\ \ \ \ \ \ \ \ \ \ (((((((v\ *\ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H6)\ >>\ 10)\ *}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((v\ *\ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H3)\ >>\ 11)\ +\ 32768))\ >>\ 10)\ +}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ 2097152)\ *\ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H2\ +\ 8192)\ >>\ 14));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00144}00144\ \ \ \ \ v\ -\/=\ ((((v\ >>\ 15)\ *\ (v\ >>\ 15))\ >>\ 7)\ *\ (int32\_t)\mbox{\hyperlink{bme280__driver_8c_a51f7693fb01940b59594e83742761ca4}{s\_calib}}.H1)\ >>\ 4;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ <\ 0)\ \ \ \ \ \ \ \ v\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (v\ >\ 419430400)\ v\ =\ 419430400;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordtype}{float}\ rh\ =\ (float)(v\ >>\ 12)\ /\ 1024.0f;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{if}\ (rh\ <\ 0.0f)\ \ \ rh\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00149}00149\ \ \ \ \ \textcolor{keywordflow}{if}\ (rh\ >\ 100.0f)\ rh\ =\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00150}00150\ \ \ \ \ \textcolor{keywordflow}{return}\ rh;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00151}00151\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00153}00153\ \textcolor{comment}{/*\ ───\ API\ publique\ ───────────────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00154}00154\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00155}\mbox{\hyperlink{bme280__driver_8c_a16050495a4e02a1498ceadf9a19db1e2}{00155}}\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8c_a16050495a4e02a1498ceadf9a19db1e2}{bme280\_init}}(i2c\_master\_bus\_handle\_t\ bus,\ uint8\_t\ i2c\_addr)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00156}00156\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00157}00157\ \ \ \ \ \textcolor{keyword}{const}\ i2c\_device\_config\_t\ dev\_cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ .dev\_addr\_length\ =\ I2C\_ADDR\_BIT\_LEN\_7,}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ .device\_address\ \ =\ i2c\_addr,}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ .scl\_speed\_hz\ \ \ \ =\ 400000,}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00161}00161\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00162}00162\ \ \ \ \ esp\_err\_t\ ret\ =\ i2c\_master\_bus\_add\_device(bus,\ \&dev\_cfg,\ \&\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}});}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00163}00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00164}00164\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Ajout\ device\ I2C\ 0x\%02X\ échoué\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i2c\_addr,\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00169}00169\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ chip\ ID\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00170}00170\ \ \ \ \ uint8\_t\ chip\_id\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00171}00171\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_abead2f4994c6f3b4a3b9ca286d00f13b}{REG\_CHIP\_ID}},\ \&chip\_id,\ 1);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00172}00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK\ ||\ chip\_id\ !=\ \mbox{\hyperlink{bme280__driver_8c_aa9471d8f9c99880c3b85360017908e6b}{BME280\_CHIP\_ID}})\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ non\ détecté\ (chip\_id=0x\%02X)"{}},\ chip\_id);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ ESP\_OK)\ ?\ ESP\_ERR\_NOT\_FOUND\ :\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00177}00177\ \ \ \ \ \textcolor{comment}{/*\ Reset\ logiciel\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00178}00178\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_ad6a95c96a883b809b1bf9c16446d0735}{REG\_RESET}},\ 0xB6);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00179}00179\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(5));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00181}00181\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ calibration\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00182}00182\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a7c57f6d05791a5304f415dcefc16ba45}{read\_calibration}}();}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00184}00184\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Lecture\ calibration\ échouée"{}});}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00185}00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00186}00186\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00188}00188\ \ \ \ \ \textcolor{comment}{/*\ Configuration\ :}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00189}00189\ \textcolor{comment}{\ \ \ \ \ *\ \ \ ctrl\_hum\ \ :\ osrs\_h\ =\ ×4\ (101b\ =\ 5)}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00190}00190\ \textcolor{comment}{\ \ \ \ \ *\ \ \ ctrl\_meas\ :\ osrs\_t\ =\ ×2\ (010b),\ osrs\_p\ =\ ×4\ (011b),\ mode\ =\ sleep\ (00b)}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00191}00191\ \textcolor{comment}{\ \ \ \ \ *\ \ \ config\ \ \ \ :\ filtre\ IIR\ =\ ×4\ (010b),\ t\_sb\ =\ 0.5\ ms\ (000b)}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00192}00192\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00193}00193\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a35a180cecaeed7cbc9d43967175c27af}{REG\_CTRL\_HUM}},\ \ 0x05);\ \ \textcolor{comment}{/*\ osrs\_h\ ×4\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00194}00194\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a679325263fb326462f7410d3292171be}{REG\_CONFIG}},\ \ \ \ 0x10);\ \ \textcolor{comment}{/*\ filtre\ ×4\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00195}00195\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{REG\_CTRL\_MEAS}},\ 0x54);\ \ \textcolor{comment}{/*\ osrs\_t\ ×2,\ osrs\_p\ ×4,\ sleep\ mode\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00197}00197\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ initialisé\ (@0x\%02X,\ chip\_id=0x60)"{}},\ i2c\_addr);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00198}00198\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00199}00199\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00201}\mbox{\hyperlink{bme280__driver_8c_a898595b4f31ff7da1e14b618a804a7b5}{00201}}\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8c_a898595b4f31ff7da1e14b618a804a7b5}{bme280\_read}}(\textcolor{keywordtype}{float}\ *temp\_c,\ \textcolor{keywordtype}{float}\ *pressure\_hpa,\ \textcolor{keywordtype}{float}\ *humidity\_pct)}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00202}00202\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}})\ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00205}00205\ \ \ \ \ \textcolor{comment}{/*\ Déclencher\ une\ mesure\ forced\ (mode\ =\ 01b\ →\ écriture\ de\ ctrl\_meas)\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00206}00206\ \ \ \ \ uint8\_t\ ctrl;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00207}00207\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{REG\_CTRL\_MEAS}},\ \&ctrl,\ 1);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00208}00208\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00210}00210\ \ \ \ \ \textcolor{comment}{/*\ Set\ mode\ =\ forced\ (01)\ en\ conservant\ l'oversampling\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00211}00211\ \ \ \ \ ctrl\ =\ (ctrl\ \&\ 0xFC)\ |\ 0x01;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00212}00212\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{REG\_CTRL\_MEAS}},\ ctrl);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00213}00213\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00215}00215\ \ \ \ \ \textcolor{comment}{/*\ Attente\ fin\ de\ conversion\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00216}00216\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{bme280__driver_8c_a424850e29936186a531e726ec1ce9c00}{MEAS\_DELAY\_MS}}));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00218}00218\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ de\ 8\ octets\ :\ P\ (3),\ T\ (3),\ H\ (2)\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00219}00219\ \ \ \ \ uint8\_t\ data[8]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00220}00220\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_aa9a9ac08251af88d8be2fc413a314758}{REG\_DATA\_START}},\ data,\ \textcolor{keyword}{sizeof}(data));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00221}00221\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Lecture\ données\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00224}00224\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00226}00226\ \ \ \ \ int32\_t\ raw\_p\ =\ ((int32\_t)data[0]\ <<\ 12)\ |\ ((int32\_t)data[1]\ <<\ 4)\ |\ (data[2]\ >>\ 4);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00227}00227\ \ \ \ \ int32\_t\ raw\_t\ =\ ((int32\_t)data[3]\ <<\ 12)\ |\ ((int32\_t)data[4]\ <<\ 4)\ |\ (data[5]\ >>\ 4);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00228}00228\ \ \ \ \ int32\_t\ raw\_h\ =\ ((int32\_t)data[6]\ <<\ 8)\ \ |\ data[7];}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00230}00230\ \ \ \ \ \textcolor{comment}{/*\ Compensation\ (ordre\ obligatoire\ :\ T\ en\ premier\ pour\ s\_t\_fine)\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00231}00231\ \ \ \ \ *temp\_c\ \ \ \ \ \ \ =\ \mbox{\hyperlink{bme280__driver_8c_a1e19f2f464d29d4636de9f80611ea19d}{compensate\_temperature}}(raw\_t);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00232}00232\ \ \ \ \ *pressure\_hpa\ =\ \mbox{\hyperlink{bme280__driver_8c_a126e932030b8c2df71f1c9cd3aecb04b}{compensate\_pressure}}(raw\_p);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00233}00233\ \ \ \ \ *humidity\_pct\ =\ \mbox{\hyperlink{bme280__driver_8c_aa8f85514b39b120751b2ba443a19c4cc}{compensate\_humidity}}(raw\_h);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00235}00235\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8c_source_l00236}00236\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,7 @@
+<map id="components/sensor_acq/include/mic_driver.h" name="components/sensor_acq/include/mic_driver.h">
+<area shape="rect" id="Node000001" title="Driver microphone MEMS numérique — Interface I2S (ESP&#45;IDF v5/v6)." alt="" coords="8,5,171,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,81,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="80,50,60,84,56,81,75,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="104,96,168,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,47,124,81,119,84,99,50"/>
+</map>

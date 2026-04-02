@@ -1,0 +1,7 @@
+<map id="components/sensor_acq/include/bme280_driver.h" name="components/sensor_acq/include/bme280_driver.h">
+<area shape="rect" id="Node000001" title="Driver Bosch BME280 — Température, Pression, Humidité." alt="" coords="52,5,219,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,96,138,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,50,93,85,89,82,117,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="162,96,237,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="154,47,182,82,178,85,150,50"/>
+</map>

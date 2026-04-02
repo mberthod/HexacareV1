@@ -1,0 +1,7 @@
+<map id="mesh_build_ai_frame" name="mesh_build_ai_frame">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,150,57"/>
+<area shape="rect" id="Node000002" href="$mesh__manager_8c.html#a7bd75723e8320b9ecc2549738714df17" title=" " alt="" coords="198,5,342,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="150,32,182,28,183,33,150,37"/>
+<area shape="rect" id="Node000003" href="$mesh__manager_8c.html#aae012a0061ce71054035ea8a334083cd" title=" " alt="" coords="227,56,312,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="150,51,212,59,211,64,150,56"/>
+</map>

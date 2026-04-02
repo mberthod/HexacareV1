@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structai__event__t" kind="struct" language="C++" prot="public">
+    <compoundname>ai_event_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" prot="public" static="no" mutable="no">
+        <type><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kindref="member">ai_event_state_e</ref></type>
+        <definition>ai_event_state_e ai_event_t::state</definition>
+        <argsstring></argsstring>
+        <name>state</name>
+        <qualifiedname>ai_event_t::state</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>État détecté </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="141" column="22" bodyfile="components/lexacare_types/include/system_types.h" bodystart="141" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structai__event__t_1abda04f94a67eac00a050985c90987309" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ai_event_t::confidence</definition>
+        <argsstring></argsstring>
+        <name>confidence</name>
+        <qualifiedname>ai_event_t::confidence</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Confiance 0–100 % </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="142" column="22" bodyfile="components/lexacare_types/include/system_types.h" bodystart="142" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structai__event__t_1a9dfc426ff75b3bbd25f05aaafbc3e84b" prot="public" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t ai_event_t::timestamp_us</definition>
+        <argsstring></argsstring>
+        <name>timestamp_us</name>
+        <qualifiedname>ai_event_t::timestamp_us</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="143" column="22" bodyfile="components/lexacare_types/include/system_types.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/include/system_types.h" line="140" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="140" bodyend="144"/>
+    <listofallmembers>
+      <member refid="structai__event__t_1abda04f94a67eac00a050985c90987309" prot="public" virt="non-virtual"><scope>ai_event_t</scope><name>confidence</name></member>
+      <member refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" prot="public" virt="non-virtual"><scope>ai_event_t</scope><name>state</name></member>
+      <member refid="structai__event__t_1a9dfc426ff75b3bbd25f05aaafbc3e84b" prot="public" virt="non-virtual"><scope>ai_event_t</scope><name>timestamp_us</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="bme280__driver_8h" kind="file" language="C++">
+    <compoundname>bme280_driver.h</compoundname>
+    <includes local="yes">driver/i2c_master.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="bme280__driver_8c" local="yes">components/sensor_acq/bme280_driver.c</includedby>
+    <includedby refid="lidar__driver_8c" local="yes">components/sensor_acq/lidar_driver.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>components/sensor_acq/include/bme280_driver.h</label>
+        <link refid="bme280__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="3">
+        <label>esp_err.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/sensor_acq/bme280_driver.c</label>
+        <link refid="bme280__driver_8c"/>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/include/bme280_driver.h</label>
+        <link refid="bme280__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="4">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <member refid="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" kind="define"><name>BME280_I2C_ADDR_DEFAULT</name></member>
+      <memberdef kind="define" id="bme280__driver_8h_1a7b7c6da1330193242ae0fed91f8ea6b9" prot="public" static="no">
+        <name>BME280_I2C_ADDR_ALT</name>
+        <initializer>0x77</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>SDO reliée à VDD </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/bme280_driver.h" line="30" column="9" bodyfile="components/sensor_acq/include/bme280_driver.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="bme280__driver_8h_1a16050495a4e02a1498ceadf9a19db1e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t bme280_init</definition>
+        <argsstring>(i2c_master_bus_handle_t bus, uint8_t i2c_addr)</argsstring>
+        <name>bme280_init</name>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>bus</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/bme280_driver.h" line="41" column="11" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="155" bodyend="199" declfile="components/sensor_acq/include/bme280_driver.h" declline="41" declcolumn="11"/>
+        <references refid="bme280__driver_8c_1aa9471d8f9c99880c3b85360017908e6b" compoundref="bme280__driver_8c" startline="33">BME280_CHIP_ID</references>
+        <references refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</references>
+        <references refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</references>
+        <references refid="bme280__driver_8c_1abead2f4994c6f3b4a3b9ca286d00f13b" compoundref="bme280__driver_8c" startline="22">REG_CHIP_ID</references>
+        <references refid="bme280__driver_8c_1a679325263fb326462f7410d3292171be" compoundref="bme280__driver_8c" startline="27">REG_CONFIG</references>
+        <references refid="bme280__driver_8c_1a35a180cecaeed7cbc9d43967175c27af" compoundref="bme280__driver_8c" startline="24">REG_CTRL_HUM</references>
+        <references refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" compoundref="bme280__driver_8c" startline="26">REG_CTRL_MEAS</references>
+        <references refid="bme280__driver_8c_1ad6a95c96a883b809b1bf9c16446d0735" compoundref="bme280__driver_8c" startline="23">REG_RESET</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" compoundref="bme280__driver_8c" startline="51" endline="55">write_reg</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8h_1a898595b4f31ff7da1e14b618a804a7b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t bme280_read</definition>
+        <argsstring>(float *temp_c, float *pressure_hpa, float *humidity_pct)</argsstring>
+        <name>bme280_read</name>
+        <param>
+          <type>float *</type>
+          <declname>temp_c</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>pressure_hpa</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>humidity_pct</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/bme280_driver.h" line="54" column="11" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="201" bodyend="236" declfile="components/sensor_acq/include/bme280_driver.h" declline="54" declcolumn="11"/>
+        <references refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" compoundref="bme280__driver_8c" startline="136" endline="151">compensate_humidity</references>
+        <references refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" compoundref="bme280__driver_8c" startline="118" endline="134">compensate_pressure</references>
+        <references refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" compoundref="bme280__driver_8c" startline="107" endline="116">compensate_temperature</references>
+        <references refid="bme280__driver_8c_1a424850e29936186a531e726ec1ce9c00" compoundref="bme280__driver_8c" startline="35">MEAS_DELAY_MS</references>
+        <references refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</references>
+        <references refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" compoundref="bme280__driver_8c" startline="26">REG_CTRL_MEAS</references>
+        <references refid="bme280__driver_8c_1aa9a9ac08251af88d8be2fc413a314758" compoundref="bme280__driver_8c" startline="28">REG_DATA_START</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" compoundref="bme280__driver_8c" startline="51" endline="55">write_reg</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver Bosch BME280 — Température, Pression, Humidité. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Interface I2C via driver/i2c_master.h (ESP-IDF v5+). Adresse I2C 7 bits : 0x76 (SDO=GND) ou 0x77 (SDO=VDD).</para>
+<para>Caractéristiques :<itemizedlist>
+<listitem><para>Température : −40 °C → +85 °C, résolution 0.01 °C</para>
+</listitem><listitem><para>Pression : 300 hPa → 1100 hPa, résolution 0.18 Pa</para>
+</listitem><listitem><para>Humidité : 0 % → 100 % RH, résolution 0.008 %</para>
+</listitem><listitem><para>Mode utilisé : Forced mode (single-shot) + filtre IIR × 4 </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>bme280_driver.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Driver<sp/>Bosch<sp/>BME280<sp/>—<sp/>Température,<sp/>Pression,<sp/>Humidité.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Interface<sp/>I2C<sp/>via<sp/>driver/i2c_master.h<sp/>(ESP-IDF<sp/>v5+).</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Adresse<sp/>I2C<sp/>7<sp/>bits<sp/>:<sp/>0x76<sp/>(SDO=GND)<sp/>ou<sp/>0x77<sp/>(SDO=VDD).</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>Caractéristiques<sp/>:</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Température<sp/><sp/>:<sp/>−40<sp/>°C<sp/>→<sp/>+85<sp/>°C,<sp/><sp/><sp/><sp/><sp/>résolution<sp/>0.01<sp/>°C</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Pression<sp/><sp/><sp/><sp/><sp/>:<sp/>300<sp/>hPa<sp/>→<sp/>1100<sp/>hPa,<sp/><sp/>résolution<sp/>0.18<sp/>Pa</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Humidité<sp/><sp/><sp/><sp/><sp/>:<sp/>0<sp/>%<sp/>→<sp/>100<sp/>%<sp/>RH,<sp/><sp/><sp/><sp/><sp/><sp/>résolution<sp/>0.008<sp/>%</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Mode<sp/>utilisé<sp/>:<sp/>Forced<sp/>mode<sp/>(single-shot)<sp/>+<sp/>filtre<sp/>IIR<sp/>×<sp/>4</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/i2c_master.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="24"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Capteur<sp/>environnemental<sp/>BME280<sp/>(pression/température/humidité).</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BME280_I2C_ADDR_DEFAULT<sp/><sp/>0x76<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>SDO<sp/>reliée<sp/>à<sp/>GND<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="bme280__driver_8h_1a7b7c6da1330193242ae0fed91f8ea6b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BME280_I2C_ADDR_ALT<sp/><sp/><sp/><sp/><sp/><sp/>0x77<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>SDO<sp/>reliée<sp/>à<sp/>VDD<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>bme280_init</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>BME280,<sp/>lit<sp/>les<sp/>coefficients<sp/>de<sp/>calibration,</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>configure<sp/>le<sp/>filtre<sp/>IIR<sp/>×<sp/>4<sp/>et<sp/>l&apos;oversampling<sp/>standard.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@param<sp/>bus<sp/><sp/><sp/><sp/><sp/><sp/>Handle<sp/>du<sp/>bus<sp/>I2C<sp/>maître.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>@param<sp/>i2c_addr<sp/>Adresse<sp/>I2C<sp/>(BME280_I2C_ADDR_DEFAULT<sp/>ou<sp/>_ALT).</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>le<sp/>capteur<sp/>est<sp/>détecté<sp/>(chip_id<sp/>=<sp/>0x60).</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">esp_err_t<sp/><ref refid="bme280__driver_8h_1a16050495a4e02a1498ceadf9a19db1e2" kindref="member">bme280_init</ref>(i2c_master_bus_handle_t<sp/>bus,<sp/>uint8_t<sp/>i2c_addr);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>bme280_read</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Déclenche<sp/>une<sp/>mesure<sp/>forced-mode<sp/>et<sp/>lit<sp/>les<sp/>3<sp/>grandeurs.</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>Bloque<sp/>~10<sp/>ms<sp/>le<sp/>temps<sp/>de<sp/>la<sp/>conversion.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>@param<sp/>temp_c<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Température<sp/>(°C).</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>@param<sp/>pressure_hpa<sp/><sp/>Pression<sp/>(hPa).</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>@param<sp/>humidity_pct<sp/><sp/>Humidité<sp/>(%).</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">esp_err_t<sp/><ref refid="bme280__driver_8h_1a898595b4f31ff7da1e14b618a804a7b5" kindref="member">bme280_read</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*temp_c,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pressure_hpa,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*humidity_pct);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/include/bme280_driver.h"/>
+  </compounddef>
+</doxygen>

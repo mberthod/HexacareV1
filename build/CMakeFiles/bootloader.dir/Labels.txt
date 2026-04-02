@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/CMakeFiles/bootloader
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/CMakeFiles/bootloader.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/CMakeFiles/bootloader-complete.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

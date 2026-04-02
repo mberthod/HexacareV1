@@ -1,0 +1,40 @@
+<map id="components/lexacare_types/include/system_types.h" name="components/lexacare_types/include/system_types.h">
+<area shape="rect" id="Node000001" title="Contrat de données partagé entre tous les composants du firmware LexaCare V1." alt="" coords="526,5,678,64"/>
+<area shape="rect" id="Node000002" href="$fall__detection__ai_8cc.html" title="Moteur d&#39;inférence de détection de chute — dual&#45;mode ESP&#45;DL / seuil." alt="" coords="32,203,183,245"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="511,46,450,54,382,68,312,87,245,114,219,133,195,157,136,204,132,200,191,153,215,129,242,110,310,82,380,63,449,49,510,40"/>
+<area shape="rect" id="Node000003" href="$fall__detection__ai_8h.html" title="Interface C du moteur d&#39;inférence de détection de chute." alt="" coords="5,112,181,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="511,56,182,118,181,113,510,51"/>
+<area shape="rect" id="Node000004" href="$hw__diag_8h.html" title="Interface publique du diagnostic matériel au démarrage." alt="" coords="256,112,400,155"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="512,70,388,114,386,109,511,65"/>
+<area shape="rect" id="Node000006" href="$main_8c.html" title="Point d&#39;entrée LexaCare V1 — démarrage complet du firmware." alt="" coords="556,211,648,237"/>
+<area shape="poly" id="edge22_Node000001_Node000006" title=" " alt="" coords="605,80,605,210,600,210,600,80"/>
+<area shape="rect" id="Node000007" href="$mesh__manager_8h.html" title="Interface publique du gestionnaire de réseau maillé ESP&#45;NOW." alt="" coords="640,112,821,155"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="654,72,704,109,701,113,651,76"/>
+<area shape="rect" id="Node000009" href="$ota__node_8h.html" title="Interface publique du module OTA nœud&#45;à&#45;nœud." alt="" coords="1032,112,1213,155"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="694,50,1020,109,1032,112,1031,117,1019,115,693,55"/>
+<area shape="rect" id="Node000011" href="$pc__diag_8h.html" title="Interface publique du diagnostic PC — USB&#45;CDC, JSON, commandes Python." alt="" coords="424,112,565,155"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="561,76,519,114,516,110,558,72"/>
+<area shape="rect" id="Node000013" href="$lidar__driver_8h.html" title="Interface publique du driver LIDAR VL53L8CX — acquisition et fusion 8×32." alt="" coords="845,112,1008,155"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="694,60,857,109,856,114,693,66"/>
+<area shape="rect" id="Node000015" href="$radar__driver_8h.html" title="Interface publique du driver Radar HLK&#45;LD6002 — UART + TinyFrame." alt="" coords="1237,112,1400,155"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="694,42,935,68,1225,109,1237,111,1236,117,1225,115,934,74,694,47"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="101,169,107,202,102,203,96,170"/>
+<area shape="rect" id="Node000005" href="$hw__diag_8c.html" title="Diagnostic matériel au démarrage — I2C LIDAR + UART Radar." alt="" coords="222,203,366,245"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="317,170,305,203,300,201,312,168"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="410,157,544,200,567,208,565,213,543,205,408,162"/>
+<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="690,166,622,212,619,208,687,161"/>
+<area shape="rect" id="Node000008" href="$mesh__manager_8c.html" title="Gestionnaire réseau maillé ESP&#45;NOW — topologie arborescente + AES&#45;128." alt="" coords="673,203,854,245"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="746,168,758,201,753,203,741,170"/>
+<area shape="poly" id="edge11_Node000009_Node000008" title=" " alt="" coords="1024,162,848,205,847,199,1023,156"/>
+<area shape="rect" id="Node000010" href="$ota__node_8c.html" title="OTA nœud&#45;à&#45;nœud via ESP&#45;NOW — fragments 200 octets." alt="" coords="1065,203,1246,245"/>
+<area shape="poly" id="edge12_Node000009_Node000010" title=" " alt="" coords="1138,168,1150,201,1145,203,1133,170"/>
+<area shape="poly" id="edge15_Node000011_Node000006" title=" " alt="" coords="532,162,589,208,585,212,529,166"/>
+<area shape="rect" id="Node000012" href="$pc__diag_8c.html" title="Interface PC USB&#45;JTAG — Rapport JSON temps réel (Lexacare Studio)." alt="" coords="390,203,532,245"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="484,170,471,203,466,201,479,168"/>
+<area shape="poly" id="edge18_Node000013_Node000006" title=" " alt="" coords="830,160,662,205,638,213,637,208,660,200,829,155"/>
+<area shape="rect" id="Node000014" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="878,203,1041,245"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="942,168,954,201,949,203,937,170"/>
+<area shape="poly" id="edge20_Node000015_Node000014" title=" " alt="" coords="1222,161,1042,205,1041,200,1221,156"/>
+<area shape="rect" id="Node000016" href="$radar__driver_8c.html" title="Driver UART HLK&#45;LD6002 — protocole TinyFrame, ring buffer UART." alt="" coords="1270,203,1433,245"/>
+<area shape="poly" id="edge21_Node000015_Node000016" title=" " alt="" coords="1334,168,1346,201,1341,203,1329,170"/>
+</map>

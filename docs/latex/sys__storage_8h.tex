@@ -1,0 +1,63 @@
+\doxysection{components/sys\+\_\+storage/include/sys\+\_\+storage.h File Reference}
+\hypertarget{sys__storage_8h}{}\label{sys__storage_8h}\index{components/sys\_storage/include/sys\_storage.h@{components/sys\_storage/include/sys\_storage.h}}
+
+
+Interface publique du composant sys\+\_\+storage — SPIFFS, log circulaire, panic handler.  
+
+
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for sys\+\_\+storage.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{sys__storage_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{sys__storage_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}}~"{}/spiffs"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\+\_\+\+PARTITION}}~"{}storage"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\+\_\+\+FILE\+\_\+\+PATH}}~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}} "{}/app.\+log"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga6e2a8058cdfef2684f05c06f78b54f61}{PANIC\+\_\+\+FILE\+\_\+\+PATH}}~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}} "{}/panic.\+log"{}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gacdf328884296fb814beeb53fba7c46dc}{LOG\+\_\+\+MAX\+\_\+\+SIZE\+\_\+\+BYTES}}~(900\+UL \texorpdfstring{$\ast$}{*} 1024UL)
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga6cf29cf5f005b00e6650f6e7369d3c98}{LOG\+\_\+\+TRIM\+\_\+\+PERCENT}}~10
+\item 
+\#define \mbox{\hyperlink{group__group__storage_ga963f6be03bc9dc7db1ea5c6fa5fab9a8}{LITTLEFS\+\_\+\+MOUNT\+\_\+\+POINT}}~\mbox{\hyperlink{group__group__storage_gaa4e9c38d8bf2dcf2a0a517f32b019f0e}{STORAGE\+\_\+\+MOUNT\+\_\+\+POINT}}
+\item 
+\#define \mbox{\hyperlink{group__group__storage_gafc0cfe84cc1ef21ab7db1eb5bc86b484}{LITTLEFS\+\_\+\+PARTITION}}~\mbox{\hyperlink{group__group__storage_gae8d37ae33fe87928970a494318e6ea32}{STORAGE\+\_\+\+PARTITION}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c}{littlefs\+\_\+manager\+\_\+init}} (void)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e}{log\+\_\+write}} (const char \texorpdfstring{$\ast$}{*}msg)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{panic\+\_\+handler\+\_\+install}} (void)
+\item 
+void \mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface publique du composant sys\+\_\+storage — SPIFFS, log circulaire, panic handler. 
+
+Système de fichiers \+: SPIFFS (built-\/in ESP-\/\+IDF v5.\+4, composant "{}spiffs"{}). Point de montage \+: /spiffs Partition \+: "{}storage"{} (1 Mo, subtype spiffs dans partitions.\+csv)
+
+Note \+: la migration vers Little\+FS est possible en remplaçant \+: esp\+\_\+spiffs.\+h → esp\+\_\+littlefs.\+h (composant joltwallet/esp\+\_\+littlefs) esp\+\_\+vfs\+\_\+spiffs\+\_\+conf\+\_\+t → esp\+\_\+vfs\+\_\+littlefs\+\_\+conf\+\_\+t esp\+\_\+vfs\+\_\+spiffs\+\_\+register → esp\+\_\+vfs\+\_\+littlefs\+\_\+register esp\+\_\+spiffs\+\_\+info → esp\+\_\+littlefs\+\_\+info 
+
+Definition in file \mbox{\hyperlink{sys__storage_8h_source}{sys\+\_\+storage.\+h}}.
+

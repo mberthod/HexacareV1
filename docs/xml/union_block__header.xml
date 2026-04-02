@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="union_block__header" kind="union" language="C++" prot="public">
+    <compoundname>Block_header</compoundname>
+    <includes refid="vl53l8cx__api_8h" local="no">vl53l8cx_api.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="union_block__header_1a73ab9218007365c67b992e0ddbab3a96" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t Block_header::bytes</definition>
+        <argsstring></argsstring>
+        <name>bytes</name>
+        <qualifiedname>Block_header::bytes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="374" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="374" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="union_block__header_1a42c59513d7645f487db64f0cebae64e5" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t Block_header::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>Block_header::type</qualifiedname>
+        <bitfield> 4</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="376" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="376" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" compoundref="vl53l8cx__plugin__xtalk_8c" startline="55" endline="145">_vl53l8cx_program_output_config</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t Block_header::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <qualifiedname>Block_header::size</qualifiedname>
+        <bitfield> 12</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="377" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="377" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" compoundref="vl53l8cx__plugin__xtalk_8c" startline="55" endline="145">_vl53l8cx_program_output_config</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="union_block__header_1a088486b6dda766a17c51a48bc8ec7d21" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t Block_header::idx</definition>
+        <argsstring></argsstring>
+        <name>idx</name>
+        <qualifiedname>Block_header::idx</qualifiedname>
+        <bitfield> 16</bitfield>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="378" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="378" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" compoundref="vl53l8cx__plugin__xtalk_8c" startline="55" endline="145">_vl53l8cx_program_output_config</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="union_block__header_1a3f09440c333c1152b3450c5ff3caca81" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="union_block__header" kindref="compound">Block_header</ref></type>
+        <definition>struct Block_header Block_header</definition>
+        <argsstring></argsstring>
+        <name></name>
+        <qualifiedname>Block_header</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="379" column="1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="373" column="1" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="373" bodyend="380"/>
+    <listofallmembers>
+      <member refid="union_block__header_1a73ab9218007365c67b992e0ddbab3a96" prot="public" virt="non-virtual"><scope>Block_header</scope><name>bytes</name></member>
+      <member refid="union_block__header_1a088486b6dda766a17c51a48bc8ec7d21" prot="public" virt="non-virtual"><scope>Block_header</scope><name>idx</name></member>
+      <member refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" prot="public" virt="non-virtual"><scope>Block_header</scope><name>size</name></member>
+      <member refid="union_block__header_1a42c59513d7645f487db64f0cebae64e5" prot="public" virt="non-virtual"><scope>Block_header</scope><name>type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

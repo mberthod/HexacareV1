@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_67cfc9344264aea970c739ab8898b2f6" kind="dir">
+    <compoundname>components/sensor_acq/include</compoundname>
+    <innerfile refid="bme280__driver_8h">bme280_driver.h</innerfile>
+    <innerfile refid="hdc1080__driver_8h">hdc1080_driver.h</innerfile>
+    <innerfile refid="lidar__driver_8h">lidar_driver.h</innerfile>
+    <innerfile refid="mic__driver_8h">mic_driver.h</innerfile>
+    <innerfile refid="radar__driver_8h">radar_driver.h</innerfile>
+    <innerfile refid="vl53l8cx__platform_8h">vl53l8cx_platform.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/sensor_acq/include/"/>
+  </compounddef>
+</doxygen>

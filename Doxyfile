@@ -1,0 +1,109 @@
+##---------------------------------------------------------------------------
+## Doxygen configuration for LexaCare V1 firmware (ESP32-S3 / ESP-IDF)
+## Génère: HTML (docs/html) + LaTeX/PDF (docs/latex)
+##---------------------------------------------------------------------------
+
+DOXYFILE_ENCODING      = UTF-8
+PROJECT_NAME           = "LexaCare V1 — Firmware ESP32-S3"
+PROJECT_NUMBER         = "v1.0"
+PROJECT_BRIEF          = "Système de détection de chute par LIDAR et Radar"
+
+OUTPUT_DIRECTORY       = docs
+CREATE_SUBDIRS         = NO
+
+##---------------------------------------------------------------------------
+## Entrées analysées
+##---------------------------------------------------------------------------
+INPUT                  = main components docs
+RECURSIVE              = YES
+FILE_PATTERNS          = *.c *.cc *.h *.hpp *.md *.dox
+
+## Exclure code tiers et artefacts de build
+EXCLUDE                = build \
+                         components/cjson \
+                         _archive_arduino
+
+EXCLUDE_PATTERNS       = */build/* \
+                         */managed_components/* \
+                         */.git/* \
+                         */.vscode/* \
+                         */__pycache__/*
+
+##---------------------------------------------------------------------------
+## Extraction maximale (exhaustif)
+##---------------------------------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+
+## Pour éviter une avalanche d'avertissements (on extrait tout de toute façon)
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+
+##---------------------------------------------------------------------------
+## Langage / rendu
+##---------------------------------------------------------------------------
+OPTIMIZE_OUTPUT_FOR_C  = YES
+BUILTIN_STL_SUPPORT    = NO
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+
+## On utilise une mainpage en .dox (docs/mainpage.dox), pas un README.md
+USE_MDFILE_AS_MAINPAGE =
+
+##---------------------------------------------------------------------------
+## Navigation dans le code
+##---------------------------------------------------------------------------
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_CODE_COMMENTS    = NO
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+REFERENCES_LINK_SOURCE = YES
+VERBATIM_HEADERS       = YES
+
+GENERATE_TREEVIEW      = YES
+DISABLE_INDEX          = NO
+
+##---------------------------------------------------------------------------
+## HTML
+##---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_DYNAMIC_MENUS     = YES
+HTML_COLORSTYLE        = DARK
+
+##---------------------------------------------------------------------------
+## LaTeX / PDF
+##---------------------------------------------------------------------------
+GENERATE_LATEX         = YES
+USE_PDFLATEX           = YES
+LATEX_OUTPUT           = latex
+LATEX_BATCHMODE        = NO
+
+## Packages LaTeX supplémentaires (PDF) :
+## Support des caractères "box drawing" (└ ├ ─ │) utilisés dans certains index.
+LATEX_EXTRA_PACKAGES   = pmboxdraw
+
+##---------------------------------------------------------------------------
+## Graphviz (DOT) : diagrammes d'appel/collaboration
+##---------------------------------------------------------------------------
+HAVE_DOT               = YES
+DOT_NUM_THREADS        = 0
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+
+DOT_GRAPH_MAX_NODES    = 80
+MAX_DOT_GRAPH_DEPTH    = 0
+DOT_TRANSPARENT        = YES
+
+GENERATE_XML = YES

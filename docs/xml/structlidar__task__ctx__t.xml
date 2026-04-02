@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structlidar__task__ctx__t" kind="struct" language="C++" prot="public">
+    <compoundname>lidar_task_ctx_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" prot="public" static="no" mutable="no">
+        <type><ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref></type>
+        <definition>lidar_dev_t lidar_task_ctx_t::devs[LIDAR_NUM_TOTAL]</definition>
+        <argsstring>[LIDAR_NUM_TOTAL]</argsstring>
+        <name>devs</name>
+        <qualifiedname>lidar_task_ctx_t::devs</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="95" column="20" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="95" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" prot="public" static="no" mutable="no">
+        <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+        <definition>sys_context_t* lidar_task_ctx_t::sys_ctx</definition>
+        <argsstring></argsstring>
+        <name>sys_ctx</name>
+        <qualifiedname>lidar_task_ctx_t::sys_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="96" column="19" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="96" bodyend="-1"/>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="3">
+        <label>VL53L8CX_Platform</label>
+        <link refid="struct_v_l53_l8_c_x___platform"/>
+      </node>
+      <node id="8">
+        <label>enviro_data_t</label>
+        <link refid="structenviro__data__t"/>
+      </node>
+      <node id="2">
+        <label>lidar_dev_t</label>
+        <link refid="structlidar__dev__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>platform</edgelabel>
+        </childnode>
+      </node>
+      <node id="6">
+        <label>lidar_matrix_t</label>
+        <link refid="structlidar__matrix__t"/>
+      </node>
+      <node id="1">
+        <label>lidar_task_ctx_t</label>
+        <link refid="structlidar__task__ctx__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>devs</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>sys_ctx</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>mic_data_t</label>
+        <link refid="structmic__data__t"/>
+      </node>
+      <node id="7">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="5">
+        <label>sensor_frame_t</label>
+        <link refid="structsensor__frame__t"/>
+        <childnode refid="6" relation="usage">
+          <edgelabel>lidar</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>radar</edgelabel>
+        </childnode>
+      </node>
+      <node id="4">
+        <label>sys_context_t</label>
+        <link refid="structsys__context__t"/>
+        <childnode refid="5" relation="usage">
+          <edgelabel>latest_sensor</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>enviro</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>mic</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/sensor_acq/lidar_driver.c" line="94" column="1" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="94" bodyend="97"/>
+    <listofallmembers>
+      <member refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" prot="public" virt="non-virtual"><scope>lidar_task_ctx_t</scope><name>devs</name></member>
+      <member refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" prot="public" virt="non-virtual"><scope>lidar_task_ctx_t</scope><name>sys_ctx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

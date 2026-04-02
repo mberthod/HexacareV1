@@ -1,0 +1,9 @@
+<map id="components/sensor_acq/include/hdc1080_driver.h" name="components/sensor_acq/include/hdc1080_driver.h">
+<area shape="rect" id="Node000001" title="Driver Texas Instruments HDC1080 — Température et Humidité relative." alt="" coords="190,5,360,48"/>
+<area shape="rect" id="Node000002" href="$hdc1080__driver_8c.html" title="Driver HDC1080 — Température et Humidité (TI)." alt="" coords="5,96,169,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,57,132,98,130,93,216,53"/>
+<area shape="rect" id="Node000003" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="193,96,357,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,64,278,96,272,96,272,64"/>
+<area shape="rect" id="Node000004" href="$main_8c.html" title="Point d&#39;entrée LexaCare V1 — démarrage complet du firmware." alt="" coords="381,104,473,131"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="325,54,407,101,404,106,322,58"/>
+</map>

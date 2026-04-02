@@ -1,0 +1,13 @@
+<map id="vl53l8cx_set_ranging_mode" name="vl53l8cx_set_ranging_mode">
+<area shape="rect" id="Node000001" title="This function is used to set the ranging mode. Two modes are available using ULD : Continuous and aut..." alt="" coords="638,35,820,61"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="469,5,585,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="622,35,585,30,586,24,623,30"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="464,56,590,99"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="623,66,590,71,589,66,622,61"/>
+<area shape="rect" id="Node000003" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,5,416,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="453,21,417,21,417,16,453,16"/>
+<area shape="rect" id="Node000004" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,5,248,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="280,21,248,21,248,16,280,16"/>
+<area shape="rect" id="Node000005" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,83,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="115,21,83,21,83,16,115,16"/>
+</map>

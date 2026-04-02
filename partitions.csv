@@ -1,0 +1,8 @@
+# Tableau de partitions LexaCare V1 — Flash 16 Mo (ESP32-S3-WROOM-2)
+# Dual-OTA (ota_0 / ota_1 de 5 Mo chacun) + LittleFS 1 Mo pour logs et modèle IA
+# Name,    Type,  SubType,   Offset,     Size
+nvs,       data,  nvs,       0x9000,     0x5000
+otadata,   data,  ota,       0xe000,     0x2000
+ota_0,     app,   ota_0,     0x10000,    0x500000
+ota_1,     app,   ota_1,     0x510000,   0x500000
+storage,   data,  littlefs,  0xa10000,   0x100000

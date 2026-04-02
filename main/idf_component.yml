@@ -1,0 +1,14 @@
+## IDF Component Manager — LexaCare V1
+## Dépendances managed du projet.
+##
+## IMPORTANT : Les composants LittleFS et ESP-DL sont intégrés comme
+## composants LOCAUX dans components/ pour contourner l'absence d'accès
+## au registre Espressif sur ce réseau.
+##
+## esp_littlefs → components/esp_littlefs/ (Étape 3)
+## esp-dl       → components/esp_dl/       (Étape 5)
+
+dependencies:
+  ## Version IDF minimale
+  idf:
+    version: ">=5.0.0"

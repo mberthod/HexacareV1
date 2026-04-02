@@ -1,0 +1,9 @@
+<map id="diag_spi_ping_lidar" name="diag_spi_ping_lidar">
+<area shape="rect" id="Node000001" title=" " alt="" coords="439,5,571,32"/>
+<area shape="rect" id="Node000002" href="$hw__diag_8c.html#a5be005ad0232005e10663dc756467408" title=" " alt="" coords="273,5,391,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="424,21,392,21,392,16,424,16"/>
+<area shape="rect" id="Node000003" href="$group__group__hw__diag.html#gad0805242746ecf8545068878b9433eeb" title=" " alt="" coords="131,5,225,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="257,21,225,21,225,16,257,16"/>
+<area shape="rect" id="Node000004" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,83,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="115,21,83,21,83,16,115,16"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="_vl53l8cx_poll_for_answer" name="_vl53l8cx_poll_for_answer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,131,65"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="179,5,315,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,33,163,28,163,33,131,38"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="179,56,314,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="131,50,164,55,163,60,131,55"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="363,5,430,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="315,16,347,16,347,21,315,21"/>
+</map>

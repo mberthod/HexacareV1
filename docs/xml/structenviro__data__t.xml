@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structenviro__data__t" kind="struct" language="C++" prot="public">
+    <compoundname>enviro_data_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float enviro_data_t::temp_hdc_c</definition>
+        <argsstring></argsstring>
+        <name>temp_hdc_c</name>
+        <qualifiedname>enviro_data_t::temp_hdc_c</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HDC1080 température (°C) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="209" column="11" bodyfile="components/lexacare_types/include/system_types.h" bodystart="209" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float enviro_data_t::humidity_hdc</definition>
+        <argsstring></argsstring>
+        <name>humidity_hdc</name>
+        <qualifiedname>enviro_data_t::humidity_hdc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>HDC1080 humidité relative (%) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="210" column="11" bodyfile="components/lexacare_types/include/system_types.h" bodystart="210" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float enviro_data_t::temp_bme_c</definition>
+        <argsstring></argsstring>
+        <name>temp_bme_c</name>
+        <qualifiedname>enviro_data_t::temp_bme_c</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BME280 température (°C) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="211" column="11" bodyfile="components/lexacare_types/include/system_types.h" bodystart="211" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float enviro_data_t::pressure_hpa</definition>
+        <argsstring></argsstring>
+        <name>pressure_hpa</name>
+        <qualifiedname>enviro_data_t::pressure_hpa</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BME280 pression (hPa) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="212" column="11" bodyfile="components/lexacare_types/include/system_types.h" bodystart="212" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float enviro_data_t::humidity_bme</definition>
+        <argsstring></argsstring>
+        <name>humidity_bme</name>
+        <qualifiedname>enviro_data_t::humidity_bme</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>BME280 humidité relative (%) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="213" column="11" bodyfile="components/lexacare_types/include/system_types.h" bodystart="213" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/include/system_types.h" line="208" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="208" bodyend="214"/>
+    <listofallmembers>
+      <member refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" prot="public" virt="non-virtual"><scope>enviro_data_t</scope><name>humidity_bme</name></member>
+      <member refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" prot="public" virt="non-virtual"><scope>enviro_data_t</scope><name>humidity_hdc</name></member>
+      <member refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" prot="public" virt="non-virtual"><scope>enviro_data_t</scope><name>pressure_hpa</name></member>
+      <member refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" prot="public" virt="non-virtual"><scope>enviro_data_t</scope><name>temp_bme_c</name></member>
+      <member refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" prot="public" virt="non-virtual"><scope>enviro_data_t</scope><name>temp_hdc_c</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

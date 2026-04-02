@@ -1,0 +1,54 @@
+\doxysection{components/sys\+\_\+storage/littlefs\+\_\+manager.c File Reference}
+\hypertarget{littlefs__manager_8c}{}\label{littlefs__manager_8c}\index{components/sys\_storage/littlefs\_manager.c@{components/sys\_storage/littlefs\_manager.c}}
+
+
+Gestion du montage SPIFFS sur la partition "{}storage"{}.  
+
+
+{\ttfamily \#include "{}sys\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+spiffs.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for littlefs\+\_\+manager.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{littlefs__manager_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c}{littlefs\+\_\+manager\+\_\+init}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{littlefs__manager_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}storage"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Gestion du montage SPIFFS sur la partition "{}storage"{}. 
+
+Implémentation via esp\+\_\+spiffs (built-\/in ESP-\/\+IDF v5.\+4). L\textquotesingle{}API publique reste identique — les fichiers POSIX (fopen/fclose/etc.) fonctionnent de la même façon avec SPIFFS qu\textquotesingle{}avec Little\+FS.
+
+Note \+: SPIFFS ne supporte pas les répertoires. Tous les fichiers sont à la racine du point de montage (/spiffs/). 
+
+Definition in file \mbox{\hyperlink{littlefs__manager_8c_source}{littlefs\+\_\+manager.\+c}}.
+
+
+
+\label{doc-var-members}
+\Hypertarget{littlefs__manager_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{littlefs__manager_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}\index{littlefs\_manager.c@{littlefs\_manager.c}!TAG@{TAG}}
+\index{TAG@{TAG}!littlefs\_manager.c@{littlefs\_manager.c}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{littlefs__manager_8c_a5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}storage"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{littlefs__manager_8c_source_l00019}{19}} of file \mbox{\hyperlink{littlefs__manager_8c_source}{littlefs\+\_\+manager.\+c}}.
+

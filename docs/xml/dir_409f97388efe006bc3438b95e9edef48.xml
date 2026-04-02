@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_409f97388efe006bc3438b95e9edef48" kind="dir">
+    <compoundname>components</compoundname>
+    <innerdir refid="dir_61cb6a5e4045e4a8c3f394249d17c34c">components/ai_engine</innerdir>
+    <innerdir refid="dir_54c4ddc1c98aea5c3ae78012258b202f">components/hw_diag</innerdir>
+    <innerdir refid="dir_f7f793e9b2e2f7b297163edcae8530d4">components/lexacare_types</innerdir>
+    <innerdir refid="dir_78eb8458b0d46c0016d2af0cf5e99df6">components/mesh_network</innerdir>
+    <innerdir refid="dir_0377518441a900bf4420a1e62446b333">components/pc_diag</innerdir>
+    <innerdir refid="dir_a415d065e1fa9a7cfd7a63c811e49bb3">components/sensor_acq</innerdir>
+    <innerdir refid="dir_a07dd1bb026dd60940fbd2da6a20f1f7">components/sys_storage</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/"/>
+  </compounddef>
+</doxygen>

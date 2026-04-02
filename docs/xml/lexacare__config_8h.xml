@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="lexacare__config_8h" kind="file" language="C++">
+    <compoundname>lexacare_config.h</compoundname>
+    <includedby refid="hw__diag_8c" local="yes">components/hw_diag/hw_diag.c</includedby>
+    <includedby refid="lidar__driver_8c" local="yes">components/sensor_acq/lidar_driver.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/hw_diag/hw_diag.c</label>
+        <link refid="hw__diag_8c"/>
+      </node>
+      <node id="1">
+        <label>components/lexacare_types/include/lexacare_config.h</label>
+        <link refid="lexacare__config_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="4">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <member refid="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" kind="define"><name>LEXACARE_LIDAR_COUNT</name></member>
+      <member refid="group__group__config_1ga8fae42b5f7928159779f99742fdf0bd5" kind="define"><name>LEXACARE_LIDAR_USE_ST_ULD</name></member>
+      <member refid="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" kind="define"><name>LEXACARE_ENABLE_RADAR</name></member>
+      <member refid="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" kind="define"><name>LEXACARE_ENABLE_HDC1080</name></member>
+      <member refid="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" kind="define"><name>LEXACARE_ENABLE_BME280</name></member>
+      <member refid="group__group__config_1ga1e88f0418aa71aa2e74db4685116852a" kind="define"><name>LEXACARE_ENABLE_MLX90640</name></member>
+      <member refid="group__group__config_1ga4d8aad6f1e9c851b13890f4aa41a6282" kind="define"><name>LEXACARE_ENABLE_VL53L0X</name></member>
+      <member refid="group__group__config_1gae865b22047a6abaad37983f4df666bc6" kind="define"><name>LEXACARE_ENABLE_CAT24M01W</name></member>
+      <member refid="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" kind="define"><name>LEXACARE_ENABLE_MIC</name></member>
+      <member refid="group__group__config_1gaafd1ce9dac19ab9802c31dce7b63ee19" kind="define"><name>LEXACARE_ENABLE_AI</name></member>
+      <member refid="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" kind="define"><name>LEXACARE_ENABLE_MESH</name></member>
+      <member refid="group__group__config_1gaeea756a9c7ccd21130e7fc68116c2c31" kind="define"><name>LEXACARE_PWR_FAN_ENABLED</name></member>
+      <member refid="group__group__config_1gafcc1ee0670f4792dcf85c1c091f8da11" kind="define"><name>LEXACARE_PWR_RADAR_ENABLED</name></member>
+      <member refid="group__group__config_1ga46a950bf6649476b97a94825d33dd37d" kind="define"><name>LEXACARE_PWR_MIC_ENABLED</name></member>
+      <member refid="group__group__config_1gab0eba4763bffc7db4b8db3eea665155d" kind="define"><name>LEXACARE_PWR_MLX_ENABLED</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Activation / désactivation des composants matériels LexaCare V1. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Modifiez uniquement ce fichier pour adapter la configuration à votre environnement de test ou de production. 0 = composant absent / non connecté / désactivé 1 = composant présent / connecté / activé</para>
+<para>Composants physiques du système :</para>
+<para>┌─ SPI2 ─────────────────────────────────────────────────────────────┐ │ 4 × VL53L8CX (CLK=17, MOSI=18, MISO=21, NCS0-3=1/2/42/41) │ └────────────────────────────────────────────────────────────────────┘</para>
+<para>┌─ I2C_NUM_0 (SDA=11, SCL=12) ───────────────────────────────────────┐ │ PCA9555D @0x20 — LPn LIDAR + alimentation sous-systèmes │ └────────────────────────────────────────────────────────────────────┘</para>
+<para>┌─ I2C_NUM_1 (SDA=10, SCL=9) — capteurs sur carte radar ─────────────┐ │ MLX90640ESF @0x33 — caméra thermique 32×24 │ │ HDC1080 @0x40 — température + humidité │ │ BME280 @0x76 — pression + température + humidité │ │ VL53L0X @0x29 — TOF simple (géré via DIST_SHUTDOWN PCA9555) │ │ CAT24M01W @0x50 — EEPROM 1 Mbit (réservé) │ └────────────────────────────────────────────────────────────────────┘</para>
+<para>┌─ UART_NUM_2 (RX=43, TX=44) ────────────────────────────────────────┐ │ HLK-LD6002 — radar vital signs │ └────────────────────────────────────────────────────────────────────┘</para>
+<para>┌─ I2S (WS=6, SD=7, SCK=8) ──────────────────────────────────────────┐ │ Microphone MEMS numérique │ └────────────────────────────────────────────────────────────────────┘ </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>lexacare_config.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Activation<sp/>/<sp/>désactivation<sp/>des<sp/>composants<sp/>matériels<sp/>LexaCare<sp/>V1.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Modifiez<sp/>uniquement<sp/>ce<sp/>fichier<sp/>pour<sp/>adapter<sp/>la<sp/>configuration<sp/>à<sp/>votre</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>environnement<sp/>de<sp/>test<sp/>ou<sp/>de<sp/>production.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>0<sp/>=<sp/>composant<sp/>absent<sp/>/<sp/>non<sp/>connecté<sp/>/<sp/>désactivé</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>1<sp/>=<sp/>composant<sp/>présent<sp/>/<sp/>connecté<sp/>/<sp/>activé</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Composants<sp/>physiques<sp/>du<sp/>système<sp/>:</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>┌─<sp/>SPI2<sp/>─────────────────────────────────────────────────────────────┐</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>4<sp/>×<sp/>VL53L8CX<sp/>(CLK=17,<sp/>MOSI=18,<sp/>MISO=21,<sp/>NCS0-3=1/2/42/41)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/>└────────────────────────────────────────────────────────────────────┘</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/>┌─<sp/>I2C_NUM_0<sp/>(SDA=11,<sp/>SCL=12)<sp/>───────────────────────────────────────┐</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>PCA9555D<sp/>@0x20<sp/>—<sp/>LPn<sp/>LIDAR<sp/>+<sp/>alimentation<sp/>sous-systèmes<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/>└────────────────────────────────────────────────────────────────────┘</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/>┌─<sp/>I2C_NUM_1<sp/>(SDA=10,<sp/>SCL=9)<sp/>—<sp/>capteurs<sp/>sur<sp/>carte<sp/>radar<sp/>─────────────┐</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>MLX90640ESF<sp/>@0x33<sp/><sp/>—<sp/>caméra<sp/>thermique<sp/>32×24<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>HDC1080<sp/><sp/><sp/><sp/><sp/>@0x40<sp/><sp/>—<sp/>température<sp/>+<sp/>humidité<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>BME280<sp/><sp/><sp/><sp/><sp/><sp/>@0x76<sp/><sp/>—<sp/>pression<sp/>+<sp/>température<sp/>+<sp/>humidité<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>VL53L0X<sp/><sp/><sp/><sp/><sp/>@0x29<sp/><sp/>—<sp/>TOF<sp/>simple<sp/>(géré<sp/>via<sp/>DIST_SHUTDOWN<sp/>PCA9555)<sp/><sp/>│</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>CAT24M01W<sp/><sp/><sp/>@0x50<sp/><sp/>—<sp/>EEPROM<sp/>1<sp/>Mbit<sp/>(réservé)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/><sp/><sp/>└────────────────────────────────────────────────────────────────────┘</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/>┌─<sp/>UART_NUM_2<sp/>(RX=43,<sp/>TX=44)<sp/>────────────────────────────────────────┐</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>HLK-LD6002<sp/>—<sp/>radar<sp/>vital<sp/>signs<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/><sp/>└────────────────────────────────────────────────────────────────────┘</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/>┌─<sp/>I2S<sp/>(WS=6,<sp/>SD=7,<sp/>SCK=8)<sp/>──────────────────────────────────────────┐</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/><sp/><sp/>│<sp/><sp/>Microphone<sp/>MEMS<sp/>numérique<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>│</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/><sp/>└────────────────────────────────────────────────────────────────────┘</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="39"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_config<sp/>Configuration<sp/>&amp;<sp/>Types</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Options<sp/>simples<sp/>pour<sp/>activer/désactiver<sp/>des<sp/>sous-systèmes<sp/>et<sp/>décrire<sp/>les<sp/>données<sp/>partagées.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>Objectif<sp/>:<sp/>permettre<sp/>de<sp/>passer<sp/>facilement<sp/>d&apos;un<sp/>montage<sp/>“banc<sp/>de<sp/>test”<sp/>(capteurs<sp/>partiels,</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>modules<sp/>absents)<sp/>à<sp/>un<sp/>montage<sp/>“production”<sp/>sans<sp/>modifier<sp/>le<sp/>code<sp/>applicatif.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>LIDAR<sp/>VL53L8CX<sp/>(SPI)</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>Nombre<sp/>de<sp/>capteurs<sp/>actifs<sp/>(1–4).</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>Les<sp/>LPn<sp/>des<sp/>capteurs<sp/>absents<sp/>resteront<sp/>à<sp/>0<sp/>(reset).</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_LIDAR_COUNT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>LIDAR<sp/>—<sp/>Source<sp/>des<sp/>données<sp/>(réel<sp/>vs<sp/>stub)</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>0<sp/>=<sp/>STUB<sp/>(données<sp/>simulées)<sp/>—<sp/>utile<sp/>tant<sp/>que<sp/>l&apos;ULD<sp/>ST<sp/>n&apos;est<sp/>pas<sp/>intégré.</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>1<sp/>=<sp/>RÉEL<sp/>(ST<sp/>ULD<sp/>STSW-IMG040)<sp/>—<sp/>nécessite<sp/>les<sp/>sources<sp/>ST<sp/>dans</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>components/sensor_acq/uld/<sp/>+<sp/>CMake<sp/>auto-détecté.</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="group__group__config_1ga8fae42b5f7928159779f99742fdf0bd5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_LIDAR_USE_ST_ULD<sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>Radar<sp/>HLK-LD6002<sp/>(UART_NUM_2)</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>Mettre<sp/>à<sp/>0<sp/>quand<sp/>le<sp/>module<sp/>radar<sp/>n&apos;est<sp/>PAS<sp/>connecté.</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>→<sp/>Évite<sp/>le<sp/>crash<sp/>uart_read_bytes<sp/>(IWD<sp/>spinlock<sp/>ringbuf<sp/>IDF<sp/>6.0)</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_RADAR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>Capteurs<sp/>I2C<sp/>sur<sp/>carte<sp/>radar<sp/>(I2C_NUM_1,<sp/>SDA=10,<sp/>SCL=9)</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>Ces<sp/>capteurs<sp/>nécessitent<sp/>que<sp/>POWER_RADAR<sp/>soit<sp/>activé.</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_HDC1080<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>@0x40<sp/>—<sp/>temp<sp/>+<sp/>humidité<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_BME280<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>@0x76<sp/>—<sp/>pression<sp/>+<sp/>temp<sp/>+<sp/>hum<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="group__group__config_1ga1e88f0418aa71aa2e74db4685116852a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_MLX90640<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>@0x33<sp/>—<sp/>caméra<sp/>thermique<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="group__group__config_1ga4d8aad6f1e9c851b13890f4aa41a6282" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_VL53L0X<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>@0x29<sp/>—<sp/>TOF<sp/>simple<sp/>(DIST_SHD)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="group__group__config_1gae865b22047a6abaad37983f4df666bc6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_CAT24M01W<sp/><sp/><sp/><sp/><sp/><sp/>0<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>@0x50<sp/>—<sp/>EEPROM<sp/>1Mbit<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>Microphone<sp/>MEMS<sp/>I2S<sp/>(WS=6,<sp/>SD=7,<sp/>SCK=8)</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85" refid="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_MIC<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/>IA<sp/>(détection<sp/>chute)</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/>Mettre<sp/>à<sp/>0<sp/>tant<sp/>qu&apos;on<sp/>ne<sp/>veut<sp/>QUE<sp/>l&apos;image<sp/>LIDAR.</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="group__group__config_1gaafd1ce9dac19ab9802c31dce7b63ee19" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_AI<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>Réseau<sp/>mesh<sp/>ESP-NOW<sp/>+<sp/>WiFi</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>Mettre<sp/>à<sp/>0<sp/>pour<sp/>un<sp/>boot<sp/>ultrarapide<sp/>sans<sp/>réseau<sp/>(test<sp/>capteurs<sp/>seuls)</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_ENABLE_MESH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>Alimentations<sp/>sous-systèmes<sp/>via<sp/>PCA9555<sp/>Port<sp/>1</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>IMPORTANT<sp/>:<sp/>activer<sp/>POWER_RADAR<sp/>pour<sp/>alimenter<sp/>les<sp/>capteurs</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>HDC1080,<sp/>BME280,<sp/>MLX90640<sp/>et<sp/>VL53L0X<sp/>montés<sp/>sur<sp/>la<sp/>carte<sp/>radar.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>IO1.4<sp/>→<sp/>POWER_FAN<sp/><sp/><sp/><sp/>(ventilateur)</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>IO1.5<sp/>→<sp/>POWER_RADAR<sp/><sp/>(carte<sp/>radar<sp/>+<sp/>ses<sp/>capteurs<sp/>I2C)</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*<sp/>IO1.6<sp/>→<sp/>POWER_MIC<sp/><sp/><sp/><sp/>(microphone<sp/>MEMS)</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>IO1.7<sp/>→<sp/>POWER_MLX<sp/><sp/><sp/><sp/>(alimentation<sp/>dédiée<sp/>MLX90640<sp/>via<sp/>TPS22917)</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110" refid="group__group__config_1gaeea756a9c7ccd21130e7fc68116c2c31" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_PWR_FAN_ENABLED<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="group__group__config_1gafcc1ee0670f4792dcf85c1c091f8da11" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_PWR_RADAR_ENABLED<sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Alimente<sp/>HDC1080<sp/>+<sp/>BME280<sp/>!<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="group__group__config_1ga46a950bf6649476b97a94825d33dd37d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_PWR_MIC_ENABLED<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113" refid="group__group__config_1gab0eba4763bffc7db4b8db3eea665155d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_PWR_MLX_ENABLED<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="115"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_config<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/lexacare_types/include/lexacare_config.h"/>
+  </compounddef>
+</doxygen>

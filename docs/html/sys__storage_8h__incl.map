@@ -1,0 +1,5 @@
+<map id="components/sys_storage/include/sys_storage.h" name="components/sys_storage/include/sys_storage.h">
+<area shape="rect" id="Node000001" title="Interface publique du composant sys_storage — SPIFFS, log circulaire, panic handler." alt="" coords="5,5,173,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="51,96,127,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,49,92,80,86,80,86,49"/>
+</map>

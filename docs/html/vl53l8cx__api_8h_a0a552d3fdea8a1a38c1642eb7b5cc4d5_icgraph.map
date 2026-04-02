@@ -1,0 +1,22 @@
+<map id="vl53l8cx_get_resolution" name="vl53l8cx_get_resolution">
+<area shape="rect" id="Node000001" title="This function gets the current resolution (4x4 or 8x8)." alt="" coords="859,131,1016,157"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__plugin__xtalk_8c.html#ada5ef9bbc3fcdd3b8f681d08943c8d10" title=" " alt="" coords="638,5,811,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="901,124,810,69,774,51,776,46,812,64,904,120"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="464,35,590,77"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="872,129,810,113,589,69,590,64,812,108,873,124"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__plugin__xtalk_8c.html#a638fa39db7d6506992b20388f9880b47" title="This function gets the Xtalk buffer. The buffer is available after using the function vl53l8cx_calibr..." alt="" coords="653,123,796,165"/>
+<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="844,147,797,147,797,141,844,141"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__plugin__xtalk_8c.html#a0a1083d1f57251df3c70caabedd68f41" title="This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer." alt="" coords="653,189,796,232"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="878,165,796,191,794,186,877,160"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__api_8c.html#aa7a285f38be7f88d2ab894c23e58c8df" title="This function starts a ranging session. When the sensor streams, host cannot change settings &#39;on&#45;the&#45;..." alt="" coords="649,256,800,283"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="914,170,869,209,812,246,785,258,783,253,810,242,866,205,911,166"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="622,45,590,49,589,44,622,39"/>
+<area shape="rect" id="Node000007" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="469,256,585,283"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="633,272,585,272,585,267,633,267"/>
+<area shape="rect" id="Node000008" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,256,416,283"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="453,272,417,272,417,267,453,267"/>
+<area shape="rect" id="Node000009" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,256,248,283"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="280,272,248,272,248,267,280,267"/>
+<area shape="rect" id="Node000010" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,256,83,283"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="115,272,83,272,83,267,115,267"/>
+</map>

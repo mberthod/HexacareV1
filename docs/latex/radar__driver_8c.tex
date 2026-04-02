@@ -1,0 +1,445 @@
+\doxysection{components/sensor\+\_\+acq/radar\+\_\+driver.c File Reference}
+\hypertarget{radar__driver_8c}{}\label{radar__driver_8c}\index{components/sensor\_acq/radar\_driver.c@{components/sensor\_acq/radar\_driver.c}}
+
+
+Driver UART HLK-\/\+LD6002 — protocole Tiny\+Frame, ring buffer UART.  
+
+
+{\ttfamily \#include "{}radar\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}pins\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \#include "{}driver/uart.\+h"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for radar\+\_\+driver.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar__driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structradar__parser__t}{radar\+\_\+parser\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{UART\+\_\+\+PORT}}~UART\+\_\+\+NUM\+\_\+2
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a690f985c933da2ce6fe62b6c61dfa662}{RX\+\_\+\+BUF\+\_\+\+SIZE}}~512
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_ac972a7bb011724bcbd6b445b9a6fef2a}{TF\+\_\+\+SOF}}~0x01
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a73c9acaba0709da57963b20403746481}{TF\+\_\+\+EOF}}~0x04
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\+\_\+\+HEADER\+\_\+\+LEN}}~4
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}{TF\+\_\+\+FOOTER\+\_\+\+LEN}}~1
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}{TF\+\_\+\+MIN\+\_\+\+FRAME\+\_\+\+LEN}}~(\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\+\_\+\+HEADER\+\_\+\+LEN}} + \mbox{\hyperlink{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}{TF\+\_\+\+FOOTER\+\_\+\+LEN}})
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_aa1840a78150783188852dc2d48c01749}{TF\+\_\+\+MAX\+\_\+\+PAYLOAD\+\_\+\+LEN}}~64
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a6035d82d95769dda5c4f56e68aafb02d}{TF\+\_\+\+TYPE\+\_\+\+BREATH}}~0x0\+A14
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a279ac4a1e69cc4f5aa2fd1e365242ec9}{TF\+\_\+\+TYPE\+\_\+\+HEART}}~0x0\+A15
+\item 
+\#define \mbox{\hyperlink{radar__driver_8c_a25c14416760a4a7b05818aa819d4221f}{TF\+\_\+\+TYPE\+\_\+\+DISTANCE}}~0x0\+A16
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}{parse\+\_\+tinyframe}} (void)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\+\_\+driver\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Driver radar HLK-\/\+LD6002 (UART + Tiny\+Frame) — optionnel selon la configuration. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c}{radar\+\_\+driver\+\_\+poll}} (\mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{radar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}radar\+\_\+driver"{}
+\item 
+static \mbox{\hyperlink{structradar__parser__t}{radar\+\_\+parser\+\_\+t}} \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\+\_\+parser}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver UART HLK-\/\+LD6002 — protocole Tiny\+Frame, ring buffer UART. 
+
+Protocole Tiny\+Frame \+: \mbox{[}SOF=0x01\mbox{]}\mbox{[}Type\+\_\+H\mbox{]}\mbox{[}Type\+\_\+L\mbox{]}\mbox{[}Longueur\mbox{]}\mbox{[}Données...\mbox{]}\mbox{[}EOF=0x04\mbox{]}
+
+Types reconnus \+: 0x0\+A14 \+: Fréquence respiratoire (2 octets big-\/endian, bpm) 0x0\+A15 \+: Fréquence cardiaque (2 octets big-\/endian, bpm) 0x0\+A16 \+: Distance de la cible (2 octets big-\/endian, mm)
+
+Le driver UART (UART\+\_\+\+NUM\+\_\+2) est déjà installé par \doxylink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\+\_\+diag\+\_\+run()}. \doxylink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\+\_\+driver\+\_\+init()} se contente de réinitialiser l\textquotesingle{}état du parser. \doxylink{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c}{radar\+\_\+driver\+\_\+poll()} est appelé à chaque cycle de Task\+\_\+\+Sensor\+\_\+\+Acq. 
+
+Definition in file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{radar__driver_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{radar__driver_8c_a690f985c933da2ce6fe62b6c61dfa662}\index{radar\_driver.c@{radar\_driver.c}!RX\_BUF\_SIZE@{RX\_BUF\_SIZE}}
+\index{RX\_BUF\_SIZE@{RX\_BUF\_SIZE}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{RX\_BUF\_SIZE}{RX\_BUF\_SIZE}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a690f985c933da2ce6fe62b6c61dfa662} 
+\#define RX\+\_\+\+BUF\+\_\+\+SIZE~512}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00034}{34}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+\Hypertarget{radar__driver_8c_a73c9acaba0709da57963b20403746481}\index{radar\_driver.c@{radar\_driver.c}!TF\_EOF@{TF\_EOF}}
+\index{TF\_EOF@{TF\_EOF}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_EOF}{TF\_EOF}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a73c9acaba0709da57963b20403746481} 
+\#define TF\+\_\+\+EOF~0x04}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00036}{36}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}\index{radar\_driver.c@{radar\_driver.c}!TF\_FOOTER\_LEN@{TF\_FOOTER\_LEN}}
+\index{TF\_FOOTER\_LEN@{TF\_FOOTER\_LEN}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_FOOTER\_LEN}{TF\_FOOTER\_LEN}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca} 
+\#define TF\+\_\+\+FOOTER\+\_\+\+LEN~1}
+
+EOF 
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00038}{38}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}\index{radar\_driver.c@{radar\_driver.c}!TF\_HEADER\_LEN@{TF\_HEADER\_LEN}}
+\index{TF\_HEADER\_LEN@{TF\_HEADER\_LEN}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_HEADER\_LEN}{TF\_HEADER\_LEN}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7} 
+\#define TF\+\_\+\+HEADER\+\_\+\+LEN~4}
+
+SOF + Type(2) + Longueur(1) 
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00037}{37}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_aa1840a78150783188852dc2d48c01749}\index{radar\_driver.c@{radar\_driver.c}!TF\_MAX\_PAYLOAD\_LEN@{TF\_MAX\_PAYLOAD\_LEN}}
+\index{TF\_MAX\_PAYLOAD\_LEN@{TF\_MAX\_PAYLOAD\_LEN}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_MAX\_PAYLOAD\_LEN}{TF\_MAX\_PAYLOAD\_LEN}}
+{\footnotesize\ttfamily \label{radar__driver_8c_aa1840a78150783188852dc2d48c01749} 
+\#define TF\+\_\+\+MAX\+\_\+\+PAYLOAD\+\_\+\+LEN~64}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00040}{40}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+\Hypertarget{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}\index{radar\_driver.c@{radar\_driver.c}!TF\_MIN\_FRAME\_LEN@{TF\_MIN\_FRAME\_LEN}}
+\index{TF\_MIN\_FRAME\_LEN@{TF\_MIN\_FRAME\_LEN}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_MIN\_FRAME\_LEN}{TF\_MIN\_FRAME\_LEN}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3} 
+\#define TF\+\_\+\+MIN\+\_\+\+FRAME\+\_\+\+LEN~(\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\+\_\+\+HEADER\+\_\+\+LEN}} + \mbox{\hyperlink{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}{TF\+\_\+\+FOOTER\+\_\+\+LEN}})}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00039}{39}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_ac972a7bb011724bcbd6b445b9a6fef2a}\index{radar\_driver.c@{radar\_driver.c}!TF\_SOF@{TF\_SOF}}
+\index{TF\_SOF@{TF\_SOF}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_SOF}{TF\_SOF}}
+{\footnotesize\ttfamily \label{radar__driver_8c_ac972a7bb011724bcbd6b445b9a6fef2a} 
+\#define TF\+\_\+\+SOF~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00035}{35}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+\Hypertarget{radar__driver_8c_a6035d82d95769dda5c4f56e68aafb02d}\index{radar\_driver.c@{radar\_driver.c}!TF\_TYPE\_BREATH@{TF\_TYPE\_BREATH}}
+\index{TF\_TYPE\_BREATH@{TF\_TYPE\_BREATH}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_TYPE\_BREATH}{TF\_TYPE\_BREATH}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a6035d82d95769dda5c4f56e68aafb02d} 
+\#define TF\+\_\+\+TYPE\+\_\+\+BREATH~0x0\+A14}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00042}{42}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_a25c14416760a4a7b05818aa819d4221f}\index{radar\_driver.c@{radar\_driver.c}!TF\_TYPE\_DISTANCE@{TF\_TYPE\_DISTANCE}}
+\index{TF\_TYPE\_DISTANCE@{TF\_TYPE\_DISTANCE}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_TYPE\_DISTANCE}{TF\_TYPE\_DISTANCE}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a25c14416760a4a7b05818aa819d4221f} 
+\#define TF\+\_\+\+TYPE\+\_\+\+DISTANCE~0x0\+A16}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00044}{44}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_a279ac4a1e69cc4f5aa2fd1e365242ec9}\index{radar\_driver.c@{radar\_driver.c}!TF\_TYPE\_HEART@{TF\_TYPE\_HEART}}
+\index{TF\_TYPE\_HEART@{TF\_TYPE\_HEART}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TF\_TYPE\_HEART}{TF\_TYPE\_HEART}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a279ac4a1e69cc4f5aa2fd1e365242ec9} 
+\#define TF\+\_\+\+TYPE\+\_\+\+HEART~0x0\+A15}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00043}{43}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}.
+
+\Hypertarget{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}\index{radar\_driver.c@{radar\_driver.c}!UART\_PORT@{UART\_PORT}}
+\index{UART\_PORT@{UART\_PORT}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{UART\_PORT}{UART\_PORT}}
+{\footnotesize\ttfamily \label{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3} 
+\#define UART\+\_\+\+PORT~UART\+\_\+\+NUM\+\_\+2}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00033}{33}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00169}{radar\+\_\+driver\+\_\+init()}}, and \mbox{\hyperlink{radar__driver_8c_source_l00187}{radar\+\_\+driver\+\_\+poll()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{radar__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}\index{radar\_driver.c@{radar\_driver.c}!parse\_tinyframe@{parse\_tinyframe}}
+\index{parse\_tinyframe@{parse\_tinyframe}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{parse\_tinyframe()}{parse\_tinyframe()}}
+{\footnotesize\ttfamily \label{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b} 
+bool parse\+\_\+tinyframe (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00067}{67}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ <\ \mbox{\hyperlink{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}{TF\_MIN\_FRAME\_LEN}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{/*\ Recherche\ du\ SOF\ */}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ sof\_pos\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{while}\ (sof\_pos\ <\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ \&\&\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[sof\_pos]\ !=\ \mbox{\hyperlink{hw__diag_8c_ac972a7bb011724bcbd6b445b9a6fef2a}{TF\_SOF}})\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ sof\_pos++;}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (sof\_pos\ >\ 0)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Supprimer\ les\ octets\ avant\ le\ SOF\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ -\/=\ sof\_pos;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ memmove(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf,\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ sof\_pos,\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len);}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ <\ \mbox{\hyperlink{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}{TF\_MIN\_FRAME\_LEN}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{/*\ Décodage\ du\ header\ */}}
+\DoxyCodeLine{00086\ \ \ \ \ uint16\_t\ type\ =\ ((uint16\_t)\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[1]\ <<\ 8)\ |\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[2];}
+\DoxyCodeLine{00087\ \ \ \ \ uint8\_t\ \ plen\ =\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[3];}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ de\ la\ longueur\ totale\ */}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ frame\_len\ =\ \mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\_HEADER\_LEN}}\ +\ plen\ +\ \mbox{\hyperlink{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}{TF\_FOOTER\_LEN}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (frame\_len\ >\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf))\ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Trame\ incohérente\ —\ resynchronisation\ */}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ =\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ <\ frame\_len)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{/*\ Trame\ incomplète\ */}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ EOF\ */}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\_HEADER\_LEN}}\ +\ plen]\ !=\ \mbox{\hyperlink{radar__driver_8c_a73c9acaba0709da57963b20403746481}{TF\_EOF}})\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ EOF\ invalide\ :\ sauter\ d'un\ octet\ et\ réessayer\ */}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ memmove(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf,\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ 1,\ -\/-\/\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{/*\ Extraction\ des\ données\ selon\ le\ type\ */}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *payload\ =\ \&\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\_HEADER\_LEN}}];}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ decoded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{radar__driver_8c_a6035d82d95769dda5c4f56e68aafb02d}{TF\_TYPE\_BREATH}}:}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plen\ >=\ 2)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.breath\_rate\_bpm\ =}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(((uint16\_t)payload[0]\ <<\ 8)\ |\ payload[1]);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.presence\ =\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.breath\_rate\_bpm\ >\ 0);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decoded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Respiration\ :\ \%u\ bpm"{}},}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.breath\_rate\_bpm);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{radar__driver_8c_a279ac4a1e69cc4f5aa2fd1e365242ec9}{TF\_TYPE\_HEART}}:}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plen\ >=\ 2)\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.heart\_rate\_bpm\ =}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(((uint16\_t)payload[0]\ <<\ 8)\ |\ payload[1]);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decoded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Cardio\ :\ \%u\ bpm"{}},}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.heart\_rate\_bpm);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{radar__driver_8c_a25c14416760a4a7b05818aa819d4221f}{TF\_TYPE\_DISTANCE}}:}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plen\ >=\ 2)\ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.target\_distance\_mm\ =}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(((uint16\_t)payload[0]\ <<\ 8)\ |\ payload[1]);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decoded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Distance\ :\ \%u\ mm"{}},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.target\_distance\_mm);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGV(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Type\ TinyFrame\ inconnu\ :\ 0x\%04X"{}},\ type);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (decoded)\ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.timestamp\_us\ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.updated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{/*\ Consommer\ la\ trame\ du\ buffer\ */}}
+\DoxyCodeLine{00153\ \ \ \ \ memmove(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf,}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ frame\_len,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ -\/\ frame\_len);}
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ -\/=\ frame\_len;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{return}\ decoded;}
+\DoxyCodeLine{00159\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{radar__driver_8c_source_l00056}{s\+\_\+parser}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{radar__driver_8c_source_l00036}{TF\+\_\+\+EOF}}, \mbox{\hyperlink{radar__driver_8c_source_l00038}{TF\+\_\+\+FOOTER\+\_\+\+LEN}}, \mbox{\hyperlink{radar__driver_8c_source_l00037}{TF\+\_\+\+HEADER\+\_\+\+LEN}}, \mbox{\hyperlink{radar__driver_8c_source_l00039}{TF\+\_\+\+MIN\+\_\+\+FRAME\+\_\+\+LEN}}, \mbox{\hyperlink{hw__diag_8c_source_l00060}{TF\+\_\+\+SOF}}, \mbox{\hyperlink{radar__driver_8c_source_l00042}{TF\+\_\+\+TYPE\+\_\+\+BREATH}}, \mbox{\hyperlink{radar__driver_8c_source_l00044}{TF\+\_\+\+TYPE\+\_\+\+DISTANCE}}, and \mbox{\hyperlink{radar__driver_8c_source_l00043}{TF\+\_\+\+TYPE\+\_\+\+HEART}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00187}{radar\+\_\+driver\+\_\+poll()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c}\index{radar\_driver.c@{radar\_driver.c}!radar\_driver\_poll@{radar\_driver\_poll}}
+\index{radar\_driver\_poll@{radar\_driver\_poll}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{radar\_driver\_poll()}{radar\_driver\_poll()}}
+{\footnotesize\ttfamily \label{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c} 
+bool radar\+\_\+driver\+\_\+poll (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00187}{187}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ non\ bloquante\ des\ octets\ disponibles\ */}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ available\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf)\ -\/\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len;}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{if}\ (available\ >\ 0)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ read\ =\ uart\_read\_bytes(\mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{UART\_PORT}},}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len,}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ available,}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \textcolor{comment}{/*\ timeout\ =\ 0\ ms,\ non\ bloquant\ */});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (read\ >\ 0)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ +=\ (size\_t)read;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{/*\ Tentative\ de\ décodage\ (peut\ trouver\ plusieurs\ trames)\ */}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}{parse\_tinyframe}}())\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (found\ \&\&\ out)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ *out\ =\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.updated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ found;}
+\DoxyCodeLine{00213\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}, \mbox{\hyperlink{radar__driver_8c_source_l00056}{s\+\_\+parser}}, and \mbox{\hyperlink{radar__driver_8c_source_l00033}{UART\+\_\+\+PORT}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{radar__driver_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{radar__driver_8c_a750e504aa938df40773e68a513147dc3}\index{radar\_driver.c@{radar\_driver.c}!s\_parser@{s\_parser}}
+\index{s\_parser@{s\_parser}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{s\_parser}{s\_parser}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a750e504aa938df40773e68a513147dc3} 
+\mbox{\hyperlink{structradar__parser__t}{radar\+\_\+parser\+\_\+t}} s\+\_\+parser\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00056}{56}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}, \mbox{\hyperlink{radar__driver_8c_source_l00169}{radar\+\_\+driver\+\_\+init()}}, and \mbox{\hyperlink{radar__driver_8c_source_l00187}{radar\+\_\+driver\+\_\+poll()}}.
+
+\Hypertarget{radar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}\index{radar\_driver.c@{radar\_driver.c}!TAG@{TAG}}
+\index{TAG@{TAG}!radar\_driver.c@{radar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{radar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}radar\+\_\+driver"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00028}{28}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+

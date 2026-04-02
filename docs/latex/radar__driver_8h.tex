@@ -1,0 +1,108 @@
+\doxysection{components/sensor\+\_\+acq/include/radar\+\_\+driver.h File Reference}
+\hypertarget{radar__driver_8h}{}\label{radar__driver_8h}\index{components/sensor\_acq/include/radar\_driver.h@{components/sensor\_acq/include/radar\_driver.h}}
+
+
+Interface publique du driver Radar HLK-\/\+LD6002 — UART + Tiny\+Frame.  
+
+
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for radar\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=344pt]{radar__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\+\_\+driver\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Driver radar HLK-\/\+LD6002 (UART + Tiny\+Frame) — optionnel selon la configuration. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c}{radar\+\_\+driver\+\_\+poll}} (\mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}out)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface publique du driver Radar HLK-\/\+LD6002 — UART + Tiny\+Frame. 
+
+Le driver utilise le ring buffer UART installé par \doxylink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\+\_\+diag\+\_\+run()} (uart\+\_\+driver\+\_\+install sur UART\+\_\+\+NUM\+\_\+2). Il parse le protocole Tiny\+Frame \+: SOF(0x01) \texorpdfstring{$\vert$}{|} Type(2o) \texorpdfstring{$\vert$}{|} Longueur(1o) \texorpdfstring{$\vert$}{|} Données \texorpdfstring{$\vert$}{|} EOF(0x04)
+
+Types reconnus \+: 0x0\+A14 → breath\+\_\+rate\+\_\+bpm (uint16 big-\/endian) 0x0\+A15 → heart\+\_\+rate\+\_\+bpm (uint16 big-\/endian) 0x0\+A16 → target\+\_\+distance\+\_\+mm (uint16 big-\/endian) 
+
+Definition in file \mbox{\hyperlink{radar__driver_8h_source}{radar\+\_\+driver.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{radar__driver_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c}\index{radar\_driver.h@{radar\_driver.h}!radar\_driver\_poll@{radar\_driver\_poll}}
+\index{radar\_driver\_poll@{radar\_driver\_poll}!radar\_driver.h@{radar\_driver.h}}
+\doxysubsubsection{\texorpdfstring{radar\_driver\_poll()}{radar\_driver\_poll()}}
+{\footnotesize\ttfamily \label{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c} 
+bool radar\+\_\+driver\+\_\+poll (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{out}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00187}{187}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00188\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ non\ bloquante\ des\ octets\ disponibles\ */}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ available\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf)\ -\/\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len;}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{if}\ (available\ >\ 0)\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ read\ =\ uart\_read\_bytes(\mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{UART\_PORT}},}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len,}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ available,}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \textcolor{comment}{/*\ timeout\ =\ 0\ ms,\ non\ bloquant\ */});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (read\ >\ 0)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ +=\ (size\_t)read;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{/*\ Tentative\ de\ décodage\ (peut\ trouver\ plusieurs\ trames)\ */}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}{parse\_tinyframe}}())\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (found\ \&\&\ out)\ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ *out\ =\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.updated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ found;}
+\DoxyCodeLine{00213\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}, \mbox{\hyperlink{radar__driver_8c_source_l00056}{s\+\_\+parser}}, and \mbox{\hyperlink{radar__driver_8c_source_l00033}{UART\+\_\+\+PORT}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=289pt]{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c_icgraph}
+\end{center}
+\end{figure}

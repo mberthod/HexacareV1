@@ -1,0 +1,51 @@
+\doxysection{lidar\+\_\+driver.\+h}
+\hypertarget{lidar__driver_8h_source}{}\label{lidar__driver_8h_source}\index{components/sensor\_acq/include/lidar\_driver.h@{components/sensor\_acq/include/lidar\_driver.h}}
+\mbox{\hyperlink{lidar__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ lidar\_driver.h}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Interface\ publique\ du\ driver\ LIDAR\ VL53L8CX\ —\ acquisition\ et\ fusion\ 8×32.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Task\_Sensor\_Acq\ (Core\ 1,\ priorité\ 10)\ pilote\ les\ 4\ LIDARs\ frontaux}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00006}00006\ \textcolor{comment}{\ *\ via\ les\ deux\ bus\ I2C\ initialisés\ par\ hw\_diag\_run().}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00007}00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00009}00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{system__types_8h}{system\_types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00013}00013\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00014}00014\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00015}00015\ \textcolor{comment}{\ *\ @defgroup\ group\_sensor\_acq\ Acquisition\ Capteurs}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00016}00016\ \textcolor{comment}{\ *\ @brief\ Lecture\ capteurs,\ fusion\ des\ données,\ et\ production\ de\ trames\ prêtes\ pour\ l'IA.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00017}00017\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00018}00018\ \textcolor{comment}{\ *\ Ce\ module\ existe\ pour\ “isoler\ le\ monde\ matériel”\ :}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00019}00019\ \textcolor{comment}{\ *\ -\/\ la\ partie\ IA\ reçoit\ une\ trame\ stable\ et\ cohérente\ (mêmes\ unités,\ mêmes\ dimensions)}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00020}00020\ \textcolor{comment}{\ *\ -\/\ la\ partie\ diagnostic\ PC\ reçoit\ des\ mesures\ prêtes\ à\ afficher}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00021}00021\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00022}00022\ \textcolor{comment}{\ *\ @\{}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00023}00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00025}00025\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00026}00026\ \textcolor{comment}{\ *\ lidar\_driver\_start}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00027}00027\ \textcolor{comment}{\ *\ @brief\ Crée\ la\ tâche\ Task\_Sensor\_Acq\ épinglée\ sur\ le\ Core\ 1.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00028}00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00029}00029\ \textcolor{comment}{\ *\ Prérequis\ :\ hw\_diag\_run()\ doit\ avoir\ été\ appelée\ au\ préalable}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00030}00030\ \textcolor{comment}{\ *\ pour\ initialiser\ ctx-\/>i2c\_bus0,\ ctx-\/>i2c\_bus1\ et\ ctx-\/>lidar\_ok[].}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00031}00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00032}00032\ \textcolor{comment}{\ *\ La\ tâche\ :}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00033}00033\ \textcolor{comment}{\ *\ \ \ -\/\ S'abonne\ au\ TWDT\ (esp\_task\_wdt\_add).}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00034}00034\ \textcolor{comment}{\ *\ \ \ -\/\ Configure\ chaque\ VL53L8CX\ détecté\ en\ résolution\ 8×8,\ ranging\ continu.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00035}00035\ \textcolor{comment}{\ *\ \ \ -\/\ Cadence\ 15\ Hz\ via\ vTaskDelayUntil.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00036}00036\ \textcolor{comment}{\ *\ \ \ -\/\ Fusionne\ les\ 4\ trames\ 8×8\ en\ une\ lidar\_matrix\_t\ 8×32.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00037}00037\ \textcolor{comment}{\ *\ \ \ -\/\ Pousse\ la\ sensor\_frame\_t\ dans\ ctx-\/>sensor\_to\_ai\_queue\ (non\ bloquant).}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00038}00038\ \textcolor{comment}{\ *\ \ \ -\/\ Appelle\ esp\_task\_wdt\_reset()\ à\ chaque\ itération.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00039}00039\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00040}00040\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00041}00041\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ la\ tâche\ est\ créée\ avec\ succès.}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00042}00042\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00043}00043\ esp\_err\_t\ \mbox{\hyperlink{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}{lidar\_driver\_start}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx);}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00044}00044\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{lidar__driver_8h_source_l00045}00045\ \textcolor{comment}{/**\ @\}\ */}\ \textcolor{comment}{/*\ end\ of\ group\_sensor\_acq\ */}}
+
+\end{DoxyCode}

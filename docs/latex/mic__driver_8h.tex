@@ -1,0 +1,140 @@
+\doxysection{components/sensor\+\_\+acq/include/mic\+\_\+driver.h File Reference}
+\hypertarget{mic__driver_8h}{}\label{mic__driver_8h}\index{components/sensor\_acq/include/mic\_driver.h@{components/sensor\_acq/include/mic\_driver.h}}
+
+
+Driver microphone MEMS numérique — Interface I2S (ESP-\/\+IDF v5/v6).  
+
+
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+Include dependency graph for mic\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{mic__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mic__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc}{mic\+\_\+driver\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Acquisition audio simple (RMS + pic) pour diagnostic et indicateurs. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{mic__driver_8h_adde164c8adc09dab37730e97d3cdc818}{mic\+\_\+driver\+\_\+read}} (uint32\+\_\+t \texorpdfstring{$\ast$}{*}rms, uint32\+\_\+t \texorpdfstring{$\ast$}{*}peak)
+\item 
+void \mbox{\hyperlink{mic__driver_8h_a143dd8f172deadfb4b1ce5284b7be168}{mic\+\_\+driver\+\_\+deinit}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver microphone MEMS numérique — Interface I2S (ESP-\/\+IDF v5/v6). 
+
+Capture un burst de N échantillons 32 bits via I2S en mode standard. Calcule l\textquotesingle{}amplitude RMS et le pic absolu.
+
+Broches (depuis \doxylink{pins__config_8h}{pins\+\_\+config.\+h}) \+: PIN\+\_\+\+MIC\+\_\+\+WS (GPIO6) \+: Word Select / LRCK PIN\+\_\+\+MIC\+\_\+\+SD (GPIO7) \+: Serial Data (données audio entrant) PIN\+\_\+\+MIC\+\_\+\+SCK (GPIO8) \+: Bit Clock
+
+Fréquence d\textquotesingle{}échantillonnage \+: 16 k\+Hz (suffisant pour voix + détection) Largeur de slot \+: 32 bits Taille du burst \+: 512 samples (32 ms à 16 k\+Hz) 
+
+Definition in file \mbox{\hyperlink{mic__driver_8h_source}{mic\+\_\+driver.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{mic__driver_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{mic__driver_8h_a143dd8f172deadfb4b1ce5284b7be168}\index{mic\_driver.h@{mic\_driver.h}!mic\_driver\_deinit@{mic\_driver\_deinit}}
+\index{mic\_driver\_deinit@{mic\_driver\_deinit}!mic\_driver.h@{mic\_driver.h}}
+\doxysubsubsection{\texorpdfstring{mic\_driver\_deinit()}{mic\_driver\_deinit()}}
+{\footnotesize\ttfamily \label{mic__driver_8h_a143dd8f172deadfb4b1ce5284b7be168} 
+void mic\+\_\+driver\+\_\+deinit (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mic__driver_8c_source_l00138}{138}} of file \mbox{\hyperlink{mic__driver_8c_source}{mic\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00139\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}})\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ i2s\_channel\_disable(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}});}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ i2s\_del\_channel(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}});}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}}\ =\ NULL;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mic__driver_8c_source_l00028}{s\+\_\+rx\+\_\+chan}}.
+
+\Hypertarget{mic__driver_8h_adde164c8adc09dab37730e97d3cdc818}\index{mic\_driver.h@{mic\_driver.h}!mic\_driver\_read@{mic\_driver\_read}}
+\index{mic\_driver\_read@{mic\_driver\_read}!mic\_driver.h@{mic\_driver.h}}
+\doxysubsubsection{\texorpdfstring{mic\_driver\_read()}{mic\_driver\_read()}}
+{\footnotesize\ttfamily \label{mic__driver_8h_adde164c8adc09dab37730e97d3cdc818} 
+esp\+\_\+err\+\_\+t mic\+\_\+driver\+\_\+read (\begin{DoxyParamCaption}\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{rms}{, }\item[{uint32\+\_\+t \texorpdfstring{$\ast$}{*}}]{peak}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mic__driver_8c_source_l00097}{97}} of file \mbox{\hyperlink{mic__driver_8c_source}{mic\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}})\ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ bytes\_read\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ de\ MIC\_BURST\_SAMPLES\ ×\ 2\ canaux\ ×\ 4\ octets\ =\ burst\ stéréo\ */}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\ read\_size\ =\ \mbox{\hyperlink{mic__driver_8c_a8132ba2eecc89f58dbc91816e91dab7a}{MIC\_BURST\_SAMPLES}}\ *\ \textcolor{keyword}{sizeof}(int32\_t)\ *\ 2;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{static}\ int32\_t\ stereo\_buf[\mbox{\hyperlink{mic__driver_8c_a8132ba2eecc89f58dbc91816e91dab7a}{MIC\_BURST\_SAMPLES}}\ *\ 2];}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ esp\_err\_t\ ret\ =\ i2s\_channel\_read(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}},\ stereo\_buf,\ read\_size,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&bytes\_read,}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{mic__driver_8c_a71f4544857dfa9bedabb47f9e2c1a2ca}{MIC\_READ\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Lecture\ I2S\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ n\_samples\ =\ bytes\_read\ /\ (\textcolor{keyword}{sizeof}(int32\_t)\ *\ 2);}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{if}\ (n\_samples\ ==\ 0)\ \textcolor{keywordflow}{return}\ ESP\_ERR\_TIMEOUT;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{/*\ Extraction\ du\ canal\ gauche\ (pairs\ =\ index\ 0,\ 2,\ 4,\ ...)\ */}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{/*\ Les\ données\ MEMS\ INMP441\ sont\ dans\ les\ 24\ bits\ supérieurs\ (shift\ >>\ 8)\ */}}
+\DoxyCodeLine{00119\ \ \ \ \ uint64\_t\ sum\_sq\ =\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ uint32\_t\ peak\_val\ =\ 0;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ n\_samples;\ i++)\ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ int32\_t\ sample\ =\ stereo\_buf[i\ *\ 2]\ >>\ 8;\ \ \textcolor{comment}{/*\ 24\ bits\ significatifs\ */}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ uint32\_t\ abs\_val\ =\ (sample\ <\ 0)\ ?\ (uint32\_t)(-\/sample)\ :\ (uint32\_t)sample;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ sum\_sq\ +=\ (uint64\_t)abs\_val\ *\ abs\_val;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs\_val\ >\ peak\_val)\ peak\_val\ =\ abs\_val;}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ *rms\ \ =\ (uint32\_t)sqrtf((\textcolor{keywordtype}{float})sum\_sq\ /\ n\_samples);}
+\DoxyCodeLine{00130\ \ \ \ \ *peak\ =\ peak\_val;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00133\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mic__driver_8c_source_l00025}{MIC\+\_\+\+BURST\+\_\+\+SAMPLES}}, \mbox{\hyperlink{mic__driver_8c_source_l00026}{MIC\+\_\+\+READ\+\_\+\+TIMEOUT\+\_\+\+MS}}, \mbox{\hyperlink{mic__driver_8c_source_l00028}{s\+\_\+rx\+\_\+chan}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mic__driver_8h_adde164c8adc09dab37730e97d3cdc818_icgraph}
+\end{center}
+\end{figure}

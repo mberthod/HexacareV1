@@ -1,0 +1,906 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.14.0" xml:lang="en-US">
+  <compound refid="structai__event__t" kind="struct"><name>ai_event_t</name>
+    <member refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" kind="variable"><name>state</name></member>
+    <member refid="structai__event__t_1abda04f94a67eac00a050985c90987309" kind="variable"><name>confidence</name></member>
+    <member refid="structai__event__t_1a9dfc426ff75b3bbd25f05aaafbc3e84b" kind="variable"><name>timestamp_us</name></member>
+  </compound>
+  <compound refid="structai__task__ctx__t" kind="struct"><name>ai_task_ctx_t</name>
+    <member refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kind="variable"><name>sys_ctx</name></member>
+    <member refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" kind="variable"><name>dist_history</name></member>
+    <member refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kind="variable"><name>history_head</name></member>
+    <member refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" kind="variable"><name>history_full</name></member>
+  </compound>
+  <compound refid="union_block__header" kind="union"><name>Block_header</name>
+    <member refid="union_block__header_1a73ab9218007365c67b992e0ddbab3a96" kind="variable"><name>bytes</name></member>
+    <member refid="union_block__header_1a42c59513d7645f487db64f0cebae64e5" kind="variable"><name>type</name></member>
+    <member refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" kind="variable"><name>size</name></member>
+    <member refid="union_block__header_1a088486b6dda766a17c51a48bc8ec7d21" kind="variable"><name>idx</name></member>
+    <member refid="union_block__header_1a3f09440c333c1152b3450c5ff3caca81" kind="variable"><name></name></member>
+  </compound>
+  <compound refid="structbme280__calib__t" kind="struct"><name>bme280_calib_t</name>
+    <member refid="structbme280__calib__t_1a62dfde40d14ceeed381c5f2e375f9d8c" kind="variable"><name>T1</name></member>
+    <member refid="structbme280__calib__t_1aaddf8fb904f0da0f690dc52b9a837ee3" kind="variable"><name>T2</name></member>
+    <member refid="structbme280__calib__t_1a07937a05f7a32c12d734a5d91a608422" kind="variable"><name>T3</name></member>
+    <member refid="structbme280__calib__t_1a0a7fa21fd2e1592cdf1969b6c47de668" kind="variable"><name>P1</name></member>
+    <member refid="structbme280__calib__t_1a943a22c01591539274e24075cefe90f8" kind="variable"><name>P2</name></member>
+    <member refid="structbme280__calib__t_1a9ce2ae55329dcc4539228b1ddc07d05b" kind="variable"><name>P3</name></member>
+    <member refid="structbme280__calib__t_1a24d173f6266bbc7c794eddbac46e261a" kind="variable"><name>P4</name></member>
+    <member refid="structbme280__calib__t_1ae8b9627a8ea6cf96eb7013b1f8a45f94" kind="variable"><name>P5</name></member>
+    <member refid="structbme280__calib__t_1ad13c4c343380150b4fd6febc117004fe" kind="variable"><name>P6</name></member>
+    <member refid="structbme280__calib__t_1afeb172524de13c0ae965eadbef5c1280" kind="variable"><name>P7</name></member>
+    <member refid="structbme280__calib__t_1af18d6e4e995bfaab9b0eb450890e8c0f" kind="variable"><name>P8</name></member>
+    <member refid="structbme280__calib__t_1a1484085b19d4d6d955460df879b53c0d" kind="variable"><name>P9</name></member>
+    <member refid="structbme280__calib__t_1ad57cb71e99083dc1fe99b6a76fde464b" kind="variable"><name>H1</name></member>
+    <member refid="structbme280__calib__t_1a3cb1ea2a9ac7c706ab8c12f84b392c97" kind="variable"><name>H2</name></member>
+    <member refid="structbme280__calib__t_1a7637bab3c27446ffc5d09d0f97911048" kind="variable"><name>H3</name></member>
+    <member refid="structbme280__calib__t_1a56d94c17f395e2e3d89f84d0ca35e62e" kind="variable"><name>H4</name></member>
+    <member refid="structbme280__calib__t_1aac598aa7fe7b10cd422ec8761022eacb" kind="variable"><name>H5</name></member>
+    <member refid="structbme280__calib__t_1a07e689fa0aa6b2062c784110c450e2ee" kind="variable"><name>H6</name></member>
+  </compound>
+  <compound refid="structenviro__data__t" kind="struct"><name>enviro_data_t</name>
+    <member refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" kind="variable"><name>temp_hdc_c</name></member>
+    <member refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" kind="variable"><name>humidity_hdc</name></member>
+    <member refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" kind="variable"><name>temp_bme_c</name></member>
+    <member refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" kind="variable"><name>pressure_hpa</name></member>
+    <member refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" kind="variable"><name>humidity_bme</name></member>
+  </compound>
+  <compound refid="structlexacare__frame__t" kind="struct"><name>lexacare_frame_t</name>
+    <member refid="structlexacare__frame__t_1a2d190e6984fc48b024cbd90920751115" kind="variable"><name>magic</name></member>
+    <member refid="structlexacare__frame__t_1a0987bccd98eababb9afb1a8bcca73b42" kind="variable"><name>type</name></member>
+    <member refid="structlexacare__frame__t_1a4da01eb6defe61a355da0bfad53da934" kind="variable"><name>hop_count</name></member>
+    <member refid="structlexacare__frame__t_1a7411c1c1379138c1233f7038d8b724c9" kind="variable"><name>src_mac</name></member>
+    <member refid="structlexacare__frame__t_1a0176f9d4f67522ab23cea18159f5a5f3" kind="variable"><name>iv</name></member>
+    <member refid="structlexacare__frame__t_1a36c28e379c0774aaaf8691c50a5f95e3" kind="variable"><name>payload</name></member>
+    <member refid="structlexacare__frame__t_1ab2ec2e5466c6af6724e3730e8b8a1d25" kind="variable"><name>payload_len</name></member>
+    <member refid="structlexacare__frame__t_1ae5067764127ffd0809f3cf71927d3e50" kind="variable"><name>crc16</name></member>
+  </compound>
+  <compound refid="structlidar__dev__t" kind="struct"><name>lidar_dev_t</name>
+    <member refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" kind="variable"><name>platform</name></member>
+    <member refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" kind="variable"><name>active</name></member>
+    <member refid="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" kind="variable"><name>sensor_idx</name></member>
+  </compound>
+  <compound refid="structlidar__matrix__t" kind="struct"><name>lidar_matrix_t</name>
+    <member refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" kind="variable"><name>data</name></member>
+    <member refid="structlidar__matrix__t_1a1cba5fb965937d1ab5f8a047d3932962" kind="variable"><name>vertical_mm</name></member>
+    <member refid="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" kind="variable"><name>timestamp_us</name></member>
+    <member refid="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" kind="variable"><name>valid</name></member>
+  </compound>
+  <compound refid="structlidar__task__ctx__t" kind="struct"><name>lidar_task_ctx_t</name>
+    <member refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kind="variable"><name>devs</name></member>
+    <member refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kind="variable"><name>sys_ctx</name></member>
+  </compound>
+  <compound refid="structmesh__state__t" kind="struct"><name>mesh_state_t</name>
+    <member refid="structmesh__state__t_1aa13f46b3f543c7839913404e64094fa6" kind="variable"><name>sys_ctx</name></member>
+    <member refid="structmesh__state__t_1ad90f2fb3bbe9e4d81d729d9e5061fb47" kind="variable"><name>aes_key</name></member>
+    <member refid="structmesh__state__t_1a10d1ebecf7f7ab40ff8a287c49da0c4e" kind="variable"><name>parent_mac</name></member>
+    <member refid="structmesh__state__t_1a055fb3119a9bc7d423469007ed9111d3" kind="variable"><name>has_parent</name></member>
+    <member refid="structmesh__state__t_1a1a2a2f73ee2b4482fbe1e528e6762b71" kind="variable"><name>hop_to_root</name></member>
+    <member refid="structmesh__state__t_1aac9ba4a1de8106fce1fe463cc0d15782" kind="variable"><name>peers</name></member>
+    <member refid="structmesh__state__t_1aafb630d4b2f82df8751df9979cd30c66" kind="variable"><name>peer_count</name></member>
+    <member refid="structmesh__state__t_1a57427af5d84ed6fc28fe6abd033f7b1e" kind="variable"><name>own_mac</name></member>
+  </compound>
+  <compound refid="structmic__data__t" kind="struct"><name>mic_data_t</name>
+    <member refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" kind="variable"><name>rms</name></member>
+    <member refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" kind="variable"><name>peak</name></member>
+    <member refid="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" kind="variable"><name>valid</name></member>
+  </compound>
+  <compound refid="structota__fragment__payload__t" kind="struct"><name>ota_fragment_payload_t</name>
+    <member refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" kind="variable"><name>firmware_size</name></member>
+    <member refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" kind="variable"><name>fragment_offset</name></member>
+    <member refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" kind="variable"><name>fragment_data_len</name></member>
+    <member refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" kind="variable"><name>data</name></member>
+    <member refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" kind="variable"><name>is_last</name></member>
+  </compound>
+  <compound refid="structota__state__t" kind="struct"><name>ota_state_t</name>
+    <member refid="structota__state__t_1a304df1c1c5758c5e19304f6c911f8ecf" kind="variable"><name>ota_handle</name></member>
+    <member refid="structota__state__t_1a5866222a4c4e5243fba3b04f6bc87aa0" kind="variable"><name>ota_partition</name></member>
+    <member refid="structota__state__t_1a78341f1043abfa1641ef3e062b4667ad" kind="variable"><name>in_progress</name></member>
+    <member refid="structota__state__t_1aeb10f45f7f5301047ef319fa06024a1b" kind="variable"><name>bytes_written</name></member>
+    <member refid="structota__state__t_1a6e099ff56fd3ed7cb890c123ac612f84" kind="variable"><name>firmware_size</name></member>
+  </compound>
+  <compound refid="structpc__diag__ctx__t" kind="struct"><name>pc_diag_ctx_t</name>
+    <member refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" kind="variable"><name>sys_ctx</name></member>
+    <member refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" kind="variable"><name>last_event</name></member>
+    <member refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" kind="variable"><name>has_event</name></member>
+  </compound>
+  <compound refid="structpeer__info__t" kind="struct"><name>peer_info_t</name>
+    <member refid="structpeer__info__t_1a246152eec6bd6506be59823be78b5234" kind="variable"><name>mac</name></member>
+    <member refid="structpeer__info__t_1a84377419838485f33d32051e26aa5f65" kind="variable"><name>rssi</name></member>
+    <member refid="structpeer__info__t_1a8f82766227096a7286c95dd904d573be" kind="variable"><name>hop_to_root</name></member>
+    <member refid="structpeer__info__t_1ad35211d13df7b4128d06db52ace2558d" kind="variable"><name>is_child</name></member>
+    <member refid="structpeer__info__t_1a566d0f63a0533a78292fd008d8a3f9be" kind="variable"><name>valid</name></member>
+  </compound>
+  <compound refid="structradar__data__t" kind="struct"><name>radar_data_t</name>
+    <member refid="structradar__data__t_1a701c910c93542668f4b224637db2b736" kind="variable"><name>resp_phase</name></member>
+    <member refid="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" kind="variable"><name>heart_phase</name></member>
+    <member refid="structradar__data__t_1aef77c6374300c5b7db1f80559428be9c" kind="variable"><name>total_phase</name></member>
+    <member refid="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" kind="variable"><name>breath_rate_bpm</name></member>
+    <member refid="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" kind="variable"><name>heart_rate_bpm</name></member>
+    <member refid="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" kind="variable"><name>target_distance_mm</name></member>
+    <member refid="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" kind="variable"><name>presence</name></member>
+    <member refid="structradar__data__t_1aea519eca3ff083a1f0c8911f5d9356e1" kind="variable"><name>timestamp_us</name></member>
+  </compound>
+  <compound refid="structradar__parser__t" kind="struct"><name>radar_parser_t</name>
+    <member refid="structradar__parser__t_1a4c090bb75fe32c249fb87ec843b32f54" kind="variable"><name>buf</name></member>
+    <member refid="structradar__parser__t_1a42d4166a7d0d6ef81df1e7e294ea11fb" kind="variable"><name>len</name></member>
+    <member refid="structradar__parser__t_1acb46a09babe70d1f7b8aff98928e32ec" kind="variable"><name>updated</name></member>
+    <member refid="structradar__parser__t_1aac179e103cebbf0bdd8e0b6223cb6e5d" kind="variable"><name>last_data</name></member>
+  </compound>
+  <compound refid="structsensor__frame__t" kind="struct"><name>sensor_frame_t</name>
+    <member refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kind="variable"><name>lidar</name></member>
+    <member refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kind="variable"><name>radar</name></member>
+    <member refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" kind="variable"><name>lidar_valid</name></member>
+    <member refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" kind="variable"><name>radar_valid</name></member>
+  </compound>
+  <compound refid="structsys__context__t" kind="struct"><name>sys_context_t</name>
+    <member refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" kind="variable"><name>sensor_to_ai_queue</name></member>
+    <member refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" kind="variable"><name>ai_to_mesh_queue</name></member>
+    <member refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" kind="variable"><name>diag_to_pc_queue</name></member>
+    <member refid="structsys__context__t_1aff52a7e584b7d6fe202e6b010e077b14" kind="variable"><name>log_queue</name></member>
+    <member refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" kind="variable"><name>lidar_spi</name></member>
+    <member refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kind="variable"><name>data_mutex</name></member>
+    <member refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" kind="variable"><name>latest_sensor</name></member>
+    <member refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" kind="variable"><name>sensor_valid</name></member>
+    <member refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" kind="variable"><name>enviro</name></member>
+    <member refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" kind="variable"><name>mic</name></member>
+    <member refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kind="variable"><name>lidar_ok</name></member>
+    <member refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kind="variable"><name>radar_ok</name></member>
+    <member refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" kind="variable"><name>is_root_node</name></member>
+  </compound>
+  <compound refid="struct_v_l53_l8_c_x___configuration" kind="struct"><name>VL53L8CX_Configuration</name>
+    <member refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kind="variable"><name>platform</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a55fce57b4cee980619298a85628ebfc8" kind="variable"><name>streamcount</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kind="variable"><name>data_read_size</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a9b2c9675e763360fc0c8865b31595c18" kind="variable"><name>default_configuration</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a9a8b925205c6e9ec22ae28ad972ab64a" kind="variable"><name>default_xtalk</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a0515da685c3d5e34c4c3fd292ba1ddf0" kind="variable"><name>offset_data</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" kind="variable"><name>xtalk_data</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kind="variable"><name>temp_buffer</name></member>
+    <member refid="struct_v_l53_l8_c_x___configuration_1a30a47d8990430ecbc960040d8950c88a" kind="variable"><name>is_auto_stop_enabled</name></member>
+  </compound>
+  <compound refid="struct_v_l53_l8_c_x___detection_thresholds" kind="struct"><name>VL53L8CX_DetectionThresholds</name>
+    <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" kind="variable"><name>param_low_thresh</name></member>
+    <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" kind="variable"><name>param_high_thresh</name></member>
+    <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a4f25aad8a1407ad6e564e73beb775529" kind="variable"><name>measurement</name></member>
+    <member refid="struct_v_l53_l8_c_x___detection_thresholds_1af00d77a5ecedd53e6cdfa203cf33a8c7" kind="variable"><name>type</name></member>
+    <member refid="struct_v_l53_l8_c_x___detection_thresholds_1aacadf9a05c6fa51ca0f17d2198b45920" kind="variable"><name>zone_num</name></member>
+    <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a04f92990545ed160717fdf3379c48991" kind="variable"><name>mathematic_operation</name></member>
+  </compound>
+  <compound refid="struct_v_l53_l8_c_x___motion___configuration" kind="struct"><name>VL53L8CX_Motion_Configuration</name>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a7486f76953279897f3a5348fa37ada18" kind="variable"><name>ref_bin_offset</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1aa5161e72cc918c869b22c9a510dbc30c" kind="variable"><name>detection_threshold</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a808306359a5457b09059ab4b34ce4471" kind="variable"><name>extra_noise_sigma</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1acecfae8d7c15c666515044d16bc4e50a" kind="variable"><name>null_den_clip_value</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a9a3dffefd9a52a67d0ca792afa8eb93c" kind="variable"><name>mem_update_mode</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1aeda7cd72afba40bcfdce1050b88f90d1" kind="variable"><name>mem_update_choice</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1af087e7adb392da85180e5a2fc439a392" kind="variable"><name>sum_span</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a99a0bf5ef229d1dd2cb9179f3d1f9c86" kind="variable"><name>feature_length</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a2c8cada5c0de3f2815e65a21ec360a06" kind="variable"><name>nb_of_aggregates</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a9eef524143ea4b3cd0b42e3a87a2bac0" kind="variable"><name>nb_of_temporal_accumulations</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1af3d935df98dcaf1f8edd4c8da0c3e9f0" kind="variable"><name>min_nb_for_global_detection</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a40fa7d2a4cd9a4b8a71a50feb3636e01" kind="variable"><name>global_indicator_format_1</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a0323338f801f857935b3e6fa868a4e43" kind="variable"><name>global_indicator_format_2</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1ad4a98b2582d306b28feeaf52643d8c38" kind="variable"><name>spare_1</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1ab3fd617de375d078b4131d3ac8536064" kind="variable"><name>spare_2</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a148d660c90974b30bddb22032b6332e2" kind="variable"><name>spare_3</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a1dd5be6132cde1c517b21fceca211d0c" kind="variable"><name>map_id</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1a04da4b63dd7c7739cd1bcb1878ec8c00" kind="variable"><name>indicator_format_1</name></member>
+    <member refid="struct_v_l53_l8_c_x___motion___configuration_1ad691d6643bb00275c8d7eef7017208b6" kind="variable"><name>indicator_format_2</name></member>
+  </compound>
+  <compound refid="struct_v_l53_l8_c_x___platform" kind="struct"><name>VL53L8CX_Platform</name>
+    <member refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" kind="variable"><name>spi_dev</name></member>
+    <member refid="struct_v_l53_l8_c_x___platform_1ae611f4407ec54984f5e9261fbab72a5c" kind="variable"><name>address</name></member>
+  </compound>
+  <compound refid="struct_v_l53_l8_c_x___results_data" kind="struct"><name>VL53L8CX_ResultsData</name>
+    <member refid="struct_v_l53_l8_c_x___results_data_1ab648c5bd1fdc392bf3f869b88c855c16" kind="variable"><name>silicon_temp_degc</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a1ffd8efae5f54d3fa493424598afca10" kind="variable"><name>ambient_per_spad</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a710c72df15490ee27f5ba54694f3f6df" kind="variable"><name>nb_target_detected</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1ad266872da9e56ccfa48b25d219b5c8c8" kind="variable"><name>nb_spads_enabled</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a2bed9cae05ebd676db08128b3d8b4d3d" kind="variable"><name>signal_per_spad</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a88302491fc37cadf6cee6f108804c13f" kind="variable"><name>range_sigma_mm</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a63464dedeb13da2788953679b8623a13" kind="variable"><name>distance_mm</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a098b5cbdfa3eb6c8795856dec40722fc" kind="variable"><name>reflectance</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a2ab017653d003b500ad091ae002b79e9" kind="variable"><name>target_status</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1ab37e265b8e7910dfe08cecc7c7def658" kind="variable"><name>global_indicator_1</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a49c08785fe81d9385cd59feba69ce449" kind="variable"><name>global_indicator_2</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a0dcd1767bb6a7b8b0a2f44e1ea820379" kind="variable"><name>status</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1aad03c6ac456ad7128ab700dfd578764e" kind="variable"><name>nb_of_detected_aggregates</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a30471b39c95e83fbd9155ce99854dccb" kind="variable"><name>nb_of_aggregates</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a475af0a0690969a5580014893c62b438" kind="variable"><name>spare</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a9ff637a9ca76d30fb98dd4a4d903b1ce" kind="variable"><name>motion</name></member>
+    <member refid="struct_v_l53_l8_c_x___results_data_1a42b71761eedd124e98fdc86441cbcd46" kind="variable"><name>motion_indicator</name></member>
+  </compound>
+  <compound refid="fall__detection__ai_8cc" kind="file"><name>fall_detection_ai.cc</name>
+    <member refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kind="define"><name>CONFIG_AI_HISTORY_LEN</name></member>
+    <member refid="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" kind="define"><name>CONFIG_AI_FALL_THRESHOLD_PERCENT</name></member>
+    <member refid="fall__detection__ai_8cc_1ab97049d4832a5c3943e89f3f3c3e10ef" kind="define"><name>CONFIG_AI_FALL_CONFIDENCE_THRESHOLD</name></member>
+    <member refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" kind="define"><name>TASK_STACK_SIZE</name></member>
+    <member refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kind="define"><name>TASK_PRIORITY</name></member>
+    <member refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kind="define"><name>TASK_CORE</name></member>
+    <member refid="fall__detection__ai_8cc_1aace0aabcf3303bb3a961ebd8ba4efee3" kind="define"><name>FALL_DISTANCE_MAX_MM</name></member>
+    <member refid="fall__detection__ai_8cc_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" kind="function"><name>threshold_avg_lower_zone</name></member>
+    <member refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" kind="function"><name>threshold_detect_fall</name></member>
+    <member refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" kind="function"><name>send_ai_event</name></member>
+    <member refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" kind="function"><name>task_ai_inference</name></member>
+    <member refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kind="function"><name>ai_engine_task_start</name></member>
+  </compound>
+  <compound refid="fall__detection__ai_8h" kind="file"><name>fall_detection_ai.h</name>
+    <member refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kind="function"><name>ai_engine_task_start</name></member>
+  </compound>
+  <compound refid="hw__diag_8c" kind="file"><name>hw_diag.c</name>
+    <member refid="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" kind="define"><name>I2C_BUS_FREQ_HZ</name></member>
+    <member refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kind="define"><name>I2C_TIMEOUT_MS</name></member>
+    <member refid="hw__diag_8c_1af1f103c89b89bf816b06feb44aa4f02b" kind="define"><name>LIDAR_LPN_DELAY_MS</name></member>
+    <member refid="hw__diag_8c_1a312094fb888f3d236cf6e006fa3c7ba7" kind="define"><name>LIDAR_SPI_FREQ_HZ</name></member>
+    <member refid="hw__diag_8c_1adb789f5997051b9571156f1bb3aebcf0" kind="define"><name>LIDAR_SPI_MAX_XFER</name></member>
+    <member refid="hw__diag_8c_1aed6921a12f142ab8c047bb8ceb66df24" kind="define"><name>VL53L8CX_REG_MODEL_ID</name></member>
+    <member refid="hw__diag_8c_1a37b0bea1b767942ed1805a599c10f547" kind="define"><name>VL53L8CX_MODEL_ID</name></member>
+    <member refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" kind="define"><name>RADAR_UART_PORT</name></member>
+    <member refid="hw__diag_8c_1a302dbd1e40e02c6740a8fc2a6adbad74" kind="define"><name>RADAR_BAUD_RATE</name></member>
+    <member refid="hw__diag_8c_1adc96b85363aae03cea938220c12a0940" kind="define"><name>RADAR_RX_BUF_SIZE</name></member>
+    <member refid="hw__diag_8c_1a5f59b14d6bd04d48eb3b0210576359ff" kind="define"><name>RADAR_DETECT_TIMEOUT_MS</name></member>
+    <member refid="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" kind="define"><name>TF_SOF</name></member>
+    <member refid="hw__diag_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kind="variable"><name>s_ncs_pins</name></member>
+    <member refid="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" kind="variable"><name>s_pca_lpn_bit</name></member>
+    <member refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kind="variable"><name>s_pca_out</name></member>
+    <member refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" kind="variable"><name>s_pca1_out</name></member>
+    <member refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" kind="variable"><name>s_pca_bus</name></member>
+    <member refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" kind="variable"><name>s_pca_dev</name></member>
+    <member refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" kind="function"><name>diag_init_i2c_bus</name></member>
+    <member refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" kind="function"><name>diag_init_spi_lidars</name></member>
+    <member refid="hw__diag_8c_1a1f24dd93c787375ee15df4c7aec52887" kind="function"><name>diag_spi_ping_lidar</name></member>
+    <member refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kind="function"><name>pca9555_write_reg</name></member>
+    <member refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" kind="function"><name>pca9555_init</name></member>
+    <member refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" kind="function"><name>pca9555_set_lpn</name></member>
+    <member refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" kind="function"><name>diag_scan_lidars</name></member>
+    <member refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" kind="function"><name>diag_test_radar</name></member>
+    <member refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" kind="function"><name>diag_print_json_report</name></member>
+    <member refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kind="function"><name>hw_diag_run</name></member>
+    <member refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kind="function"><name>hw_diag_init_sensor_bus</name></member>
+    <member refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kind="function"><name>hw_diag_pca9555_set_power</name></member>
+  </compound>
+  <compound refid="hw__diag_8h" kind="file"><name>hw_diag.h</name>
+    <member refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kind="enum"><name>hw_diag_result_t</name></member>
+    <member refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kind="function"><name>hw_diag_run</name></member>
+    <member refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kind="function"><name>hw_diag_init_sensor_bus</name></member>
+    <member refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kind="function"><name>hw_diag_pca9555_set_power</name></member>
+  </compound>
+  <compound refid="lexacare__config_8h" kind="file"><name>lexacare_config.h</name>
+    <member refid="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" kind="define"><name>LEXACARE_LIDAR_COUNT</name></member>
+    <member refid="group__group__config_1ga8fae42b5f7928159779f99742fdf0bd5" kind="define"><name>LEXACARE_LIDAR_USE_ST_ULD</name></member>
+    <member refid="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" kind="define"><name>LEXACARE_ENABLE_RADAR</name></member>
+    <member refid="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" kind="define"><name>LEXACARE_ENABLE_HDC1080</name></member>
+    <member refid="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" kind="define"><name>LEXACARE_ENABLE_BME280</name></member>
+    <member refid="group__group__config_1ga1e88f0418aa71aa2e74db4685116852a" kind="define"><name>LEXACARE_ENABLE_MLX90640</name></member>
+    <member refid="group__group__config_1ga4d8aad6f1e9c851b13890f4aa41a6282" kind="define"><name>LEXACARE_ENABLE_VL53L0X</name></member>
+    <member refid="group__group__config_1gae865b22047a6abaad37983f4df666bc6" kind="define"><name>LEXACARE_ENABLE_CAT24M01W</name></member>
+    <member refid="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" kind="define"><name>LEXACARE_ENABLE_MIC</name></member>
+    <member refid="group__group__config_1gaafd1ce9dac19ab9802c31dce7b63ee19" kind="define"><name>LEXACARE_ENABLE_AI</name></member>
+    <member refid="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" kind="define"><name>LEXACARE_ENABLE_MESH</name></member>
+    <member refid="group__group__config_1gaeea756a9c7ccd21130e7fc68116c2c31" kind="define"><name>LEXACARE_PWR_FAN_ENABLED</name></member>
+    <member refid="group__group__config_1gafcc1ee0670f4792dcf85c1c091f8da11" kind="define"><name>LEXACARE_PWR_RADAR_ENABLED</name></member>
+    <member refid="group__group__config_1ga46a950bf6649476b97a94825d33dd37d" kind="define"><name>LEXACARE_PWR_MIC_ENABLED</name></member>
+    <member refid="group__group__config_1gab0eba4763bffc7db4b8db3eea665155d" kind="define"><name>LEXACARE_PWR_MLX_ENABLED</name></member>
+  </compound>
+  <compound refid="pins__config_8h" kind="file"><name>pins_config.h</name>
+    <member refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" kind="define"><name>PIN_I2C0_SDA</name></member>
+    <member refid="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" kind="define"><name>PIN_I2C0_SCL</name></member>
+    <member refid="pins__config_8h_1aabfe18b52ad58d04d2a1cf6612c5c4fa" kind="define"><name>PIN_I2C1_SDA</name></member>
+    <member refid="pins__config_8h_1ac270b2950c69700990747460dc1e284a" kind="define"><name>PIN_I2C1_SCL</name></member>
+    <member refid="pins__config_8h_1a8e3e8f37be6335b7b08ffabb49f72b7d" kind="define"><name>LIDAR_SPI_HOST</name></member>
+    <member refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" kind="define"><name>PIN_LIDAR_CLK</name></member>
+    <member refid="pins__config_8h_1a591add909d8fa618c6c75d7375c5e0b6" kind="define"><name>PIN_LIDAR_MOSI</name></member>
+    <member refid="pins__config_8h_1a7206f7c59a37c0d551f6ae396e7ddd19" kind="define"><name>PIN_LIDAR_MISO</name></member>
+    <member refid="pins__config_8h_1aa999e725941ff90978fe96cfee88e1f2" kind="define"><name>PIN_LIDAR_SYNC</name></member>
+    <member refid="pins__config_8h_1a8d4bf531079d2f0cbad53326ea8e6199" kind="define"><name>PIN_LIDAR_NCS0</name></member>
+    <member refid="pins__config_8h_1a01c5ad844f2c0ec12343af1c16cacf5d" kind="define"><name>PIN_LIDAR_NCS1</name></member>
+    <member refid="pins__config_8h_1ae6e653a6750b07505a4f21a350cc7c7d" kind="define"><name>PIN_LIDAR_NCS2</name></member>
+    <member refid="pins__config_8h_1a7b82939fa5f89f8a18c272ff73b838f3" kind="define"><name>PIN_LIDAR_NCS3</name></member>
+    <member refid="pins__config_8h_1abc995c26ee634eb7c2600e8bf733bd17" kind="define"><name>PCA9555_I2C_ADDR</name></member>
+    <member refid="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" kind="define"><name>PCA9555_REG_OUTPUT_0</name></member>
+    <member refid="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" kind="define"><name>PCA9555_REG_OUTPUT_1</name></member>
+    <member refid="pins__config_8h_1adae3362117b6490d042b16c0ab603d49" kind="define"><name>PCA9555_REG_CONFIG_0</name></member>
+    <member refid="pins__config_8h_1ac84f3abe5f9291532786a1e968e530a8" kind="define"><name>PCA9555_REG_CONFIG_1</name></member>
+    <member refid="pins__config_8h_1ad686bd3530de42d3ed0bee9b2b54ecee" kind="define"><name>PCA9555_BIT_DIST_SHUTDOWN</name></member>
+    <member refid="pins__config_8h_1a7ef0d0acf832fc5efdda51daac987e35" kind="define"><name>PCA9555_BIT_LPN4</name></member>
+    <member refid="pins__config_8h_1a868519ce99c724b706ed64545cd9af28" kind="define"><name>PCA9555_BIT_LPN3</name></member>
+    <member refid="pins__config_8h_1aed877455bd33d6ad38b5c12b5e079bbf" kind="define"><name>PCA9555_BIT_LPN2</name></member>
+    <member refid="pins__config_8h_1a5a023f9847dba2d76fa779ab7a53483f" kind="define"><name>PCA9555_BIT_LPN1</name></member>
+    <member refid="pins__config_8h_1a5de5d3f76f4de48e60b03e4bbc7a30f9" kind="define"><name>PCA9555_BIT_RADAR_LPN</name></member>
+    <member refid="pins__config_8h_1a5bb7081ed093edf6f40e3681b80492a2" kind="define"><name>PCA9555_CFG0_MASK</name></member>
+    <member refid="pins__config_8h_1a5f2d7b2bd1e54721b51e0b001f9d17e8" kind="define"><name>PCA9555_BIT_PWR_FAN</name></member>
+    <member refid="pins__config_8h_1a47d24d2c7f6e97560d968fcf372d5daa" kind="define"><name>PCA9555_BIT_PWR_RADAR</name></member>
+    <member refid="pins__config_8h_1a21548209f46bfb6d3762a4abd89468b1" kind="define"><name>PCA9555_BIT_PWR_MIC</name></member>
+    <member refid="pins__config_8h_1a9c75a80cfcdd852e8a918b50a6d794cc" kind="define"><name>PCA9555_BIT_PWR_MLX</name></member>
+    <member refid="pins__config_8h_1a6936240ee95c2cae37e50f3fa0a14b76" kind="define"><name>PCA9555_CFG1_MASK</name></member>
+    <member refid="pins__config_8h_1ab13d757959922bf205d6448862bd4e12" kind="define"><name>PIN_RADAR_RX</name></member>
+    <member refid="pins__config_8h_1ad7bec6e9767c77bebd8419d6f3329be2" kind="define"><name>PIN_RADAR_TX</name></member>
+    <member refid="pins__config_8h_1aa61942d4d7c79c5fa394db3d554df72a" kind="define"><name>PIN_MIC_WS</name></member>
+    <member refid="pins__config_8h_1a6a2da9f70511fac1353ce4cd008aba68" kind="define"><name>PIN_MIC_SD</name></member>
+    <member refid="pins__config_8h_1a49df2ceba71c16ebe4a7d8fd5aa72cab" kind="define"><name>PIN_MIC_SCK</name></member>
+    <member refid="pins__config_8h_1aa02f2c9ba2ca7087ec63030888786f05" kind="define"><name>PIN_LED_STATUS</name></member>
+    <member refid="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" kind="define"><name>PIN_ROOT_SEL</name></member>
+  </compound>
+  <compound refid="system__types_8h" kind="file"><name>system_types.h</name>
+    <member refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kind="define"><name>LIDAR_ROWS</name></member>
+    <member refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" kind="define"><name>LIDAR_COLS</name></member>
+    <member refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kind="define"><name>LIDAR_NUM_FRONT</name></member>
+    <member refid="system__types_8h_1a3e10a9d590d4acdf419c70a63d015aa7" kind="define"><name>LIDAR_NUM_TOTAL</name></member>
+    <member refid="system__types_8h_1a282d3c8dac6a02b3aab32ff5202543e8" kind="define"><name>LIDAR_ZONES_PER_SENSOR</name></member>
+    <member refid="system__types_8h_1a857774109f46a27a91784dca72ecf7f3" kind="define"><name>LIDAR_I2C_ADDR_DEFAULT</name></member>
+    <member refid="system__types_8h_1a86a0a1946af81ea101e0e18ffc166081" kind="define"><name>LIDAR_I2C_ADDR_BASE</name></member>
+    <member refid="system__types_8h_1af59d6a771c78c4aa65f604a943358658" kind="define"><name>LEXACARE_AES_KEY_LEN</name></member>
+    <member refid="system__types_8h_1a6083afe166bf0dc364ff2a9a5830d396" kind="define"><name>LEXACARE_AES_IV_LEN</name></member>
+    <member refid="system__types_8h_1a5269c10eb202fc732c8565de6318828a" kind="define"><name>LEXACARE_FRAME_MAGIC</name></member>
+    <member refid="system__types_8h_1adcd1d24e8101430da0011fa688f4bf1c" kind="define"><name>LEXACARE_MAX_PAYLOAD</name></member>
+    <member refid="system__types_8h_1a9fd7d9fb92dbe0693e39db97321e8cbc" kind="define"><name>FRAME_TYPE_TELEMETRY</name></member>
+    <member refid="system__types_8h_1a0e1653f6e69997ed01d99fc0bdc77c78" kind="define"><name>FRAME_TYPE_AI_EVENT</name></member>
+    <member refid="system__types_8h_1ac9c5ce39f67beb1c5a4af7aa2800fd9c" kind="define"><name>FRAME_TYPE_OTA_FRAGMENT</name></member>
+    <member refid="system__types_8h_1a2f28b080f33b7221fa06ea915fa74d18" kind="define"><name>FRAME_TYPE_BEACON</name></member>
+    <member refid="system__types_8h_1a8aeb72dd2fb3b0da41f058d52ef69571" kind="define"><name>OTA_FRAGMENT_DATA_LEN</name></member>
+    <member refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kind="enum"><name>ai_event_state_e</name></member>
+    <member refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kind="enumvalue"><name>AI_NORMAL</name></member>
+    <member refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" kind="enumvalue"><name>AI_CHUTE_DETECTEE</name></member>
+    <member refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6" kind="enumvalue"><name>AI_MOUVEMENT_ANORMAL</name></member>
+  </compound>
+  <compound refid="mesh__manager_8h" kind="file"><name>mesh_manager.h</name>
+    <member refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" kind="function"><name>mesh_manager_init</name></member>
+    <member refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" kind="function"><name>mesh_task_start</name></member>
+  </compound>
+  <compound refid="ota__node_8h" kind="file"><name>ota_node.h</name>
+    <member refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kind="function"><name>ota_node_init</name></member>
+    <member refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" kind="function"><name>ota_node_process_fragment</name></member>
+  </compound>
+  <compound refid="mesh__manager_8c" kind="file"><name>mesh_manager.c</name>
+    <member refid="mesh__manager_8c_1a4d6f962fa1bf0e2e01beb7c8bbdb5ecd" kind="define"><name>aes_compat_init</name></member>
+    <member refid="mesh__manager_8c_1ac3aacee09017ca1f58d9b92ccdbbe40d" kind="define"><name>aes_compat_free</name></member>
+    <member refid="mesh__manager_8c_1acfe46d72100e88ca99300e17da760f4b" kind="define"><name>aes_compat_setkey</name></member>
+    <member refid="mesh__manager_8c_1ab7aa6ac6dbf1eff1eb62e4d8da44062f" kind="define"><name>aes_compat_crypt_cbc</name></member>
+    <member refid="mesh__manager_8c_1a75c0c87ffb14b7b47fb85c235c286fc1" kind="define"><name>AES_COMPAT_ENCRYPT</name></member>
+    <member refid="mesh__manager_8c_1a6ffaaae9cbfb91f056627a0bef5dbb5a" kind="define"><name>ESPNOW_CHANNEL</name></member>
+    <member refid="mesh__manager_8c_1ae17be35a6b7dd82a1db8d1587ad22722" kind="define"><name>ESPNOW_MAX_PEERS</name></member>
+    <member refid="mesh__manager_8c_1aaf3b4792ccac909807429299fe6d23ac" kind="define"><name>MESH_TASK_STACK</name></member>
+    <member refid="mesh__manager_8c_1a9a69eb7dd21565dd92b702c0314f460f" kind="define"><name>MESH_TASK_PRIORITY</name></member>
+    <member refid="mesh__manager_8c_1ac2d2ed01de0b5395fb9ebce429e336d4" kind="define"><name>MESH_TASK_CORE</name></member>
+    <member refid="mesh__manager_8c_1a3b768ee40387622291ed049c3a059f03" kind="define"><name>BEACON_INTERVAL_MS</name></member>
+    <member refid="mesh__manager_8c_1ab337ee6ecffc479e2cbacca1a268163d" kind="typedef"><name>aes_compat_ctx_t</name></member>
+    <member refid="mesh__manager_8c_1af7f31192f445212a355ffc025988f32b" kind="variable"><name>k_broadcast_mac</name></member>
+    <member refid="mesh__manager_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="mesh__manager_8c_1ab4acf17e093a0b230ecc75b223c23f54" kind="variable"><name>k_pmk</name></member>
+    <member refid="mesh__manager_8c_1af00f8038c703e263772d42e2df540208" kind="variable"><name>k_aes_default</name></member>
+    <member refid="mesh__manager_8c_1a22c99a50ebf4fde1bedd60a538961e8f" kind="variable"><name>s_mesh</name></member>
+    <member refid="mesh__manager_8c_1aae012a0061ce71054035ea8a334083cd" kind="function"><name>crc16_ccitt</name></member>
+    <member refid="mesh__manager_8c_1a7bd75723e8320b9ecc2549738714df17" kind="function"><name>aes_encrypt_payload</name></member>
+    <member refid="mesh__manager_8c_1a124f00cb0eadce6a3cd802f212bfc87f" kind="function"><name>mesh_build_ai_frame</name></member>
+    <member refid="mesh__manager_8c_1a6067c463964e944fd80eb63f791c1544" kind="function"><name>espnow_rx_callback</name></member>
+    <member refid="mesh__manager_8c_1abbef85f4a7cd603f4c63ba31a13921cb" kind="function"><name>espnow_tx_callback</name></member>
+    <member refid="mesh__manager_8c_1ad183ca147d5c3e6c43ab72d281d5be89" kind="function"><name>mesh_load_aes_key</name></member>
+    <member refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" kind="function"><name>task_mesh_com</name></member>
+    <member refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" kind="function"><name>mesh_manager_init</name></member>
+    <member refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" kind="function"><name>mesh_task_start</name></member>
+  </compound>
+  <compound refid="ota__node_8c" kind="file"><name>ota_node.c</name>
+    <member refid="ota__node_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kind="variable"><name>s_ota</name></member>
+    <member refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kind="function"><name>ota_node_init</name></member>
+    <member refid="ota__node_8c_1af8ea4caf0abd81ac32d84ed4819dfa6b" kind="function"><name>ota_node_process_fragment</name></member>
+  </compound>
+  <compound refid="pc__diag_8h" kind="file"><name>pc_diag.h</name>
+    <member refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kind="function"><name>pc_diag_task_start</name></member>
+  </compound>
+  <compound refid="pc__diag_8c" kind="file"><name>pc_diag.c</name>
+    <member refid="pc__diag_8c_1a5486258f1f34d3baeda92a74b63c27c3" kind="define"><name>TASK_STACK_SIZE</name></member>
+    <member refid="pc__diag_8c_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kind="define"><name>TASK_PRIORITY</name></member>
+    <member refid="pc__diag_8c_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kind="define"><name>TASK_CORE</name></member>
+    <member refid="pc__diag_8c_1a713bee2cc5ebf2ba4b5d15ece162ef52" kind="define"><name>SENSOR_INTERVAL_MS</name></member>
+    <member refid="pc__diag_8c_1a7d70610ce777e27720817466674458bb" kind="define"><name>SYS_INTERVAL_MS</name></member>
+    <member refid="pc__diag_8c_1a8427d0088582c17327e754f5f08c5a56" kind="define"><name>CMD_BUF_SIZE</name></member>
+    <member refid="pc__diag_8c_1ac8f274747c171179ff6baac920b7bd04" kind="define"><name>LOG_TRANSFER_BLOCK_SIZE</name></member>
+    <member refid="pc__diag_8c_1aac747bed84189f8cfa509b94d488e622" kind="define"><name>MAX_TASKS</name></member>
+    <member refid="pc__diag_8c_1ab42679d7c2e21904778b0ed79f9da6f8" kind="define"><name>AI_STATE_COUNT</name></member>
+    <member refid="pc__diag_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" kind="variable"><name>ai_event_strings</name></member>
+    <member refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" kind="function"><name>build_sensor_json</name></member>
+    <member refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" kind="function"><name>build_sys_json</name></member>
+    <member refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" kind="function"><name>cmd_download_logs</name></member>
+    <member refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" kind="function"><name>cmd_clear_logs</name></member>
+    <member refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" kind="function"><name>process_command</name></member>
+    <member refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" kind="function"><name>task_diag_pc</name></member>
+    <member refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kind="function"><name>pc_diag_task_start</name></member>
+  </compound>
+  <compound refid="bme280__driver_8c" kind="file"><name>bme280_driver.c</name>
+    <member refid="bme280__driver_8c_1abead2f4994c6f3b4a3b9ca286d00f13b" kind="define"><name>REG_CHIP_ID</name></member>
+    <member refid="bme280__driver_8c_1ad6a95c96a883b809b1bf9c16446d0735" kind="define"><name>REG_RESET</name></member>
+    <member refid="bme280__driver_8c_1a35a180cecaeed7cbc9d43967175c27af" kind="define"><name>REG_CTRL_HUM</name></member>
+    <member refid="bme280__driver_8c_1a2306dddc82e5e58f23bd44c1086a5b6f" kind="define"><name>REG_STATUS</name></member>
+    <member refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" kind="define"><name>REG_CTRL_MEAS</name></member>
+    <member refid="bme280__driver_8c_1a679325263fb326462f7410d3292171be" kind="define"><name>REG_CONFIG</name></member>
+    <member refid="bme280__driver_8c_1aa9a9ac08251af88d8be2fc413a314758" kind="define"><name>REG_DATA_START</name></member>
+    <member refid="bme280__driver_8c_1a03cdc303f5ebe098120b2bf5f8c64c30" kind="define"><name>REG_CALIB_00</name></member>
+    <member refid="bme280__driver_8c_1a05dee12d2078d827dffeb7ca69ec94db" kind="define"><name>REG_CALIB_H1</name></member>
+    <member refid="bme280__driver_8c_1a2005256d905b8f41c0e09a6d4deda357" kind="define"><name>REG_CALIB_H2</name></member>
+    <member refid="bme280__driver_8c_1aa9471d8f9c99880c3b85360017908e6b" kind="define"><name>BME280_CHIP_ID</name></member>
+    <member refid="bme280__driver_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kind="define"><name>I2C_TIMEOUT_MS</name></member>
+    <member refid="bme280__driver_8c_1a424850e29936186a531e726ec1ce9c00" kind="define"><name>MEAS_DELAY_MS</name></member>
+    <member refid="bme280__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kind="variable"><name>s_dev</name></member>
+    <member refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kind="variable"><name>s_calib</name></member>
+    <member refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" kind="variable"><name>s_t_fine</name></member>
+    <member refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kind="function"><name>write_reg</name></member>
+    <member refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kind="function"><name>read_regs</name></member>
+    <member refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" kind="function"><name>read_calibration</name></member>
+    <member refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" kind="function"><name>compensate_temperature</name></member>
+    <member refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" kind="function"><name>compensate_pressure</name></member>
+    <member refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" kind="function"><name>compensate_humidity</name></member>
+    <member refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" kind="function"><name>bme280_init</name></member>
+    <member refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" kind="function"><name>bme280_read</name></member>
+  </compound>
+  <compound refid="hdc1080__driver_8c" kind="file"><name>hdc1080_driver.c</name>
+    <member refid="hdc1080__driver_8c_1a9814a9d9688d062990aa6633e8cb3d8e" kind="define"><name>REG_TEMPERATURE</name></member>
+    <member refid="hdc1080__driver_8c_1af3dcd2594e77090b3bb4d7d8850a27f7" kind="define"><name>REG_HUMIDITY</name></member>
+    <member refid="hdc1080__driver_8c_1a679325263fb326462f7410d3292171be" kind="define"><name>REG_CONFIG</name></member>
+    <member refid="hdc1080__driver_8c_1a8410a3bfaf056c9782d4ea4ebaa8ebf8" kind="define"><name>REG_MANUF_ID</name></member>
+    <member refid="hdc1080__driver_8c_1a7536bef148067419de8358bcd473349a" kind="define"><name>REG_DEVICE_ID</name></member>
+    <member refid="hdc1080__driver_8c_1ab025caf4a87b11d7b58286867b8ed4b6" kind="define"><name>HDC1080_DEVICE_ID</name></member>
+    <member refid="hdc1080__driver_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kind="define"><name>I2C_TIMEOUT_MS</name></member>
+    <member refid="hdc1080__driver_8c_1ae265c5cb98ea364a2b6be4b96420bd32" kind="define"><name>ACQ_DELAY_MS</name></member>
+    <member refid="hdc1080__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="hdc1080__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kind="variable"><name>s_dev</name></member>
+    <member refid="hdc1080__driver_8c_1aec3bb76ffc0e6e65ff45ed34f55f3d8a" kind="function"><name>write_register</name></member>
+    <member refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" kind="function"><name>read_bytes</name></member>
+    <member refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" kind="function"><name>hdc1080_init</name></member>
+    <member refid="hdc1080__driver_8c_1ac89c7243caa6524ab2c35eb7133483ff" kind="function"><name>hdc1080_read</name></member>
+  </compound>
+  <compound refid="bme280__driver_8h" kind="file"><name>bme280_driver.h</name>
+    <member refid="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" kind="define"><name>BME280_I2C_ADDR_DEFAULT</name></member>
+    <member refid="bme280__driver_8h_1a7b7c6da1330193242ae0fed91f8ea6b9" kind="define"><name>BME280_I2C_ADDR_ALT</name></member>
+    <member refid="bme280__driver_8h_1a16050495a4e02a1498ceadf9a19db1e2" kind="function"><name>bme280_init</name></member>
+    <member refid="bme280__driver_8h_1a898595b4f31ff7da1e14b618a804a7b5" kind="function"><name>bme280_read</name></member>
+  </compound>
+  <compound refid="hdc1080__driver_8h" kind="file"><name>hdc1080_driver.h</name>
+    <member refid="group__group__sensor__acq_1gaf0cf6b62cc46031dbcb698408b50aa26" kind="define"><name>HDC1080_I2C_ADDR</name></member>
+    <member refid="hdc1080__driver_8h_1a331ca8cf79867f6f9ebe86978bfc6cc5" kind="function"><name>hdc1080_init</name></member>
+    <member refid="hdc1080__driver_8h_1ac89c7243caa6524ab2c35eb7133483ff" kind="function"><name>hdc1080_read</name></member>
+  </compound>
+  <compound refid="lidar__driver_8h" kind="file"><name>lidar_driver.h</name>
+    <member refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kind="function"><name>lidar_driver_start</name></member>
+  </compound>
+  <compound refid="mic__driver_8h" kind="file"><name>mic_driver.h</name>
+    <member refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" kind="function"><name>mic_driver_init</name></member>
+    <member refid="mic__driver_8h_1adde164c8adc09dab37730e97d3cdc818" kind="function"><name>mic_driver_read</name></member>
+    <member refid="mic__driver_8h_1a143dd8f172deadfb4b1ce5284b7be168" kind="function"><name>mic_driver_deinit</name></member>
+  </compound>
+  <compound refid="radar__driver_8h" kind="file"><name>radar_driver.h</name>
+    <member refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kind="function"><name>radar_driver_init</name></member>
+    <member refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" kind="function"><name>radar_driver_poll</name></member>
+  </compound>
+  <compound refid="vl53l8cx__platform_8h" kind="file"><name>vl53l8cx_platform.h</name>
+    <member refid="vl53l8cx__platform_8h_1a5687017b3245ded0e88563178c6613a7" kind="function"><name>VL53L8CX_PlatformInit</name></member>
+    <member refid="vl53l8cx__platform_8h_1a501a5073457a1982c2406543df0d073e" kind="function"><name>VL53L8CX_RdByte</name></member>
+    <member refid="vl53l8cx__platform_8h_1a7710197de0c7e075a4064f18baa56355" kind="function"><name>VL53L8CX_WrByte</name></member>
+    <member refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" kind="function"><name>VL53L8CX_RdMulti</name></member>
+    <member refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" kind="function"><name>VL53L8CX_WrMulti</name></member>
+    <member refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" kind="function"><name>VL53L8CX_WaitMs</name></member>
+  </compound>
+  <compound refid="lidar__driver_8c" kind="file"><name>lidar_driver.c</name>
+    <member refid="lidar__driver_8c_1aa70e8d31075c59d1f4a0e5c9a8d3e9f8" kind="define"><name>ENVIRO_READ_PERIOD_FRAMES</name></member>
+    <member refid="lidar__driver_8c_1a5528e12e4948345d88e124c165b8858d" kind="define"><name>LEXA_LIDAR_STUB</name></member>
+    <member refid="lidar__driver_8c_1a5486258f1f34d3baeda92a74b63c27c3" kind="define"><name>TASK_STACK_SIZE</name></member>
+    <member refid="lidar__driver_8c_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kind="define"><name>TASK_PRIORITY</name></member>
+    <member refid="lidar__driver_8c_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kind="define"><name>TASK_CORE</name></member>
+    <member refid="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" kind="define"><name>TASK_PERIOD_MS</name></member>
+    <member refid="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" kind="define"><name>LIDAR_FREQ_HZ</name></member>
+    <member refid="lidar__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" kind="function"><name>lidar_init_sensor</name></member>
+    <member refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" kind="function"><name>lidar_read_sensor</name></member>
+    <member refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" kind="function"><name>task_sensor_acq</name></member>
+    <member refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kind="function"><name>lidar_driver_start</name></member>
+  </compound>
+  <compound refid="mic__driver_8c" kind="file"><name>mic_driver.c</name>
+    <member refid="mic__driver_8c_1ae3a48988f3b530907280222c539b292a" kind="define"><name>MIC_SAMPLE_RATE</name></member>
+    <member refid="mic__driver_8c_1a8132ba2eecc89f58dbc91816e91dab7a" kind="define"><name>MIC_BURST_SAMPLES</name></member>
+    <member refid="mic__driver_8c_1a71f4544857dfa9bedabb47f9e2c1a2ca" kind="define"><name>MIC_READ_TIMEOUT_MS</name></member>
+    <member refid="mic__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="mic__driver_8c_1a0df65811f4cced1438208a7ef6b4daa4" kind="variable"><name>s_rx_chan</name></member>
+    <member refid="mic__driver_8c_1a4f5b39b8e3f86b044685682a233a0af3" kind="variable"><name>s_buf</name></member>
+    <member refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" kind="function"><name>mic_driver_init</name></member>
+    <member refid="mic__driver_8c_1adde164c8adc09dab37730e97d3cdc818" kind="function"><name>mic_driver_read</name></member>
+    <member refid="mic__driver_8c_1a143dd8f172deadfb4b1ce5284b7be168" kind="function"><name>mic_driver_deinit</name></member>
+  </compound>
+  <compound refid="radar__driver_8c" kind="file"><name>radar_driver.c</name>
+    <member refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" kind="define"><name>UART_PORT</name></member>
+    <member refid="radar__driver_8c_1a690f985c933da2ce6fe62b6c61dfa662" kind="define"><name>RX_BUF_SIZE</name></member>
+    <member refid="radar__driver_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" kind="define"><name>TF_SOF</name></member>
+    <member refid="radar__driver_8c_1a73c9acaba0709da57963b20403746481" kind="define"><name>TF_EOF</name></member>
+    <member refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" kind="define"><name>TF_HEADER_LEN</name></member>
+    <member refid="radar__driver_8c_1a638e37cd9e69ad4ca8f82c56f5aba5ca" kind="define"><name>TF_FOOTER_LEN</name></member>
+    <member refid="radar__driver_8c_1a382fbe3da3ead3519193aa1b0618e3e3" kind="define"><name>TF_MIN_FRAME_LEN</name></member>
+    <member refid="radar__driver_8c_1aa1840a78150783188852dc2d48c01749" kind="define"><name>TF_MAX_PAYLOAD_LEN</name></member>
+    <member refid="radar__driver_8c_1a6035d82d95769dda5c4f56e68aafb02d" kind="define"><name>TF_TYPE_BREATH</name></member>
+    <member refid="radar__driver_8c_1a279ac4a1e69cc4f5aa2fd1e365242ec9" kind="define"><name>TF_TYPE_HEART</name></member>
+    <member refid="radar__driver_8c_1a25c14416760a4a7b05818aa819d4221f" kind="define"><name>TF_TYPE_DISTANCE</name></member>
+    <member refid="radar__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kind="variable"><name>s_parser</name></member>
+    <member refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" kind="function"><name>parse_tinyframe</name></member>
+    <member refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kind="function"><name>radar_driver_init</name></member>
+    <member refid="radar__driver_8c_1ac327c41337b50efe73de8b91c2df089c" kind="function"><name>radar_driver_poll</name></member>
+  </compound>
+  <compound refid="platform_8h" kind="file"><name>platform.h</name>
+    <member refid="platform_8h_1a31cf133aaf6b500062702a5a898eb137" kind="define"><name>VL53L8CX_NB_TARGET_PER_ZONE</name></member>
+    <member refid="platform_8h_1a999e10c40544016ca68ce5fbb3ea620c" kind="function"><name>VL53L8CX_SwapBuffer</name></member>
+  </compound>
+  <compound refid="_r_e_a_d_m_e_8md" kind="file"><name>README.md</name>
+  </compound>
+  <compound refid="vl53l8cx__api_8c" kind="file"><name>vl53l8cx_api.c</name>
+    <member refid="vl53l8cx__api_8c_1a83dc5e403de268cad0cc04434eed9d12" kind="function"><name>_vl53l8cx_poll_for_answer</name></member>
+    <member refid="vl53l8cx__api_8c_1a98fd6245ca7f8e57cf4623e192e8c774" kind="function"><name>_vl53l8cx_poll_for_mcu_boot</name></member>
+    <member refid="vl53l8cx__api_8c_1a06089384da8839703ece6a5a745f82d8" kind="function"><name>_vl53l8cx_send_offset_data</name></member>
+    <member refid="vl53l8cx__api_8c_1acfd62041fa95081cc244e8f09cbed60e" kind="function"><name>_vl53l8cx_send_xtalk_data</name></member>
+    <member refid="vl53l8cx__api_8c_1acfc41f0aebf395dce9725a146be088bc" kind="function"><name>vl53l8cx_is_alive</name></member>
+    <member refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" kind="function"><name>vl53l8cx_init</name></member>
+    <member refid="vl53l8cx__api_8c_1a705b4dd09a2ae3c873b6f5896bb999dc" kind="function"><name>vl53l8cx_set_i2c_address</name></member>
+    <member refid="vl53l8cx__api_8c_1a95ba86e2de36404be425dd53513c56ae" kind="function"><name>vl53l8cx_get_power_mode</name></member>
+    <member refid="vl53l8cx__api_8c_1affb39664fa0b0d1e37c49ab7725a3ce4" kind="function"><name>vl53l8cx_set_power_mode</name></member>
+    <member refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" kind="function"><name>vl53l8cx_start_ranging</name></member>
+    <member refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" kind="function"><name>vl53l8cx_stop_ranging</name></member>
+    <member refid="vl53l8cx__api_8c_1a8d192f0f3fded5de1767f54271d8f54a" kind="function"><name>vl53l8cx_check_data_ready</name></member>
+    <member refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" kind="function"><name>vl53l8cx_get_ranging_data</name></member>
+    <member refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" kind="function"><name>vl53l8cx_get_resolution</name></member>
+    <member refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kind="function"><name>vl53l8cx_set_resolution</name></member>
+    <member refid="vl53l8cx__api_8c_1ab1329ff55825bc53ce30e1e2a65ea1ea" kind="function"><name>vl53l8cx_get_ranging_frequency_hz</name></member>
+    <member refid="vl53l8cx__api_8c_1aa498a79da766ce9f30d4518403bfbc96" kind="function"><name>vl53l8cx_set_ranging_frequency_hz</name></member>
+    <member refid="vl53l8cx__api_8c_1a34666a7d3778693b09b6586c2e5ac88b" kind="function"><name>vl53l8cx_get_integration_time_ms</name></member>
+    <member refid="vl53l8cx__api_8c_1abcb4f3ccc4813f4aa1851c2d5844641a" kind="function"><name>vl53l8cx_set_integration_time_ms</name></member>
+    <member refid="vl53l8cx__api_8c_1a487baf06564d780210b117e34d8e0c41" kind="function"><name>vl53l8cx_get_sharpener_percent</name></member>
+    <member refid="vl53l8cx__api_8c_1a1a4fb3cfa2082032b917b539e244338a" kind="function"><name>vl53l8cx_set_sharpener_percent</name></member>
+    <member refid="vl53l8cx__api_8c_1a2718a6b0468c8a794c273344afac36c7" kind="function"><name>vl53l8cx_get_target_order</name></member>
+    <member refid="vl53l8cx__api_8c_1a65ac9339ec503998ca8fc5003f649e53" kind="function"><name>vl53l8cx_set_target_order</name></member>
+    <member refid="vl53l8cx__api_8c_1a277352277a30567f668aa0e2728b36ce" kind="function"><name>vl53l8cx_get_ranging_mode</name></member>
+    <member refid="vl53l8cx__api_8c_1a90f6b7f5130cf36350701771f991bdbf" kind="function"><name>vl53l8cx_set_ranging_mode</name></member>
+    <member refid="vl53l8cx__api_8c_1a93e5eea91d745d39ddf7788f2767abff" kind="function"><name>vl53l8cx_get_external_sync_pin_enable</name></member>
+    <member refid="vl53l8cx__api_8c_1a5a7e192664394511227839bca8f2ea30" kind="function"><name>vl53l8cx_set_external_sync_pin_enable</name></member>
+    <member refid="vl53l8cx__api_8c_1af0e7dcac2ca88565b9568d0fffa43b72" kind="function"><name>vl53l8cx_get_VHV_repeat_count</name></member>
+    <member refid="vl53l8cx__api_8c_1a01276d54349dced9ce864cad5f54950f" kind="function"><name>vl53l8cx_set_VHV_repeat_count</name></member>
+    <member refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" kind="function"><name>vl53l8cx_dci_read_data</name></member>
+    <member refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" kind="function"><name>vl53l8cx_dci_write_data</name></member>
+    <member refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" kind="function"><name>vl53l8cx_dci_replace_data</name></member>
+  </compound>
+  <compound refid="vl53l8cx__api_8h" kind="file"><name>vl53l8cx_api.h</name>
+    <member refid="vl53l8cx__api_8h_1a7b3b6b02bb1129e7c17dcc47d733ab4a" kind="define"><name>VL53L8CX_API_REVISION</name></member>
+    <member refid="vl53l8cx__api_8h_1a8c165e656c90b9d1580211c95fe11d1e" kind="define"><name>VL53L8CX_DEFAULT_I2C_ADDRESS</name></member>
+    <member refid="vl53l8cx__api_8h_1a781b542669f003c8517d6e470bad1dc3" kind="define"><name>VL53L8CX_RESOLUTION_4X4</name></member>
+    <member refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" kind="define"><name>VL53L8CX_RESOLUTION_8X8</name></member>
+    <member refid="vl53l8cx__api_8h_1a867e39ad94441dfdaebfdf516ac44610" kind="define"><name>VL53L8CX_TARGET_ORDER_CLOSEST</name></member>
+    <member refid="vl53l8cx__api_8h_1abbc3ffda887ea1b78adbd142e35579c1" kind="define"><name>VL53L8CX_TARGET_ORDER_STRONGEST</name></member>
+    <member refid="vl53l8cx__api_8h_1aee311c080c4b798cc1a7b6888cded48c" kind="define"><name>VL53L8CX_RANGING_MODE_CONTINUOUS</name></member>
+    <member refid="vl53l8cx__api_8h_1ac573fc4071cb53a67cb65a930588519d" kind="define"><name>VL53L8CX_RANGING_MODE_AUTONOMOUS</name></member>
+    <member refid="vl53l8cx__api_8h_1a593ce9697345559508c33f0ccffb2156" kind="define"><name>VL53L8CX_POWER_MODE_SLEEP</name></member>
+    <member refid="vl53l8cx__api_8h_1af0191fab3b8bcd27f89d150104976e87" kind="define"><name>VL53L8CX_POWER_MODE_WAKEUP</name></member>
+    <member refid="vl53l8cx__api_8h_1a4fa9f73304f360aa7a26db339b4d3270" kind="define"><name>VL53L8CX_POWER_MODE_DEEP_SLEEP</name></member>
+    <member refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kind="define"><name>VL53L8CX_STATUS_OK</name></member>
+    <member refid="vl53l8cx__api_8h_1a4edfa4f086e81422af9d4ea11c5b5870" kind="define"><name>VL53L8CX_STATUS_TIMEOUT_ERROR</name></member>
+    <member refid="vl53l8cx__api_8h_1a0f2f72b3ed698d61246d5833961fea61" kind="define"><name>VL53L8CX_STATUS_CORRUPTED_FRAME</name></member>
+    <member refid="vl53l8cx__api_8h_1ae8076499af7ffe92807ba41c4167db6c" kind="define"><name>VL53L8CX_STATUS_LASER_SAFETY</name></member>
+    <member refid="vl53l8cx__api_8h_1a89d07e895fc3200073cf30f210197257" kind="define"><name>VL53L8CX_STATUS_XTALK_FAILED</name></member>
+    <member refid="vl53l8cx__api_8h_1a96bbedfc2400463e7b1b9f2943067d64" kind="define"><name>VL53L8CX_STATUS_FW_CHECKSUM_FAIL</name></member>
+    <member refid="vl53l8cx__api_8h_1aa6cca9bd88dccaeff4d34598cb24af77" kind="define"><name>VL53L8CX_MCU_ERROR</name></member>
+    <member refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" kind="define"><name>VL53L8CX_STATUS_INVALID_PARAM</name></member>
+    <member refid="vl53l8cx__api_8h_1a808f141fa4ac8097df405bea9c7914ad" kind="define"><name>VL53L8CX_STATUS_ERROR</name></member>
+    <member refid="vl53l8cx__api_8h_1afe4ed504ade4eb6be498a772ae1df1c1" kind="define"><name>VL53L8CX_START_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1ad871788f4faea96fa31aa82a912629cb" kind="define"><name>VL53L8CX_METADATA_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a3ae5682d733d6fb65370fd10ebd48386" kind="define"><name>VL53L8CX_COMMONDATA_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a50a616fbf3c8d3bad5d3743a9ced9138" kind="define"><name>VL53L8CX_AMBIENT_RATE_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1ae4647ac4fe40981cc431c2f3c548f183" kind="define"><name>VL53L8CX_SPAD_COUNT_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1ae97f47d4a1aafaa9c11fc79e1c2f4d70" kind="define"><name>VL53L8CX_NB_TARGET_DETECTED_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a14c36632b4aaab7bf78c726f6a0751fc" kind="define"><name>VL53L8CX_SIGNAL_RATE_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a53feb4d4ded8682e3d992f6dfffb4bd2" kind="define"><name>VL53L8CX_RANGE_SIGMA_MM_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1ac3e42aa5818df653f7f9a7591a21af8a" kind="define"><name>VL53L8CX_DISTANCE_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a66e50f54d46322a39393d8e31fb6a5c8" kind="define"><name>VL53L8CX_REFLECTANCE_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a5f2fa6f9cd0c224710ae92d97b5dc2e2" kind="define"><name>VL53L8CX_TARGET_STATUS_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a662f2030d05779a49950fe6213c44792" kind="define"><name>VL53L8CX_MOTION_DETECT_BH</name></member>
+    <member refid="vl53l8cx__api_8h_1a2dc75a3ad8c71adc7d16df0f222ce9eb" kind="define"><name>VL53L8CX_METADATA_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1af2ebb6fab41f3bf1a7cc58cb540dba9e" kind="define"><name>VL53L8CX_SPAD_COUNT_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1a943c33836973c4144370d7a3e52568e8" kind="define"><name>VL53L8CX_AMBIENT_RATE_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1ab4c0b24ffebbfc986f3f6474e0b68f3a" kind="define"><name>VL53L8CX_NB_TARGET_DETECTED_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1abe44a95e3eb6cafb7be776e4a1445b75" kind="define"><name>VL53L8CX_SIGNAL_RATE_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1a03baeed9c4d89f1bcf9884a74d2b2cbe" kind="define"><name>VL53L8CX_RANGE_SIGMA_MM_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1a956ae4435edd9054399a8cc569085772" kind="define"><name>VL53L8CX_DISTANCE_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1ae6e39779a424585922fb0b63fd2f2735" kind="define"><name>VL53L8CX_REFLECTANCE_EST_PC_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1a0ec27967df159c42ec24422eb90f3137" kind="define"><name>VL53L8CX_TARGET_STATUS_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1a0991d852bc23baff8dc7e85bbb913c80" kind="define"><name>VL53L8CX_MOTION_DETEC_IDX</name></member>
+    <member refid="vl53l8cx__api_8h_1a9403e70b3c85307d161cd5c975e70464" kind="define"><name>VL53L8CX_NVM_DATA_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1ae857ccc32e3c8185ea47e22605283fc1" kind="define"><name>VL53L8CX_CONFIGURATION_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1aa8a012c0df06ce35f34255e03641e56a" kind="define"><name>VL53L8CX_OFFSET_BUFFER_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kind="define"><name>VL53L8CX_XTALK_BUFFER_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a08fc0d2ae453fac7699cb59e22bf8a26" kind="define"><name>VL53L8CX_DCI_ZONE_CONFIG</name></member>
+    <member refid="vl53l8cx__api_8h_1a2000c7d289688cd5f76eb75f1c5fb37c" kind="define"><name>VL53L8CX_DCI_FREQ_HZ</name></member>
+    <member refid="vl53l8cx__api_8h_1a11f738facfce4d8d0e2a32c237f52c42" kind="define"><name>VL53L8CX_DCI_INT_TIME</name></member>
+    <member refid="vl53l8cx__api_8h_1addf294310aa56d249b3052c83fe7b252" kind="define"><name>VL53L8CX_DCI_FW_NB_TARGET</name></member>
+    <member refid="vl53l8cx__api_8h_1a85938afcc75bcc6502fe3b2106574b4b" kind="define"><name>VL53L8CX_DCI_RANGING_MODE</name></member>
+    <member refid="vl53l8cx__api_8h_1ac1e01b994e623d0d68ba1ad80760a1c8" kind="define"><name>VL53L8CX_DCI_DSS_CONFIG</name></member>
+    <member refid="vl53l8cx__api_8h_1a56cb45bbd2c14c29e5aa6f4cb64f3b0f" kind="define"><name>VL53L8CX_DCI_VHV_CONFIG</name></member>
+    <member refid="vl53l8cx__api_8h_1a59cef5d504a7cfc178c4afdb5a5b3da8" kind="define"><name>VL53L8CX_DCI_TARGET_ORDER</name></member>
+    <member refid="vl53l8cx__api_8h_1aab63d84384a43e216f9f02e4ea8f127e" kind="define"><name>VL53L8CX_DCI_SHARPENER</name></member>
+    <member refid="vl53l8cx__api_8h_1a43ae2cc7c9f340357ce2414b56d61833" kind="define"><name>VL53L8CX_DCI_INTERNAL_CP</name></member>
+    <member refid="vl53l8cx__api_8h_1a22ad23dd0878c7f11ba7c81034c63a32" kind="define"><name>VL53L8CX_DCI_SYNC_PIN</name></member>
+    <member refid="vl53l8cx__api_8h_1ac70c0e354dcaa0492093287dc505f9b5" kind="define"><name>VL53L8CX_DCI_MOTION_DETECTOR_CFG</name></member>
+    <member refid="vl53l8cx__api_8h_1abb815da52b4d8ad37738c460e49ac2b5" kind="define"><name>VL53L8CX_DCI_SINGLE_RANGE</name></member>
+    <member refid="vl53l8cx__api_8h_1a77efea2623b3fcbbf85d8ee0c949d15b" kind="define"><name>VL53L8CX_DCI_OUTPUT_CONFIG</name></member>
+    <member refid="vl53l8cx__api_8h_1a5861ae985bdb06db177b756370639aa7" kind="define"><name>VL53L8CX_DCI_OUTPUT_ENABLES</name></member>
+    <member refid="vl53l8cx__api_8h_1a26836c043def406819094ccb0622c69c" kind="define"><name>VL53L8CX_DCI_OUTPUT_LIST</name></member>
+    <member refid="vl53l8cx__api_8h_1abee27aed0af985ff05436e4a2ffa8579" kind="define"><name>VL53L8CX_DCI_PIPE_CONTROL</name></member>
+    <member refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" kind="define"><name>VL53L8CX_UI_CMD_STATUS</name></member>
+    <member refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" kind="define"><name>VL53L8CX_UI_CMD_START</name></member>
+    <member refid="vl53l8cx__api_8h_1a42a5546522d7e26f08fc09394d450071" kind="define"><name>VL53L8CX_UI_CMD_END</name></member>
+    <member refid="vl53l8cx__api_8h_1a1efb4dd3266b879cd2799eb7681ba56d" kind="define"><name>L5CX_AMB_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a80a1fbc0e4037051d14d4347c8edcee4" kind="define"><name>L5CX_SPAD_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a32c1388f9fd35be989fe5fbd6be1561a" kind="define"><name>L5CX_NTAR_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1ad07958d1b805ae8a7f3ce006beaf83b3" kind="define"><name>L5CX_SPS_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1aa82503b490b1475e974532a9b54d4dbd" kind="define"><name>L5CX_SIGR_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a5b229a80f9fa4844734e44de676dc29e" kind="define"><name>L5CX_DIST_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a10cf10d7d5ae6286fab4ef687ddde10f" kind="define"><name>L5CX_RFLEST_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a88682c30a591abb94ea8dc6ee720dc55" kind="define"><name>L5CX_STA_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a8575702e4e2f163800de265dfc4689af" kind="define"><name>L5CX_MOT_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1aa744e37d219c547d459fe3d1daa1a77f" kind="define"><name>VL53L8CX_MAX_RESULTS_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1a5bd993302a920baa998c50d8e34df152" kind="define"><name>VL53L8CX_TEMPORARY_BUFFER_SIZE</name></member>
+    <member refid="vl53l8cx__api_8h_1acfc41f0aebf395dce9725a146be088bc" kind="function"><name>vl53l8cx_is_alive</name></member>
+    <member refid="vl53l8cx__api_8h_1a0cd6873ce839d64145cbfb01b7a94da0" kind="function"><name>vl53l8cx_init</name></member>
+    <member refid="vl53l8cx__api_8h_1a705b4dd09a2ae3c873b6f5896bb999dc" kind="function"><name>vl53l8cx_set_i2c_address</name></member>
+    <member refid="vl53l8cx__api_8h_1a95ba86e2de36404be425dd53513c56ae" kind="function"><name>vl53l8cx_get_power_mode</name></member>
+    <member refid="vl53l8cx__api_8h_1affb39664fa0b0d1e37c49ab7725a3ce4" kind="function"><name>vl53l8cx_set_power_mode</name></member>
+    <member refid="vl53l8cx__api_8h_1aa7a285f38be7f88d2ab894c23e58c8df" kind="function"><name>vl53l8cx_start_ranging</name></member>
+    <member refid="vl53l8cx__api_8h_1ad4cf2ccc4b74c65048046df488da5fce" kind="function"><name>vl53l8cx_stop_ranging</name></member>
+    <member refid="vl53l8cx__api_8h_1a8d192f0f3fded5de1767f54271d8f54a" kind="function"><name>vl53l8cx_check_data_ready</name></member>
+    <member refid="vl53l8cx__api_8h_1a522352966402d8c83cfc7b4eb15f8ef9" kind="function"><name>vl53l8cx_get_ranging_data</name></member>
+    <member refid="vl53l8cx__api_8h_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" kind="function"><name>vl53l8cx_get_resolution</name></member>
+    <member refid="vl53l8cx__api_8h_1a75ec684bc81068955b37aaac1dfcf4f8" kind="function"><name>vl53l8cx_set_resolution</name></member>
+    <member refid="vl53l8cx__api_8h_1ab1329ff55825bc53ce30e1e2a65ea1ea" kind="function"><name>vl53l8cx_get_ranging_frequency_hz</name></member>
+    <member refid="vl53l8cx__api_8h_1aa498a79da766ce9f30d4518403bfbc96" kind="function"><name>vl53l8cx_set_ranging_frequency_hz</name></member>
+    <member refid="vl53l8cx__api_8h_1a34666a7d3778693b09b6586c2e5ac88b" kind="function"><name>vl53l8cx_get_integration_time_ms</name></member>
+    <member refid="vl53l8cx__api_8h_1abcb4f3ccc4813f4aa1851c2d5844641a" kind="function"><name>vl53l8cx_set_integration_time_ms</name></member>
+    <member refid="vl53l8cx__api_8h_1a487baf06564d780210b117e34d8e0c41" kind="function"><name>vl53l8cx_get_sharpener_percent</name></member>
+    <member refid="vl53l8cx__api_8h_1a1a4fb3cfa2082032b917b539e244338a" kind="function"><name>vl53l8cx_set_sharpener_percent</name></member>
+    <member refid="vl53l8cx__api_8h_1a2718a6b0468c8a794c273344afac36c7" kind="function"><name>vl53l8cx_get_target_order</name></member>
+    <member refid="vl53l8cx__api_8h_1a65ac9339ec503998ca8fc5003f649e53" kind="function"><name>vl53l8cx_set_target_order</name></member>
+    <member refid="vl53l8cx__api_8h_1a277352277a30567f668aa0e2728b36ce" kind="function"><name>vl53l8cx_get_ranging_mode</name></member>
+    <member refid="vl53l8cx__api_8h_1a90f6b7f5130cf36350701771f991bdbf" kind="function"><name>vl53l8cx_set_ranging_mode</name></member>
+    <member refid="vl53l8cx__api_8h_1a93e5eea91d745d39ddf7788f2767abff" kind="function"><name>vl53l8cx_get_external_sync_pin_enable</name></member>
+    <member refid="vl53l8cx__api_8h_1a5a7e192664394511227839bca8f2ea30" kind="function"><name>vl53l8cx_set_external_sync_pin_enable</name></member>
+    <member refid="vl53l8cx__api_8h_1af0e7dcac2ca88565b9568d0fffa43b72" kind="function"><name>vl53l8cx_get_VHV_repeat_count</name></member>
+    <member refid="vl53l8cx__api_8h_1a01276d54349dced9ce864cad5f54950f" kind="function"><name>vl53l8cx_set_VHV_repeat_count</name></member>
+    <member refid="vl53l8cx__api_8h_1a622e5a7b1ab7b329bb6eee40429599da" kind="function"><name>vl53l8cx_dci_read_data</name></member>
+    <member refid="vl53l8cx__api_8h_1a1926fbe7e66b009aede955b6225ce221" kind="function"><name>vl53l8cx_dci_write_data</name></member>
+    <member refid="vl53l8cx__api_8h_1a4e9069c48c4beee6518c74ecefdc2573" kind="function"><name>vl53l8cx_dci_replace_data</name></member>
+  </compound>
+  <compound refid="vl53l8cx__buffers_8h" kind="file"><name>vl53l8cx_buffers.h</name>
+    <member refid="vl53l8cx__buffers_8h_1ad226aacaa83bae4ded8dbba22da240a9" kind="define"><name>VL53L8CX_FW_NBTAR_RANGING</name></member>
+    <member refid="vl53l8cx__buffers_8h_1a49d1e918043b19e01f4907c57960aacb" kind="variable"><name>VL53L8CX_FIRMWARE</name></member>
+    <member refid="vl53l8cx__buffers_8h_1a7533b6198b996b94ee969e2c22bcb712" kind="variable"><name>VL53L8CX_DEFAULT_CONFIGURATION</name></member>
+    <member refid="vl53l8cx__buffers_8h_1a816aa5a48332b18cb229ee54c635250f" kind="variable"><name>VL53L8CX_DEFAULT_XTALK</name></member>
+    <member refid="vl53l8cx__buffers_8h_1a985bdcb8053f624a048e89f177f025a0" kind="variable"><name>VL53L8CX_GET_NVM_CMD</name></member>
+  </compound>
+  <compound refid="vl53l8cx__plugin__detection__thresholds_8c" kind="file"><name>vl53l8cx_plugin_detection_thresholds.c</name>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8c_1a8047236fff33ada64ae74743af9b6fbc" kind="function"><name>vl53l8cx_get_detection_thresholds_enable</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8c_1a8a37113c3ac519fa4234ce98ecc8f375" kind="function"><name>vl53l8cx_set_detection_thresholds_enable</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" kind="function"><name>vl53l8cx_get_detection_thresholds</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" kind="function"><name>vl53l8cx_set_detection_thresholds</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8c_1ae4c15a43cd88235693d15493db9712bd" kind="function"><name>vl53l8cx_get_detection_thresholds_auto_stop</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8c_1a784306df2a9c03610e120ddd67dc465d" kind="function"><name>vl53l8cx_set_detection_thresholds_auto_stop</name></member>
+  </compound>
+  <compound refid="vl53l8cx__plugin__detection__thresholds_8h" kind="file"><name>vl53l8cx_plugin_detection_thresholds.h</name>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a3431c934f6b6fc6a3c5398e1d7ee13c0" kind="define"><name>VL53L8CX_NB_THRESHOLDS</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a5969bbb3c4aec39ed8afe72d2b5054ef" kind="define"><name>VL53L8CX_DCI_DET_THRESH_CONFIG</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9d2db8dd1a3d59e9d9aede293ffa98" kind="define"><name>VL53L8CX_DCI_DET_THRESH_GLOBAL_CONFIG</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1adc5c97ffff5592acc249ee129e291417" kind="define"><name>VL53L8CX_DCI_DET_THRESH_START</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a73fb30c1c9f8f019f0ae7bae08fa4125" kind="define"><name>VL53L8CX_DCI_DET_THRESH_VALID_STATUS</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a75a65f06ece7b17a54a5c098d9200612" kind="define"><name>VL53L8CX_LAST_THRESHOLD</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a527c7cb13f0fb1a010a9e9e280ed4b32" kind="define"><name>VL53L8CX_DISTANCE_MM</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a56370b7a35933b31d2d801f496a897db" kind="define"><name>VL53L8CX_SIGNAL_PER_SPAD_KCPS</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a26b0d73380c261a29acda36f2f95c61a" kind="define"><name>VL53L8CX_RANGE_SIGMA_MM</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1aa114e13ef88cf6111be4ad98a56af4a6" kind="define"><name>VL53L8CX_AMBIENT_PER_SPAD_KCPS</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1addca04cf14e4706e716db8775d47a97f" kind="define"><name>VL53L8CX_NB_TARGET_DETECTED</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a73255cd3f280fdea260e5b8c712e819d" kind="define"><name>VL53L8CX_TARGET_STATUS</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a509ba5bae1ca387910f5cbfc1fae1c97" kind="define"><name>VL53L8CX_NB_SPADS_ENABLED</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a6b9df666c83e8a124e9e3b354ef727a7" kind="define"><name>VL53L8CX_MOTION_INDICATOR</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1af21675d730f319f70b080a18b448b983" kind="define"><name>VL53L8CX_IN_WINDOW</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a71fe25c67374664328db27d3dda64b30" kind="define"><name>VL53L8CX_OUT_OF_WINDOW</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1ab708a3ded980c6c82b18341f79ae56cf" kind="define"><name>VL53L8CX_LESS_THAN_EQUAL_MIN_CHECKER</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a17ff1938db221fdc58f459b703cbebb9" kind="define"><name>VL53L8CX_GREATER_THAN_MAX_CHECKER</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a60d1be406ff1350ef22e8b4b1313444f" kind="define"><name>VL53L8CX_EQUAL_MIN_CHECKER</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1acc400999711b31a565540252163f1be8" kind="define"><name>VL53L8CX_NOT_EQUAL_MIN_CHECKER</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a10036201bf4845fceecda805f9f77b04" kind="define"><name>VL53L8CX_OPERATION_NONE</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1aac9f69f6a6e06e016a9f48feba38eadb" kind="define"><name>VL53L8CX_OPERATION_OR</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1aa501bb82d778c01670e90730df4055ec" kind="define"><name>VL53L8CX_OPERATION_AND</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a8047236fff33ada64ae74743af9b6fbc" kind="function"><name>vl53l8cx_get_detection_thresholds_enable</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a8a37113c3ac519fa4234ce98ecc8f375" kind="function"><name>vl53l8cx_set_detection_thresholds_enable</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a9feff6ad7013dd7b146c6712995a48b0" kind="function"><name>vl53l8cx_get_detection_thresholds</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1acba78b79e001bc10424bf4ab4d18bfb9" kind="function"><name>vl53l8cx_set_detection_thresholds</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1ae4c15a43cd88235693d15493db9712bd" kind="function"><name>vl53l8cx_get_detection_thresholds_auto_stop</name></member>
+    <member refid="vl53l8cx__plugin__detection__thresholds_8h_1a784306df2a9c03610e120ddd67dc465d" kind="function"><name>vl53l8cx_set_detection_thresholds_auto_stop</name></member>
+  </compound>
+  <compound refid="vl53l8cx__plugin__motion__indicator_8c" kind="file"><name>vl53l8cx_plugin_motion_indicator.c</name>
+    <member refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" kind="function"><name>vl53l8cx_motion_indicator_init</name></member>
+    <member refid="vl53l8cx__plugin__motion__indicator_8c_1a345eea6081124af6e2e1d076f68a1302" kind="function"><name>vl53l8cx_motion_indicator_set_distance_motion</name></member>
+    <member refid="vl53l8cx__plugin__motion__indicator_8c_1a4975f4c09aca2787fa25e2a2410d3ff3" kind="function"><name>vl53l8cx_motion_indicator_set_resolution</name></member>
+  </compound>
+  <compound refid="vl53l8cx__plugin__motion__indicator_8h" kind="file"><name>vl53l8cx_plugin_motion_indicator.h</name>
+    <member refid="vl53l8cx__plugin__motion__indicator_8h_1abb1a0ba71fe1b191f306af2b79e497d3" kind="function"><name>vl53l8cx_motion_indicator_init</name></member>
+    <member refid="vl53l8cx__plugin__motion__indicator_8h_1a345eea6081124af6e2e1d076f68a1302" kind="function"><name>vl53l8cx_motion_indicator_set_distance_motion</name></member>
+    <member refid="vl53l8cx__plugin__motion__indicator_8h_1a4975f4c09aca2787fa25e2a2410d3ff3" kind="function"><name>vl53l8cx_motion_indicator_set_resolution</name></member>
+  </compound>
+  <compound refid="vl53l8cx__plugin__xtalk_8c" kind="file"><name>vl53l8cx_plugin_xtalk.c</name>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kind="function"><name>_vl53l8cx_poll_for_answer</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" kind="function"><name>_vl53l8cx_program_output_config</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" kind="function"><name>vl53l8cx_calibrate_xtalk</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" kind="function"><name>vl53l8cx_get_caldata_xtalk</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1a0a1083d1f57251df3c70caabedd68f41" kind="function"><name>vl53l8cx_set_caldata_xtalk</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" kind="function"><name>vl53l8cx_get_xtalk_margin</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" kind="function"><name>vl53l8cx_set_xtalk_margin</name></member>
+  </compound>
+  <compound refid="vl53l8cx__plugin__xtalk_8h" kind="file"><name>vl53l8cx_plugin_xtalk.h</name>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1af034a41d1f991766148316a5e48927da" kind="define"><name>VL53L8CX_FW_NBTAR_XTALK</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" kind="define"><name>VL53L8CX_DCI_CAL_CFG</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" kind="define"><name>VL53L8CX_DCI_XTALK_CFG</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kind="variable"><name>VL53L8CX_GET_XTALK_CMD</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" kind="variable"><name>VL53L8CX_CALIBRATE_XTALK</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1a616b96ba97c939f5b72fde6f84b78177" kind="function"><name>vl53l8cx_calibrate_xtalk</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1a638fa39db7d6506992b20388f9880b47" kind="function"><name>vl53l8cx_get_caldata_xtalk</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1a0a1083d1f57251df3c70caabedd68f41" kind="function"><name>vl53l8cx_set_caldata_xtalk</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1a93cab7c0d8a298a1c2b0206ffc1fa664" kind="function"><name>vl53l8cx_get_xtalk_margin</name></member>
+    <member refid="vl53l8cx__plugin__xtalk_8h_1a8d182a0a999996a2c3606a8076ca3b9b" kind="function"><name>vl53l8cx_set_xtalk_margin</name></member>
+  </compound>
+  <compound refid="vl53l8cx__platform_8c" kind="file"><name>vl53l8cx_platform.c</name>
+    <member refid="vl53l8cx__platform_8c_1a6fce1865d3d25c7014ad146a530b64d8" kind="define"><name>PLATFORM_TIMEOUT_MS</name></member>
+    <member refid="vl53l8cx__platform_8c_1a7671b4600f731638ce82c71a0b6570e4" kind="define"><name>MAX_SPI_TRANSFER</name></member>
+    <member refid="vl53l8cx__platform_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="vl53l8cx__platform_8c_1a5687017b3245ded0e88563178c6613a7" kind="function"><name>VL53L8CX_PlatformInit</name></member>
+    <member refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" kind="function"><name>spi_xfer</name></member>
+    <member refid="vl53l8cx__platform_8c_1af4dfb23228937a89dab5c68f81836248" kind="function"><name>VL53L8CX_RdMulti</name></member>
+    <member refid="vl53l8cx__platform_8c_1a1570cfa7d62d2faec410934391b845b7" kind="function"><name>VL53L8CX_WrMulti</name></member>
+    <member refid="vl53l8cx__platform_8c_1a501a5073457a1982c2406543df0d073e" kind="function"><name>VL53L8CX_RdByte</name></member>
+    <member refid="vl53l8cx__platform_8c_1a7710197de0c7e075a4064f18baa56355" kind="function"><name>VL53L8CX_WrByte</name></member>
+    <member refid="vl53l8cx__platform_8c_1a03e447cf6ff03fb5be303b919a099751" kind="function"><name>VL53L8CX_WaitMs</name></member>
+  </compound>
+  <compound refid="sys__storage_8h" kind="file"><name>sys_storage.h</name>
+    <member refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kind="define"><name>STORAGE_MOUNT_POINT</name></member>
+    <member refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kind="define"><name>STORAGE_PARTITION</name></member>
+    <member refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kind="define"><name>LOG_FILE_PATH</name></member>
+    <member refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" kind="define"><name>PANIC_FILE_PATH</name></member>
+    <member refid="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" kind="define"><name>LOG_MAX_SIZE_BYTES</name></member>
+    <member refid="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" kind="define"><name>LOG_TRIM_PERCENT</name></member>
+    <member refid="group__group__storage_1ga963f6be03bc9dc7db1ea5c6fa5fab9a8" kind="define"><name>LITTLEFS_MOUNT_POINT</name></member>
+    <member refid="group__group__storage_1gafc0cfe84cc1ef21ab7db1eb5bc86b484" kind="define"><name>LITTLEFS_PARTITION</name></member>
+    <member refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kind="function"><name>littlefs_manager_init</name></member>
+    <member refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kind="function"><name>log_write</name></member>
+    <member refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kind="function"><name>panic_handler_install</name></member>
+    <member refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kind="function"><name>panic_handler_check_on_boot</name></member>
+  </compound>
+  <compound refid="littlefs__manager_8c" kind="file"><name>littlefs_manager.c</name>
+    <member refid="littlefs__manager_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kind="function"><name>littlefs_manager_init</name></member>
+  </compound>
+  <compound refid="log__writer_8c" kind="file"><name>log_writer.c</name>
+    <member refid="log__writer_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kind="variable"><name>s_mutex</name></member>
+    <member refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" kind="function"><name>log_trim_file</name></member>
+    <member refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kind="function"><name>log_write</name></member>
+  </compound>
+  <compound refid="panic__handler_8c" kind="file"><name>panic_handler.c</name>
+    <member refid="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" kind="define"><name>PANIC_MAGIC_VALUE</name></member>
+    <member refid="panic__handler_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" kind="variable"><name>s_panic_magic</name></member>
+    <member refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kind="variable"><name>s_panic_msg</name></member>
+    <member refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" kind="variable"><name>s_panic_time_us</name></member>
+    <member refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" kind="function"><name>shutdown_handler</name></member>
+    <member refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kind="function"><name>panic_handler_install</name></member>
+    <member refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kind="function"><name>panic_handler_check_on_boot</name></member>
+  </compound>
+  <compound refid="main_8c" kind="file"><name>main.c</name>
+    <member refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kind="variable"><name>s_ctx</name></member>
+    <member refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" kind="function"><name>app_main</name></member>
+  </compound>
+  <compound refid="group__group__main" kind="group"><name>group_main</name>
+    <member refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+    <member refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kind="variable"><name>s_ctx</name></member>
+    <member refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" kind="function"><name>app_main</name></member>
+  </compound>
+  <compound refid="group__group__ai__engine" kind="group"><name>group_ai_engine</name>
+    <member refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kind="function"><name>ai_engine_task_start</name></member>
+  </compound>
+  <compound refid="group__group__hw__diag" kind="group"><name>group_hw_diag</name>
+    <member refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kind="enum"><name>hw_diag_result_t</name></member>
+    <member refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd" kind="enumvalue"><name>HW_DIAG_OK</name></member>
+    <member refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" kind="enumvalue"><name>HW_DIAG_LIDAR_PARTIAL</name></member>
+    <member refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" kind="enumvalue"><name>HW_DIAG_LIDAR_ALL</name></member>
+    <member refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" kind="enumvalue"><name>HW_DIAG_RADAR_MISSING</name></member>
+    <member refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kind="function"><name>hw_diag_run</name></member>
+    <member refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kind="function"><name>hw_diag_init_sensor_bus</name></member>
+    <member refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kind="function"><name>hw_diag_pca9555_set_power</name></member>
+  </compound>
+  <compound refid="group__group__config" kind="group"><name>group_config</name>
+    <member refid="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" kind="define"><name>LEXACARE_LIDAR_COUNT</name></member>
+    <member refid="group__group__config_1ga8fae42b5f7928159779f99742fdf0bd5" kind="define"><name>LEXACARE_LIDAR_USE_ST_ULD</name></member>
+    <member refid="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" kind="define"><name>LEXACARE_ENABLE_RADAR</name></member>
+    <member refid="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" kind="define"><name>LEXACARE_ENABLE_HDC1080</name></member>
+    <member refid="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" kind="define"><name>LEXACARE_ENABLE_BME280</name></member>
+    <member refid="group__group__config_1ga1e88f0418aa71aa2e74db4685116852a" kind="define"><name>LEXACARE_ENABLE_MLX90640</name></member>
+    <member refid="group__group__config_1ga4d8aad6f1e9c851b13890f4aa41a6282" kind="define"><name>LEXACARE_ENABLE_VL53L0X</name></member>
+    <member refid="group__group__config_1gae865b22047a6abaad37983f4df666bc6" kind="define"><name>LEXACARE_ENABLE_CAT24M01W</name></member>
+    <member refid="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" kind="define"><name>LEXACARE_ENABLE_MIC</name></member>
+    <member refid="group__group__config_1gaafd1ce9dac19ab9802c31dce7b63ee19" kind="define"><name>LEXACARE_ENABLE_AI</name></member>
+    <member refid="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" kind="define"><name>LEXACARE_ENABLE_MESH</name></member>
+    <member refid="group__group__config_1gaeea756a9c7ccd21130e7fc68116c2c31" kind="define"><name>LEXACARE_PWR_FAN_ENABLED</name></member>
+    <member refid="group__group__config_1gafcc1ee0670f4792dcf85c1c091f8da11" kind="define"><name>LEXACARE_PWR_RADAR_ENABLED</name></member>
+    <member refid="group__group__config_1ga46a950bf6649476b97a94825d33dd37d" kind="define"><name>LEXACARE_PWR_MIC_ENABLED</name></member>
+    <member refid="group__group__config_1gab0eba4763bffc7db4b8db3eea665155d" kind="define"><name>LEXACARE_PWR_MLX_ENABLED</name></member>
+    <member refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" kind="define"><name>PIN_I2C0_SDA</name></member>
+    <member refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kind="define"><name>LIDAR_ROWS</name></member>
+  </compound>
+  <compound refid="group__group__mesh" kind="group"><name>group_mesh</name>
+    <member refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" kind="function"><name>mesh_manager_init</name></member>
+    <member refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" kind="function"><name>mesh_task_start</name></member>
+    <member refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kind="function"><name>ota_node_init</name></member>
+  </compound>
+  <compound refid="group__group__pc__diag" kind="group"><name>group_pc_diag</name>
+    <member refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kind="function"><name>pc_diag_task_start</name></member>
+  </compound>
+  <compound refid="group__group__sensor__acq" kind="group"><name>group_sensor_acq</name>
+    <member refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kind="function"><name>lidar_driver_start</name></member>
+    <member refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" kind="function"><name>mic_driver_init</name></member>
+    <member refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kind="function"><name>radar_driver_init</name></member>
+    <member refid="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" kind="define"><name>BME280_I2C_ADDR_DEFAULT</name></member>
+    <member refid="group__group__sensor__acq_1gaf0cf6b62cc46031dbcb698408b50aa26" kind="define"><name>HDC1080_I2C_ADDR</name></member>
+  </compound>
+  <compound refid="group__group__storage" kind="group"><name>group_storage</name>
+    <member refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kind="function"><name>littlefs_manager_init</name></member>
+    <member refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kind="function"><name>log_write</name></member>
+    <member refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kind="function"><name>panic_handler_install</name></member>
+    <member refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kind="function"><name>panic_handler_check_on_boot</name></member>
+    <member refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kind="define"><name>STORAGE_MOUNT_POINT</name></member>
+    <member refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kind="define"><name>STORAGE_PARTITION</name></member>
+    <member refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kind="define"><name>LOG_FILE_PATH</name></member>
+    <member refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" kind="define"><name>PANIC_FILE_PATH</name></member>
+    <member refid="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" kind="define"><name>LOG_MAX_SIZE_BYTES</name></member>
+    <member refid="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" kind="define"><name>LOG_TRIM_PERCENT</name></member>
+    <member refid="group__group__storage_1ga963f6be03bc9dc7db1ea5c6fa5fab9a8" kind="define"><name>LITTLEFS_MOUNT_POINT</name></member>
+    <member refid="group__group__storage_1gafc0cfe84cc1ef21ab7db1eb5bc86b484" kind="define"><name>LITTLEFS_PARTITION</name></member>
+  </compound>
+  <compound refid="dir_61cb6a5e4045e4a8c3f394249d17c34c" kind="dir"><name>components/ai_engine</name>
+  </compound>
+  <compound refid="dir_409f97388efe006bc3438b95e9edef48" kind="dir"><name>components</name>
+  </compound>
+  <compound refid="dir_54c4ddc1c98aea5c3ae78012258b202f" kind="dir"><name>components/hw_diag</name>
+  </compound>
+  <compound refid="dir_4b11ba2682d4be8c264d96d4c6e8819a" kind="dir"><name>components/ai_engine/include</name>
+  </compound>
+  <compound refid="dir_55af515a63f283de62e4186c91e13d6a" kind="dir"><name>components/hw_diag/include</name>
+  </compound>
+  <compound refid="dir_88e9d770a305302d3692c2e494e7155d" kind="dir"><name>components/lexacare_types/include</name>
+  </compound>
+  <compound refid="dir_1d35aca2d475750ea7a4fb5255edbd8e" kind="dir"><name>components/mesh_network/include</name>
+  </compound>
+  <compound refid="dir_a929a7206adc8ebdd5621360801b870a" kind="dir"><name>components/pc_diag/include</name>
+  </compound>
+  <compound refid="dir_67cfc9344264aea970c739ab8898b2f6" kind="dir"><name>components/sensor_acq/include</name>
+  </compound>
+  <compound refid="dir_452ee0c3bb1dbde15409fe514d184a59" kind="dir"><name>components/sys_storage/include</name>
+  </compound>
+  <compound refid="dir_f7f793e9b2e2f7b297163edcae8530d4" kind="dir"><name>components/lexacare_types</name>
+  </compound>
+  <compound refid="dir_5c982d53a68cdbcd421152b4020263a9" kind="dir"><name>main</name>
+  </compound>
+  <compound refid="dir_78eb8458b0d46c0016d2af0cf5e99df6" kind="dir"><name>components/mesh_network</name>
+  </compound>
+  <compound refid="dir_0377518441a900bf4420a1e62446b333" kind="dir"><name>components/pc_diag</name>
+  </compound>
+  <compound refid="dir_a415d065e1fa9a7cfd7a63c811e49bb3" kind="dir"><name>components/sensor_acq</name>
+  </compound>
+  <compound refid="dir_a07dd1bb026dd60940fbd2da6a20f1f7" kind="dir"><name>components/sys_storage</name>
+  </compound>
+  <compound refid="dir_3017791b48304ae24740261ba17e8186" kind="dir"><name>components/sensor_acq/uld</name>
+  </compound>
+</doxygenindex>

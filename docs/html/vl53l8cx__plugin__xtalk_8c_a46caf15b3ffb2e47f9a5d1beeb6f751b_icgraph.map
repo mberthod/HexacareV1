@@ -1,0 +1,7 @@
+<map id="_vl53l8cx_poll_for_answer" name="_vl53l8cx_poll_for_answer">
+<area shape="rect" id="Node000001" title=" " alt="" coords="197,39,322,81"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="14,5,140,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,48,140,41,141,36,182,43"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__plugin__xtalk_8c.html#a638fa39db7d6506992b20388f9880b47" title="This function gets the Xtalk buffer. The buffer is available after using the function vl53l8cx_calibr..." alt="" coords="5,72,149,115"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,77,149,83,148,78,181,72"/>
+</map>

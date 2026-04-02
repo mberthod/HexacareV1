@@ -1,0 +1,539 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="radar__driver_8c" kind="file" language="C++">
+    <compoundname>radar_driver.c</compoundname>
+    <includes refid="radar__driver_8h" local="yes">radar_driver.h</includes>
+    <includes refid="pins__config_8h" local="yes">pins_config.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_timer.h</includes>
+    <includes local="yes">driver/uart.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes local="no">stdint.h</includes>
+    <incdepgraph>
+      <node id="11">
+        <label>pins_config.h</label>
+        <link refid="pins__config_8h"/>
+      </node>
+      <node id="3">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>radar_driver.h</label>
+        <link refid="radar__driver_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/radar_driver.c</label>
+        <link refid="radar__driver_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="14">
+        <label>driver/uart.h</label>
+      </node>
+      <node id="10">
+        <label>esp_err.h</label>
+      </node>
+      <node id="12">
+        <label>esp_log.h</label>
+      </node>
+      <node id="13">
+        <label>esp_timer.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="8">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="15">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structradar__parser__t" prot="public">radar_parser_t</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" prot="public" static="no">
+        <name>UART_PORT</name>
+        <initializer>UART_NUM_2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="33" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="33" bodyend="-1"/>
+        <referencedby refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" compoundref="radar__driver_8c" startline="169" endline="175">radar_driver_init</referencedby>
+        <referencedby refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" compoundref="radar__driver_8c" startline="187" endline="213">radar_driver_poll</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a690f985c933da2ce6fe62b6c61dfa662" prot="public" static="no">
+        <name>RX_BUF_SIZE</name>
+        <initializer>512</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="34" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" prot="public" static="no">
+        <name>TF_SOF</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="35" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a73c9acaba0709da57963b20403746481" prot="public" static="no">
+        <name>TF_EOF</name>
+        <initializer>0x04</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="36" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="36" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" prot="public" static="no">
+        <name>TF_HEADER_LEN</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>SOF + Type(2) + Longueur(1) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="37" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="37" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a638e37cd9e69ad4ca8f82c56f5aba5ca" prot="public" static="no">
+        <name>TF_FOOTER_LEN</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>EOF </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="38" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="38" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a382fbe3da3ead3519193aa1b0618e3e3" prot="public" static="no">
+        <name>TF_MIN_FRAME_LEN</name>
+        <initializer>(<ref refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" kindref="member">TF_HEADER_LEN</ref> + <ref refid="radar__driver_8c_1a638e37cd9e69ad4ca8f82c56f5aba5ca" kindref="member">TF_FOOTER_LEN</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="39" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="39" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1aa1840a78150783188852dc2d48c01749" prot="public" static="no">
+        <name>TF_MAX_PAYLOAD_LEN</name>
+        <initializer>64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="40" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a6035d82d95769dda5c4f56e68aafb02d" prot="public" static="no">
+        <name>TF_TYPE_BREATH</name>
+        <initializer>0x0A14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="42" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="42" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a279ac4a1e69cc4f5aa2fd1e365242ec9" prot="public" static="no">
+        <name>TF_TYPE_HEART</name>
+        <initializer>0x0A15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="43" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="43" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="radar__driver_8c_1a25c14416760a4a7b05818aa819d4221f" prot="public" static="no">
+        <name>TF_TYPE_DISTANCE</name>
+        <initializer>0x0A16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="44" column="9" bodyfile="components/sensor_acq/radar_driver.c" bodystart="44" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="radar__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;radar_driver&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="28" column="19" bodyfile="components/sensor_acq/radar_driver.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" prot="public" static="yes" mutable="no">
+        <type><ref refid="structradar__parser__t" kindref="compound">radar_parser_t</ref></type>
+        <definition>radar_parser_t s_parser</definition>
+        <argsstring></argsstring>
+        <name>s_parser</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="56" column="23" bodyfile="components/sensor_acq/radar_driver.c" bodystart="56" bodyend="-1"/>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" compoundref="radar__driver_8c" startline="169" endline="175">radar_driver_init</referencedby>
+        <referencedby refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" compoundref="radar__driver_8c" startline="187" endline="213">radar_driver_poll</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool parse_tinyframe</definition>
+        <argsstring>(void)</argsstring>
+        <name>parse_tinyframe</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="67" column="13" bodyfile="components/sensor_acq/radar_driver.c" bodystart="67" bodyend="159"/>
+        <references refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" compoundref="radar__driver_8c" startline="56">s_parser</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="radar__driver_8c_1a73c9acaba0709da57963b20403746481" compoundref="radar__driver_8c" startline="36">TF_EOF</references>
+        <references refid="radar__driver_8c_1a638e37cd9e69ad4ca8f82c56f5aba5ca" compoundref="radar__driver_8c" startline="38">TF_FOOTER_LEN</references>
+        <references refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" compoundref="radar__driver_8c" startline="37">TF_HEADER_LEN</references>
+        <references refid="radar__driver_8c_1a382fbe3da3ead3519193aa1b0618e3e3" compoundref="radar__driver_8c" startline="39">TF_MIN_FRAME_LEN</references>
+        <references refid="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" compoundref="hw__diag_8c" startline="60">TF_SOF</references>
+        <references refid="radar__driver_8c_1a6035d82d95769dda5c4f56e68aafb02d" compoundref="radar__driver_8c" startline="42">TF_TYPE_BREATH</references>
+        <references refid="radar__driver_8c_1a25c14416760a4a7b05818aa819d4221f" compoundref="radar__driver_8c" startline="44">TF_TYPE_DISTANCE</references>
+        <references refid="radar__driver_8c_1a279ac4a1e69cc4f5aa2fd1e365242ec9" compoundref="radar__driver_8c" startline="43">TF_TYPE_HEART</references>
+        <referencedby refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" compoundref="radar__driver_8c" startline="187" endline="213">radar_driver_poll</referencedby>
+      </memberdef>
+      <member refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kind="function"><name>radar_driver_init</name></member>
+      <memberdef kind="function" id="radar__driver_8c_1ac327c41337b50efe73de8b91c2df089c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool radar_driver_poll</definition>
+        <argsstring>(radar_data_t *out)</argsstring>
+        <name>radar_driver_poll</name>
+        <param>
+          <type><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="187" column="6" bodyfile="components/sensor_acq/radar_driver.c" bodystart="187" bodyend="213"/>
+        <references refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</references>
+        <references refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" compoundref="radar__driver_8c" startline="56">s_parser</references>
+        <references refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" compoundref="radar__driver_8c" startline="33">UART_PORT</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver UART HLK-LD6002 — protocole TinyFrame, ring buffer UART. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Protocole TinyFrame : [SOF=0x01][Type_H][Type_L][Longueur][Données...][EOF=0x04]</para>
+<para>Types reconnus : 0x0A14 : Fréquence respiratoire (2 octets big-endian, bpm) 0x0A15 : Fréquence cardiaque (2 octets big-endian, bpm) 0x0A16 : Distance de la cible (2 octets big-endian, mm)</para>
+<para>Le driver UART (UART_NUM_2) est déjà installé par <ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run()</ref>. <ref refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kindref="member">radar_driver_init()</ref> se contente de réinitialiser l&apos;état du parser. <ref refid="radar__driver_8c_1ac327c41337b50efe73de8b91c2df089c" kindref="member">radar_driver_poll()</ref> est appelé à chaque cycle de Task_Sensor_Acq. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>radar_driver.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Driver<sp/>UART<sp/>HLK-LD6002<sp/>—<sp/>protocole<sp/>TinyFrame,<sp/>ring<sp/>buffer<sp/>UART.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Protocole<sp/>TinyFrame<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>[SOF=0x01][Type_H][Type_L][Longueur][Données...][EOF=0x04]</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Types<sp/>reconnus<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A14<sp/>:<sp/>Fréquence<sp/>respiratoire<sp/>(2<sp/>octets<sp/>big-endian,<sp/>bpm)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A15<sp/>:<sp/>Fréquence<sp/>cardiaque<sp/><sp/><sp/><sp/>(2<sp/>octets<sp/>big-endian,<sp/>bpm)</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A16<sp/>:<sp/>Distance<sp/>de<sp/>la<sp/>cible<sp/><sp/><sp/>(2<sp/>octets<sp/>big-endian,<sp/>mm)</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>Le<sp/>driver<sp/>UART<sp/>(UART_NUM_2)<sp/>est<sp/>déjà<sp/>installé<sp/>par<sp/>hw_diag_run().</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>radar_driver_init()<sp/>se<sp/>contente<sp/>de<sp/>réinitialiser<sp/>l&apos;état<sp/>du<sp/>parser.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>radar_driver_poll()<sp/>est<sp/>appelé<sp/>à<sp/>chaque<sp/>cycle<sp/>de<sp/>Task_Sensor_Acq.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="radar__driver_8h" kindref="compound">radar_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pins__config_8h" kindref="compound">pins_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/uart.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="radar__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;radar_driver&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>Constantes<sp/>du<sp/>protocole</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>UART_PORT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UART_NUM_2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="radar__driver_8c_1a690f985c933da2ce6fe62b6c61dfa662" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RX_BUF_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>512</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="radar__driver_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_SOF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="radar__driver_8c_1a73c9acaba0709da57963b20403746481" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_EOF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x04</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_HEADER_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>4<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>SOF<sp/>+<sp/>Type(2)<sp/>+<sp/>Longueur(1)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="radar__driver_8c_1a638e37cd9e69ad4ca8f82c56f5aba5ca" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_FOOTER_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>EOF<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="radar__driver_8c_1a382fbe3da3ead3519193aa1b0618e3e3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_MIN_FRAME_LEN<sp/><sp/><sp/><sp/>(TF_HEADER_LEN<sp/>+<sp/>TF_FOOTER_LEN)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="radar__driver_8c_1aa1840a78150783188852dc2d48c01749" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_MAX_PAYLOAD_LEN<sp/><sp/>64</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="radar__driver_8c_1a6035d82d95769dda5c4f56e68aafb02d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_TYPE_BREATH<sp/><sp/><sp/><sp/><sp/><sp/>0x0A14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="radar__driver_8c_1a279ac4a1e69cc4f5aa2fd1e365242ec9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_TYPE_HEART<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0A15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="radar__driver_8c_1a25c14416760a4a7b05818aa819d4221f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_TYPE_DISTANCE<sp/><sp/><sp/><sp/>0x0A16</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>État<sp/>interne<sp/>du<sp/>parser<sp/>(pas<sp/>de<sp/>variable<sp/>globale<sp/>—<sp/>static<sp/>local)</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="structradar__parser__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50" refid="structradar__parser__t_1a4c090bb75fe32c249fb87ec843b32f54" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structradar__parser__t_1a4c090bb75fe32c249fb87ec843b32f54" kindref="member">buf</ref>[<ref refid="radar__driver_8c_1a690f985c933da2ce6fe62b6c61dfa662" kindref="member">RX_BUF_SIZE</ref>];</highlight></codeline>
+<codeline lineno="51" refid="structradar__parser__t_1a42d4166a7d0d6ef81df1e7e294ea11fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structradar__parser__t_1a42d4166a7d0d6ef81df1e7e294ea11fb" kindref="member">len</ref>;</highlight></codeline>
+<codeline lineno="52" refid="structradar__parser__t_1acb46a09babe70d1f7b8aff98928e32ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structradar__parser__t_1acb46a09babe70d1f7b8aff98928e32ec" kindref="member">updated</ref>;</highlight></codeline>
+<codeline lineno="53" refid="structradar__parser__t_1aac179e103cebbf0bdd8e0b6223cb6e5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref><sp/><ref refid="structradar__parser__t_1aac179e103cebbf0bdd8e0b6223cb6e5d" kindref="member">last_data</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}<sp/><ref refid="structradar__parser__t" kindref="compound">radar_parser_t</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structradar__parser__t" kindref="compound">radar_parser_t</ref><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>;<sp/></highlight><highlight class="comment">/*<sp/>Unique<sp/>instance<sp/>—<sp/>module<sp/>singulier<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>parse_tinyframe<sp/>(interne)</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Tente<sp/>de<sp/>décoder<sp/>une<sp/>trame<sp/>TinyFrame<sp/>dans<sp/>le<sp/>buffer.</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>Si<sp/>une<sp/>trame<sp/>valide<sp/>est<sp/>trouvée,<sp/>met<sp/>à<sp/>jour<sp/>s_parser.last_data.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>Consomme<sp/>les<sp/>octets<sp/>traités<sp/>du<sp/>buffer<sp/>(glissement).</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>@return<sp/>true<sp/>si<sp/>une<sp/>trame<sp/>a<sp/>été<sp/>décodée.</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" kindref="member">parse_tinyframe</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>&lt;<sp/><ref refid="radar__driver_8c_1a382fbe3da3ead3519193aa1b0618e3e3" kindref="member">TF_MIN_FRAME_LEN</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Recherche<sp/>du<sp/>SOF<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>sof_pos<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(sof_pos<sp/>&lt;<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>&amp;&amp;<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf[sof_pos]<sp/>!=<sp/><ref refid="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" kindref="member">TF_SOF</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sof_pos++;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sof_pos<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Supprimer<sp/>les<sp/>octets<sp/>avant<sp/>le<sp/>SOF<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>-=<sp/>sof_pos;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memmove(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf,<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf<sp/>+<sp/>sof_pos,<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>&lt;<sp/><ref refid="radar__driver_8c_1a382fbe3da3ead3519193aa1b0618e3e3" kindref="member">TF_MIN_FRAME_LEN</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Décodage<sp/>du<sp/>header<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>type<sp/>=<sp/>((uint16_t)<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf[1]<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf[2];</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/>plen<sp/>=<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf[3];</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vérification<sp/>de<sp/>la<sp/>longueur<sp/>totale<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>frame_len<sp/>=<sp/><ref refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" kindref="member">TF_HEADER_LEN</ref><sp/>+<sp/>plen<sp/>+<sp/><ref refid="radar__driver_8c_1a638e37cd9e69ad4ca8f82c56f5aba5ca" kindref="member">TF_FOOTER_LEN</ref>;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frame_len<sp/>&gt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf))<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Trame<sp/>incohérente<sp/>—<sp/>resynchronisation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>&lt;<sp/>frame_len)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">/*<sp/>Trame<sp/>incomplète<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vérification<sp/>EOF<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf[<ref refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" kindref="member">TF_HEADER_LEN</ref><sp/>+<sp/>plen]<sp/>!=<sp/><ref refid="radar__driver_8c_1a73c9acaba0709da57963b20403746481" kindref="member">TF_EOF</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>EOF<sp/>invalide<sp/>:<sp/>sauter<sp/>d&apos;un<sp/>octet<sp/>et<sp/>réessayer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memmove(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf,<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf<sp/>+<sp/>1,<sp/>--<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Extraction<sp/>des<sp/>données<sp/>selon<sp/>le<sp/>type<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>*payload<sp/>=<sp/>&amp;<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf[<ref refid="radar__driver_8c_1a44c428b23f52ab71e3060e427cb4ffc7" kindref="member">TF_HEADER_LEN</ref>];</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>decoded<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(type)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="radar__driver_8c_1a6035d82d95769dda5c4f56e68aafb02d" kindref="member">TF_TYPE_BREATH</ref>:</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(plen<sp/>&gt;=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.breath_rate_bpm<sp/>=</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)(((uint16_t)payload[0]<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/>payload[1]);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.presence<sp/>=<sp/>(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.breath_rate_bpm<sp/>&gt;<sp/>0);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>decoded<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Respiration<sp/>:<sp/>%u<sp/>bpm&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.breath_rate_bpm);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="radar__driver_8c_1a279ac4a1e69cc4f5aa2fd1e365242ec9" kindref="member">TF_TYPE_HEART</ref>:</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(plen<sp/>&gt;=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.heart_rate_bpm<sp/>=</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)(((uint16_t)payload[0]<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/>payload[1]);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>decoded<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Cardio<sp/>:<sp/>%u<sp/>bpm&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.heart_rate_bpm);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="radar__driver_8c_1a25c14416760a4a7b05818aa819d4221f" kindref="member">TF_TYPE_DISTANCE</ref>:</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(plen<sp/>&gt;=<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.target_distance_mm<sp/>=</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)(((uint16_t)payload[0]<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/>payload[1]);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>decoded<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Distance<sp/>:<sp/>%u<sp/>mm&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.target_distance_mm);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGV(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Type<sp/>TinyFrame<sp/>inconnu<sp/>:<sp/>0x%04X&quot;</highlight><highlight class="normal">,<sp/>type);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(decoded)<sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data.timestamp_us<sp/>=<sp/>esp_timer_get_time();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.updated<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Consommer<sp/>la<sp/>trame<sp/>du<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>memmove(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf,</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf<sp/>+<sp/>frame_len,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>-<sp/>frame_len);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>-=<sp/>frame_len;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>decoded;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="162"><highlight class="comment"><sp/>*<sp/>radar_driver_init</highlight></codeline>
+<codeline lineno="163"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Réinitialise<sp/>l&apos;état<sp/>du<sp/>parser<sp/>TinyFrame.</highlight></codeline>
+<codeline lineno="164"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="165"><highlight class="comment"><sp/>*<sp/>Le<sp/>driver<sp/>UART<sp/>est<sp/>déjà<sp/>installé<sp/>par<sp/>hw_diag_run().</highlight></codeline>
+<codeline lineno="166"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>toujours.</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="169" refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kindref="member">radar_driver_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>));</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Parser<sp/>TinyFrame<sp/>LD6002<sp/>initialisé<sp/>(UART%d,<sp/>%d<sp/>bauds)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" kindref="member">UART_PORT</ref>,<sp/>1382400);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/>*<sp/>radar_driver_poll</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Lit<sp/>les<sp/>octets<sp/>UART<sp/>disponibles<sp/>et<sp/>tente<sp/>de<sp/>décoder<sp/>une<sp/>trame.</highlight></codeline>
+<codeline lineno="180"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="181"><highlight class="comment"><sp/>*<sp/>Non<sp/>bloquant<sp/>:<sp/>timeout<sp/>=<sp/>0<sp/>(retourne<sp/>immédiatement<sp/>si<sp/>rien<sp/>à<sp/>lire).</highlight></codeline>
+<codeline lineno="182"><highlight class="comment"><sp/>*<sp/>Appelé<sp/>depuis<sp/>la<sp/>boucle<sp/>de<sp/>Task_Sensor_Acq.</highlight></codeline>
+<codeline lineno="183"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="184"><highlight class="comment"><sp/>*<sp/>@param<sp/>out<sp/>Pointeur<sp/>vers<sp/>radar_data_t<sp/>à<sp/>mettre<sp/>à<sp/>jour<sp/>si<sp/>nouvelle<sp/>trame.</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/>*<sp/>@return<sp/>true<sp/>si<sp/>de<sp/>nouvelles<sp/>données<sp/>ont<sp/>été<sp/>décodées.</highlight></codeline>
+<codeline lineno="186"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187" refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="radar__driver_8c_1ac327c41337b50efe73de8b91c2df089c" kindref="member">radar_driver_poll</ref>(<ref refid="structradar__data__t" kindref="compound">radar_data_t</ref><sp/>*out)</highlight></codeline>
+<codeline lineno="188"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lecture<sp/>non<sp/>bloquante<sp/>des<sp/>octets<sp/>disponibles<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>available<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf)<sp/>-<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(available<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>read<sp/>=<sp/>uart_read_bytes(<ref refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" kindref="member">UART_PORT</ref>,</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.buf<sp/>+<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len,</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>available,</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0<sp/></highlight><highlight class="comment">/*<sp/>timeout<sp/>=<sp/>0<sp/>ms,<sp/>non<sp/>bloquant<sp/>*/</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(read<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.len<sp/>+=<sp/>(size_t)read;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Tentative<sp/>de<sp/>décodage<sp/>(peut<sp/>trouver<sp/>plusieurs<sp/>trames)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>found<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(<ref refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" kindref="member">parse_tinyframe</ref>())<sp/>{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>found<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(found<sp/>&amp;&amp;<sp/>out)<sp/>{</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*out<sp/>=<sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.last_data;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" kindref="member">s_parser</ref>.updated<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>found;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/radar_driver.c"/>
+  </compounddef>
+</doxygen>

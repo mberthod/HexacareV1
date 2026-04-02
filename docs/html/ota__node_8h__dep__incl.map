@@ -1,0 +1,7 @@
+<map id="components/mesh_network/include/ota_node.h" name="components/mesh_network/include/ota_node.h">
+<area shape="rect" id="Node000001" title="Interface publique du module OTA nœud&#45;à&#45;nœud." alt="" coords="108,5,289,48"/>
+<area shape="rect" id="Node000002" href="$mesh__manager_8c.html" title="Gestionnaire réseau maillé ESP&#45;NOW — topologie arborescente + AES&#45;128." alt="" coords="5,96,187,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,60,122,97,118,93,162,56"/>
+<area shape="rect" id="Node000003" href="$ota__node_8c.html" title="OTA nœud&#45;à&#45;nœud via ESP&#45;NOW — fragments 200 octets." alt="" coords="211,96,392,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="236,56,279,93,276,97,232,60"/>
+</map>

@@ -1,0 +1,453 @@
+\doxysection{mesh\+\_\+manager.\+c}
+\hypertarget{mesh__manager_8c_source}{}\label{mesh__manager_8c_source}\index{components/mesh\_network/mesh\_manager.c@{components/mesh\_network/mesh\_manager.c}}
+\mbox{\hyperlink{mesh__manager_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ mesh\_manager.c}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_mesh}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Gestionnaire\ réseau\ maillé\ ESP-\/NOW\ —\ topologie\ arborescente\ +\ AES-\/128.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Chiffrement\ applicatif\ (contrainte\ +1000\ nœuds)\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ Le\ LMK\ ESP-\/NOW\ est\ limité\ à\ \string~17\ pairs\ simultanés.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ Chaque\ payload\ est\ chiffré\ par\ le\ nœud\ émetteur\ en\ AES-\/128-\/CBC}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ via\ mbedTLS,\ indépendamment\ du\ chiffrement\ matériel\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ La\ clé\ symétrique\ (16\ octets)\ est\ stockée\ en\ NVS.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00011}00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00012}00012\ \textcolor{comment}{\ *\ Topologie\ arborescente\ :}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ Un\ nœud\ ROOT\ (passerelle)\ est\ identifié\ par\ PIN\_ROOT\_SEL=LOW.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ Les\ nœuds\ normaux\ sélectionnent\ leur\ parent\ =\ pair\ avec\ le\ meilleur}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00015}00015\ \textcolor{comment}{\ *\ \ \ RSSI\ parmi\ ceux\ ayant\ le\ hop\_to\_root\ minimal\ (découverte\ par\ beacon).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00016}00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{mesh__manager_8h}{mesh\_manager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ota__node_8h}{ota\_node.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pins__config_8h}{pins\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}esp\_wifi.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}esp\_now.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}esp\_mac.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}esp\_netif.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}esp\_random.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}nvs\_flash.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}nvs.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}esp\_timer.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00031}00031\ \textcolor{comment}{/*\ Compatibilité\ AES\ :\ IDF\ 5.x\ →\ mbedtls/aes.h,\ IDF\ 6.0+\ →\ aes/esp\_aes.h}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00032}00032\ \textcolor{comment}{\ *\ L'API\ ESP-\/IDF\ 6.0\ renomme\ la\ structure\ et\ les\ fonctions\ (esp\_aes\_*)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00033}00033\ \textcolor{comment}{\ *\ mais\ conserve\ une\ signature\ identique.\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}esp\_idf\_version.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00035}00035\ \textcolor{preprocessor}{\#if\ ESP\_IDF\_VERSION\_MAJOR\ >=\ 6}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}aes/esp\_aes.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00037}00037\ \textcolor{keyword}{typedef}\ esp\_aes\_context\ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ab337ee6ecffc479e2cbacca1a268163d}{aes\_compat\_ctx\_t}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00038}00038\ \textcolor{preprocessor}{\#define\ aes\_compat\_init(c)\ \ \ \ \ \ \ \ \ \ esp\_aes\_init(c)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00039}00039\ \textcolor{preprocessor}{\#define\ aes\_compat\_free(c)\ \ \ \ \ \ \ \ \ \ esp\_aes\_free(c)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00040}00040\ \textcolor{preprocessor}{\#define\ aes\_compat\_setkey(c,\ k,\ b)\ \ esp\_aes\_setkey(c,\ k,\ b)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00041}00041\ \textcolor{preprocessor}{\#define\ aes\_compat\_crypt\_cbc(c,\ m,\ l,\ iv,\ i,\ o)\ esp\_aes\_crypt\_cbc(c,\ m,\ l,\ iv,\ i,\ o)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00042}00042\ \textcolor{preprocessor}{\#define\ AES\_COMPAT\_ENCRYPT\ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00043}00043\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00044}00044\ \textcolor{preprocessor}{\#include\ "{}mbedtls/aes.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00045}\mbox{\hyperlink{mesh__manager_8c_ab337ee6ecffc479e2cbacca1a268163d}{00045}}\ \textcolor{keyword}{typedef}\ mbedtls\_aes\_context\ \ \mbox{\hyperlink{mesh__manager_8c_ab337ee6ecffc479e2cbacca1a268163d}{aes\_compat\_ctx\_t}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00046}\mbox{\hyperlink{mesh__manager_8c_a4d6f962fa1bf0e2e01beb7c8bbdb5ecd}{00046}}\ \textcolor{preprocessor}{\#define\ aes\_compat\_init(c)\ \ \ \ \ \ \ \ \ \ mbedtls\_aes\_init(c)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00047}\mbox{\hyperlink{mesh__manager_8c_ac3aacee09017ca1f58d9b92ccdbbe40d}{00047}}\ \textcolor{preprocessor}{\#define\ aes\_compat\_free(c)\ \ \ \ \ \ \ \ \ \ mbedtls\_aes\_free(c)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00048}\mbox{\hyperlink{mesh__manager_8c_acfe46d72100e88ca99300e17da760f4b}{00048}}\ \textcolor{preprocessor}{\#define\ aes\_compat\_setkey(c,\ k,\ b)\ \ mbedtls\_aes\_setkey\_enc(c,\ k,\ b)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00049}\mbox{\hyperlink{mesh__manager_8c_ab7aa6ac6dbf1eff1eb62e4d8da44062f}{00049}}\ \textcolor{preprocessor}{\#define\ aes\_compat\_crypt\_cbc(c,\ m,\ l,\ iv,\ i,\ o)\ mbedtls\_aes\_crypt\_cbc(c,\ m,\ l,\ iv,\ i,\ o)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00050}\mbox{\hyperlink{mesh__manager_8c_a75c0c87ffb14b7b47fb85c235c286fc1}{00050}}\ \textcolor{preprocessor}{\#define\ AES\_COMPAT\_ENCRYPT\ \ \ \ \ \ \ \ \ \ MBEDTLS\_AES\_ENCRYPT}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00051}00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00052}00052\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00053}00053\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00054}00054\ \textcolor{preprocessor}{\#include\ "{}freertos/queue.h"{}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00055}00055\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00056}00056\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00058}00058\ \textcolor{comment}{/*\ Adresse\ broadcast\ ESP-\/NOW\ (FF:FF:FF:FF:FF:FF)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00059}\mbox{\hyperlink{mesh__manager_8c_af7f31192f445212a355ffc025988f32b}{00059}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{mesh__manager_8c_af7f31192f445212a355ffc025988f32b}{k\_broadcast\_mac}}[ESP\_NOW\_ETH\_ALEN]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00060}00060\ \ \ \ \ 0xFF,\ 0xFF,\ 0xFF,\ 0xFF,\ 0xFF,\ 0xFF}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00061}00061\ \};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00063}\mbox{\hyperlink{mesh__manager_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00063}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}mesh\_mgr"{}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00065}00065\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00066}00066\ \textcolor{comment}{\ *\ Constantes\ réseau}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00067}00067\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00068}\mbox{\hyperlink{mesh__manager_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}{00068}}\ \textcolor{preprocessor}{\#define\ ESPNOW\_CHANNEL\ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00069}\mbox{\hyperlink{mesh__manager_8c_ae17be35a6b7dd82a1db8d1587ad22722}{00069}}\ \textcolor{preprocessor}{\#define\ ESPNOW\_MAX\_PEERS\ \ \ \ \ \ \ \ 20}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00070}\mbox{\hyperlink{mesh__manager_8c_aaf3b4792ccac909807429299fe6d23ac}{00070}}\ \textcolor{preprocessor}{\#define\ MESH\_TASK\_STACK\ \ \ \ \ \ \ \ \ (6144)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00071}\mbox{\hyperlink{mesh__manager_8c_a9a69eb7dd21565dd92b702c0314f460f}{00071}}\ \textcolor{preprocessor}{\#define\ MESH\_TASK\_PRIORITY\ \ \ \ \ \ (8)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00072}\mbox{\hyperlink{mesh__manager_8c_ac2d2ed01de0b5395fb9ebce429e336d4}{00072}}\ \textcolor{preprocessor}{\#define\ MESH\_TASK\_CORE\ \ \ \ \ \ \ \ \ \ (0)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00073}\mbox{\hyperlink{mesh__manager_8c_a3b768ee40387622291ed049c3a059f03}{00073}}\ \textcolor{preprocessor}{\#define\ BEACON\_INTERVAL\_MS\ \ \ \ \ \ 5000\ \ \ \ }\textcolor{comment}{/**<\ Période\ d'envoi\ des\ beacons\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00075}00075\ \textcolor{comment}{/*\ PMK\ par\ défaut\ (32\ octets)\ —\ remplacer\ par\ une\ valeur\ secrète\ en\ production\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00076}\mbox{\hyperlink{mesh__manager_8c_ab4acf17e093a0b230ecc75b223c23f54}{00076}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{mesh__manager_8c_ab4acf17e093a0b230ecc75b223c23f54}{k\_pmk}}[16]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00077}00077\ \ \ \ \ 0x4C,\ 0x65,\ 0x78,\ 0x61,\ 0x63,\ 0x61,\ 0x72,\ 0x65,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00078}00078\ \ \ \ \ 0x50,\ 0x4D,\ 0x4B,\ 0x30,\ 0x31,\ 0x32,\ 0x33,\ 0x34,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00079}00079\ \};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00081}00081\ \textcolor{comment}{/*\ Clé\ AES\ par\ défaut\ (16\ octets)\ —\ remplacer\ via\ NVS\ en\ production\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00082}\mbox{\hyperlink{mesh__manager_8c_af00f8038c703e263772d42e2df540208}{00082}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{mesh__manager_8c_af00f8038c703e263772d42e2df540208}{k\_aes\_default}}[\mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\_AES\_KEY\_LEN}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00083}00083\ \ \ \ \ 0x4C,\ 0x65,\ 0x78,\ 0x61,\ 0x63,\ 0x61,\ 0x72,\ 0x65,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00084}00084\ \ \ \ \ 0x41,\ 0x45,\ 0x53,\ 0x31,\ 0x32,\ 0x38,\ 0x4B,\ 0x65,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00085}00085\ \};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00087}00087\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00088}00088\ \textcolor{comment}{\ *\ peer\_info\_t\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00089}00089\ \textcolor{comment}{\ *\ @brief\ Information\ sur\ un\ pair\ ESP-\/NOW\ dans\ la\ topologie\ arborescente.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00090}00090\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00091}\mbox{\hyperlink{structpeer__info__t}{00091}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00092}\mbox{\hyperlink{structpeer__info__t_a246152eec6bd6506be59823be78b5234}{00092}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structpeer__info__t_a246152eec6bd6506be59823be78b5234}{mac}}[6];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00093}\mbox{\hyperlink{structpeer__info__t_a84377419838485f33d32051e26aa5f65}{00093}}\ \ \ \ \ int8\_t\ \ \mbox{\hyperlink{structpeer__info__t_a84377419838485f33d32051e26aa5f65}{rssi}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00094}\mbox{\hyperlink{structpeer__info__t_a8f82766227096a7286c95dd904d573be}{00094}}\ \ \ \ \ uint8\_t\ \mbox{\hyperlink{structpeer__info__t_a8f82766227096a7286c95dd904d573be}{hop\_to\_root}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00095}\mbox{\hyperlink{structpeer__info__t_ad35211d13df7b4128d06db52ace2558d}{00095}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \mbox{\hyperlink{structpeer__info__t_ad35211d13df7b4128d06db52ace2558d}{is\_child}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00096}\mbox{\hyperlink{structpeer__info__t_a566d0f63a0533a78292fd008d8a3f9be}{00096}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \mbox{\hyperlink{structpeer__info__t_a566d0f63a0533a78292fd008d8a3f9be}{valid}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00097}00097\ \}\ \mbox{\hyperlink{structpeer__info__t}{peer\_info\_t}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00099}00099\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00100}00100\ \textcolor{comment}{\ *\ mesh\_state\_t\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00101}00101\ \textcolor{comment}{\ *\ @brief\ État\ complet\ du\ module\ réseau\ (pas\ de\ variable\ globale\ directe).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00102}00102\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00103}\mbox{\hyperlink{structmesh__state__t}{00103}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00104}\mbox{\hyperlink{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6}{00104}}\ \ \ \ \ \mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ \ *\mbox{\hyperlink{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6}{sys\_ctx}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00105}\mbox{\hyperlink{structmesh__state__t_ad90f2fb3bbe9e4d81d729d9e5061fb47}{00105}}\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_ad90f2fb3bbe9e4d81d729d9e5061fb47}{aes\_key}}[\mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\_AES\_KEY\_LEN}}];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00106}\mbox{\hyperlink{structmesh__state__t_a10d1ebecf7f7ab40ff8a287c49da0c4e}{00106}}\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_a10d1ebecf7f7ab40ff8a287c49da0c4e}{parent\_mac}}[6];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00107}\mbox{\hyperlink{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3}{00107}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3}{has\_parent}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00108}\mbox{\hyperlink{structmesh__state__t_a1a2a2f73ee2b4482fbe1e528e6762b71}{00108}}\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_a1a2a2f73ee2b4482fbe1e528e6762b71}{hop\_to\_root}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00109}\mbox{\hyperlink{structmesh__state__t_aac9ba4a1de8106fce1fe463cc0d15782}{00109}}\ \ \ \ \ \mbox{\hyperlink{structpeer__info__t}{peer\_info\_t}}\ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_aac9ba4a1de8106fce1fe463cc0d15782}{peers}}[\mbox{\hyperlink{mesh__manager_8c_ae17be35a6b7dd82a1db8d1587ad22722}{ESPNOW\_MAX\_PEERS}}];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00110}\mbox{\hyperlink{structmesh__state__t_aafb630d4b2f82df8751df9979cd30c66}{00110}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_aafb630d4b2f82df8751df9979cd30c66}{peer\_count}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00111}\mbox{\hyperlink{structmesh__state__t_a57427af5d84ed6fc28fe6abd033f7b1e}{00111}}\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmesh__state__t_a57427af5d84ed6fc28fe6abd033f7b1e}{own\_mac}}[6];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00112}00112\ \}\ \mbox{\hyperlink{structmesh__state__t}{mesh\_state\_t}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00114}\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{00114}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structmesh__state__t}{mesh\_state\_t}}\ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}};\ \textcolor{comment}{/*\ Unique\ instance\ du\ gestionnaire\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00116}00116\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00117}00117\ \textcolor{comment}{\ *\ crc16\_ccitt\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00118}00118\ \textcolor{comment}{\ *\ @brief\ Calcule\ le\ CRC16-\/CCITT\ d'un\ buffer.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00119}00119\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00120}00120\ \textcolor{comment}{\ *\ @param\ data\ \ \ Pointeur\ vers\ les\ données.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00121}00121\ \textcolor{comment}{\ *\ @param\ length\ Longueur\ en\ octets.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00122}00122\ \textcolor{comment}{\ *\ @return\ CRC16\ calculé.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00123}00123\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00124}\mbox{\hyperlink{mesh__manager_8c_aae012a0061ce71054035ea8a334083cd}{00124}}\ \textcolor{keyword}{static}\ uint16\_t\ \mbox{\hyperlink{mesh__manager_8c_aae012a0061ce71054035ea8a334083cd}{crc16\_ccitt}}(\textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{size\_t}\ length)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00125}00125\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00126}00126\ \ \ \ \ uint16\_t\ crc\ =\ 0xFFFF;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00127}00127\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ length;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ crc\ \string^=\ (uint16\_t)data[i]\ <<\ 8;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ 8;\ j++)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (crc\ \&\ 0x8000)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ =\ (uint16\_t)((crc\ <<\ 1)\ \string^\ 0x1021);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ crc\ <<=\ 1;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00137}00137\ \ \ \ \ \textcolor{keywordflow}{return}\ crc;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00138}00138\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00140}00140\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00141}00141\ \textcolor{comment}{\ *\ aes\_encrypt\_payload\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00142}00142\ \textcolor{comment}{\ *\ @brief\ Chiffre\ un\ buffer\ en\ AES-\/128-\/CBC\ via\ mbedTLS.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00143}00143\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00144}00144\ \textcolor{comment}{\ *\ Le\ padding\ PKCS\#7\ est\ appliqué\ pour\ aligner\ sur\ 16\ octets.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00145}00145\ \textcolor{comment}{\ *\ L'IV\ est\ généré\ aléatoirement\ (esp\_fill\_random).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00146}00146\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00147}00147\ \textcolor{comment}{\ *\ @param\ plain\ \ \ \ \ \ Données\ en\ clair.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00148}00148\ \textcolor{comment}{\ *\ @param\ plain\_len\ \ Longueur\ des\ données\ en\ clair.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00149}00149\ \textcolor{comment}{\ *\ @param\ cipher\ \ \ \ \ Buffer\ chiffré\ (doit\ être\ >=\ padded\_len).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00150}00150\ \textcolor{comment}{\ *\ @param\ iv\ \ \ \ \ \ \ \ \ Buffer\ IV\ (16\ octets,\ rempli\ par\ cette\ fonction).}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00151}00151\ \textcolor{comment}{\ *\ @return\ Longueur\ du\ payload\ chiffré\ (multiple\ de\ 16),\ ou\ 0\ si\ erreur.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00152}00152\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00153}\mbox{\hyperlink{mesh__manager_8c_a7bd75723e8320b9ecc2549738714df17}{00153}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{mesh__manager_8c_a7bd75723e8320b9ecc2549738714df17}{aes\_encrypt\_payload}}(\textcolor{keyword}{const}\ uint8\_t\ *plain,\ \textcolor{keywordtype}{size\_t}\ plain\_len,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *cipher,\ uint8\_t\ *iv)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00155}00155\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00156}00156\ \ \ \ \ \textcolor{comment}{/*\ Calcul\ de\ la\ longueur\ paddée\ (PKCS\#7)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00157}00157\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ padded\_len\ =\ ((plain\_len\ +\ 15)\ /\ 16)\ *\ 16;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (padded\_len\ >\ \mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\_MAX\_PAYLOAD}})\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Payload\ trop\ grand\ :\ \%u\ octets\ (max\ \%d)"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned})padded\_len,\ \mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\_MAX\_PAYLOAD}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00162}00162\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00164}00164\ \ \ \ \ \textcolor{comment}{/*\ Buffer\ temporaire\ avec\ padding\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00165}00165\ \ \ \ \ uint8\_t\ padded[\mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\_MAX\_PAYLOAD}}]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00166}00166\ \ \ \ \ memcpy(padded,\ plain,\ plain\_len);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00167}00167\ \ \ \ \ uint8\_t\ pad\_byte\ =\ (uint8\_t)(padded\_len\ -\/\ plain\_len);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00168}00168\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ plain\_len;\ i\ <\ padded\_len;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00169}00169\ \ \ \ \ \ \ \ \ padded[i]\ =\ pad\_byte;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00170}00170\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00172}00172\ \ \ \ \ \textcolor{comment}{/*\ Génération\ de\ l'IV\ aléatoire\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00173}00173\ \ \ \ \ esp\_fill\_random(iv,\ \mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00174}00174\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00175}00175\ \ \ \ \ \textcolor{comment}{/*\ Chiffrement\ AES-\/128-\/CBC\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00176}00176\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ab337ee6ecffc479e2cbacca1a268163d}{aes\_compat\_ctx\_t}}\ aes\_ctx;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00177}00177\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a4d6f962fa1bf0e2e01beb7c8bbdb5ecd}{aes\_compat\_init}}(\&aes\_ctx);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00179}00179\ \ \ \ \ uint8\_t\ iv\_copy[\mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}}];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00180}00180\ \ \ \ \ memcpy(iv\_copy,\ iv,\ \mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}});\ \textcolor{comment}{/*\ L'API\ AES\ modifie\ l'IV\ en\ place\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00182}00182\ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ \mbox{\hyperlink{mesh__manager_8c_acfe46d72100e88ca99300e17da760f4b}{aes\_compat\_setkey}}(\&aes\_ctx,\ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.aes\_key,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\_AES\_KEY\_LEN}}\ *\ 8);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00184}00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00185}00185\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ac3aacee09017ca1f58d9b92ccdbbe40d}{aes\_compat\_free}}(\&aes\_ctx);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00186}00186\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}AES\ setkey\ échoué\ :\ \%d"{}},\ ret);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00187}00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00190}00190\ \ \ \ \ ret\ =\ \mbox{\hyperlink{mesh__manager_8c_ab7aa6ac6dbf1eff1eb62e4d8da44062f}{aes\_compat\_crypt\_cbc}}(\&aes\_ctx,\ \mbox{\hyperlink{mesh__manager_8c_a75c0c87ffb14b7b47fb85c235c286fc1}{AES\_COMPAT\_ENCRYPT}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ padded\_len,\ iv\_copy,\ padded,\ cipher);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00192}00192\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ac3aacee09017ca1f58d9b92ccdbbe40d}{aes\_compat\_free}}(\&aes\_ctx);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00193}00193\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00194}00194\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}AES\ CBC\ encrypt\ échoué\ :\ \%d"{}},\ ret);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00197}00197\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00199}00199\ \ \ \ \ \textcolor{keywordflow}{return}\ padded\_len;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00200}00200\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00201}00201\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00202}00202\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00203}00203\ \textcolor{comment}{\ *\ mesh\_build\_ai\_frame\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00204}00204\ \textcolor{comment}{\ *\ @brief\ Construit\ une\ lexacare\_frame\_t\ depuis\ un\ ai\_event\_t.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00205}00205\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00206}00206\ \textcolor{comment}{\ *\ @param\ event\ Événement\ IA\ à\ encapsuler.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00207}00207\ \textcolor{comment}{\ *\ @param\ frame\ Trame\ destination.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00208}00208\ \textcolor{comment}{\ *\ @return\ true\ si\ la\ construction\ réussit.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00209}00209\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00210}\mbox{\hyperlink{mesh__manager_8c_a124f00cb0eadce6a3cd802f212bfc87f}{00210}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{mesh__manager_8c_a124f00cb0eadce6a3cd802f212bfc87f}{mesh\_build\_ai\_frame}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structai__event__t}{ai\_event\_t}}\ *event,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}}\ *frame)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00212}00212\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00213}00213\ \ \ \ \ memset(frame,\ 0,\ \textcolor{keyword}{sizeof}(*frame));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00214}00214\ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{magic}}\ \ \ \ \ =\ \mbox{\hyperlink{system__types_8h_a5269c10eb202fc732c8565de6318828a}{LEXACARE\_FRAME\_MAGIC}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00215}00215\ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{type}}\ \ \ \ \ \ =\ \mbox{\hyperlink{system__types_8h_a0e1653f6e69997ed01d99fc0bdc77c78}{FRAME\_TYPE\_AI\_EVENT}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00216}00216\ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}{hop\_count}}\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00217}00217\ \ \ \ \ memcpy(frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}{src\_mac}},\ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.own\_mac,\ 6);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00218}00218\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00219}00219\ \ \ \ \ \textcolor{comment}{/*\ Chiffrement\ du\ payload\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00220}00220\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ enc\_len\ =\ \mbox{\hyperlink{mesh__manager_8c_a7bd75723e8320b9ecc2549738714df17}{aes\_encrypt\_payload}}((\textcolor{keyword}{const}\ uint8\_t\ *)event,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structai__event__t}{ai\_event\_t}}),}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3}{payload}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3}{iv}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00224}00224\ \ \ \ \ \textcolor{keywordflow}{if}\ (enc\_len\ ==\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00225}00225\ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25}{payload\_len}}\ =\ (uint16\_t)enc\_len;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00227}00227\ \ \ \ \ \textcolor{comment}{/*\ CRC16\ sur\ magic\ +\ type\ +\ hop\ +\ src\_mac\ +\ iv\ +\ payload\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00228}00228\ \ \ \ \ uint8\_t\ crc\_buf[2\ +\ 1\ +\ 1\ +\ 6\ +\ \mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}}\ +\ \mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\_MAX\_PAYLOAD}}];}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00229}00229\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ crc\_len\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00230}00230\ \ \ \ \ memcpy(crc\_buf\ +\ crc\_len,\ \&frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{magic}},\ 2);\ \ \ crc\_len\ +=\ 2;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00231}00231\ \ \ \ \ crc\_buf[crc\_len++]\ =\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{type}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00232}00232\ \ \ \ \ crc\_buf[crc\_len++]\ =\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}{hop\_count}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00233}00233\ \ \ \ \ memcpy(crc\_buf\ +\ crc\_len,\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}{src\_mac}},\ 6);\ \ crc\_len\ +=\ 6;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00234}00234\ \ \ \ \ memcpy(crc\_buf\ +\ crc\_len,\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3}{iv}},\ \mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00235}00235\ \ \ \ \ crc\_len\ +=\ \mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00236}00236\ \ \ \ \ memcpy(crc\_buf\ +\ crc\_len,\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3}{payload}},\ enc\_len);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00237}00237\ \ \ \ \ crc\_len\ +=\ enc\_len;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00238}00238\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00239}00239\ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_ae5067764127ffd0809f3cf71927d3e50}{crc16}}\ =\ \mbox{\hyperlink{mesh__manager_8c_aae012a0061ce71054035ea8a334083cd}{crc16\_ccitt}}(crc\_buf,\ crc\_len);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00240}00240\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00241}00241\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00242}00242\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00243}00243\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00244}00244\ \textcolor{comment}{\ *\ espnow\_rx\_callback\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00245}00245\ \textcolor{comment}{\ *\ @brief\ Callback\ de\ réception\ ESP-\/NOW\ —\ appelé\ depuis\ le\ contexte\ Wi-\/Fi.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00246}00246\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00247}00247\ \textcolor{comment}{\ *\ Valide\ la\ trame\ (magic\ +\ CRC16)\ et\ dispatche\ selon\ le\ type.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00248}00248\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00249}\mbox{\hyperlink{mesh__manager_8c_a6067c463964e944fd80eb63f791c1544}{00249}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mesh__manager_8c_a6067c463964e944fd80eb63f791c1544}{espnow\_rx\_callback}}(\textcolor{keyword}{const}\ esp\_now\_recv\_info\_t\ *recv\_info,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *data,\ \textcolor{keywordtype}{int}\ data\_len)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00251}00251\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00252}00252\ \ \ \ \ \textcolor{keywordflow}{if}\ (data\_len\ <\ (\textcolor{keywordtype}{int})\textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}}))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00253}00253\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00254}00254\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}}\ *frame\ =\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}}\ *)data;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00255}00255\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00256}00256\ \ \ \ \ \textcolor{keywordflow}{if}\ (frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{magic}}\ !=\ \mbox{\hyperlink{system__types_8h_a5269c10eb202fc732c8565de6318828a}{LEXACARE\_FRAME\_MAGIC}})\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Trame\ reçue\ avec\ magic\ invalide\ :\ 0x\%04X"{}},\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{magic}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00258}00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00259}00259\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00261}00261\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ CRC16\ (simplifiée\ —\ recomputation\ sur\ les\ champs)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00262}00262\ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Trame\ reçue\ type=0x\%02X,\ hop=\%u,\ src="{}}\ MACSTR,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00263}00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{type}},\ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}{hop\_count}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00264}00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ MAC2STR(frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}{src\_mac}}));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00266}00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (frame-\/>\mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{type}}\ ==\ \mbox{\hyperlink{system__types_8h_ac9c5ce39f67beb1c5a4af7aa2800fd9c}{FRAME\_TYPE\_OTA\_FRAGMENT}})\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Délégation\ au\ module\ OTA\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Déchiffrement\ du\ payload\ avant\ traitement\ (non\ implémenté\ ici)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00269}00269\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Fragment\ OTA\ reçu\ (\%u\ octets\ chiffrés)"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00270}00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frame-\/>\mbox{\hyperlink{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25}{payload\_len}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00271}00271\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00272}00272\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00273}00273\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00274}00274\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00275}00275\ \textcolor{comment}{\ *\ espnow\_tx\_callback\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00276}00276\ \textcolor{comment}{\ *\ @brief\ Callback\ de\ confirmation\ d'envoi\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00277}00277\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00278}00278\ \textcolor{comment}{\ *\ IDF\ 5.x\ :\ signature\ (const\ uint8\_t\ *mac\_addr,\ esp\_now\_send\_status\_t)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00279}00279\ \textcolor{comment}{\ *\ IDF\ 6.0+\ :\ signature\ (const\ esp\_now\_send\_info\_t\ *tx\_info,\ esp\_now\_send\_status\_t)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00280}00280\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ L'adresse\ destination\ se\ trouve\ dans\ tx\_info-\/>des\_addr.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00281}00281\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00282}00282\ \textcolor{preprocessor}{\#if\ ESP\_IDF\_VERSION\_MAJOR\ >=\ 6}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00283}00283\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mesh__manager_8c_abbef85f4a7cd603f4c63ba31a13921cb}{espnow\_tx\_callback}}(\textcolor{keyword}{const}\ esp\_now\_send\_info\_t\ *tx\_info,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00284}00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ esp\_now\_send\_status\_t\ status)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00285}00285\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00286}00286\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *mac\_addr\ =\ tx\_info\ ?\ tx\_info-\/>des\_addr\ :\ NULL;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00287}00287\ \ \ \ \ \textcolor{keywordflow}{if}\ (mac\_addr)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}TX\ vers\ "{}}\ MACSTR\ \textcolor{stringliteral}{"{}\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MAC2STR(mac\_addr),}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (status\ ==\ ESP\_NOW\_SEND\_SUCCESS)\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}ÉCHEC"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00291}00291\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00292}00292\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00293}00293\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00294}\mbox{\hyperlink{mesh__manager_8c_abbef85f4a7cd603f4c63ba31a13921cb}{00294}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mesh__manager_8c_abbef85f4a7cd603f4c63ba31a13921cb}{espnow\_tx\_callback}}(\textcolor{keyword}{const}\ uint8\_t\ *mac\_addr,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ esp\_now\_send\_status\_t\ status)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00296}00296\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00297}00297\ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}TX\ vers\ "{}}\ MACSTR\ \textcolor{stringliteral}{"{}\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ MAC2STR(mac\_addr),}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ (status\ ==\ ESP\_NOW\_SEND\_SUCCESS)\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}ÉCHEC"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00300}00300\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00301}00301\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00303}00303\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00304}00304\ \textcolor{comment}{\ *\ mesh\_load\_aes\_key\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00305}00305\ \textcolor{comment}{\ *\ @brief\ Charge\ la\ clé\ AES\ depuis\ NVS\ ou\ utilise\ la\ clé\ par\ défaut.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00306}00306\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00307}\mbox{\hyperlink{mesh__manager_8c_ad183ca147d5c3e6c43ab72d281d5be89}{00307}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mesh__manager_8c_ad183ca147d5c3e6c43ab72d281d5be89}{mesh\_load\_aes\_key}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00308}00308\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00309}00309\ \ \ \ \ nvs\_handle\_t\ nvs;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00310}00310\ \ \ \ \ esp\_err\_t\ ret\ =\ nvs\_open(\textcolor{stringliteral}{"{}lexacare"{}},\ NVS\_READONLY,\ \&nvs);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00311}00311\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00312}00312\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ key\_len\ =\ \mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\_AES\_KEY\_LEN}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00313}00313\ \ \ \ \ \ \ \ \ ret\ =\ nvs\_get\_blob(nvs,\ \textcolor{stringliteral}{"{}aes\_key"{}},\ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.aes\_key,\ \&key\_len);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00314}00314\ \ \ \ \ \ \ \ \ nvs\_close(nvs);}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00315}00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_OK\ \&\&\ key\_len\ ==\ \mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\_AES\_KEY\_LEN}})\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Clé\ AES\ chargée\ depuis\ NVS"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00318}00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00319}00319\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00321}00321\ \ \ \ \ \textcolor{comment}{/*\ Clé\ par\ défaut\ (avertissement\ de\ sécurité)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00322}00322\ \ \ \ \ memcpy(\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.aes\_key,\ \mbox{\hyperlink{mesh__manager_8c_af00f8038c703e263772d42e2df540208}{k\_aes\_default}},\ \mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\_AES\_KEY\_LEN}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00323}00323\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Clé\ AES\ par\ défaut\ utilisée\ —\ NE\ PAS\ utiliser\ en\ production"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00324}00324\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00326}00326\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00327}00327\ \textcolor{comment}{\ *\ task\_mesh\_com\ (interne)}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00328}00328\ \textcolor{comment}{\ *\ @brief\ Tâche\ FreeRTOS\ de\ communication\ mesh\ —\ Core\ 0,\ priorité\ 8.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00329}00329\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00330}00330\ \textcolor{comment}{\ *\ @param\ pvParam\ Pointeur\ vers\ mesh\_state\_t.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00331}00331\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00332}\mbox{\hyperlink{mesh__manager_8c_a7f06ed05d7822427b8f2ea84cb1b33e1}{00332}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mesh__manager_8c_a7f06ed05d7822427b8f2ea84cb1b33e1}{task\_mesh\_com}}(\textcolor{keywordtype}{void}\ *pvParam)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00333}00333\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00334}00334\ \ \ \ \ \mbox{\hyperlink{structmesh__state__t}{mesh\_state\_t}}\ *state\ =\ (\mbox{\hyperlink{structmesh__state__t}{mesh\_state\_t}}\ *)pvParam;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00335}00335\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Mesh\_Com\ démarrée\ sur\ Core\ \%d"{}},\ xPortGetCoreID());}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00337}00337\ \ \ \ \ \mbox{\hyperlink{structai__event__t}{ai\_event\_t}}\ \ \ \ event;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00338}00338\ \ \ \ \ \mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}}\ frame;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00339}00339\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00340}00340\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Attente\ d'un\ événement\ IA\ (portMAX\_DELAY)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00342}00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueReceive(state-\/>\mbox{\hyperlink{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}{ai\_to\_mesh\_queue}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00343}00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&event,\ portMAX\_DELAY)\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00344}00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00345}00345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!state-\/>\mbox{\hyperlink{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3}{has\_parent}}\ \&\&\ !state-\/>\mbox{\hyperlink{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}})\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Pas\ de\ parent\ —\ événement\ non\ transmis"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00349}00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00350}00350\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00352}00352\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Construction\ et\ chiffrement\ de\ la\ trame\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00353}00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{mesh__manager_8c_a124f00cb0eadce6a3cd802f212bfc87f}{mesh\_build\_ai\_frame}}(\&event,\ \&frame))\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ construction\ trame"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00356}00356\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00357}00357\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00358}00358\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Envoi\ vers\ le\ parent\ (ou\ broadcast\ si\ ROOT)\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *dest\ =\ state-\/>\mbox{\hyperlink{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3}{has\_parent}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00360}00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ state-\/>\mbox{\hyperlink{structmesh__state__t_a10d1ebecf7f7ab40ff8a287c49da0c4e}{parent\_mac}}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{mesh__manager_8c_af7f31192f445212a355ffc025988f32b}{k\_broadcast\_mac}};}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00362}00362\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00363}00363\ \ \ \ \ \ \ \ \ esp\_err\_t\ send\_ret\ =\ esp\_now\_send(dest,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keyword}{const}\ uint8\_t\ *)\&frame,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}}));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (send\_ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}esp\_now\_send\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(send\_ret));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00368}00368\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00369}00369\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00370}00370\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00371}00371\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00372}00372\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00373}00373\ \textcolor{comment}{\ *\ mesh\_manager\_init}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00374}00374\ \textcolor{comment}{\ *\ @brief\ Initialise\ Wi-\/Fi\ Station\ +\ ESP-\/NOW\ +\ clé\ AES.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00375}00375\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00376}00376\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00377}00377\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ l'initialisation\ réussit.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00378}00378\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00379}\mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{00379}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{mesh\_manager\_init}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00380}00380\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00381}00381\ \ \ \ \ memset(\&\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00382}00382\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.sys\_ctx\ \ \ \ =\ ctx;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00383}00383\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.hop\_to\_root\ =\ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ ?\ 0\ :\ 0xFF;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00385}00385\ \ \ \ \ \textcolor{comment}{/*\ Chargement\ de\ la\ clé\ AES\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00386}00386\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ad183ca147d5c3e6c43ab72d281d5be89}{mesh\_load\_aes\_key}}();}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00388}00388\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ réseau\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00389}00389\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_netif\_init());}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00390}00390\ \ \ \ \ esp\_netif\_create\_default\_wifi\_sta();}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00392}00392\ \ \ \ \ \textcolor{keyword}{const}\ wifi\_init\_config\_t\ wifi\_cfg\ =\ WIFI\_INIT\_CONFIG\_DEFAULT();}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00393}00393\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_init(\&wifi\_cfg));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00394}00394\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_set\_mode(WIFI\_MODE\_STA));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00395}00395\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_start());}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00396}00396\ \ \ \ \ \textcolor{comment}{/*\ set\_channel\ doit\ être\ appelé\ APRÈS\ esp\_wifi\_start()\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00397}00397\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_set\_channel(\mbox{\hyperlink{mesh__manager_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}{ESPNOW\_CHANNEL}},\ WIFI\_SECOND\_CHAN\_NONE));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00399}00399\ \ \ \ \ \textcolor{comment}{/*\ Récupération\ de\ l'adresse\ MAC\ propre\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00400}00400\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_get\_mac(WIFI\_IF\_STA,\ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.own\_mac));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00401}00401\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}MAC\ propre\ :\ "{}}\ MACSTR,\ MAC2STR(\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.own\_mac));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00402}00402\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00403}00403\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ ESP-\/NOW\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00404}00404\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_init());}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00405}00405\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_set\_pmk(\mbox{\hyperlink{mesh__manager_8c_ab4acf17e093a0b230ecc75b223c23f54}{k\_pmk}}));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00406}00406\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_register\_recv\_cb(\mbox{\hyperlink{mesh__manager_8c_a6067c463964e944fd80eb63f791c1544}{espnow\_rx\_callback}}));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00407}00407\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_register\_send\_cb(\mbox{\hyperlink{mesh__manager_8c_abbef85f4a7cd603f4c63ba31a13921cb}{espnow\_tx\_callback}}));}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00408}00408\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00409}00409\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ du\ module\ OTA\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00410}00410\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}{ota\_node\_init}}());}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00412}00412\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mesh\ ESP-\/NOW\ initialisé\ (canal\ \%d,\ rôle\ :\ \%s)"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}{ESPNOW\_CHANNEL}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ ?\ \textcolor{stringliteral}{"{}ROOT"{}}\ :\ \textcolor{stringliteral}{"{}NODE"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00415}00415\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00416}00416\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00417}00417\ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00418}00418\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00419}00419\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00420}00420\ \textcolor{comment}{\ *\ mesh\_task\_start}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00421}00421\ \textcolor{comment}{\ *\ @brief\ Crée\ Task\_Mesh\_Com\ sur\ le\ Core\ 0.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00422}00422\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00423}00423\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00424}00424\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ la\ tâche\ est\ créée\ avec\ succès.}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00425}00425\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00426}\mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{00426}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{mesh\_task\_start}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx)}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00427}00427\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00428}00428\ \ \ \ \ (void)ctx;\ \textcolor{comment}{/*\ s\_mesh.sys\_ctx\ déjà\ rempli\ par\ mesh\_manager\_init\ */}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00430}00430\ \ \ \ \ BaseType\_t\ ret\ =\ xTaskCreatePinnedToCore(}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00431}00431\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a7f06ed05d7822427b8f2ea84cb1b33e1}{task\_mesh\_com}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00432}00432\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Task\_Mesh\_Com"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00433}00433\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_aaf3b4792ccac909807429299fe6d23ac}{MESH\_TASK\_STACK}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00434}00434\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00435}00435\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a9a69eb7dd21565dd92b702c0314f460f}{MESH\_TASK\_PRIORITY}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00436}00436\ \ \ \ \ \ \ \ \ NULL,}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00437}00437\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ac2d2ed01de0b5395fb9ebce429e336d4}{MESH\_TASK\_CORE}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00438}00438\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00439}00439\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00440}00440\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ création\ Task\_Mesh\_Com"{}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00441}00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00442}00442\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00443}00443\ }
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00444}00444\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Mesh\_Com\ créée\ (Core\ \%d,\ priorité\ \%d)"{}},}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ac2d2ed01de0b5395fb9ebce429e336d4}{MESH\_TASK\_CORE}},\ \mbox{\hyperlink{mesh__manager_8c_a9a69eb7dd21565dd92b702c0314f460f}{MESH\_TASK\_PRIORITY}});}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00446}00446\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{mesh__manager_8c_source_l00447}00447\ \}}
+
+\end{DoxyCode}

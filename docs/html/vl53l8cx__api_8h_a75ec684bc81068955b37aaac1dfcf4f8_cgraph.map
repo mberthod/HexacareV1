@@ -1,0 +1,34 @@
+<map id="vl53l8cx_set_resolution" name="vl53l8cx_set_resolution">
+<area shape="rect" id="Node000001" title="This function sets a new resolution (4x4 or 8x8)." alt="" coords="5,87,163,113"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a06089384da8839703ece6a5a745f82d8" title="Inner function, not available outside this file. This function is used to set the offset data gathere..." alt="" coords="211,163,393,189"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,111,212,148,234,155,232,160,210,153,116,116"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__api_8c.html#acfd62041fa95081cc244e8f09cbed60e" title="Inner function, not available outside this file. This function is used to set the Xtalk data from gen..." alt="" coords="213,61,391,88"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="163,88,197,84,198,89,163,94"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__api_8c.html#a622e5a7b1ab7b329bb6eee40429599da" title="This function can be used to read &#39;extra data&#39; from DCI. Using a known index, the function fills the ..." alt="" coords="223,11,380,37"/>
+<area shape="poly" id="edge13_Node000001_Node000010" title=" " alt="" coords="116,84,210,47,232,40,234,45,212,52,118,89"/>
+<area shape="rect" id="Node000011" href="$vl53l8cx__api_8c.html#a1926fbe7e66b009aede955b6225ce221" title="This function can be used to write &#39;extra data&#39; to DCI. The data can be simple data,..." alt="" coords="222,112,382,139"/>
+<area shape="poly" id="edge18_Node000001_Node000011" title=" " alt="" coords="163,106,207,112,206,117,163,112"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__api_8c.html#a83dc5e403de268cad0cc04434eed9d12" title="Inner function, not available outside this file. This function is used to wait for an answer from VL5..." alt="" coords="458,45,583,88"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,160,392,148,406,137,415,124,425,111,439,98,446,94,449,98,443,102,428,115,420,128,410,140,394,153,370,164"/>
+<area shape="rect" id="Node000007" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="441,163,599,189"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="393,173,425,173,425,179,393,179"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="452,112,588,139"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="362,159,444,140,445,145,363,165"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="647,5,784,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="582,49,643,34,644,39,584,54"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="648,56,783,83"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="583,65,632,66,632,71,583,70"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="832,59,899,85"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="756,30,818,53,817,58,754,35"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="588,118,681,108,783,92,816,84,817,89,784,97,682,113,588,123"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="391,69,442,67,442,72,392,74"/>
+<area shape="poly" id="edge11_Node000009_Node000007" title=" " alt="" coords="370,86,394,98,410,111,419,124,428,136,443,148,452,154,449,158,439,153,424,140,415,127,406,114,392,102,368,91"/>
+<area shape="poly" id="edge12_Node000009_Node000008" title=" " alt="" coords="363,86,445,105,444,110,362,91"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="374,35,443,49,442,54,373,41"/>
+<area shape="poly" id="edge15_Node000010_Node000004" title=" " alt="" coords="381,20,632,17,632,22,381,26"/>
+<area shape="poly" id="edge16_Node000010_Node000007" title=" " alt="" coords="376,36,395,47,407,60,414,73,420,99,426,125,432,137,443,149,447,152,444,156,439,153,428,140,421,126,415,100,409,75,402,63,391,51,373,40"/>
+<area shape="poly" id="edge17_Node000010_Node000008" title=" " alt="" coords="370,36,394,47,410,60,419,73,428,86,443,98,452,103,449,108,439,102,424,89,415,76,406,64,392,52,368,40"/>
+<area shape="poly" id="edge19_Node000011_Node000003" title=" " alt="" coords="354,109,442,85,443,90,355,114"/>
+<area shape="poly" id="edge20_Node000011_Node000007" title=" " alt="" coords="363,137,445,156,444,161,362,142"/>
+<area shape="poly" id="edge21_Node000011_Node000008" title=" " alt="" coords="382,123,437,123,437,128,382,128"/>
+</map>

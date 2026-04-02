@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_v_l53_l8_c_x___detection_thresholds" kind="struct" language="C++" prot="public">
+    <compoundname>VL53L8CX_DetectionThresholds</compoundname>
+    <includes refid="vl53l8cx__plugin__detection__thresholds_8h" local="no">vl53l8cx_plugin_detection_thresholds.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t VL53L8CX_DetectionThresholds::param_low_thresh</definition>
+        <argsstring></argsstring>
+        <name>param_low_thresh</name>
+        <qualifiedname>VL53L8CX_DetectionThresholds::param_low_thresh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="87" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="87" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t VL53L8CX_DetectionThresholds::param_high_thresh</definition>
+        <argsstring></argsstring>
+        <name>param_high_thresh</name>
+        <qualifiedname>VL53L8CX_DetectionThresholds::param_high_thresh</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="89" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1a9feff6ad7013dd7b146c6712995a48b0" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="59" endline="105">vl53l8cx_get_detection_thresholds</referencedby>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___detection_thresholds_1a4f25aad8a1407ad6e564e73beb775529" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_DetectionThresholds::measurement</definition>
+        <argsstring></argsstring>
+        <name>measurement</name>
+        <qualifiedname>VL53L8CX_DetectionThresholds::measurement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="91" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="91" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__detection__thresholds_8c_1acba78b79e001bc10424bf4ab4d18bfb9" compoundref="vl53l8cx__plugin__detection__thresholds_8c" startline="107" endline="160">vl53l8cx_set_detection_thresholds</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___detection_thresholds_1af00d77a5ecedd53e6cdfa203cf33a8c7" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_DetectionThresholds::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <qualifiedname>VL53L8CX_DetectionThresholds::type</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="93" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___detection_thresholds_1aacadf9a05c6fa51ca0f17d2198b45920" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_DetectionThresholds::zone_num</definition>
+        <argsstring></argsstring>
+        <name>zone_num</name>
+        <qualifiedname>VL53L8CX_DetectionThresholds::zone_num</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="96" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___detection_thresholds_1a04f92990545ed160717fdf3379c48991" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_DetectionThresholds::mathematic_operation</definition>
+        <argsstring></argsstring>
+        <name>mathematic_operation</name>
+        <qualifiedname>VL53L8CX_DetectionThresholds::mathematic_operation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="98" column="8" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure <ref refid="struct_v_l53_l8_c_x___detection_thresholds" kindref="compound">VL53L8CX_DetectionThresholds</ref> contains a single threshold. This structure is never used alone, it must be used as an array of 64 thresholds (defined by macro VL53L8CX_NB_THRESHOLDS). </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" line="84" column="1" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h" bodystart="84" bodyend="99"/>
+    <listofallmembers>
+      <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a04f92990545ed160717fdf3379c48991" prot="public" virt="non-virtual"><scope>VL53L8CX_DetectionThresholds</scope><name>mathematic_operation</name></member>
+      <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a4f25aad8a1407ad6e564e73beb775529" prot="public" virt="non-virtual"><scope>VL53L8CX_DetectionThresholds</scope><name>measurement</name></member>
+      <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a29359c75b147bff74aecf8a7a4bf066a" prot="public" virt="non-virtual"><scope>VL53L8CX_DetectionThresholds</scope><name>param_high_thresh</name></member>
+      <member refid="struct_v_l53_l8_c_x___detection_thresholds_1a6bc3636cc1869d06223c31a00abb1b94" prot="public" virt="non-virtual"><scope>VL53L8CX_DetectionThresholds</scope><name>param_low_thresh</name></member>
+      <member refid="struct_v_l53_l8_c_x___detection_thresholds_1af00d77a5ecedd53e6cdfa203cf33a8c7" prot="public" virt="non-virtual"><scope>VL53L8CX_DetectionThresholds</scope><name>type</name></member>
+      <member refid="struct_v_l53_l8_c_x___detection_thresholds_1aacadf9a05c6fa51ca0f17d2198b45920" prot="public" virt="non-virtual"><scope>VL53L8CX_DetectionThresholds</scope><name>zone_num</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,7 @@
+<map id="components/sensor_acq/include/lidar_driver.h" name="components/sensor_acq/include/lidar_driver.h">
+<area shape="rect" id="Node000001" title="Interface publique du driver LIDAR VL53L8CX — acquisition et fusion 8×32." alt="" coords="81,5,245,48"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="5,96,169,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="138,62,107,97,103,94,134,58"/>
+<area shape="rect" id="Node000003" href="$main_8c.html" title="Point d&#39;entrée LexaCare V1 — démarrage complet du firmware." alt="" coords="193,104,285,131"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,58,230,102,226,105,189,62"/>
+</map>

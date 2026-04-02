@@ -1,0 +1,172 @@
+\doxysection{ota\+\_\+node.\+c}
+\hypertarget{ota__node_8c_source}{}\label{ota__node_8c_source}\index{components/mesh\_network/ota\_node.c@{components/mesh\_network/ota\_node.c}}
+\mbox{\hyperlink{ota__node_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ ota\_node.c}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_mesh}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ OTA\ nœud-\/à-\/nœud\ via\ ESP-\/NOW\ —\ fragments\ 200\ octets.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Protocole\ :}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ 1.\ Réception\ d'un\ fragment\ OTA\_FRAGMENT\ déchiffré\ (ota\_fragment\_payload\_t).}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ 2.\ Premier\ fragment\ (offset\ ==\ 0)\ :\ appel\ esp\_ota\_begin().}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ 3.\ esp\_ota\_write()\ avec\ les\ données\ du\ fragment.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ 4.\ Retransmission\ immédiate\ du\ fragment\ brut\ (chiffré)\ aux\ enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ 5.\ Dernier\ fragment\ (is\_last\ ==\ true)\ :}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ \ \ \ esp\_ota\_end()\ →\ vérification\ MD5\ →\ esp\_ota\_set\_boot\_partition()}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ \ \ \ →\ log\_write("{}OTA\ terminé"{})\ →\ esp\_restart().}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00014}00014\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ota__node_8h}{ota\_node.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}esp\_ota\_ops.h"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}esp\_now.h"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00024}\mbox{\hyperlink{ota__node_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00024}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}ota\_node"{}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00026}00026\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00027}00027\ \textcolor{comment}{\ *\ État\ interne\ de\ l'OTA}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00028}00028\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00029}\mbox{\hyperlink{structota__state__t}{00029}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00030}\mbox{\hyperlink{structota__state__t_a304df1c1c5758c5e19304f6c911f8ecf}{00030}}\ \ \ \ \ esp\_ota\_handle\_t\ \ \ \ \mbox{\hyperlink{structota__state__t_a304df1c1c5758c5e19304f6c911f8ecf}{ota\_handle}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00031}\mbox{\hyperlink{structota__state__t_a5866222a4c4e5243fba3b04f6bc87aa0}{00031}}\ \ \ \ \ \textcolor{keyword}{const}\ esp\_partition\_t\ *\mbox{\hyperlink{structota__state__t_a5866222a4c4e5243fba3b04f6bc87aa0}{ota\_partition}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00032}\mbox{\hyperlink{structota__state__t_a78341f1043abfa1641ef3e062b4667ad}{00032}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structota__state__t_a78341f1043abfa1641ef3e062b4667ad}{in\_progress}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00033}\mbox{\hyperlink{structota__state__t_aeb10f45f7f5301047ef319fa06024a1b}{00033}}\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structota__state__t_aeb10f45f7f5301047ef319fa06024a1b}{bytes\_written}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00034}\mbox{\hyperlink{structota__state__t_a6e099ff56fd3ed7cb890c123ac612f84}{00034}}\ \ \ \ \ uint32\_t\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structota__state__t_a6e099ff56fd3ed7cb890c123ac612f84}{firmware\_size}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00035}00035\ \}\ \mbox{\hyperlink{structota__state__t}{ota\_state\_t}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00037}\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{00037}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structota__state__t}{ota\_state\_t}}\ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}};\ \textcolor{comment}{/*\ Instance\ unique\ du\ module\ OTA\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00039}00039\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00040}00040\ \textcolor{comment}{\ *\ ota\_node\_init}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00041}00041\ \textcolor{comment}{\ *\ @brief\ Initialise\ l'état\ OTA\ (réinitialise\ si\ une\ OTA\ était\ en\ cours).}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00042}00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00043}00043\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ toujours.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00044}00044\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00045}\mbox{\hyperlink{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}{00045}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}{ota\_node\_init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00046}00046\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00047}00047\ \ \ \ \ memset(\&\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00049}00049\ \ \ \ \ \textcolor{comment}{/*\ Identification\ de\ la\ partition\ de\ mise\ à\ jour\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition\ =\ esp\_ota\_get\_next\_update\_partition(NULL);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00052}00052\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Aucune\ partition\ OTA\ disponible"{}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00053}00053\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Partition\ OTA\ cible\ :\ \%s\ (offset\ 0x\%08lX,\ taille\ \%lu\ Ko)"{}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition-\/>label,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition-\/>address,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition-\/>size\ /\ 1024);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00061}00061\ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00063}00063\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00064}00064\ \textcolor{comment}{\ *\ ota\_node\_process\_fragment}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00065}00065\ \textcolor{comment}{\ *\ @brief\ Traite\ un\ fragment\ OTA\ et\ le\ retransmet\ aux\ enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00066}00066\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00067}00067\ \textcolor{comment}{\ *\ @param\ frag\ \ \ \ \ \ \ \ \ \ Payload\ du\ fragment\ (données\ en\ clair).}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00068}00068\ \textcolor{comment}{\ *\ @param\ children\_mac\ \ Tableau\ des\ MACs\ des\ enfants\ (peut\ être\ NULL).}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00069}00069\ \textcolor{comment}{\ *\ @param\ child\_count\ \ \ Nombre\ d'enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00070}00070\ \textcolor{comment}{\ *\ @param\ raw\_frame\ \ \ \ \ Trame\ brute\ chiffrée\ à\ retransmettre.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00071}00071\ \textcolor{comment}{\ *\ @param\ frame\_len\ \ \ \ \ Longueur\ de\ la\ trame\ brute.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00072}00072\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ le\ traitement\ réussit.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00073}00073\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00074}\mbox{\hyperlink{ota__node_8h_af8ea4caf0abd81ac32d84ed4819dfa6b}{00074}}\ esp\_err\_t\ \mbox{\hyperlink{ota__node_8c_af8ea4caf0abd81ac32d84ed4819dfa6b}{ota\_node\_process\_fragment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structota__fragment__payload__t}{ota\_fragment\_payload\_t}}\ *frag,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ (*children\_mac)[6],}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ child\_count,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *raw\_frame,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ frame\_len)}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00079}00079\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00080}00080\ \ \ \ \ \textcolor{keywordflow}{if}\ (!frag)\ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_ARG;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Pas\ de\ partition\ OTA\ —\ fragment\ ignoré"{}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00086}00086\ \ \ \ \ \textcolor{comment}{/*\ Premier\ fragment\ :\ initialisation\ de\ l'OTA\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00087}00087\ \ \ \ \ \textcolor{keywordflow}{if}\ (frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}{fragment\_offset}}\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00088}00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.in\_progress)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Nouvelle\ OTA\ démarrée\ —\ abandon\ de\ l'OTA\ précédente"{}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ esp\_ota\_abort(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_handle);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(esp\_ota\_begin(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OTA\_WITH\_SEQUENTIAL\_WRITES,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_handle));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.in\_progress\ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.bytes\_written\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.firmware\_size\ =\ frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c}{firmware\_size}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00099}00099\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}OTA\ démarrée\ —\ firmware\ attendu\ :\ \%lu\ octets"{}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c}{firmware\_size}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00101}00101\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.in\_progress)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Fragment\ OTA\ reçu\ hors\ séquence\ —\ ignoré"{}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00106}00106\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00108}00108\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ de\ la\ cohérence\ de\ l'offset\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00109}00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}{fragment\_offset}}\ !=\ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.bytes\_written)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Fragment\ hors\ ordre\ :\ attendu\ \%lu,\ reçu\ \%lu"{}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.bytes\_written,\ frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}{fragment\_offset}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00113}00113\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00115}00115\ \ \ \ \ \textcolor{comment}{/*\ Écriture\ du\ fragment\ dans\ la\ partition\ OTA\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00116}00116\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_ota\_write(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_handle,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_aff252475d43370bf718085a778c5a0a4}{data}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80}{fragment\_data\_len}}));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00119}00119\ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.bytes\_written\ +=\ frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80}{fragment\_data\_len}};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00121}00121\ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}OTA\ :\ \%lu\ /\ \%lu\ octets\ écrits\ (\%.1f\%\%)"{}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.bytes\_written,\ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.firmware\_size,}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{float})\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.bytes\_written\ /\ (\textcolor{keywordtype}{float})\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.firmware\_size\ *\ 100.0f);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00125}00125\ \ \ \ \ \textcolor{comment}{/*\ Retransmission\ immédiate\ aux\ enfants\ (propagation\ du\ fragment)\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (raw\_frame\ \&\&\ frame\_len\ >\ 0\ \&\&\ child\_count\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ child\_count;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ esp\_err\_t\ tx\_ret\ =\ esp\_now\_send(children\_mac[i],}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ raw\_frame,\ frame\_len);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tx\_ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Retransmission\ OTA\ enfant\ \%d\ échouée\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,\ esp\_err\_to\_name(tx\_ret));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Fragment\ retransmis\ à\ \%d\ enfant(s)"{}},\ child\_count);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00138}00138\ \ \ \ \ \textcolor{comment}{/*\ Dernier\ fragment\ :\ finalisation\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00139}00139\ \ \ \ \ \textcolor{keywordflow}{if}\ (frag-\/>\mbox{\hyperlink{structota__fragment__payload__t_aaa60401c4425aedf0f17bf9b51f223da}{is\_last}})\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Dernier\ fragment\ reçu\ —\ finalisation\ OTA"{}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ esp\_err\_t\ end\_ret\ =\ esp\_ota\_end(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_handle);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (end\_ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}esp\_ota\_end\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(end\_ret));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.in\_progress\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ end\_ret;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ esp\_err\_t\ boot\_ret\ =\ esp\_ota\_set\_boot\_partition(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition);}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (boot\_ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}esp\_ota\_set\_boot\_partition\ échoué\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ esp\_err\_to\_name(boot\_ret));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.in\_progress\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ boot\_ret;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00157}00157\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}OTA\ terminée\ —\ redémarrage\ dans\ 1\ s"{}});}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.in\_progress\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Délai\ court\ pour\ laisser\ les\ logs\ s'afficher\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(1000));}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ esp\_restart();}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{ota__node_8c_source_l00166}00166\ \}}
+
+\end{DoxyCode}

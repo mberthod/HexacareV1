@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="radar__driver_8h" kind="file" language="C++">
+    <compoundname>radar_driver.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="lidar__driver_8c" local="yes">components/sensor_acq/lidar_driver.c</includedby>
+    <includedby refid="radar__driver_8c" local="yes">components/sensor_acq/radar_driver.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/include/radar_driver.h</label>
+        <link refid="radar__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>components/sensor_acq/include/radar_driver.h</label>
+        <link refid="radar__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="3">
+        <label>components/sensor_acq/radar_driver.c</label>
+        <link refid="radar__driver_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <member refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kind="function"><name>radar_driver_init</name></member>
+      <memberdef kind="function" id="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool radar_driver_poll</definition>
+        <argsstring>(radar_data_t *out)</argsstring>
+        <name>radar_driver_poll</name>
+        <param>
+          <type><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref> *</type>
+          <declname>out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/radar_driver.h" line="47" column="6" bodyfile="components/sensor_acq/radar_driver.c" bodystart="187" bodyend="213" declfile="components/sensor_acq/include/radar_driver.h" declline="47" declcolumn="6"/>
+        <references refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</references>
+        <references refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" compoundref="radar__driver_8c" startline="56">s_parser</references>
+        <references refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" compoundref="radar__driver_8c" startline="33">UART_PORT</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du driver Radar HLK-LD6002 — UART + TinyFrame. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Le driver utilise le ring buffer UART installé par <ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run()</ref> (uart_driver_install sur UART_NUM_2). Il parse le protocole TinyFrame : SOF(0x01) | Type(2o) | Longueur(1o) | Données | EOF(0x04)</para>
+<para>Types reconnus : 0x0A14 → breath_rate_bpm (uint16 big-endian) 0x0A15 → heart_rate_bpm (uint16 big-endian) 0x0A16 → target_distance_mm (uint16 big-endian) </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>radar_driver.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>driver<sp/>Radar<sp/>HLK-LD6002<sp/>—<sp/>UART<sp/>+<sp/>TinyFrame.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Le<sp/>driver<sp/>utilise<sp/>le<sp/>ring<sp/>buffer<sp/>UART<sp/>installé<sp/>par<sp/>hw_diag_run()</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>(uart_driver_install<sp/>sur<sp/>UART_NUM_2).<sp/>Il<sp/>parse<sp/>le<sp/>protocole<sp/>TinyFrame<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>SOF(0x01)<sp/>|<sp/>Type(2o)<sp/>|<sp/>Longueur(1o)<sp/>|<sp/>Données<sp/>|<sp/>EOF(0x04)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Types<sp/>reconnus<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A14<sp/>→<sp/>breath_rate_bpm<sp/><sp/>(uint16<sp/>big-endian)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A15<sp/>→<sp/>heart_rate_bpm<sp/><sp/><sp/>(uint16<sp/>big-endian)</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A16<sp/>→<sp/>target_distance_mm<sp/>(uint16<sp/>big-endian)</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="20"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Driver<sp/>radar<sp/>HLK-LD6002<sp/>(UART<sp/>+<sp/>TinyFrame)<sp/>—<sp/>optionnel<sp/>selon<sp/>la<sp/>configuration.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>radar_driver_start</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Lance<sp/>la<sp/>tâche<sp/>de<sp/>réception<sp/>UART<sp/>du<sp/>radar<sp/>dans<sp/>sensor_acq.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>Le<sp/>radar<sp/>tourne<sp/>dans<sp/>la<sp/>même<sp/>tâche<sp/>que<sp/>le<sp/>LIDAR<sp/>(Task_Sensor_Acq).</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>Cette<sp/>fonction<sp/>est<sp/>appelée<sp/>par<sp/>lidar_driver.c<sp/>pour<sp/>initialiser</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>l&apos;état<sp/>interne<sp/>du<sp/>parser<sp/>radar<sp/>avant<sp/>la<sp/>boucle<sp/>d&apos;acquisition.</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>l&apos;initialisation<sp/>réussit.</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kindref="member">radar_driver_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>radar_driver_poll</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Lit<sp/>les<sp/>octets<sp/>UART<sp/>disponibles<sp/>et<sp/>met<sp/>à<sp/>jour<sp/>radar_data_t.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>À<sp/>appeler<sp/>périodiquement<sp/>depuis<sp/>la<sp/>boucle<sp/>de<sp/>Task_Sensor_Acq.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>Non<sp/>bloquante<sp/>(timeout<sp/>UART<sp/>=<sp/>0<sp/>ms).</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>@param<sp/>out<sp/>Pointeur<sp/>vers<sp/>la<sp/>structure<sp/>radar_data_t<sp/>à<sp/>mettre<sp/>à<sp/>jour.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>@return<sp/>true<sp/>si<sp/>de<sp/>nouvelles<sp/>données<sp/>ont<sp/>été<sp/>reçues.</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" kindref="member">radar_driver_poll</ref>(<ref refid="structradar__data__t" kindref="compound">radar_data_t</ref><sp/>*out);</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/include/radar_driver.h"/>
+  </compounddef>
+</doxygen>

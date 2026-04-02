@@ -1,0 +1,290 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="panic__handler_8c" kind="file" language="C++">
+    <compoundname>panic_handler.c</compoundname>
+    <includes refid="sys__storage_8h" local="yes">sys_storage.h</includes>
+    <includes local="yes">esp_system.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_timer.h</includes>
+    <includes local="yes">esp_task_wdt.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">time.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sys_storage/panic_handler.c</label>
+        <link refid="panic__handler_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>esp_log.h</label>
+      </node>
+      <node id="4">
+        <label>esp_system.h</label>
+      </node>
+      <node id="7">
+        <label>esp_task_wdt.h</label>
+      </node>
+      <node id="6">
+        <label>esp_timer.h</label>
+      </node>
+      <node id="8">
+        <label>stdio.h</label>
+      </node>
+      <node id="9">
+        <label>string.h</label>
+      </node>
+      <node id="10">
+        <label>time.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" prot="public" static="no">
+        <name>PANIC_MAGIC_VALUE</name>
+        <initializer>0xDEADCAFEU</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/panic_handler.c" line="43" column="9" bodyfile="components/sys_storage/panic_handler.c" bodystart="43" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</referencedby>
+        <referencedby refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" compoundref="panic__handler_8c" startline="52" endline="58">shutdown_handler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="panic__handler_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;panic_handler&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/panic_handler.c" line="34" column="19" bodyfile="components/sys_storage/panic_handler.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" prot="public" static="yes" mutable="no">
+        <type>RTC_DATA_ATTR uint32_t</type>
+        <definition>RTC_DATA_ATTR uint32_t s_panic_magic</definition>
+        <argsstring></argsstring>
+        <name>s_panic_magic</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/panic_handler.c" line="39" column="31" bodyfile="components/sys_storage/panic_handler.c" bodystart="39" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</referencedby>
+        <referencedby refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" compoundref="panic__handler_8c" startline="52" endline="58">shutdown_handler</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" prot="public" static="yes" mutable="no">
+        <type>RTC_DATA_ATTR char</type>
+        <definition>RTC_DATA_ATTR char s_panic_msg[192]</definition>
+        <argsstring>[192]</argsstring>
+        <name>s_panic_msg</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/panic_handler.c" line="40" column="31" bodyfile="components/sys_storage/panic_handler.c" bodystart="40" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</referencedby>
+        <referencedby refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" compoundref="panic__handler_8c" startline="52" endline="58">shutdown_handler</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" prot="public" static="yes" mutable="no">
+        <type>RTC_DATA_ATTR int64_t</type>
+        <definition>RTC_DATA_ATTR int64_t s_panic_time_us</definition>
+        <argsstring></argsstring>
+        <name>s_panic_time_us</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/panic_handler.c" line="41" column="31" bodyfile="components/sys_storage/panic_handler.c" bodystart="41" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</referencedby>
+        <referencedby refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" compoundref="panic__handler_8c" startline="52" endline="58">shutdown_handler</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void shutdown_handler</definition>
+        <argsstring>(void)</argsstring>
+        <name>shutdown_handler</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/panic_handler.c" line="52" column="13" bodyfile="components/sys_storage/panic_handler.c" bodystart="52" bodyend="58"/>
+        <references refid="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" compoundref="panic__handler_8c" startline="43">PANIC_MAGIC_VALUE</references>
+        <references refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" compoundref="panic__handler_8c" startline="39">s_panic_magic</references>
+        <references refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" compoundref="panic__handler_8c" startline="40">s_panic_msg</references>
+        <references refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" compoundref="panic__handler_8c" startline="41">s_panic_time_us</references>
+        <referencedby refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" compoundref="panic__handler_8c" startline="66" endline="71">panic_handler_install</referencedby>
+      </memberdef>
+      <member refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kind="function"><name>panic_handler_install</name></member>
+      <member refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kind="function"><name>panic_handler_check_on_boot</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Capture des paniques système et écriture dans LittleFS. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Architecture : Le système ESP-IDF ne permet pas un accès fiable au système de fichiers pendant une panique matérielle (le heap peut être corrompu). La stratégie adoptée est donc à deux niveaux :</para>
+<para>Niveau 1 — shutdown handler (redémarrages propres via esp_restart()) : Appelé avant le reset. Écrit un message de redémarrage dans panic.log.</para>
+<para>Niveau 2 — RTC memory (paniques matérielles, watchdog) : Lors d&apos;une panique, un flag et un message courts sont stockés en RTC_DATA_ATTR (survit au reset sans coupure secteur). Au prochain boot, <ref refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kindref="member">panic_handler_check_on_boot()</ref> lit ce flag et l&apos;écrit dans panic.log avant d&apos;effacer le flag.</para>
+<para>Note : CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT=y dans sdkconfig.defaults garantit que le backtrace complet est imprimé sur la console UART avant le redémarrage — complément indispensable pour le débogage. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>panic_handler.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_storage</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Capture<sp/>des<sp/>paniques<sp/>système<sp/>et<sp/>écriture<sp/>dans<sp/>LittleFS.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Architecture<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Le<sp/>système<sp/>ESP-IDF<sp/>ne<sp/>permet<sp/>pas<sp/>un<sp/>accès<sp/>fiable<sp/>au<sp/>système<sp/>de<sp/>fichiers</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>pendant<sp/>une<sp/>panique<sp/>matérielle<sp/>(le<sp/>heap<sp/>peut<sp/>être<sp/>corrompu).<sp/>La<sp/>stratégie</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>adoptée<sp/>est<sp/>donc<sp/>à<sp/>deux<sp/>niveaux<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Niveau<sp/>1<sp/>—<sp/>shutdown<sp/>handler<sp/>(redémarrages<sp/>propres<sp/>via<sp/>esp_restart())<sp/>:</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>Appelé<sp/>avant<sp/>le<sp/>reset.<sp/>Écrit<sp/>un<sp/>message<sp/>de<sp/>redémarrage<sp/>dans<sp/>panic.log.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Niveau<sp/>2<sp/>—<sp/>RTC<sp/>memory<sp/>(paniques<sp/>matérielles,<sp/>watchdog)<sp/>:</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>Lors<sp/>d&apos;une<sp/>panique,<sp/>un<sp/>flag<sp/>et<sp/>un<sp/>message<sp/>courts<sp/>sont<sp/>stockés<sp/>en</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>RTC_DATA_ATTR<sp/>(survit<sp/>au<sp/>reset<sp/>sans<sp/>coupure<sp/>secteur).</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>Au<sp/>prochain<sp/>boot,<sp/>panic_handler_check_on_boot()<sp/>lit<sp/>ce<sp/>flag<sp/>et</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>l&apos;écrit<sp/>dans<sp/>panic.log<sp/>avant<sp/>d&apos;effacer<sp/>le<sp/>flag.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>Note<sp/>:<sp/>CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT=y<sp/>dans<sp/>sdkconfig.defaults</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>garantit<sp/>que<sp/>le<sp/>backtrace<sp/>complet<sp/>est<sp/>imprimé<sp/>sur<sp/>la<sp/>console<sp/>UART</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>avant<sp/>le<sp/>redémarrage<sp/>—<sp/>complément<sp/>indispensable<sp/>pour<sp/>le<sp/>débogage.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sys__storage_8h" kindref="compound">sys_storage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_system.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_task_wdt.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;time.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="panic__handler_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;panic_handler&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>Variables<sp/>RTC<sp/>—<sp/>survivent<sp/>au<sp/>reset<sp/>sans<sp/>coupure<sp/>secteur</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>RTC_DATA_ATTR<sp/>uint32_t<sp/><ref refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" kindref="member">s_panic_magic</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="40" refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>RTC_DATA_ATTR<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>[192];</highlight></codeline>
+<codeline lineno="41" refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>RTC_DATA_ATTR<sp/>int64_t<sp/><sp/><ref refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" kindref="member">s_panic_time_us</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PANIC_MAGIC_VALUE<sp/><sp/>0xDEADCAFEU</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>shutdown_handler<sp/>(interne)</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Appelée<sp/>par<sp/>esp_restart()<sp/>—<sp/>redémarrage<sp/>propre.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>Positionne<sp/>le<sp/>flag<sp/>RTC<sp/>avec<sp/>un<sp/>message<sp/>de<sp/>redémarrage<sp/>volontaire.</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>La<sp/>trame<sp/>sera<sp/>écrite<sp/>dans<sp/>panic.log<sp/>au<sp/>prochain<sp/>boot.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" kindref="member">shutdown_handler</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" kindref="member">s_panic_magic</ref><sp/><sp/><sp/>=<sp/><ref refid="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" kindref="member">PANIC_MAGIC_VALUE</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" kindref="member">s_panic_time_us</ref><sp/>=<sp/>esp_timer_get_time();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>strncpy(<ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Redémarrage<sp/>propre<sp/>via<sp/>esp_restart()&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>)<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>[</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>)<sp/>-<sp/>1]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>panic_handler_install</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Installe<sp/>le<sp/>shutdown<sp/>handler<sp/>et<sp/>initialise<sp/>les<sp/>variables<sp/>RTC.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>l&apos;installation<sp/>réussit.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kindref="member">panic_handler_install</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_register_shutdown_handler(<ref refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" kindref="member">shutdown_handler</ref>));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Shutdown<sp/>handler<sp/>installé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>panic_handler_check_on_boot</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Vérifie<sp/>le<sp/>flag<sp/>RTC<sp/>et<sp/>écrit<sp/>l&apos;info<sp/>dans<sp/>panic.log<sp/>si<sp/>présent.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>Doit<sp/>être<sp/>appelée<sp/>APRÈS<sp/>littlefs_manager_init()<sp/>pour<sp/>que<sp/>le</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>système<sp/>de<sp/>fichiers<sp/>soit<sp/>disponible.</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kindref="member">panic_handler_check_on_boot</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" kindref="member">s_panic_magic</ref><sp/>!=<sp/><ref refid="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" kindref="member">PANIC_MAGIC_VALUE</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Aucun<sp/>crash<sp/>précédent<sp/>détecté<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Crash<sp/>détecté<sp/>lors<sp/>du<sp/>précédent<sp/>boot<sp/>—<sp/>écriture<sp/>dans<sp/>panic.log&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Formatage<sp/>du<sp/>message<sp/>avec<sp/>horodatage<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>entry[256];</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>secs<sp/>=<sp/>(double)<ref refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" kindref="member">s_panic_time_us</ref><sp/>/<sp/>1e6;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>snprintf(entry,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(entry),</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;[%10.3f]<sp/>PANIC:<sp/>%s\n&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>secs,<sp/><ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Écriture<sp/>bloquante/synchrone<sp/>dans<sp/>panic.log<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>fopen(<ref refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" kindref="member">PANIC_FILE_PATH</ref>,<sp/></highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f)<sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fwrite(entry,<sp/>1,<sp/>strlen(entry),<sp/>f);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(f);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Entrée<sp/>de<sp/>panique<sp/>écrite<sp/>dans<sp/>%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" kindref="member">PANIC_FILE_PATH</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Impossible<sp/>d&apos;ouvrir<sp/>%s&quot;</highlight><highlight class="normal">,<sp/><ref refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" kindref="member">PANIC_FILE_PATH</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Effacement<sp/>du<sp/>flag<sp/>pour<sp/>ne<sp/>pas<sp/>réécrire<sp/>au<sp/>prochain<sp/>boot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" kindref="member">s_panic_magic</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(<ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" kindref="member">s_panic_msg</ref>));</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sys_storage/panic_handler.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,44 @@
+menu "LexaCare AI Engine"
+
+    config AI_USE_ESPDL_MODEL
+        bool "Utiliser le modèle ESP-DL pour la détection de chute"
+        default n
+        help
+            Activé  : charge le fichier /littlefs/fall_model.espdl
+                      via l'API ESP-DL et exécute l'inférence CNN.
+            Désactivé : utilise l'algorithme géométrique à seuil
+                        (CONFIG_AI_FALL_THRESHOLD_PERCENT).
+            Le basculement ne nécessite qu'un 'idf.py menuconfig'
+            suivi d'une recompilation — aucun changement de code.
+
+    config AI_FALL_THRESHOLD_PERCENT
+        int "Seuil de chute — variation de distance minimale (%)"
+        depends on !AI_USE_ESPDL_MODEL
+        default 80
+        range 1 100
+        help
+            Mode seuil uniquement.
+            Pourcentage de variation relative des distances LIDAR
+            dans la zone inférieure de la matrice 8x32,
+            au-delà duquel AI_CHUTE_DETECTEE est généré.
+
+    config AI_FALL_CONFIDENCE_THRESHOLD
+        int "Seuil de confiance du modèle ESP-DL (%)"
+        depends on AI_USE_ESPDL_MODEL
+        default 85
+        range 50 100
+        help
+            Mode modèle uniquement.
+            Probabilité minimale (0–100 %) retournée par la
+            sortie softmax du modèle pour confirmer une chute.
+
+    config AI_HISTORY_LEN
+        int "Longueur de l'historique pour le filtrage temporel"
+        default 8
+        range 2 32
+        help
+            Nombre de trames LIDAR conservées pour le calcul
+            de la variation de distance (mode seuil) ou pour
+            le lissage de la confiance (mode modèle).
+
+endmenu

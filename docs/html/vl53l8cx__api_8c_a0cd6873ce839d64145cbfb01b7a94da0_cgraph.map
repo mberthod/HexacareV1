@@ -1,0 +1,52 @@
+<map id="vl53l8cx_init" name="vl53l8cx_init">
+<area shape="rect" id="Node000001" title="Mandatory function used to initialize the sensor. This function must be called after a power on,..." alt="" coords="5,298,99,325"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a83dc5e403de268cad0cc04434eed9d12" title="Inner function, not available outside this file. This function is used to wait for an answer from VL5..." alt="" coords="616,218,741,261"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="53,297,61,260,77,210,104,160,123,137,145,119,199,86,249,65,297,52,343,48,391,53,440,64,552,106,585,125,614,150,658,203,654,207,611,154,582,130,550,111,439,70,390,58,343,54,297,57,251,70,202,91,148,123,127,141,109,163,82,213,66,261,58,298"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="806,167,942,194"/>
+<area shape="poly" id="edge30_Node000001_Node000003" title=" " alt="" coords="51,298,55,251,69,187,81,153,97,120,118,90,145,65,189,39,235,21,283,9,332,4,383,3,434,8,534,27,629,58,714,93,786,128,839,157,836,162,783,133,712,98,627,63,533,33,433,13,383,9,333,9,284,15,236,26,191,44,148,70,122,93,101,122,86,155,74,188,61,252,56,298"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="806,425,942,451"/>
+<area shape="poly" id="edge32_Node000001_Node000005" title=" " alt="" coords="56,325,58,376,69,448,81,487,97,524,119,557,148,584,192,610,237,627,285,638,335,642,385,640,436,634,536,608,631,572,716,531,787,491,839,458,842,463,790,495,719,536,633,577,538,613,437,639,386,646,335,647,285,643,236,633,189,614,145,588,115,560,92,526,76,489,64,450,52,376,50,325"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__api_8c.html#a98fd6245ca7f8e57cf4623e192e8c774" title=" " alt="" coords="171,374,296,417"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="84,323,148,353,173,365,170,369,146,358,82,328"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__platform_8c.html#a501a5073457a1982c2406543df0d073e" title="Lit un octet depuis un registre 16 bits du VL53L8CX." alt="" coords="392,121,528,147"/>
+<area shape="poly" id="edge29_Node000001_Node000007" title=" " alt="" coords="55,297,65,266,83,228,110,189,126,171,145,157,173,143,202,132,262,120,322,116,377,119,377,124,322,122,263,125,203,137,175,148,148,162,130,175,114,192,88,230,70,268,60,298"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__api_8c.html#a06089384da8839703ece6a5a745f82d8" title="Inner function, not available outside this file. This function is used to set the offset data gathere..." alt="" coords="369,374,551,401"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="62,324,93,377,117,405,148,426,182,439,218,445,255,445,291,441,360,425,416,405,418,410,361,430,292,447,255,450,217,450,181,444,145,431,114,409,88,380,57,327"/>
+<area shape="rect" id="Node000009" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="599,285,758,311"/>
+<area shape="poly" id="edge31_Node000001_Node000009" title=" " alt="" coords="99,310,296,314,423,313,551,309,583,306,584,312,551,314,423,318,296,319,99,316"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="611,335,746,362"/>
+<area shape="poly" id="edge35_Node000001_Node000010" title=" " alt="" coords="57,325,63,366,77,424,89,453,104,482,124,507,148,528,202,558,252,574,299,577,346,571,393,556,441,533,550,473,582,451,612,425,657,373,661,376,616,428,586,455,553,478,444,538,395,561,347,576,300,583,251,579,200,563,145,532,120,511,100,485,84,456,72,425,57,367,52,325"/>
+<area shape="rect" id="Node000011" href="$vl53l8cx__api_8c.html#acfd62041fa95081cc244e8f09cbed60e" title="Inner function, not available outside this file. This function is used to set the Xtalk data from gen..." alt="" coords="371,273,549,299"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="99,306,355,290,356,295,99,311"/>
+<area shape="rect" id="Node000012" href="$vl53l8cx__api_8c.html#a4e9069c48c4beee6518c74ecefdc2573" title="This function can be used to replace &#39;extra data&#39; in DCI. The data can be simple data,..." alt="" coords="147,171,321,198"/>
+<area shape="poly" id="edge18_Node000001_Node000012" title=" " alt="" coords="62,296,96,256,119,234,145,215,169,202,171,207,148,219,123,238,100,260,66,299"/>
+<area shape="rect" id="Node000014" href="$vl53l8cx__api_8c.html#a1926fbe7e66b009aede955b6225ce221" title="This function can be used to write &#39;extra data&#39; to DCI. The data can be simple data,..." alt="" coords="380,222,540,249"/>
+<area shape="poly" id="edge28_Node000001_Node000014" title=" " alt="" coords="92,295,146,280,259,258,365,243,365,248,260,263,147,285,94,300"/>
+<area shape="rect" id="Node000015" href="$vl53l8cx__platform_8c.html#a7710197de0c7e075a4064f18baa56355" title="Écrit un octet dans un registre 16 bits du VL53L8CX." alt="" coords="167,491,301,518"/>
+<area shape="poly" id="edge33_Node000001_Node000015" title=" " alt="" coords="60,324,90,394,115,435,148,471,166,482,163,487,145,475,111,438,85,396,55,326"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="741,218,812,196,813,202,742,223"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="742,259,759,271,793,304,822,341,862,409,857,412,817,344,789,307,756,275,739,264"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="990,222,1057,249"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="914,192,976,215,974,220,912,197"/>
+<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="297,402,369,410,598,426,791,433,791,439,598,431,369,415,297,407"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="243,372,299,256,335,196,367,157,377,151,380,155,371,161,339,199,304,259,247,375"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="528,137,758,161,791,165,790,170,757,166,528,142"/>
+<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="476,371,598,271,606,266,608,271,601,275,480,376"/>
+<area shape="poly" id="edge11_Node000008_Node000009" title=" " alt="" coords="507,371,550,353,574,337,598,321,612,315,614,320,601,326,577,342,553,358,509,376"/>
+<area shape="poly" id="edge12_Node000008_Node000010" title=" " alt="" coords="539,371,595,361,596,366,540,376"/>
+<area shape="poly" id="edge13_Node000010_Node000004" title=" " alt="" coords="722,332,757,321,974,249,976,254,759,326,723,337"/>
+<area shape="poly" id="edge15_Node000011_Node000002" title=" " alt="" coords="525,270,600,253,601,259,526,275"/>
+<area shape="poly" id="edge16_Node000011_Node000009" title=" " alt="" coords="550,288,584,290,584,296,550,294"/>
+<area shape="poly" id="edge17_Node000011_Node000010" title=" " alt="" coords="510,297,615,328,614,333,509,303"/>
+<area shape="rect" id="Node000013" href="$vl53l8cx__api_8c.html#a622e5a7b1ab7b329bb6eee40429599da" title="This function can be used to read &#39;extra data&#39; from DCI. Using a known index, the function fills the ..." alt="" coords="382,171,539,198"/>
+<area shape="poly" id="edge19_Node000012_Node000013" title=" " alt="" coords="322,182,366,182,366,187,322,187"/>
+<area shape="poly" id="edge24_Node000012_Node000014" title=" " alt="" coords="297,196,383,216,382,221,296,201"/>
+<area shape="poly" id="edge20_Node000013_Node000002" title=" " alt="" coords="517,196,601,217,600,223,516,201"/>
+<area shape="poly" id="edge21_Node000013_Node000003" title=" " alt="" coords="539,181,790,179,790,184,539,187"/>
+<area shape="poly" id="edge22_Node000013_Node000009" title=" " alt="" coords="531,196,553,208,569,224,578,240,586,256,601,271,608,275,605,280,598,275,582,259,573,242,565,227,550,212,528,201"/>
+<area shape="poly" id="edge23_Node000013_Node000010" title=" " alt="" coords="535,196,553,208,566,222,573,237,578,266,583,294,590,308,601,322,605,325,602,329,597,325,585,311,578,296,573,267,568,239,561,225,550,212,532,201"/>
+<area shape="poly" id="edge25_Node000014_Node000002" title=" " alt="" coords="541,234,600,235,600,241,541,240"/>
+<area shape="poly" id="edge26_Node000014_Node000009" title=" " alt="" coords="512,247,552,258,617,277,615,282,551,263,511,252"/>
+<area shape="poly" id="edge27_Node000014_Node000010" title=" " alt="" coords="531,247,553,259,569,274,578,291,586,306,601,321,608,326,605,330,598,326,582,309,573,293,565,278,550,263,528,252"/>
+<area shape="poly" id="edge34_Node000015_Node000010" title=" " alt="" coords="294,488,414,456,550,410,639,368,641,373,552,415,416,461,296,493"/>
+</map>

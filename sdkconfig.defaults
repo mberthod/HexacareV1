@@ -1,0 +1,76 @@
+# ==============================================================
+# sdkconfig.defaults — LexaCare V1 / ESP32-S3-WROOM-2 / IDF v5.4+
+# Appliqué automatiquement au premier build (sans sdkconfig existant).
+# Modifier via : idf.py menuconfig
+# ==============================================================
+
+# ------ Cible matérielle ----------------------------------------
+# Force esp32s3 pour éviter le défaut esp32 du CMake Cursor/VSCode
+CONFIG_IDF_TARGET="esp32s3"
+
+# ------ Flash 16 Mo (ESP32-S3-WROOM-2) -------------------------
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="16MB"
+CONFIG_ESPTOOLPY_FLASH_SAMPLE_MODE_STR=y
+
+# ------ Table de partitions personnalisée ----------------------
+CONFIG_PARTITION_TABLE_CUSTOM=y
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
+
+# ------ PSRAM : Octal SPI 8 Mo (WROOM-2) ----------------------
+CONFIG_SPIRAM=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_SPIRAM_SPEED_80M=y
+# Intégre la PSRAM dans le tas malloc() standard
+CONFIG_SPIRAM_USE_MALLOC=y
+# Objets < 32 Ko restent en RAM interne.
+# Objectif : préserver un pool DRAM “propre” pour les allocations DMA
+# (I2S, SPI DMA) avant/après l'init WiFi qui fragmente le heap.
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=32768
+
+# ------ FreeRTOS : tick 1 ms -----------------------------------
+CONFIG_FREERTOS_HZ=1000
+# Statistiques d'exécution pour High Water Mark (pc_diag)
+CONFIG_FREERTOS_USE_TRACE_FACILITY=y
+CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS=y
+CONFIG_FREERTOS_USE_STATS_FORMATTING_FUNCTIONS=y
+
+# ------ Panic Handler ------------------------------------------
+# Imprime le backtrace complet sur UART/USB avant de redémarrer
+CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT=y
+
+# ------ Task Watchdog Timer (TWDT) -----------------------------
+# Task_Sensor_Acq et Task_AI_Inference s'y abonnent explicitement
+CONFIG_ESP_TASK_WDT_EN=y
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=10
+# Ne pas surveiller les tâches idle (elles peuvent se bloquer légitimement)
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=n
+CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU1=n
+
+# ------ Interrupt Watchdog (IWD / TG1) -------------------------
+# Le stack WiFi (esp_wifi_start + calibration PHY) peut désactiver
+# les interruptions pendant > 800 ms (valeur par défaut).
+# Symptôme : rst:0x8 (TG1WDT_SYS_RST) après esp_now_init().
+# On augmente à 2000 ms pour laisser le temps à la calibration PHY.
+CONFIG_ESP_INT_WDT=y
+CONFIG_ESP_INT_WDT_TIMEOUT_MS=2000
+
+# ------ mbedTLS — AES matériel ---------------------------------
+# Nécessaire pour AES-128-GCM du payload ESP-NOW (mesh_network)
+CONFIG_MBEDTLS_HARDWARE_AES=y
+CONFIG_MBEDTLS_GCM_C=y
+
+# ------ Console USB (USB Serial/JTAG) --------------------------
+# printf() et ESP_LOGI → port COM virtuel, pas de câble UART nécessaire
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+
+# ------ Niveaux de log -----------------------------------------
+# Défaut Info (3), maximum compilé Debug (4)
+CONFIG_LOG_DEFAULT_LEVEL=3
+CONFIG_LOG_MAXIMUM_LEVEL=4
+
+# ------ AI Engine (détection de chute) -------------------------
+# Mode seuil géométrique par défaut (pas de modèle ESP-DL requis)
+# CONFIG_AI_USE_ESPDL_MODEL is not set
+CONFIG_AI_FALL_THRESHOLD_PERCENT=80
+CONFIG_AI_HISTORY_LEN=8

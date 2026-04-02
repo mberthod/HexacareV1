@@ -1,0 +1,7 @@
+<map id="VL53L8CX_RdByte" name="VL53L8CX_RdByte">
+<area shape="rect" id="Node000001" title="Lit un octet depuis un registre 16 bits du VL53L8CX." alt="" coords="5,5,141,32"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="189,5,325,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,16,173,16,173,21,141,21"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="373,5,440,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="325,16,357,16,357,21,325,21"/>
+</map>

@@ -1,0 +1,261 @@
+\doxysection{system\+\_\+types.\+h}
+\hypertarget{system__types_8h_source}{}\label{system__types_8h_source}\index{components/lexacare\_types/include/system\_types.h@{components/lexacare\_types/include/system\_types.h}}
+\mbox{\hyperlink{system__types_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ system\_types.h}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Contrat\ de\ données\ partagé\ entre\ tous\ les\ composants\ du\ firmware\ LexaCare\ V1.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Règles\ d'utilisation\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00006}00006\ \textcolor{comment}{\ *\ \ -\/\ Ce\ fichier\ est\ la\ seule\ source\ de\ vérité\ pour\ les\ structures\ inter-\/tâches.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ -\/\ Aucune\ variable\ globale\ :\ toutes\ les\ données\ partagées\ transitent\ via\ sys\_context\_t.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ -\/\ Compatible\ C\ et\ C++\ (guards\ extern\ "{}C"{}\ inclus).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ -\/\ Inclure\ via\ le\ composant\ lexacare\_types\ (REQUIRES\ dans\ CMakeLists.txt).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00010}00010\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00012}00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00014}00014\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00015}00015\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00016}00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}freertos/queue.h"{}}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}freertos/semphr.h"{}}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}driver/spi\_master.h"{}}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00024}00024\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00025}00025\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00026}00026\ \textcolor{comment}{\ *\ @ingroup\ group\_config}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00027}00027\ \textcolor{comment}{\ *\ @brief\ Types\ partagés\ entre\ tâches\ (contrat\ de\ données).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00028}00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00029}00029\ \textcolor{comment}{\ *\ Ce\ fichier\ sert\ de\ “langage\ commun”\ entre\ tâches\ FreeRTOS\ :\ si\ deux\ parties\ du\ firmware}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00030}00030\ \textcolor{comment}{\ *\ échangent\ une\ information,\ elle\ doit\ apparaître\ ici\ pour\ éviter\ les\ malentendus\ (tailles,}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00031}00031\ \textcolor{comment}{\ *\ unités,\ champs\ “valid”,\ etc.).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00034}00034\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00035}00035\ \textcolor{comment}{\ *\ Constantes\ LIDAR}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00036}00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00037}00037\ \textcolor{comment}{\ *\ Architecture\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00038}00038\ \textcolor{comment}{\ *\ \ \ 4\ capteurs\ VL53L8CX\ frontaux\ (8×8\ zones\ chacun)\ concaténés}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00039}00039\ \textcolor{comment}{\ *\ \ \ horizontalement\ →\ matrice\ unifiée\ 8\ lignes\ ×\ 32\ colonnes.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00040}00040\ \textcolor{comment}{\ *\ \ \ Capteur\ N\ occupe\ les\ colonnes\ [N*8\ ..\ N*8+7].}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00041}00041\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00042}00042\ \textcolor{comment}{\ *\ \ \ 5e\ capteur\ (vertical/sol)\ :\ flux\ séparé,\ non\ inclus\ dans\ la\ matrice.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00043}00043\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00044}\mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{00044}}\ \textcolor{preprocessor}{\#define\ LIDAR\_ROWS\ \ \ \ \ \ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00045}\mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{00045}}\ \textcolor{preprocessor}{\#define\ LIDAR\_COLS\ \ \ \ \ \ \ \ \ \ \ \ \ \ 32}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00046}\mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{00046}}\ \textcolor{preprocessor}{\#define\ LIDAR\_NUM\_FRONT\ \ \ \ \ \ \ \ \ 4\ \ \ \ }\textcolor{comment}{/**<\ Capteurs\ alimentant\ la\ matrice\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00047}\mbox{\hyperlink{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7}{00047}}\ \textcolor{preprocessor}{\#define\ LIDAR\_NUM\_TOTAL\ \ \ \ \ \ \ \ \ 5\ \ \ \ }\textcolor{comment}{/**<\ Total\ capteurs\ (4\ frontaux\ +\ 1\ sol)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00048}\mbox{\hyperlink{system__types_8h_a282d3c8dac6a02b3aab32ff5202543e8}{00048}}\ \textcolor{preprocessor}{\#define\ LIDAR\_ZONES\_PER\_SENSOR\ \ 64\ \ \ }\textcolor{comment}{/**<\ 8×8\ =\ 64\ zones\ par\ capteur\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00050}00050\ \textcolor{comment}{/*\ Adresses\ I2C\ (7\ bits)\ allouées\ dynamiquement\ au\ démarrage\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00051}\mbox{\hyperlink{system__types_8h_a857774109f46a27a91784dca72ecf7f3}{00051}}\ \textcolor{preprocessor}{\#define\ LIDAR\_I2C\_ADDR\_DEFAULT\ \ 0x29\ }\textcolor{comment}{/**<\ Adresse\ par\ défaut\ VL53L8CX\ (7\ bits)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00052}\mbox{\hyperlink{system__types_8h_a86a0a1946af81ea101e0e18ffc166081}{00052}}\ \textcolor{preprocessor}{\#define\ LIDAR\_I2C\_ADDR\_BASE\ \ \ \ \ 0x2A\ }\textcolor{comment}{/**<\ Première\ adresse\ réassignée\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00054}00054\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00055}00055\ \textcolor{comment}{\ *\ Constantes\ réseau\ et\ chiffrement\ AES-\/128}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00056}00056\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00057}00057\ \textcolor{comment}{\ *\ Le\ payload\ de\ chaque\ trame\ lexacare\_frame\_t\ est\ chiffré\ en}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00058}00058\ \textcolor{comment}{\ *\ AES-\/128-\/CBC\ par\ le\ nœud\ émetteur\ (mbedTLS)\ indépendamment}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00059}00059\ \textcolor{comment}{\ *\ du\ LMK\ ESP-\/NOW\ —\ garantie\ de\ sécurité\ pour\ +1000\ pairs.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00060}00060\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00061}\mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{00061}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_AES\_KEY\_LEN\ \ \ \ 16\ \ \ }\textcolor{comment}{/**<\ Clé\ AES-\/128\ :\ 16\ octets\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00062}\mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{00062}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_AES\_IV\_LEN\ \ \ \ \ 16\ \ \ }\textcolor{comment}{/**<\ IV\ AES-\/CBC\ \ :\ 16\ octets\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00063}\mbox{\hyperlink{system__types_8h_a5269c10eb202fc732c8565de6318828a}{00063}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_FRAME\_MAGIC\ \ \ \ 0xCA5E}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00064}\mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{00064}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_MAX\_PAYLOAD\ \ \ \ 128\ \ }\textcolor{comment}{/**<\ Payload\ chiffré\ (multiple\ de\ 16,\ ≤\ 250\ −\ header)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00066}00066\ \textcolor{comment}{/*\ Types\ de\ trame\ réseau\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00067}\mbox{\hyperlink{system__types_8h_a9fd7d9fb92dbe0693e39db97321e8cbc}{00067}}\ \textcolor{preprocessor}{\#define\ FRAME\_TYPE\_TELEMETRY\ \ \ \ 0x00}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00068}\mbox{\hyperlink{system__types_8h_a0e1653f6e69997ed01d99fc0bdc77c78}{00068}}\ \textcolor{preprocessor}{\#define\ FRAME\_TYPE\_AI\_EVENT\ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00069}\mbox{\hyperlink{system__types_8h_ac9c5ce39f67beb1c5a4af7aa2800fd9c}{00069}}\ \textcolor{preprocessor}{\#define\ FRAME\_TYPE\_OTA\_FRAGMENT\ 0x02}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00070}\mbox{\hyperlink{system__types_8h_a2f28b080f33b7221fa06ea915fa74d18}{00070}}\ \textcolor{preprocessor}{\#define\ FRAME\_TYPE\_BEACON\ \ \ \ \ \ \ 0x03}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00072}00072\ \textcolor{comment}{/*\ OTA\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00073}\mbox{\hyperlink{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571}{00073}}\ \textcolor{preprocessor}{\#define\ OTA\_FRAGMENT\_DATA\_LEN\ \ \ 200\ \ }\textcolor{comment}{/**<\ Octets\ de\ données\ utiles\ par\ fragment\ OTA\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00075}00075\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00076}00076\ \textcolor{comment}{\ *\ lidar\_matrix\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00077}00077\ \textcolor{comment}{\ *\ @brief\ Matrice\ de\ distances\ fusionnées\ issues\ des\ 4\ LIDARs\ frontaux.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00078}00078\ \textcolor{comment}{\ *\ @note\ \ data[ligne][colonne],\ distances\ en\ millimètres\ (0\ =\ zone\ invalide).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00079}00079\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00080}\mbox{\hyperlink{structlidar__matrix__t}{00080}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00081}\mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{00081}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{data}}[\mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\_ROWS}}][\mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\_COLS}}];\ \textcolor{comment}{/**<\ Distances\ en\ mm\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00082}\mbox{\hyperlink{structlidar__matrix__t_a1cba5fb965937d1ab5f8a047d3932962}{00082}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlidar__matrix__t_a1cba5fb965937d1ab5f8a047d3932962}{vertical\_mm}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Distance\ capteur\ sol\ (5e\ capteur)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00083}\mbox{\hyperlink{structlidar__matrix__t_ad8d425a567ee798b021a47ad1ea563f4}{00083}}\ \ \ \ \ int64\_t\ \ \mbox{\hyperlink{structlidar__matrix__t_ad8d425a567ee798b021a47ad1ea563f4}{timestamp\_us}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Horodatage\ µs\ (esp\_timer\_get\_time)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00084}\mbox{\hyperlink{structlidar__matrix__t_a4a2465a1f0aa3ac73e003754d9200fa6}{00084}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{structlidar__matrix__t_a4a2465a1f0aa3ac73e003754d9200fa6}{valid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ false\ si\ lecture\ I2C\ échouée\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00085}00085\ \}\ \mbox{\hyperlink{structlidar__matrix__t}{lidar\_matrix\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00087}00087\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00088}00088\ \textcolor{comment}{\ *\ radar\_data\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00089}00089\ \textcolor{comment}{\ *\ @brief\ Données\ extraites\ du\ protocole\ TinyFrame\ du\ radar\ HLK-\/LD6002.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00090}00090\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00091}00091\ \textcolor{comment}{\ *\ Trames\ supportées\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00092}00092\ \textcolor{comment}{\ *\ \ \ 0x0A14\ →\ breath\_rate\_bpm\ (uint16,\ big-\/endian)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00093}00093\ \textcolor{comment}{\ *\ \ \ 0x0A15\ →\ heart\_rate\_bpm\ \ (uint16,\ big-\/endian)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00094}00094\ \textcolor{comment}{\ *\ \ \ 0x0A16\ →\ target\_distance\_mm\ (uint16,\ big-\/endian)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00095}00095\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00096}\mbox{\hyperlink{structradar__data__t}{00096}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00097}\mbox{\hyperlink{structradar__data__t_a701c910c93542668f4b224637db2b736}{00097}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structradar__data__t_a701c910c93542668f4b224637db2b736}{resp\_phase}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Phase\ respiratoire\ (rad)\ —\ calculée\ si\ dispo\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00098}\mbox{\hyperlink{structradar__data__t_a44c6ff7879888bbd222a8e0d51385fb7}{00098}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structradar__data__t_a44c6ff7879888bbd222a8e0d51385fb7}{heart\_phase}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Phase\ cardiaque\ (rad)\ —\ calculée\ si\ dispo\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00099}\mbox{\hyperlink{structradar__data__t_aef77c6374300c5b7db1f80559428be9c}{00099}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \ \ \mbox{\hyperlink{structradar__data__t_aef77c6374300c5b7db1f80559428be9c}{total\_phase}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Phase\ totale\ (rad)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00100}\mbox{\hyperlink{structradar__data__t_aff3811ac5fa450d274494b00a8793858}{00100}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structradar__data__t_aff3811ac5fa450d274494b00a8793858}{breath\_rate\_bpm}};\ \ \ \ \textcolor{comment}{/**<\ Fréquence\ respiratoire\ (cycles/min)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00101}\mbox{\hyperlink{structradar__data__t_ada6473d97a325963d6f5c78ec7fe6a77}{00101}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structradar__data__t_ada6473d97a325963d6f5c78ec7fe6a77}{heart\_rate\_bpm}};\ \ \ \ \ \textcolor{comment}{/**<\ Fréquence\ cardiaque\ (bpm)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00102}\mbox{\hyperlink{structradar__data__t_aa4e0441dee4e24232b4b5c83fe42252c}{00102}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structradar__data__t_aa4e0441dee4e24232b4b5c83fe42252c}{target\_distance\_mm}};\ \textcolor{comment}{/**<\ Distance\ de\ la\ cible\ (mm)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00103}\mbox{\hyperlink{structradar__data__t_ae64dbc2fcffffc265459995ed4476f1f}{00103}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{structradar__data__t_ae64dbc2fcffffc265459995ed4476f1f}{presence}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ true\ si\ une\ personne\ est\ détectée\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00104}\mbox{\hyperlink{structradar__data__t_aea519eca3ff083a1f0c8911f5d9356e1}{00104}}\ \ \ \ \ int64\_t\ \ \mbox{\hyperlink{structradar__data__t_aea519eca3ff083a1f0c8911f5d9356e1}{timestamp\_us}};\ \ \ \ \ \ \ \textcolor{comment}{/**<\ Horodatage\ µs\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00105}00105\ \}\ \mbox{\hyperlink{structradar__data__t}{radar\_data\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00107}00107\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00108}00108\ \textcolor{comment}{\ *\ sensor\_frame\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00109}00109\ \textcolor{comment}{\ *\ @brief\ Trame\ composite\ poussée\ dans\ sensor\_to\_ai\_queue.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00110}00110\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ Contient\ les\ données\ LIDAR\ et\ radar\ d'un\ même\ cycle\ d'acquisition.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00111}00111\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00112}\mbox{\hyperlink{structsensor__frame__t}{00112}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00113}\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{00113}}\ \ \ \ \ \mbox{\hyperlink{structlidar__matrix__t}{lidar\_matrix\_t}}\ \mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}};\ \ \ \ \ \ \ \textcolor{comment}{/**<\ Données\ LIDAR\ fusionnées\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00114}\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{00114}}\ \ \ \ \ \mbox{\hyperlink{structradar__data__t}{radar\_data\_t}}\ \ \ \mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}};\ \ \ \ \ \ \ \textcolor{comment}{/**<\ Données\ radar\ LD6002\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00115}\mbox{\hyperlink{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1}{00115}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1}{lidar\_valid}};\ \textcolor{comment}{/**<\ true\ :\ lidar\ contient\ des\ données\ fraîches\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00116}\mbox{\hyperlink{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}{00116}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}{radar\_valid}};\ \textcolor{comment}{/**<\ true\ :\ radar\ contient\ des\ données\ fraîches\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00117}00117\ \}\ \mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00119}00119\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00120}00120\ \textcolor{comment}{\ *\ ai\_event\_state\_e}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00121}00121\ \textcolor{comment}{\ *\ @brief\ États\ détectés\ par\ le\ moteur\ d'inférence\ (seuil\ ou\ modèle).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00122}00122\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00123}\mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{00123}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00124}\mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{00124}}\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 0,\ \textcolor{comment}{/**<\ Situation\ normale\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00125}\mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}{00125}}\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}{AI\_CHUTE\_DETECTEE}}\ \ \ \ =\ 1,\ \textcolor{comment}{/**<\ Chute\ détectée\ —\ injection\ via\ xQueueSendToFront\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00126}\mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6}{00126}}\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6}{AI\_MOUVEMENT\_ANORMAL}}\ =\ 2,\ \textcolor{comment}{/**<\ Mouvement\ anormal\ (agitation,\ posture\ inhabituelle)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00127}00127\ \}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\_event\_state\_e}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00129}00129\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00130}00130\ \textcolor{comment}{\ *\ ai\_event\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00131}00131\ \textcolor{comment}{\ *\ @brief\ Événement\ généré\ par\ Task\_AI\_Inference.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00132}00132\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00133}00133\ \textcolor{comment}{\ *\ Règle\ de\ priorité\ (contrainte\ stricte)\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00134}00134\ \textcolor{comment}{\ *\ \ \ AI\_CHUTE\_DETECTEE\ \ →\ xQueueSendToFront(ctx-\/>ai\_to\_mesh\_queue,\ ...)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00135}00135\ \textcolor{comment}{\ *\ \ \ Autres\ états\ \ \ \ \ \ \ →\ xQueueSend(ctx-\/>ai\_to\_mesh\_queue,\ ...)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00136}00136\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00137}00137\ \textcolor{comment}{\ *\ Cette\ règle\ garantit\ que\ les\ alertes\ de\ chute\ court-\/circuitent}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00138}00138\ \textcolor{comment}{\ *\ la\ télémétrie\ normale\ dans\ la\ file\ d'envoi\ réseau.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00139}00139\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00140}\mbox{\hyperlink{structai__event__t}{00140}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00141}\mbox{\hyperlink{structai__event__t_a81e6991ce55e7b8c557ab557545cc522}{00141}}\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\_event\_state\_e}}\ \mbox{\hyperlink{structai__event__t_a81e6991ce55e7b8c557ab557545cc522}{state}};\ \ \ \ \ \ \ \textcolor{comment}{/**<\ État\ détecté\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00142}\mbox{\hyperlink{structai__event__t_abda04f94a67eac00a050985c90987309}{00142}}\ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structai__event__t_abda04f94a67eac00a050985c90987309}{confidence}};\ \ \textcolor{comment}{/**<\ Confiance\ 0–100\ \%\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00143}\mbox{\hyperlink{structai__event__t_a9dfc426ff75b3bbd25f05aaafbc3e84b}{00143}}\ \ \ \ \ int64\_t\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structai__event__t_a9dfc426ff75b3bbd25f05aaafbc3e84b}{timestamp\_us}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00144}00144\ \}\ \mbox{\hyperlink{structai__event__t}{ai\_event\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00146}00146\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00147}00147\ \textcolor{comment}{\ *\ lexacare\_frame\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00148}00148\ \textcolor{comment}{\ *\ @brief\ Trame\ réseau\ ESP-\/NOW\ avec\ payload\ chiffré\ AES-\/128-\/CBC.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00149}00149\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00150}00150\ \textcolor{comment}{\ *\ Taille\ totale\ :\ 2+1+1+6+16+128+2+2\ =\ 158\ octets\ (<\ 250\ max\ ESP-\/NOW).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00151}00151\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00152}00152\ \textcolor{comment}{\ *\ Séquence\ d'émission\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00153}00153\ \textcolor{comment}{\ *\ \ \ 1.\ Sérialiser\ le\ payload\ en\ clair\ dans\ un\ buffer\ temporaire.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00154}00154\ \textcolor{comment}{\ *\ \ \ 2.\ Générer\ un\ IV\ aléatoire\ (esp\_fill\_random).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00155}00155\ \textcolor{comment}{\ *\ \ \ 3.\ Chiffrer\ avec\ mbedtls\_aes\_crypt\_cbc\ (clé\ 16\ o\ provisionnée\ en\ NVS).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00156}00156\ \textcolor{comment}{\ *\ \ \ 4.\ Calculer\ CRC16\ sur\ (magic\ +\ type\ +\ hop\ +\ src\_mac\ +\ iv\ +\ payload).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00157}00157\ \textcolor{comment}{\ *\ \ \ 5.\ Appeler\ esp\_now\_send().}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00158}00158\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00159}\mbox{\hyperlink{structlexacare__frame__t}{00159}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00160}\mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{00160}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{magic}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ LEXACARE\_FRAME\_MAGIC\ (0xCA5E)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00161}\mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{00161}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ FRAME\_TYPE\_*\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00162}\mbox{\hyperlink{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}{00162}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}{hop\_count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Nombre\ de\ sauts\ depuis\ la\ source\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00163}\mbox{\hyperlink{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}{00163}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}{src\_mac}}[6];\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ MAC\ de\ l'émetteur\ original\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00164}\mbox{\hyperlink{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3}{00164}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3}{iv}}[\mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\_AES\_IV\_LEN}}];\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ IV\ aléatoire\ pour\ AES-\/128-\/CBC\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00165}\mbox{\hyperlink{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3}{00165}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3}{payload}}[\mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\_MAX\_PAYLOAD}}];\ \ \ \ \textcolor{comment}{/**<\ Payload\ chiffré\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00166}\mbox{\hyperlink{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25}{00166}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25}{payload\_len}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Longueur\ du\ payload\ chiffré\ (octets)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00167}\mbox{\hyperlink{structlexacare__frame__t_ae5067764127ffd0809f3cf71927d3e50}{00167}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structlexacare__frame__t_ae5067764127ffd0809f3cf71927d3e50}{crc16}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ CRC16-\/CCITT\ sur\ header\ +\ iv\ +\ payload\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00168}00168\ \}\ \mbox{\hyperlink{structlexacare__frame__t}{lexacare\_frame\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00170}00170\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00171}00171\ \textcolor{comment}{\ *\ ota\_fragment\_payload\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00172}00172\ \textcolor{comment}{\ *\ @brief\ Contenu\ en\ clair\ du\ payload\ pour\ un\ fragment\ OTA\ (avant\ chiffrement).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00173}00173\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00174}\mbox{\hyperlink{structota__fragment__payload__t}{00174}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00175}\mbox{\hyperlink{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c}{00175}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c}{firmware\_size}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Taille\ totale\ du\ firmware\ (octets)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00176}\mbox{\hyperlink{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}{00176}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}{fragment\_offset}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Offset\ de\ ce\ fragment\ dans\ le\ firmware\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00177}\mbox{\hyperlink{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80}{00177}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80}{fragment\_data\_len}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Longueur\ des\ données\ utiles\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00178}\mbox{\hyperlink{structota__fragment__payload__t_aff252475d43370bf718085a778c5a0a4}{00178}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structota__fragment__payload__t_aff252475d43370bf718085a778c5a0a4}{data}}[\mbox{\hyperlink{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571}{OTA\_FRAGMENT\_DATA\_LEN}}];\ \ \ \ \ \ \textcolor{comment}{/**<\ Données\ du\ fragment\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00179}\mbox{\hyperlink{structota__fragment__payload__t_aaa60401c4425aedf0f17bf9b51f223da}{00179}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{structota__fragment__payload__t_aaa60401c4425aedf0f17bf9b51f223da}{is\_last}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ true\ si\ dernier\ fragment\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00180}00180\ \}\ \mbox{\hyperlink{structota__fragment__payload__t}{ota\_fragment\_payload\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00181}00181\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00182}00182\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00183}00183\ \textcolor{comment}{\ *\ sys\_context\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00184}00184\ \textcolor{comment}{\ *\ @brief\ Contexte\ global\ injecté\ par\ pointeur\ dans\ toutes\ les\ tâches.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00185}00185\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00186}00186\ \textcolor{comment}{\ *\ Principe\ d'injection\ de\ dépendances\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00187}00187\ \textcolor{comment}{\ *\ \ \ -\/\ Aucune\ variable\ globale\ directe.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00188}00188\ \textcolor{comment}{\ *\ \ \ -\/\ Chaque\ tâche\ reçoit\ un\ pointeur\ const\ vers\ ce\ contexte.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00189}00189\ \textcolor{comment}{\ *\ \ \ -\/\ Les\ handles\ I2C\ sont\ initialisés\ par\ hw\_diag\_run()\ et}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00190}00190\ \textcolor{comment}{\ *\ \ \ \ \ réutilisés\ par\ sensor\_acq\ sans\ réinitialisation.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00191}00191\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00192}00192\ \textcolor{comment}{\ *\ Queues\ et\ dimensionnement\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00193}00193\ \textcolor{comment}{\ *\ \ \ sensor\_to\_ai\_queue\ \ :\ sensor\_frame\_t\ ×\ 4\ \ (profondeur\ conservatrice)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00194}00194\ \textcolor{comment}{\ *\ \ \ ai\_to\_mesh\_queue\ \ \ \ :\ ai\_event\_t\ \ \ \ \ ×\ 8\ \ (AI\_CHUTE\ via\ xQueueSendToFront)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00195}00195\ \textcolor{comment}{\ *\ \ \ diag\_to\_pc\_queue\ \ \ \ :\ ai\_event\_t\ \ \ \ \ ×\ 8}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00196}00196\ \textcolor{comment}{\ *\ \ \ log\_queue\ \ \ \ \ \ \ \ \ \ \ :\ char*\ \ \ \ \ \ \ \ \ \ ×\ 16\ (pointeurs\ vers\ chaînes\ allouées)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00197}00197\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00198}00198\ \textcolor{comment}{\ *\ Capteurs\ environnementaux\ (I2C\_NUM\_1,\ SDA=10,\ SCL=9)\ :}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00199}00199\ \textcolor{comment}{\ *\ \ \ HDC1080\ :\ temp/humidité\ (0x40)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00200}00200\ \textcolor{comment}{\ *\ \ \ BME280\ \ :\ temp/pression/humidité\ (0x76)}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00201}00201\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00203}00203\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00204}00204\ \textcolor{comment}{\ *\ enviro\_data\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00205}00205\ \textcolor{comment}{\ *\ @brief\ Données\ capteurs\ environnementaux\ (HDC1080\ +\ BME280).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00206}00206\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ NAN\ dans\ un\ champ\ =\ capteur\ absent\ ou\ lecture\ échouée.}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00207}00207\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00208}\mbox{\hyperlink{structenviro__data__t}{00208}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00209}\mbox{\hyperlink{structenviro__data__t_a2930919101311d9bb3b3110b59524b98}{00209}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structenviro__data__t_a2930919101311d9bb3b3110b59524b98}{temp\_hdc\_c}};\ \ \ \ \ \textcolor{comment}{/**<\ HDC1080\ température\ (°C)\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00210}\mbox{\hyperlink{structenviro__data__t_a795c6b7429a9d839dd0ed99340b3644b}{00210}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structenviro__data__t_a795c6b7429a9d839dd0ed99340b3644b}{humidity\_hdc}};\ \ \ \textcolor{comment}{/**<\ HDC1080\ humidité\ relative\ (\%)\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00211}\mbox{\hyperlink{structenviro__data__t_adbc78f374cc56209b5fafc0303e34826}{00211}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structenviro__data__t_adbc78f374cc56209b5fafc0303e34826}{temp\_bme\_c}};\ \ \ \ \ \textcolor{comment}{/**<\ BME280\ \ température\ (°C)\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00212}\mbox{\hyperlink{structenviro__data__t_ad14b0a736e92e1eb6a07b81ad47a5a82}{00212}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structenviro__data__t_ad14b0a736e92e1eb6a07b81ad47a5a82}{pressure\_hpa}};\ \ \ \textcolor{comment}{/**<\ BME280\ \ pression\ (hPa)\ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00213}\mbox{\hyperlink{structenviro__data__t_a59a9a913353bfb712c4af5f119d85e38}{00213}}\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{structenviro__data__t_a59a9a913353bfb712c4af5f119d85e38}{humidity\_bme}};\ \ \ \textcolor{comment}{/**<\ BME280\ \ humidité\ relative\ (\%)\ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00214}00214\ \}\ \mbox{\hyperlink{structenviro__data__t}{enviro\_data\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00215}00215\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00216}00216\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00217}00217\ \textcolor{comment}{\ *\ mic\_data\_t}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00218}00218\ \textcolor{comment}{\ *\ @brief\ Données\ microphone\ MEMS\ numérique\ (I2S).}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00219}00219\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00220}\mbox{\hyperlink{structmic__data__t}{00220}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00221}\mbox{\hyperlink{structmic__data__t_af20b6346ba9519a86edf8c94710821bf}{00221}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structmic__data__t_af20b6346ba9519a86edf8c94710821bf}{rms}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Amplitude\ RMS\ (unités\ brutes\ I2S)\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00222}\mbox{\hyperlink{structmic__data__t_a6e7a1f257ffdb5a5b88a940b3bff87fe}{00222}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{structmic__data__t_a6e7a1f257ffdb5a5b88a940b3bff87fe}{peak}};\ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Amplitude\ crête\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00223}\mbox{\hyperlink{structmic__data__t_a2a34613342a61cc2016bc7a9778628f2}{00223}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{structmic__data__t_a2a34613342a61cc2016bc7a9778628f2}{valid}};\ \ \ \ \ \ \ \textcolor{comment}{/**<\ true\ si\ une\ lecture\ valide\ existe\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00224}00224\ \}\ \mbox{\hyperlink{structmic__data__t}{mic\_data\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00225}00225\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00226}\mbox{\hyperlink{structsys__context__t}{00226}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00227}00227\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Queues\ FreeRTOS\ (créées\ dans\ app\_main)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00228}\mbox{\hyperlink{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978}{00228}}\ \ \ \ \ QueueHandle\_t\ \mbox{\hyperlink{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978}{sensor\_to\_ai\_queue}};\ \textcolor{comment}{/**<\ sensor\_frame\_t,\ profondeur\ 4\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00229}\mbox{\hyperlink{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}{00229}}\ \ \ \ \ QueueHandle\_t\ \mbox{\hyperlink{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}{ai\_to\_mesh\_queue}};\ \ \ \textcolor{comment}{/**<\ ai\_event\_t,\ \ \ \ profondeur\ 8\ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00230}\mbox{\hyperlink{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7}{00230}}\ \ \ \ \ QueueHandle\_t\ \mbox{\hyperlink{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7}{diag\_to\_pc\_queue}};\ \ \ \textcolor{comment}{/**<\ ai\_event\_t,\ \ \ \ profondeur\ 8\ \ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00231}\mbox{\hyperlink{structsys__context__t_aff52a7e584b7d6fe202e6b010e077b14}{00231}}\ \ \ \ \ QueueHandle\_t\ \mbox{\hyperlink{structsys__context__t_aff52a7e584b7d6fe202e6b010e077b14}{log\_queue}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ char*,\ \ \ \ \ \ \ \ \ profondeur\ 16\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00233}00233\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Handles\ SPI\ LIDAR\ (initialisés\ par\ hw\_diag\_run)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00234}\mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{00234}}\ \ \ \ \ spi\_device\_handle\_t\ \mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{lidar\_spi}}[\mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}}];\ \textcolor{comment}{/**<\ SPI\ device\ par\ capteur\ LIDAR\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00235}00235\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00236}00236\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Snapshot\ LIDAR\ partagé\ (protégé\ par\ data\_mutex)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00237}\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{00237}}\ \ \ \ \ SemaphoreHandle\_t\ \ \mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}};\ \ \ \ \ \ \textcolor{comment}{/**<\ Mutex\ lecture/écriture\ snapshot\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00238}\mbox{\hyperlink{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b}{00238}}\ \ \ \ \ \mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}}\ \ \ \ \ \mbox{\hyperlink{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b}{latest\_sensor}};\ \ \ \textcolor{comment}{/**<\ Dernière\ trame\ LIDAR\ +\ Radar\ +\ IA\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00239}\mbox{\hyperlink{structsys__context__t_aeea7001274ed1c680448cf33aacf9650}{00239}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsys__context__t_aeea7001274ed1c680448cf33aacf9650}{sensor\_valid}};\ \ \ \ \textcolor{comment}{/**<\ true\ si\ latest\_sensor\ contient\ des\ données\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00241}00241\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Capteurs\ environnementaux\ (mis\ à\ jour\ par\ Task\_Sensor\_Acq)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00242}\mbox{\hyperlink{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6}{00242}}\ \ \ \ \ \mbox{\hyperlink{structenviro__data__t}{enviro\_data\_t}}\ \ \ \ \ \ \mbox{\hyperlink{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6}{enviro}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00244}00244\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Microphone\ (mis\ à\ jour\ par\ mic\_driver\_read)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00245}\mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{00245}}\ \ \ \ \ \mbox{\hyperlink{structmic__data__t}{mic\_data\_t}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{mic}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00247}00247\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Flags\ d'état\ matériel\ (remplis\ par\ hw\_diag\_run)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00248}\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{00248}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[\mbox{\hyperlink{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7}{LIDAR\_NUM\_TOTAL}}];\ \textcolor{comment}{/**<\ true\ si\ le\ capteur\ i\ a\ répondu\ au\ ping\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00249}\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{00249}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ true\ si\ une\ trame\ LD6002\ valide\ a\ été\ reçue\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00250}\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{00250}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ true\ si\ PIN\_ROOT\_SEL\ est\ bas\ au\ démarrage\ */}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00251}00251\ \}\ \mbox{\hyperlink{structsys__context__t}{sys\_context\_t}};}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00252}00252\ }
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00253}00253\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00254}00254\ \}}
+\DoxyCodeLine{\Hypertarget{system__types_8h_source_l00255}00255\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structsensor__frame__t" kind="struct" language="C++" prot="public">
+    <compoundname>sensor_frame_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" prot="public" static="no" mutable="no">
+        <type><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref></type>
+        <definition>lidar_matrix_t sensor_frame_t::lidar</definition>
+        <argsstring></argsstring>
+        <name>lidar</name>
+        <qualifiedname>sensor_frame_t::lidar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Données LIDAR fusionnées </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="113" column="20" bodyfile="components/lexacare_types/include/system_types.h" bodystart="113" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" prot="public" static="no" mutable="no">
+        <type><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref></type>
+        <definition>radar_data_t sensor_frame_t::radar</definition>
+        <argsstring></argsstring>
+        <name>radar</name>
+        <qualifiedname>sensor_frame_t::radar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Données radar LD6002 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="114" column="20" bodyfile="components/lexacare_types/include/system_types.h" bodystart="114" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sensor_frame_t::lidar_valid</definition>
+        <argsstring></argsstring>
+        <name>lidar_valid</name>
+        <qualifiedname>sensor_frame_t::lidar_valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true : lidar contient des données fraîches </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="115" column="20" bodyfile="components/lexacare_types/include/system_types.h" bodystart="115" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sensor_frame_t::radar_valid</definition>
+        <argsstring></argsstring>
+        <name>radar_valid</name>
+        <qualifiedname>sensor_frame_t::radar_valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true : radar contient des données fraîches </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="116" column="20" bodyfile="components/lexacare_types/include/system_types.h" bodystart="116" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>lidar_matrix_t</label>
+        <link refid="structlidar__matrix__t"/>
+      </node>
+      <node id="3">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="1">
+        <label>sensor_frame_t</label>
+        <link refid="structsensor__frame__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>lidar</edgelabel>
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>radar</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/lexacare_types/include/system_types.h" line="112" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="112" bodyend="117"/>
+    <listofallmembers>
+      <member refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" prot="public" virt="non-virtual"><scope>sensor_frame_t</scope><name>lidar</name></member>
+      <member refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" prot="public" virt="non-virtual"><scope>sensor_frame_t</scope><name>lidar_valid</name></member>
+      <member refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" prot="public" virt="non-virtual"><scope>sensor_frame_t</scope><name>radar</name></member>
+      <member refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" prot="public" virt="non-virtual"><scope>sensor_frame_t</scope><name>radar_valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

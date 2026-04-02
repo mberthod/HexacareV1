@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__ai__engine" kind="group">
+    <compoundname>group_ai_engine</compoundname>
+    <title>IA / Détection de chute</title>
+    <innerfile refid="fall__detection__ai_8cc">fall_detection_ai.cc</innerfile>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t ai_engine_task_start</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>ai_engine_task_start</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/include/fall_detection_ai.h" line="58" column="11" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="362" bodyend="393" declfile="components/ai_engine/include/fall_detection_ai.h" declline="58" declcolumn="11"/>
+        <references refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" compoundref="fall__detection__ai_8cc" startline="86">ai_task_ctx_t::dist_history</references>
+        <references refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" compoundref="fall__detection__ai_8cc" startline="88">ai_task_ctx_t::history_full</references>
+        <references refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" compoundref="fall__detection__ai_8cc" startline="87">ai_task_ctx_t::history_head</references>
+        <references refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" compoundref="fall__detection__ai_8cc" startline="83">ai_task_ctx_t::sys_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</references>
+        <references refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" compoundref="fall__detection__ai_8cc" startline="73">TASK_CORE</references>
+        <references refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" compoundref="fall__detection__ai_8cc" startline="72">TASK_PRIORITY</references>
+        <references refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" compoundref="fall__detection__ai_8cc" startline="71">TASK_STACK_SIZE</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Transforme les mesures capteurs en “état” (normal, chute, anormal) et notifications. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Pourquoi une tâche dédiée :<itemizedlist>
+<listitem><para>séparer la logique “métier” (détection) du matériel (capteurs) et du transport (mesh/USB)</para>
+</listitem><listitem><para>garantir des délais : la tâche écoute une file (queue) et produit un événement rapidement </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

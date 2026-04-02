@@ -1,0 +1,739 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="bme280__driver_8c" kind="file" language="C++">
+    <compoundname>bme280_driver.c</compoundname>
+    <includes refid="bme280__driver_8h" local="yes">bme280_driver.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="no">string.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>components/sensor_acq/bme280_driver.c</label>
+        <link refid="bme280__driver_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>bme280_driver.h</label>
+        <link refid="bme280__driver_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="4">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>esp_log.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="8">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structbme280__calib__t" prot="public">bme280_calib_t</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="bme280__driver_8c_1abead2f4994c6f3b4a3b9ca286d00f13b" prot="public" static="no">
+        <name>REG_CHIP_ID</name>
+        <initializer>0xD0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="22" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="22" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1ad6a95c96a883b809b1bf9c16446d0735" prot="public" static="no">
+        <name>REG_RESET</name>
+        <initializer>0xE0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="23" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="23" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a35a180cecaeed7cbc9d43967175c27af" prot="public" static="no">
+        <name>REG_CTRL_HUM</name>
+        <initializer>0xF2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="24" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="24" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a2306dddc82e5e58f23bd44c1086a5b6f" prot="public" static="no">
+        <name>REG_STATUS</name>
+        <initializer>0xF3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="25" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" prot="public" static="no">
+        <name>REG_CTRL_MEAS</name>
+        <initializer>0xF4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="26" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="26" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a679325263fb326462f7410d3292171be" prot="public" static="no">
+        <name>REG_CONFIG</name>
+        <initializer>0xF5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="27" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="27" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" compoundref="hdc1080__driver_8c" startline="72" endline="119">hdc1080_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1aa9a9ac08251af88d8be2fc413a314758" prot="public" static="no">
+        <name>REG_DATA_START</name>
+        <initializer>0xF7   /* 0xF7..0xFC : pression + temp + humidité */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="28" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="28" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a03cdc303f5ebe098120b2bf5f8c64c30" prot="public" static="no">
+        <name>REG_CALIB_00</name>
+        <initializer>0x88   /* 0x88..0x9F : trim T + P */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="29" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="29" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a05dee12d2078d827dffeb7ca69ec94db" prot="public" static="no">
+        <name>REG_CALIB_H1</name>
+        <initializer>0xA1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="30" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="30" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a2005256d905b8f41c0e09a6d4deda357" prot="public" static="no">
+        <name>REG_CALIB_H2</name>
+        <initializer>0xE1   /* 0xE1..0xE7 : trim H */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="31" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="31" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1aa9471d8f9c99880c3b85360017908e6b" prot="public" static="no">
+        <name>BME280_CHIP_ID</name>
+        <initializer>0x60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="33" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="33" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1ac8c61bd2fdc391886d8da5c2de78292a" prot="public" static="no">
+        <name>I2C_TIMEOUT_MS</name>
+        <initializer>20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="34" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="bme280__driver_8c_1a424850e29936186a531e726ec1ce9c00" prot="public" static="no">
+        <name>MEAS_DELAY_MS</name>
+        <initializer>10     /* Attente conversion (worst-case ~9.4 ms) */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="35" column="9" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="35" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="bme280__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;bme280&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="19" column="19" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" prot="public" static="yes" mutable="no">
+        <type>i2c_master_dev_handle_t</type>
+        <definition>i2c_master_dev_handle_t s_dev</definition>
+        <argsstring></argsstring>
+        <name>s_dev</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="46" column="32" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="46" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" compoundref="hdc1080__driver_8c" startline="72" endline="119">hdc1080_init</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1ac89c7243caa6524ab2c35eb7133483ff" compoundref="hdc1080__driver_8c" startline="124" endline="149">hdc1080_read</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" compoundref="hdc1080__driver_8c" startline="54" endline="67">read_bytes</referencedby>
+        <referencedby refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</referencedby>
+        <referencedby refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" compoundref="bme280__driver_8c" startline="51" endline="55">write_reg</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1aec3bb76ffc0e6e65ff45ed34f55f3d8a" compoundref="hdc1080__driver_8c" startline="40" endline="49">write_register</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" prot="public" static="yes" mutable="no">
+        <type><ref refid="structbme280__calib__t" kindref="compound">bme280_calib_t</ref></type>
+        <definition>bme280_calib_t s_calib</definition>
+        <argsstring></argsstring>
+        <name>s_calib</name>
+        <initializer>= {0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="47" column="32" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="47" bodyend="47"/>
+        <referencedby refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" compoundref="bme280__driver_8c" startline="136" endline="151">compensate_humidity</referencedby>
+        <referencedby refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" compoundref="bme280__driver_8c" startline="118" endline="134">compensate_pressure</referencedby>
+        <referencedby refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" compoundref="bme280__driver_8c" startline="107" endline="116">compensate_temperature</referencedby>
+        <referencedby refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" prot="public" static="yes" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t s_t_fine</definition>
+        <argsstring></argsstring>
+        <name>s_t_fine</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="105" column="16" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="105" bodyend="-1"/>
+        <referencedby refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" compoundref="bme280__driver_8c" startline="136" endline="151">compensate_humidity</referencedby>
+        <referencedby refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" compoundref="bme280__driver_8c" startline="118" endline="134">compensate_pressure</referencedby>
+        <referencedby refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" compoundref="bme280__driver_8c" startline="107" endline="116">compensate_temperature</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t write_reg</definition>
+        <argsstring>(uint8_t reg, uint8_t val)</argsstring>
+        <name>write_reg</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>reg</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="51" column="18" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="51" bodyend="55"/>
+        <references refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" compoundref="hw__diag_8c" startline="32">I2C_TIMEOUT_MS</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t read_regs</definition>
+        <argsstring>(uint8_t reg, uint8_t *out, size_t len)</argsstring>
+        <name>read_regs</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>reg</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>out</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="57" column="18" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="57" bodyend="64"/>
+        <references refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" compoundref="hw__diag_8c" startline="32">I2C_TIMEOUT_MS</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+        <referencedby refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t read_calibration</definition>
+        <argsstring>(void)</argsstring>
+        <name>read_calibration</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="68" column="18" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="68" bodyend="101"/>
+        <references refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</references>
+        <references refid="bme280__driver_8c_1a03cdc303f5ebe098120b2bf5f8c64c30" compoundref="bme280__driver_8c" startline="29">REG_CALIB_00</references>
+        <references refid="bme280__driver_8c_1a05dee12d2078d827dffeb7ca69ec94db" compoundref="bme280__driver_8c" startline="30">REG_CALIB_H1</references>
+        <references refid="bme280__driver_8c_1a2005256d905b8f41c0e09a6d4deda357" compoundref="bme280__driver_8c" startline="31">REG_CALIB_H2</references>
+        <references refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" compoundref="bme280__driver_8c" startline="47" endline="47">s_calib</references>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float compensate_temperature</definition>
+        <argsstring>(int32_t raw_t)</argsstring>
+        <name>compensate_temperature</name>
+        <param>
+          <type>int32_t</type>
+          <declname>raw_t</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="107" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="107" bodyend="116"/>
+        <references refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" compoundref="bme280__driver_8c" startline="47" endline="47">s_calib</references>
+        <references refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" compoundref="bme280__driver_8c" startline="105">s_t_fine</references>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float compensate_pressure</definition>
+        <argsstring>(int32_t raw_p)</argsstring>
+        <name>compensate_pressure</name>
+        <param>
+          <type>int32_t</type>
+          <declname>raw_p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="118" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="118" bodyend="134"/>
+        <references refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" compoundref="bme280__driver_8c" startline="47" endline="47">s_calib</references>
+        <references refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" compoundref="bme280__driver_8c" startline="105">s_t_fine</references>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float compensate_humidity</definition>
+        <argsstring>(int32_t raw_h)</argsstring>
+        <name>compensate_humidity</name>
+        <param>
+          <type>int32_t</type>
+          <declname>raw_h</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="136" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="136" bodyend="151"/>
+        <references refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" compoundref="bme280__driver_8c" startline="47" endline="47">s_calib</references>
+        <references refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" compoundref="bme280__driver_8c" startline="105">s_t_fine</references>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t bme280_init</definition>
+        <argsstring>(i2c_master_bus_handle_t bus, uint8_t i2c_addr)</argsstring>
+        <name>bme280_init</name>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>bus</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>i2c_addr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="155" column="11" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="155" bodyend="199"/>
+        <references refid="bme280__driver_8c_1aa9471d8f9c99880c3b85360017908e6b" compoundref="bme280__driver_8c" startline="33">BME280_CHIP_ID</references>
+        <references refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" compoundref="bme280__driver_8c" startline="68" endline="101">read_calibration</references>
+        <references refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</references>
+        <references refid="bme280__driver_8c_1abead2f4994c6f3b4a3b9ca286d00f13b" compoundref="bme280__driver_8c" startline="22">REG_CHIP_ID</references>
+        <references refid="bme280__driver_8c_1a679325263fb326462f7410d3292171be" compoundref="bme280__driver_8c" startline="27">REG_CONFIG</references>
+        <references refid="bme280__driver_8c_1a35a180cecaeed7cbc9d43967175c27af" compoundref="bme280__driver_8c" startline="24">REG_CTRL_HUM</references>
+        <references refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" compoundref="bme280__driver_8c" startline="26">REG_CTRL_MEAS</references>
+        <references refid="bme280__driver_8c_1ad6a95c96a883b809b1bf9c16446d0735" compoundref="bme280__driver_8c" startline="23">REG_RESET</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" compoundref="bme280__driver_8c" startline="51" endline="55">write_reg</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t bme280_read</definition>
+        <argsstring>(float *temp_c, float *pressure_hpa, float *humidity_pct)</argsstring>
+        <name>bme280_read</name>
+        <param>
+          <type>float *</type>
+          <declname>temp_c</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>pressure_hpa</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>humidity_pct</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="201" column="11" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="201" bodyend="236"/>
+        <references refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" compoundref="bme280__driver_8c" startline="136" endline="151">compensate_humidity</references>
+        <references refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" compoundref="bme280__driver_8c" startline="118" endline="134">compensate_pressure</references>
+        <references refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" compoundref="bme280__driver_8c" startline="107" endline="116">compensate_temperature</references>
+        <references refid="bme280__driver_8c_1a424850e29936186a531e726ec1ce9c00" compoundref="bme280__driver_8c" startline="35">MEAS_DELAY_MS</references>
+        <references refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</references>
+        <references refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" compoundref="bme280__driver_8c" startline="26">REG_CTRL_MEAS</references>
+        <references refid="bme280__driver_8c_1aa9a9ac08251af88d8be2fc413a314758" compoundref="bme280__driver_8c" startline="28">REG_DATA_START</references>
+        <references refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" compoundref="bme280__driver_8c" startline="46">s_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" compoundref="bme280__driver_8c" startline="51" endline="55">write_reg</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Driver Bosch BME280 — Température, Pression, Humidité. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implémentation de l&apos;algorithme de compensation entier 32/64 bits issu du datasheet Bosch BME280 (v1.24, Appendix A).</para>
+<para>Mode forced (single-shot) : déclenche une mesure puis passe en sleep. Oversampling T×2, P×4, H×4 — filtre IIR × 4. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>bme280_driver.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Driver<sp/>Bosch<sp/>BME280<sp/>—<sp/>Température,<sp/>Pression,<sp/>Humidité.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Implémentation<sp/>de<sp/>l&apos;algorithme<sp/>de<sp/>compensation<sp/>entier<sp/>32/64<sp/>bits</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>issu<sp/>du<sp/>datasheet<sp/>Bosch<sp/>BME280<sp/>(v1.24,<sp/>Appendix<sp/>A).</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Mode<sp/>forced<sp/>(single-shot)<sp/>:<sp/>déclenche<sp/>une<sp/>mesure<sp/>puis<sp/>passe<sp/>en<sp/>sleep.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Oversampling<sp/>T×2,<sp/>P×4,<sp/>H×4<sp/>—<sp/>filtre<sp/>IIR<sp/>×<sp/>4.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bme280__driver_8h" kindref="compound">bme280_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="bme280__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;bme280&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>───<sp/>Registres<sp/>─────────────────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="bme280__driver_8c_1abead2f4994c6f3b4a3b9ca286d00f13b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CHIP_ID<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xD0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="bme280__driver_8c_1ad6a95c96a883b809b1bf9c16446d0735" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_RESET<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xE0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="bme280__driver_8c_1a35a180cecaeed7cbc9d43967175c27af" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CTRL_HUM<sp/><sp/><sp/><sp/><sp/><sp/>0xF2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="bme280__driver_8c_1a2306dddc82e5e58f23bd44c1086a5b6f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_STATUS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xF3</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CTRL_MEAS<sp/><sp/><sp/><sp/><sp/>0xF4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="bme280__driver_8c_1a679325263fb326462f7410d3292171be" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CONFIG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xF5</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="bme280__driver_8c_1aa9a9ac08251af88d8be2fc413a314758" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_DATA_START<sp/><sp/><sp/><sp/>0xF7<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>0xF7..0xFC<sp/>:<sp/>pression<sp/>+<sp/>temp<sp/>+<sp/>humidité<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="bme280__driver_8c_1a03cdc303f5ebe098120b2bf5f8c64c30" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CALIB_00<sp/><sp/><sp/><sp/><sp/><sp/>0x88<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>0x88..0x9F<sp/>:<sp/>trim<sp/>T<sp/>+<sp/>P<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="bme280__driver_8c_1a05dee12d2078d827dffeb7ca69ec94db" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CALIB_H1<sp/><sp/><sp/><sp/><sp/><sp/>0xA1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="bme280__driver_8c_1a2005256d905b8f41c0e09a6d4deda357" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>REG_CALIB_H2<sp/><sp/><sp/><sp/><sp/><sp/>0xE1<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>0xE1..0xE7<sp/>:<sp/>trim<sp/>H<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="bme280__driver_8c_1aa9471d8f9c99880c3b85360017908e6b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>BME280_CHIP_ID<sp/><sp/><sp/><sp/>0x60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="bme280__driver_8c_1ac8c61bd2fdc391886d8da5c2de78292a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_TIMEOUT_MS<sp/><sp/><sp/><sp/>20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="bme280__driver_8c_1a424850e29936186a531e726ec1ce9c00" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MEAS_DELAY_MS<sp/><sp/><sp/><sp/><sp/>10<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Attente<sp/>conversion<sp/>(worst-case<sp/>~9.4<sp/>ms)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>───<sp/>Coefficients<sp/>de<sp/>calibration<sp/>───────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="structbme280__calib__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="structbme280__calib__t_1a62dfde40d14ceeed381c5f2e375f9d8c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structbme280__calib__t_1a62dfde40d14ceeed381c5f2e375f9d8c" kindref="member">T1</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1aaddf8fb904f0da0f690dc52b9a837ee3" kindref="member">T2</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1a07937a05f7a32c12d734a5d91a608422" kindref="member">T3</ref>;</highlight></codeline>
+<codeline lineno="40" refid="structbme280__calib__t_1a0a7fa21fd2e1592cdf1969b6c47de668" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structbme280__calib__t_1a0a7fa21fd2e1592cdf1969b6c47de668" kindref="member">P1</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1a943a22c01591539274e24075cefe90f8" kindref="member">P2</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1a9ce2ae55329dcc4539228b1ddc07d05b" kindref="member">P3</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1a24d173f6266bbc7c794eddbac46e261a" kindref="member">P4</ref>;</highlight></codeline>
+<codeline lineno="41" refid="structbme280__calib__t_1ae8b9627a8ea6cf96eb7013b1f8a45f94" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><sp/><ref refid="structbme280__calib__t_1ae8b9627a8ea6cf96eb7013b1f8a45f94" kindref="member">P5</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1ad13c4c343380150b4fd6febc117004fe" kindref="member">P6</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1afeb172524de13c0ae965eadbef5c1280" kindref="member">P7</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1af18d6e4e995bfaab9b0eb450890e8c0f" kindref="member">P8</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1a1484085b19d4d6d955460df879b53c0d" kindref="member">P9</ref>;</highlight></codeline>
+<codeline lineno="42" refid="structbme280__calib__t_1ad57cb71e99083dc1fe99b6a76fde464b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structbme280__calib__t_1ad57cb71e99083dc1fe99b6a76fde464b" kindref="member">H1</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1a3cb1ea2a9ac7c706ab8c12f84b392c97" kindref="member">H2</ref>;<sp/>uint8_t<sp/><ref refid="structbme280__calib__t_1a7637bab3c27446ffc5d09d0f97911048" kindref="member">H3</ref>;</highlight></codeline>
+<codeline lineno="43" refid="structbme280__calib__t_1a56d94c17f395e2e3d89f84d0ca35e62e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int16_t<sp/><sp/><ref refid="structbme280__calib__t_1a56d94c17f395e2e3d89f84d0ca35e62e" kindref="member">H4</ref>;<sp/>int16_t<sp/><ref refid="structbme280__calib__t_1aac598aa7fe7b10cd422ec8761022eacb" kindref="member">H5</ref>;<sp/>int8_t<sp/><ref refid="structbme280__calib__t_1a07e689fa0aa6b2062c784110c450e2ee" kindref="member">H6</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}<sp/><ref refid="structbme280__calib__t" kindref="compound">bme280_calib_t</ref>;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>i2c_master_dev_handle_t<sp/><ref refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kindref="member">s_dev</ref><sp/><sp/><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="47" refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structbme280__calib__t" kindref="compound">bme280_calib_t</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref><sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>───<sp/>Helpers<sp/>I2C<sp/>────────────────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kindref="member">write_reg</ref>(uint8_t<sp/>reg,<sp/>uint8_t<sp/>val)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>buf[2]<sp/>=<sp/>{reg,<sp/>val};</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i2c_master_transmit(<ref refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kindref="member">s_dev</ref>,<sp/>buf,<sp/>2,<sp/>pdMS_TO_TICKS(<ref refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kindref="member">I2C_TIMEOUT_MS</ref>));</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(uint8_t<sp/>reg,<sp/>uint8_t<sp/>*out,<sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>len)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>i2c_master_transmit(<ref refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kindref="member">s_dev</ref>,<sp/>&amp;reg,<sp/>1,</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pdMS_TO_TICKS(<ref refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kindref="member">I2C_TIMEOUT_MS</ref>));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i2c_master_receive(<ref refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kindref="member">s_dev</ref>,<sp/>out,<sp/>len,</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pdMS_TO_TICKS(<ref refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kindref="member">I2C_TIMEOUT_MS</ref>));</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>───<sp/>Lecture<sp/>calibration<sp/>────────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" kindref="member">read_calibration</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>c[26]<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(<ref refid="bme280__driver_8c_1a03cdc303f5ebe098120b2bf5f8c64c30" kindref="member">REG_CALIB_00</ref>,<sp/>c,<sp/>24);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T1<sp/>=<sp/>(uint16_t)(c[1]<sp/><sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[0]);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T2<sp/>=<sp/>(int16_t)<sp/>(c[3]<sp/><sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[2]);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T3<sp/>=<sp/>(int16_t)<sp/>(c[5]<sp/><sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[4]);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P1<sp/>=<sp/>(uint16_t)(c[7]<sp/><sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[6]);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P2<sp/>=<sp/>(int16_t)<sp/>(c[9]<sp/><sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[8]);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P3<sp/>=<sp/>(int16_t)<sp/>(c[11]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[10]);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P4<sp/>=<sp/>(int16_t)<sp/>(c[13]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[12]);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P5<sp/>=<sp/>(int16_t)<sp/>(c[15]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[14]);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P6<sp/>=<sp/>(int16_t)<sp/>(c[17]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[16]);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P7<sp/>=<sp/>(int16_t)<sp/>(c[19]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[18]);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P8<sp/>=<sp/>(int16_t)<sp/>(c[21]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[20]);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P9<sp/>=<sp/>(int16_t)<sp/>(c[23]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>c[22]);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(<ref refid="bme280__driver_8c_1a05dee12d2078d827dffeb7ca69ec94db" kindref="member">REG_CALIB_H1</ref>,<sp/>c,<sp/>1);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H1<sp/>=<sp/>c[0];</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>h[7]<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(<ref refid="bme280__driver_8c_1a2005256d905b8f41c0e09a6d4deda357" kindref="member">REG_CALIB_H2</ref>,<sp/>h,<sp/>7);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H2<sp/>=<sp/>(int16_t)<sp/>(h[1]<sp/>&lt;&lt;<sp/>8<sp/>|<sp/>h[0]);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H3<sp/>=<sp/>h[2];</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H4<sp/>=<sp/>(int16_t)<sp/>((h[3]<sp/>&lt;&lt;<sp/>4)<sp/>|<sp/>(h[4]<sp/>&amp;<sp/>0x0F));</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H5<sp/>=<sp/>(int16_t)<sp/>((h[5]<sp/>&lt;&lt;<sp/>4)<sp/>|<sp/>(h[4]<sp/>&gt;&gt;<sp/>4));</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H6<sp/>=<sp/>(int8_t)<sp/><sp/>h[6];</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>───<sp/>Algorithme<sp/>de<sp/>compensation<sp/>Bosch<sp/>(datasheet<sp/>v1.24<sp/>Appendix<sp/>A)<sp/>───────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>int32_t<sp/><ref refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" kindref="member">s_t_fine</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" kindref="member">compensate_temperature</ref>(int32_t<sp/>raw_t)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>var1<sp/>=<sp/>((((raw_t<sp/>&gt;&gt;<sp/>3)<sp/>-<sp/>((int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T1<sp/>&lt;&lt;<sp/>1)))<sp/>*</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T2)<sp/>&gt;&gt;<sp/>11;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>var2<sp/>=<sp/>(((((raw_t<sp/>&gt;&gt;<sp/>4)<sp/>-<sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T1)<sp/>*</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((raw_t<sp/>&gt;&gt;<sp/>4)<sp/>-<sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T1))<sp/>&gt;&gt;<sp/>12)<sp/>*</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.T3)<sp/>&gt;&gt;<sp/>14;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" kindref="member">s_t_fine</ref><sp/>=<sp/>var1<sp/>+<sp/>var2;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)((<ref refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" kindref="member">s_t_fine</ref><sp/>*<sp/>5<sp/>+<sp/>128)<sp/>&gt;&gt;<sp/>8)<sp/>/<sp/>100.0f;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" kindref="member">compensate_pressure</ref>(int32_t<sp/>raw_p)</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>var1<sp/>=<sp/>(int64_t)<ref refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" kindref="member">s_t_fine</ref><sp/>-<sp/>128000;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>var2<sp/>=<sp/>var1<sp/>*<sp/>var1<sp/>*<sp/>(int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P6;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>var2<sp/>+=<sp/>(var1<sp/>*<sp/>(int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P5)<sp/>&lt;&lt;<sp/>17;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>var2<sp/>+=<sp/>((int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P4)<sp/>&lt;&lt;<sp/>35;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>var1<sp/><sp/>=<sp/>((var1<sp/>*<sp/>var1<sp/>*<sp/>(int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P3)<sp/>&gt;&gt;<sp/>8)<sp/>+</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((var1<sp/>*<sp/>(int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P2)<sp/>&lt;&lt;<sp/>12);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>var1<sp/><sp/>=<sp/>(((int64_t)1<sp/>&lt;&lt;<sp/>47)<sp/>+<sp/>var1)<sp/>*<sp/>(int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P1<sp/>&gt;&gt;<sp/>33;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(var1<sp/>==<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0.0f;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>p<sp/>=<sp/>1048576<sp/>-<sp/>raw_p;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>p<sp/>=<sp/>(((p<sp/>&lt;&lt;<sp/>31)<sp/>-<sp/>var2)<sp/>*<sp/>3125)<sp/>/<sp/>var1;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>var1<sp/>=<sp/>((int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P9<sp/>*<sp/>(p<sp/>&gt;&gt;<sp/>13)<sp/>*<sp/>(p<sp/>&gt;&gt;<sp/>13))<sp/>&gt;&gt;<sp/>25;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>var2<sp/>=<sp/>((int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P8<sp/>*<sp/>p)<sp/>&gt;&gt;<sp/>19;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>p<sp/>=<sp/>((p<sp/>+<sp/>var1<sp/>+<sp/>var2)<sp/>&gt;&gt;<sp/>8)<sp/>+<sp/>((int64_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.P7<sp/>&lt;&lt;<sp/>4);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)p<sp/>/<sp/>25600.0f;<sp/><sp/></highlight><highlight class="comment">/*<sp/>hPa<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136" refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" kindref="member">compensate_humidity</ref>(int32_t<sp/>raw_h)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>v<sp/>=<sp/><ref refid="bme280__driver_8c_1a5fcb00fce7b72710da16705b1552e335" kindref="member">s_t_fine</ref><sp/>-<sp/>76800;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>v<sp/>=<sp/>(((((raw_h<sp/>&lt;&lt;<sp/>14)<sp/>-<sp/>((int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H4<sp/>&lt;&lt;<sp/>20)<sp/>-</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H5<sp/>*<sp/>v))<sp/>+<sp/>16384)<sp/>&gt;&gt;<sp/>15)<sp/>*</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((((((v<sp/>*<sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H6)<sp/>&gt;&gt;<sp/>10)<sp/>*</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((v<sp/>*<sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H3)<sp/>&gt;&gt;<sp/>11)<sp/>+<sp/>32768))<sp/>&gt;&gt;<sp/>10)<sp/>+</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2097152)<sp/>*<sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H2<sp/>+<sp/>8192)<sp/>&gt;&gt;<sp/>14));</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>v<sp/>-=<sp/>((((v<sp/>&gt;&gt;<sp/>15)<sp/>*<sp/>(v<sp/>&gt;&gt;<sp/>15))<sp/>&gt;&gt;<sp/>7)<sp/>*<sp/>(int32_t)<ref refid="bme280__driver_8c_1a51f7693fb01940b59594e83742761ca4" kindref="member">s_calib</ref>.H1)<sp/>&gt;&gt;<sp/>4;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v<sp/>&lt;<sp/>0)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>v<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(v<sp/>&gt;<sp/>419430400)<sp/>v<sp/>=<sp/>419430400;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>rh<sp/>=<sp/>(float)(v<sp/>&gt;&gt;<sp/>12)<sp/>/<sp/>1024.0f;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rh<sp/>&lt;<sp/>0.0f)<sp/><sp/><sp/>rh<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rh<sp/>&gt;<sp/>100.0f)<sp/>rh<sp/>=<sp/>100.0f;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rh;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>───<sp/>API<sp/>publique<sp/>───────────────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155" refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" kindref="member">bme280_init</ref>(i2c_master_bus_handle_t<sp/>bus,<sp/>uint8_t<sp/>i2c_addr)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>i2c_device_config_t<sp/>dev_cfg<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.dev_addr_length<sp/>=<sp/>I2C_ADDR_BIT_LEN_7,</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.device_address<sp/><sp/>=<sp/>i2c_addr,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.scl_speed_hz<sp/><sp/><sp/><sp/>=<sp/>400000,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>i2c_master_bus_add_device(bus,<sp/>&amp;dev_cfg,<sp/>&amp;<ref refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kindref="member">s_dev</ref>);</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Ajout<sp/>device<sp/>I2C<sp/>0x%02X<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i2c_addr,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vérification<sp/>chip<sp/>ID<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>chip_id<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(<ref refid="bme280__driver_8c_1abead2f4994c6f3b4a3b9ca286d00f13b" kindref="member">REG_CHIP_ID</ref>,<sp/>&amp;chip_id,<sp/>1);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK<sp/>||<sp/>chip_id<sp/>!=<sp/><ref refid="bme280__driver_8c_1aa9471d8f9c99880c3b85360017908e6b" kindref="member">BME280_CHIP_ID</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BME280<sp/>non<sp/>détecté<sp/>(chip_id=0x%02X)&quot;</highlight><highlight class="normal">,<sp/>chip_id);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_OK)<sp/>?<sp/>ESP_ERR_NOT_FOUND<sp/>:<sp/>ret;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>logiciel<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kindref="member">write_reg</ref>(<ref refid="bme280__driver_8c_1ad6a95c96a883b809b1bf9c16446d0735" kindref="member">REG_RESET</ref>,<sp/>0xB6);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(5));</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lecture<sp/>calibration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a7c57f6d05791a5304f415dcefc16ba45" kindref="member">read_calibration</ref>();</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Lecture<sp/>calibration<sp/>échouée&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Configuration<sp/>:</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>ctrl_hum<sp/><sp/>:<sp/>osrs_h<sp/>=<sp/>×4<sp/>(101b<sp/>=<sp/>5)</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>ctrl_meas<sp/>:<sp/>osrs_t<sp/>=<sp/>×2<sp/>(010b),<sp/>osrs_p<sp/>=<sp/>×4<sp/>(011b),<sp/>mode<sp/>=<sp/>sleep<sp/>(00b)</highlight></codeline>
+<codeline lineno="191"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>config<sp/><sp/><sp/><sp/>:<sp/>filtre<sp/>IIR<sp/>=<sp/>×4<sp/>(010b),<sp/>t_sb<sp/>=<sp/>0.5<sp/>ms<sp/>(000b)</highlight></codeline>
+<codeline lineno="192"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kindref="member">write_reg</ref>(<ref refid="bme280__driver_8c_1a35a180cecaeed7cbc9d43967175c27af" kindref="member">REG_CTRL_HUM</ref>,<sp/><sp/>0x05);<sp/><sp/></highlight><highlight class="comment">/*<sp/>osrs_h<sp/>×4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kindref="member">write_reg</ref>(<ref refid="bme280__driver_8c_1a679325263fb326462f7410d3292171be" kindref="member">REG_CONFIG</ref>,<sp/><sp/><sp/><sp/>0x10);<sp/><sp/></highlight><highlight class="comment">/*<sp/>filtre<sp/>×4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kindref="member">write_reg</ref>(<ref refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" kindref="member">REG_CTRL_MEAS</ref>,<sp/>0x54);<sp/><sp/></highlight><highlight class="comment">/*<sp/>osrs_t<sp/>×2,<sp/>osrs_p<sp/>×4,<sp/>sleep<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BME280<sp/>initialisé<sp/>(@0x%02X,<sp/>chip_id=0x60)&quot;</highlight><highlight class="normal">,<sp/>i2c_addr);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201" refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" kindref="member">bme280_read</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*temp_c,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*pressure_hpa,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>*humidity_pct)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="bme280__driver_8c_1a399562a20231c8c3f4e502f639e289ad" kindref="member">s_dev</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_INVALID_STATE;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Déclencher<sp/>une<sp/>mesure<sp/>forced<sp/>(mode<sp/>=<sp/>01b<sp/>→<sp/>écriture<sp/>de<sp/>ctrl_meas)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>ctrl;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(<ref refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" kindref="member">REG_CTRL_MEAS</ref>,<sp/>&amp;ctrl,<sp/>1);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>mode<sp/>=<sp/>forced<sp/>(01)<sp/>en<sp/>conservant<sp/>l&apos;oversampling<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>ctrl<sp/>=<sp/>(ctrl<sp/>&amp;<sp/>0xFC)<sp/>|<sp/>0x01;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" kindref="member">write_reg</ref>(<ref refid="bme280__driver_8c_1a7b290e09b5d35e8b91b6870fa9f678b3" kindref="member">REG_CTRL_MEAS</ref>,<sp/>ctrl);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Attente<sp/>fin<sp/>de<sp/>conversion<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(<ref refid="bme280__driver_8c_1a424850e29936186a531e726ec1ce9c00" kindref="member">MEAS_DELAY_MS</ref>));</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lecture<sp/>de<sp/>8<sp/>octets<sp/>:<sp/>P<sp/>(3),<sp/>T<sp/>(3),<sp/>H<sp/>(2)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>data[8]<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" kindref="member">read_regs</ref>(<ref refid="bme280__driver_8c_1aa9a9ac08251af88d8be2fc413a314758" kindref="member">REG_DATA_START</ref>,<sp/>data,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(data));</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Lecture<sp/>données<sp/>échouée<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>raw_p<sp/>=<sp/>((int32_t)data[0]<sp/>&lt;&lt;<sp/>12)<sp/>|<sp/>((int32_t)data[1]<sp/>&lt;&lt;<sp/>4)<sp/>|<sp/>(data[2]<sp/>&gt;&gt;<sp/>4);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>raw_t<sp/>=<sp/>((int32_t)data[3]<sp/>&lt;&lt;<sp/>12)<sp/>|<sp/>((int32_t)data[4]<sp/>&lt;&lt;<sp/>4)<sp/>|<sp/>(data[5]<sp/>&gt;&gt;<sp/>4);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>int32_t<sp/>raw_h<sp/>=<sp/>((int32_t)data[6]<sp/>&lt;&lt;<sp/>8)<sp/><sp/>|<sp/>data[7];</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Compensation<sp/>(ordre<sp/>obligatoire<sp/>:<sp/>T<sp/>en<sp/>premier<sp/>pour<sp/>s_t_fine)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>*temp_c<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="bme280__driver_8c_1a1e19f2f464d29d4636de9f80611ea19d" kindref="member">compensate_temperature</ref>(raw_t);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>*pressure_hpa<sp/>=<sp/><ref refid="bme280__driver_8c_1a126e932030b8c2df71f1c9cd3aecb04b" kindref="member">compensate_pressure</ref>(raw_p);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>*humidity_pct<sp/>=<sp/><ref refid="bme280__driver_8c_1aa8f85514b39b120751b2ba443a19c4cc" kindref="member">compensate_humidity</ref>(raw_h);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="236"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/bme280_driver.c"/>
+  </compounddef>
+</doxygen>

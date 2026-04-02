@@ -1,0 +1,5 @@
+<map id="vl53l8cx_get_integration_time_ms" name="vl53l8cx_get_integration_time_ms">
+<area shape="rect" id="Node000001" title="This function gets the current integration time in ms." alt="" coords="179,5,340,48"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="5,5,131,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,29,131,29,131,24,164,24"/>
+</map>

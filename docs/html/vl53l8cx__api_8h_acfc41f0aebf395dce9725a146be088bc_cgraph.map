@@ -1,0 +1,14 @@
+<map id="vl53l8cx_is_alive" name="vl53l8cx_is_alive">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,126,57"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#a501a5073457a1982c2406543df0d073e" title="Lit un octet depuis un registre 16 bits du VL53L8CX." alt="" coords="174,5,309,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,33,158,28,159,33,126,38"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#a7710197de0c7e075a4064f18baa56355" title="Écrit un octet dans un registre 16 bits du VL53L8CX." alt="" coords="174,56,308,83"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="126,50,159,55,159,60,126,55"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="357,5,493,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="310,16,341,16,341,21,310,21"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="541,31,609,57"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="494,28,526,33,525,38,493,33"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="358,56,493,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="309,67,342,67,342,72,309,72"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="493,55,525,50,526,55,494,60"/>
+</map>

@@ -1,0 +1,534 @@
+\doxysection{components/sensor\+\_\+acq/lidar\+\_\+driver.c File Reference}
+\hypertarget{lidar__driver_8c}{}\label{lidar__driver_8c}\index{components/sensor\_acq/lidar\_driver.c@{components/sensor\_acq/lidar\_driver.c}}
+
+
+Acquisition LIDAR VL53\+L8\+CX — fusion 8×32 sur double bus I2C.  
+
+
+{\ttfamily \#include "{}lidar\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}radar\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}vl53l8cx\+\_\+platform.\+h"{}}\newline
+{\ttfamily \#include "{}hdc1080\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}bme280\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}mic\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}lexacare\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}pins\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+task\+\_\+wdt.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for lidar\+\_\+driver.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlidar__dev__t}{lidar\+\_\+dev\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structlidar__task__ctx__t}{lidar\+\_\+task\+\_\+ctx\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_aa70e8d31075c59d1f4a0e5c9a8d3e9f8}{ENVIRO\+\_\+\+READ\+\_\+\+PERIOD\+\_\+\+FRAMES}}~15
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_a5528e12e4948345d88e124c165b8858d}{LEXA\+\_\+\+LIDAR\+\_\+\+STUB}}~1
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_a5486258f1f34d3baeda92a74b63c27c3}{TASK\+\_\+\+STACK\+\_\+\+SIZE}}~(8192)
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\+\_\+\+PRIORITY}}~(10)
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\+\_\+\+CORE}}~(1)
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_a8f177e3d19b18fe361a5a069c7ba664a}{TASK\+\_\+\+PERIOD\+\_\+\+MS}}~(200)
+\item 
+\#define \mbox{\hyperlink{lidar__driver_8c_adbaae2a1e82477cc698d2193c7f07f7f}{LIDAR\+\_\+\+FREQ\+\_\+\+HZ}}~(5)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static bool \mbox{\hyperlink{lidar__driver_8c_a94523a4341cf33f408e5312a42d1123c}{lidar\+\_\+init\+\_\+sensor}} (\mbox{\hyperlink{structlidar__dev__t}{lidar\+\_\+dev\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, spi\+\_\+device\+\_\+handle\+\_\+t spi\+\_\+dev, int idx)
+\item 
+static void \mbox{\hyperlink{lidar__driver_8c_aac43ad6c043309d059d7a0dd3e09a7ba}{lidar\+\_\+read\+\_\+sensor}} (\mbox{\hyperlink{structlidar__dev__t}{lidar\+\_\+dev\+\_\+t}} \texorpdfstring{$\ast$}{*}dev, \mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}} \texorpdfstring{$\ast$}{*}matrix, int col\+\_\+offset)
+\item 
+static void \mbox{\hyperlink{lidar__driver_8c_a4111a5f42c63c264e7dbbe4ee8982826}{task\+\_\+sensor\+\_\+acq}} (void \texorpdfstring{$\ast$}{*}pv\+Param)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}{lidar\+\_\+driver\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{lidar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}lidar\+\_\+driver"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Acquisition LIDAR VL53\+L8\+CX — fusion 8×32 sur double bus I2C. 
+
+Architecture dual-\/bus (contrainte débit) \+: I2\+C\+\_\+\+NUM\+\_\+0 → capteurs 0 \& 1 (lus en parallèle avec bus 1) I2\+C\+\_\+\+NUM\+\_\+1 → capteurs 2, 3 \& 4
+
+Fusion \+: capteur N → colonnes \mbox{[}N\texorpdfstring{$\ast$}{*}8 .. N\texorpdfstring{$\ast$}{*}8+7\mbox{]} de \doxylink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}. Cadence \+: 15 Hz via v\+Task\+Delay\+Until (période 66 ms). TWDT \+: esp\+\_\+task\+\_\+wdt\+\_\+reset() à chaque itération.
+
+Dépendance ULD \+: Les appels vl53l8cx\+\_\+\texorpdfstring{$\ast$}{*}() nécessitent l\textquotesingle{}ULD VL53\+L8\+CX de ST. Voir instructions dans \doxylink{vl53l8cx__platform_8h}{vl53l8cx\+\_\+platform.\+h}. Sans l\textquotesingle{}ULD, compiler avec -\/DLIDAR\+\_\+\+STUB\+\_\+\+MODE pour utiliser des données simulées (développement sans matériel). 
+
+Definition in file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{lidar__driver_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{lidar__driver_8c_aa70e8d31075c59d1f4a0e5c9a8d3e9f8}\index{lidar\_driver.c@{lidar\_driver.c}!ENVIRO\_READ\_PERIOD\_FRAMES@{ENVIRO\_READ\_PERIOD\_FRAMES}}
+\index{ENVIRO\_READ\_PERIOD\_FRAMES@{ENVIRO\_READ\_PERIOD\_FRAMES}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{ENVIRO\_READ\_PERIOD\_FRAMES}{ENVIRO\_READ\_PERIOD\_FRAMES}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_aa70e8d31075c59d1f4a0e5c9a8d3e9f8} 
+\#define ENVIRO\+\_\+\+READ\+\_\+\+PERIOD\+\_\+\+FRAMES~15}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00040}{40}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{lidar__driver_8c_a5528e12e4948345d88e124c165b8858d}\index{lidar\_driver.c@{lidar\_driver.c}!LEXA\_LIDAR\_STUB@{LEXA\_LIDAR\_STUB}}
+\index{LEXA\_LIDAR\_STUB@{LEXA\_LIDAR\_STUB}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{LEXA\_LIDAR\_STUB}{LEXA\_LIDAR\_STUB}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a5528e12e4948345d88e124c165b8858d} 
+\#define LEXA\+\_\+\+LIDAR\+\_\+\+STUB~1}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00050}{50}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+\Hypertarget{lidar__driver_8c_adbaae2a1e82477cc698d2193c7f07f7f}\index{lidar\_driver.c@{lidar\_driver.c}!LIDAR\_FREQ\_HZ@{LIDAR\_FREQ\_HZ}}
+\index{LIDAR\_FREQ\_HZ@{LIDAR\_FREQ\_HZ}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_FREQ\_HZ}{LIDAR\_FREQ\_HZ}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_adbaae2a1e82477cc698d2193c7f07f7f} 
+\#define LIDAR\+\_\+\+FREQ\+\_\+\+HZ~(5)}
+
+Fréquence ULD à configurer (voir init) 
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00075}{75}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00111}{lidar\+\_\+init\+\_\+sensor()}}.
+
+\Hypertarget{lidar__driver_8c_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}\index{lidar\_driver.c@{lidar\_driver.c}!TASK\_CORE@{TASK\_CORE}}
+\index{TASK\_CORE@{TASK\_CORE}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_CORE}{TASK\_CORE}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a9acbd3c931eee1cac4b1f1e7cd6bb2f2} 
+\#define TASK\+\_\+\+CORE~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00073}{73}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+\Hypertarget{lidar__driver_8c_a8f177e3d19b18fe361a5a069c7ba664a}\index{lidar\_driver.c@{lidar\_driver.c}!TASK\_PERIOD\_MS@{TASK\_PERIOD\_MS}}
+\index{TASK\_PERIOD\_MS@{TASK\_PERIOD\_MS}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_PERIOD\_MS}{TASK\_PERIOD\_MS}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a8f177e3d19b18fe361a5a069c7ba664a} 
+\#define TASK\+\_\+\+PERIOD\+\_\+\+MS~(200)}
+
+5 Hz — précision maximale VL53\+L8\+CX 
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00074}{74}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{lidar__driver_8c_a82dd0a9ae27bdb2c3cdd33bb7804861c}\index{lidar\_driver.c@{lidar\_driver.c}!TASK\_PRIORITY@{TASK\_PRIORITY}}
+\index{TASK\_PRIORITY@{TASK\_PRIORITY}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_PRIORITY}{TASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a82dd0a9ae27bdb2c3cdd33bb7804861c} 
+\#define TASK\+\_\+\+PRIORITY~(10)}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00072}{72}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+\Hypertarget{lidar__driver_8c_a5486258f1f34d3baeda92a74b63c27c3}\index{lidar\_driver.c@{lidar\_driver.c}!TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}}
+\index{TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_STACK\_SIZE}{TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a5486258f1f34d3baeda92a74b63c27c3} 
+\#define TASK\+\_\+\+STACK\+\_\+\+SIZE~(8192)}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00071}{71}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{lidar__driver_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{lidar__driver_8c_a94523a4341cf33f408e5312a42d1123c}\index{lidar\_driver.c@{lidar\_driver.c}!lidar\_init\_sensor@{lidar\_init\_sensor}}
+\index{lidar\_init\_sensor@{lidar\_init\_sensor}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{lidar\_init\_sensor()}{lidar\_init\_sensor()}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a94523a4341cf33f408e5312a42d1123c} 
+bool lidar\+\_\+init\+\_\+sensor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlidar__dev__t}{lidar\+\_\+dev\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{spi\+\_\+device\+\_\+handle\+\_\+t}]{spi\+\_\+dev}{, }\item[{int}]{idx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00111}{111}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ dev-\/>\mbox{\hyperlink{structlidar__dev__t_a00bae151a19e111bc9c83f1cbe012384}{platform}}.\mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{spi\_dev}}\ =\ spi\_dev;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__platform_8h_a5687017b3245ded0e88563178c6613a7}{VL53L8CX\_PlatformInit}}(\&dev-\/>\mbox{\hyperlink{structlidar__dev__t_a00bae151a19e111bc9c83f1cbe012384}{platform}})\ !=\ 0)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ échec\ PlatformInit\ SPI"{}},\ idx);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#if\ !LEXA\_LIDAR\_STUB}}
+\DoxyCodeLine{00123\ \ \ \ \ memset(\&dev-\/>uld,\ 0,\ \textcolor{keyword}{sizeof}(dev-\/>uld));}
+\DoxyCodeLine{00124\ \ \ \ \ dev-\/>uld.\mbox{\hyperlink{structlidar__dev__t_a00bae151a19e111bc9c83f1cbe012384}{platform}}\ =\ dev-\/>\mbox{\hyperlink{structlidar__dev__t_a00bae151a19e111bc9c83f1cbe012384}{platform}};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_a0cd6873ce839d64145cbfb01b7a94da0}{vl53l8cx\_init}}(\&dev-\/>uld)\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}})\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ vl53l8cx\_init\ échoué"{}},\ idx);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_a75ec684bc81068955b37aaac1dfcf4f8}{vl53l8cx\_set\_resolution}}(\&dev-\/>uld,\ \mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53L8CX\_RESOLUTION\_8X8}})\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}})\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ set\_resolution\ échoué"{}},\ idx);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00134\ \ \ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_aa498a79da766ce9f30d4518403bfbc96}{vl53l8cx\_set\_ranging\_frequency\_hz}}(\&dev-\/>uld,\ \mbox{\hyperlink{lidar__driver_8c_adbaae2a1e82477cc698d2193c7f07f7f}{LIDAR\_FREQ\_HZ}})\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}})\ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ set\_ranging\_frequency(\%d\ Hz)\ échoué"{}},\ idx,\ \mbox{\hyperlink{lidar__driver_8c_adbaae2a1e82477cc698d2193c7f07f7f}{LIDAR\_FREQ\_HZ}});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_a90f6b7f5130cf36350701771f991bdbf}{vl53l8cx\_set\_ranging\_mode}}(\&dev-\/>uld,\ \mbox{\hyperlink{vl53l8cx__api_8h_ac573fc4071cb53a67cb65a930588519d}{VL53L8CX\_RANGING\_MODE\_AUTONOMOUS}})\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}})\ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ set\_ranging\_mode\ échoué"{}},\ idx);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_aa7a285f38be7f88d2ab894c23e58c8df}{vl53l8cx\_start\_ranging}}(\&dev-\/>uld)\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}})\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ start\_ranging\ échoué"{}},\ idx);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00149\ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ SPI\ :\ ULD\ ST\ actif\ (8×8,\ \%d\ Hz)"{}},\ idx,\ \mbox{\hyperlink{lidar__driver_8c_adbaae2a1e82477cc698d2193c7f07f7f}{LIDAR\_FREQ\_HZ}});}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00153\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ SPI\ :\ STUB\ actif\ (LEXACARE\_LIDAR\_USE\_ST\_ULD=0)"{}},\ idx);}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ dev-\/>\mbox{\hyperlink{structlidar__dev__t_a9c0fcbaec282eea1abdd89f9600bddfb}{active}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00158\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lidar__driver_8c_source_l00082}{lidar\+\_\+dev\+\_\+t\+::active}}, \mbox{\hyperlink{lidar__driver_8c_source_l00075}{LIDAR\+\_\+\+FREQ\+\_\+\+HZ}}, \mbox{\hyperlink{lidar__driver_8c_source_l00081}{lidar\+\_\+dev\+\_\+t\+::platform}}, \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00040}{VL53\+L8\+CX\+\_\+\+Platform\+::spi\+\_\+dev}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00031}{VL53\+L8\+CX\+\_\+\+Platform\+Init()}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00063}{VL53\+L8\+CX\+\_\+\+RANGING\+\_\+\+MODE\+\_\+\+AUTONOMOUS}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00044}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01003}{vl53l8cx\+\_\+set\+\_\+ranging\+\_\+frequency\+\_\+hz()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01146}{vl53l8cx\+\_\+set\+\_\+ranging\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00925}{vl53l8cx\+\_\+set\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c_a94523a4341cf33f408e5312a42d1123c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c_a94523a4341cf33f408e5312a42d1123c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lidar__driver_8c_aac43ad6c043309d059d7a0dd3e09a7ba}\index{lidar\_driver.c@{lidar\_driver.c}!lidar\_read\_sensor@{lidar\_read\_sensor}}
+\index{lidar\_read\_sensor@{lidar\_read\_sensor}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{lidar\_read\_sensor()}{lidar\_read\_sensor()}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_aac43ad6c043309d059d7a0dd3e09a7ba} 
+void lidar\+\_\+read\+\_\+sensor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structlidar__dev__t}{lidar\+\_\+dev\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{dev}{, }\item[{\mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{matrix}{, }\item[{int}]{col\+\_\+offset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00170}{170}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{if}\ (!dev-\/>\mbox{\hyperlink{structlidar__dev__t_a9c0fcbaec282eea1abdd89f9600bddfb}{active}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#if\ !LEXA\_LIDAR\_STUB}}
+\DoxyCodeLine{00177\ \ \ \ \ uint8\_t\ ready\ =\ 0;}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_a8d192f0f3fded5de1767f54271d8f54a}{vl53l8cx\_check\_data\_ready}}(\&dev-\/>uld,\ \&ready)\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}}\ ||\ !ready)\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{vl53l8cx__api_8c_a522352966402d8c83cfc7b4eb15f8ef9}{vl53l8cx\_get\_ranging\_data}}(\&dev-\/>uld,\ \&dev-\/>results)\ !=\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}})\ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ zone\ =\ 0;\ zone\ <\ 64;\ zone++)\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ row\ =\ zone\ /\ 8;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ col\ =\ zone\ \%\ 8;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ULD\ ST\ :\ distance\_mm\ est\ un\ tableau\ 1D\ de\ int16\_t.}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Si\ NB\_TARGET\_PER\_ZONE\ >\ 1,\ on\ prend\ la\ cible\ 0\ (la\ plus\ proche).\ */}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ idx\ =\ zone\ *\ (int)\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53L8CX\_NB\_TARGET\_PER\_ZONE}};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ uint16\_t\ dist\ =\ (uint16\_t)(dev-\/>results.distance\_mm[idx]);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\ ==\ 0\ ||\ dist\ >\ 4000)\ dist\ =\ 0;}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ matrix-\/>\mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{data}}[row][col\_offset\ +\ col]\ =\ dist;}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{/*\ ──\ Mode\ STUB\ :\ scan\ 8×8\ réaliste\ pour\ validation\ visuelle\ ──────────}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ \ \ \ \ *\ Simule\ un\ arc\ 180°\ vu\ depuis\ un\ capteur\ plafond/mur\ :}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ \ \ \ \ *\ \ ·\ Fond\ (murs/sol)\ à\ 2500–4000\ mm\ selon\ l'angle\ et\ la\ hauteur}}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ *\ \ ·\ Distance\ plus\ courte\ aux\ rangées\ basses\ (sol\ plus\ proche)}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ *\ \ ·\ Variation\ angulaire\ cohérente\ sur\ 32\ colonnes}}
+\DoxyCodeLine{00203\ \textcolor{comment}{\ \ \ \ \ *\ \ ·\ Bruit\ de\ mesure\ réaliste\ ±30\ mm}}
+\DoxyCodeLine{00204\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ \ \ \ \ *\ Valeurs\ dans\ la\ plage\ exploitable\ par\ la\ heatmap\ inferno\ :}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ \ \ \ \ *\ \ \ 100\ mm\ (très\ proche\ /\ chute)\ →\ 4000\ mm\ (max\ portée)}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keyword}{static}\ int32\_t\ s\_stub\_seed\ =\ 0;}
+\DoxyCodeLine{00209\ \ \ \ \ s\_stub\_seed++;\ \ \textcolor{comment}{/*\ Compteur\ pour\ variation\ temporelle\ légère\ */}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ \mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\_ROWS}};\ row++)\ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ 8;\ col++)\ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Position\ angulaire\ dans\ l'arc\ 180°}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ col\_offset\ +\ col\ ∈\ [0..31]\ →\ angle\ ∈\ [0°..180°]\ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\_deg\ =\ (float)(col\_offset\ +\ col)\ *\ (180.0f\ /\ (\mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\_COLS}}\ -\/\ 1));}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ angle\_rad\ =\ angle\_deg\ *\ 3.14159f\ /\ 180.0f;}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Distance\ de\ fond\ :\ mur\ à\ \string~3500\ mm\ en\ face\ (90°),}}
+\DoxyCodeLine{00219\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ *\ murs\ latéraux\ plus\ proches\ (0°\ et\ 180°)\ ≈\ 2000\ mm\ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ bg\_mm\ =\ 2000.0f\ +\ 1500.0f\ *\ sinf(angle\_rad);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Facteur\ hauteur\ :\ rangées\ basses\ (7)\ =\ sol,\ plus\ proche\ \ \ \ \ \ */}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ height\_factor\ =\ 1.0f\ -\/\ (float)row\ /\ (\textcolor{keywordtype}{float})(\mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\_ROWS}}\ -\/\ 1)\ *\ 0.25f;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ bg\_mm\ *=\ height\_factor;}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Bruit\ de\ mesure\ réaliste\ ±25\ mm\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ int32\_t\ noise\ =\ ((s\_stub\_seed\ *\ 1103515245\ +\ 12345)\ \&\ 0x7FFF)\ \%\ 50\ -\/\ 25;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ s\_stub\_seed\ =\ s\_stub\_seed\ *\ 6364136223846793005LL\ +\ 1;}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ dist\ =\ (uint16\_t)(bg\_mm\ +\ (\textcolor{keywordtype}{float})noise);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\ <\ 100)\ \ dist\ =\ 100;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dist\ >\ 4000)\ dist\ =\ 4000;}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ matrix-\/>\mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{data}}[row][col\_offset\ +\ col]\ =\ dist;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ LEXA\_LIDAR\_STUB\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00238\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lidar__driver_8c_source_l00082}{lidar\+\_\+dev\+\_\+t\+::active}}, \mbox{\hyperlink{system__types_8h_source_l00081}{lidar\+\_\+matrix\+\_\+t\+::data}}, \mbox{\hyperlink{system__types_8h_source_l00045}{LIDAR\+\_\+\+COLS}}, \mbox{\hyperlink{system__types_8h_source_l00044}{LIDAR\+\_\+\+ROWS}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00713}{vl53l8cx\+\_\+check\+\_\+data\+\_\+ready()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, \mbox{\hyperlink{platform_8h_source_l00019}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c_aac43ad6c043309d059d7a0dd3e09a7ba_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c_aac43ad6c043309d059d7a0dd3e09a7ba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lidar__driver_8c_a4111a5f42c63c264e7dbbe4ee8982826}\index{lidar\_driver.c@{lidar\_driver.c}!task\_sensor\_acq@{task\_sensor\_acq}}
+\index{task\_sensor\_acq@{task\_sensor\_acq}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{task\_sensor\_acq()}{task\_sensor\_acq()}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a4111a5f42c63c264e7dbbe4ee8982826} 
+void task\+\_\+sensor\+\_\+acq (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Param}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00250}{250}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00251\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \mbox{\hyperlink{structlidar__task__ctx__t}{lidar\_task\_ctx\_t}}\ *ctx\ =\ (\mbox{\hyperlink{structlidar__task__ctx__t}{lidar\_task\_ctx\_t}}\ *)pvParam;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{comment}{/*\ Abonnement\ au\ Task\ Watchdog\ Timer\ (TWDT)\ */}}
+\DoxyCodeLine{00255\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_task\_wdt\_add(NULL));}
+\DoxyCodeLine{00256\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Sensor\_Acq\ démarrée\ sur\ Core\ \%d"{}},\ xPortGetCoreID());}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ \ \ \ \ *\ Initialisation\ capteurs\ (déplacée\ ici\ pour\ éviter\ de\ bloquer\ app\_main)}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00261\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Initialisation\ LIDARs\ (ULD)\ dans\ la\ tâche\ capteurs…"{}});}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a2b27d3fb82ba861eeed29180561f539b}{devs}}[i].\mbox{\hyperlink{structlidar__dev__t_a101bd1955863b975cc8b4c5f9331fe96}{sensor\_idx}}\ =\ i;}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[i])\ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a2b27d3fb82ba861eeed29180561f539b}{devs}}[i].\mbox{\hyperlink{structlidar__dev__t_a9c0fcbaec282eea1abdd89f9600bddfb}{active}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ absent\ (hw\_diag)\ —\ ignoré"{}},\ i);}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Nourrir\ le\ watchdog\ entre\ capteurs\ */}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(esp\_task\_wdt\_reset());}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(10));}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{lidar__driver_8c_a94523a4341cf33f408e5312a42d1123c}{lidar\_init\_sensor}}(\&ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a2b27d3fb82ba861eeed29180561f539b}{devs}}[i],\ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{lidar\_spi}}[i],\ i))\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ :\ initialisation\ SPI/ULD\ échouée"{}},\ i);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a2b27d3fb82ba861eeed29180561f539b}{devs}}[i].\mbox{\hyperlink{structlidar__dev__t_a9c0fcbaec282eea1abdd89f9600bddfb}{active}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{comment}{/*\ Radar\ :\ uniquement\ si\ connecté\ */}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_RADAR}}
+\DoxyCodeLine{00283\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\_driver\_init}}());}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00285\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ LD6002\ désactivé\ (LEXACARE\_ENABLE\_RADAR=0)"{}});}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ \ \ \ TickType\_t\ last\_wake\ \ =\ xTaskGetTickCount();}
+\DoxyCodeLine{00289\ \ \ \ \ uint32\_t\ \ \ frame\_idx\ \ =\ 0;}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Reset\ du\ watchdog\ avant\ toute\ opération\ bloquante\ */}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(esp\_task\_wdt\_reset());}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}}\ frame;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ memset(\&frame,\ 0,\ \textcolor{keyword}{sizeof}(frame));}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ frame.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}}.\mbox{\hyperlink{structlidar__matrix__t_ad8d425a567ee798b021a47ad1ea563f4}{timestamp\_us}}\ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Lecture\ des\ 4\ capteurs\ frontaux\ (fusion\ dans\ la\ matrice)\ */}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{lidar__driver_8c_aac43ad6c043309d059d7a0dd3e09a7ba}{lidar\_read\_sensor}}(\&ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a2b27d3fb82ba861eeed29180561f539b}{devs}}[i],\ \&frame.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}},\ i\ *\ 8);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ frame.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}}.\mbox{\hyperlink{structlidar__matrix__t_a4a2465a1f0aa3ac73e003754d9200fa6}{valid}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ frame.\mbox{\hyperlink{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1}{lidar\_valid}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Lecture\ du\ radar\ (non\ bloquant)\ —\ uniquement\ si\ connecté\ */}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_RADAR}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ frame.\mbox{\hyperlink{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}{radar\_valid}}\ =\ \mbox{\hyperlink{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c}{radar\_driver\_poll}}(\&frame.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}});}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ frame.\mbox{\hyperlink{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}{radar\_valid}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Envoi\ dans\ la\ queue\ AI\ (non\ bloquant)\ */}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueSend(ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978}{sensor\_to\_ai\_queue}},\ \&frame,\ 0)\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}sensor\_to\_ai\_queue\ pleine\ —\ trame\ abandonnée"{}});}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ Mise\ à\ jour\ du\ snapshot\ partagé\ (protégé\ par\ mutex)\ ───────\ */}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}}\ \&\&}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ xSemaphoreTake(ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}},\ pdMS\_TO\_TICKS(5))\ ==\ pdTRUE)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b}{latest\_sensor}}\ =\ frame;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_aeea7001274ed1c680448cf33aacf9650}{sensor\_valid}}\ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ xSemaphoreGive(ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}});}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ Lecture\ capteurs\ environnementaux\ (1\ Hz)\ ───────────────────\ */}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ frame\_idx++;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (frame\_idx\ >=\ \mbox{\hyperlink{lidar__driver_8c_aa70e8d31075c59d1f4a0e5c9a8d3e9f8}{ENVIRO\_READ\_PERIOD\_FRAMES}})\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ frame\_idx\ =\ 0;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structenviro__data__t}{enviro\_data\_t}}\ env\ =\ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .temp\_hdc\_c\ \ \ =\ NAN,\ .humidity\_hdc\ \ =\ NAN,}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .temp\_bme\_c\ \ \ =\ NAN,\ .pressure\_hpa\ \ =\ NAN,}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .humidity\_bme\ =\ NAN,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ HDC1080\ */}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\_hdc\ =\ 0.0f,\ h\_hdc\ =\ 0.0f;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{hdc1080__driver_8c_ac89c7243caa6524ab2c35eb7133483ff}{hdc1080\_read}}(\&t\_hdc,\ \&h\_hdc)\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ env.\mbox{\hyperlink{structenviro__data__t_a2930919101311d9bb3b3110b59524b98}{temp\_hdc\_c}}\ \ =\ t\_hdc;}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ env.\mbox{\hyperlink{structenviro__data__t_a795c6b7429a9d839dd0ed99340b3644b}{humidity\_hdc}}\ =\ h\_hdc;}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ BME280\ */}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ t\_bme\ =\ 0.0f,\ p\_bme\ =\ 0.0f,\ h\_bme\ =\ 0.0f;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{bme280__driver_8c_a898595b4f31ff7da1e14b618a804a7b5}{bme280\_read}}(\&t\_bme,\ \&p\_bme,\ \&h\_bme)\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ env.\mbox{\hyperlink{structenviro__data__t_adbc78f374cc56209b5fafc0303e34826}{temp\_bme\_c}}\ \ \ =\ t\_bme;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ env.\mbox{\hyperlink{structenviro__data__t_ad14b0a736e92e1eb6a07b81ad47a5a82}{pressure\_hpa}}\ =\ p\_bme;}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ env.\mbox{\hyperlink{structenviro__data__t_a59a9a913353bfb712c4af5f119d85e38}{humidity\_bme}}\ =\ h\_bme;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Microphone\ —\ burst\ rapide\ */}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ uint32\_t\ rms\ =\ 0,\ peak\ =\ 0;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ mic\_ok\ =\ (\mbox{\hyperlink{mic__driver_8h_adde164c8adc09dab37730e97d3cdc818}{mic\_driver\_read}}(\&rms,\ \&peak)\ ==\ ESP\_OK);}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Mise\ à\ jour\ sys\_context\_t\ */}}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}}\ \&\&}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xSemaphoreTake(ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}},\ pdMS\_TO\_TICKS(10))\ ==\ pdTRUE)\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6}{enviro}}\ =\ env;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{mic}}.\mbox{\hyperlink{structmic__data__t_af20b6346ba9519a86edf8c94710821bf}{rms}}\ \ \ =\ rms;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{mic}}.\mbox{\hyperlink{structmic__data__t_a6e7a1f257ffdb5a5b88a940b3bff87fe}{peak}}\ \ =\ peak;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{mic}}.\mbox{\hyperlink{structmic__data__t_a2a34613342a61cc2016bc7a9778628f2}{valid}}\ =\ mic\_ok;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ xSemaphoreGive(ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}});}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Cadence\ 15\ Hz\ via\ vTaskDelayUntil\ (drift-\/free)\ */}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ vTaskDelayUntil(\&last\_wake,\ pdMS\_TO\_TICKS(\mbox{\hyperlink{lidar__driver_8c_a8f177e3d19b18fe361a5a069c7ba664a}{TASK\_PERIOD\_MS}}));}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lidar__driver_8c_source_l00082}{lidar\+\_\+dev\+\_\+t\+::active}}, \mbox{\hyperlink{bme280__driver_8c_source_l00201}{bme280\+\_\+read()}}, \mbox{\hyperlink{system__types_8h_source_l00237}{sys\+\_\+context\+\_\+t\+::data\+\_\+mutex}}, \mbox{\hyperlink{lidar__driver_8c_source_l00095}{lidar\+\_\+task\+\_\+ctx\+\_\+t\+::devs}}, \mbox{\hyperlink{system__types_8h_source_l00242}{sys\+\_\+context\+\_\+t\+::enviro}}, \mbox{\hyperlink{lidar__driver_8c_source_l00040}{ENVIRO\+\_\+\+READ\+\_\+\+PERIOD\+\_\+\+FRAMES}}, \mbox{\hyperlink{hdc1080__driver_8c_source_l00124}{hdc1080\+\_\+read()}}, \mbox{\hyperlink{system__types_8h_source_l00213}{enviro\+\_\+data\+\_\+t\+::humidity\+\_\+bme}}, \mbox{\hyperlink{system__types_8h_source_l00210}{enviro\+\_\+data\+\_\+t\+::humidity\+\_\+hdc}}, \mbox{\hyperlink{system__types_8h_source_l00238}{sys\+\_\+context\+\_\+t\+::latest\+\_\+sensor}}, \mbox{\hyperlink{system__types_8h_source_l00113}{sensor\+\_\+frame\+\_\+t\+::lidar}}, \mbox{\hyperlink{lidar__driver_8c_source_l00111}{lidar\+\_\+init\+\_\+sensor()}}, \mbox{\hyperlink{system__types_8h_source_l00046}{LIDAR\+\_\+\+NUM\+\_\+\+FRONT}}, \mbox{\hyperlink{system__types_8h_source_l00248}{sys\+\_\+context\+\_\+t\+::lidar\+\_\+ok}}, \mbox{\hyperlink{lidar__driver_8c_source_l00170}{lidar\+\_\+read\+\_\+sensor()}}, \mbox{\hyperlink{system__types_8h_source_l00234}{sys\+\_\+context\+\_\+t\+::lidar\+\_\+spi}}, \mbox{\hyperlink{system__types_8h_source_l00115}{sensor\+\_\+frame\+\_\+t\+::lidar\+\_\+valid}}, \mbox{\hyperlink{system__types_8h_source_l00245}{sys\+\_\+context\+\_\+t\+::mic}}, \mbox{\hyperlink{mic__driver_8c_source_l00097}{mic\+\_\+driver\+\_\+read()}}, \mbox{\hyperlink{system__types_8h_source_l00222}{mic\+\_\+data\+\_\+t\+::peak}}, \mbox{\hyperlink{system__types_8h_source_l00212}{enviro\+\_\+data\+\_\+t\+::pressure\+\_\+hpa}}, \mbox{\hyperlink{system__types_8h_source_l00114}{sensor\+\_\+frame\+\_\+t\+::radar}}, \mbox{\hyperlink{radar__driver_8c_source_l00169}{radar\+\_\+driver\+\_\+init()}}, \mbox{\hyperlink{radar__driver_8c_source_l00187}{radar\+\_\+driver\+\_\+poll()}}, \mbox{\hyperlink{system__types_8h_source_l00116}{sensor\+\_\+frame\+\_\+t\+::radar\+\_\+valid}}, \mbox{\hyperlink{system__types_8h_source_l00221}{mic\+\_\+data\+\_\+t\+::rms}}, \mbox{\hyperlink{lidar__driver_8c_source_l00083}{lidar\+\_\+dev\+\_\+t\+::sensor\+\_\+idx}}, \mbox{\hyperlink{system__types_8h_source_l00228}{sys\+\_\+context\+\_\+t\+::sensor\+\_\+to\+\_\+ai\+\_\+queue}}, \mbox{\hyperlink{system__types_8h_source_l00239}{sys\+\_\+context\+\_\+t\+::sensor\+\_\+valid}}, \mbox{\hyperlink{lidar__driver_8c_source_l00096}{lidar\+\_\+task\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{lidar__driver_8c_source_l00074}{TASK\+\_\+\+PERIOD\+\_\+\+MS}}, \mbox{\hyperlink{system__types_8h_source_l00211}{enviro\+\_\+data\+\_\+t\+::temp\+\_\+bme\+\_\+c}}, \mbox{\hyperlink{system__types_8h_source_l00209}{enviro\+\_\+data\+\_\+t\+::temp\+\_\+hdc\+\_\+c}}, \mbox{\hyperlink{system__types_8h_source_l00083}{lidar\+\_\+matrix\+\_\+t\+::timestamp\+\_\+us}}, \mbox{\hyperlink{system__types_8h_source_l00084}{lidar\+\_\+matrix\+\_\+t\+::valid}}, and \mbox{\hyperlink{system__types_8h_source_l00223}{mic\+\_\+data\+\_\+t\+::valid}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c_a4111a5f42c63c264e7dbbe4ee8982826_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8c_a4111a5f42c63c264e7dbbe4ee8982826_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{lidar__driver_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{lidar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}\index{lidar\_driver.c@{lidar\_driver.c}!TAG@{TAG}}
+\index{TAG@{TAG}!lidar\_driver.c@{lidar\_driver.c}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{lidar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}lidar\+\_\+driver"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00053}{53}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+

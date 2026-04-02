@@ -1,0 +1,628 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Topic Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Topics}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Data Structure Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Data Structures}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Topic Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Démarrage (main) }{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{7}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}app\_main()}{7}{subsubsection.4.1.2.1}%
+\contentsline {subsection}{\numberline {4.1.3}Variable Documentation}{10}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}s\_ctx}{10}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}TAG}{11}{subsubsection.4.1.3.2}%
+\contentsline {section}{\numberline {4.2}IA / Détection de chute }{11}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{11}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Function Documentation}{12}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}ai\_engine\_task\_start()}{12}{subsubsection.4.2.2.1}%
+\contentsline {section}{\numberline {4.3}Diagnostic Matériel }{13}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{13}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Enumeration Type Documentation}{13}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}hw\_diag\_result\_t}{13}{subsubsection.4.3.2.1}%
+\contentsline {subsection}{\numberline {4.3.3}Function Documentation}{14}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}hw\_diag\_init\_sensor\_bus()}{14}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}hw\_diag\_pca9555\_set\_power()}{14}{subsubsection.4.3.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3.3}hw\_diag\_run()}{15}{subsubsection.4.3.3.3}%
+\contentsline {section}{\numberline {4.4}Configuration \& Types }{17}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{17}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Macro Definition Documentation}{17}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}LEXACARE\_ENABLE\_BME280}{17}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}LEXACARE\_ENABLE\_CAT24M01W}{18}{subsubsection.4.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.3}LEXACARE\_ENABLE\_HDC1080}{18}{subsubsection.4.4.2.3}%
+\contentsline {subsubsection}{\numberline {4.4.2.4}LEXACARE\_ENABLE\_MESH}{18}{subsubsection.4.4.2.4}%
+\contentsline {subsubsection}{\numberline {4.4.2.5}LEXACARE\_ENABLE\_MIC}{18}{subsubsection.4.4.2.5}%
+\contentsline {subsubsection}{\numberline {4.4.2.6}LEXACARE\_ENABLE\_MLX90640}{18}{subsubsection.4.4.2.6}%
+\contentsline {subsubsection}{\numberline {4.4.2.7}LEXACARE\_ENABLE\_RADAR}{18}{subsubsection.4.4.2.7}%
+\contentsline {subsubsection}{\numberline {4.4.2.8}LEXACARE\_ENABLE\_VL53L0X}{19}{subsubsection.4.4.2.8}%
+\contentsline {subsubsection}{\numberline {4.4.2.9}LEXACARE\_LIDAR\_COUNT}{19}{subsubsection.4.4.2.9}%
+\contentsline {subsubsection}{\numberline {4.4.2.10}LEXACARE\_PWR\_FAN\_ENABLED}{19}{subsubsection.4.4.2.10}%
+\contentsline {subsubsection}{\numberline {4.4.2.11}LEXACARE\_PWR\_MIC\_ENABLED}{19}{subsubsection.4.4.2.11}%
+\contentsline {subsubsection}{\numberline {4.4.2.12}LEXACARE\_PWR\_MLX\_ENABLED}{19}{subsubsection.4.4.2.12}%
+\contentsline {subsubsection}{\numberline {4.4.2.13}LEXACARE\_PWR\_RADAR\_ENABLED}{19}{subsubsection.4.4.2.13}%
+\contentsline {subsubsection}{\numberline {4.4.2.14}LIDAR\_ROWS}{20}{subsubsection.4.4.2.14}%
+\contentsline {subsubsection}{\numberline {4.4.2.15}PIN\_I2C0\_SDA}{20}{subsubsection.4.4.2.15}%
+\contentsline {section}{\numberline {4.5}Réseau maillé \& OTA }{20}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Detailed Description}{21}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Function Documentation}{21}{subsection.4.5.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.1}mesh\_manager\_init()}{21}{subsubsection.4.5.2.1}%
+\contentsline {subsubsection}{\numberline {4.5.2.2}mesh\_task\_start()}{22}{subsubsection.4.5.2.2}%
+\contentsline {subsubsection}{\numberline {4.5.2.3}ota\_node\_init()}{23}{subsubsection.4.5.2.3}%
+\contentsline {section}{\numberline {4.6}Diagnostic PC (JSON) }{24}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}Detailed Description}{24}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}Function Documentation}{24}{subsection.4.6.2}%
+\contentsline {subsubsection}{\numberline {4.6.2.1}pc\_diag\_task\_start()}{24}{subsubsection.4.6.2.1}%
+\contentsline {section}{\numberline {4.7}Acquisition Capteurs }{25}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{26}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Macro Definition Documentation}{27}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}BME280\_I2C\_ADDR\_DEFAULT}{27}{subsubsection.4.7.2.1}%
+\contentsline {subsubsection}{\numberline {4.7.2.2}HDC1080\_I2C\_ADDR}{27}{subsubsection.4.7.2.2}%
+\contentsline {subsection}{\numberline {4.7.3}Function Documentation}{27}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}lidar\_driver\_start()}{27}{subsubsection.4.7.3.1}%
+\contentsline {subsubsection}{\numberline {4.7.3.2}mic\_driver\_init()}{29}{subsubsection.4.7.3.2}%
+\contentsline {subsubsection}{\numberline {4.7.3.3}radar\_driver\_init()}{30}{subsubsection.4.7.3.3}%
+\contentsline {section}{\numberline {4.8}Stockage \& Logs }{30}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Detailed Description}{31}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Macro Definition Documentation}{31}{subsection.4.8.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.1}LITTLEFS\_MOUNT\_POINT}{31}{subsubsection.4.8.2.1}%
+\contentsline {subsubsection}{\numberline {4.8.2.2}LITTLEFS\_PARTITION}{31}{subsubsection.4.8.2.2}%
+\contentsline {subsubsection}{\numberline {4.8.2.3}LOG\_FILE\_PATH}{31}{subsubsection.4.8.2.3}%
+\contentsline {subsubsection}{\numberline {4.8.2.4}LOG\_MAX\_SIZE\_BYTES}{31}{subsubsection.4.8.2.4}%
+\contentsline {subsubsection}{\numberline {4.8.2.5}LOG\_TRIM\_PERCENT}{32}{subsubsection.4.8.2.5}%
+\contentsline {subsubsection}{\numberline {4.8.2.6}PANIC\_FILE\_PATH}{32}{subsubsection.4.8.2.6}%
+\contentsline {subsubsection}{\numberline {4.8.2.7}STORAGE\_MOUNT\_POINT}{32}{subsubsection.4.8.2.7}%
+\contentsline {subsubsection}{\numberline {4.8.2.8}STORAGE\_PARTITION}{32}{subsubsection.4.8.2.8}%
+\contentsline {subsection}{\numberline {4.8.3}Function Documentation}{33}{subsection.4.8.3}%
+\contentsline {subsubsection}{\numberline {4.8.3.1}littlefs\_manager\_init()}{33}{subsubsection.4.8.3.1}%
+\contentsline {subsubsection}{\numberline {4.8.3.2}log\_write()}{33}{subsubsection.4.8.3.2}%
+\contentsline {subsubsection}{\numberline {4.8.3.3}panic\_handler\_check\_on\_boot()}{34}{subsubsection.4.8.3.3}%
+\contentsline {subsubsection}{\numberline {4.8.3.4}panic\_handler\_install()}{35}{subsubsection.4.8.3.4}%
+\contentsline {chapter}{\numberline {5}Data Structure Documentation}{37}{chapter.5}%
+\contentsline {section}{\numberline {5.1}ai\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}event\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{37}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{37}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Field Documentation}{37}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}confidence}{37}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}state}{37}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}timestamp\_us}{38}{subsubsection.5.1.2.3}%
+\contentsline {section}{\numberline {5.2}ai\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ctx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{38}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{38}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Field Documentation}{39}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}dist\_history}{39}{subsubsection.5.2.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2.2}history\_full}{39}{subsubsection.5.2.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.3}history\_head}{39}{subsubsection.5.2.2.3}%
+\contentsline {subsubsection}{\numberline {5.2.2.4}sys\_ctx}{39}{subsubsection.5.2.2.4}%
+\contentsline {section}{\numberline {5.3}bme280\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}calib\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{39}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{40}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}Field Documentation}{40}{subsection.5.3.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.1}H1}{40}{subsubsection.5.3.2.1}%
+\contentsline {subsubsection}{\numberline {5.3.2.2}H2}{40}{subsubsection.5.3.2.2}%
+\contentsline {subsubsection}{\numberline {5.3.2.3}H3}{40}{subsubsection.5.3.2.3}%
+\contentsline {subsubsection}{\numberline {5.3.2.4}H4}{40}{subsubsection.5.3.2.4}%
+\contentsline {subsubsection}{\numberline {5.3.2.5}H5}{40}{subsubsection.5.3.2.5}%
+\contentsline {subsubsection}{\numberline {5.3.2.6}H6}{40}{subsubsection.5.3.2.6}%
+\contentsline {subsubsection}{\numberline {5.3.2.7}P1}{41}{subsubsection.5.3.2.7}%
+\contentsline {subsubsection}{\numberline {5.3.2.8}P2}{41}{subsubsection.5.3.2.8}%
+\contentsline {subsubsection}{\numberline {5.3.2.9}P3}{41}{subsubsection.5.3.2.9}%
+\contentsline {subsubsection}{\numberline {5.3.2.10}P4}{41}{subsubsection.5.3.2.10}%
+\contentsline {subsubsection}{\numberline {5.3.2.11}P5}{41}{subsubsection.5.3.2.11}%
+\contentsline {subsubsection}{\numberline {5.3.2.12}P6}{41}{subsubsection.5.3.2.12}%
+\contentsline {subsubsection}{\numberline {5.3.2.13}P7}{41}{subsubsection.5.3.2.13}%
+\contentsline {subsubsection}{\numberline {5.3.2.14}P8}{41}{subsubsection.5.3.2.14}%
+\contentsline {subsubsection}{\numberline {5.3.2.15}P9}{42}{subsubsection.5.3.2.15}%
+\contentsline {subsubsection}{\numberline {5.3.2.16}T1}{42}{subsubsection.5.3.2.16}%
+\contentsline {subsubsection}{\numberline {5.3.2.17}T2}{42}{subsubsection.5.3.2.17}%
+\contentsline {subsubsection}{\numberline {5.3.2.18}T3}{42}{subsubsection.5.3.2.18}%
+\contentsline {section}{\numberline {5.4}enviro\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{42}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{42}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Field Documentation}{43}{subsection.5.4.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.1}humidity\_bme}{43}{subsubsection.5.4.2.1}%
+\contentsline {subsubsection}{\numberline {5.4.2.2}humidity\_hdc}{43}{subsubsection.5.4.2.2}%
+\contentsline {subsubsection}{\numberline {5.4.2.3}pressure\_hpa}{43}{subsubsection.5.4.2.3}%
+\contentsline {subsubsection}{\numberline {5.4.2.4}temp\_bme\_c}{43}{subsubsection.5.4.2.4}%
+\contentsline {subsubsection}{\numberline {5.4.2.5}temp\_hdc\_c}{43}{subsubsection.5.4.2.5}%
+\contentsline {section}{\numberline {5.5}lexacare\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}frame\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{44}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Detailed Description}{44}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Field Documentation}{44}{subsection.5.5.2}%
+\contentsline {subsubsection}{\numberline {5.5.2.1}crc16}{44}{subsubsection.5.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.5.2.2}hop\_count}{44}{subsubsection.5.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.5.2.3}iv}{44}{subsubsection.5.5.2.3}%
+\contentsline {subsubsection}{\numberline {5.5.2.4}magic}{45}{subsubsection.5.5.2.4}%
+\contentsline {subsubsection}{\numberline {5.5.2.5}payload}{45}{subsubsection.5.5.2.5}%
+\contentsline {subsubsection}{\numberline {5.5.2.6}payload\_len}{45}{subsubsection.5.5.2.6}%
+\contentsline {subsubsection}{\numberline {5.5.2.7}src\_mac}{45}{subsubsection.5.5.2.7}%
+\contentsline {subsubsection}{\numberline {5.5.2.8}type}{45}{subsubsection.5.5.2.8}%
+\contentsline {section}{\numberline {5.6}lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}dev\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{46}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{46}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Field Documentation}{46}{subsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.2.1}active}{46}{subsubsection.5.6.2.1}%
+\contentsline {subsubsection}{\numberline {5.6.2.2}platform}{46}{subsubsection.5.6.2.2}%
+\contentsline {subsubsection}{\numberline {5.6.2.3}sensor\_idx}{47}{subsubsection.5.6.2.3}%
+\contentsline {section}{\numberline {5.7}lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}matrix\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{47}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{47}{subsection.5.7.1}%
+\contentsline {subsection}{\numberline {5.7.2}Field Documentation}{47}{subsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.2.1}data}{47}{subsubsection.5.7.2.1}%
+\contentsline {subsubsection}{\numberline {5.7.2.2}timestamp\_us}{47}{subsubsection.5.7.2.2}%
+\contentsline {subsubsection}{\numberline {5.7.2.3}valid}{48}{subsubsection.5.7.2.3}%
+\contentsline {subsubsection}{\numberline {5.7.2.4}vertical\_mm}{48}{subsubsection.5.7.2.4}%
+\contentsline {section}{\numberline {5.8}lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}task\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ctx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{48}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{49}{subsection.5.8.1}%
+\contentsline {subsection}{\numberline {5.8.2}Field Documentation}{49}{subsection.5.8.2}%
+\contentsline {subsubsection}{\numberline {5.8.2.1}devs}{49}{subsubsection.5.8.2.1}%
+\contentsline {subsubsection}{\numberline {5.8.2.2}sys\_ctx}{49}{subsubsection.5.8.2.2}%
+\contentsline {section}{\numberline {5.9}mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}state\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{49}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Detailed Description}{50}{subsection.5.9.1}%
+\contentsline {subsection}{\numberline {5.9.2}Field Documentation}{50}{subsection.5.9.2}%
+\contentsline {subsubsection}{\numberline {5.9.2.1}aes\_key}{50}{subsubsection.5.9.2.1}%
+\contentsline {subsubsection}{\numberline {5.9.2.2}has\_parent}{50}{subsubsection.5.9.2.2}%
+\contentsline {subsubsection}{\numberline {5.9.2.3}hop\_to\_root}{50}{subsubsection.5.9.2.3}%
+\contentsline {subsubsection}{\numberline {5.9.2.4}own\_mac}{50}{subsubsection.5.9.2.4}%
+\contentsline {subsubsection}{\numberline {5.9.2.5}parent\_mac}{51}{subsubsection.5.9.2.5}%
+\contentsline {subsubsection}{\numberline {5.9.2.6}peer\_count}{51}{subsubsection.5.9.2.6}%
+\contentsline {subsubsection}{\numberline {5.9.2.7}peers}{51}{subsubsection.5.9.2.7}%
+\contentsline {subsubsection}{\numberline {5.9.2.8}sys\_ctx}{51}{subsubsection.5.9.2.8}%
+\contentsline {section}{\numberline {5.10}mic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{51}{section.5.10}%
+\contentsline {subsection}{\numberline {5.10.1}Detailed Description}{51}{subsection.5.10.1}%
+\contentsline {subsection}{\numberline {5.10.2}Field Documentation}{52}{subsection.5.10.2}%
+\contentsline {subsubsection}{\numberline {5.10.2.1}peak}{52}{subsubsection.5.10.2.1}%
+\contentsline {subsubsection}{\numberline {5.10.2.2}rms}{52}{subsubsection.5.10.2.2}%
+\contentsline {subsubsection}{\numberline {5.10.2.3}valid}{52}{subsubsection.5.10.2.3}%
+\contentsline {section}{\numberline {5.11}ota\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}fragment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}payload\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{52}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Detailed Description}{53}{subsection.5.11.1}%
+\contentsline {subsection}{\numberline {5.11.2}Field Documentation}{53}{subsection.5.11.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.1}data}{53}{subsubsection.5.11.2.1}%
+\contentsline {subsubsection}{\numberline {5.11.2.2}firmware\_size}{53}{subsubsection.5.11.2.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.3}fragment\_data\_len}{53}{subsubsection.5.11.2.3}%
+\contentsline {subsubsection}{\numberline {5.11.2.4}fragment\_offset}{53}{subsubsection.5.11.2.4}%
+\contentsline {subsubsection}{\numberline {5.11.2.5}is\_last}{54}{subsubsection.5.11.2.5}%
+\contentsline {section}{\numberline {5.12}ota\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}state\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{54}{section.5.12}%
+\contentsline {subsection}{\numberline {5.12.1}Detailed Description}{54}{subsection.5.12.1}%
+\contentsline {subsection}{\numberline {5.12.2}Field Documentation}{54}{subsection.5.12.2}%
+\contentsline {subsubsection}{\numberline {5.12.2.1}bytes\_written}{54}{subsubsection.5.12.2.1}%
+\contentsline {subsubsection}{\numberline {5.12.2.2}firmware\_size}{54}{subsubsection.5.12.2.2}%
+\contentsline {subsubsection}{\numberline {5.12.2.3}in\_progress}{54}{subsubsection.5.12.2.3}%
+\contentsline {subsubsection}{\numberline {5.12.2.4}ota\_handle}{55}{subsubsection.5.12.2.4}%
+\contentsline {subsubsection}{\numberline {5.12.2.5}ota\_partition}{55}{subsubsection.5.12.2.5}%
+\contentsline {section}{\numberline {5.13}pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ctx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{55}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Detailed Description}{56}{subsection.5.13.1}%
+\contentsline {subsection}{\numberline {5.13.2}Field Documentation}{56}{subsection.5.13.2}%
+\contentsline {subsubsection}{\numberline {5.13.2.1}has\_event}{56}{subsubsection.5.13.2.1}%
+\contentsline {subsubsection}{\numberline {5.13.2.2}last\_event}{56}{subsubsection.5.13.2.2}%
+\contentsline {subsubsection}{\numberline {5.13.2.3}sys\_ctx}{56}{subsubsection.5.13.2.3}%
+\contentsline {section}{\numberline {5.14}peer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}info\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{56}{section.5.14}%
+\contentsline {subsection}{\numberline {5.14.1}Detailed Description}{56}{subsection.5.14.1}%
+\contentsline {subsection}{\numberline {5.14.2}Field Documentation}{57}{subsection.5.14.2}%
+\contentsline {subsubsection}{\numberline {5.14.2.1}hop\_to\_root}{57}{subsubsection.5.14.2.1}%
+\contentsline {subsubsection}{\numberline {5.14.2.2}is\_child}{57}{subsubsection.5.14.2.2}%
+\contentsline {subsubsection}{\numberline {5.14.2.3}mac}{57}{subsubsection.5.14.2.3}%
+\contentsline {subsubsection}{\numberline {5.14.2.4}rssi}{57}{subsubsection.5.14.2.4}%
+\contentsline {subsubsection}{\numberline {5.14.2.5}valid}{57}{subsubsection.5.14.2.5}%
+\contentsline {section}{\numberline {5.15}radar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{57}{section.5.15}%
+\contentsline {subsection}{\numberline {5.15.1}Detailed Description}{58}{subsection.5.15.1}%
+\contentsline {subsection}{\numberline {5.15.2}Field Documentation}{58}{subsection.5.15.2}%
+\contentsline {subsubsection}{\numberline {5.15.2.1}breath\_rate\_bpm}{58}{subsubsection.5.15.2.1}%
+\contentsline {subsubsection}{\numberline {5.15.2.2}heart\_phase}{58}{subsubsection.5.15.2.2}%
+\contentsline {subsubsection}{\numberline {5.15.2.3}heart\_rate\_bpm}{58}{subsubsection.5.15.2.3}%
+\contentsline {subsubsection}{\numberline {5.15.2.4}presence}{59}{subsubsection.5.15.2.4}%
+\contentsline {subsubsection}{\numberline {5.15.2.5}resp\_phase}{59}{subsubsection.5.15.2.5}%
+\contentsline {subsubsection}{\numberline {5.15.2.6}target\_distance\_mm}{59}{subsubsection.5.15.2.6}%
+\contentsline {subsubsection}{\numberline {5.15.2.7}timestamp\_us}{59}{subsubsection.5.15.2.7}%
+\contentsline {subsubsection}{\numberline {5.15.2.8}total\_phase}{59}{subsubsection.5.15.2.8}%
+\contentsline {section}{\numberline {5.16}radar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}parser\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{60}{section.5.16}%
+\contentsline {subsection}{\numberline {5.16.1}Detailed Description}{60}{subsection.5.16.1}%
+\contentsline {subsection}{\numberline {5.16.2}Field Documentation}{60}{subsection.5.16.2}%
+\contentsline {subsubsection}{\numberline {5.16.2.1}buf}{60}{subsubsection.5.16.2.1}%
+\contentsline {subsubsection}{\numberline {5.16.2.2}last\_data}{60}{subsubsection.5.16.2.2}%
+\contentsline {subsubsection}{\numberline {5.16.2.3}len}{60}{subsubsection.5.16.2.3}%
+\contentsline {subsubsection}{\numberline {5.16.2.4}updated}{61}{subsubsection.5.16.2.4}%
+\contentsline {section}{\numberline {5.17}sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}frame\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{61}{section.5.17}%
+\contentsline {subsection}{\numberline {5.17.1}Detailed Description}{61}{subsection.5.17.1}%
+\contentsline {subsection}{\numberline {5.17.2}Field Documentation}{61}{subsection.5.17.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.1}lidar}{61}{subsubsection.5.17.2.1}%
+\contentsline {subsubsection}{\numberline {5.17.2.2}lidar\_valid}{62}{subsubsection.5.17.2.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.3}radar}{62}{subsubsection.5.17.2.3}%
+\contentsline {subsubsection}{\numberline {5.17.2.4}radar\_valid}{62}{subsubsection.5.17.2.4}%
+\contentsline {section}{\numberline {5.18}sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}context\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}t Struct Reference}{62}{section.5.18}%
+\contentsline {subsection}{\numberline {5.18.1}Detailed Description}{63}{subsection.5.18.1}%
+\contentsline {subsection}{\numberline {5.18.2}Field Documentation}{63}{subsection.5.18.2}%
+\contentsline {subsubsection}{\numberline {5.18.2.1}ai\_to\_mesh\_queue}{63}{subsubsection.5.18.2.1}%
+\contentsline {subsubsection}{\numberline {5.18.2.2}data\_mutex}{63}{subsubsection.5.18.2.2}%
+\contentsline {subsubsection}{\numberline {5.18.2.3}diag\_to\_pc\_queue}{63}{subsubsection.5.18.2.3}%
+\contentsline {subsubsection}{\numberline {5.18.2.4}enviro}{64}{subsubsection.5.18.2.4}%
+\contentsline {subsubsection}{\numberline {5.18.2.5}is\_root\_node}{64}{subsubsection.5.18.2.5}%
+\contentsline {subsubsection}{\numberline {5.18.2.6}latest\_sensor}{64}{subsubsection.5.18.2.6}%
+\contentsline {subsubsection}{\numberline {5.18.2.7}lidar\_ok}{64}{subsubsection.5.18.2.7}%
+\contentsline {subsubsection}{\numberline {5.18.2.8}lidar\_spi}{64}{subsubsection.5.18.2.8}%
+\contentsline {subsubsection}{\numberline {5.18.2.9}log\_queue}{65}{subsubsection.5.18.2.9}%
+\contentsline {subsubsection}{\numberline {5.18.2.10}mic}{65}{subsubsection.5.18.2.10}%
+\contentsline {subsubsection}{\numberline {5.18.2.11}radar\_ok}{65}{subsubsection.5.18.2.11}%
+\contentsline {subsubsection}{\numberline {5.18.2.12}sensor\_to\_ai\_queue}{65}{subsubsection.5.18.2.12}%
+\contentsline {subsubsection}{\numberline {5.18.2.13}sensor\_valid}{65}{subsubsection.5.18.2.13}%
+\contentsline {section}{\numberline {5.19}VL53\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}L8\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}CX\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Platform Struct Reference}{66}{section.5.19}%
+\contentsline {subsection}{\numberline {5.19.1}Detailed Description}{66}{subsection.5.19.1}%
+\contentsline {subsection}{\numberline {5.19.2}Field Documentation}{66}{subsection.5.19.2}%
+\contentsline {subsubsection}{\numberline {5.19.2.1}spi\_dev}{66}{subsubsection.5.19.2.1}%
+\contentsline {chapter}{\numberline {6}File Documentation}{67}{chapter.6}%
+\contentsline {section}{\numberline {6.1}components/ai\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}engine/fall\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detection\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ai.cc File Reference}{67}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Detailed Description}{68}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6.1.2}Macro Definition Documentation}{68}{subsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.2.1}CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}{68}{subsubsection.6.1.2.1}%
+\contentsline {subsubsection}{\numberline {6.1.2.2}CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}{69}{subsubsection.6.1.2.2}%
+\contentsline {subsubsection}{\numberline {6.1.2.3}CONFIG\_AI\_HISTORY\_LEN}{69}{subsubsection.6.1.2.3}%
+\contentsline {subsubsection}{\numberline {6.1.2.4}FALL\_DISTANCE\_MAX\_MM}{69}{subsubsection.6.1.2.4}%
+\contentsline {subsubsection}{\numberline {6.1.2.5}TASK\_CORE}{69}{subsubsection.6.1.2.5}%
+\contentsline {subsubsection}{\numberline {6.1.2.6}TASK\_PRIORITY}{69}{subsubsection.6.1.2.6}%
+\contentsline {subsubsection}{\numberline {6.1.2.7}TASK\_STACK\_SIZE}{69}{subsubsection.6.1.2.7}%
+\contentsline {subsection}{\numberline {6.1.3}Function Documentation}{70}{subsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.3.1}send\_ai\_event()}{70}{subsubsection.6.1.3.1}%
+\contentsline {subsubsection}{\numberline {6.1.3.2}task\_ai\_inference()}{70}{subsubsection.6.1.3.2}%
+\contentsline {subsubsection}{\numberline {6.1.3.3}threshold\_avg\_lower\_zone()}{72}{subsubsection.6.1.3.3}%
+\contentsline {subsubsection}{\numberline {6.1.3.4}threshold\_detect\_fall()}{73}{subsubsection.6.1.3.4}%
+\contentsline {subsection}{\numberline {6.1.4}Variable Documentation}{74}{subsection.6.1.4}%
+\contentsline {subsubsection}{\numberline {6.1.4.1}TAG}{74}{subsubsection.6.1.4.1}%
+\contentsline {section}{\numberline {6.2}fall\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detection\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ai.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cc}{74}{section.6.2}%
+\contentsline {section}{\numberline {6.3}components/ai\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}engine/include/fall\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detection\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ai.h File Reference}{79}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{79}{subsection.6.3.1}%
+\contentsline {section}{\numberline {6.4}fall\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detection\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}ai.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{80}{section.6.4}%
+\contentsline {section}{\numberline {6.5}components/hw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag/hw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.c File Reference}{80}{section.6.5}%
+\contentsline {subsection}{\numberline {6.5.1}Detailed Description}{82}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {6.5.2}Macro Definition Documentation}{82}{subsection.6.5.2}%
+\contentsline {subsubsection}{\numberline {6.5.2.1}I2C\_BUS\_FREQ\_HZ}{82}{subsubsection.6.5.2.1}%
+\contentsline {subsubsection}{\numberline {6.5.2.2}I2C\_TIMEOUT\_MS}{82}{subsubsection.6.5.2.2}%
+\contentsline {subsubsection}{\numberline {6.5.2.3}LIDAR\_LPN\_DELAY\_MS}{82}{subsubsection.6.5.2.3}%
+\contentsline {subsubsection}{\numberline {6.5.2.4}LIDAR\_SPI\_FREQ\_HZ}{83}{subsubsection.6.5.2.4}%
+\contentsline {subsubsection}{\numberline {6.5.2.5}LIDAR\_SPI\_MAX\_XFER}{83}{subsubsection.6.5.2.5}%
+\contentsline {subsubsection}{\numberline {6.5.2.6}RADAR\_BAUD\_RATE}{83}{subsubsection.6.5.2.6}%
+\contentsline {subsubsection}{\numberline {6.5.2.7}RADAR\_DETECT\_TIMEOUT\_MS}{83}{subsubsection.6.5.2.7}%
+\contentsline {subsubsection}{\numberline {6.5.2.8}RADAR\_RX\_BUF\_SIZE}{83}{subsubsection.6.5.2.8}%
+\contentsline {subsubsection}{\numberline {6.5.2.9}RADAR\_UART\_PORT}{83}{subsubsection.6.5.2.9}%
+\contentsline {subsubsection}{\numberline {6.5.2.10}TF\_SOF}{84}{subsubsection.6.5.2.10}%
+\contentsline {subsubsection}{\numberline {6.5.2.11}VL53L8CX\_MODEL\_ID}{84}{subsubsection.6.5.2.11}%
+\contentsline {subsubsection}{\numberline {6.5.2.12}VL53L8CX\_REG\_MODEL\_ID}{84}{subsubsection.6.5.2.12}%
+\contentsline {subsection}{\numberline {6.5.3}Function Documentation}{84}{subsection.6.5.3}%
+\contentsline {subsubsection}{\numberline {6.5.3.1}diag\_init\_i2c\_bus()}{84}{subsubsection.6.5.3.1}%
+\contentsline {subsubsection}{\numberline {6.5.3.2}diag\_init\_spi\_lidars()}{85}{subsubsection.6.5.3.2}%
+\contentsline {subsubsection}{\numberline {6.5.3.3}diag\_print\_json\_report()}{86}{subsubsection.6.5.3.3}%
+\contentsline {subsubsection}{\numberline {6.5.3.4}diag\_scan\_lidars()}{87}{subsubsection.6.5.3.4}%
+\contentsline {subsubsection}{\numberline {6.5.3.5}diag\_spi\_ping\_lidar()}{88}{subsubsection.6.5.3.5}%
+\contentsline {subsubsection}{\numberline {6.5.3.6}diag\_test\_radar()}{89}{subsubsection.6.5.3.6}%
+\contentsline {subsubsection}{\numberline {6.5.3.7}pca9555\_init()}{90}{subsubsection.6.5.3.7}%
+\contentsline {subsubsection}{\numberline {6.5.3.8}pca9555\_set\_lpn()}{91}{subsubsection.6.5.3.8}%
+\contentsline {subsubsection}{\numberline {6.5.3.9}pca9555\_write\_reg()}{92}{subsubsection.6.5.3.9}%
+\contentsline {subsection}{\numberline {6.5.4}Variable Documentation}{92}{subsection.6.5.4}%
+\contentsline {subsubsection}{\numberline {6.5.4.1}s\_ncs\_pins}{92}{subsubsection.6.5.4.1}%
+\contentsline {subsubsection}{\numberline {6.5.4.2}s\_pca1\_out}{93}{subsubsection.6.5.4.2}%
+\contentsline {subsubsection}{\numberline {6.5.4.3}s\_pca\_bus}{93}{subsubsection.6.5.4.3}%
+\contentsline {subsubsection}{\numberline {6.5.4.4}s\_pca\_dev}{93}{subsubsection.6.5.4.4}%
+\contentsline {subsubsection}{\numberline {6.5.4.5}s\_pca\_lpn\_bit}{93}{subsubsection.6.5.4.5}%
+\contentsline {subsubsection}{\numberline {6.5.4.6}s\_pca\_out}{94}{subsubsection.6.5.4.6}%
+\contentsline {subsubsection}{\numberline {6.5.4.7}TAG}{94}{subsubsection.6.5.4.7}%
+\contentsline {section}{\numberline {6.6}hw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{94}{section.6.6}%
+\contentsline {section}{\numberline {6.7}components/hw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag/include/hw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.h File Reference}{101}{section.6.7}%
+\contentsline {subsection}{\numberline {6.7.1}Detailed Description}{102}{subsection.6.7.1}%
+\contentsline {section}{\numberline {6.8}hw\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{102}{section.6.8}%
+\contentsline {section}{\numberline {6.9}components/lexacare\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}types/include/lexacare\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}config.h File Reference}{103}{section.6.9}%
+\contentsline {subsection}{\numberline {6.9.1}Detailed Description}{104}{subsection.6.9.1}%
+\contentsline {section}{\numberline {6.10}lexacare\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}config.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{105}{section.6.10}%
+\contentsline {section}{\numberline {6.11}components/lexacare\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}types/include/pins\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}config.h File Reference}{106}{section.6.11}%
+\contentsline {subsection}{\numberline {6.11.1}Detailed Description}{107}{subsection.6.11.1}%
+\contentsline {subsection}{\numberline {6.11.2}Macro Definition Documentation}{107}{subsection.6.11.2}%
+\contentsline {subsubsection}{\numberline {6.11.2.1}LIDAR\_SPI\_HOST}{107}{subsubsection.6.11.2.1}%
+\contentsline {subsubsection}{\numberline {6.11.2.2}PCA9555\_BIT\_DIST\_SHUTDOWN}{108}{subsubsection.6.11.2.2}%
+\contentsline {subsubsection}{\numberline {6.11.2.3}PCA9555\_BIT\_LPN1}{108}{subsubsection.6.11.2.3}%
+\contentsline {subsubsection}{\numberline {6.11.2.4}PCA9555\_BIT\_LPN2}{108}{subsubsection.6.11.2.4}%
+\contentsline {subsubsection}{\numberline {6.11.2.5}PCA9555\_BIT\_LPN3}{108}{subsubsection.6.11.2.5}%
+\contentsline {subsubsection}{\numberline {6.11.2.6}PCA9555\_BIT\_LPN4}{108}{subsubsection.6.11.2.6}%
+\contentsline {subsubsection}{\numberline {6.11.2.7}PCA9555\_BIT\_PWR\_FAN}{108}{subsubsection.6.11.2.7}%
+\contentsline {subsubsection}{\numberline {6.11.2.8}PCA9555\_BIT\_PWR\_MIC}{109}{subsubsection.6.11.2.8}%
+\contentsline {subsubsection}{\numberline {6.11.2.9}PCA9555\_BIT\_PWR\_MLX}{109}{subsubsection.6.11.2.9}%
+\contentsline {subsubsection}{\numberline {6.11.2.10}PCA9555\_BIT\_PWR\_RADAR}{109}{subsubsection.6.11.2.10}%
+\contentsline {subsubsection}{\numberline {6.11.2.11}PCA9555\_BIT\_RADAR\_LPN}{109}{subsubsection.6.11.2.11}%
+\contentsline {subsubsection}{\numberline {6.11.2.12}PCA9555\_CFG0\_MASK}{109}{subsubsection.6.11.2.12}%
+\contentsline {subsubsection}{\numberline {6.11.2.13}PCA9555\_CFG1\_MASK}{110}{subsubsection.6.11.2.13}%
+\contentsline {subsubsection}{\numberline {6.11.2.14}PCA9555\_I2C\_ADDR}{110}{subsubsection.6.11.2.14}%
+\contentsline {subsubsection}{\numberline {6.11.2.15}PCA9555\_REG\_CONFIG\_0}{110}{subsubsection.6.11.2.15}%
+\contentsline {subsubsection}{\numberline {6.11.2.16}PCA9555\_REG\_CONFIG\_1}{110}{subsubsection.6.11.2.16}%
+\contentsline {subsubsection}{\numberline {6.11.2.17}PCA9555\_REG\_OUTPUT\_0}{110}{subsubsection.6.11.2.17}%
+\contentsline {subsubsection}{\numberline {6.11.2.18}PCA9555\_REG\_OUTPUT\_1}{111}{subsubsection.6.11.2.18}%
+\contentsline {subsubsection}{\numberline {6.11.2.19}PIN\_I2C0\_SCL}{111}{subsubsection.6.11.2.19}%
+\contentsline {subsubsection}{\numberline {6.11.2.20}PIN\_I2C1\_SCL}{111}{subsubsection.6.11.2.20}%
+\contentsline {subsubsection}{\numberline {6.11.2.21}PIN\_I2C1\_SDA}{111}{subsubsection.6.11.2.21}%
+\contentsline {subsubsection}{\numberline {6.11.2.22}PIN\_LED\_STATUS}{111}{subsubsection.6.11.2.22}%
+\contentsline {subsubsection}{\numberline {6.11.2.23}PIN\_LIDAR\_CLK}{111}{subsubsection.6.11.2.23}%
+\contentsline {subsubsection}{\numberline {6.11.2.24}PIN\_LIDAR\_MISO}{112}{subsubsection.6.11.2.24}%
+\contentsline {subsubsection}{\numberline {6.11.2.25}PIN\_LIDAR\_MOSI}{112}{subsubsection.6.11.2.25}%
+\contentsline {subsubsection}{\numberline {6.11.2.26}PIN\_LIDAR\_NCS0}{112}{subsubsection.6.11.2.26}%
+\contentsline {subsubsection}{\numberline {6.11.2.27}PIN\_LIDAR\_NCS1}{112}{subsubsection.6.11.2.27}%
+\contentsline {subsubsection}{\numberline {6.11.2.28}PIN\_LIDAR\_NCS2}{112}{subsubsection.6.11.2.28}%
+\contentsline {subsubsection}{\numberline {6.11.2.29}PIN\_LIDAR\_NCS3}{112}{subsubsection.6.11.2.29}%
+\contentsline {subsubsection}{\numberline {6.11.2.30}PIN\_LIDAR\_SYNC}{113}{subsubsection.6.11.2.30}%
+\contentsline {subsubsection}{\numberline {6.11.2.31}PIN\_MIC\_SCK}{113}{subsubsection.6.11.2.31}%
+\contentsline {subsubsection}{\numberline {6.11.2.32}PIN\_MIC\_SD}{113}{subsubsection.6.11.2.32}%
+\contentsline {subsubsection}{\numberline {6.11.2.33}PIN\_MIC\_WS}{113}{subsubsection.6.11.2.33}%
+\contentsline {subsubsection}{\numberline {6.11.2.34}PIN\_RADAR\_RX}{113}{subsubsection.6.11.2.34}%
+\contentsline {subsubsection}{\numberline {6.11.2.35}PIN\_RADAR\_TX}{113}{subsubsection.6.11.2.35}%
+\contentsline {subsubsection}{\numberline {6.11.2.36}PIN\_ROOT\_SEL}{114}{subsubsection.6.11.2.36}%
+\contentsline {section}{\numberline {6.12}pins\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}config.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{114}{section.6.12}%
+\contentsline {section}{\numberline {6.13}components/lexacare\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}types/include/system\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}types.h File Reference}{116}{section.6.13}%
+\contentsline {subsection}{\numberline {6.13.1}Detailed Description}{117}{subsection.6.13.1}%
+\contentsline {subsection}{\numberline {6.13.2}Macro Definition Documentation}{117}{subsection.6.13.2}%
+\contentsline {subsubsection}{\numberline {6.13.2.1}FRAME\_TYPE\_AI\_EVENT}{117}{subsubsection.6.13.2.1}%
+\contentsline {subsubsection}{\numberline {6.13.2.2}FRAME\_TYPE\_BEACON}{117}{subsubsection.6.13.2.2}%
+\contentsline {subsubsection}{\numberline {6.13.2.3}FRAME\_TYPE\_OTA\_FRAGMENT}{118}{subsubsection.6.13.2.3}%
+\contentsline {subsubsection}{\numberline {6.13.2.4}FRAME\_TYPE\_TELEMETRY}{118}{subsubsection.6.13.2.4}%
+\contentsline {subsubsection}{\numberline {6.13.2.5}LEXACARE\_AES\_IV\_LEN}{118}{subsubsection.6.13.2.5}%
+\contentsline {subsubsection}{\numberline {6.13.2.6}LEXACARE\_AES\_KEY\_LEN}{118}{subsubsection.6.13.2.6}%
+\contentsline {subsubsection}{\numberline {6.13.2.7}LEXACARE\_FRAME\_MAGIC}{118}{subsubsection.6.13.2.7}%
+\contentsline {subsubsection}{\numberline {6.13.2.8}LEXACARE\_MAX\_PAYLOAD}{118}{subsubsection.6.13.2.8}%
+\contentsline {subsubsection}{\numberline {6.13.2.9}LIDAR\_COLS}{119}{subsubsection.6.13.2.9}%
+\contentsline {subsubsection}{\numberline {6.13.2.10}LIDAR\_I2C\_ADDR\_BASE}{119}{subsubsection.6.13.2.10}%
+\contentsline {subsubsection}{\numberline {6.13.2.11}LIDAR\_I2C\_ADDR\_DEFAULT}{119}{subsubsection.6.13.2.11}%
+\contentsline {subsubsection}{\numberline {6.13.2.12}LIDAR\_NUM\_FRONT}{119}{subsubsection.6.13.2.12}%
+\contentsline {subsubsection}{\numberline {6.13.2.13}LIDAR\_NUM\_TOTAL}{119}{subsubsection.6.13.2.13}%
+\contentsline {subsubsection}{\numberline {6.13.2.14}LIDAR\_ZONES\_PER\_SENSOR}{119}{subsubsection.6.13.2.14}%
+\contentsline {subsubsection}{\numberline {6.13.2.15}OTA\_FRAGMENT\_DATA\_LEN}{119}{subsubsection.6.13.2.15}%
+\contentsline {subsection}{\numberline {6.13.3}Enumeration Type Documentation}{119}{subsection.6.13.3}%
+\contentsline {subsubsection}{\numberline {6.13.3.1}ai\_event\_state\_e}{119}{subsubsection.6.13.3.1}%
+\contentsline {section}{\numberline {6.14}system\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}types.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{120}{section.6.14}%
+\contentsline {section}{\numberline {6.15}components/mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}network/include/mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}manager.h File Reference}{123}{section.6.15}%
+\contentsline {subsection}{\numberline {6.15.1}Detailed Description}{124}{subsection.6.15.1}%
+\contentsline {section}{\numberline {6.16}mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}manager.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{124}{section.6.16}%
+\contentsline {section}{\numberline {6.17}components/mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}network/include/ota\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}node.h File Reference}{125}{section.6.17}%
+\contentsline {subsection}{\numberline {6.17.1}Detailed Description}{126}{subsection.6.17.1}%
+\contentsline {subsection}{\numberline {6.17.2}Function Documentation}{126}{subsection.6.17.2}%
+\contentsline {subsubsection}{\numberline {6.17.2.1}ota\_node\_process\_fragment()}{126}{subsubsection.6.17.2.1}%
+\contentsline {section}{\numberline {6.18}ota\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}node.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{127}{section.6.18}%
+\contentsline {section}{\numberline {6.19}components/mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}network/mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}manager.c File Reference}{128}{section.6.19}%
+\contentsline {subsection}{\numberline {6.19.1}Detailed Description}{130}{subsection.6.19.1}%
+\contentsline {subsection}{\numberline {6.19.2}Macro Definition Documentation}{130}{subsection.6.19.2}%
+\contentsline {subsubsection}{\numberline {6.19.2.1}aes\_compat\_crypt\_cbc}{130}{subsubsection.6.19.2.1}%
+\contentsline {subsubsection}{\numberline {6.19.2.2}AES\_COMPAT\_ENCRYPT}{130}{subsubsection.6.19.2.2}%
+\contentsline {subsubsection}{\numberline {6.19.2.3}aes\_compat\_free}{130}{subsubsection.6.19.2.3}%
+\contentsline {subsubsection}{\numberline {6.19.2.4}aes\_compat\_init}{131}{subsubsection.6.19.2.4}%
+\contentsline {subsubsection}{\numberline {6.19.2.5}aes\_compat\_setkey}{131}{subsubsection.6.19.2.5}%
+\contentsline {subsubsection}{\numberline {6.19.2.6}BEACON\_INTERVAL\_MS}{131}{subsubsection.6.19.2.6}%
+\contentsline {subsubsection}{\numberline {6.19.2.7}ESPNOW\_CHANNEL}{131}{subsubsection.6.19.2.7}%
+\contentsline {subsubsection}{\numberline {6.19.2.8}ESPNOW\_MAX\_PEERS}{131}{subsubsection.6.19.2.8}%
+\contentsline {subsubsection}{\numberline {6.19.2.9}MESH\_TASK\_CORE}{132}{subsubsection.6.19.2.9}%
+\contentsline {subsubsection}{\numberline {6.19.2.10}MESH\_TASK\_PRIORITY}{132}{subsubsection.6.19.2.10}%
+\contentsline {subsubsection}{\numberline {6.19.2.11}MESH\_TASK\_STACK}{132}{subsubsection.6.19.2.11}%
+\contentsline {subsection}{\numberline {6.19.3}Typedef Documentation}{132}{subsection.6.19.3}%
+\contentsline {subsubsection}{\numberline {6.19.3.1}aes\_compat\_ctx\_t}{132}{subsubsection.6.19.3.1}%
+\contentsline {subsection}{\numberline {6.19.4}Function Documentation}{132}{subsection.6.19.4}%
+\contentsline {subsubsection}{\numberline {6.19.4.1}aes\_encrypt\_payload()}{132}{subsubsection.6.19.4.1}%
+\contentsline {subsubsection}{\numberline {6.19.4.2}crc16\_ccitt()}{133}{subsubsection.6.19.4.2}%
+\contentsline {subsubsection}{\numberline {6.19.4.3}espnow\_rx\_callback()}{134}{subsubsection.6.19.4.3}%
+\contentsline {subsubsection}{\numberline {6.19.4.4}espnow\_tx\_callback()}{135}{subsubsection.6.19.4.4}%
+\contentsline {subsubsection}{\numberline {6.19.4.5}mesh\_build\_ai\_frame()}{135}{subsubsection.6.19.4.5}%
+\contentsline {subsubsection}{\numberline {6.19.4.6}mesh\_load\_aes\_key()}{136}{subsubsection.6.19.4.6}%
+\contentsline {subsubsection}{\numberline {6.19.4.7}task\_mesh\_com()}{137}{subsubsection.6.19.4.7}%
+\contentsline {subsection}{\numberline {6.19.5}Variable Documentation}{138}{subsection.6.19.5}%
+\contentsline {subsubsection}{\numberline {6.19.5.1}k\_aes\_default}{138}{subsubsection.6.19.5.1}%
+\contentsline {subsubsection}{\numberline {6.19.5.2}k\_broadcast\_mac}{138}{subsubsection.6.19.5.2}%
+\contentsline {subsubsection}{\numberline {6.19.5.3}k\_pmk}{139}{subsubsection.6.19.5.3}%
+\contentsline {subsubsection}{\numberline {6.19.5.4}s\_mesh}{139}{subsubsection.6.19.5.4}%
+\contentsline {subsubsection}{\numberline {6.19.5.5}TAG}{139}{subsubsection.6.19.5.5}%
+\contentsline {section}{\numberline {6.20}mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}manager.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{139}{section.6.20}%
+\contentsline {section}{\numberline {6.21}components/mesh\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}network/ota\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}node.c File Reference}{144}{section.6.21}%
+\contentsline {subsection}{\numberline {6.21.1}Detailed Description}{145}{subsection.6.21.1}%
+\contentsline {subsection}{\numberline {6.21.2}Function Documentation}{146}{subsection.6.21.2}%
+\contentsline {subsubsection}{\numberline {6.21.2.1}ota\_node\_process\_fragment()}{146}{subsubsection.6.21.2.1}%
+\contentsline {subsection}{\numberline {6.21.3}Variable Documentation}{147}{subsection.6.21.3}%
+\contentsline {subsubsection}{\numberline {6.21.3.1}s\_ota}{147}{subsubsection.6.21.3.1}%
+\contentsline {subsubsection}{\numberline {6.21.3.2}TAG}{147}{subsubsection.6.21.3.2}%
+\contentsline {section}{\numberline {6.22}ota\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}node.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{147}{section.6.22}%
+\contentsline {section}{\numberline {6.23}components/pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag/include/pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.h File Reference}{149}{section.6.23}%
+\contentsline {subsection}{\numberline {6.23.1}Detailed Description}{150}{subsection.6.23.1}%
+\contentsline {section}{\numberline {6.24}pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{151}{section.6.24}%
+\contentsline {section}{\numberline {6.25}components/pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag/pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.c File Reference}{151}{section.6.25}%
+\contentsline {subsection}{\numberline {6.25.1}Detailed Description}{153}{subsection.6.25.1}%
+\contentsline {subsection}{\numberline {6.25.2}Macro Definition Documentation}{153}{subsection.6.25.2}%
+\contentsline {subsubsection}{\numberline {6.25.2.1}AI\_STATE\_COUNT}{153}{subsubsection.6.25.2.1}%
+\contentsline {subsubsection}{\numberline {6.25.2.2}CMD\_BUF\_SIZE}{153}{subsubsection.6.25.2.2}%
+\contentsline {subsubsection}{\numberline {6.25.2.3}LOG\_TRANSFER\_BLOCK\_SIZE}{153}{subsubsection.6.25.2.3}%
+\contentsline {subsubsection}{\numberline {6.25.2.4}MAX\_TASKS}{154}{subsubsection.6.25.2.4}%
+\contentsline {subsubsection}{\numberline {6.25.2.5}SENSOR\_INTERVAL\_MS}{154}{subsubsection.6.25.2.5}%
+\contentsline {subsubsection}{\numberline {6.25.2.6}SYS\_INTERVAL\_MS}{154}{subsubsection.6.25.2.6}%
+\contentsline {subsubsection}{\numberline {6.25.2.7}TASK\_CORE}{154}{subsubsection.6.25.2.7}%
+\contentsline {subsubsection}{\numberline {6.25.2.8}TASK\_PRIORITY}{154}{subsubsection.6.25.2.8}%
+\contentsline {subsubsection}{\numberline {6.25.2.9}TASK\_STACK\_SIZE}{154}{subsubsection.6.25.2.9}%
+\contentsline {subsection}{\numberline {6.25.3}Function Documentation}{155}{subsection.6.25.3}%
+\contentsline {subsubsection}{\numberline {6.25.3.1}build\_sensor\_json()}{155}{subsubsection.6.25.3.1}%
+\contentsline {subsubsection}{\numberline {6.25.3.2}build\_sys\_json()}{156}{subsubsection.6.25.3.2}%
+\contentsline {subsubsection}{\numberline {6.25.3.3}cmd\_clear\_logs()}{157}{subsubsection.6.25.3.3}%
+\contentsline {subsubsection}{\numberline {6.25.3.4}cmd\_download\_logs()}{158}{subsubsection.6.25.3.4}%
+\contentsline {subsubsection}{\numberline {6.25.3.5}process\_command()}{159}{subsubsection.6.25.3.5}%
+\contentsline {subsubsection}{\numberline {6.25.3.6}task\_diag\_pc()}{160}{subsubsection.6.25.3.6}%
+\contentsline {subsection}{\numberline {6.25.4}Variable Documentation}{161}{subsection.6.25.4}%
+\contentsline {subsubsection}{\numberline {6.25.4.1}ai\_event\_strings}{161}{subsubsection.6.25.4.1}%
+\contentsline {subsubsection}{\numberline {6.25.4.2}TAG}{162}{subsubsection.6.25.4.2}%
+\contentsline {section}{\numberline {6.26}pc\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}diag.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{162}{section.6.26}%
+\contentsline {section}{\numberline {6.27}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/bme280\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.c File Reference}{167}{section.6.27}%
+\contentsline {subsection}{\numberline {6.27.1}Detailed Description}{168}{subsection.6.27.1}%
+\contentsline {subsection}{\numberline {6.27.2}Macro Definition Documentation}{168}{subsection.6.27.2}%
+\contentsline {subsubsection}{\numberline {6.27.2.1}BME280\_CHIP\_ID}{168}{subsubsection.6.27.2.1}%
+\contentsline {subsubsection}{\numberline {6.27.2.2}I2C\_TIMEOUT\_MS}{169}{subsubsection.6.27.2.2}%
+\contentsline {subsubsection}{\numberline {6.27.2.3}MEAS\_DELAY\_MS}{169}{subsubsection.6.27.2.3}%
+\contentsline {subsubsection}{\numberline {6.27.2.4}REG\_CALIB\_00}{169}{subsubsection.6.27.2.4}%
+\contentsline {subsubsection}{\numberline {6.27.2.5}REG\_CALIB\_H1}{169}{subsubsection.6.27.2.5}%
+\contentsline {subsubsection}{\numberline {6.27.2.6}REG\_CALIB\_H2}{169}{subsubsection.6.27.2.6}%
+\contentsline {subsubsection}{\numberline {6.27.2.7}REG\_CHIP\_ID}{169}{subsubsection.6.27.2.7}%
+\contentsline {subsubsection}{\numberline {6.27.2.8}REG\_CONFIG}{170}{subsubsection.6.27.2.8}%
+\contentsline {subsubsection}{\numberline {6.27.2.9}REG\_CTRL\_HUM}{170}{subsubsection.6.27.2.9}%
+\contentsline {subsubsection}{\numberline {6.27.2.10}REG\_CTRL\_MEAS}{170}{subsubsection.6.27.2.10}%
+\contentsline {subsubsection}{\numberline {6.27.2.11}REG\_DATA\_START}{170}{subsubsection.6.27.2.11}%
+\contentsline {subsubsection}{\numberline {6.27.2.12}REG\_RESET}{170}{subsubsection.6.27.2.12}%
+\contentsline {subsubsection}{\numberline {6.27.2.13}REG\_STATUS}{170}{subsubsection.6.27.2.13}%
+\contentsline {subsection}{\numberline {6.27.3}Function Documentation}{171}{subsection.6.27.3}%
+\contentsline {subsubsection}{\numberline {6.27.3.1}bme280\_init()}{171}{subsubsection.6.27.3.1}%
+\contentsline {subsubsection}{\numberline {6.27.3.2}bme280\_read()}{172}{subsubsection.6.27.3.2}%
+\contentsline {subsubsection}{\numberline {6.27.3.3}compensate\_humidity()}{173}{subsubsection.6.27.3.3}%
+\contentsline {subsubsection}{\numberline {6.27.3.4}compensate\_pressure()}{174}{subsubsection.6.27.3.4}%
+\contentsline {subsubsection}{\numberline {6.27.3.5}compensate\_temperature()}{175}{subsubsection.6.27.3.5}%
+\contentsline {subsubsection}{\numberline {6.27.3.6}read\_calibration()}{175}{subsubsection.6.27.3.6}%
+\contentsline {subsubsection}{\numberline {6.27.3.7}read\_regs()}{176}{subsubsection.6.27.3.7}%
+\contentsline {subsubsection}{\numberline {6.27.3.8}write\_reg()}{177}{subsubsection.6.27.3.8}%
+\contentsline {subsection}{\numberline {6.27.4}Variable Documentation}{177}{subsection.6.27.4}%
+\contentsline {subsubsection}{\numberline {6.27.4.1}s\_calib}{177}{subsubsection.6.27.4.1}%
+\contentsline {subsubsection}{\numberline {6.27.4.2}s\_dev}{177}{subsubsection.6.27.4.2}%
+\contentsline {subsubsection}{\numberline {6.27.4.3}s\_t\_fine}{177}{subsubsection.6.27.4.3}%
+\contentsline {subsubsection}{\numberline {6.27.4.4}TAG}{178}{subsubsection.6.27.4.4}%
+\contentsline {section}{\numberline {6.28}bme280\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{178}{section.6.28}%
+\contentsline {section}{\numberline {6.29}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/hdc1080\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.c File Reference}{181}{section.6.29}%
+\contentsline {subsection}{\numberline {6.29.1}Detailed Description}{182}{subsection.6.29.1}%
+\contentsline {subsection}{\numberline {6.29.2}Macro Definition Documentation}{182}{subsection.6.29.2}%
+\contentsline {subsubsection}{\numberline {6.29.2.1}ACQ\_DELAY\_MS}{182}{subsubsection.6.29.2.1}%
+\contentsline {subsubsection}{\numberline {6.29.2.2}HDC1080\_DEVICE\_ID}{182}{subsubsection.6.29.2.2}%
+\contentsline {subsubsection}{\numberline {6.29.2.3}I2C\_TIMEOUT\_MS}{182}{subsubsection.6.29.2.3}%
+\contentsline {subsubsection}{\numberline {6.29.2.4}REG\_CONFIG}{182}{subsubsection.6.29.2.4}%
+\contentsline {subsubsection}{\numberline {6.29.2.5}REG\_DEVICE\_ID}{183}{subsubsection.6.29.2.5}%
+\contentsline {subsubsection}{\numberline {6.29.2.6}REG\_HUMIDITY}{183}{subsubsection.6.29.2.6}%
+\contentsline {subsubsection}{\numberline {6.29.2.7}REG\_MANUF\_ID}{183}{subsubsection.6.29.2.7}%
+\contentsline {subsubsection}{\numberline {6.29.2.8}REG\_TEMPERATURE}{183}{subsubsection.6.29.2.8}%
+\contentsline {subsection}{\numberline {6.29.3}Function Documentation}{183}{subsection.6.29.3}%
+\contentsline {subsubsection}{\numberline {6.29.3.1}hdc1080\_init()}{183}{subsubsection.6.29.3.1}%
+\contentsline {subsubsection}{\numberline {6.29.3.2}hdc1080\_read()}{184}{subsubsection.6.29.3.2}%
+\contentsline {subsubsection}{\numberline {6.29.3.3}read\_bytes()}{185}{subsubsection.6.29.3.3}%
+\contentsline {subsubsection}{\numberline {6.29.3.4}write\_register()}{186}{subsubsection.6.29.3.4}%
+\contentsline {subsection}{\numberline {6.29.4}Variable Documentation}{187}{subsection.6.29.4}%
+\contentsline {subsubsection}{\numberline {6.29.4.1}s\_dev}{187}{subsubsection.6.29.4.1}%
+\contentsline {subsubsection}{\numberline {6.29.4.2}TAG}{187}{subsubsection.6.29.4.2}%
+\contentsline {section}{\numberline {6.30}hdc1080\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{187}{section.6.30}%
+\contentsline {section}{\numberline {6.31}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/include/bme280\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.h File Reference}{189}{section.6.31}%
+\contentsline {subsection}{\numberline {6.31.1}Detailed Description}{190}{subsection.6.31.1}%
+\contentsline {subsection}{\numberline {6.31.2}Macro Definition Documentation}{190}{subsection.6.31.2}%
+\contentsline {subsubsection}{\numberline {6.31.2.1}BME280\_I2C\_ADDR\_ALT}{190}{subsubsection.6.31.2.1}%
+\contentsline {subsection}{\numberline {6.31.3}Function Documentation}{190}{subsection.6.31.3}%
+\contentsline {subsubsection}{\numberline {6.31.3.1}bme280\_init()}{190}{subsubsection.6.31.3.1}%
+\contentsline {subsubsection}{\numberline {6.31.3.2}bme280\_read()}{192}{subsubsection.6.31.3.2}%
+\contentsline {section}{\numberline {6.32}bme280\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{193}{section.6.32}%
+\contentsline {section}{\numberline {6.33}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/include/hdc1080\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.h File Reference}{194}{section.6.33}%
+\contentsline {subsection}{\numberline {6.33.1}Detailed Description}{195}{subsection.6.33.1}%
+\contentsline {subsection}{\numberline {6.33.2}Function Documentation}{196}{subsection.6.33.2}%
+\contentsline {subsubsection}{\numberline {6.33.2.1}hdc1080\_init()}{196}{subsubsection.6.33.2.1}%
+\contentsline {subsubsection}{\numberline {6.33.2.2}hdc1080\_read()}{197}{subsubsection.6.33.2.2}%
+\contentsline {section}{\numberline {6.34}hdc1080\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{198}{section.6.34}%
+\contentsline {section}{\numberline {6.35}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/include/lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.h File Reference}{198}{section.6.35}%
+\contentsline {subsection}{\numberline {6.35.1}Detailed Description}{199}{subsection.6.35.1}%
+\contentsline {section}{\numberline {6.36}lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{200}{section.6.36}%
+\contentsline {section}{\numberline {6.37}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/include/mic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.h File Reference}{200}{section.6.37}%
+\contentsline {subsection}{\numberline {6.37.1}Detailed Description}{201}{subsection.6.37.1}%
+\contentsline {subsection}{\numberline {6.37.2}Function Documentation}{201}{subsection.6.37.2}%
+\contentsline {subsubsection}{\numberline {6.37.2.1}mic\_driver\_deinit()}{201}{subsubsection.6.37.2.1}%
+\contentsline {subsubsection}{\numberline {6.37.2.2}mic\_driver\_read()}{202}{subsubsection.6.37.2.2}%
+\contentsline {section}{\numberline {6.38}mic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{202}{section.6.38}%
+\contentsline {section}{\numberline {6.39}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/include/radar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.h File Reference}{203}{section.6.39}%
+\contentsline {subsection}{\numberline {6.39.1}Detailed Description}{204}{subsection.6.39.1}%
+\contentsline {subsection}{\numberline {6.39.2}Function Documentation}{204}{subsection.6.39.2}%
+\contentsline {subsubsection}{\numberline {6.39.2.1}radar\_driver\_poll()}{204}{subsubsection.6.39.2.1}%
+\contentsline {section}{\numberline {6.40}radar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{205}{section.6.40}%
+\contentsline {section}{\numberline {6.41}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/include/vl53l8cx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}platform.h File Reference}{206}{section.6.41}%
+\contentsline {subsection}{\numberline {6.41.1}Detailed Description}{207}{subsection.6.41.1}%
+\contentsline {subsection}{\numberline {6.41.2}Function Documentation}{208}{subsection.6.41.2}%
+\contentsline {subsubsection}{\numberline {6.41.2.1}VL53L8CX\_PlatformInit()}{208}{subsubsection.6.41.2.1}%
+\contentsline {subsubsection}{\numberline {6.41.2.2}VL53L8CX\_RdByte()}{208}{subsubsection.6.41.2.2}%
+\contentsline {subsubsection}{\numberline {6.41.2.3}VL53L8CX\_RdMulti()}{209}{subsubsection.6.41.2.3}%
+\contentsline {subsubsection}{\numberline {6.41.2.4}VL53L8CX\_WaitMs()}{211}{subsubsection.6.41.2.4}%
+\contentsline {subsubsection}{\numberline {6.41.2.5}VL53L8CX\_WrByte()}{211}{subsubsection.6.41.2.5}%
+\contentsline {subsubsection}{\numberline {6.41.2.6}VL53L8CX\_WrMulti()}{212}{subsubsection.6.41.2.6}%
+\contentsline {section}{\numberline {6.42}vl53l8cx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}platform.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{213}{section.6.42}%
+\contentsline {section}{\numberline {6.43}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.c File Reference}{214}{section.6.43}%
+\contentsline {subsection}{\numberline {6.43.1}Detailed Description}{215}{subsection.6.43.1}%
+\contentsline {subsection}{\numberline {6.43.2}Macro Definition Documentation}{216}{subsection.6.43.2}%
+\contentsline {subsubsection}{\numberline {6.43.2.1}ENVIRO\_READ\_PERIOD\_FRAMES}{216}{subsubsection.6.43.2.1}%
+\contentsline {subsubsection}{\numberline {6.43.2.2}LIDAR\_FREQ\_HZ}{216}{subsubsection.6.43.2.2}%
+\contentsline {subsubsection}{\numberline {6.43.2.3}LIDAR\_STUB\_MODE}{216}{subsubsection.6.43.2.3}%
+\contentsline {subsubsection}{\numberline {6.43.2.4}TASK\_CORE}{216}{subsubsection.6.43.2.4}%
+\contentsline {subsubsection}{\numberline {6.43.2.5}TASK\_PERIOD\_MS}{216}{subsubsection.6.43.2.5}%
+\contentsline {subsubsection}{\numberline {6.43.2.6}TASK\_PRIORITY}{216}{subsubsection.6.43.2.6}%
+\contentsline {subsubsection}{\numberline {6.43.2.7}TASK\_STACK\_SIZE}{217}{subsubsection.6.43.2.7}%
+\contentsline {subsection}{\numberline {6.43.3}Function Documentation}{217}{subsection.6.43.3}%
+\contentsline {subsubsection}{\numberline {6.43.3.1}lidar\_init\_sensor()}{217}{subsubsection.6.43.3.1}%
+\contentsline {subsubsection}{\numberline {6.43.3.2}lidar\_read\_sensor()}{218}{subsubsection.6.43.3.2}%
+\contentsline {subsubsection}{\numberline {6.43.3.3}task\_sensor\_acq()}{219}{subsubsection.6.43.3.3}%
+\contentsline {subsection}{\numberline {6.43.4}Variable Documentation}{221}{subsection.6.43.4}%
+\contentsline {subsubsection}{\numberline {6.43.4.1}TAG}{221}{subsubsection.6.43.4.1}%
+\contentsline {section}{\numberline {6.44}lidar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{222}{section.6.44}%
+\contentsline {section}{\numberline {6.45}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/mic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.c File Reference}{226}{section.6.45}%
+\contentsline {subsection}{\numberline {6.45.1}Detailed Description}{227}{subsection.6.45.1}%
+\contentsline {subsection}{\numberline {6.45.2}Macro Definition Documentation}{227}{subsection.6.45.2}%
+\contentsline {subsubsection}{\numberline {6.45.2.1}MIC\_BURST\_SAMPLES}{227}{subsubsection.6.45.2.1}%
+\contentsline {subsubsection}{\numberline {6.45.2.2}MIC\_READ\_TIMEOUT\_MS}{228}{subsubsection.6.45.2.2}%
+\contentsline {subsubsection}{\numberline {6.45.2.3}MIC\_SAMPLE\_RATE}{228}{subsubsection.6.45.2.3}%
+\contentsline {subsection}{\numberline {6.45.3}Function Documentation}{228}{subsection.6.45.3}%
+\contentsline {subsubsection}{\numberline {6.45.3.1}mic\_driver\_deinit()}{228}{subsubsection.6.45.3.1}%
+\contentsline {subsubsection}{\numberline {6.45.3.2}mic\_driver\_read()}{228}{subsubsection.6.45.3.2}%
+\contentsline {subsection}{\numberline {6.45.4}Variable Documentation}{229}{subsection.6.45.4}%
+\contentsline {subsubsection}{\numberline {6.45.4.1}s\_buf}{229}{subsubsection.6.45.4.1}%
+\contentsline {subsubsection}{\numberline {6.45.4.2}s\_rx\_chan}{229}{subsubsection.6.45.4.2}%
+\contentsline {subsubsection}{\numberline {6.45.4.3}TAG}{229}{subsubsection.6.45.4.3}%
+\contentsline {section}{\numberline {6.46}mic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{230}{section.6.46}%
+\contentsline {section}{\numberline {6.47}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/radar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.c File Reference}{231}{section.6.47}%
+\contentsline {subsection}{\numberline {6.47.1}Detailed Description}{233}{subsection.6.47.1}%
+\contentsline {subsection}{\numberline {6.47.2}Macro Definition Documentation}{233}{subsection.6.47.2}%
+\contentsline {subsubsection}{\numberline {6.47.2.1}RX\_BUF\_SIZE}{233}{subsubsection.6.47.2.1}%
+\contentsline {subsubsection}{\numberline {6.47.2.2}TF\_EOF}{233}{subsubsection.6.47.2.2}%
+\contentsline {subsubsection}{\numberline {6.47.2.3}TF\_FOOTER\_LEN}{233}{subsubsection.6.47.2.3}%
+\contentsline {subsubsection}{\numberline {6.47.2.4}TF\_HEADER\_LEN}{233}{subsubsection.6.47.2.4}%
+\contentsline {subsubsection}{\numberline {6.47.2.5}TF\_MAX\_PAYLOAD\_LEN}{234}{subsubsection.6.47.2.5}%
+\contentsline {subsubsection}{\numberline {6.47.2.6}TF\_MIN\_FRAME\_LEN}{234}{subsubsection.6.47.2.6}%
+\contentsline {subsubsection}{\numberline {6.47.2.7}TF\_SOF}{234}{subsubsection.6.47.2.7}%
+\contentsline {subsubsection}{\numberline {6.47.2.8}TF\_TYPE\_BREATH}{234}{subsubsection.6.47.2.8}%
+\contentsline {subsubsection}{\numberline {6.47.2.9}TF\_TYPE\_DISTANCE}{234}{subsubsection.6.47.2.9}%
+\contentsline {subsubsection}{\numberline {6.47.2.10}TF\_TYPE\_HEART}{234}{subsubsection.6.47.2.10}%
+\contentsline {subsubsection}{\numberline {6.47.2.11}UART\_PORT}{235}{subsubsection.6.47.2.11}%
+\contentsline {subsection}{\numberline {6.47.3}Function Documentation}{235}{subsection.6.47.3}%
+\contentsline {subsubsection}{\numberline {6.47.3.1}parse\_tinyframe()}{235}{subsubsection.6.47.3.1}%
+\contentsline {subsubsection}{\numberline {6.47.3.2}radar\_driver\_poll()}{236}{subsubsection.6.47.3.2}%
+\contentsline {subsection}{\numberline {6.47.4}Variable Documentation}{237}{subsection.6.47.4}%
+\contentsline {subsubsection}{\numberline {6.47.4.1}s\_parser}{237}{subsubsection.6.47.4.1}%
+\contentsline {subsubsection}{\numberline {6.47.4.2}TAG}{237}{subsubsection.6.47.4.2}%
+\contentsline {section}{\numberline {6.48}radar\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}driver.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{238}{section.6.48}%
+\contentsline {section}{\numberline {6.49}components/sensor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}acq/vl53l8cx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}platform.c File Reference}{240}{section.6.49}%
+\contentsline {subsection}{\numberline {6.49.1}Detailed Description}{241}{subsection.6.49.1}%
+\contentsline {subsection}{\numberline {6.49.2}Macro Definition Documentation}{241}{subsection.6.49.2}%
+\contentsline {subsubsection}{\numberline {6.49.2.1}MAX\_SPI\_TRANSFER}{241}{subsubsection.6.49.2.1}%
+\contentsline {subsubsection}{\numberline {6.49.2.2}PLATFORM\_TIMEOUT\_MS}{242}{subsubsection.6.49.2.2}%
+\contentsline {subsection}{\numberline {6.49.3}Function Documentation}{242}{subsection.6.49.3}%
+\contentsline {subsubsection}{\numberline {6.49.3.1}spi\_xfer()}{242}{subsubsection.6.49.3.1}%
+\contentsline {subsubsection}{\numberline {6.49.3.2}VL53L8CX\_PlatformInit()}{242}{subsubsection.6.49.3.2}%
+\contentsline {subsubsection}{\numberline {6.49.3.3}VL53L8CX\_RdByte()}{243}{subsubsection.6.49.3.3}%
+\contentsline {subsubsection}{\numberline {6.49.3.4}VL53L8CX\_RdMulti()}{244}{subsubsection.6.49.3.4}%
+\contentsline {subsubsection}{\numberline {6.49.3.5}VL53L8CX\_WaitMs()}{245}{subsubsection.6.49.3.5}%
+\contentsline {subsubsection}{\numberline {6.49.3.6}VL53L8CX\_WrByte()}{245}{subsubsection.6.49.3.6}%
+\contentsline {subsubsection}{\numberline {6.49.3.7}VL53L8CX\_WrMulti()}{246}{subsubsection.6.49.3.7}%
+\contentsline {subsection}{\numberline {6.49.4}Variable Documentation}{247}{subsection.6.49.4}%
+\contentsline {subsubsection}{\numberline {6.49.4.1}TAG}{247}{subsubsection.6.49.4.1}%
+\contentsline {section}{\numberline {6.50}vl53l8cx\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}platform.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{247}{section.6.50}%
+\contentsline {section}{\numberline {6.51}components/sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage/include/sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.h File Reference}{249}{section.6.51}%
+\contentsline {subsection}{\numberline {6.51.1}Detailed Description}{251}{subsection.6.51.1}%
+\contentsline {section}{\numberline {6.52}sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{251}{section.6.52}%
+\contentsline {section}{\numberline {6.53}components/sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage/littlefs\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}manager.c File Reference}{252}{section.6.53}%
+\contentsline {subsection}{\numberline {6.53.1}Detailed Description}{253}{subsection.6.53.1}%
+\contentsline {subsection}{\numberline {6.53.2}Variable Documentation}{253}{subsection.6.53.2}%
+\contentsline {subsubsection}{\numberline {6.53.2.1}TAG}{253}{subsubsection.6.53.2.1}%
+\contentsline {section}{\numberline {6.54}littlefs\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}manager.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{253}{section.6.54}%
+\contentsline {section}{\numberline {6.55}components/sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage/log\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}writer.c File Reference}{254}{section.6.55}%
+\contentsline {subsection}{\numberline {6.55.1}Detailed Description}{255}{subsection.6.55.1}%
+\contentsline {subsection}{\numberline {6.55.2}Function Documentation}{255}{subsection.6.55.2}%
+\contentsline {subsubsection}{\numberline {6.55.2.1}log\_trim\_file()}{255}{subsubsection.6.55.2.1}%
+\contentsline {subsection}{\numberline {6.55.3}Variable Documentation}{256}{subsection.6.55.3}%
+\contentsline {subsubsection}{\numberline {6.55.3.1}s\_mutex}{256}{subsubsection.6.55.3.1}%
+\contentsline {subsubsection}{\numberline {6.55.3.2}TAG}{257}{subsubsection.6.55.3.2}%
+\contentsline {section}{\numberline {6.56}log\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}writer.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{257}{section.6.56}%
+\contentsline {section}{\numberline {6.57}components/sys\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}storage/panic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}handler.c File Reference}{258}{section.6.57}%
+\contentsline {subsection}{\numberline {6.57.1}Detailed Description}{259}{subsection.6.57.1}%
+\contentsline {subsection}{\numberline {6.57.2}Macro Definition Documentation}{260}{subsection.6.57.2}%
+\contentsline {subsubsection}{\numberline {6.57.2.1}PANIC\_MAGIC\_VALUE}{260}{subsubsection.6.57.2.1}%
+\contentsline {subsection}{\numberline {6.57.3}Function Documentation}{260}{subsection.6.57.3}%
+\contentsline {subsubsection}{\numberline {6.57.3.1}shutdown\_handler()}{260}{subsubsection.6.57.3.1}%
+\contentsline {subsection}{\numberline {6.57.4}Variable Documentation}{260}{subsection.6.57.4}%
+\contentsline {subsubsection}{\numberline {6.57.4.1}s\_panic\_magic}{260}{subsubsection.6.57.4.1}%
+\contentsline {subsubsection}{\numberline {6.57.4.2}s\_panic\_msg}{261}{subsubsection.6.57.4.2}%
+\contentsline {subsubsection}{\numberline {6.57.4.3}s\_panic\_time\_us}{261}{subsubsection.6.57.4.3}%
+\contentsline {subsubsection}{\numberline {6.57.4.4}TAG}{261}{subsubsection.6.57.4.4}%
+\contentsline {section}{\numberline {6.58}panic\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}handler.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{261}{section.6.58}%
+\contentsline {section}{\numberline {6.59}main/main.c File Reference}{262}{section.6.59}%
+\contentsline {subsection}{\numberline {6.59.1}Detailed Description}{263}{subsection.6.59.1}%
+\contentsline {section}{\numberline {6.60}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c}{264}{section.6.60}%

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_a07dd1bb026dd60940fbd2da6a20f1f7" kind="dir">
+    <compoundname>components/sys_storage</compoundname>
+    <innerdir refid="dir_452ee0c3bb1dbde15409fe514d184a59">components/sys_storage/include</innerdir>
+    <innerfile refid="littlefs__manager_8c">littlefs_manager.c</innerfile>
+    <innerfile refid="log__writer_8c">log_writer.c</innerfile>
+    <innerfile refid="panic__handler_8c">panic_handler.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/sys_storage/"/>
+  </compounddef>
+</doxygen>

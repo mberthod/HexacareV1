@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_0377518441a900bf4420a1e62446b333" kind="dir">
+    <compoundname>components/pc_diag</compoundname>
+    <innerdir refid="dir_a929a7206adc8ebdd5621360801b870a">components/pc_diag/include</innerdir>
+    <innerfile refid="pc__diag_8c">pc_diag.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/pc_diag/"/>
+  </compounddef>
+</doxygen>

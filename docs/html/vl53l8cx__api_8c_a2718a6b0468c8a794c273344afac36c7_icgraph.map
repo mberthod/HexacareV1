@@ -1,0 +1,5 @@
+<map id="vl53l8cx_get_target_order" name="vl53l8cx_get_target_order">
+<area shape="rect" id="Node000001" title="This function gets the current target order (closest or strongest)." alt="" coords="179,5,313,48"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="5,5,131,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,29,131,29,131,24,163,24"/>
+</map>

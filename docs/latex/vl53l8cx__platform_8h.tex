@@ -1,0 +1,443 @@
+\doxysection{components/sensor\+\_\+acq/include/vl53l8cx\+\_\+platform.h File Reference}
+\hypertarget{vl53l8cx__platform_8h}{}\label{vl53l8cx__platform_8h}\index{components/sensor\_acq/include/vl53l8cx\_platform.h@{components/sensor\_acq/include/vl53l8cx\_platform.h}}
+
+
+Couche d\textquotesingle{}abstraction plateforme pour l\textquotesingle{}ULD VL53\+L8\+CX de ST — interface SPI.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include "{}driver/spi\+\_\+master.\+h"{}}\newline
+Include dependency graph for vl53l8cx\+\_\+platform.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{vl53l8cx__platform_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}}
+\begin{DoxyCompactList}\small\item\em Couche “adaptateur” SPI requise par l\textquotesingle{}ULD ST (VL53\+L8\+CX). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__platform_8h_a5687017b3245ded0e88563178c6613a7}{VL53\+L8\+CX\+\_\+\+Platform\+Init}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}p\+\_\+platform)
+\begin{DoxyCompactList}\small\item\em Valide le handle SPI (device déjà ajouté au bus par hw\+\_\+diag). \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__platform_8h_a501a5073457a1982c2406543df0d073e}{VL53\+L8\+CX\+\_\+\+Rd\+Byte}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}p\+\_\+platform, uint16\+\_\+t Register\+Address, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Lit un octet depuis un registre 16 bits du VL53\+L8\+CX. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__platform_8h_a7710197de0c7e075a4064f18baa56355}{VL53\+L8\+CX\+\_\+\+Wr\+Byte}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}p\+\_\+platform, uint16\+\_\+t Register\+Address, uint8\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Écrit un octet dans un registre 16 bits du VL53\+L8\+CX. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248}{VL53\+L8\+CX\+\_\+\+Rd\+Multi}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}p\+\_\+platform, uint16\+\_\+t Register\+Address, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+values, uint32\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Lit plusieurs octets depuis un registre 16 bits du VL53\+L8\+CX. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53\+L8\+CX\+\_\+\+Wr\+Multi}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}p\+\_\+platform, uint16\+\_\+t Register\+Address, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+values, uint32\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Écrit plusieurs octets vers un registre 16 bits du VL53\+L8\+CX. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__platform_8h_a03e447cf6ff03fb5be303b919a099751}{VL53\+L8\+CX\+\_\+\+Wait\+Ms}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}p\+\_\+platform, uint32\+\_\+t Time\+Ms)
+\begin{DoxyCompactList}\small\item\em Attend un délai en millisecondes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Couche d\textquotesingle{}abstraction plateforme pour l\textquotesingle{}ULD VL53\+L8\+CX de ST — interface SPI. 
+
+Implémente la Platform Abstraction Layer (PAL) exigée par l\textquotesingle{}Ultra-\/\+Lite Driver (ULD) VL53\+L8\+CX de STMicroelectronics, via l\textquotesingle{}API SPI master d\textquotesingle{}ESP-\/\+IDF.
+
+Protocole SPI VL53\+L8\+CX \+:
+\begin{DoxyItemize}
+\item Mode SPI 3 (CPOL=1, CPHA=1), max 10 MHz, NCS actif bas.
+\item Adresse registre \+: 2 octets big-\/endian.
+\item Écriture \+: bit15=0 → \mbox{[}addr\+\_\+hi \& 0x7F\mbox{]}\mbox{[}addr\+\_\+lo\mbox{]}\mbox{[}data...\mbox{]}
+\item Lecture \+: bit15=1 → \mbox{[}addr\+\_\+hi \texorpdfstring{$\vert$}{|} 0x80\mbox{]}\mbox{[}addr\+\_\+lo\mbox{]}\mbox{[}dummy...\mbox{]} → \mbox{[}xx\mbox{]}\mbox{[}xx\mbox{]}\mbox{[}data...\mbox{]}
+\end{DoxyItemize}
+
+INSTALLATION DE L\textquotesingle{}ULD \+:
+\begin{DoxyEnumerate}
+\item Télécharger le VL53\+L8\+CX ULD depuis st.\+com (STSW-\/\+IMG040).
+\item Copier les fichiers source ULD dans components/sensor\+\_\+acq/uld/.
+\item Ajouter les sources ULD à la liste SRCS du CMake\+Lists.\+txt.
+\item Retirer la macro LIDAR\+\_\+\+STUB\+\_\+\+MODE de \doxylink{lidar__driver_8c}{lidar\+\_\+driver.\+c}. 
+\end{DoxyEnumerate}
+
+Definition in file \mbox{\hyperlink{vl53l8cx__platform_8h_source}{vl53l8cx\+\_\+platform.\+h}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{vl53l8cx__platform_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{vl53l8cx__platform_8h_a5687017b3245ded0e88563178c6613a7}\index{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_PlatformInit@{VL53L8CX\_PlatformInit}}
+\index{VL53L8CX\_PlatformInit@{VL53L8CX\_PlatformInit}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_PlatformInit()}{VL53L8CX\_PlatformInit()}}
+{\footnotesize\ttfamily \label{vl53l8cx__platform_8h_a5687017b3245ded0e88563178c6613a7} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Platform\+Init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+platform}{}\end{DoxyParamCaption})}
+
+
+
+Valide le handle SPI (device déjà ajouté au bus par hw\+\_\+diag). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+platform} & Contexte plateforme (contient le handle SPI). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si succès (convention ULD ST). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00031}{31}} of file \mbox{\hyperlink{vl53l8cx__platform_8c_source}{vl53l8cx\+\_\+platform.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordflow}{if}\ (!p\_platform-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{spi\_dev}})\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PlatformInit\ :\ spi\_dev\ NULL"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00038\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00040}{VL53\+L8\+CX\+\_\+\+Platform\+::spi\+\_\+dev}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00111}{lidar\+\_\+init\+\_\+sensor()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a5687017b3245ded0e88563178c6613a7_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__platform_8h_a501a5073457a1982c2406543df0d073e}\index{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_RdByte@{VL53L8CX\_RdByte}}
+\index{VL53L8CX\_RdByte@{VL53L8CX\_RdByte}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_RdByte()}{VL53L8CX\_RdByte()}}
+{\footnotesize\ttfamily \label{vl53l8cx__platform_8h_a501a5073457a1982c2406543df0d073e} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Rd\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+platform}{, }\item[{uint16\+\_\+t}]{Register\+Address}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+value}{}\end{DoxyParamCaption})}
+
+
+
+Lit un octet depuis un registre 16 bits du VL53\+L8\+CX. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+platform} & Contexte plateforme. \\
+\hline
+{\em Register\+Address} & Adresse 16 bits du registre. \\
+\hline
+{\em p\+\_\+value} & Valeur lue (1 octet). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si succès (convention ULD ST). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00132}{132}} of file \mbox{\hyperlink{vl53l8cx__platform_8c_source}{vl53l8cx\+\_\+platform.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{vl53l8cx__platform_8c_af4dfb23228937a89dab5c68f81836248}{VL53L8CX\_RdMulti}}(p\_platform,\ RegisterAddress,\ p\_value,\ 1);}
+\DoxyCodeLine{00136\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00065}{VL53\+L8\+CX\+\_\+\+Rd\+Multi()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00062}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+mcu\+\_\+boot()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00425}{vl53l8cx\+\_\+get\+\_\+power\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00219}{vl53l8cx\+\_\+is\+\_\+alive()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00462}{vl53l8cx\+\_\+set\+\_\+power\+\_\+mode()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00659}{vl53l8cx\+\_\+stop\+\_\+ranging()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a501a5073457a1982c2406543df0d073e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a501a5073457a1982c2406543df0d073e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248}\index{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_RdMulti@{VL53L8CX\_RdMulti}}
+\index{VL53L8CX\_RdMulti@{VL53L8CX\_RdMulti}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_RdMulti()}{VL53L8CX\_RdMulti()}}
+{\footnotesize\ttfamily \label{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Rd\+Multi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+platform}{, }\item[{uint16\+\_\+t}]{Register\+Address}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+values}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Lit plusieurs octets depuis un registre 16 bits du VL53\+L8\+CX. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+platform} & Contexte plateforme. \\
+\hline
+{\em Register\+Address} & Adresse 16 bits du registre. \\
+\hline
+{\em p\+\_\+values} & Buffer de sortie (taille \texorpdfstring{$>$}{>}= size). \\
+\hline
+{\em size} & Nombre d\textquotesingle{}octets à lire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si succès (convention ULD ST). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00065}{65}} of file \mbox{\hyperlink{vl53l8cx__platform_8c_source}{vl53l8cx\+\_\+platform.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00068\ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\ =\ 2\ +\ (size\_t)size;}
+\DoxyCodeLine{00070\ \ \ \ \ uint8\_t\ *tx\ \ =\ calloc(1,\ total);}
+\DoxyCodeLine{00071\ \ \ \ \ uint8\_t\ *rx\ \ =\ calloc(1,\ total);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{if}\ (!tx\ ||\ !rx)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}RdMulti\ :\ malloc(\%u)\ échoué"{}},\ (\textcolor{keywordtype}{unsigned})total);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ free(tx);\ free(rx);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{/*\ Header\ de\ lecture\ :\ bit\ 15\ =\ 1\ */}}
+\DoxyCodeLine{00080\ \ \ \ \ tx[0]\ =\ (uint8\_t)((RegisterAddress\ >>\ 8)\ |\ 0x80);}
+\DoxyCodeLine{00081\ \ \ \ \ tx[1]\ =\ (uint8\_t)(RegisterAddress\ \&\ 0xFF);}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{/*\ Octets\ restants\ laissés\ à\ 0x00\ (dummy\ pour\ générer\ l'horloge)\ */}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{vl53l8cx__platform_8c_a8be467b932dd428e0f75d7ebf828bb4c}{spi\_xfer}}(p\_platform-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{spi\_dev}},\ tx,\ rx,\ total);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ memcpy(p\_values,\ \&rx[2],\ size);\ \textcolor{comment}{/*\ Sauter\ les\ 2\ octets\ header\ */}}
+\DoxyCodeLine{00088\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}RdMulti\ addr=0x\%04X\ :\ \%s"{}},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegisterAddress,\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ free(tx);}
+\DoxyCodeLine{00094\ \ \ \ \ free(rx);}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ ESP\_OK)\ ?\ 0\ :\ 1;}
+\DoxyCodeLine{00096\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00040}{VL53\+L8\+CX\+\_\+\+Platform\+::spi\+\_\+dev}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00050}{spi\+\_\+xfer()}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00021}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00023}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00713}{vl53l8cx\+\_\+check\+\_\+data\+\_\+ready()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00290}{vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00132}{VL53\+L8\+CX\+\_\+\+Rd\+Byte()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00659}{vl53l8cx\+\_\+stop\+\_\+ranging()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=269pt]{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__platform_8h_a03e447cf6ff03fb5be303b919a099751}\index{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_WaitMs@{VL53L8CX\_WaitMs}}
+\index{VL53L8CX\_WaitMs@{VL53L8CX\_WaitMs}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_WaitMs()}{VL53L8CX\_WaitMs()}}
+{\footnotesize\ttfamily \label{vl53l8cx__platform_8h_a03e447cf6ff03fb5be303b919a099751} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Wait\+Ms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+platform}{, }\item[{uint32\+\_\+t}]{Time\+Ms}{}\end{DoxyParamCaption})}
+
+
+
+Attend un délai en millisecondes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+platform} & Contexte plateforme (non utilisé, mais imposé par l\textquotesingle{}ULD). \\
+\hline
+{\em Time\+Ms} & Durée d\textquotesingle{}attente (ms). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si succès (convention ULD ST). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00147}{147}} of file \mbox{\hyperlink{vl53l8cx__platform_8c_source}{vl53l8cx\+\_\+platform.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00148\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ (void)p\_platform;}
+\DoxyCodeLine{00150\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(TimeMs));}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00152\ \}}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00021}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00023}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00062}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+mcu\+\_\+boot()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00659}{vl53l8cx\+\_\+stop\+\_\+ranging()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a03e447cf6ff03fb5be303b919a099751_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__platform_8h_a7710197de0c7e075a4064f18baa56355}\index{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_WrByte@{VL53L8CX\_WrByte}}
+\index{VL53L8CX\_WrByte@{VL53L8CX\_WrByte}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_WrByte()}{VL53L8CX\_WrByte()}}
+{\footnotesize\ttfamily \label{vl53l8cx__platform_8h_a7710197de0c7e075a4064f18baa56355} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Wr\+Byte (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+platform}{, }\item[{uint16\+\_\+t}]{Register\+Address}{, }\item[{uint8\+\_\+t}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Écrit un octet dans un registre 16 bits du VL53\+L8\+CX. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+platform} & Contexte plateforme. \\
+\hline
+{\em Register\+Address} & Adresse 16 bits du registre. \\
+\hline
+{\em value} & Octet à écrire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si succès (convention ULD ST). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00138}{138}} of file \mbox{\hyperlink{vl53l8cx__platform_8c_source}{vl53l8cx\+\_\+platform.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00140\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{vl53l8cx__platform_8c_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(p\_platform,\ RegisterAddress,\ \&value,\ 1);}
+\DoxyCodeLine{00142\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00101}{VL53\+L8\+CX\+\_\+\+Wr\+Multi()}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00425}{vl53l8cx\+\_\+get\+\_\+power\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00219}{vl53l8cx\+\_\+is\+\_\+alive()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00411}{vl53l8cx\+\_\+set\+\_\+i2c\+\_\+address()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00462}{vl53l8cx\+\_\+set\+\_\+power\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00659}{vl53l8cx\+\_\+stop\+\_\+ranging()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a7710197de0c7e075a4064f18baa56355_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a7710197de0c7e075a4064f18baa56355_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}\index{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_WrMulti@{VL53L8CX\_WrMulti}}
+\index{VL53L8CX\_WrMulti@{VL53L8CX\_WrMulti}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}}
+\doxysubsubsection{\texorpdfstring{VL53L8CX\_WrMulti()}{VL53L8CX\_WrMulti()}}
+{\footnotesize\ttfamily \label{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Wr\+Multi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+platform}{, }\item[{uint16\+\_\+t}]{Register\+Address}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+values}{, }\item[{uint32\+\_\+t}]{size}{}\end{DoxyParamCaption})}
+
+
+
+Écrit plusieurs octets vers un registre 16 bits du VL53\+L8\+CX. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+platform} & Contexte plateforme. \\
+\hline
+{\em Register\+Address} & Adresse 16 bits du registre. \\
+\hline
+{\em p\+\_\+values} & Données à écrire. \\
+\hline
+{\em size} & Nombre d\textquotesingle{}octets à écrire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 si succès (convention ULD ST). 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00101}{101}} of file \mbox{\hyperlink{vl53l8cx__platform_8c_source}{vl53l8cx\+\_\+platform.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ total\ =\ 2\ +\ (size\_t)size;}
+\DoxyCodeLine{00106\ \ \ \ \ uint8\_t\ *tx\ \ =\ malloc(total);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (!tx)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}WrMulti\ :\ malloc(\%u)\ échoué"{}},\ (\textcolor{keywordtype}{unsigned})total);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{comment}{/*\ Header\ d'écriture\ :\ bit\ 15\ =\ 0\ */}}
+\DoxyCodeLine{00114\ \ \ \ \ tx[0]\ =\ (uint8\_t)((RegisterAddress\ >>\ 8)\ \&\ 0x7F);}
+\DoxyCodeLine{00115\ \ \ \ \ tx[1]\ =\ (uint8\_t)(RegisterAddress\ \&\ 0xFF);}
+\DoxyCodeLine{00116\ \ \ \ \ memcpy(\&tx[2],\ p\_values,\ size);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{vl53l8cx__platform_8c_a8be467b932dd428e0f75d7ebf828bb4c}{spi\_xfer}}(p\_platform-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{spi\_dev}},\ tx,\ NULL,\ total);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}WrMulti\ addr=0x\%04X\ :\ \%s"{}},}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RegisterAddress,\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ free(tx);}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ ESP\_OK)\ ?\ 0\ :\ 1;}
+\DoxyCodeLine{00127\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00040}{VL53\+L8\+CX\+\_\+\+Platform\+::spi\+\_\+dev}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00050}{spi\+\_\+xfer()}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00094}{\+\_\+vl53l8cx\+\_\+send\+\_\+offset\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00164}{\+\_\+vl53l8cx\+\_\+send\+\_\+xtalk\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01308}{vl53l8cx\+\_\+dci\+\_\+write\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00290}{vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}, and \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00138}{VL53\+L8\+CX\+\_\+\+Wr\+Byte()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=268pt]{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7_icgraph}
+\end{center}
+\end{figure}

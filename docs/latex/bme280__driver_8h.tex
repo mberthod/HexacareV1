@@ -1,0 +1,229 @@
+\doxysection{components/sensor\+\_\+acq/include/bme280\+\_\+driver.h File Reference}
+\hypertarget{bme280__driver_8h}{}\label{bme280__driver_8h}\index{components/sensor\_acq/include/bme280\_driver.h@{components/sensor\_acq/include/bme280\_driver.h}}
+
+
+Driver Bosch BME280 — Température, Pression, Humidité.  
+
+
+{\ttfamily \#include "{}driver/i2c\+\_\+master.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for bme280\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=254pt]{bme280__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bme280__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4}{BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+DEFAULT}}~0x76
+\begin{DoxyCompactList}\small\item\em Capteur environnemental BME280 (pression/température/humidité). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{bme280__driver_8h_a7b7c6da1330193242ae0fed91f8ea6b9}{BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+ALT}}~0x77
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{bme280__driver_8h_a16050495a4e02a1498ceadf9a19db1e2}{bme280\+\_\+init}} (i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t bus, uint8\+\_\+t i2c\+\_\+addr)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{bme280__driver_8h_a898595b4f31ff7da1e14b618a804a7b5}{bme280\+\_\+read}} (float \texorpdfstring{$\ast$}{*}temp\+\_\+c, float \texorpdfstring{$\ast$}{*}pressure\+\_\+hpa, float \texorpdfstring{$\ast$}{*}humidity\+\_\+pct)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Driver Bosch BME280 — Température, Pression, Humidité. 
+
+Interface I2C via driver/i2c\+\_\+master.\+h (ESP-\/\+IDF v5+). Adresse I2C 7 bits \+: 0x76 (SDO=GND) ou 0x77 (SDO=VDD).
+
+Caractéristiques \+:
+\begin{DoxyItemize}
+\item Température \+: −40 °C → +85 °C, résolution 0.\+01 °C
+\item Pression \+: 300 h\+Pa → 1100 h\+Pa, résolution 0.\+18 Pa
+\item Humidité \+: 0 \% → 100 \% RH, résolution 0.\+008 \%
+\item Mode utilisé \+: Forced mode (single-\/shot) + filtre IIR × 4 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{bme280__driver_8h_source}{bme280\+\_\+driver.\+h}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{bme280__driver_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{bme280__driver_8h_a7b7c6da1330193242ae0fed91f8ea6b9}\index{bme280\_driver.h@{bme280\_driver.h}!BME280\_I2C\_ADDR\_ALT@{BME280\_I2C\_ADDR\_ALT}}
+\index{BME280\_I2C\_ADDR\_ALT@{BME280\_I2C\_ADDR\_ALT}!bme280\_driver.h@{bme280\_driver.h}}
+\doxysubsubsection{\texorpdfstring{BME280\_I2C\_ADDR\_ALT}{BME280\_I2C\_ADDR\_ALT}}
+{\footnotesize\ttfamily \label{bme280__driver_8h_a7b7c6da1330193242ae0fed91f8ea6b9} 
+\#define BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+ALT~0x77}
+
+SDO reliée à VDD 
+
+Definition at line \mbox{\hyperlink{bme280__driver_8h_source_l00030}{30}} of file \mbox{\hyperlink{bme280__driver_8h_source}{bme280\+\_\+driver.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{bme280__driver_8h_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{bme280__driver_8h_a16050495a4e02a1498ceadf9a19db1e2}\index{bme280\_driver.h@{bme280\_driver.h}!bme280\_init@{bme280\_init}}
+\index{bme280\_init@{bme280\_init}!bme280\_driver.h@{bme280\_driver.h}}
+\doxysubsubsection{\texorpdfstring{bme280\_init()}{bme280\_init()}}
+{\footnotesize\ttfamily \label{bme280__driver_8h_a16050495a4e02a1498ceadf9a19db1e2} 
+esp\+\_\+err\+\_\+t bme280\+\_\+init (\begin{DoxyParamCaption}\item[{i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t}]{bus}{, }\item[{uint8\+\_\+t}]{i2c\+\_\+addr}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{bme280__driver_8c_source_l00155}{155}} of file \mbox{\hyperlink{bme280__driver_8c_source}{bme280\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00156\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ i2c\_device\_config\_t\ dev\_cfg\ =\ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ .dev\_addr\_length\ =\ I2C\_ADDR\_BIT\_LEN\_7,}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ .device\_address\ \ =\ i2c\_addr,}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ .scl\_speed\_hz\ \ \ \ =\ 400000,}
+\DoxyCodeLine{00161\ \ \ \ \ \};}
+\DoxyCodeLine{00162\ \ \ \ \ esp\_err\_t\ ret\ =\ i2c\_master\_bus\_add\_device(bus,\ \&dev\_cfg,\ \&\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}});}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Ajout\ device\ I2C\ 0x\%02X\ échoué\ :\ \%s"{}},}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i2c\_addr,\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ chip\ ID\ */}}
+\DoxyCodeLine{00170\ \ \ \ \ uint8\_t\ chip\_id\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_abead2f4994c6f3b4a3b9ca286d00f13b}{REG\_CHIP\_ID}},\ \&chip\_id,\ 1);}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK\ ||\ chip\_id\ !=\ \mbox{\hyperlink{bme280__driver_8c_aa9471d8f9c99880c3b85360017908e6b}{BME280\_CHIP\_ID}})\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ non\ détecté\ (chip\_id=0x\%02X)"{}},\ chip\_id);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ret\ ==\ ESP\_OK)\ ?\ ESP\_ERR\_NOT\_FOUND\ :\ ret;}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{/*\ Reset\ logiciel\ */}}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_ad6a95c96a883b809b1bf9c16446d0735}{REG\_RESET}},\ 0xB6);}
+\DoxyCodeLine{00179\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(5));}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ calibration\ */}}
+\DoxyCodeLine{00182\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a7c57f6d05791a5304f415dcefc16ba45}{read\_calibration}}();}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Lecture\ calibration\ échouée"{}});}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{/*\ Configuration\ :}}
+\DoxyCodeLine{00189\ \textcolor{comment}{\ \ \ \ \ *\ \ \ ctrl\_hum\ \ :\ osrs\_h\ =\ ×4\ (101b\ =\ 5)}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ *\ \ \ ctrl\_meas\ :\ osrs\_t\ =\ ×2\ (010b),\ osrs\_p\ =\ ×4\ (011b),\ mode\ =\ sleep\ (00b)}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ *\ \ \ config\ \ \ \ :\ filtre\ IIR\ =\ ×4\ (010b),\ t\_sb\ =\ 0.5\ ms\ (000b)}}
+\DoxyCodeLine{00192\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a35a180cecaeed7cbc9d43967175c27af}{REG\_CTRL\_HUM}},\ \ 0x05);\ \ \textcolor{comment}{/*\ osrs\_h\ ×4\ */}}
+\DoxyCodeLine{00194\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a679325263fb326462f7410d3292171be}{REG\_CONFIG}},\ \ \ \ 0x10);\ \ \textcolor{comment}{/*\ filtre\ ×4\ */}}
+\DoxyCodeLine{00195\ \ \ \ \ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{REG\_CTRL\_MEAS}},\ 0x54);\ \ \textcolor{comment}{/*\ osrs\_t\ ×2,\ osrs\_p\ ×4,\ sleep\ mode\ */}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ initialisé\ (@0x\%02X,\ chip\_id=0x60)"{}},\ i2c\_addr);}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00199\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{bme280__driver_8c_source_l00033}{BME280\+\_\+\+CHIP\+\_\+\+ID}}, \mbox{\hyperlink{bme280__driver_8c_source_l00068}{read\+\_\+calibration()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00057}{read\+\_\+regs()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00022}{REG\+\_\+\+CHIP\+\_\+\+ID}}, \mbox{\hyperlink{bme280__driver_8c_source_l00027}{REG\+\_\+\+CONFIG}}, \mbox{\hyperlink{bme280__driver_8c_source_l00024}{REG\+\_\+\+CTRL\+\_\+\+HUM}}, \mbox{\hyperlink{bme280__driver_8c_source_l00026}{REG\+\_\+\+CTRL\+\_\+\+MEAS}}, \mbox{\hyperlink{bme280__driver_8c_source_l00023}{REG\+\_\+\+RESET}}, \mbox{\hyperlink{bme280__driver_8c_source_l00046}{s\+\_\+dev}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, and \mbox{\hyperlink{bme280__driver_8c_source_l00051}{write\+\_\+reg()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bme280__driver_8h_a16050495a4e02a1498ceadf9a19db1e2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=243pt]{bme280__driver_8h_a16050495a4e02a1498ceadf9a19db1e2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bme280__driver_8h_a898595b4f31ff7da1e14b618a804a7b5}\index{bme280\_driver.h@{bme280\_driver.h}!bme280\_read@{bme280\_read}}
+\index{bme280\_read@{bme280\_read}!bme280\_driver.h@{bme280\_driver.h}}
+\doxysubsubsection{\texorpdfstring{bme280\_read()}{bme280\_read()}}
+{\footnotesize\ttfamily \label{bme280__driver_8h_a898595b4f31ff7da1e14b618a804a7b5} 
+esp\+\_\+err\+\_\+t bme280\+\_\+read (\begin{DoxyParamCaption}\item[{float \texorpdfstring{$\ast$}{*}}]{temp\+\_\+c}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{pressure\+\_\+hpa}{, }\item[{float \texorpdfstring{$\ast$}{*}}]{humidity\+\_\+pct}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{bme280__driver_8c_source_l00201}{201}} of file \mbox{\hyperlink{bme280__driver_8c_source}{bme280\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}})\ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{/*\ Déclencher\ une\ mesure\ forced\ (mode\ =\ 01b\ →\ écriture\ de\ ctrl\_meas)\ */}}
+\DoxyCodeLine{00206\ \ \ \ \ uint8\_t\ ctrl;}
+\DoxyCodeLine{00207\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{REG\_CTRL\_MEAS}},\ \&ctrl,\ 1);}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{/*\ Set\ mode\ =\ forced\ (01)\ en\ conservant\ l'oversampling\ */}}
+\DoxyCodeLine{00211\ \ \ \ \ ctrl\ =\ (ctrl\ \&\ 0xFC)\ |\ 0x01;}
+\DoxyCodeLine{00212\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a9ddfe7eb88c71695207c1b670c57ac1c}{write\_reg}}(\mbox{\hyperlink{bme280__driver_8c_a7b290e09b5d35e8b91b6870fa9f678b3}{REG\_CTRL\_MEAS}},\ ctrl);}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{comment}{/*\ Attente\ fin\ de\ conversion\ */}}
+\DoxyCodeLine{00216\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{bme280__driver_8c_a424850e29936186a531e726ec1ce9c00}{MEAS\_DELAY\_MS}}));}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ de\ 8\ octets\ :\ P\ (3),\ T\ (3),\ H\ (2)\ */}}
+\DoxyCodeLine{00219\ \ \ \ \ uint8\_t\ data[8]\ =\ \{0\};}
+\DoxyCodeLine{00220\ \ \ \ \ ret\ =\ \mbox{\hyperlink{bme280__driver_8c_a8ebca364a0b07ee06c923efb00605bb1}{read\_regs}}(\mbox{\hyperlink{bme280__driver_8c_aa9a9ac08251af88d8be2fc413a314758}{REG\_DATA\_START}},\ data,\ \textcolor{keyword}{sizeof}(data));}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Lecture\ données\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00224\ \ \ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ int32\_t\ raw\_p\ =\ ((int32\_t)data[0]\ <<\ 12)\ |\ ((int32\_t)data[1]\ <<\ 4)\ |\ (data[2]\ >>\ 4);}
+\DoxyCodeLine{00227\ \ \ \ \ int32\_t\ raw\_t\ =\ ((int32\_t)data[3]\ <<\ 12)\ |\ ((int32\_t)data[4]\ <<\ 4)\ |\ (data[5]\ >>\ 4);}
+\DoxyCodeLine{00228\ \ \ \ \ int32\_t\ raw\_h\ =\ ((int32\_t)data[6]\ <<\ 8)\ \ |\ data[7];}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{/*\ Compensation\ (ordre\ obligatoire\ :\ T\ en\ premier\ pour\ s\_t\_fine)\ */}}
+\DoxyCodeLine{00231\ \ \ \ \ *temp\_c\ \ \ \ \ \ \ =\ \mbox{\hyperlink{bme280__driver_8c_a1e19f2f464d29d4636de9f80611ea19d}{compensate\_temperature}}(raw\_t);}
+\DoxyCodeLine{00232\ \ \ \ \ *pressure\_hpa\ =\ \mbox{\hyperlink{bme280__driver_8c_a126e932030b8c2df71f1c9cd3aecb04b}{compensate\_pressure}}(raw\_p);}
+\DoxyCodeLine{00233\ \ \ \ \ *humidity\_pct\ =\ \mbox{\hyperlink{bme280__driver_8c_aa8f85514b39b120751b2ba443a19c4cc}{compensate\_humidity}}(raw\_h);}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00236\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{bme280__driver_8c_source_l00136}{compensate\+\_\+humidity()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00118}{compensate\+\_\+pressure()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00107}{compensate\+\_\+temperature()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00035}{MEAS\+\_\+\+DELAY\+\_\+\+MS}}, \mbox{\hyperlink{bme280__driver_8c_source_l00057}{read\+\_\+regs()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00026}{REG\+\_\+\+CTRL\+\_\+\+MEAS}}, \mbox{\hyperlink{bme280__driver_8c_source_l00028}{REG\+\_\+\+DATA\+\_\+\+START}}, \mbox{\hyperlink{bme280__driver_8c_source_l00046}{s\+\_\+dev}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, and \mbox{\hyperlink{bme280__driver_8c_source_l00051}{write\+\_\+reg()}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=317pt]{bme280__driver_8h_a898595b4f31ff7da1e14b618a804a7b5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{bme280__driver_8h_a898595b4f31ff7da1e14b618a804a7b5_icgraph}
+\end{center}
+\end{figure}

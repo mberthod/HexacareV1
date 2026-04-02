@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structsys__context__t" kind="struct" language="C++" prot="public">
+    <compoundname>sys_context_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" prot="public" static="no" mutable="no">
+        <type>QueueHandle_t</type>
+        <definition>QueueHandle_t sys_context_t::sensor_to_ai_queue</definition>
+        <argsstring></argsstring>
+        <name>sensor_to_ai_queue</name>
+        <qualifiedname>sys_context_t::sensor_to_ai_queue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref>, profondeur 4 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="228" column="19" bodyfile="components/lexacare_types/include/system_types.h" bodystart="228" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" prot="public" static="no" mutable="no">
+        <type>QueueHandle_t</type>
+        <definition>QueueHandle_t sys_context_t::ai_to_mesh_queue</definition>
+        <argsstring></argsstring>
+        <name>ai_to_mesh_queue</name>
+        <qualifiedname>sys_context_t::ai_to_mesh_queue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="structai__event__t" kindref="compound">ai_event_t</ref>, profondeur 8 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="229" column="19" bodyfile="components/lexacare_types/include/system_types.h" bodystart="229" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</referencedby>
+        <referencedby refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" prot="public" static="no" mutable="no">
+        <type>QueueHandle_t</type>
+        <definition>QueueHandle_t sys_context_t::diag_to_pc_queue</definition>
+        <argsstring></argsstring>
+        <name>diag_to_pc_queue</name>
+        <qualifiedname>sys_context_t::diag_to_pc_queue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="structai__event__t" kindref="compound">ai_event_t</ref>, profondeur 8 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="230" column="19" bodyfile="components/lexacare_types/include/system_types.h" bodystart="230" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1aff52a7e584b7d6fe202e6b010e077b14" prot="public" static="no" mutable="no">
+        <type>QueueHandle_t</type>
+        <definition>QueueHandle_t sys_context_t::log_queue</definition>
+        <argsstring></argsstring>
+        <name>log_queue</name>
+        <qualifiedname>sys_context_t::log_queue</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>char*, profondeur 16 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="231" column="19" bodyfile="components/lexacare_types/include/system_types.h" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" prot="public" static="no" mutable="no">
+        <type>spi_device_handle_t</type>
+        <definition>spi_device_handle_t sys_context_t::lidar_spi[LIDAR_NUM_FRONT]</definition>
+        <argsstring>[LIDAR_NUM_FRONT]</argsstring>
+        <name>lidar_spi</name>
+        <qualifiedname>sys_context_t::lidar_spi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>SPI device par capteur LIDAR </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="234" column="25" bodyfile="components/lexacare_types/include/system_types.h" bodystart="234" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" prot="public" static="no" mutable="no">
+        <type>SemaphoreHandle_t</type>
+        <definition>SemaphoreHandle_t sys_context_t::data_mutex</definition>
+        <argsstring></argsstring>
+        <name>data_mutex</name>
+        <qualifiedname>sys_context_t::data_mutex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Mutex lecture/écriture snapshot </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="237" column="24" bodyfile="components/lexacare_types/include/system_types.h" bodystart="237" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" prot="public" static="no" mutable="no">
+        <type><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref></type>
+        <definition>sensor_frame_t sys_context_t::latest_sensor</definition>
+        <argsstring></argsstring>
+        <name>latest_sensor</name>
+        <qualifiedname>sys_context_t::latest_sensor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Dernière trame LIDAR + Radar + IA </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="238" column="24" bodyfile="components/lexacare_types/include/system_types.h" bodystart="238" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sys_context_t::sensor_valid</definition>
+        <argsstring></argsstring>
+        <name>sensor_valid</name>
+        <qualifiedname>sys_context_t::sensor_valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si latest_sensor contient des données </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="239" column="24" bodyfile="components/lexacare_types/include/system_types.h" bodystart="239" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" prot="public" static="no" mutable="no">
+        <type><ref refid="structenviro__data__t" kindref="compound">enviro_data_t</ref></type>
+        <definition>enviro_data_t sys_context_t::enviro</definition>
+        <argsstring></argsstring>
+        <name>enviro</name>
+        <qualifiedname>sys_context_t::enviro</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="242" column="24" bodyfile="components/lexacare_types/include/system_types.h" bodystart="242" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" prot="public" static="no" mutable="no">
+        <type><ref refid="structmic__data__t" kindref="compound">mic_data_t</ref></type>
+        <definition>mic_data_t sys_context_t::mic</definition>
+        <argsstring></argsstring>
+        <name>mic</name>
+        <qualifiedname>sys_context_t::mic</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="245" column="24" bodyfile="components/lexacare_types/include/system_types.h" bodystart="245" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sys_context_t::lidar_ok[LIDAR_NUM_TOTAL]</definition>
+        <argsstring>[LIDAR_NUM_TOTAL]</argsstring>
+        <name>lidar_ok</name>
+        <qualifiedname>sys_context_t::lidar_ok</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si le capteur i a répondu au ping </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="248" column="10" bodyfile="components/lexacare_types/include/system_types.h" bodystart="248" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" compoundref="hw__diag_8c" startline="475" endline="499">diag_print_json_report</referencedby>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sys_context_t::radar_ok</definition>
+        <argsstring></argsstring>
+        <name>radar_ok</name>
+        <qualifiedname>sys_context_t::radar_ok</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si une trame LD6002 valide a été reçue </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="249" column="10" bodyfile="components/lexacare_types/include/system_types.h" bodystart="249" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" compoundref="hw__diag_8c" startline="475" endline="499">diag_print_json_report</referencedby>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool sys_context_t::is_root_node</definition>
+        <argsstring></argsstring>
+        <name>is_root_node</name>
+        <qualifiedname>sys_context_t::is_root_node</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si PIN_ROOT_SEL est bas au démarrage </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="250" column="10" bodyfile="components/lexacare_types/include/system_types.h" bodystart="250" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+        <referencedby refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" compoundref="mesh__manager_8c" startline="379" endline="417">mesh_manager_init</referencedby>
+        <referencedby refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="5">
+        <label>enviro_data_t</label>
+        <link refid="structenviro__data__t"/>
+      </node>
+      <node id="3">
+        <label>lidar_matrix_t</label>
+        <link refid="structlidar__matrix__t"/>
+      </node>
+      <node id="6">
+        <label>mic_data_t</label>
+        <link refid="structmic__data__t"/>
+      </node>
+      <node id="4">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="2">
+        <label>sensor_frame_t</label>
+        <link refid="structsensor__frame__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>lidar</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>radar</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>sys_context_t</label>
+        <link refid="structsys__context__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>latest_sensor</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>enviro</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>mic</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/lexacare_types/include/system_types.h" line="226" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="226" bodyend="251"/>
+    <listofallmembers>
+      <member refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>ai_to_mesh_queue</name></member>
+      <member refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>data_mutex</name></member>
+      <member refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>diag_to_pc_queue</name></member>
+      <member refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>enviro</name></member>
+      <member refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>is_root_node</name></member>
+      <member refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>latest_sensor</name></member>
+      <member refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>lidar_ok</name></member>
+      <member refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>lidar_spi</name></member>
+      <member refid="structsys__context__t_1aff52a7e584b7d6fe202e6b010e077b14" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>log_queue</name></member>
+      <member refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>mic</name></member>
+      <member refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>radar_ok</name></member>
+      <member refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>sensor_to_ai_queue</name></member>
+      <member refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" prot="public" virt="non-virtual"><scope>sys_context_t</scope><name>sensor_valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

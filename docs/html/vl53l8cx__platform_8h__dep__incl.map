@@ -1,0 +1,28 @@
+<map id="components/sensor_acq/include/vl53l8cx_platform.h" name="components/sensor_acq/include/vl53l8cx_platform.h">
+<area shape="rect" id="Node000001" title="Couche d&#39;abstraction plateforme pour l&#39;ULD VL53L8CX de ST — interface SPI." alt="" coords="183,5,367,48"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="5,96,169,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="218,57,132,98,130,93,216,53"/>
+<area shape="rect" id="Node000003" href="$platform_8h.html" title="Adaptateur plateforme pour l&#39;ULD ST VL53L8CX (STSW&#45;IMG040)." alt="" coords="193,96,357,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="278,64,278,96,272,96,272,64"/>
+<area shape="rect" id="Node000013" href="$vl53l8cx__platform_8c.html" title="Couche plateforme VL53L8CX — implémentation SPI via ESP&#45;IDF." alt="" coords="381,96,545,139"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="334,53,420,93,418,98,332,57"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__api_8h.html" title=" " alt="" coords="287,187,450,229"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="309,147,349,184,345,188,306,151"/>
+<area shape="rect" id="Node000012" href="$vl53l8cx__buffers_8h.html" title=" " alt="" coords="99,187,262,229"/>
+<area shape="poly" id="edge11_Node000003_Node000012" title=" " alt="" coords="244,151,204,188,200,184,240,147"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__api_8c.html" title=" " alt="" coords="99,285,262,328"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="316,239,222,287,219,282,313,235"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__plugin__detection__thresholds_8h.html" title=" " alt="" coords="287,277,450,336"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="371,245,371,277,366,277,366,245"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__plugin__motion__indicator_8h.html" title=" " alt="" coords="475,277,638,336"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="423,234,502,274,499,279,421,239"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__plugin__xtalk_8h.html" title=" " alt="" coords="663,277,826,336"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="466,229,650,275,663,278,662,283,649,280,465,234"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__plugin__detection__thresholds_8c.html" title=" " alt="" coords="287,384,450,443"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="371,352,371,384,366,384,366,352"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__plugin__motion__indicator_8c.html" title=" " alt="" coords="475,384,638,443"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="559,352,559,384,554,384,554,352"/>
+<area shape="rect" id="Node000011" href="$vl53l8cx__plugin__xtalk_8c.html" title=" " alt="" coords="663,384,826,443"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="747,352,747,384,742,384,742,352"/>
+<area shape="poly" id="edge12_Node000012_Node000005" title=" " alt="" coords="183,245,183,285,178,285,178,245"/>
+</map>

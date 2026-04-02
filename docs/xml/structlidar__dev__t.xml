@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structlidar__dev__t" kind="struct" language="C++" prot="public">
+    <compoundname>lidar_dev_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref></type>
+        <definition>VL53L8CX_Platform lidar_dev_t::platform</definition>
+        <argsstring></argsstring>
+        <name>platform</name>
+        <qualifiedname>lidar_dev_t::platform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Couche plateforme SPI </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="81" column="23" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="81" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool lidar_dev_t::active</definition>
+        <argsstring></argsstring>
+        <name>active</name>
+        <qualifiedname>lidar_dev_t::active</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si capteur initialisé </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="82" column="23" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="82" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</referencedby>
+        <referencedby refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" compoundref="lidar__driver_8c" startline="170" endline="238">lidar_read_sensor</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int lidar_dev_t::sensor_idx</definition>
+        <argsstring></argsstring>
+        <name>sensor_idx</name>
+        <qualifiedname>lidar_dev_t::sensor_idx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="83" column="23" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="83" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>VL53L8CX_Platform</label>
+        <link refid="struct_v_l53_l8_c_x___platform"/>
+      </node>
+      <node id="1">
+        <label>lidar_dev_t</label>
+        <link refid="structlidar__dev__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>platform</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/sensor_acq/lidar_driver.c" line="80" column="1" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="80" bodyend="88"/>
+    <listofallmembers>
+      <member refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" prot="public" virt="non-virtual"><scope>lidar_dev_t</scope><name>active</name></member>
+      <member refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" prot="public" virt="non-virtual"><scope>lidar_dev_t</scope><name>platform</name></member>
+      <member refid="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" prot="public" virt="non-virtual"><scope>lidar_dev_t</scope><name>sensor_idx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

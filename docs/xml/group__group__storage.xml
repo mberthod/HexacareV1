@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__storage" kind="group">
+    <compoundname>group_storage</compoundname>
+    <title>Stockage &amp; Logs</title>
+    <innerfile refid="littlefs__manager_8c">littlefs_manager.c</innerfile>
+    <innerfile refid="log__writer_8c">log_writer.c</innerfile>
+    <innerfile refid="panic__handler_8c">panic_handler.c</innerfile>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t littlefs_manager_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>littlefs_manager_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="54" column="11" bodyfile="components/sys_storage/littlefs_manager.c" bodystart="36" bodyend="71" declfile="components/sys_storage/include/sys_storage.h" declline="54" declcolumn="11"/>
+        <references refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" compoundref="sys__storage_8h" startline="34">STORAGE_MOUNT_POINT</references>
+        <references refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" compoundref="sys__storage_8h" startline="35">STORAGE_PARTITION</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t log_write</definition>
+        <argsstring>(const char *msg)</argsstring>
+        <name>log_write</name>
+        <param>
+          <type>const char *</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="66" column="11" bodyfile="components/sys_storage/log_writer.c" bodystart="103" bodyend="142" declfile="components/sys_storage/include/sys_storage.h" declline="66" declcolumn="11"/>
+        <references refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" compoundref="sys__storage_8h" startline="36">LOG_FILE_PATH</references>
+        <references refid="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" compoundref="sys__storage_8h" startline="38">LOG_MAX_SIZE_BYTES</references>
+        <references refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" compoundref="log__writer_8c" startline="39" endline="91">log_trim_file</references>
+        <references refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" compoundref="log__writer_8c" startline="28">s_mutex</references>
+      </memberdef>
+      <memberdef kind="function" id="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t panic_handler_install</definition>
+        <argsstring>(void)</argsstring>
+        <name>panic_handler_install</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="74" column="11" bodyfile="components/sys_storage/panic_handler.c" bodystart="66" bodyend="71" declfile="components/sys_storage/include/sys_storage.h" declline="74" declcolumn="11"/>
+        <references refid="panic__handler_8c_1a759cb94c3c5d356b9d7ec30c1017cb60" compoundref="panic__handler_8c" startline="52" endline="58">shutdown_handler</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void panic_handler_check_on_boot</definition>
+        <argsstring>(void)</argsstring>
+        <name>panic_handler_check_on_boot</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="82" column="6" bodyfile="components/sys_storage/panic_handler.c" bodystart="80" bodyend="110" declfile="components/sys_storage/include/sys_storage.h" declline="82" declcolumn="6"/>
+        <references refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" compoundref="sys__storage_8h" startline="37">PANIC_FILE_PATH</references>
+        <references refid="panic__handler_8c_1a1f6cd6498822bce5fc9bb4af92caafa0" compoundref="panic__handler_8c" startline="43">PANIC_MAGIC_VALUE</references>
+        <references refid="panic__handler_8c_1abf2cef884f9e4766f09af2ba4c747bdb" compoundref="panic__handler_8c" startline="39">s_panic_magic</references>
+        <references refid="panic__handler_8c_1a9f09fa3a17178c8d19064b671450879b" compoundref="panic__handler_8c" startline="40">s_panic_msg</references>
+        <references refid="panic__handler_8c_1a368aca31667a61d92b970063e5e45c6e" compoundref="panic__handler_8c" startline="41">s_panic_time_us</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" prot="public" static="no">
+        <name>STORAGE_MOUNT_POINT</name>
+        <initializer>&quot;/spiffs&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="34" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="34" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" compoundref="littlefs__manager_8c" startline="36" endline="71">littlefs_manager_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" prot="public" static="no">
+        <name>STORAGE_PARTITION</name>
+        <initializer>&quot;storage&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="35" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="35" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" compoundref="littlefs__manager_8c" startline="36" endline="71">littlefs_manager_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" prot="public" static="no">
+        <name>LOG_FILE_PATH</name>
+        <initializer><ref refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kindref="member">STORAGE_MOUNT_POINT</ref> &quot;/app.log&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="36" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="36" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" compoundref="pc__diag_8c" startline="276" endline="286">cmd_clear_logs</referencedby>
+        <referencedby refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" compoundref="pc__diag_8c" startline="252" endline="274">cmd_download_logs</referencedby>
+        <referencedby refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" compoundref="log__writer_8c" startline="39" endline="91">log_trim_file</referencedby>
+        <referencedby refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" compoundref="log__writer_8c" startline="103" endline="142">log_write</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" prot="public" static="no">
+        <name>PANIC_FILE_PATH</name>
+        <initializer><ref refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kindref="member">STORAGE_MOUNT_POINT</ref> &quot;/panic.log&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="37" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="37" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" prot="public" static="no">
+        <name>LOG_MAX_SIZE_BYTES</name>
+        <initializer>(900UL * 1024UL)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Seuil de rotation </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="38" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" compoundref="log__writer_8c" startline="103" endline="142">log_write</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" prot="public" static="no">
+        <name>LOG_TRIM_PERCENT</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>% d&apos;entrées à supprimer </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="39" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" compoundref="log__writer_8c" startline="39" endline="91">log_trim_file</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1ga963f6be03bc9dc7db1ea5c6fa5fab9a8" prot="public" static="no">
+        <name>LITTLEFS_MOUNT_POINT</name>
+        <initializer><ref refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kindref="member">STORAGE_MOUNT_POINT</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="42" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__storage_1gafc0cfe84cc1ef21ab7db1eb5bc86b484" prot="public" static="no">
+        <name>LITTLEFS_PARTITION</name>
+        <initializer><ref refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kindref="member">STORAGE_PARTITION</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/include/sys_storage.h" line="43" column="9" bodyfile="components/sys_storage/include/sys_storage.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Gestion du stockage local (SPIFFS) et mécanismes de log/panic. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Pourquoi ce module existe :<itemizedlist>
+<listitem><para>conserver des traces (logs) même si le PC n&apos;est pas connecté</para>
+</listitem><listitem><para>aider au diagnostic après un redémarrage inattendu (panic handler) </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

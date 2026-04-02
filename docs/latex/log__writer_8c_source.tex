@@ -1,0 +1,148 @@
+\doxysection{log\+\_\+writer.\+c}
+\hypertarget{log__writer_8c_source}{}\label{log__writer_8c_source}\index{components/sys\_storage/log\_writer.c@{components/sys\_storage/log\_writer.c}}
+\mbox{\hyperlink{log__writer_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ log\_writer.c}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_storage}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Log\ circulaire\ sur\ LittleFS\ —\ rotation\ automatique\ à\ 900\ Ko.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Algorithme\ de\ rotation\ :}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ 1.\ Ouvrir\ le\ fichier\ en\ mode\ "{}a"{}\ (append).}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ 2.\ Écrire\ le\ message\ horodaté.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ 3.\ Si\ ftell()\ dépasse\ LOG\_MAX\_SIZE\_BYTES\ :}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ \ \ \ a.\ Lire\ tout\ le\ fichier\ en\ mémoire\ (allocation\ heap).}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ \ \ \ b.\ Calculer\ le\ nombre\ d'octets\ à\ ignorer\ (LOG\_TRIM\_PERCENT\ \%).}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ \ \ \ c.\ Avancer\ jusqu'à\ la\ fin\ de\ la\ ligne\ correspondante.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ \ \ \ d.\ Réécrire\ le\ reste\ du\ fichier\ depuis\ le\ début.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00014}00014\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00015}00015\ \textcolor{comment}{\ *\ Thread-\/safety\ :\ mutex\ FreeRTOS\ créé\ à\ la\ première\ écriture.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00016}00016\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sys__storage_8h}{sys\_storage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}freertos/semphr.h"{}}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}esp\_timer.h"{}}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <stdlib.h>}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00027}\mbox{\hyperlink{log__writer_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00027}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ \ \ \ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ \ \ \ \ \ \ \ =\ \textcolor{stringliteral}{"{}log\_writer"{}};}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00028}\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{00028}}\ \textcolor{keyword}{static}\ SemaphoreHandle\_t\ \mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00030}00030\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00031}00031\ \textcolor{comment}{\ *\ log\_trim\_file\ (interne)}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00032}00032\ \textcolor{comment}{\ *\ @brief\ Supprime\ les\ LOG\_TRIM\_PERCENT\ \%\ d'entrées\ les\ plus\ anciennes.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00033}00033\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00034}00034\ \textcolor{comment}{\ *\ Appelée\ uniquement\ depuis\ log\_write()\ quand\ le\ fichier\ dépasse}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00035}00035\ \textcolor{comment}{\ *\ LOG\_MAX\_SIZE\_BYTES.\ Alloue\ un\ buffer\ temporaire\ sur\ le\ tas.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00036}00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00037}00037\ \textcolor{comment}{\ *\ @param\ file\_size\ Taille\ actuelle\ du\ fichier\ en\ octets.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00038}00038\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00039}\mbox{\hyperlink{log__writer_8c_ae0ac97690097ce6c8a58e71519ec779c}{00039}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{log__writer_8c_ae0ac97690097ce6c8a58e71519ec779c}{log\_trim\_file}}(\textcolor{keywordtype}{long}\ file\_size)}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00040}00040\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00041}00041\ \ \ \ \ FILE\ *f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00042}00042\ \ \ \ \ \textcolor{keywordflow}{if}\ (!f)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Impossible\ d'ouvrir\ \%s\ pour\ rotation"{}},\ \mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00045}00045\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00046}00046\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00047}00047\ \ \ \ \ \textcolor{comment}{/*\ Nombre\ d'octets\ à\ ignorer\ (10\ \%\ les\ plus\ anciens)\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{long}\ skip\_target\ =\ file\_size\ /\ \mbox{\hyperlink{group__group__storage_ga6cf29cf5f005b00e6650f6e7369d3c98}{LOG\_TRIM\_PERCENT}};}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00049}00049\ \ \ \ \ \textcolor{keywordtype}{long}\ skipped\ \ \ \ \ =\ 0;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00050}00050\ \ \ \ \ \textcolor{keywordtype}{char}\ line[256];}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00052}00052\ \ \ \ \ \textcolor{comment}{/*\ Avancer\ jusqu'à\ la\ fin\ de\ la\ ligne\ qui\ dépasse\ skip\_target\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00053}00053\ \ \ \ \ \textcolor{keywordflow}{while}\ (skipped\ <\ skip\_target)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fgets(line,\ \textcolor{keyword}{sizeof}(line),\ f)\ ==\ NULL)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00057}00057\ \ \ \ \ \ \ \ \ skipped\ +=\ (long)strlen(line);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00060}00060\ \ \ \ \ \textcolor{keywordtype}{long}\ rest\_start\ =\ ftell(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00061}00061\ \ \ \ \ \textcolor{keywordtype}{long}\ rest\_size\ \ =\ file\_size\ -\/\ rest\_start;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{if}\ (rest\_size\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00064}00064\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00065}00065\ \ \ \ \ \ \ \ \ remove(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Rotation\ :\ fichier\ vide\ après\ suppression,\ recréé"{}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00067}00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00070}00070\ \ \ \ \ \textcolor{comment}{/*\ Lire\ le\ contenu\ restant\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00071}00071\ \ \ \ \ \textcolor{keywordtype}{char}\ *buf\ =\ malloc((\textcolor{keywordtype}{size\_t})rest\_size\ +\ 1);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00072}00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (!buf)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Rotation\ :\ allocation\ mémoire\ échouée\ (\%ld\ octets)"{}},\ rest\_size);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00076}00076\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00078}00078\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{hdc1080__driver_8c_a38989bd92a6243c8b37d8a0f354cad7d}{read\_bytes}}\ =\ fread(buf,\ 1,\ (\textcolor{keywordtype}{size\_t})rest\_size,\ f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00079}00079\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00081}00081\ \ \ \ \ \textcolor{comment}{/*\ Réécrire\ le\ fichier\ sans\ les\ entrées\ supprimées\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00082}00082\ \ \ \ \ f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}w"{}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (f)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00084}00084\ \ \ \ \ \ \ \ \ fwrite(buf,\ 1,\ \mbox{\hyperlink{hdc1080__driver_8c_a38989bd92a6243c8b37d8a0f354cad7d}{read\_bytes}},\ f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00088}00088\ \ \ \ \ free(buf);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00089}00089\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Rotation\ du\ log\ :\ \%ld\ octets\ anciens\ supprimés,\ \%ld\ conservés"{}},}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ rest\_start,\ (\textcolor{keywordtype}{long})\mbox{\hyperlink{hdc1080__driver_8c_a38989bd92a6243c8b37d8a0f354cad7d}{read\_bytes}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00091}00091\ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00093}00093\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00094}00094\ \textcolor{comment}{\ *\ log\_write}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00095}00095\ \textcolor{comment}{\ *\ @brief\ Écrit\ un\ message\ horodaté\ dans\ le\ log\ circulaire\ LittleFS.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00096}00096\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00097}00097\ \textcolor{comment}{\ *\ Format\ d'une\ entrée\ :\ "{}[XXXXXX.XXX]\ message\(\backslash\)n"{}}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00098}00098\ \textcolor{comment}{\ *\ où\ XXXXXX.XXX\ =\ secondes\ depuis\ le\ boot\ (esp\_timer\_get\_time\ /\ 1e6).}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00099}00099\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00100}00100\ \textcolor{comment}{\ *\ @param\ msg\ Message\ à\ journaliser\ (chaîne\ C\ terminée\ par\ '\(\backslash\)0').}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00101}00101\ \textcolor{comment}{\ *\ @return\ ESP\_OK,\ ESP\_ERR\_TIMEOUT\ ou\ ESP\_FAIL.}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00102}00102\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00103}\mbox{\hyperlink{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e}{00103}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__storage_gad1c96eb9156a62e412a359bbe4069c8e}{log\_write}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *msg)}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00104}00104\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00105}00105\ \ \ \ \ \textcolor{keywordflow}{if}\ (!msg)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_ARG;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00107}00107\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00109}00109\ \ \ \ \ \textcolor{comment}{/*\ Création\ du\ mutex\ lors\ du\ premier\ appel\ (init\ paresseuse)\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}})\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}}\ =\ xSemaphoreCreateMutex();}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}})\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_NO\_MEM;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00117}00117\ \ \ \ \ \textcolor{keywordflow}{if}\ (xSemaphoreTake(\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}},\ pdMS\_TO\_TICKS(200))\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_TIMEOUT;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00121}00121\ \ \ \ \ \textcolor{comment}{/*\ Horodatage\ en\ secondes\ depuis\ le\ boot\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00122}00122\ \ \ \ \ int64\_t\ us\ \ \ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00123}00123\ \ \ \ \ \textcolor{keywordtype}{double}\ \ secs\ =\ (double)us\ /\ 1e6;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00124}00124\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00125}00125\ \ \ \ \ FILE\ *f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}a"{}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!f)\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ xSemaphoreGive(\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00129}00129\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00131}00131\ \ \ \ \ fprintf(f,\ \textcolor{stringliteral}{"{}[\%10.3f]\ \%s\(\backslash\)n"{}},\ secs,\ msg);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00132}00132\ \ \ \ \ \textcolor{keywordtype}{long}\ current\_pos\ =\ ftell(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00133}00133\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00135}00135\ \ \ \ \ \textcolor{comment}{/*\ Déclenchement\ de\ la\ rotation\ si\ le\ seuil\ est\ dépassé\ */}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00136}00136\ \ \ \ \ \textcolor{keywordflow}{if}\ (current\_pos\ >=\ (\textcolor{keywordtype}{long})\mbox{\hyperlink{group__group__storage_gacdf328884296fb814beeb53fba7c46dc}{LOG\_MAX\_SIZE\_BYTES}})\ \{}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{log__writer_8c_ae0ac97690097ce6c8a58e71519ec779c}{log\_trim\_file}}(current\_pos);}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00138}00138\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00140}00140\ \ \ \ \ xSemaphoreGive(\mbox{\hyperlink{log__writer_8c_a4745a6c436c2937dab4ddae0317cd2f3}{s\_mutex}});}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{log__writer_8c_source_l00142}00142\ \}}
+
+\end{DoxyCode}

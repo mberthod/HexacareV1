@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_61cb6a5e4045e4a8c3f394249d17c34c" kind="dir">
+    <compoundname>components/ai_engine</compoundname>
+    <innerdir refid="dir_4b11ba2682d4be8c264d96d4c6e8819a">components/ai_engine/include</innerdir>
+    <innerfile refid="fall__detection__ai_8cc">fall_detection_ai.cc</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/ai_engine/"/>
+  </compounddef>
+</doxygen>

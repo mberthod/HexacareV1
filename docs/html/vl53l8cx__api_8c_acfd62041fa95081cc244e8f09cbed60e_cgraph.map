@@ -1,0 +1,16 @@
+<map id="_vl53l8cx_send_xtalk_data" name="_vl53l8cx_send_xtalk_data">
+<area shape="rect" id="Node000001" title="Inner function, not available outside this file. This function is used to set the Xtalk data from gen..." alt="" coords="5,72,184,99"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a83dc5e403de268cad0cc04434eed9d12" title="Inner function, not available outside this file. This function is used to wait for an answer from VL5..." alt="" coords="248,5,374,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,69,232,45,234,50,147,74"/>
+<area shape="rect" id="Node000006" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="232,72,390,99"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="184,83,216,83,216,88,184,88"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="438,119,574,145"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="163,97,232,108,331,119,423,125,423,131,331,124,231,113,163,102"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="438,13,574,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="374,24,423,24,423,29,374,29"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="438,64,574,91"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="374,40,438,57,436,62,373,45"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="622,68,690,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="546,38,609,61,607,66,544,43"/>
+<area shape="poly" id="edge7_Node000007_Node000004" title=" " alt="" coords="547,115,607,95,609,100,549,121"/>
+</map>

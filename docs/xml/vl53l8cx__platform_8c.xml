@@ -1,0 +1,655 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="vl53l8cx__platform_8c" kind="file" language="C++">
+    <compoundname>vl53l8cx_platform.c</compoundname>
+    <includes refid="vl53l8cx__platform_8h" local="yes">vl53l8cx_platform.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>vl53l8cx_platform.h</label>
+        <link refid="vl53l8cx__platform_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/vl53l8cx_platform.c</label>
+        <link refid="vl53l8cx__platform_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="5">
+        <label>esp_log.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+      <node id="8">
+        <label>stdlib.h</label>
+      </node>
+      <node id="9">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="vl53l8cx__platform_8c_1a6fce1865d3d25c7014ad146a530b64d8" prot="public" static="no">
+        <name>PLATFORM_TIMEOUT_MS</name>
+        <initializer>100</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="24" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__platform_8c_1a7671b4600f731638ce82c71a0b6570e4" prot="public" static="no">
+        <name>MAX_SPI_TRANSFER</name>
+        <initializer>(4096 + 2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="26" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="26" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="vl53l8cx__platform_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;vl53l8cx_plat&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="22" column="19" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1a5687017b3245ded0e88563178c6613a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_PlatformInit</definition>
+        <argsstring>(VL53L8CX_Platform *p_platform)</argsstring>
+        <name>VL53L8CX_PlatformInit</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref> *</type>
+          <declname>p_platform</declname>
+        </param>
+        <briefdescription>
+<para>Valide le handle SPI (device déjà ajouté au bus par hw_diag). </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contexte plateforme (contient le handle SPI). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 si succès (convention ULD ST). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="31" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="31" bodyend="38"/>
+        <references refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" compoundref="vl53l8cx__platform_8h" startline="40">VL53L8CX_Platform::spi_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t spi_xfer</definition>
+        <argsstring>(spi_device_handle_t spi, const uint8_t *tx_buf, uint8_t *rx_buf, size_t length)</argsstring>
+        <name>spi_xfer</name>
+        <param>
+          <type>spi_device_handle_t</type>
+          <declname>spi</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>tx_buf</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>rx_buf</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>length</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="50" column="18" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="50" bodyend="60"/>
+        <referencedby refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1af4dfb23228937a89dab5c68f81836248" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_RdMulti</definition>
+        <argsstring>(VL53L8CX_Platform *p_platform, uint16_t RegisterAddress, uint8_t *p_values, uint32_t size)</argsstring>
+        <name>VL53L8CX_RdMulti</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref> *</type>
+          <declname>p_platform</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>RegisterAddress</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_values</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Lit plusieurs octets depuis un registre 16 bits du VL53L8CX. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contexte plateforme. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>RegisterAddress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Adresse 16 bits du registre. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Buffer de sortie (taille &gt;= size). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Nombre d&apos;octets à lire. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 si succès (convention ULD ST). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="65" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="65" bodyend="96"/>
+        <references refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" compoundref="vl53l8cx__platform_8h" startline="40">VL53L8CX_Platform::spi_dev</references>
+        <references refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" compoundref="vl53l8cx__platform_8c" startline="50" endline="60">spi_xfer</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="21" endline="48">_vl53l8cx_poll_for_answer</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a83dc5e403de268cad0cc04434eed9d12" compoundref="vl53l8cx__api_8c" startline="23" endline="56">_vl53l8cx_poll_for_answer</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a8d192f0f3fded5de1767f54271d8f54a" compoundref="vl53l8cx__api_8c" startline="713" endline="742">vl53l8cx_check_data_ready</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" compoundref="vl53l8cx__plugin__xtalk_8c" startline="290" endline="317">vl53l8cx_get_caldata_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a501a5073457a1982c2406543df0d073e" compoundref="vl53l8cx__platform_8c" startline="132" endline="136">VL53L8CX_RdByte</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" compoundref="vl53l8cx__api_8c" startline="659" endline="711">vl53l8cx_stop_ranging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1a1570cfa7d62d2faec410934391b845b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_WrMulti</definition>
+        <argsstring>(VL53L8CX_Platform *p_platform, uint16_t RegisterAddress, uint8_t *p_values, uint32_t size)</argsstring>
+        <name>VL53L8CX_WrMulti</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref> *</type>
+          <declname>p_platform</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>RegisterAddress</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_values</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Écrit plusieurs octets vers un registre 16 bits du VL53L8CX. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contexte plateforme. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>RegisterAddress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Adresse 16 bits du registre. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_values</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Données à écrire. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Nombre d&apos;octets à écrire. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 si succès (convention ULD ST). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="101" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="101" bodyend="127"/>
+        <references refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" compoundref="vl53l8cx__platform_8h" startline="40">VL53L8CX_Platform::spi_dev</references>
+        <references refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" compoundref="vl53l8cx__platform_8c" startline="50" endline="60">spi_xfer</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="vl53l8cx__api_8c_1a06089384da8839703ece6a5a745f82d8" compoundref="vl53l8cx__api_8c" startline="94" endline="157">_vl53l8cx_send_offset_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1acfd62041fa95081cc244e8f09cbed60e" compoundref="vl53l8cx__api_8c" startline="164" endline="217">_vl53l8cx_send_xtalk_data</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" compoundref="vl53l8cx__api_8c" startline="1308" endline="1361">vl53l8cx_dci_write_data</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" compoundref="vl53l8cx__plugin__xtalk_8c" startline="290" endline="317">vl53l8cx_get_caldata_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a7710197de0c7e075a4064f18baa56355" compoundref="vl53l8cx__platform_8c" startline="138" endline="142">VL53L8CX_WrByte</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1a501a5073457a1982c2406543df0d073e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_RdByte</definition>
+        <argsstring>(VL53L8CX_Platform *p_platform, uint16_t RegisterAddress, uint8_t *p_value)</argsstring>
+        <name>VL53L8CX_RdByte</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref> *</type>
+          <declname>p_platform</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>RegisterAddress</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_value</declname>
+        </param>
+        <briefdescription>
+<para>Lit un octet depuis un registre 16 bits du VL53L8CX. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contexte plateforme. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>RegisterAddress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Adresse 16 bits du registre. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Valeur lue (1 octet). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 si succès (convention ULD ST). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="132" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="132" bodyend="136"/>
+        <references refid="vl53l8cx__platform_8c_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</references>
+        <referencedby refid="vl53l8cx__api_8c_1a98fd6245ca7f8e57cf4623e192e8c774" compoundref="vl53l8cx__api_8c" startline="62" endline="87">_vl53l8cx_poll_for_mcu_boot</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a95ba86e2de36404be425dd53513c56ae" compoundref="vl53l8cx__api_8c" startline="425" endline="460">vl53l8cx_get_power_mode</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1acfc41f0aebf395dce9725a146be088bc" compoundref="vl53l8cx__api_8c" startline="219" endline="241">vl53l8cx_is_alive</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1affb39664fa0b0d1e37c49ab7725a3ce4" compoundref="vl53l8cx__api_8c" startline="462" endline="512">vl53l8cx_set_power_mode</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" compoundref="vl53l8cx__api_8c" startline="659" endline="711">vl53l8cx_stop_ranging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1a7710197de0c7e075a4064f18baa56355" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_WrByte</definition>
+        <argsstring>(VL53L8CX_Platform *p_platform, uint16_t RegisterAddress, uint8_t value)</argsstring>
+        <name>VL53L8CX_WrByte</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref> *</type>
+          <declname>p_platform</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>RegisterAddress</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+<para>Écrit un octet dans un registre 16 bits du VL53L8CX. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contexte plateforme. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>RegisterAddress</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Adresse 16 bits du registre. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Octet à écrire. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 si succès (convention ULD ST). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="138" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="138" bodyend="142"/>
+        <references refid="vl53l8cx__platform_8c_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</references>
+        <referencedby refid="vl53l8cx__api_8c_1a95ba86e2de36404be425dd53513c56ae" compoundref="vl53l8cx__api_8c" startline="425" endline="460">vl53l8cx_get_power_mode</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1acfc41f0aebf395dce9725a146be088bc" compoundref="vl53l8cx__api_8c" startline="219" endline="241">vl53l8cx_is_alive</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a705b4dd09a2ae3c873b6f5896bb999dc" compoundref="vl53l8cx__api_8c" startline="411" endline="423">vl53l8cx_set_i2c_address</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1affb39664fa0b0d1e37c49ab7725a3ce4" compoundref="vl53l8cx__api_8c" startline="462" endline="512">vl53l8cx_set_power_mode</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" compoundref="vl53l8cx__api_8c" startline="659" endline="711">vl53l8cx_stop_ranging</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__platform_8c_1a03e447cf6ff03fb5be303b919a099751" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_WaitMs</definition>
+        <argsstring>(VL53L8CX_Platform *p_platform, uint32_t TimeMs)</argsstring>
+        <name>VL53L8CX_WaitMs</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref> *</type>
+          <declname>p_platform</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>TimeMs</declname>
+        </param>
+        <briefdescription>
+<para>Attend un délai en millisecondes. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>p_platform</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contexte plateforme (non utilisé, mais imposé par l&apos;ULD). </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TimeMs</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Durée d&apos;attente (ms). </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 si succès (convention ULD ST). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/vl53l8cx_platform.c" line="147" column="9" bodyfile="components/sensor_acq/vl53l8cx_platform.c" bodystart="147" bodyend="152"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="21" endline="48">_vl53l8cx_poll_for_answer</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a83dc5e403de268cad0cc04434eed9d12" compoundref="vl53l8cx__api_8c" startline="23" endline="56">_vl53l8cx_poll_for_answer</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a98fd6245ca7f8e57cf4623e192e8c774" compoundref="vl53l8cx__api_8c" startline="62" endline="87">_vl53l8cx_poll_for_mcu_boot</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1ad4cf2ccc4b74c65048046df488da5fce" compoundref="vl53l8cx__api_8c" startline="659" endline="711">vl53l8cx_stop_ranging</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Couche plateforme VL53L8CX — implémentation SPI via ESP-IDF. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Protocole SPI VL53L8CX (mode 3, CPOL=1 CPHA=1) : Écriture N octets : TX=[addr_hi &amp; 0x7F][addr_lo][d0..dN-1] Lecture N octets : TX=[addr_hi | 0x80][addr_lo][0x00 × N] RX=[xx][xx][d0..dN-1] (2 premiers octets ignorés)</para>
+<para>Les handles SPI sont créés dans <ref refid="hw__diag_8c" kindref="compound">hw_diag.c</ref> (spi_bus_add_device) et transmis via <ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> → <ref refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" kindref="member">VL53L8CX_Platform.spi_dev</ref>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>vl53l8cx_platform.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Couche<sp/>plateforme<sp/>VL53L8CX<sp/>—<sp/>implémentation<sp/>SPI<sp/>via<sp/>ESP-IDF.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Protocole<sp/>SPI<sp/>VL53L8CX<sp/>(mode<sp/>3,<sp/>CPOL=1<sp/>CPHA=1)<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Écriture<sp/>N<sp/>octets<sp/>:<sp/>TX=[addr_hi<sp/>&amp;<sp/>0x7F][addr_lo][d0..dN-1]</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Lecture<sp/><sp/>N<sp/>octets<sp/>:<sp/>TX=[addr_hi<sp/>|<sp/>0x80][addr_lo][0x00<sp/>×<sp/>N]</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RX=[xx][xx][d0..dN-1]<sp/><sp/>(2<sp/>premiers<sp/>octets<sp/>ignorés)</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>Les<sp/>handles<sp/>SPI<sp/>sont<sp/>créés<sp/>dans<sp/>hw_diag.c<sp/>(spi_bus_add_device)<sp/>et</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>transmis<sp/>via<sp/>sys_context_t<sp/>→<sp/>VL53L8CX_Platform.spi_dev.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vl53l8cx__platform_8h" kindref="compound">vl53l8cx_platform.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="vl53l8cx__platform_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;vl53l8cx_plat&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="vl53l8cx__platform_8c_1a6fce1865d3d25c7014ad146a530b64d8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PLATFORM_TIMEOUT_MS<sp/><sp/>100</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Taille<sp/>max<sp/>d&apos;un<sp/>transfert<sp/>SPI<sp/>(2<sp/>octets<sp/>header<sp/>+<sp/>4096<sp/>données)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="vl53l8cx__platform_8c_1a7671b4600f731638ce82c71a0b6570e4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_SPI_TRANSFER<sp/><sp/><sp/><sp/><sp/>(4096<sp/>+<sp/>2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>VL53L8CX_PlatformInit</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="vl53l8cx__platform_8h_1a5687017b3245ded0e88563178c6613a7" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__platform_8c_1a5687017b3245ded0e88563178c6613a7" kindref="member">VL53L8CX_PlatformInit</ref>(<ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/>*p_platform)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!p_platform-&gt;<ref refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" kindref="member">spi_dev</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PlatformInit<sp/>:<sp/>spi_dev<sp/>NULL&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>spi_xfer<sp/>(interne)</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Exécute<sp/>un<sp/>transfert<sp/>SPI<sp/>full-duplex<sp/>avec<sp/>allocation<sp/>dynamique.</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>@param<sp/>spi<sp/><sp/><sp/><sp/><sp/><sp/>Handle<sp/>SPI<sp/>ESP-IDF<sp/>du<sp/>capteur.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>@param<sp/>tx_buf<sp/><sp/><sp/>Buffer<sp/>TX<sp/>(header<sp/>+<sp/>données,<sp/>ou<sp/>header<sp/>+<sp/>dummy<sp/>pour<sp/>lecture).</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>@param<sp/>rx_buf<sp/><sp/><sp/>Buffer<sp/>RX<sp/>(même<sp/>taille<sp/>que<sp/>TX).</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>@param<sp/>length<sp/><sp/><sp/>Nombre<sp/>total<sp/>d&apos;octets<sp/>à<sp/>transférer.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" kindref="member">spi_xfer</ref>(spi_device_handle_t<sp/>spi,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>*tx_buf,<sp/>uint8_t<sp/>*rx_buf,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>length)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>spi_transaction_t<sp/>t<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.length<sp/><sp/><sp/><sp/>=<sp/>length<sp/>*<sp/>8,<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>en<sp/>bits<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.tx_buffer<sp/>=<sp/>tx_buf,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rx_buffer<sp/>=<sp/>rx_buf,</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>spi_device_polling_transmit(spi,<sp/>&amp;t);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>VL53L8CX_RdMulti</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__platform_8c_1af4dfb23228937a89dab5c68f81836248" kindref="member">VL53L8CX_RdMulti</ref>(<ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/>*p_platform,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>RegisterAddress,</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>*p_values,<sp/>uint32_t<sp/>size)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>total<sp/>=<sp/>2<sp/>+<sp/>(size_t)size;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>*tx<sp/><sp/>=<sp/>calloc(1,<sp/>total);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>*rx<sp/><sp/>=<sp/>calloc(1,<sp/>total);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!tx<sp/>||<sp/>!rx)<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;RdMulti<sp/>:<sp/>malloc(%u)<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)total);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(tx);<sp/>free(rx);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Header<sp/>de<sp/>lecture<sp/>:<sp/>bit<sp/>15<sp/>=<sp/>1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>tx[0]<sp/>=<sp/>(uint8_t)((RegisterAddress<sp/>&gt;&gt;<sp/>8)<sp/>|<sp/>0x80);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>tx[1]<sp/>=<sp/>(uint8_t)(RegisterAddress<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Octets<sp/>restants<sp/>laissés<sp/>à<sp/>0x00<sp/>(dummy<sp/>pour<sp/>générer<sp/>l&apos;horloge)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" kindref="member">spi_xfer</ref>(p_platform-&gt;<ref refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" kindref="member">spi_dev</ref>,<sp/>tx,<sp/>rx,<sp/>total);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memcpy(p_values,<sp/>&amp;rx[2],<sp/>size);<sp/></highlight><highlight class="comment">/*<sp/>Sauter<sp/>les<sp/>2<sp/>octets<sp/>header<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;RdMulti<sp/>addr=0x%04X<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RegisterAddress,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>free(tx);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>free(rx);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_OK)<sp/>?<sp/>0<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*<sp/>VL53L8CX_WrMulti</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__platform_8c_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(<ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/>*p_platform,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>RegisterAddress,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>*p_values,<sp/>uint32_t<sp/>size)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>total<sp/>=<sp/>2<sp/>+<sp/>(size_t)size;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>*tx<sp/><sp/>=<sp/>malloc(total);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!tx)<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;WrMulti<sp/>:<sp/>malloc(%u)<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)total);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Header<sp/>d&apos;écriture<sp/>:<sp/>bit<sp/>15<sp/>=<sp/>0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>tx[0]<sp/>=<sp/>(uint8_t)((RegisterAddress<sp/>&gt;&gt;<sp/>8)<sp/>&amp;<sp/>0x7F);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>tx[1]<sp/>=<sp/>(uint8_t)(RegisterAddress<sp/>&amp;<sp/>0xFF);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>memcpy(&amp;tx[2],<sp/>p_values,<sp/>size);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="vl53l8cx__platform_8c_1a8be467b932dd428e0f75d7ebf828bb4c" kindref="member">spi_xfer</ref>(p_platform-&gt;<ref refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" kindref="member">spi_dev</ref>,<sp/>tx,<sp/>NULL,<sp/>total);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;WrMulti<sp/>addr=0x%04X<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RegisterAddress,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>free(tx);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_OK)<sp/>?<sp/>0<sp/>:<sp/>1;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/>*<sp/>VL53L8CX_RdByte<sp/>/<sp/>VL53L8CX_WrByte<sp/>(délèguent<sp/>à<sp/>Multi)</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="vl53l8cx__platform_8h_1a501a5073457a1982c2406543df0d073e" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__platform_8c_1a501a5073457a1982c2406543df0d073e" kindref="member">VL53L8CX_RdByte</ref>(<ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/>*p_platform,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>RegisterAddress,<sp/>uint8_t<sp/>*p_value)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="vl53l8cx__platform_8c_1af4dfb23228937a89dab5c68f81836248" kindref="member">VL53L8CX_RdMulti</ref>(p_platform,<sp/>RegisterAddress,<sp/>p_value,<sp/>1);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138" refid="vl53l8cx__platform_8h_1a7710197de0c7e075a4064f18baa56355" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__platform_8c_1a7710197de0c7e075a4064f18baa56355" kindref="member">VL53L8CX_WrByte</ref>(<ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/>*p_platform,</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>RegisterAddress,<sp/>uint8_t<sp/>value)</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="vl53l8cx__platform_8c_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(p_platform,<sp/>RegisterAddress,<sp/>&amp;value,<sp/>1);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="145"><highlight class="comment"><sp/>*<sp/>VL53L8CX_WaitMs</highlight></codeline>
+<codeline lineno="146"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__platform_8c_1a03e447cf6ff03fb5be303b919a099751" kindref="member">VL53L8CX_WaitMs</ref>(<ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/>*p_platform,<sp/>uint32_t<sp/>TimeMs)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)p_platform;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(TimeMs));</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/vl53l8cx_platform.c"/>
+  </compounddef>
+</doxygen>

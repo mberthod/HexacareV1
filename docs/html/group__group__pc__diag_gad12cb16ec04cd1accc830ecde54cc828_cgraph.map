@@ -1,0 +1,16 @@
+<map id="pc_diag_task_start" name="pc_diag_task_start">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,137,83"/>
+<area shape="rect" id="Node000002" href="$pc__diag_8c.html#ab830ffc28d0b4ab9661b47a0cd4fe943" title=" " alt="" coords="185,56,283,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,67,169,67,169,72,137,72"/>
+<area shape="rect" id="Node000003" href="$pc__diag_8c.html#ad0a594cf95696c6c0a92ef226ff6af9b" title=" " alt="" coords="334,5,459,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="279,53,336,35,338,40,280,58"/>
+<area shape="rect" id="Node000004" href="$pc__diag_8c.html#a1a7183f10362aa141c781811ed86a9bb" title=" " alt="" coords="526,56,634,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="284,67,511,67,511,72,284,72"/>
+<area shape="rect" id="Node000005" href="$pc__diag_8c.html#aa6214e5f1fa26e58413c4961ffb46df1" title=" " alt="" coords="331,107,462,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="280,81,338,99,336,104,279,86"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="447,103,514,85,515,90,449,109"/>
+<area shape="rect" id="Node000006" href="$pc__diag_8c.html#a3cff5c01023ea27179dd4ef51291e0c4" title=" " alt="" coords="524,107,636,133"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="463,117,508,117,508,123,463,123"/>
+<area shape="rect" id="Node000007" href="$pc__diag_8c.html#a54084e6e535ac4e7a8ca3a3b42974178" title=" " alt="" coords="510,157,650,184"/>
+<area shape="poly" id="edge7_Node000005_Node000007" title=" " alt="" coords="449,131,515,150,514,155,447,137"/>
+</map>

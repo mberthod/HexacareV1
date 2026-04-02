@@ -1,0 +1,264 @@
+\doxysection{Démarrage (main) }
+\hypertarget{group__group__main}{}\label{group__group__main}\index{Démarrage (main)@{Démarrage (main)}}
+
+
+Point d\textquotesingle{}entrée \+: initialise les services, lance les diagnostics, puis démarre les tâches.  
+
+
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}main"{}
+\item 
+static \mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\+\_\+ctx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Point d\textquotesingle{}entrée \+: initialise les services, lance les diagnostics, puis démarre les tâches. 
+
+L\textquotesingle{}intention est de garder une séquence de boot lisible et “déterministe” \+: chaque étape prépare la suivante, et évite de lancer des tâches si une dépendance manque. 
+
+\label{doc-func-members}
+\Hypertarget{group__group__main_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70}\index{Démarrage (main)@{Démarrage (main)}!app\_main@{app\_main}}
+\index{app\_main@{app\_main}!Démarrage (main)@{Démarrage (main)}}
+\doxysubsubsection{\texorpdfstring{app\_main()}{app\_main()}}
+{\footnotesize\ttfamily \label{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70} 
+void app\+\_\+main (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00063}{63}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ Infrastructure\ de\ base}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00068\ \ \ \ \ esp\_err\_t\ nvs\_ret\ =\ nvs\_flash\_init();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (nvs\_ret\ ==\ ESP\_ERR\_NVS\_NO\_FREE\_PAGES\ ||}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ nvs\_ret\ ==\ ESP\_ERR\_NVS\_NEW\_VERSION\_FOUND)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}NVS\ corrompu\ —\ effacement"{}});}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(nvs\_flash\_erase());}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ nvs\_ret\ =\ nvs\_flash\_init();}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ ESP\_ERROR\_CHECK(nvs\_ret);}
+\DoxyCodeLine{00076\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_event\_loop\_create\_default());}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ Stockage\ SPIFFS\ +\ panic\ handler}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c}{littlefs\_manager\_init}}()\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{panic\_handler\_install}}()\ ==\ ESP\_OK)}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\_handler\_check\_on\_boot}}();}
+\DoxyCodeLine{00084\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}SPIFFS\ indisponible\ —\ logs\ désactivés"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ Diagnostic\ matériel\ (SPI\ LIDAR\ +\ PCA9555\ LPn)}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00091\ \ \ \ \ memset(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.temp\_hdc\_c\ \ \ =\ NAN;}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.humidity\_hdc\ =\ NAN;}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.temp\_bme\_c\ \ \ =\ NAN;}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.pressure\_hpa\ =\ NAN;}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.humidity\_bme\ =\ NAN;}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}}\ diag\ =\ \mbox{\hyperlink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\_diag\_run}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}});}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\ \&\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\_DIAG\_LIDAR\_ALL}})\ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Aucun\ LIDAR\ —\ dégradé"{}});}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\ \&\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\_DIAG\_LIDAR\_PARTIAL}})\ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDARs\ partiels"{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\ \&\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\_DIAG\_RADAR\_MISSING}})\ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ absent"{}});}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ Alimentations\ PCA9555\ —\ AVANT\ init\ des\ capteurs}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ POWER\_RADAR\ alimente\ HDC1080\ +\ BME280\ sur\ la\ carte\ radar.}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_RADAR\_ENABLED}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a47d24d2c7f6e97560d968fcf372d5daa}{PCA9555\_BIT\_PWR\_RADAR}},\ \textcolor{keyword}{true})\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_RADAR\ (IO1.5)\ activé\ —\ capteurs\ I2C\ alimentés"{}});}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(50));\ \ \textcolor{comment}{/*\ Stabilisation\ alimentation\ */}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_FAN\_ENABLED}}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a5f2d7b2bd1e54721b51e0b001f9d17e8}{PCA9555\_BIT\_PWR\_FAN}},\ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{00115\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_FAN\ (IO1.4)\ activé"{}});}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_MLX\_ENABLED}}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a9c75a80cfcdd852e8a918b50a6d794cc}{PCA9555\_BIT\_PWR\_MLX}},\ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{00119\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_MLX\ (IO1.7)\ activé"{}});}
+\DoxyCodeLine{00120\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(20));}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ Capteurs\ I2C\ environnementaux\ (carte\ radar,\ I2C\_NUM\_1)}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00126\ \ \ \ \ i2c\_master\_bus\_handle\_t\ sensors\_bus\ =\ NULL;}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_HDC1080\ ||\ LEXACARE\_ENABLE\_BME280\ ||\ LEXACARE\_ENABLE\_MLX90640}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}{hw\_diag\_init\_sensor\_bus}}(\&sensors\_bus)\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Bus\ I2C\_NUM\_1\ indisponible\ —\ capteurs\ enviro\ off"{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_HDC1080}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (sensors\_bus)\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{hdc1080__driver_8c_a331ca8cf79867f6f9ebe86978bfc6cc5}{hdc1080\_init}}(sensors\_bus)\ ==\ ESP\_OK)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}HDC1080\ prêt\ @0x40"{}});}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}HDC1080\ non\ détecté\ @0x40"{}});}
+\DoxyCodeLine{00139\ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_BME280}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (sensors\_bus)\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{bme280__driver_8c_a16050495a4e02a1498ceadf9a19db1e2}{bme280\_init}}(sensors\_bus,\ \mbox{\hyperlink{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4}{BME280\_I2C\_ADDR\_DEFAULT}})\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ prêt\ @0x76"{}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ @0x76\ échoué\ —\ essai\ @0x77"{}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{bme280__driver_8c_a16050495a4e02a1498ceadf9a19db1e2}{bme280\_init}}(sensors\_bus,\ \mbox{\hyperlink{bme280__driver_8h_a7b7c6da1330193242ae0fed91f8ea6b9}{BME280\_I2C\_ADDR\_ALT}})\ ==\ ESP\_OK)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ prêt\ @0x77"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ non\ détecté"{}});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ \ \ \ \ *\ 6.\ Queues\ FreeRTOS\ +\ mutex}}
+\DoxyCodeLine{00158\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00159\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.data\_mutex\ =\ xSemaphoreCreateMutex();}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.data\_mutex)\ \{\ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mutex\ KO"{}});\ esp\_restart();\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.sensor\_to\_ai\_queue\ =\ xQueueCreate(4,\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}}));}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.ai\_to\_mesh\_queue\ \ \ =\ xQueueCreate(8,\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structai__event__t}{ai\_event\_t}}));}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.diag\_to\_pc\_queue\ \ \ =\ xQueueCreate(8,\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structai__event__t}{ai\_event\_t}}));}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.log\_queue\ \ \ \ \ \ \ \ \ \ =\ xQueueCreate(16,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}\ *));}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.sensor\_to\_ai\_queue\ ||\ !\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.ai\_to\_mesh\_queue\ ||}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.diag\_to\_pc\_queue\ \ \ ||\ !\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.log\_queue)\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Queues\ KO\ —\ redémarrage"{}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ esp\_restart();}
+\DoxyCodeLine{00171\ \ \ \ \ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ *\ 7.\ Alimentation\ MIC\ —\ AVANT\ WiFi}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ Toutes\ les\ opérations\ PCA9555\ (allocation\ du\ device\ handle\ I2C)}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ doivent\ être\ effectuées\ AVANT\ mesh\_manager\_init().}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ Après\ WiFi,\ le\ heap\ peut\ être\ fragmenté\ →\ LoadStoreAlignment}}
+\DoxyCodeLine{00178\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ sur\ l'allocation\ dans\ i2c\_master\_bus\_add\_device.}}
+\DoxyCodeLine{00179\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_MIC\_ENABLED\ \&\&\ LEXACARE\_ENABLE\_MIC}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a21548209f46bfb6d3762a4abd89468b1}{PCA9555\_BIT\_PWR\_MIC}},\ \textcolor{keyword}{true})\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_MIC\ (IO1.6)\ activé"{}});}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(10));}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00188\ \textcolor{comment}{\ \ \ \ \ *\ 8.\ Microphone\ I2S\ —\ AVANT\ WiFi\ (évite\ fragmentation\ heap\ TLSF)}}
+\DoxyCodeLine{00189\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MIC}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc}{mic\_driver\_init}}()\ ==\ ESP\_OK)}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Microphone\ I2S\ prêt"{}});}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Microphone\ I2S\ KO"{}});}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ *\ 9.\ Réseau\ mesh\ ESP-\/NOW\ —\ APRÈS\ toutes\ les\ opérations\ PCA9555}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MESH}}
+\DoxyCodeLine{00201\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{mesh\_manager\_init}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00203\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mesh\ WiFi\ désactivé\ (LEXACARE\_ENABLE\_MESH=0)"{}});}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ \ \ \ \ *\ 10.\ Démarrage\ des\ tâches}}
+\DoxyCodeLine{00208\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_AI}}
+\DoxyCodeLine{00210\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22}{ai\_engine\_task\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \textcolor{comment}{/*\ Core\ 1,\ prio\ 9\ \ */}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00212\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}IA\ désactivée\ (LEXACARE\_ENABLE\_AI=0)"{}});}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00214\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}{lidar\_driver\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \ \ \ \textcolor{comment}{/*\ Core\ 1,\ prio\ 10\ */}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MESH}}
+\DoxyCodeLine{00216\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{mesh\_task\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Core\ 0,\ prio\ 8\ \ */}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00218\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}{pc\_diag\_task\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \ \ \ \textcolor{comment}{/*\ Core\ 0,\ prio\ 3\ \ */}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ \ \ \ \ *\ Rapport\ de\ démarrage}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{00223\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}================================================"{}});}
+\DoxyCodeLine{00224\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ LexaCare\ V1\ —\ Firmware\ opérationnel"{}});}
+\DoxyCodeLine{00225\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ IDF\ :\ \%s\ |\ Rôle\ :\ \%s"{}},}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ esp\_get\_idf\_version(),}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.is\_root\_node\ ?\ \textcolor{stringliteral}{"{}ROOT"{}}\ :\ \textcolor{stringliteral}{"{}NODE"{}});}
+\DoxyCodeLine{00228\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ Heap\ interne\ :\ \%lu\ B\ |\ PSRAM\ :\ \%lu\ B"{}},}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})esp\_get\_free\_heap\_size(),}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})heap\_caps\_get\_free\_size(MALLOC\_CAP\_SPIRAM));}
+\DoxyCodeLine{00231\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ Config:\ LIDAR×\%d\ RADAR=\%d\ HDC=\%d\ BME=\%d\ MIC=\%d\ MESH=\%d"{}},}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga20483dea8d2a3674883e2e02d94058da}{LEXACARE\_LIDAR\_COUNT}},}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga02349f22e1562a28cb7e79fb33b609fb}{LEXACARE\_ENABLE\_RADAR}},}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga01e58c65d8e2d1f09d0686d4bd9a199d}{LEXACARE\_ENABLE\_HDC1080}},}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga2ec6a41c4f52091ceaf3e3f448899fb5}{LEXACARE\_ENABLE\_BME280}},}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga3e499e0599f689a9321c507bde1deea2}{LEXACARE\_ENABLE\_MIC}},}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga0ec2dec85070253e4cb80fa96a80ad13}{LEXACARE\_ENABLE\_MESH}});}
+\DoxyCodeLine{00238\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}================================================"{}});}
+\DoxyCodeLine{00239\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{ai\+\_\+engine\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{bme280__driver_8h_source_l00030}{BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+ALT}}, \mbox{\hyperlink{bme280__driver_8h_source_l00029}{BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+DEFAULT}}, \mbox{\hyperlink{bme280__driver_8c_source_l00155}{bme280\+\_\+init()}}, \mbox{\hyperlink{hdc1080__driver_8c_source_l00072}{hdc1080\+\_\+init()}}, \mbox{\hyperlink{hw__diag_8c_source_l00575}{hw\+\_\+diag\+\_\+init\+\_\+sensor\+\_\+bus()}}, \mbox{\hyperlink{hw__diag_8h_source_l00036}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+ALL}}, \mbox{\hyperlink{hw__diag_8h_source_l00035}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+PARTIAL}}, \mbox{\hyperlink{hw__diag_8c_source_l00585}{hw\+\_\+diag\+\_\+pca9555\+\_\+set\+\_\+power()}}, \mbox{\hyperlink{hw__diag_8h_source_l00037}{HW\+\_\+\+DIAG\+\_\+\+RADAR\+\_\+\+MISSING}}, \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}, \mbox{\hyperlink{lexacare__config_8h_source_l00077}{LEXACARE\+\_\+\+ENABLE\+\_\+\+BME280}}, \mbox{\hyperlink{lexacare__config_8h_source_l00076}{LEXACARE\+\_\+\+ENABLE\+\_\+\+HDC1080}}, \mbox{\hyperlink{lexacare__config_8h_source_l00097}{LEXACARE\+\_\+\+ENABLE\+\_\+\+MESH}}, \mbox{\hyperlink{lexacare__config_8h_source_l00085}{LEXACARE\+\_\+\+ENABLE\+\_\+\+MIC}}, \mbox{\hyperlink{lexacare__config_8h_source_l00070}{LEXACARE\+\_\+\+ENABLE\+\_\+\+RADAR}}, \mbox{\hyperlink{lexacare__config_8h_source_l00054}{LEXACARE\+\_\+\+LIDAR\+\_\+\+COUNT}}, \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}, \mbox{\hyperlink{littlefs__manager_8c_source_l00036}{littlefs\+\_\+manager\+\_\+init()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00379}{mesh\+\_\+manager\+\_\+init()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00426}{mesh\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{mic__driver_8c_source_l00036}{mic\+\_\+driver\+\_\+init()}}, \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}, \mbox{\hyperlink{panic__handler_8c_source_l00066}{panic\+\_\+handler\+\_\+install()}}, \mbox{\hyperlink{pc__diag_8c_source_l00410}{pc\+\_\+diag\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{pins__config_8h_source_l00117}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+FAN}}, \mbox{\hyperlink{pins__config_8h_source_l00119}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+MIC}}, \mbox{\hyperlink{pins__config_8h_source_l00120}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+MLX}}, \mbox{\hyperlink{pins__config_8h_source_l00118}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+RADAR}}, \mbox{\hyperlink{main_8c_source_l00061}{s\+\_\+ctx}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{group__group__main_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{group__group__main_gab396c73e719fb1030b168c4121bb6676}\index{Démarrage (main)@{Démarrage (main)}!s\_ctx@{s\_ctx}}
+\index{s\_ctx@{s\_ctx}!Démarrage (main)@{Démarrage (main)}}
+\doxysubsubsection{\texorpdfstring{s\_ctx}{s\_ctx}}
+{\footnotesize\ttfamily \label{group__group__main_gab396c73e719fb1030b168c4121bb6676} 
+\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} s\+\_\+ctx\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00061}{61}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+\Hypertarget{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}\index{Démarrage (main)@{Démarrage (main)}!TAG@{TAG}}
+\index{TAG@{TAG}!Démarrage (main)@{Démarrage (main)}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}main"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{main_8c_source_l00058}{58}} of file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00153}{aes\+\_\+encrypt\+\_\+payload()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{ai\+\_\+engine\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00155}{bme280\+\_\+init()}}, \mbox{\hyperlink{bme280__driver_8c_source_l00201}{bme280\+\_\+read()}}, \mbox{\hyperlink{pc__diag_8c_source_l00276}{cmd\+\_\+clear\+\_\+logs()}}, \mbox{\hyperlink{pc__diag_8c_source_l00252}{cmd\+\_\+download\+\_\+logs()}}, \mbox{\hyperlink{hw__diag_8c_source_l00096}{diag\+\_\+init\+\_\+i2c\+\_\+bus()}}, \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00475}{diag\+\_\+print\+\_\+json\+\_\+report()}}, \mbox{\hyperlink{hw__diag_8c_source_l00340}{diag\+\_\+scan\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00417}{diag\+\_\+test\+\_\+radar()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00294}{espnow\+\_\+tx\+\_\+callback()}}, \mbox{\hyperlink{hdc1080__driver_8c_source_l00072}{hdc1080\+\_\+init()}}, \mbox{\hyperlink{hdc1080__driver_8c_source_l00124}{hdc1080\+\_\+read()}}, \mbox{\hyperlink{hw__diag_8c_source_l00585}{hw\+\_\+diag\+\_\+pca9555\+\_\+set\+\_\+power()}}, \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00111}{lidar\+\_\+init\+\_\+sensor()}}, \mbox{\hyperlink{littlefs__manager_8c_source_l00036}{littlefs\+\_\+manager\+\_\+init()}}, \mbox{\hyperlink{log__writer_8c_source_l00039}{log\+\_\+trim\+\_\+file()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00307}{mesh\+\_\+load\+\_\+aes\+\_\+key()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00379}{mesh\+\_\+manager\+\_\+init()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00426}{mesh\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{mic__driver_8c_source_l00036}{mic\+\_\+driver\+\_\+init()}}, \mbox{\hyperlink{mic__driver_8c_source_l00097}{mic\+\_\+driver\+\_\+read()}}, \mbox{\hyperlink{ota__node_8c_source_l00045}{ota\+\_\+node\+\_\+init()}}, \mbox{\hyperlink{ota__node_8c_source_l00074}{ota\+\_\+node\+\_\+process\+\_\+fragment()}}, \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}, \mbox{\hyperlink{panic__handler_8c_source_l00066}{panic\+\_\+handler\+\_\+install()}}, \mbox{\hyperlink{radar__driver_8c_source_l00067}{parse\+\_\+tinyframe()}}, \mbox{\hyperlink{pc__diag_8c_source_l00410}{pc\+\_\+diag\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}, \mbox{\hyperlink{hw__diag_8c_source_l00217}{pca9555\+\_\+write\+\_\+reg()}}, \mbox{\hyperlink{pc__diag_8c_source_l00291}{process\+\_\+command()}}, \mbox{\hyperlink{radar__driver_8c_source_l00169}{radar\+\_\+driver\+\_\+init()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00253}{send\+\_\+ai\+\_\+event()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00134}{threshold\+\_\+detect\+\_\+fall()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00031}{VL53\+L8\+CX\+\_\+\+Platform\+Init()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00065}{VL53\+L8\+CX\+\_\+\+Rd\+Multi()}}, and \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00101}{VL53\+L8\+CX\+\_\+\+Wr\+Multi()}}.
+

@@ -1,0 +1,22 @@
+<map id="components/sensor_acq/uld/platform.h" name="components/sensor_acq/uld/platform.h">
+<area shape="rect" id="Node000001" title="Adaptateur plateforme pour l&#39;ULD ST VL53L8CX (STSW&#45;IMG040)." alt="" coords="99,5,262,48"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8h.html" title=" " alt="" coords="193,96,357,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,57,255,94,251,98,212,61"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__buffers_8h.html" title=" " alt="" coords="5,96,169,139"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="150,61,110,98,107,94,146,57"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__api_8c.html" title=" " alt="" coords="5,195,169,237"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="222,149,128,196,126,192,220,144"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__plugin__detection__thresholds_8h.html" title=" " alt="" coords="193,187,357,245"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="278,154,278,186,272,186,272,154"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__plugin__motion__indicator_8h.html" title=" " alt="" coords="381,187,545,245"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="330,144,408,184,406,188,328,149"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__plugin__xtalk_8h.html" title=" " alt="" coords="569,187,733,245"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="373,138,557,184,570,188,568,193,556,189,371,143"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__plugin__detection__thresholds_8c.html" title=" " alt="" coords="193,293,357,352"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="278,261,278,293,272,293,272,261"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__plugin__motion__indicator_8c.html" title=" " alt="" coords="381,293,545,352"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="466,261,466,293,460,293,460,261"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__plugin__xtalk_8c.html" title=" " alt="" coords="569,293,733,352"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="654,261,654,293,648,293,648,261"/>
+<area shape="poly" id="edge10_Node000010_Node000003" title=" " alt="" coords="90,154,90,194,84,194,84,154"/>
+</map>

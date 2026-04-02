@@ -1,0 +1,285 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structbme280__calib__t" kind="struct" language="C++" prot="public">
+    <compoundname>bme280_calib_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbme280__calib__t_1a62dfde40d14ceeed381c5f2e375f9d8c" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t bme280_calib_t::T1</definition>
+        <argsstring></argsstring>
+        <name>T1</name>
+        <qualifiedname>bme280_calib_t::T1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="39" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1aaddf8fb904f0da0f690dc52b9a837ee3" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::T2</definition>
+        <argsstring></argsstring>
+        <name>T2</name>
+        <qualifiedname>bme280_calib_t::T2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="39" column="25" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a07937a05f7a32c12d734a5d91a608422" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::T3</definition>
+        <argsstring></argsstring>
+        <name>T3</name>
+        <qualifiedname>bme280_calib_t::T3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="39" column="36" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a0a7fa21fd2e1592cdf1969b6c47de668" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t bme280_calib_t::P1</definition>
+        <argsstring></argsstring>
+        <name>P1</name>
+        <qualifiedname>bme280_calib_t::P1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="40" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a943a22c01591539274e24075cefe90f8" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P2</definition>
+        <argsstring></argsstring>
+        <name>P2</name>
+        <qualifiedname>bme280_calib_t::P2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="40" column="25" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a9ce2ae55329dcc4539228b1ddc07d05b" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P3</definition>
+        <argsstring></argsstring>
+        <name>P3</name>
+        <qualifiedname>bme280_calib_t::P3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="40" column="36" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a24d173f6266bbc7c794eddbac46e261a" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P4</definition>
+        <argsstring></argsstring>
+        <name>P4</name>
+        <qualifiedname>bme280_calib_t::P4</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="40" column="47" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1ae8b9627a8ea6cf96eb7013b1f8a45f94" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P5</definition>
+        <argsstring></argsstring>
+        <name>P5</name>
+        <qualifiedname>bme280_calib_t::P5</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="41" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1ad13c4c343380150b4fd6febc117004fe" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P6</definition>
+        <argsstring></argsstring>
+        <name>P6</name>
+        <qualifiedname>bme280_calib_t::P6</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="41" column="25" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1afeb172524de13c0ae965eadbef5c1280" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P7</definition>
+        <argsstring></argsstring>
+        <name>P7</name>
+        <qualifiedname>bme280_calib_t::P7</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="41" column="36" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1af18d6e4e995bfaab9b0eb450890e8c0f" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P8</definition>
+        <argsstring></argsstring>
+        <name>P8</name>
+        <qualifiedname>bme280_calib_t::P8</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="41" column="47" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a1484085b19d4d6d955460df879b53c0d" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::P9</definition>
+        <argsstring></argsstring>
+        <name>P9</name>
+        <qualifiedname>bme280_calib_t::P9</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="41" column="58" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1ad57cb71e99083dc1fe99b6a76fde464b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t bme280_calib_t::H1</definition>
+        <argsstring></argsstring>
+        <name>H1</name>
+        <qualifiedname>bme280_calib_t::H1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="42" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a3cb1ea2a9ac7c706ab8c12f84b392c97" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::H2</definition>
+        <argsstring></argsstring>
+        <name>H2</name>
+        <qualifiedname>bme280_calib_t::H2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="42" column="25" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a7637bab3c27446ffc5d09d0f97911048" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t bme280_calib_t::H3</definition>
+        <argsstring></argsstring>
+        <name>H3</name>
+        <qualifiedname>bme280_calib_t::H3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="42" column="36" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a56d94c17f395e2e3d89f84d0ca35e62e" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::H4</definition>
+        <argsstring></argsstring>
+        <name>H4</name>
+        <qualifiedname>bme280_calib_t::H4</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="43" column="14" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1aac598aa7fe7b10cd422ec8761022eacb" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t bme280_calib_t::H5</definition>
+        <argsstring></argsstring>
+        <name>H5</name>
+        <qualifiedname>bme280_calib_t::H5</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="43" column="25" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbme280__calib__t_1a07e689fa0aa6b2062c784110c450e2ee" prot="public" static="no" mutable="no">
+        <type>int8_t</type>
+        <definition>int8_t bme280_calib_t::H6</definition>
+        <argsstring></argsstring>
+        <name>H6</name>
+        <qualifiedname>bme280_calib_t::H6</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/bme280_driver.c" line="43" column="35" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/sensor_acq/bme280_driver.c" line="38" column="1" bodyfile="components/sensor_acq/bme280_driver.c" bodystart="38" bodyend="44"/>
+    <listofallmembers>
+      <member refid="structbme280__calib__t_1ad57cb71e99083dc1fe99b6a76fde464b" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>H1</name></member>
+      <member refid="structbme280__calib__t_1a3cb1ea2a9ac7c706ab8c12f84b392c97" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>H2</name></member>
+      <member refid="structbme280__calib__t_1a7637bab3c27446ffc5d09d0f97911048" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>H3</name></member>
+      <member refid="structbme280__calib__t_1a56d94c17f395e2e3d89f84d0ca35e62e" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>H4</name></member>
+      <member refid="structbme280__calib__t_1aac598aa7fe7b10cd422ec8761022eacb" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>H5</name></member>
+      <member refid="structbme280__calib__t_1a07e689fa0aa6b2062c784110c450e2ee" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>H6</name></member>
+      <member refid="structbme280__calib__t_1a0a7fa21fd2e1592cdf1969b6c47de668" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P1</name></member>
+      <member refid="structbme280__calib__t_1a943a22c01591539274e24075cefe90f8" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P2</name></member>
+      <member refid="structbme280__calib__t_1a9ce2ae55329dcc4539228b1ddc07d05b" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P3</name></member>
+      <member refid="structbme280__calib__t_1a24d173f6266bbc7c794eddbac46e261a" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P4</name></member>
+      <member refid="structbme280__calib__t_1ae8b9627a8ea6cf96eb7013b1f8a45f94" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P5</name></member>
+      <member refid="structbme280__calib__t_1ad13c4c343380150b4fd6febc117004fe" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P6</name></member>
+      <member refid="structbme280__calib__t_1afeb172524de13c0ae965eadbef5c1280" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P7</name></member>
+      <member refid="structbme280__calib__t_1af18d6e4e995bfaab9b0eb450890e8c0f" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P8</name></member>
+      <member refid="structbme280__calib__t_1a1484085b19d4d6d955460df879b53c0d" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>P9</name></member>
+      <member refid="structbme280__calib__t_1a62dfde40d14ceeed381c5f2e375f9d8c" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>T1</name></member>
+      <member refid="structbme280__calib__t_1aaddf8fb904f0da0f690dc52b9a837ee3" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>T2</name></member>
+      <member refid="structbme280__calib__t_1a07937a05f7a32c12d734a5d91a608422" prot="public" virt="non-virtual"><scope>bme280_calib_t</scope><name>T3</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,65 @@
+\doxysection{VL53\+L8\+CX\+\_\+\+Platform Struct Reference}
+\hypertarget{struct_v_l53_l8_c_x___platform}{}\label{struct_v_l53_l8_c_x___platform}\index{VL53L8CX\_Platform@{VL53L8CX\_Platform}}
+
+
+Couche “adaptateur” SPI requise par l\textquotesingle{}ULD ST (VL53\+L8\+CX).  
+
+
+
+
+{\ttfamily \#include $<$vl53l8cx\+\_\+platform.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+spi\+\_\+device\+\_\+handle\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{spi\+\_\+dev}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ae611f4407ec54984f5e9261fbab72a5c}{address}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Couche “adaptateur” SPI requise par l\textquotesingle{}ULD ST (VL53\+L8\+CX). 
+
+But \+: permettre d\textquotesingle{}utiliser un driver ST “standard” en ne codant que les primitives SPI (lire/écrire/attendre), sans réinventer le protocole. 
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00039}{39}} of file \mbox{\hyperlink{vl53l8cx__platform_8h_source}{vl53l8cx\+\_\+platform.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_v_l53_l8_c_x___platform_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_v_l53_l8_c_x___platform_ae611f4407ec54984f5e9261fbab72a5c}\index{VL53L8CX\_Platform@{VL53L8CX\_Platform}!address@{address}}
+\index{address@{address}!VL53L8CX\_Platform@{VL53L8CX\_Platform}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___platform_ae611f4407ec54984f5e9261fbab72a5c} 
+uint16\+\_\+t VL53\+L8\+CX\+\_\+\+Platform\+::address}
+
+Champ requis par l\textquotesingle{}ULD (mode I2C). Inutilisé en SPI. 
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00041}{41}} of file \mbox{\hyperlink{vl53l8cx__platform_8h_source}{vl53l8cx\+\_\+platform.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00411}{vl53l8cx\+\_\+set\+\_\+i2c\+\_\+address()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}\index{VL53L8CX\_Platform@{VL53L8CX\_Platform}!spi\_dev@{spi\_dev}}
+\index{spi\_dev@{spi\_dev}!VL53L8CX\_Platform@{VL53L8CX\_Platform}}
+\doxysubsubsection{\texorpdfstring{spi\_dev}{spi\_dev}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71} 
+spi\+\_\+device\+\_\+handle\+\_\+t VL53\+L8\+CX\+\_\+\+Platform\+::spi\+\_\+dev}
+
+Handle SPI ESP-\/\+IDF du capteur 
+
+Definition at line \mbox{\hyperlink{vl53l8cx__platform_8h_source_l00040}{40}} of file \mbox{\hyperlink{vl53l8cx__platform_8h_source}{vl53l8cx\+\_\+platform.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00111}{lidar\+\_\+init\+\_\+sensor()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00031}{VL53\+L8\+CX\+\_\+\+Platform\+Init()}}, \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00065}{VL53\+L8\+CX\+\_\+\+Rd\+Multi()}}, and \mbox{\hyperlink{vl53l8cx__platform_8c_source_l00101}{VL53\+L8\+CX\+\_\+\+Wr\+Multi()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/sensor\+\_\+acq/include/\mbox{\hyperlink{vl53l8cx__platform_8h}{vl53l8cx\+\_\+platform.\+h}}\end{DoxyCompactItemize}

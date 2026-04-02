@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__main" kind="group">
+    <compoundname>group_main</compoundname>
+    <title>Démarrage (main)</title>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;main&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/main.c" line="58" column="19" bodyfile="main/main.c" bodystart="58" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7bd75723e8320b9ecc2549738714df17" compoundref="mesh__manager_8c" startline="153" endline="200">aes_encrypt_payload</referencedby>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+        <referencedby refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</referencedby>
+        <referencedby refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</referencedby>
+        <referencedby refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" compoundref="pc__diag_8c" startline="276" endline="286">cmd_clear_logs</referencedby>
+        <referencedby refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" compoundref="pc__diag_8c" startline="252" endline="274">cmd_download_logs</referencedby>
+        <referencedby refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" compoundref="hw__diag_8c" startline="96" endline="117">diag_init_i2c_bus</referencedby>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+        <referencedby refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" compoundref="hw__diag_8c" startline="475" endline="499">diag_print_json_report</referencedby>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+        <referencedby refid="mesh__manager_8c_1a6067c463964e944fd80eb63f791c1544" compoundref="mesh__manager_8c" startline="249" endline="272">espnow_rx_callback</referencedby>
+        <referencedby refid="mesh__manager_8c_1abbef85f4a7cd603f4c63ba31a13921cb" compoundref="mesh__manager_8c" startline="294" endline="300">espnow_tx_callback</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" compoundref="hdc1080__driver_8c" startline="72" endline="119">hdc1080_init</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1ac89c7243caa6524ab2c35eb7133483ff" compoundref="hdc1080__driver_8c" startline="124" endline="149">hdc1080_read</referencedby>
+        <referencedby refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" compoundref="hw__diag_8c" startline="585" endline="606">hw_diag_pca9555_set_power</referencedby>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+        <referencedby refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</referencedby>
+        <referencedby refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" compoundref="littlefs__manager_8c" startline="36" endline="71">littlefs_manager_init</referencedby>
+        <referencedby refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" compoundref="log__writer_8c" startline="39" endline="91">log_trim_file</referencedby>
+        <referencedby refid="mesh__manager_8c_1ad183ca147d5c3e6c43ab72d281d5be89" compoundref="mesh__manager_8c" startline="307" endline="324">mesh_load_aes_key</referencedby>
+        <referencedby refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" compoundref="mesh__manager_8c" startline="379" endline="417">mesh_manager_init</referencedby>
+        <referencedby refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" compoundref="mesh__manager_8c" startline="426" endline="447">mesh_task_start</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" compoundref="mic__driver_8c" startline="36" endline="92">mic_driver_init</referencedby>
+        <referencedby refid="mic__driver_8h_1adde164c8adc09dab37730e97d3cdc818" compoundref="mic__driver_8c" startline="97" endline="133">mic_driver_read</referencedby>
+        <referencedby refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" compoundref="ota__node_8c" startline="45" endline="61">ota_node_init</referencedby>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+        <referencedby refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</referencedby>
+        <referencedby refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" compoundref="panic__handler_8c" startline="66" endline="71">panic_handler_install</referencedby>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+        <referencedby refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" compoundref="hw__diag_8c" startline="217" endline="230">pca9555_write_reg</referencedby>
+        <referencedby refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" compoundref="pc__diag_8c" startline="291" endline="318">process_command</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" compoundref="radar__driver_8c" startline="169" endline="175">radar_driver_init</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+        <referencedby refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a5687017b3245ded0e88563178c6613a7" compoundref="vl53l8cx__platform_8c" startline="31" endline="38">VL53L8CX_PlatformInit</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="group__group__main_1gab396c73e719fb1030b168c4121bb6676" prot="public" static="yes" mutable="no">
+        <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref></type>
+        <definition>sys_context_t s_ctx</definition>
+        <argsstring></argsstring>
+        <name>s_ctx</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/main.c" line="61" column="22" bodyfile="main/main.c" bodystart="61" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void app_main</definition>
+        <argsstring>(void)</argsstring>
+        <name>app_main</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="main/main.c" line="63" column="6" bodyfile="main/main.c" bodystart="63" bodyend="239"/>
+        <references refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</references>
+        <references refid="bme280__driver_8h_1a7b7c6da1330193242ae0fed91f8ea6b9" compoundref="bme280__driver_8h" startline="30">BME280_I2C_ADDR_ALT</references>
+        <references refid="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" compoundref="bme280__driver_8h" startline="29">BME280_I2C_ADDR_DEFAULT</references>
+        <references refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" compoundref="bme280__driver_8c" startline="155" endline="199">bme280_init</references>
+        <references refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" compoundref="hdc1080__driver_8c" startline="72" endline="119">hdc1080_init</references>
+        <references refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" compoundref="hw__diag_8c" startline="575" endline="580">hw_diag_init_sensor_bus</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" compoundref="hw__diag_8h" startline="36">HW_DIAG_LIDAR_ALL</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" compoundref="hw__diag_8h" startline="35">HW_DIAG_LIDAR_PARTIAL</references>
+        <references refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" compoundref="hw__diag_8c" startline="585" endline="606">hw_diag_pca9555_set_power</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" compoundref="hw__diag_8h" startline="37">HW_DIAG_RADAR_MISSING</references>
+        <references refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</references>
+        <references refid="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" compoundref="lexacare__config_8h" startline="77">LEXACARE_ENABLE_BME280</references>
+        <references refid="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" compoundref="lexacare__config_8h" startline="76">LEXACARE_ENABLE_HDC1080</references>
+        <references refid="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" compoundref="lexacare__config_8h" startline="97">LEXACARE_ENABLE_MESH</references>
+        <references refid="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" compoundref="lexacare__config_8h" startline="85">LEXACARE_ENABLE_MIC</references>
+        <references refid="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" compoundref="lexacare__config_8h" startline="70">LEXACARE_ENABLE_RADAR</references>
+        <references refid="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" compoundref="lexacare__config_8h" startline="54">LEXACARE_LIDAR_COUNT</references>
+        <references refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</references>
+        <references refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" compoundref="littlefs__manager_8c" startline="36" endline="71">littlefs_manager_init</references>
+        <references refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" compoundref="mesh__manager_8c" startline="379" endline="417">mesh_manager_init</references>
+        <references refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" compoundref="mesh__manager_8c" startline="426" endline="447">mesh_task_start</references>
+        <references refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" compoundref="mic__driver_8c" startline="36" endline="92">mic_driver_init</references>
+        <references refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" compoundref="panic__handler_8c" startline="80" endline="110">panic_handler_check_on_boot</references>
+        <references refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" compoundref="panic__handler_8c" startline="66" endline="71">panic_handler_install</references>
+        <references refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</references>
+        <references refid="pins__config_8h_1a5f2d7b2bd1e54721b51e0b001f9d17e8" compoundref="pins__config_8h" startline="117">PCA9555_BIT_PWR_FAN</references>
+        <references refid="pins__config_8h_1a21548209f46bfb6d3762a4abd89468b1" compoundref="pins__config_8h" startline="119">PCA9555_BIT_PWR_MIC</references>
+        <references refid="pins__config_8h_1a9c75a80cfcdd852e8a918b50a6d794cc" compoundref="pins__config_8h" startline="120">PCA9555_BIT_PWR_MLX</references>
+        <references refid="pins__config_8h_1a47d24d2c7f6e97560d968fcf372d5daa" compoundref="pins__config_8h" startline="118">PCA9555_BIT_PWR_RADAR</references>
+        <references refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" compoundref="main_8c" startline="61">s_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Point d&apos;entrée : initialise les services, lance les diagnostics, puis démarre les tâches. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>L&apos;intention est de garder une séquence de boot lisible et “déterministe” : chaque étape prépare la suivante, et évite de lancer des tâches si une dépendance manque. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

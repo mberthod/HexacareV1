@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="ota__node_8h" kind="file" language="C++">
+    <compoundname>ota_node.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includedby refid="mesh__manager_8c" local="yes">components/mesh_network/mesh_manager.c</includedby>
+    <includedby refid="ota__node_8c" local="yes">components/mesh_network/ota_node.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/mesh_network/include/ota_node.h</label>
+        <link refid="ota__node_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>components/mesh_network/include/ota_node.h</label>
+        <link refid="ota__node_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>components/mesh_network/mesh_manager.c</label>
+        <link refid="mesh__manager_8c"/>
+      </node>
+      <node id="3">
+        <label>components/mesh_network/ota_node.c</label>
+        <link refid="ota__node_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <member refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kind="function"><name>ota_node_init</name></member>
+      <memberdef kind="function" id="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t ota_node_process_fragment</definition>
+        <argsstring>(const ota_fragment_payload_t *frag, const uint8_t(*children_mac)[6], int child_count, const uint8_t *raw_frame, size_t frame_len)</argsstring>
+        <name>ota_node_process_fragment</name>
+        <param>
+          <type>const <ref refid="structota__fragment__payload__t" kindref="compound">ota_fragment_payload_t</ref> *</type>
+          <declname>frag</declname>
+        </param>
+        <param>
+          <type>const uint8_t(*)</type>
+          <declname>children_mac</declname>
+          <array>[6]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>child_count</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>raw_frame</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>frame_len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/include/ota_node.h" line="49" column="11" bodyfile="components/mesh_network/ota_node.c" bodystart="74" bodyend="166" declfile="components/mesh_network/include/ota_node.h" declline="49" declcolumn="11"/>
+        <references refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" compoundref="system__types_8h" startline="178">ota_fragment_payload_t::data</references>
+        <references refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" compoundref="system__types_8h" startline="175">ota_fragment_payload_t::firmware_size</references>
+        <references refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" compoundref="system__types_8h" startline="177">ota_fragment_payload_t::fragment_data_len</references>
+        <references refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" compoundref="system__types_8h" startline="176">ota_fragment_payload_t::fragment_offset</references>
+        <references refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" compoundref="system__types_8h" startline="179">ota_fragment_payload_t::is_last</references>
+        <references refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" compoundref="ota__node_8c" startline="37">s_ota</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du module OTA nœud-à-nœud. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Protocole OTA par fragments (200 octets de données utiles) :<orderedlist>
+<listitem><para>Réception d&apos;un fragment OTA_FRAGMENT via le callback ESP-NOW.</para>
+</listitem><listitem><para>Déchiffrement AES-128-CBC du payload.</para>
+</listitem><listitem><para>Si premier fragment : esp_ota_begin() sur la partition ota_next.</para>
+</listitem><listitem><para>esp_ota_write() avec les données du fragment.</para>
+</listitem><listitem><para>Retransmission immédiate du fragment (chiffré) à tous les enfants.</para>
+</listitem><listitem><para>Si dernier fragment : esp_ota_end() → esp_ota_set_boot_partition() → esp_restart(). </para>
+</listitem></orderedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>ota_node.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>module<sp/>OTA<sp/>nœud-à-nœud.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Protocole<sp/>OTA<sp/>par<sp/>fragments<sp/>(200<sp/>octets<sp/>de<sp/>données<sp/>utiles)<sp/>:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>Réception<sp/>d&apos;un<sp/>fragment<sp/>OTA_FRAGMENT<sp/>via<sp/>le<sp/>callback<sp/>ESP-NOW.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>Déchiffrement<sp/>AES-128-CBC<sp/>du<sp/>payload.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>Si<sp/>premier<sp/>fragment<sp/>:<sp/>esp_ota_begin()<sp/>sur<sp/>la<sp/>partition<sp/>ota_next.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4.<sp/>esp_ota_write()<sp/>avec<sp/>les<sp/>données<sp/>du<sp/>fragment.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>5.<sp/>Retransmission<sp/>immédiate<sp/>du<sp/>fragment<sp/>(chiffré)<sp/>à<sp/>tous<sp/>les<sp/>enfants.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>6.<sp/>Si<sp/>dernier<sp/>fragment<sp/>:</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>esp_ota_end()<sp/>→<sp/>esp_ota_set_boot_partition()<sp/>→<sp/>esp_restart().</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="22"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_mesh</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Module<sp/>OTA<sp/>“nœud-à-nœud”<sp/>utilisé<sp/>par<sp/>le<sp/>réseau<sp/>maillé.</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>ota_node_init</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>module<sp/>OTA<sp/>(état<sp/>interne,<sp/>partition<sp/>cible).</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>l&apos;initialisation<sp/>réussit.</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kindref="member">ota_node_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>ota_node_process_fragment</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Traite<sp/>un<sp/>fragment<sp/>OTA<sp/>reçu<sp/>via<sp/>ESP-NOW.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>Appelée<sp/>depuis<sp/>le<sp/>callback<sp/>de<sp/>réception<sp/>ESP-NOW<sp/>de<sp/>mesh_manager.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>Gère<sp/>l&apos;écriture<sp/>dans<sp/>la<sp/>partition<sp/>OTA<sp/>et<sp/>la<sp/>retransmission<sp/>aux<sp/>enfants.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>@param<sp/>frag<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Payload<sp/>du<sp/>fragment<sp/>(déjà<sp/>déchiffré).</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>@param<sp/>children_mac<sp/>Tableau<sp/>des<sp/>adresses<sp/>MAC<sp/>des<sp/>enfants.</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>@param<sp/>child_count<sp/><sp/>Nombre<sp/>d&apos;enfants.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>@param<sp/>raw_frame<sp/><sp/><sp/><sp/>Trame<sp/>brute<sp/>(chiffrée)<sp/>à<sp/>retransmettre<sp/>aux<sp/>enfants.</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>@param<sp/>frame_len<sp/><sp/><sp/><sp/>Longueur<sp/>de<sp/>la<sp/>trame<sp/>brute.</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>le<sp/>traitement<sp/>réussit.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">esp_err_t<sp/><ref refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" kindref="member">ota_node_process_fragment</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structota__fragment__payload__t" kindref="compound">ota_fragment_payload_t</ref><sp/>*frag,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>(*children_mac)[6],</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>child_count,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>*raw_frame,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>frame_len);</highlight></codeline>
+    </programlisting>
+    <location file="components/mesh_network/include/ota_node.h"/>
+  </compounddef>
+</doxygen>

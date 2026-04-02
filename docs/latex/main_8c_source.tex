@@ -1,0 +1,247 @@
+\doxysection{main.\+c}
+\hypertarget{main_8c_source}{}\label{main_8c_source}\index{main/main.c@{main/main.c}}
+\mbox{\hyperlink{main_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ main.c}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Point\ d'entrée\ LexaCare\ V1\ —\ démarrage\ complet\ du\ firmware.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00005}00005\ \textcolor{comment}{\ *\ Activer/désactiver\ les\ composants\ dans\ :}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00006}00006\ \textcolor{comment}{\ *\ \ \ components/lexacare\_types/include/lexacare\_config.h}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00007}00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00008}00008\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00009}00009\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00010}00010\ \textcolor{comment}{\ *\ @defgroup\ group\_main\ Démarrage\ (main)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00011}00011\ \textcolor{comment}{\ *\ @brief\ Point\ d'entrée\ :\ initialise\ les\ services,\ lance\ les\ diagnostics,\ puis\ démarre\ les\ tâches.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00012}00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00013}00013\ \textcolor{comment}{\ *\ L'intention\ est\ de\ garder\ une\ séquence\ de\ boot\ lisible\ et\ “déterministe”\ :}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00014}00014\ \textcolor{comment}{\ *\ chaque\ étape\ prépare\ la\ suivante,\ et\ évite\ de\ lancer\ des\ tâches\ si\ une\ dépendance\ manque.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00015}00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00016}00016\ \textcolor{comment}{\ *\ @\{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00017}00017\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}freertos/queue.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}freertos/semphr.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00027}00027\ \textcolor{preprocessor}{\#include\ "{}esp\_system.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00028}00028\ \textcolor{preprocessor}{\#include\ "{}esp\_heap\_caps.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00029}00029\ \textcolor{preprocessor}{\#include\ "{}nvs\_flash.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00030}00030\ \textcolor{preprocessor}{\#include\ "{}esp\_event.h"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00032}00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lexacare__config_8h}{lexacare\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00033}00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{system__types_8h}{system\_types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00034}00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pins__config_8h}{pins\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00035}00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hw__diag_8h}{hw\_diag.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00036}00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lidar__driver_8h}{lidar\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00037}00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pc__diag_8h}{pc\_diag.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00038}00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sys__storage_8h}{sys\_storage.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00040}00040\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_AI}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00041}00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{fall__detection__ai_8h}{fall\_detection\_ai.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00042}00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00044}00044\ \textcolor{comment}{/*\ Inclusions\ conditionnelles\ selon\ la\ config\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00045}00045\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_HDC1080}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00046}00046\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{hdc1080__driver_8h}{hdc1080\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00047}00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00048}00048\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_BME280}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00049}00049\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{bme280__driver_8h}{bme280\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00050}00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00051}00051\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MIC}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00052}00052\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{mic__driver_8h}{mic\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00053}00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00054}00054\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MESH}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00055}00055\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{mesh__manager_8h}{mesh\_manager.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00056}00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00058}\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{00058}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}main"{}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00060}00060\ \textcolor{comment}{/*\ Contexte\ système\ —\ statique\ (BSS)\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00061}\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{00061}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}};}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00063}\mbox{\hyperlink{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70}{00063}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70}{app\_main}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00064}00064\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00065}00065\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00066}00066\ \textcolor{comment}{\ \ \ \ \ *\ 1.\ Infrastructure\ de\ base}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00067}00067\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00068}00068\ \ \ \ \ esp\_err\_t\ nvs\_ret\ =\ nvs\_flash\_init();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (nvs\_ret\ ==\ ESP\_ERR\_NVS\_NO\_FREE\_PAGES\ ||}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00070}00070\ \ \ \ \ \ \ \ \ nvs\_ret\ ==\ ESP\_ERR\_NVS\_NEW\_VERSION\_FOUND)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00071}00071\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}NVS\ corrompu\ —\ effacement"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00072}00072\ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(nvs\_flash\_erase());}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00073}00073\ \ \ \ \ \ \ \ \ nvs\_ret\ =\ nvs\_flash\_init();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00074}00074\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00075}00075\ \ \ \ \ ESP\_ERROR\_CHECK(nvs\_ret);}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00076}00076\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_event\_loop\_create\_default());}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00078}00078\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00079}00079\ \textcolor{comment}{\ \ \ \ \ *\ 2.\ Stockage\ SPIFFS\ +\ panic\ handler}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00080}00080\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__storage_gaab567d329d0ad1d073eeac57438d0f0c}{littlefs\_manager\_init}}()\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{panic\_handler\_install}}()\ ==\ ESP\_OK)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\_handler\_check\_on\_boot}}();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00084}00084\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00085}00085\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}SPIFFS\ indisponible\ —\ logs\ désactivés"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00086}00086\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00088}00088\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00089}00089\ \textcolor{comment}{\ \ \ \ \ *\ 3.\ Diagnostic\ matériel\ (SPI\ LIDAR\ +\ PCA9555\ LPn)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00090}00090\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00091}00091\ \ \ \ \ memset(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00092}00092\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.temp\_hdc\_c\ \ \ =\ NAN;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00093}00093\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.humidity\_hdc\ =\ NAN;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00094}00094\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.temp\_bme\_c\ \ \ =\ NAN;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00095}00095\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.pressure\_hpa\ =\ NAN;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00096}00096\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.enviro.humidity\_bme\ =\ NAN;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00098}00098\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}}\ diag\ =\ \mbox{\hyperlink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\_diag\_run}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\ \&\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\_DIAG\_LIDAR\_ALL}})\ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Aucun\ LIDAR\ —\ dégradé"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\ \&\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\_DIAG\_LIDAR\_PARTIAL}})\ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDARs\ partiels"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\ \&\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\_DIAG\_RADAR\_MISSING}})\ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ absent"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00103}00103\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00104}00104\ \textcolor{comment}{\ \ \ \ \ *\ 4.\ Alimentations\ PCA9555\ —\ AVANT\ init\ des\ capteurs}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00105}00105\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ POWER\_RADAR\ alimente\ HDC1080\ +\ BME280\ sur\ la\ carte\ radar.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00106}00106\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00107}00107\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_RADAR\_ENABLED}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00108}00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a47d24d2c7f6e97560d968fcf372d5daa}{PCA9555\_BIT\_PWR\_RADAR}},\ \textcolor{keyword}{true})\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00109}00109\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_RADAR\ (IO1.5)\ activé\ —\ capteurs\ I2C\ alimentés"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00110}00110\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(50));\ \ \textcolor{comment}{/*\ Stabilisation\ alimentation\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00112}00112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00113}00113\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_FAN\_ENABLED}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00114}00114\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a5f2d7b2bd1e54721b51e0b001f9d17e8}{PCA9555\_BIT\_PWR\_FAN}},\ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00115}00115\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_FAN\ (IO1.4)\ activé"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00116}00116\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00117}00117\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_MLX\_ENABLED}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00118}00118\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a9c75a80cfcdd852e8a918b50a6d794cc}{PCA9555\_BIT\_PWR\_MLX}},\ \ \ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00119}00119\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_MLX\ (IO1.7)\ activé"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00120}00120\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(20));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00121}00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00123}00123\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00124}00124\ \textcolor{comment}{\ \ \ \ \ *\ 5.\ Capteurs\ I2C\ environnementaux\ (carte\ radar,\ I2C\_NUM\_1)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00125}00125\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00126}00126\ \ \ \ \ i2c\_master\_bus\_handle\_t\ sensors\_bus\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00127}00127\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_HDC1080\ ||\ LEXACARE\_ENABLE\_BME280\ ||\ LEXACARE\_ENABLE\_MLX90640}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}{hw\_diag\_init\_sensor\_bus}}(\&sensors\_bus)\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Bus\ I2C\_NUM\_1\ indisponible\ —\ capteurs\ enviro\ off"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00131}00131\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00133}00133\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_HDC1080}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00134}00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (sensors\_bus)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{hdc1080__driver_8c_a331ca8cf79867f6f9ebe86978bfc6cc5}{hdc1080\_init}}(sensors\_bus)\ ==\ ESP\_OK)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}HDC1080\ prêt\ @0x40"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}HDC1080\ non\ détecté\ @0x40"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00139}00139\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00140}00140\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00142}00142\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_BME280}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00143}00143\ \ \ \ \ \textcolor{keywordflow}{if}\ (sensors\_bus)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{bme280__driver_8c_a16050495a4e02a1498ceadf9a19db1e2}{bme280\_init}}(sensors\_bus,\ \mbox{\hyperlink{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4}{BME280\_I2C\_ADDR\_DEFAULT}})\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ prêt\ @0x76"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00146}00146\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ @0x76\ échoué\ —\ essai\ @0x77"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{bme280__driver_8c_a16050495a4e02a1498ceadf9a19db1e2}{bme280\_init}}(sensors\_bus,\ \mbox{\hyperlink{bme280__driver_8h_a7b7c6da1330193242ae0fed91f8ea6b9}{BME280\_I2C\_ADDR\_ALT}})\ ==\ ESP\_OK)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ prêt\ @0x77"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}BME280\ non\ détecté"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00153}00153\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00154}00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00156}00156\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00157}00157\ \textcolor{comment}{\ \ \ \ \ *\ 6.\ Queues\ FreeRTOS\ +\ mutex}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00158}00158\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00159}00159\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.data\_mutex\ =\ xSemaphoreCreateMutex();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00160}00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.data\_mutex)\ \{\ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mutex\ KO"{}});\ esp\_restart();\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00161}00161\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00162}00162\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.sensor\_to\_ai\_queue\ =\ xQueueCreate(4,\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00163}00163\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.ai\_to\_mesh\_queue\ \ \ =\ xQueueCreate(8,\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structai__event__t}{ai\_event\_t}}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00164}00164\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.diag\_to\_pc\_queue\ \ \ =\ xQueueCreate(8,\ \ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structai__event__t}{ai\_event\_t}}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00165}00165\ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.log\_queue\ \ \ \ \ \ \ \ \ \ =\ xQueueCreate(16,\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}\ *));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00167}00167\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.sensor\_to\_ai\_queue\ ||\ !\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.ai\_to\_mesh\_queue\ ||}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00168}00168\ \ \ \ \ \ \ \ \ !\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.diag\_to\_pc\_queue\ \ \ ||\ !\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.log\_queue)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00169}00169\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Queues\ KO\ —\ redémarrage"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00170}00170\ \ \ \ \ \ \ \ \ esp\_restart();}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00171}00171\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00173}00173\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00174}00174\ \textcolor{comment}{\ \ \ \ \ *\ 7.\ Alimentation\ MIC\ —\ AVANT\ WiFi}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00175}00175\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ Toutes\ les\ opérations\ PCA9555\ (allocation\ du\ device\ handle\ I2C)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00176}00176\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ doivent\ être\ effectuées\ AVANT\ mesh\_manager\_init().}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00177}00177\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ Après\ WiFi,\ le\ heap\ peut\ être\ fragmenté\ →\ LoadStoreAlignment}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00178}00178\ \textcolor{comment}{\ \ \ \ \ *\ \ \ \ sur\ l'allocation\ dans\ i2c\_master\_bus\_add\_device.}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00179}00179\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00180}00180\ \textcolor{preprocessor}{\#if\ LEXACARE\_PWR\_MIC\_ENABLED\ \&\&\ LEXACARE\_ENABLE\_MIC}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00181}00181\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(\mbox{\hyperlink{pins__config_8h_a21548209f46bfb6d3762a4abd89468b1}{PCA9555\_BIT\_PWR\_MIC}},\ \textcolor{keyword}{true})\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00182}00182\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}POWER\_MIC\ (IO1.6)\ activé"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00183}00183\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(10));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00184}00184\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00185}00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00186}00186\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00187}00187\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00188}00188\ \textcolor{comment}{\ \ \ \ \ *\ 8.\ Microphone\ I2S\ —\ AVANT\ WiFi\ (évite\ fragmentation\ heap\ TLSF)}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00189}00189\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00190}00190\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MIC}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00191}00191\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc}{mic\_driver\_init}}()\ ==\ ESP\_OK)}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Microphone\ I2S\ prêt"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00193}00193\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Microphone\ I2S\ KO"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00195}00195\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00196}00196\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00197}00197\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00198}00198\ \textcolor{comment}{\ \ \ \ \ *\ 9.\ Réseau\ mesh\ ESP-\/NOW\ —\ APRÈS\ toutes\ les\ opérations\ PCA9555}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00199}00199\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00200}00200\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MESH}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00201}00201\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{mesh\_manager\_init}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00202}00202\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00203}00203\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mesh\ WiFi\ désactivé\ (LEXACARE\_ENABLE\_MESH=0)"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00204}00204\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00206}00206\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00207}00207\ \textcolor{comment}{\ \ \ \ \ *\ 10.\ Démarrage\ des\ tâches}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00208}00208\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00209}00209\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_AI}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00210}00210\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22}{ai\_engine\_task\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \textcolor{comment}{/*\ Core\ 1,\ prio\ 9\ \ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00211}00211\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00212}00212\ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}IA\ désactivée\ (LEXACARE\_ENABLE\_AI=0)"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00213}00213\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00214}00214\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}{lidar\_driver\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \ \ \ \textcolor{comment}{/*\ Core\ 1,\ prio\ 10\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00215}00215\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_MESH}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00216}00216\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{mesh\_task\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Core\ 0,\ prio\ 8\ \ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00217}00217\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00218}00218\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}{pc\_diag\_task\_start}}(\&\mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}));\ \ \ \ \ \ \textcolor{comment}{/*\ Core\ 0,\ prio\ 3\ \ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00219}00219\ }
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00220}00220\ \ \ \ \ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00221}00221\ \textcolor{comment}{\ \ \ \ \ *\ Rapport\ de\ démarrage}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00222}00222\ \textcolor{comment}{\ \ \ \ \ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00223}00223\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}================================================"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00224}00224\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ LexaCare\ V1\ —\ Firmware\ opérationnel"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00225}00225\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ IDF\ :\ \%s\ |\ Rôle\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00226}00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ esp\_get\_idf\_version(),}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\_ctx}}.is\_root\_node\ ?\ \textcolor{stringliteral}{"{}ROOT"{}}\ :\ \textcolor{stringliteral}{"{}NODE"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00228}00228\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ Heap\ interne\ :\ \%lu\ B\ |\ PSRAM\ :\ \%lu\ B"{}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})esp\_get\_free\_heap\_size(),}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})heap\_caps\_get\_free\_size(MALLOC\_CAP\_SPIRAM));}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00231}00231\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}\ \ Config:\ LIDAR×\%d\ RADAR=\%d\ HDC=\%d\ BME=\%d\ MIC=\%d\ MESH=\%d"{}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga20483dea8d2a3674883e2e02d94058da}{LEXACARE\_LIDAR\_COUNT}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga02349f22e1562a28cb7e79fb33b609fb}{LEXACARE\_ENABLE\_RADAR}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga01e58c65d8e2d1f09d0686d4bd9a199d}{LEXACARE\_ENABLE\_HDC1080}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga2ec6a41c4f52091ceaf3e3f448899fb5}{LEXACARE\_ENABLE\_BME280}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga3e499e0599f689a9321c507bde1deea2}{LEXACARE\_ENABLE\_MIC}},}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_ga0ec2dec85070253e4cb80fa96a80ad13}{LEXACARE\_ENABLE\_MESH}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00238}00238\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}================================================"{}});}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00239}00239\ \}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00240}00240\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{main_8c_source_l00241}00241\ \textcolor{comment}{/**\ @\}\ */}\ \textcolor{comment}{/*\ end\ of\ group\_main\ */}}
+
+\end{DoxyCode}

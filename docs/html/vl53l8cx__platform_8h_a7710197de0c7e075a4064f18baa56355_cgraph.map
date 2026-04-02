@@ -1,0 +1,7 @@
+<map id="VL53L8CX_WrByte" name="VL53L8CX_WrByte">
+<area shape="rect" id="Node000001" title="Écrit un octet dans un registre 16 bits du VL53L8CX." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="188,5,323,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,16,172,16,172,21,140,21"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="371,5,438,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="324,16,355,16,355,21,324,21"/>
+</map>

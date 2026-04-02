@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__hw__diag" kind="group">
+    <compoundname>group_hw_diag</compoundname>
+    <title>Diagnostic Matériel</title>
+    <innerfile refid="hw__diag_8c">hw_diag.c</innerfile>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" prot="public" static="no" strong="no">
+        <type></type>
+        <name>hw_diag_result_t</name>
+        <enumvalue id="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd" prot="public">
+          <name>HW_DIAG_OK</name>
+          <initializer>= 0x00</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" prot="public">
+          <name>HW_DIAG_LIDAR_PARTIAL</name>
+          <initializer>= 0x01</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Au moins un LIDAR absent </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" prot="public">
+          <name>HW_DIAG_LIDAR_ALL</name>
+          <initializer>= 0x02</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Aucun LIDAR détecté </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" prot="public">
+          <name>HW_DIAG_RADAR_MISSING</name>
+          <initializer>= 0x04</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Radar LD6002 non détecté </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/include/hw_diag.h" line="33" column="1" bodyfile="components/hw_diag/include/hw_diag.h" bodystart="33" bodyend="38"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref></type>
+        <definition>hw_diag_result_t hw_diag_run</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>hw_diag_run</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/include/hw_diag.h" line="57" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="508" bodyend="570" declfile="components/hw_diag/include/hw_diag.h" declline="57" declcolumn="18"/>
+        <references refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" compoundref="hw__diag_8c" startline="96" endline="117">diag_init_i2c_bus</references>
+        <references refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</references>
+        <references refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" compoundref="hw__diag_8c" startline="475" endline="499">diag_print_json_report</references>
+        <references refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</references>
+        <references refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" compoundref="hw__diag_8h" startline="36">HW_DIAG_LIDAR_ALL</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" compoundref="hw__diag_8h" startline="35">HW_DIAG_LIDAR_PARTIAL</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd" compoundref="hw__diag_8h" startline="34">HW_DIAG_OK</references>
+        <references refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" compoundref="hw__diag_8h" startline="37">HW_DIAG_RADAR_MISSING</references>
+        <references refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" compoundref="system__types_8h" startline="250">sys_context_t::is_root_node</references>
+        <references refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" compoundref="system__types_8h" startline="46">LIDAR_NUM_FRONT</references>
+        <references refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" compoundref="system__types_8h" startline="248">sys_context_t::lidar_ok</references>
+        <references refid="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" compoundref="pins__config_8h" startline="49">PIN_I2C0_SCL</references>
+        <references refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" compoundref="pins__config_8h" startline="48">PIN_I2C0_SDA</references>
+        <references refid="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" compoundref="pins__config_8h" startline="151">PIN_ROOT_SEL</references>
+        <references refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" compoundref="system__types_8h" startline="249">sys_context_t::radar_ok</references>
+        <references refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" compoundref="hw__diag_8c" startline="79">s_pca_bus</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t hw_diag_init_sensor_bus</definition>
+        <argsstring>(i2c_master_bus_handle_t *out_handle)</argsstring>
+        <name>hw_diag_init_sensor_bus</name>
+        <param>
+          <type>i2c_master_bus_handle_t *</type>
+          <declname>out_handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/include/hw_diag.h" line="70" column="11" bodyfile="components/hw_diag/hw_diag.c" bodystart="575" bodyend="580" declfile="components/hw_diag/include/hw_diag.h" declline="70" declcolumn="11"/>
+        <references refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" compoundref="hw__diag_8c" startline="96" endline="117">diag_init_i2c_bus</references>
+        <references refid="pins__config_8h_1ac270b2950c69700990747460dc1e284a" compoundref="pins__config_8h" startline="55">PIN_I2C1_SCL</references>
+        <references refid="pins__config_8h_1aabfe18b52ad58d04d2a1cf6612c5c4fa" compoundref="pins__config_8h" startline="54">PIN_I2C1_SDA</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t hw_diag_pca9555_set_power</definition>
+        <argsstring>(uint8_t port1_bit, bool enable)</argsstring>
+        <name>hw_diag_pca9555_set_power</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>port1_bit</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enable</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/include/hw_diag.h" line="88" column="11" bodyfile="components/hw_diag/hw_diag.c" bodystart="585" bodyend="606" declfile="components/hw_diag/include/hw_diag.h" declline="88" declcolumn="11"/>
+        <references refid="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" compoundref="pins__config_8h" startline="87">PCA9555_REG_OUTPUT_1</references>
+        <references refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" compoundref="hw__diag_8c" startline="217" endline="230">pca9555_write_reg</references>
+        <references refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" compoundref="hw__diag_8c" startline="76">s_pca1_out</references>
+        <references refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" compoundref="hw__diag_8c" startline="79">s_pca_bus</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Vérifications au démarrage : bus, capteurs, et expandeur PCA9555. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Raison d&apos;être :<itemizedlist>
+<listitem><para>détecter tôt les problèmes de câblage ou d&apos;alimentation</para>
+</listitem><listitem><para>éviter de lancer des tâches qui bloqueraient si un périphérique est absent</para>
+</listitem><listitem><para>produire un rapport lisible (JSON) pour accélérer le diagnostic côté PC </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

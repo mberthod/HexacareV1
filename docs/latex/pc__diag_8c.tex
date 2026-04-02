@@ -1,0 +1,742 @@
+\doxysection{components/pc\+\_\+diag/pc\+\_\+diag.c File Reference}
+\hypertarget{pc__diag_8c}{}\label{pc__diag_8c}\index{components/pc\_diag/pc\_diag.c@{components/pc\_diag/pc\_diag.c}}
+
+
+Interface PC USB-\/\+JTAG — Rapport JSON temps réel (Lexacare Studio).  
+
+
+{\ttfamily \#include "{}pc\+\_\+diag.\+h"{}}\newline
+{\ttfamily \#include "{}sys\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+heap\+\_\+caps.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/queue.\+h"{}}\newline
+{\ttfamily \#include "{}c\+JSON.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$errno.\+h$>$}\newline
+Include dependency graph for pc\+\_\+diag.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_a5486258f1f34d3baeda92a74b63c27c3}{TASK\+\_\+\+STACK\+\_\+\+SIZE}}~(12288)  /\texorpdfstring{$\ast$}{*} Augmenté pour JSON LIDAR 8×32 + c\+JSON heap \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\+\_\+\+PRIORITY}}~(3)
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\+\_\+\+CORE}}~(0)
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_a713bee2cc5ebf2ba4b5d15ece162ef52}{SENSOR\+\_\+\+INTERVAL\+\_\+\+MS}}~(1000)   /\texorpdfstring{$\ast$}{*} Rapport sensor \+: 1 s \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_a7d70610ce777e27720817466674458bb}{SYS\+\_\+\+INTERVAL\+\_\+\+MS}}~(5000)   /\texorpdfstring{$\ast$}{*} Rapport sys    \+: 5 s \texorpdfstring{$\ast$}{*}/
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_a8427d0088582c17327e754f5f08c5a56}{CMD\+\_\+\+BUF\+\_\+\+SIZE}}~(256)
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_ac8f274747c171179ff6baac920b7bd04}{LOG\+\_\+\+TRANSFER\+\_\+\+BLOCK\+\_\+\+SIZE}}~(512)
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_aac747bed84189f8cfa509b94d488e622}{MAX\+\_\+\+TASKS}}~(32)
+\item 
+\#define \mbox{\hyperlink{pc__diag_8c_ab42679d7c2e21904778b0ed79f9da6f8}{AI\+\_\+\+STATE\+\_\+\+COUNT}}~(sizeof(\mbox{\hyperlink{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}{ai\+\_\+event\+\_\+strings}}) / sizeof(\mbox{\hyperlink{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}{ai\+\_\+event\+\_\+strings}}\mbox{[}0\mbox{]}))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pc__diag_8c_ad0a594cf95696c6c0a92ef226ff6af9b}{build\+\_\+sensor\+\_\+json}} (\mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+static char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pc__diag_8c_a1a7183f10362aa141c781811ed86a9bb}{build\+\_\+sys\+\_\+json}} (\mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+static void \mbox{\hyperlink{pc__diag_8c_a54084e6e535ac4e7a8ca3a3b42974178}{cmd\+\_\+download\+\_\+logs}} (void)
+\item 
+static void \mbox{\hyperlink{pc__diag_8c_a3cff5c01023ea27179dd4ef51291e0c4}{cmd\+\_\+clear\+\_\+logs}} (void)
+\item 
+static void \mbox{\hyperlink{pc__diag_8c_aa6214e5f1fa26e58413c4961ffb46df1}{process\+\_\+command}} (\mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx, const char \texorpdfstring{$\ast$}{*}line)
+\item 
+static void \mbox{\hyperlink{pc__diag_8c_ab830ffc28d0b4ab9661b47a0cd4fe943}{task\+\_\+diag\+\_\+pc}} (void \texorpdfstring{$\ast$}{*}pv\+Param)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}{pc\+\_\+diag\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pc__diag_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}pc\+\_\+diag"{}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}{ai\+\_\+event\+\_\+strings}} \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface PC USB-\/\+JTAG — Rapport JSON temps réel (Lexacare Studio). 
+
+Émet deux types de trames JSON vers le PC via USB Serial/\+JTAG \+:
+
+TRAME SENSOR (toutes les 1 s — données temps réel) \+: \{ "{}type"{}\+: "{}sensor"{}, "{}lidar\+\_\+matrix"{}\+: \mbox{[}\mbox{[}...8 rangées × 32 colonnes (mm)...\mbox{]}\mbox{]}, "{}radar"{}\+: \{ "{}resp\+\_\+phase"{}\+: 0.\+5, "{}heart\+\_\+phase"{}\+: 0.\+1, "{}breath\+\_\+rate"{}\+: 16, "{}heart\+\_\+rate"{}\+: 72, "{}distance\+\_\+mm"{}\+: 1200, "{}presence"{}\+: true \}, "{}ai\+\_\+event"{}\+: "{}\+AI\+\_\+\+NORMAL"{}, "{}confidence"{}\+: 0, "{}hdc1080"{}\+: \{ "{}temp\+\_\+c"{}\+: 23.\+5, "{}humidity\+\_\+pct"{}\+: 45.\+2 \}, "{}bme280"{}\+: \{ "{}temp\+\_\+c"{}\+: 23.\+2, "{}pressure\+\_\+hpa"{}\+: 1013.\+2, "{}humidity\+\_\+pct"{}\+: 44.\+8 \}, "{}mic"{}\+: \{ "{}rms"{}\+: 1234, "{}peak"{}\+: 4096 \} \}
+
+TRAME SYS (toutes les 5 s — métriques firmware) \+: \{ "{}type"{}\+: "{}sys"{}, "{}uptime\+\_\+s"{}\+: 1234, "{}cpu\+\_\+load"{}\+: \mbox{[}45, 80\mbox{]}, "{}heap\+\_\+free"{}\+: 8700000, "{}psram\+\_\+free"{}\+: 8000000, "{}tasks\+\_\+hwm"{}\+: \{ "{}\+Task\+\_\+\+Sensor\+\_\+\+Acq"{}\+: 2048, ... \} \}
+
+Commandes acceptées depuis stdin (JSON + \textquotesingle{}~\newline
+\textquotesingle{}) \+: \{"{}cmd"{}\+:"{}get\+\_\+diag"{}\} → rapport JSON immédiat \{"{}cmd"{}\+:"{}download\+\_\+logs"{}\} → transfert /spiffs/app.log \{"{}cmd"{}\+:"{}clear\+\_\+logs"{}\} → suppression /spiffs/app.log 
+
+Definition in file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{pc__diag_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pc__diag_8c_ab42679d7c2e21904778b0ed79f9da6f8}\index{pc\_diag.c@{pc\_diag.c}!AI\_STATE\_COUNT@{AI\_STATE\_COUNT}}
+\index{AI\_STATE\_COUNT@{AI\_STATE\_COUNT}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{AI\_STATE\_COUNT}{AI\_STATE\_COUNT}}
+{\footnotesize\ttfamily \label{pc__diag_8c_ab42679d7c2e21904778b0ed79f9da6f8} 
+\#define AI\+\_\+\+STATE\+\_\+\+COUNT~(sizeof(\mbox{\hyperlink{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}{ai\+\_\+event\+\_\+strings}}) / sizeof(\mbox{\hyperlink{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}{ai\+\_\+event\+\_\+strings}}\mbox{[}0\mbox{]}))}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00078}{78}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{pc__diag_8c_a8427d0088582c17327e754f5f08c5a56}\index{pc\_diag.c@{pc\_diag.c}!CMD\_BUF\_SIZE@{CMD\_BUF\_SIZE}}
+\index{CMD\_BUF\_SIZE@{CMD\_BUF\_SIZE}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{CMD\_BUF\_SIZE}{CMD\_BUF\_SIZE}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a8427d0088582c17327e754f5f08c5a56} 
+\#define CMD\+\_\+\+BUF\+\_\+\+SIZE~(256)}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00068}{68}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}.
+
+\Hypertarget{pc__diag_8c_ac8f274747c171179ff6baac920b7bd04}\index{pc\_diag.c@{pc\_diag.c}!LOG\_TRANSFER\_BLOCK\_SIZE@{LOG\_TRANSFER\_BLOCK\_SIZE}}
+\index{LOG\_TRANSFER\_BLOCK\_SIZE@{LOG\_TRANSFER\_BLOCK\_SIZE}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{LOG\_TRANSFER\_BLOCK\_SIZE}{LOG\_TRANSFER\_BLOCK\_SIZE}}
+{\footnotesize\ttfamily \label{pc__diag_8c_ac8f274747c171179ff6baac920b7bd04} 
+\#define LOG\+\_\+\+TRANSFER\+\_\+\+BLOCK\+\_\+\+SIZE~(512)}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00069}{69}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00252}{cmd\+\_\+download\+\_\+logs()}}.
+
+\Hypertarget{pc__diag_8c_aac747bed84189f8cfa509b94d488e622}\index{pc\_diag.c@{pc\_diag.c}!MAX\_TASKS@{MAX\_TASKS}}
+\index{MAX\_TASKS@{MAX\_TASKS}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{MAX\_TASKS}{MAX\_TASKS}}
+{\footnotesize\ttfamily \label{pc__diag_8c_aac747bed84189f8cfa509b94d488e622} 
+\#define MAX\+\_\+\+TASKS~(32)}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00070}{70}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00207}{build\+\_\+sys\+\_\+json()}}.
+
+\Hypertarget{pc__diag_8c_a713bee2cc5ebf2ba4b5d15ece162ef52}\index{pc\_diag.c@{pc\_diag.c}!SENSOR\_INTERVAL\_MS@{SENSOR\_INTERVAL\_MS}}
+\index{SENSOR\_INTERVAL\_MS@{SENSOR\_INTERVAL\_MS}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{SENSOR\_INTERVAL\_MS}{SENSOR\_INTERVAL\_MS}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a713bee2cc5ebf2ba4b5d15ece162ef52} 
+\#define SENSOR\+\_\+\+INTERVAL\+\_\+\+MS~(1000)   /\texorpdfstring{$\ast$}{*} Rapport sensor \+: 1 s \texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00066}{66}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}.
+
+\Hypertarget{pc__diag_8c_a7d70610ce777e27720817466674458bb}\index{pc\_diag.c@{pc\_diag.c}!SYS\_INTERVAL\_MS@{SYS\_INTERVAL\_MS}}
+\index{SYS\_INTERVAL\_MS@{SYS\_INTERVAL\_MS}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{SYS\_INTERVAL\_MS}{SYS\_INTERVAL\_MS}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a7d70610ce777e27720817466674458bb} 
+\#define SYS\+\_\+\+INTERVAL\+\_\+\+MS~(5000)   /\texorpdfstring{$\ast$}{*} Rapport sys    \+: 5 s \texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00067}{67}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}.
+
+\Hypertarget{pc__diag_8c_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}\index{pc\_diag.c@{pc\_diag.c}!TASK\_CORE@{TASK\_CORE}}
+\index{TASK\_CORE@{TASK\_CORE}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_CORE}{TASK\_CORE}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a9acbd3c931eee1cac4b1f1e7cd6bb2f2} 
+\#define TASK\+\_\+\+CORE~(0)}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00065}{65}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+\Hypertarget{pc__diag_8c_a82dd0a9ae27bdb2c3cdd33bb7804861c}\index{pc\_diag.c@{pc\_diag.c}!TASK\_PRIORITY@{TASK\_PRIORITY}}
+\index{TASK\_PRIORITY@{TASK\_PRIORITY}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_PRIORITY}{TASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a82dd0a9ae27bdb2c3cdd33bb7804861c} 
+\#define TASK\+\_\+\+PRIORITY~(3)}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00064}{64}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+\Hypertarget{pc__diag_8c_a5486258f1f34d3baeda92a74b63c27c3}\index{pc\_diag.c@{pc\_diag.c}!TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}}
+\index{TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{TASK\_STACK\_SIZE}{TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a5486258f1f34d3baeda92a74b63c27c3} 
+\#define TASK\+\_\+\+STACK\+\_\+\+SIZE~(12288)  /\texorpdfstring{$\ast$}{*} Augmenté pour JSON LIDAR 8×32 + c\+JSON heap \texorpdfstring{$\ast$}{*}/}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00063}{63}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{pc__diag_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{pc__diag_8c_ad0a594cf95696c6c0a92ef226ff6af9b}\index{pc\_diag.c@{pc\_diag.c}!build\_sensor\_json@{build\_sensor\_json}}
+\index{build\_sensor\_json@{build\_sensor\_json}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{build\_sensor\_json()}{build\_sensor\_json()}}
+{\footnotesize\ttfamily \label{pc__diag_8c_ad0a594cf95696c6c0a92ef226ff6af9b} 
+char \texorpdfstring{$\ast$}{*} build\+\_\+sensor\+\_\+json (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00096}{96}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00097\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *sys\ =\ ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_a79bef5f2311a3cd60ed3637da856dca3}{sys\_ctx}};}
+\DoxyCodeLine{00099\ \ \ \ \ cJSON\ *root\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (!root)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ cJSON\_AddStringToObject(root,\ \textcolor{stringliteral}{"{}type"{}},\ \textcolor{stringliteral}{"{}sensor"{}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{/*\ ──\ Matrice\ LIDAR\ 8×32\ ────────────────────────────────────────\ */}}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}}\ snap\ =\ \{0\};}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{bool}\ snap\_valid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (sys-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}}\ \&\&}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ xSemaphoreTake(sys-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}},\ pdMS\_TO\_TICKS(10))\ ==\ pdTRUE)\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ snap\ \ \ \ \ \ \ =\ sys-\/>\mbox{\hyperlink{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b}{latest\_sensor}};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ snap\_valid\ =\ sys-\/>\mbox{\hyperlink{structsys__context__t_aeea7001274ed1c680448cf33aacf9650}{sensor\_valid}};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ xSemaphoreGive(sys-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}});}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ cJSON\ *matrix\ =\ cJSON\_CreateArray();}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 0;\ row\ <\ \mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\_ROWS}};\ row++)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ cJSON\ *row\_arr\ =\ cJSON\_CreateArray();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ \mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\_COLS}};\ col++)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ d\ =\ snap\_valid\ ?\ snap.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}}.\mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{data}}[row][col]\ :\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_AddItemToArray(row\_arr,\ cJSON\_CreateNumber(d));}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ cJSON\_AddItemToArray(matrix,\ row\_arr);}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}lidar\_matrix"{}},\ matrix);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{comment}{/*\ ──\ Radar\ ─────────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{00127\ \ \ \ \ cJSON\ *radar\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{if}\ (snap\_valid\ \&\&\ snap.\mbox{\hyperlink{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}{radar\_valid}})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}resp\_phase"{}},\ \ snap.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}.\mbox{\hyperlink{structradar__data__t_a701c910c93542668f4b224637db2b736}{resp\_phase}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}heart\_phase"{}},\ snap.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}.\mbox{\hyperlink{structradar__data__t_a44c6ff7879888bbd222a8e0d51385fb7}{heart\_phase}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}breath\_rate"{}},\ snap.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}.\mbox{\hyperlink{structradar__data__t_aff3811ac5fa450d274494b00a8793858}{breath\_rate\_bpm}});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}heart\_rate"{}},\ \ snap.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}.\mbox{\hyperlink{structradar__data__t_ada6473d97a325963d6f5c78ec7fe6a77}{heart\_rate\_bpm}});}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}distance\_mm"{}},\ snap.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}.\mbox{\hyperlink{structradar__data__t_aa4e0441dee4e24232b4b5c83fe42252c}{target\_distance\_mm}});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ cJSON\_AddBoolToObject\ \ (radar,\ \textcolor{stringliteral}{"{}presence"{}},\ \ \ \ snap.\mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}.\mbox{\hyperlink{structradar__data__t_ae64dbc2fcffffc265459995ed4476f1f}{presence}});}
+\DoxyCodeLine{00135\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}resp\_phase"{}},\ \ 0.0);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}heart\_phase"{}},\ 0.0);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}breath\_rate"{}},\ 0);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}heart\_rate"{}},\ \ 0);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(radar,\ \textcolor{stringliteral}{"{}distance\_mm"{}},\ 0);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ cJSON\_AddBoolToObject\ \ (radar,\ \textcolor{stringliteral}{"{}presence"{}},\ \ \ \ \textcolor{keyword}{false});}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}radar"{}},\ radar);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{/*\ ──\ Événement\ IA\ ──────────────────────────────────────────────\ */}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{/*\ Récupérer\ le\ dernier\ événement\ depuis\ la\ queue\ de\ diagnostic\ */}}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{structai__event__t}{ai\_event\_t}}\ evt\ =\ ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_ac2ff11ccda174d9fe9f594a5671cda32}{last\_event}};}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keywordflow}{while}\ (xQueueReceive(sys-\/>\mbox{\hyperlink{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7}{diag\_to\_pc\_queue}},\ \&evt,\ 0)\ ==\ pdTRUE)\ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_ac2ff11ccda174d9fe9f594a5671cda32}{last\_event}}\ =\ evt;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_a99340926ee0e4be2f5ed76b84fe61387}{has\_event}}\ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ uint32\_t\ ai\_state\ =\ (ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_a99340926ee0e4be2f5ed76b84fe61387}{has\_event}})\ ?\ ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_ac2ff11ccda174d9fe9f594a5671cda32}{last\_event}}.\mbox{\hyperlink{structai__event__t_a81e6991ce55e7b8c557ab557545cc522}{state}}\ :\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *ai\_str\ =\ (ai\_state\ <\ \mbox{\hyperlink{pc__diag_8c_ab42679d7c2e21904778b0ed79f9da6f8}{AI\_STATE\_COUNT}})}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ \mbox{\hyperlink{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}{ai\_event\_strings}}[ai\_state]}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \textcolor{stringliteral}{"{}AI\_NORMAL"{}};}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{int}\ confidence\ =\ (ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_a99340926ee0e4be2f5ed76b84fe61387}{has\_event}})\ ?\ (\textcolor{keywordtype}{int})ctx-\/>\mbox{\hyperlink{structpc__diag__ctx__t_ac2ff11ccda174d9fe9f594a5671cda32}{last\_event}}.\mbox{\hyperlink{structai__event__t_abda04f94a67eac00a050985c90987309}{confidence}}\ :\ 0;}
+\DoxyCodeLine{00157\ \ \ \ \ cJSON\_AddStringToObject(root,\ \textcolor{stringliteral}{"{}ai\_event"{}},\ \ \ ai\_str);}
+\DoxyCodeLine{00158\ \ \ \ \ cJSON\_AddNumberToObject(root,\ \textcolor{stringliteral}{"{}confidence"{}},\ confidence);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{/*\ ──\ HDC1080\ ───────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{00161\ \ \ \ \ cJSON\ *hdc\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordflow}{if}\ (snap\_valid)\ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structenviro__data__t}{enviro\_data\_t}}\ env;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structmic__data__t}{mic\_data\_t}}\ \ \ \ mic\_data;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sys-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}}\ \&\&}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ xSemaphoreTake(sys-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}},\ pdMS\_TO\_TICKS(5))\ ==\ pdTRUE)\ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ env\ \ \ \ \ \ =\ sys-\/>\mbox{\hyperlink{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6}{enviro}};}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ mic\_data\ =\ sys-\/>\mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{mic}};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ xSemaphoreGive(sys-\/>\mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\_mutex}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&env,\ \ \ \ \ \ 0,\ \textcolor{keyword}{sizeof}(env));}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ memset(\&mic\_data,\ 0,\ \textcolor{keyword}{sizeof}(mic\_data));}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isnan(env.\mbox{\hyperlink{structenviro__data__t_a2930919101311d9bb3b3110b59524b98}{temp\_hdc\_c}}))}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(hdc,\ \textcolor{stringliteral}{"{}temp\_c"{}},\ \ \ \ \ \ \ (\textcolor{keywordtype}{double})env.\mbox{\hyperlink{structenviro__data__t_a2930919101311d9bb3b3110b59524b98}{temp\_hdc\_c}});}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isnan(env.\mbox{\hyperlink{structenviro__data__t_a795c6b7429a9d839dd0ed99340b3644b}{humidity\_hdc}}))}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(hdc,\ \textcolor{stringliteral}{"{}humidity\_pct"{}},\ (\textcolor{keywordtype}{double})env.\mbox{\hyperlink{structenviro__data__t_a795c6b7429a9d839dd0ed99340b3644b}{humidity\_hdc}});}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ BME280\ ───────────────────────────────────────────────────\ */}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ cJSON\ *bme\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isnan(env.\mbox{\hyperlink{structenviro__data__t_adbc78f374cc56209b5fafc0303e34826}{temp\_bme\_c}}))}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(bme,\ \textcolor{stringliteral}{"{}temp\_c"{}},\ \ \ \ \ \ \ (\textcolor{keywordtype}{double})env.\mbox{\hyperlink{structenviro__data__t_adbc78f374cc56209b5fafc0303e34826}{temp\_bme\_c}});}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isnan(env.\mbox{\hyperlink{structenviro__data__t_ad14b0a736e92e1eb6a07b81ad47a5a82}{pressure\_hpa}}))}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(bme,\ \textcolor{stringliteral}{"{}pressure\_hpa"{}},\ (\textcolor{keywordtype}{double})env.\mbox{\hyperlink{structenviro__data__t_ad14b0a736e92e1eb6a07b81ad47a5a82}{pressure\_hpa}});}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isnan(env.\mbox{\hyperlink{structenviro__data__t_a59a9a913353bfb712c4af5f119d85e38}{humidity\_bme}}))}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(bme,\ \textcolor{stringliteral}{"{}humidity\_pct"{}},\ (\textcolor{keywordtype}{double})env.\mbox{\hyperlink{structenviro__data__t_a59a9a913353bfb712c4af5f119d85e38}{humidity\_bme}});}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}bme280"{}},\ bme);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ Microphone\ ───────────────────────────────────────────────\ */}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ cJSON\ *mic\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(mic,\ \textcolor{stringliteral}{"{}rms"{}},\ \ (\textcolor{keywordtype}{double})mic\_data.\mbox{\hyperlink{structmic__data__t_af20b6346ba9519a86edf8c94710821bf}{rms}});}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(mic,\ \textcolor{stringliteral}{"{}peak"{}},\ (\textcolor{keywordtype}{double})mic\_data.\mbox{\hyperlink{structmic__data__t_a6e7a1f257ffdb5a5b88a940b3bff87fe}{peak}});}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}mic"{}},\ mic);}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}hdc1080"{}},\ hdc);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordtype}{char}\ *json\_str\ =\ cJSON\_PrintUnformatted(root);}
+\DoxyCodeLine{00199\ \ \ \ \ cJSON\_Delete(root);}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ json\_str;}
+\DoxyCodeLine{00201\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pc__diag_8c_source_l00073}{ai\+\_\+event\+\_\+strings}}, \mbox{\hyperlink{pc__diag_8c_source_l00078}{AI\+\_\+\+STATE\+\_\+\+COUNT}}, \mbox{\hyperlink{system__types_8h_source_l00100}{radar\+\_\+data\+\_\+t\+::breath\+\_\+rate\+\_\+bpm}}, \mbox{\hyperlink{system__types_8h_source_l00142}{ai\+\_\+event\+\_\+t\+::confidence}}, \mbox{\hyperlink{system__types_8h_source_l00081}{lidar\+\_\+matrix\+\_\+t\+::data}}, \mbox{\hyperlink{system__types_8h_source_l00237}{sys\+\_\+context\+\_\+t\+::data\+\_\+mutex}}, \mbox{\hyperlink{system__types_8h_source_l00230}{sys\+\_\+context\+\_\+t\+::diag\+\_\+to\+\_\+pc\+\_\+queue}}, \mbox{\hyperlink{system__types_8h_source_l00242}{sys\+\_\+context\+\_\+t\+::enviro}}, \mbox{\hyperlink{pc__diag_8c_source_l00086}{pc\+\_\+diag\+\_\+ctx\+\_\+t\+::has\+\_\+event}}, \mbox{\hyperlink{system__types_8h_source_l00098}{radar\+\_\+data\+\_\+t\+::heart\+\_\+phase}}, \mbox{\hyperlink{system__types_8h_source_l00101}{radar\+\_\+data\+\_\+t\+::heart\+\_\+rate\+\_\+bpm}}, \mbox{\hyperlink{system__types_8h_source_l00213}{enviro\+\_\+data\+\_\+t\+::humidity\+\_\+bme}}, \mbox{\hyperlink{system__types_8h_source_l00210}{enviro\+\_\+data\+\_\+t\+::humidity\+\_\+hdc}}, \mbox{\hyperlink{pc__diag_8c_source_l00085}{pc\+\_\+diag\+\_\+ctx\+\_\+t\+::last\+\_\+event}}, \mbox{\hyperlink{system__types_8h_source_l00238}{sys\+\_\+context\+\_\+t\+::latest\+\_\+sensor}}, \mbox{\hyperlink{system__types_8h_source_l00113}{sensor\+\_\+frame\+\_\+t\+::lidar}}, \mbox{\hyperlink{system__types_8h_source_l00045}{LIDAR\+\_\+\+COLS}}, \mbox{\hyperlink{system__types_8h_source_l00044}{LIDAR\+\_\+\+ROWS}}, \mbox{\hyperlink{system__types_8h_source_l00245}{sys\+\_\+context\+\_\+t\+::mic}}, \mbox{\hyperlink{system__types_8h_source_l00222}{mic\+\_\+data\+\_\+t\+::peak}}, \mbox{\hyperlink{system__types_8h_source_l00103}{radar\+\_\+data\+\_\+t\+::presence}}, \mbox{\hyperlink{system__types_8h_source_l00212}{enviro\+\_\+data\+\_\+t\+::pressure\+\_\+hpa}}, \mbox{\hyperlink{system__types_8h_source_l00114}{sensor\+\_\+frame\+\_\+t\+::radar}}, \mbox{\hyperlink{system__types_8h_source_l00116}{sensor\+\_\+frame\+\_\+t\+::radar\+\_\+valid}}, \mbox{\hyperlink{system__types_8h_source_l00097}{radar\+\_\+data\+\_\+t\+::resp\+\_\+phase}}, \mbox{\hyperlink{system__types_8h_source_l00221}{mic\+\_\+data\+\_\+t\+::rms}}, \mbox{\hyperlink{system__types_8h_source_l00239}{sys\+\_\+context\+\_\+t\+::sensor\+\_\+valid}}, \mbox{\hyperlink{system__types_8h_source_l00141}{ai\+\_\+event\+\_\+t\+::state}}, \mbox{\hyperlink{pc__diag_8c_source_l00084}{pc\+\_\+diag\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, \mbox{\hyperlink{system__types_8h_source_l00102}{radar\+\_\+data\+\_\+t\+::target\+\_\+distance\+\_\+mm}}, \mbox{\hyperlink{system__types_8h_source_l00211}{enviro\+\_\+data\+\_\+t\+::temp\+\_\+bme\+\_\+c}}, and \mbox{\hyperlink{system__types_8h_source_l00209}{enviro\+\_\+data\+\_\+t\+::temp\+\_\+hdc\+\_\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_ad0a594cf95696c6c0a92ef226ff6af9b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pc__diag_8c_a1a7183f10362aa141c781811ed86a9bb}\index{pc\_diag.c@{pc\_diag.c}!build\_sys\_json@{build\_sys\_json}}
+\index{build\_sys\_json@{build\_sys\_json}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{build\_sys\_json()}{build\_sys\_json()}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a1a7183f10362aa141c781811ed86a9bb} 
+char \texorpdfstring{$\ast$}{*} build\+\_\+sys\+\_\+json (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00207}{207}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ \ \ \ \ cJSON\ *root\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{if}\ (!root)\ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ cJSON\_AddStringToObject(root,\ \textcolor{stringliteral}{"{}type"{}},\ \textcolor{stringliteral}{"{}sys"{}});}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ int64\_t\ uptime\_us\ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{00215\ \ \ \ \ cJSON\_AddNumberToObject(root,\ \textcolor{stringliteral}{"{}uptime\_s"{}},\ (\textcolor{keywordtype}{double})(uptime\_us\ /\ 1000000LL));}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{/*\ cpu\_load\ :\ non\ fourni\ nativement\ par\ ESP-\/IDF\ sans\ FreeRTOS\ runtime\ stats.}}
+\DoxyCodeLine{00218\ \textcolor{comment}{\ \ \ \ \ *\ On\ expose\ [0,\ 0]\ en\ attendant\ l'intégration\ de\ CONFIG\_FREERTOS\_GENERATE\_RUN\_TIME\_STATS.\ */}}
+\DoxyCodeLine{00219\ \ \ \ \ cJSON\ *cpu\_load\ =\ cJSON\_CreateArray();}
+\DoxyCodeLine{00220\ \ \ \ \ cJSON\_AddItemToArray(cpu\_load,\ cJSON\_CreateNumber(0));}
+\DoxyCodeLine{00221\ \ \ \ \ cJSON\_AddItemToArray(cpu\_load,\ cJSON\_CreateNumber(0));}
+\DoxyCodeLine{00222\ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}cpu\_load"{}},\ cpu\_load);}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ cJSON\_AddNumberToObject(root,\ \textcolor{stringliteral}{"{}heap\_free"{}},}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{double})heap\_caps\_get\_free\_size(MALLOC\_CAP\_INTERNAL));}
+\DoxyCodeLine{00226\ \ \ \ \ cJSON\_AddNumberToObject(root,\ \textcolor{stringliteral}{"{}psram\_free"{}},}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{double})heap\_caps\_get\_free\_size(MALLOC\_CAP\_SPIRAM));}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{comment}{/*\ Tâches\ FreeRTOS\ —\ High\ Water\ Mark\ */}}
+\DoxyCodeLine{00230\ \ \ \ \ TaskStatus\_t\ task\_statuses[\mbox{\hyperlink{pc__diag_8c_aac747bed84189f8cfa509b94d488e622}{MAX\_TASKS}}];}
+\DoxyCodeLine{00231\ \ \ \ \ UBaseType\_t\ \ task\_count\ =\ uxTaskGetSystemState(task\_statuses,\ \mbox{\hyperlink{pc__diag_8c_aac747bed84189f8cfa509b94d488e622}{MAX\_TASKS}},\ NULL);}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ \ \ cJSON\ *tasks\_hwm\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{for}\ (UBaseType\_t\ i\ =\ 0;\ i\ <\ task\_count;\ i++)\ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ HWM\ en\ mots\ (4\ octets)\ →\ convertir\ en\ octets\ */}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ uint32\_t\ hwm\_bytes\ =\ (uint32\_t)task\_statuses[i].usStackHighWaterMark}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\ \textcolor{keyword}{sizeof}(StackType\_t);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(tasks\_hwm,}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ task\_statuses[i].pcTaskName,}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{double})hwm\_bytes);}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}tasks\_hwm"{}},\ tasks\_hwm);}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{char}\ *json\_str\ =\ cJSON\_PrintUnformatted(root);}
+\DoxyCodeLine{00245\ \ \ \ \ cJSON\_Delete(root);}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{return}\ json\_str;}
+\DoxyCodeLine{00247\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pc__diag_8c_source_l00070}{MAX\+\_\+\+TASKS}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00291}{process\+\_\+command()}}, and \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_a1a7183f10362aa141c781811ed86a9bb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pc__diag_8c_a3cff5c01023ea27179dd4ef51291e0c4}\index{pc\_diag.c@{pc\_diag.c}!cmd\_clear\_logs@{cmd\_clear\_logs}}
+\index{cmd\_clear\_logs@{cmd\_clear\_logs}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_clear\_logs()}{cmd\_clear\_logs()}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a3cff5c01023ea27179dd4ef51291e0c4} 
+void cmd\+\_\+clear\+\_\+logs (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00276}{276}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00277\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keywordtype}{int}\ ret\ =\ remove(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}});}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ 0)\ \{}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}ok\(\backslash\)"{},\(\backslash\)"{}msg\(\backslash\)"{}:\(\backslash\)"{}Log\ effacé\(\backslash\)"{}\}\(\backslash\)n"{}});}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Fichier\ log\ supprimé"{}});}
+\DoxyCodeLine{00282\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}error\(\backslash\)"{},\(\backslash\)"{}msg\(\backslash\)"{}:\(\backslash\)"{}Échec\ suppression\(\backslash\)"{}\}\(\backslash\)n"{}});}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00286\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{sys__storage_8h_source_l00036}{LOG\+\_\+\+FILE\+\_\+\+PATH}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00291}{process\+\_\+command()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_a3cff5c01023ea27179dd4ef51291e0c4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pc__diag_8c_a54084e6e535ac4e7a8ca3a3b42974178}\index{pc\_diag.c@{pc\_diag.c}!cmd\_download\_logs@{cmd\_download\_logs}}
+\index{cmd\_download\_logs@{cmd\_download\_logs}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{cmd\_download\_logs()}{cmd\_download\_logs()}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a54084e6e535ac4e7a8ca3a3b42974178} 
+void cmd\+\_\+download\+\_\+logs (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00252}{252}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00253\ \{}
+\DoxyCodeLine{00254\ \ \ \ \ FILE\ *f\ =\ fopen(\mbox{\hyperlink{group__group__storage_ga2889e8288a815b7468172bbf1cec1ead}{LOG\_FILE\_PATH}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{if}\ (!f)\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}error\(\backslash\)"{},\(\backslash\)"{}msg\(\backslash\)"{}:\(\backslash\)"{}Fichier\ log\ introuvable\(\backslash\)"{}\}\(\backslash\)n"{}});}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00259\ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ fseek(f,\ 0,\ SEEK\_END);}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{long}\ file\_size\ =\ ftell(f);}
+\DoxyCodeLine{00262\ \ \ \ \ rewind(f);}
+\DoxyCodeLine{00263\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}ok\(\backslash\)"{},\(\backslash\)"{}filename\(\backslash\)"{}:\(\backslash\)"{}app.log\(\backslash\)"{},\(\backslash\)"{}size\(\backslash\)"{}:\%ld\}\(\backslash\)n"{}},\ file\_size);}
+\DoxyCodeLine{00264\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00265\ \ \ \ \ uint8\_t\ block[\mbox{\hyperlink{pc__diag_8c_ac8f274747c171179ff6baac920b7bd04}{LOG\_TRANSFER\_BLOCK\_SIZE}}];}
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ rb;}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordflow}{while}\ ((rb\ =\ fread(block,\ 1,\ \textcolor{keyword}{sizeof}(block),\ f))\ >\ 0)\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ fwrite(block,\ 1,\ rb,\ stdout);}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ fclose(f);}
+\DoxyCodeLine{00271\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}done\(\backslash\)"{}\}\(\backslash\)n"{}});}
+\DoxyCodeLine{00272\ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00273\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Transfert\ log\ terminé\ (\%ld\ octets)"{}},\ file\_size);}
+\DoxyCodeLine{00274\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{sys__storage_8h_source_l00036}{LOG\+\_\+\+FILE\+\_\+\+PATH}}, \mbox{\hyperlink{pc__diag_8c_source_l00069}{LOG\+\_\+\+TRANSFER\+\_\+\+BLOCK\+\_\+\+SIZE}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00291}{process\+\_\+command()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_a54084e6e535ac4e7a8ca3a3b42974178_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pc__diag_8c_aa6214e5f1fa26e58413c4961ffb46df1}\index{pc\_diag.c@{pc\_diag.c}!process\_command@{process\_command}}
+\index{process\_command@{process\_command}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{process\_command()}{process\_command()}}
+{\footnotesize\ttfamily \label{pc__diag_8c_aa6214e5f1fa26e58413c4961ffb46df1} 
+void process\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpc__diag__ctx__t}{pc\+\_\+diag\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{, }\item[{const char \texorpdfstring{$\ast$}{*}}]{line}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00291}{291}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00292\ \{}
+\DoxyCodeLine{00293\ \ \ \ \ cJSON\ *cmd\_json\ =\ cJSON\_Parse(line);}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordflow}{if}\ (!cmd\_json)\ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Commande\ JSON\ invalide\ :\ \%s"{}},\ line);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keyword}{const}\ cJSON\ *cmd\ =\ cJSON\_GetObjectItem(cmd\_json,\ \textcolor{stringliteral}{"{}cmd"{}});}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{if}\ (!cJSON\_IsString(cmd))\ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ cJSON\_Delete(cmd\_json);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *cmd\_str\ =\ cmd-\/>valuestring;}
+\DoxyCodeLine{00304\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Commande\ reçue\ :\ \%s"{}},\ cmd\_str);}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{if}\ (strcmp(cmd\_str,\ \textcolor{stringliteral}{"{}download\_logs"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pc__diag_8c_a54084e6e535ac4e7a8ca3a3b42974178}{cmd\_download\_logs}}();}
+\DoxyCodeLine{00308\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd\_str,\ \textcolor{stringliteral}{"{}clear\_logs"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pc__diag_8c_a3cff5c01023ea27179dd4ef51291e0c4}{cmd\_clear\_logs}}();}
+\DoxyCodeLine{00310\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (strcmp(cmd\_str,\ \textcolor{stringliteral}{"{}get\_diag"{}})\ ==\ 0)\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *json\ =\ \mbox{\hyperlink{pc__diag_8c_a1a7183f10362aa141c781811ed86a9bb}{build\_sys\_json}}(ctx);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (json)\ \{\ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ json);\ fflush(stdout);\ cJSON\_free(json);\ \}}
+\DoxyCodeLine{00313\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\{\(\backslash\)"{}status\(\backslash\)"{}:\(\backslash\)"{}error\(\backslash\)"{},\(\backslash\)"{}msg\(\backslash\)"{}:\(\backslash\)"{}Commande\ inconnue\ :\ \%s\(\backslash\)"{}\}\(\backslash\)n"{}},\ cmd\_str);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00316\ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ cJSON\_Delete(cmd\_json);}
+\DoxyCodeLine{00318\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pc__diag_8c_source_l00207}{build\+\_\+sys\+\_\+json()}}, \mbox{\hyperlink{pc__diag_8c_source_l00276}{cmd\+\_\+clear\+\_\+logs()}}, \mbox{\hyperlink{pc__diag_8c_source_l00252}{cmd\+\_\+download\+\_\+logs()}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00324}{task\+\_\+diag\+\_\+pc()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{pc__diag_8c_aa6214e5f1fa26e58413c4961ffb46df1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_aa6214e5f1fa26e58413c4961ffb46df1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pc__diag_8c_ab830ffc28d0b4ab9661b47a0cd4fe943}\index{pc\_diag.c@{pc\_diag.c}!task\_diag\_pc@{task\_diag\_pc}}
+\index{task\_diag\_pc@{task\_diag\_pc}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{task\_diag\_pc()}{task\_diag\_pc()}}
+{\footnotesize\ttfamily \label{pc__diag_8c_ab830ffc28d0b4ab9661b47a0cd4fe943} 
+void task\+\_\+diag\+\_\+pc (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Param}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00324}{324}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00325\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \mbox{\hyperlink{structpc__diag__ctx__t}{pc\_diag\_ctx\_t}}\ *ctx\ =\ (\mbox{\hyperlink{structpc__diag__ctx__t}{pc\_diag\_ctx\_t}}\ *)pvParam;}
+\DoxyCodeLine{00327\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Diag\_PC\ démarrée\ sur\ Core\ \%d"{}},\ xPortGetCoreID());}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{comment}{/*\ ──\ Stdin\ non-\/bloquant\ (IDF\ 6.0\ /\ USB\ CDC)\ ──────────────────────}}
+\DoxyCodeLine{00330\ \textcolor{comment}{\ \ \ \ \ *\ fgets()\ peut\ bloquer\ indéfiniment\ sur\ USB\ JTAG\ en\ ESP-\/IDF\ 6.0.}}
+\DoxyCodeLine{00331\ \textcolor{comment}{\ \ \ \ \ *\ select()\ peut\ déclencher\ des\ allocations\ VFS\ récurrentes\ (esp\_vfs\_select)}}
+\DoxyCodeLine{00332\ \textcolor{comment}{\ \ \ \ \ *\ qui,\ sur\ certains\ builds,\ exposent\ des\ asserts\ TLSF.}}
+\DoxyCodeLine{00333\ \textcolor{comment}{\ \ \ \ \ *\ Stratégie\ :\ O\_NONBLOCK\ +\ read()\ brut\ +\ parsing\ en\ mémoire.\ */}}
+\DoxyCodeLine{00334\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ stdin\_fd\ =\ fileno(stdin);}
+\DoxyCodeLine{00335\ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Tentative\ de\ mise\ en\ mode\ O\_NONBLOCK\ (peut\ échouer\ sur\ certains\ VFS)\ */}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ fl\ =\ fcntl(stdin\_fd,\ F\_GETFL,\ 0);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fl\ >=\ 0)\ fcntl(stdin\_fd,\ F\_SETFL,\ fl\ |\ O\_NONBLOCK);}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{char}\ cmd\_buf[\mbox{\hyperlink{pc__diag_8c_a8427d0088582c17327e754f5f08c5a56}{CMD\_BUF\_SIZE}}];\ \ \ \textcolor{comment}{/*\ statique\ pour\ économiser\ le\ stack\ */}}
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \ cmd\_len\ =\ 0;}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ \ \ \ TickType\_t\ last\_sensor\ =\ xTaskGetTickCount();}
+\DoxyCodeLine{00345\ \ \ \ \ TickType\_t\ last\_sys\ \ \ \ =\ xTaskGetTickCount();}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}JSON\ démarré\ :\ sensor@\%d\ s,\ sys@\%d\ s"{}},}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pc__diag_8c_a713bee2cc5ebf2ba4b5d15ece162ef52}{SENSOR\_INTERVAL\_MS}}\ /\ 1000,\ \mbox{\hyperlink{pc__diag_8c_a7d70610ce777e27720817466674458bb}{SYS\_INTERVAL\_MS}}\ /\ 1000);}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ TickType\_t\ now\ =\ xTaskGetTickCount();}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ Lecture\ commandes\ stdin\ (NON\ BLOQUANT)\ ───────────────────}}
+\DoxyCodeLine{00354\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ read()\ non\ bloquant\ :\ retourne\ -\/1/EAGAIN\ si\ rien\ à\ lire.\ \ \ \ \ \ */}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ rx[64];}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ ssize\_t\ r\ =\ read(stdin\_fd,\ rx,\ \textcolor{keyword}{sizeof}(rx));}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (r\ >\ 0)\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (ssize\_t\ i\ =\ 0;\ i\ <\ r;\ i++)\ \{}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ c\ =\ rx[i];}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)r'})\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ \textcolor{charliteral}{'\(\backslash\)n'}\ ||\ cmd\_len\ >=\ \mbox{\hyperlink{pc__diag_8c_a8427d0088582c17327e754f5f08c5a56}{CMD\_BUF\_SIZE}}\ -\/\ 1)\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\_buf[cmd\_len]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cmd\_len\ >\ 2)\ \mbox{\hyperlink{pc__diag_8c_aa6214e5f1fa26e58413c4961ffb46df1}{process\_command}}(ctx,\ cmd\_buf);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\_len\ =\ 0;}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cmd\_buf[cmd\_len++]\ =\ c;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (r\ <\ 0)\ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!(errno\ ==\ EAGAIN\ ||\ errno\ ==\ EWOULDBLOCK))\ \{}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}read(stdin)\ échoué\ :\ errno=\%d"{}},\ errno);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ Rapport\ SENSOR\ (@SENSOR\_INTERVAL\_MS)\ ────────────────────}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Émis\ en\ JSON\ une\ ligne\ :\ \{"{}type"{}:"{}sensor"{},"{}lidar\_matrix"{}:…\}\ \ */}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((now\ -\/\ last\_sensor)\ >=\ pdMS\_TO\_TICKS(\mbox{\hyperlink{pc__diag_8c_a713bee2cc5ebf2ba4b5d15ece162ef52}{SENSOR\_INTERVAL\_MS}}))\ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ last\_sensor\ =\ now;}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *json\ =\ \mbox{\hyperlink{pc__diag_8c_ad0a594cf95696c6c0a92ef226ff6af9b}{build\_sensor\_json}}(ctx);}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (json)\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ json);}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_free(json);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}build\_sensor\_json\ :\ allocation\ échouée\ (heap\ ?)"{}});}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ ──\ Rapport\ SYS\ (@SYS\_INTERVAL\_MS)\ ─────────────────────────}}
+\DoxyCodeLine{00392\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Émis\ en\ JSON\ une\ ligne\ :\ \{"{}type"{}:"{}sys"{},"{}cpu\_load"{}:…\}\ \ \ \ \ \ \ \ \ */}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((now\ -\/\ last\_sys)\ >=\ pdMS\_TO\_TICKS(\mbox{\hyperlink{pc__diag_8c_a7d70610ce777e27720817466674458bb}{SYS\_INTERVAL\_MS}}))\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ last\_sys\ =\ now;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *json\ =\ \mbox{\hyperlink{pc__diag_8c_a1a7183f10362aa141c781811ed86a9bb}{build\_sys\_json}}(ctx);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (json)\ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%s\(\backslash\)n"{}},\ json);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fflush(stdout);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cJSON\_free(json);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(50));\ \textcolor{comment}{/*\ Cède\ le\ CPU\ —\ 50\ ms\ =\ 20\ itérations/s\ */}}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, \mbox{\hyperlink{pc__diag_8c_source_l00207}{build\+\_\+sys\+\_\+json()}}, \mbox{\hyperlink{pc__diag_8c_source_l00068}{CMD\+\_\+\+BUF\+\_\+\+SIZE}}, \mbox{\hyperlink{pc__diag_8c_source_l00291}{process\+\_\+command()}}, \mbox{\hyperlink{pc__diag_8c_source_l00066}{SENSOR\+\_\+\+INTERVAL\+\_\+\+MS}}, \mbox{\hyperlink{pc__diag_8c_source_l00067}{SYS\+\_\+\+INTERVAL\+\_\+\+MS}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00410}{pc\+\_\+diag\+\_\+task\+\_\+start()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_ab830ffc28d0b4ab9661b47a0cd4fe943_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8c_ab830ffc28d0b4ab9661b47a0cd4fe943_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{pc__diag_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197}\index{pc\_diag.c@{pc\_diag.c}!ai\_event\_strings@{ai\_event\_strings}}
+\index{ai\_event\_strings@{ai\_event\_strings}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{ai\_event\_strings}{ai\_event\_strings}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a3263c3a030722bc81b09a13d0cafa197} 
+const char\texorpdfstring{$\ast$}{*} ai\+\_\+event\+\_\+strings\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}AI\_NORMAL"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}AI\_CHUTE\_DETECTEE"{}},}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}AI\_MOUVEMENT\_ANORMAL"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00073}{73}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{stringliteral}{"{}AI\_NORMAL"{}},}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{stringliteral}{"{}AI\_CHUTE\_DETECTEE"{}},}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{stringliteral}{"{}AI\_MOUVEMENT\_ANORMAL"{}},}
+\DoxyCodeLine{00077\ \};}
+
+\end{DoxyCode}
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{pc__diag_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}\index{pc\_diag.c@{pc\_diag.c}!TAG@{TAG}}
+\index{TAG@{TAG}!pc\_diag.c@{pc\_diag.c}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{pc__diag_8c_a5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}pc\+\_\+diag"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{pc__diag_8c_source_l00058}{58}} of file \mbox{\hyperlink{pc__diag_8c_source}{pc\+\_\+diag.\+c}}.
+

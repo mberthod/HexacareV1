@@ -1,0 +1,12 @@
+<map id="components/sensor_acq/uld/platform.h" name="components/sensor_acq/uld/platform.h">
+<area shape="rect" id="Node000001" title="Adaptateur plateforme pour l&#39;ULD ST VL53L8CX (STSW&#45;IMG040)." alt="" coords="5,5,169,48"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="20,171,84,197"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="70,50,55,72,43,97,40,127,45,155,40,156,35,127,38,95,50,69,66,47"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="53,96,121,123"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,49,90,80,84,80,84,49"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8h.html" title="Couche d&#39;abstraction plateforme pour l&#39;ULD VL53L8CX de ST — interface SPI." alt="" coords="145,96,280,123"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="121,46,181,85,179,90,118,51"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="186,126,95,166,93,161,183,121"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="146,171,278,197"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="215,123,215,155,210,155,210,123"/>
+</map>

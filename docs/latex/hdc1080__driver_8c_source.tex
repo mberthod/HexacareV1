@@ -1,0 +1,155 @@
+\doxysection{hdc1080\+\_\+driver.\+c}
+\hypertarget{hdc1080__driver_8c_source}{}\label{hdc1080__driver_8c_source}\index{components/sensor\_acq/hdc1080\_driver.c@{components/sensor\_acq/hdc1080\_driver.c}}
+\mbox{\hyperlink{hdc1080__driver_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ hdc1080\_driver.c}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_sensor\_acq}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Driver\ HDC1080\ —\ Température\ et\ Humidité\ (TI).}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Protocole\ I2C\ (adresse\ 0x40)\ :}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ 1.\ Écriture\ du\ registre\ cible\ (0x00\ =\ Température)}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ 2.\ Attente\ 15\ ms\ (conversion\ 14\ bits)}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ 3.\ Lecture\ de\ 4\ octets\ :\ [Temp\_MSB][Temp\_LSB][Hum\_MSB][Hum\_LSB]}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00010}00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00011}00011\ \textcolor{comment}{\ *\ Conversion\ :}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ Température\ (°C)\ =\ (raw\_T\ /\ 65536.0)\ ×\ 165.0\ -\/\ 40.0}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ Humidité\ (\%)\ \ \ \ \ =\ (raw\_H\ /\ 65536.0)\ ×\ 100.0}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00014}00014\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hdc1080__driver_8h}{hdc1080\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00022}\mbox{\hyperlink{hdc1080__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00022}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}hdc1080"{}};}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00024}00024\ \textcolor{comment}{/*\ Registres\ HDC1080\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00025}\mbox{\hyperlink{hdc1080__driver_8c_a9814a9d9688d062990aa6633e8cb3d8e}{00025}}\ \textcolor{preprocessor}{\#define\ REG\_TEMPERATURE\ \ 0x00}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00026}\mbox{\hyperlink{hdc1080__driver_8c_af3dcd2594e77090b3bb4d7d8850a27f7}{00026}}\ \textcolor{preprocessor}{\#define\ REG\_HUMIDITY\ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00027}\mbox{\hyperlink{hdc1080__driver_8c_a679325263fb326462f7410d3292171be}{00027}}\ \textcolor{preprocessor}{\#define\ REG\_CONFIG\ \ \ \ \ \ \ 0x02}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00028}\mbox{\hyperlink{hdc1080__driver_8c_a8410a3bfaf056c9782d4ea4ebaa8ebf8}{00028}}\ \textcolor{preprocessor}{\#define\ REG\_MANUF\_ID\ \ \ \ \ 0xFE}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00029}\mbox{\hyperlink{hdc1080__driver_8c_a7536bef148067419de8358bcd473349a}{00029}}\ \textcolor{preprocessor}{\#define\ REG\_DEVICE\_ID\ \ \ \ 0xFF}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00031}\mbox{\hyperlink{hdc1080__driver_8c_ab025caf4a87b11d7b58286867b8ed4b6}{00031}}\ \textcolor{preprocessor}{\#define\ HDC1080\_DEVICE\_ID\ \ \ 0x1050U}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00032}\mbox{\hyperlink{hdc1080__driver_8c_ac8c61bd2fdc391886d8da5c2de78292a}{00032}}\ \textcolor{preprocessor}{\#define\ I2C\_TIMEOUT\_MS\ \ \ \ \ \ 20}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00033}\mbox{\hyperlink{hdc1080__driver_8c_ae265c5cb98ea364a2b6be4b96420bd32}{00033}}\ \textcolor{preprocessor}{\#define\ ACQ\_DELAY\_MS\ \ \ \ \ \ \ \ 15\ \ \ }\textcolor{comment}{/*\ Temps\ de\ conversion\ 14\ bits\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00035}\mbox{\hyperlink{hdc1080__driver_8c_a399562a20231c8c3f4e502f639e289ad}{00035}}\ \textcolor{keyword}{static}\ i2c\_master\_dev\_handle\_t\ \mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00037}00037\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00038}00038\ \textcolor{comment}{\ *\ write\_register\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00039}00039\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00040}\mbox{\hyperlink{hdc1080__driver_8c_aec3bb76ffc0e6e65ff45ed34f55f3d8a}{00040}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hdc1080__driver_8c_aec3bb76ffc0e6e65ff45ed34f55f3d8a}{write\_register}}(uint8\_t\ reg,\ uint16\_t\ value)}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00041}00041\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00042}00042\ \ \ \ \ uint8\_t\ buf[3]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00043}00043\ \ \ \ \ \ \ \ \ reg,}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00044}00044\ \ \ \ \ \ \ \ \ (uint8\_t)(value\ >>\ 8),}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00045}00045\ \ \ \ \ \ \ \ \ (uint8\_t)(value\ \&\ 0xFF),}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00046}00046\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{return}\ i2c\_master\_transmit(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ buf,\ \textcolor{keyword}{sizeof}(buf),}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00049}00049\ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00051}00051\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00052}00052\ \textcolor{comment}{\ *\ read\_bytes\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00053}00053\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00054}\mbox{\hyperlink{hdc1080__driver_8c_a38989bd92a6243c8b37d8a0f354cad7d}{00054}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hdc1080__driver_8c_a38989bd92a6243c8b37d8a0f354cad7d}{read\_bytes}}(uint8\_t\ reg,\ uint8\_t\ *out,\ \textcolor{keywordtype}{size\_t}\ len)}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00055}00055\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00056}00056\ \ \ \ \ \textcolor{comment}{/*\ Pointer\ write\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00057}00057\ \ \ \ \ esp\_err\_t\ ret\ =\ i2c\_master\_transmit(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ \&reg,\ 1,}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00059}00059\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00061}00061\ \ \ \ \ \textcolor{comment}{/*\ Attente\ acquisition\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00062}00062\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{hdc1080__driver_8c_ae265c5cb98ea364a2b6be4b96420bd32}{ACQ\_DELAY\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00064}00064\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{return}\ i2c\_master\_receive(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ out,\ len,}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00067}00067\ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00069}00069\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00070}00070\ \textcolor{comment}{\ *\ hdc1080\_init}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00071}00071\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00072}\mbox{\hyperlink{hdc1080__driver_8c_a331ca8cf79867f6f9ebe86978bfc6cc5}{00072}}\ esp\_err\_t\ \mbox{\hyperlink{hdc1080__driver_8c_a331ca8cf79867f6f9ebe86978bfc6cc5}{hdc1080\_init}}(i2c\_master\_bus\_handle\_t\ bus)}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00073}00073\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00074}00074\ \ \ \ \ \textcolor{keyword}{const}\ i2c\_device\_config\_t\ dev\_cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00075}00075\ \ \ \ \ \ \ \ \ .dev\_addr\_length\ =\ I2C\_ADDR\_BIT\_LEN\_7,}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00076}00076\ \ \ \ \ \ \ \ \ .device\_address\ \ =\ \mbox{\hyperlink{group__group__sensor__acq_gaf0cf6b62cc46031dbcb698408b50aa26}{HDC1080\_I2C\_ADDR}},}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00077}00077\ \ \ \ \ \ \ \ \ .scl\_speed\_hz\ \ \ \ =\ 400000,}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00078}00078\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00080}00080\ \ \ \ \ esp\_err\_t\ ret\ =\ i2c\_master\_bus\_add\_device(bus,\ \&dev\_cfg,\ \&\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}});}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00081}00081\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00082}00082\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Ajout\ device\ I2C\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00086}00086\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ Device\ ID\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00087}00087\ \ \ \ \ uint8\_t\ id\_buf[2]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00088}00088\ \ \ \ \ uint8\_t\ reg\ =\ \mbox{\hyperlink{hdc1080__driver_8c_a7536bef148067419de8358bcd473349a}{REG\_DEVICE\_ID}};}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00089}00089\ \ \ \ \ ret\ =\ i2c\_master\_transmit(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ \&reg,\ 1,\ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00090}00090\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00091}00091\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(5));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ ret\ =\ i2c\_master\_receive(\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}},\ id\_buf,\ 2,\ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00095}00095\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}HDC1080\ non\ détecté\ sur\ bus\ I2C"{}});}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00097}00097\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00098}00098\ \ \ \ \ uint16\_t\ device\_id\ =\ ((uint16\_t)id\_buf[0]\ <<\ 8)\ |\ id\_buf[1];}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (device\_id\ !=\ \mbox{\hyperlink{hdc1080__driver_8c_ab025caf4a87b11d7b58286867b8ed4b6}{HDC1080\_DEVICE\_ID}})\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00100}00100\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Device\ ID\ inattendu\ :\ 0x\%04X\ (attendu\ 0x\%04X)"{}},}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ device\_id,\ \mbox{\hyperlink{hdc1080__driver_8c_ab025caf4a87b11d7b58286867b8ed4b6}{HDC1080\_DEVICE\_ID}});}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00102}00102\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00104}00104\ \ \ \ \ \textcolor{comment}{/*\ Configuration\ :}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00105}00105\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Bit\ 13\ =\ 1\ :\ Acquisition\ température\ +\ humidité\ simultanée}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00106}00106\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Bit\ 10\ =\ 0\ :\ Résolution\ température\ 14\ bits}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00107}00107\ \textcolor{comment}{\ \ \ \ \ *\ \ \ Bit\ \ 9\ =\ 0\ :\ Résolution\ humidité\ 14\ bits}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00108}00108\ \textcolor{comment}{\ \ \ \ \ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00109}00109\ \ \ \ \ \textcolor{keyword}{const}\ uint16\_t\ config\ =\ (1u\ <<\ 13);}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00110}00110\ \ \ \ \ ret\ =\ \mbox{\hyperlink{hdc1080__driver_8c_aec3bb76ffc0e6e65ff45ed34f55f3d8a}{write\_register}}(\mbox{\hyperlink{bme280__driver_8c_a679325263fb326462f7410d3292171be}{REG\_CONFIG}},\ config);}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00111}00111\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Écriture\ config\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00116}00116\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}HDC1080\ initialisé\ (Device\ ID=0x\%04X,\ config=0x\%04X)"{}},}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ device\_id,\ config);}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00119}00119\ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00121}00121\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00122}00122\ \textcolor{comment}{\ *\ hdc1080\_read}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00123}00123\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00124}\mbox{\hyperlink{hdc1080__driver_8c_ac89c7243caa6524ab2c35eb7133483ff}{00124}}\ esp\_err\_t\ \mbox{\hyperlink{hdc1080__driver_8c_ac89c7243caa6524ab2c35eb7133483ff}{hdc1080\_read}}(\textcolor{keywordtype}{float}\ *temp\_c,\ \textcolor{keywordtype}{float}\ *humidity\_pct)}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00125}00125\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00126}00126\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{bme280__driver_8c_a399562a20231c8c3f4e502f639e289ad}{s\_dev}})\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00130}00130\ \ \ \ \ \textcolor{comment}{/*\ Déclenchement\ acquisition\ séquentielle\ (écriture\ REG\_TEMPERATURE)\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00131}00131\ \ \ \ \ uint8\_t\ raw[4]\ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00132}00132\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{hdc1080__driver_8c_a38989bd92a6243c8b37d8a0f354cad7d}{read\_bytes}}(\mbox{\hyperlink{hdc1080__driver_8c_a9814a9d9688d062990aa6633e8cb3d8e}{REG\_TEMPERATURE}},\ raw,\ \textcolor{keyword}{sizeof}(raw));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Lecture\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00138}00138\ \ \ \ \ uint16\_t\ raw\_t\ =\ ((uint16\_t)raw[0]\ <<\ 8)\ |\ raw[1];}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00139}00139\ \ \ \ \ uint16\_t\ raw\_h\ =\ ((uint16\_t)raw[2]\ <<\ 8)\ |\ raw[3];}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00140}00140\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00141}00141\ \ \ \ \ *temp\_c\ \ \ \ \ \ \ =\ (raw\_t\ /\ 65536.0f)\ *\ 165.0f\ -\/\ 40.0f;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00142}00142\ \ \ \ \ *humidity\_pct\ =\ (raw\_h\ /\ 65536.0f)\ *\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00144}00144\ \ \ \ \ \textcolor{comment}{/*\ Clamp\ physique\ */}}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00145}00145\ \ \ \ \ \textcolor{keywordflow}{if}\ (*humidity\_pct\ <\ 0.0f)\ \ \ *humidity\_pct\ =\ 0.0f;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00146}00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (*humidity\_pct\ >\ 100.0f)\ *humidity\_pct\ =\ 100.0f;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00148}00148\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{hdc1080__driver_8c_source_l00149}00149\ \}}
+
+\end{DoxyCode}

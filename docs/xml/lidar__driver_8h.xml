@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="lidar__driver_8h" kind="file" language="C++">
+    <compoundname>lidar_driver.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="lidar__driver_8c" local="yes">components/sensor_acq/lidar_driver.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/include/lidar_driver.h</label>
+        <link refid="lidar__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>components/sensor_acq/include/lidar_driver.h</label>
+        <link refid="lidar__driver_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="3">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <member refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kind="function"><name>lidar_driver_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du driver LIDAR VL53L8CX — acquisition et fusion 8×32. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Task_Sensor_Acq (Core 1, priorité 10) pilote les 4 LIDARs frontaux via les deux bus I2C initialisés par <ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run()</ref>. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>lidar_driver.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>driver<sp/>LIDAR<sp/>VL53L8CX<sp/>—<sp/>acquisition<sp/>et<sp/>fusion<sp/>8×32.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Task_Sensor_Acq<sp/>(Core<sp/>1,<sp/>priorité<sp/>10)<sp/>pilote<sp/>les<sp/>4<sp/>LIDARs<sp/>frontaux</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>via<sp/>les<sp/>deux<sp/>bus<sp/>I2C<sp/>initialisés<sp/>par<sp/>hw_diag_run().</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="14"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_sensor_acq<sp/>Acquisition<sp/>Capteurs</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Lecture<sp/>capteurs,<sp/>fusion<sp/>des<sp/>données,<sp/>et<sp/>production<sp/>de<sp/>trames<sp/>prêtes<sp/>pour<sp/>l&apos;IA.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>Ce<sp/>module<sp/>existe<sp/>pour<sp/>“isoler<sp/>le<sp/>monde<sp/>matériel”<sp/>:</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>-<sp/>la<sp/>partie<sp/>IA<sp/>reçoit<sp/>une<sp/>trame<sp/>stable<sp/>et<sp/>cohérente<sp/>(mêmes<sp/>unités,<sp/>mêmes<sp/>dimensions)</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/>-<sp/>la<sp/>partie<sp/>diagnostic<sp/>PC<sp/>reçoit<sp/>des<sp/>mesures<sp/>prêtes<sp/>à<sp/>afficher</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>lidar_driver_start</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Crée<sp/>la<sp/>tâche<sp/>Task_Sensor_Acq<sp/>épinglée<sp/>sur<sp/>le<sp/>Core<sp/>1.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>Prérequis<sp/>:<sp/>hw_diag_run()<sp/>doit<sp/>avoir<sp/>été<sp/>appelée<sp/>au<sp/>préalable</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>pour<sp/>initialiser<sp/>ctx-&gt;i2c_bus0,<sp/>ctx-&gt;i2c_bus1<sp/>et<sp/>ctx-&gt;lidar_ok[].</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>La<sp/>tâche<sp/>:</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>S&apos;abonne<sp/>au<sp/>TWDT<sp/>(esp_task_wdt_add).</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Configure<sp/>chaque<sp/>VL53L8CX<sp/>détecté<sp/>en<sp/>résolution<sp/>8×8,<sp/>ranging<sp/>continu.</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Cadence<sp/>15<sp/>Hz<sp/>via<sp/>vTaskDelayUntil.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Fusionne<sp/>les<sp/>4<sp/>trames<sp/>8×8<sp/>en<sp/>une<sp/>lidar_matrix_t<sp/>8×32.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Pousse<sp/>la<sp/>sensor_frame_t<sp/>dans<sp/>ctx-&gt;sensor_to_ai_queue<sp/>(non<sp/>bloquant).</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Appelle<sp/>esp_task_wdt_reset()<sp/>à<sp/>chaque<sp/>itération.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>la<sp/>tâche<sp/>est<sp/>créée<sp/>avec<sp/>succès.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kindref="member">lidar_driver_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="45"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_sensor_acq<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/include/lidar_driver.h"/>
+  </compounddef>
+</doxygen>

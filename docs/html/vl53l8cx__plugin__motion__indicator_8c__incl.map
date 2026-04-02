@@ -1,0 +1,22 @@
+<map id="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.c" name="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="42,5,206,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,120,70,147"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="101,66,61,110,57,107,97,62"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="94,120,155,147"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,64,127,104,122,104,122,64"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__plugin__motion__indicator_8h.html" title=" " alt="" coords="179,112,336,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="165,62,218,100,215,105,162,67"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__api_8h.html" title=" " alt="" coords="205,203,310,229"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="260,155,260,187,255,187,255,155"/>
+<area shape="rect" id="Node000006" href="$platform_8h.html" title="Adaptateur plateforme pour l&#39;ULD ST VL53L8CX (STSW&#45;IMG040)." alt="" coords="218,277,297,304"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="260,230,260,262,255,262,255,230"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="191,427,255,453"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="246,306,228,327,213,353,210,383,216,412,210,413,205,383,208,351,223,324,242,303"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="223,352,292,379"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="260,305,260,336,255,336,255,305"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__platform_8h.html" title="Couche d&#39;abstraction plateforme pour l&#39;ULD VL53L8CX de ST — interface SPI." alt="" coords="316,352,450,379"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="281,302,349,342,347,346,278,307"/>
+<area shape="poly" id="edge9_Node000009_Node000007" title=" " alt="" coords="356,382,266,422,263,417,354,377"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="317,427,449,453"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="386,379,386,411,380,411,380,379"/>
+</map>

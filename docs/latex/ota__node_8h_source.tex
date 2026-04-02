@@ -1,0 +1,59 @@
+\doxysection{ota\+\_\+node.\+h}
+\hypertarget{ota__node_8h_source}{}\label{ota__node_8h_source}\index{components/mesh\_network/include/ota\_node.h@{components/mesh\_network/include/ota\_node.h}}
+\mbox{\hyperlink{ota__node_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ ota\_node.h}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Interface\ publique\ du\ module\ OTA\ nœud-\/à-\/nœud.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Protocole\ OTA\ par\ fragments\ (200\ octets\ de\ données\ utiles)\ :}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00006}00006\ \textcolor{comment}{\ *\ \ \ 1.\ Réception\ d'un\ fragment\ OTA\_FRAGMENT\ via\ le\ callback\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ 2.\ Déchiffrement\ AES-\/128-\/CBC\ du\ payload.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ 3.\ Si\ premier\ fragment\ :\ esp\_ota\_begin()\ sur\ la\ partition\ ota\_next.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ 4.\ esp\_ota\_write()\ avec\ les\ données\ du\ fragment.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ 5.\ Retransmission\ immédiate\ du\ fragment\ (chiffré)\ à\ tous\ les\ enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ 6.\ Si\ dernier\ fragment\ :}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ \ \ \ esp\_ota\_end()\ →\ esp\_ota\_set\_boot\_partition()\ →\ esp\_restart().}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00013}00013\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00015}00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{system__types_8h}{system\_types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00021}00021\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00022}00022\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00023}00023\ \textcolor{comment}{\ *\ @ingroup\ group\_mesh}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00024}00024\ \textcolor{comment}{\ *\ @brief\ Module\ OTA\ “nœud-\/à-\/nœud”\ utilisé\ par\ le\ réseau\ maillé.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00025}00025\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00027}00027\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00028}00028\ \textcolor{comment}{\ *\ ota\_node\_init}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00029}00029\ \textcolor{comment}{\ *\ @brief\ Initialise\ le\ module\ OTA\ (état\ interne,\ partition\ cible).}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00030}00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00031}00031\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ l'initialisation\ réussit.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00032}00032\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00033}00033\ esp\_err\_t\ \mbox{\hyperlink{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}{ota\_node\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00035}00035\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00036}00036\ \textcolor{comment}{\ *\ ota\_node\_process\_fragment}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00037}00037\ \textcolor{comment}{\ *\ @brief\ Traite\ un\ fragment\ OTA\ reçu\ via\ ESP-\/NOW.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00038}00038\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00039}00039\ \textcolor{comment}{\ *\ Appelée\ depuis\ le\ callback\ de\ réception\ ESP-\/NOW\ de\ mesh\_manager.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00040}00040\ \textcolor{comment}{\ *\ Gère\ l'écriture\ dans\ la\ partition\ OTA\ et\ la\ retransmission\ aux\ enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00041}00041\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00042}00042\ \textcolor{comment}{\ *\ @param\ frag\ \ \ \ \ \ \ \ \ Payload\ du\ fragment\ (déjà\ déchiffré).}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00043}00043\ \textcolor{comment}{\ *\ @param\ children\_mac\ Tableau\ des\ adresses\ MAC\ des\ enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00044}00044\ \textcolor{comment}{\ *\ @param\ child\_count\ \ Nombre\ d'enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00045}00045\ \textcolor{comment}{\ *\ @param\ raw\_frame\ \ \ \ Trame\ brute\ (chiffrée)\ à\ retransmettre\ aux\ enfants.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00046}00046\ \textcolor{comment}{\ *\ @param\ frame\_len\ \ \ \ Longueur\ de\ la\ trame\ brute.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00047}00047\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ le\ traitement\ réussit.}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00048}00048\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00049}00049\ esp\_err\_t\ \mbox{\hyperlink{ota__node_8h_af8ea4caf0abd81ac32d84ed4819dfa6b}{ota\_node\_process\_fragment}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structota__fragment__payload__t}{ota\_fragment\_payload\_t}}\ *frag,}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ (*children\_mac)[6],}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ child\_count,}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *raw\_frame,}
+\DoxyCodeLine{\Hypertarget{ota__node_8h_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ frame\_len);}
+
+\end{DoxyCode}

@@ -1,0 +1,278 @@
+\doxysection{VL53\+L8\+CX\+\_\+\+Results\+Data Struct Reference}
+\hypertarget{struct_v_l53_l8_c_x___results_data}{}\label{struct_v_l53_l8_c_x___results_data}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+
+
+Structure \doxylink{struct_v_l53_l8_c_x___results_data}{VL53\+L8\+CX\+\_\+\+Results\+Data} contains the ranging results of VL53\+L8\+CX. If user wants more than 1 target per zone, the results can be split into 2 sub-\/groups \+:  
+
+
+
+
+{\ttfamily \#include $<$vl53l8cx\+\_\+api.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+int8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_ab648c5bd1fdc392bf3f869b88c855c16}{silicon\+\_\+temp\+\_\+degc}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a1ffd8efae5f54d3fa493424598afca10}{ambient\+\_\+per\+\_\+spad}} \mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a710c72df15490ee27f5ba54694f3f6df}{nb\+\_\+target\+\_\+detected}} \mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_ad266872da9e56ccfa48b25d219b5c8c8}{nb\+\_\+spads\+\_\+enabled}} \mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a2bed9cae05ebd676db08128b3d8b4d3d}{signal\+\_\+per\+\_\+spad}} \mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a88302491fc37cadf6cee6f108804c13f}{range\+\_\+sigma\+\_\+mm}} \mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}
+\item 
+int16\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a63464dedeb13da2788953679b8623a13}{distance\+\_\+mm}} \mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a098b5cbdfa3eb6c8795856dec40722fc}{reflectance}} \mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a2ab017653d003b500ad091ae002b79e9}{target\+\_\+status}} \mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>uint32\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_ab37e265b8e7910dfe08cecc7c7def658}{global\_indicator\_1}}\\
+\>uint32\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a49c08785fe81d9385cd59feba69ce449}{global\_indicator\_2}}\\
+\>uint8\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a0dcd1767bb6a7b8b0a2f44e1ea820379}{status}}\\
+\>uint8\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_aad03c6ac456ad7128ab700dfd578764e}{nb\_of\_detected\_aggregates}}\\
+\>uint8\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a30471b39c95e83fbd9155ce99854dccb}{nb\_of\_aggregates}}\\
+\>uint8\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a475af0a0690969a5580014893c62b438}{spare}}\\
+\>uint32\_t \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a9ff637a9ca76d30fb98dd4a4d903b1ce}{motion}} \mbox{[}32\mbox{]}\\
+\} \mbox{\hyperlink{struct_v_l53_l8_c_x___results_data_a42b71761eedd124e98fdc86441cbcd46}{motion\_indicator}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure \doxylink{struct_v_l53_l8_c_x___results_data}{VL53\+L8\+CX\+\_\+\+Results\+Data} contains the ranging results of VL53\+L8\+CX. If user wants more than 1 target per zone, the results can be split into 2 sub-\/groups \+: 
+
+
+\begin{DoxyItemize}
+\item Per zone results. These results are common to all targets (ambient\+\_\+per\+\_\+spad , nb\+\_\+target\+\_\+detected and nb\+\_\+spads\+\_\+enabled).
+\item Per target results \+: These results are different relative to the detected target (signal\+\_\+per\+\_\+spad, range\+\_\+sigma\+\_\+mm, distance\+\_\+mm, reflectance, target\+\_\+status). 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00306}{306}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_v_l53_l8_c_x___results_data_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a1ffd8efae5f54d3fa493424598afca10}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!ambient\_per\_spad@{ambient\_per\_spad}}
+\index{ambient\_per\_spad@{ambient\_per\_spad}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{ambient\_per\_spad}{ambient\_per\_spad}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a1ffd8efae5f54d3fa493424598afca10} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::ambient\+\_\+per\+\_\+spad\mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00313}{313}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a63464dedeb13da2788953679b8623a13}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!distance\_mm@{distance\_mm}}
+\index{distance\_mm@{distance\_mm}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{distance\_mm}{distance\_mm}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a63464dedeb13da2788953679b8623a13} 
+int16\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::distance\+\_\+mm\mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00340}{340}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_ab37e265b8e7910dfe08cecc7c7def658}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!global\_indicator\_1@{global\_indicator\_1}}
+\index{global\_indicator\_1@{global\_indicator\_1}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{global\_indicator\_1}{global\_indicator\_1}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_ab37e265b8e7910dfe08cecc7c7def658} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::global\+\_\+indicator\+\_\+1}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00360}{360}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a49c08785fe81d9385cd59feba69ce449}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!global\_indicator\_2@{global\_indicator\_2}}
+\index{global\_indicator\_2@{global\_indicator\_2}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{global\_indicator\_2}{global\_indicator\_2}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a49c08785fe81d9385cd59feba69ce449} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::global\+\_\+indicator\+\_\+2}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00361}{361}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a9ff637a9ca76d30fb98dd4a4d903b1ce}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!motion@{motion}}
+\index{motion@{motion}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{motion}{motion}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a9ff637a9ca76d30fb98dd4a4d903b1ce} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::motion\mbox{[}32\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00366}{366}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a42b71761eedd124e98fdc86441cbcd46}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!motion\_indicator@{motion\_indicator}}
+\index{motion\_indicator@{motion\_indicator}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a42b71761eedd124e98fdc86441cbcd46} 
+struct  \{ ... \}  VL53\+L8\+CX\+\_\+\+Results\+Data\+::motion\+\_\+indicator}
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a30471b39c95e83fbd9155ce99854dccb}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!nb\_of\_aggregates@{nb\_of\_aggregates}}
+\index{nb\_of\_aggregates@{nb\_of\_aggregates}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{nb\_of\_aggregates}{nb\_of\_aggregates}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a30471b39c95e83fbd9155ce99854dccb} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::nb\+\_\+of\+\_\+aggregates}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00364}{364}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_aad03c6ac456ad7128ab700dfd578764e}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!nb\_of\_detected\_aggregates@{nb\_of\_detected\_aggregates}}
+\index{nb\_of\_detected\_aggregates@{nb\_of\_detected\_aggregates}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{nb\_of\_detected\_aggregates}{nb\_of\_detected\_aggregates}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_aad03c6ac456ad7128ab700dfd578764e} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::nb\+\_\+of\+\_\+detected\+\_\+aggregates}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00363}{363}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_ad266872da9e56ccfa48b25d219b5c8c8}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!nb\_spads\_enabled@{nb\_spads\_enabled}}
+\index{nb\_spads\_enabled@{nb\_spads\_enabled}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{nb\_spads\_enabled}{nb\_spads\_enabled}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_ad266872da9e56ccfa48b25d219b5c8c8} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::nb\+\_\+spads\+\_\+enabled\mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00323}{323}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a710c72df15490ee27f5ba54694f3f6df}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!nb\_target\_detected@{nb\_target\_detected}}
+\index{nb\_target\_detected@{nb\_target\_detected}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{nb\_target\_detected}{nb\_target\_detected}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a710c72df15490ee27f5ba54694f3f6df} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::nb\+\_\+target\+\_\+detected\mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00318}{318}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a88302491fc37cadf6cee6f108804c13f}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!range\_sigma\_mm@{range\_sigma\_mm}}
+\index{range\_sigma\_mm@{range\_sigma\_mm}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{range\_sigma\_mm}{range\_sigma\_mm}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a88302491fc37cadf6cee6f108804c13f} 
+uint16\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::range\+\_\+sigma\+\_\+mm\mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00334}{334}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a098b5cbdfa3eb6c8795856dec40722fc}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!reflectance@{reflectance}}
+\index{reflectance@{reflectance}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{reflectance}{reflectance}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a098b5cbdfa3eb6c8795856dec40722fc} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::reflectance\mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00346}{346}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a2bed9cae05ebd676db08128b3d8b4d3d}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!signal\_per\_spad@{signal\_per\_spad}}
+\index{signal\_per\_spad@{signal\_per\_spad}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{signal\_per\_spad}{signal\_per\_spad}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a2bed9cae05ebd676db08128b3d8b4d3d} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::signal\+\_\+per\+\_\+spad\mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00328}{328}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_ab648c5bd1fdc392bf3f869b88c855c16}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!silicon\_temp\_degc@{silicon\_temp\_degc}}
+\index{silicon\_temp\_degc@{silicon\_temp\_degc}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{silicon\_temp\_degc}{silicon\_temp\_degc}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_ab648c5bd1fdc392bf3f869b88c855c16} 
+int8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::silicon\+\_\+temp\+\_\+degc}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00309}{309}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a475af0a0690969a5580014893c62b438}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!spare@{spare}}
+\index{spare@{spare}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{spare}{spare}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a475af0a0690969a5580014893c62b438} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::spare}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00365}{365}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a0dcd1767bb6a7b8b0a2f44e1ea820379}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!status@{status}}
+\index{status@{status}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a0dcd1767bb6a7b8b0a2f44e1ea820379} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::status}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00362}{362}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___results_data_a2ab017653d003b500ad091ae002b79e9}\index{VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}!target\_status@{target\_status}}
+\index{target\_status@{target\_status}!VL53L8CX\_ResultsData@{VL53L8CX\_ResultsData}}
+\doxysubsubsection{\texorpdfstring{target\_status}{target\_status}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___results_data_a2ab017653d003b500ad091ae002b79e9} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Results\+Data\+::target\+\_\+status\mbox{[}(\mbox{\hyperlink{vl53l8cx__api_8h_a9ceeb4d5ecdb478176b74c428e3c78a2}{VL53\+L8\+CX\+\_\+\+RESOLUTION\+\_\+8\+X8}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+TARGET\+\_\+\+PER\+\_\+\+ZONE}})\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00352}{352}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/sensor\+\_\+acq/uld/\mbox{\hyperlink{vl53l8cx__api_8h}{vl53l8cx\+\_\+api.\+h}}\end{DoxyCompactItemize}

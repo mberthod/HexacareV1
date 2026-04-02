@@ -1,0 +1,217 @@
+\doxysection{Réseau maillé \& OTA }
+\hypertarget{group__group__mesh}{}\label{group__group__mesh}\index{Réseau maillé \& OTA@{Réseau maillé \& OTA}}
+
+
+Communication entre nœuds (ESP-\/\+NOW), chiffrement applicatif, et mise à jour OTA.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{mesh__manager_8c}{mesh\+\_\+manager.\+c}}
+\begin{DoxyCompactList}\small\item\em Gestionnaire réseau maillé ESP-\/\+NOW — topologie arborescente + AES-\/128. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{ota__node_8c}{ota\+\_\+node.\+c}}
+\begin{DoxyCompactList}\small\item\em OTA nœud-\/à-\/nœud via ESP-\/\+NOW — fragments 200 octets. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{mesh\+\_\+manager\+\_\+init}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{mesh\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}{ota\+\_\+node\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Module OTA “nœud-\/à-\/nœud” utilisé par le réseau maillé. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Communication entre nœuds (ESP-\/\+NOW), chiffrement applicatif, et mise à jour OTA. 
+
+Idée simple \+:
+\begin{DoxyItemize}
+\item le Wi‑\+Fi sert ici de transport local (ESP‑\+NOW) pour relier des nœuds sans infrastructure
+\item la sécurité est renforcée par un chiffrement applicatif (AES) en plus d\textquotesingle{}ESP‑\+NOW 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{group__group__mesh_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__mesh_ga70a67236487199c55a71f550972e2c27}\index{Réseau maillé \& OTA@{Réseau maillé \& OTA}!mesh\_manager\_init@{mesh\_manager\_init}}
+\index{mesh\_manager\_init@{mesh\_manager\_init}!Réseau maillé \& OTA@{Réseau maillé \& OTA}}
+\doxysubsubsection{\texorpdfstring{mesh\_manager\_init()}{mesh\_manager\_init()}}
+{\footnotesize\ttfamily \label{group__group__mesh_ga70a67236487199c55a71f550972e2c27} 
+esp\+\_\+err\+\_\+t mesh\+\_\+manager\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00379}{379}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00380\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ memset(\&\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}));}
+\DoxyCodeLine{00382\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.sys\_ctx\ \ \ \ =\ ctx;}
+\DoxyCodeLine{00383\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.hop\_to\_root\ =\ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ ?\ 0\ :\ 0xFF;}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{comment}{/*\ Chargement\ de\ la\ clé\ AES\ */}}
+\DoxyCodeLine{00386\ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ad183ca147d5c3e6c43ab72d281d5be89}{mesh\_load\_aes\_key}}();}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ réseau\ */}}
+\DoxyCodeLine{00389\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_netif\_init());}
+\DoxyCodeLine{00390\ \ \ \ \ esp\_netif\_create\_default\_wifi\_sta();}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keyword}{const}\ wifi\_init\_config\_t\ wifi\_cfg\ =\ WIFI\_INIT\_CONFIG\_DEFAULT();}
+\DoxyCodeLine{00393\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_init(\&wifi\_cfg));}
+\DoxyCodeLine{00394\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_set\_mode(WIFI\_MODE\_STA));}
+\DoxyCodeLine{00395\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_start());}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{comment}{/*\ set\_channel\ doit\ être\ appelé\ APRÈS\ esp\_wifi\_start()\ */}}
+\DoxyCodeLine{00397\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_set\_channel(\mbox{\hyperlink{mesh__manager_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}{ESPNOW\_CHANNEL}},\ WIFI\_SECOND\_CHAN\_NONE));}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{comment}{/*\ Récupération\ de\ l'adresse\ MAC\ propre\ */}}
+\DoxyCodeLine{00400\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_wifi\_get\_mac(WIFI\_IF\_STA,\ \mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.own\_mac));}
+\DoxyCodeLine{00401\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}MAC\ propre\ :\ "{}}\ MACSTR,\ MAC2STR(\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}}.own\_mac));}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ ESP-\/NOW\ */}}
+\DoxyCodeLine{00404\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_init());}
+\DoxyCodeLine{00405\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_set\_pmk(\mbox{\hyperlink{mesh__manager_8c_ab4acf17e093a0b230ecc75b223c23f54}{k\_pmk}}));}
+\DoxyCodeLine{00406\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_register\_recv\_cb(\mbox{\hyperlink{mesh__manager_8c_a6067c463964e944fd80eb63f791c1544}{espnow\_rx\_callback}}));}
+\DoxyCodeLine{00407\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_now\_register\_send\_cb(\mbox{\hyperlink{mesh__manager_8c_abbef85f4a7cd603f4c63ba31a13921cb}{espnow\_tx\_callback}}));}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ du\ module\ OTA\ */}}
+\DoxyCodeLine{00410\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}{ota\_node\_init}}());}
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mesh\ ESP-\/NOW\ initialisé\ (canal\ \%d,\ rôle\ :\ \%s)"{}},}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a6ffaaae9cbfb91f056627a0bef5dbb5a}{ESPNOW\_CHANNEL}},}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ ?\ \textcolor{stringliteral}{"{}ROOT"{}}\ :\ \textcolor{stringliteral}{"{}NODE"{}});}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00417\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mesh__manager_8c_source_l00068}{ESPNOW\+\_\+\+CHANNEL}}, \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00294}{espnow\+\_\+tx\+\_\+callback()}}, \mbox{\hyperlink{system__types_8h_source_l00250}{sys\+\_\+context\+\_\+t\+::is\+\_\+root\+\_\+node}}, \mbox{\hyperlink{mesh__manager_8c_source_l00076}{k\+\_\+pmk}}, \mbox{\hyperlink{mesh__manager_8c_source_l00307}{mesh\+\_\+load\+\_\+aes\+\_\+key()}}, \mbox{\hyperlink{ota__node_8c_source_l00045}{ota\+\_\+node\+\_\+init()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00114}{s\+\_\+mesh}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{group__group__mesh_ga70a67236487199c55a71f550972e2c27_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{group__group__mesh_ga70a67236487199c55a71f550972e2c27_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}\index{Réseau maillé \& OTA@{Réseau maillé \& OTA}!mesh\_task\_start@{mesh\_task\_start}}
+\index{mesh\_task\_start@{mesh\_task\_start}!Réseau maillé \& OTA@{Réseau maillé \& OTA}}
+\doxysubsubsection{\texorpdfstring{mesh\_task\_start()}{mesh\_task\_start()}}
+{\footnotesize\ttfamily \label{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9} 
+esp\+\_\+err\+\_\+t mesh\+\_\+task\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00426}{426}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00427\ \{}
+\DoxyCodeLine{00428\ \ \ \ \ (void)ctx;\ \textcolor{comment}{/*\ s\_mesh.sys\_ctx\ déjà\ rempli\ par\ mesh\_manager\_init\ */}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \ \ BaseType\_t\ ret\ =\ xTaskCreatePinnedToCore(}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a7f06ed05d7822427b8f2ea84cb1b33e1}{task\_mesh\_com}},}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Task\_Mesh\_Com"{}},}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_aaf3b4792ccac909807429299fe6d23ac}{MESH\_TASK\_STACK}},}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{mesh__manager_8c_a22c99a50ebf4fde1bedd60a538961e8f}{s\_mesh}},}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_a9a69eb7dd21565dd92b702c0314f460f}{MESH\_TASK\_PRIORITY}},}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ NULL,}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ac2d2ed01de0b5395fb9ebce429e336d4}{MESH\_TASK\_CORE}});}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ création\ Task\_Mesh\_Com"{}});}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{00442\ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Mesh\_Com\ créée\ (Core\ \%d,\ priorité\ \%d)"{}},}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mesh__manager_8c_ac2d2ed01de0b5395fb9ebce429e336d4}{MESH\_TASK\_CORE}},\ \mbox{\hyperlink{mesh__manager_8c_a9a69eb7dd21565dd92b702c0314f460f}{MESH\_TASK\_PRIORITY}});}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00447\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mesh__manager_8c_source_l00072}{MESH\+\_\+\+TASK\+\_\+\+CORE}}, \mbox{\hyperlink{mesh__manager_8c_source_l00071}{MESH\+\_\+\+TASK\+\_\+\+PRIORITY}}, \mbox{\hyperlink{mesh__manager_8c_source_l00070}{MESH\+\_\+\+TASK\+\_\+\+STACK}}, \mbox{\hyperlink{mesh__manager_8c_source_l00114}{s\+\_\+mesh}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0}\index{Réseau maillé \& OTA@{Réseau maillé \& OTA}!ota\_node\_init@{ota\_node\_init}}
+\index{ota\_node\_init@{ota\_node\_init}!Réseau maillé \& OTA@{Réseau maillé \& OTA}}
+\doxysubsubsection{\texorpdfstring{ota\_node\_init()}{ota\_node\_init()}}
+{\footnotesize\ttfamily \label{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0} 
+esp\+\_\+err\+\_\+t ota\+\_\+node\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Module OTA “nœud-\/à-\/nœud” utilisé par le réseau maillé. 
+
+
+
+Definition at line \mbox{\hyperlink{ota__node_8c_source_l00045}{45}} of file \mbox{\hyperlink{ota__node_8c_source}{ota\+\_\+node.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00046\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ memset(\&\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}));}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{/*\ Identification\ de\ la\ partition\ de\ mise\ à\ jour\ */}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition\ =\ esp\_ota\_get\_next\_update\_partition(NULL);}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition)\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Aucune\ partition\ OTA\ disponible"{}});}
+\DoxyCodeLine{00053\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Partition\ OTA\ cible\ :\ \%s\ (offset\ 0x\%08lX,\ taille\ \%lu\ Ko)"{}},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition-\/>label,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition-\/>address,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{ota__node_8c_a389b7bcf66969ecd3e2a40e1092ea483}{s\_ota}}.ota\_partition-\/>size\ /\ 1024);}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00061\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{ota__node_8c_source_l00037}{s\+\_\+ota}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00379}{mesh\+\_\+manager\+\_\+init()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__mesh_ga9aec1f5bda1bce9d59f85f2fe7b444b0_icgraph}
+\end{center}
+\end{figure}

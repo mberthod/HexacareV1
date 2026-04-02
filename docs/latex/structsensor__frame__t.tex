@@ -1,0 +1,99 @@
+\doxysection{sensor\+\_\+frame\+\_\+t Struct Reference}
+\hypertarget{structsensor__frame__t}{}\label{structsensor__frame__t}\index{sensor\_frame\_t@{sensor\_frame\_t}}
+
+
+{\ttfamily \#include $<$system\+\_\+types.\+h$>$}
+
+
+
+Collaboration diagram for sensor\+\_\+frame\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=242pt]{structsensor__frame__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}} \mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}}
+\item 
+\mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}} \mbox{\hyperlink{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}{radar}}
+\item 
+bool \mbox{\hyperlink{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1}{lidar\+\_\+valid}}
+\item 
+bool \mbox{\hyperlink{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}{radar\+\_\+valid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00112}{112}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structsensor__frame__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}\index{sensor\_frame\_t@{sensor\_frame\_t}!lidar@{lidar}}
+\index{lidar@{lidar}!sensor\_frame\_t@{sensor\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{lidar}{lidar}}
+{\footnotesize\ttfamily \label{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581} 
+\mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}} sensor\+\_\+frame\+\_\+t\+::lidar}
+
+Données LIDAR fusionnées 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00113}{113}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1}\index{sensor\_frame\_t@{sensor\_frame\_t}!lidar\_valid@{lidar\_valid}}
+\index{lidar\_valid@{lidar\_valid}!sensor\_frame\_t@{sensor\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{lidar\_valid}{lidar\_valid}}
+{\footnotesize\ttfamily \label{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1} 
+bool sensor\+\_\+frame\+\_\+t\+::lidar\+\_\+valid}
+
+true \+: lidar contient des données fraîches 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00115}{115}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0}\index{sensor\_frame\_t@{sensor\_frame\_t}!radar@{radar}}
+\index{radar@{radar}!sensor\_frame\_t@{sensor\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{radar}{radar}}
+{\footnotesize\ttfamily \label{structsensor__frame__t_a746140e4f24f8747756ecd920052f6b0} 
+\mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}} sensor\+\_\+frame\+\_\+t\+::radar}
+
+Données radar LD6002 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00114}{114}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8}\index{sensor\_frame\_t@{sensor\_frame\_t}!radar\_valid@{radar\_valid}}
+\index{radar\_valid@{radar\_valid}!sensor\_frame\_t@{sensor\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{radar\_valid}{radar\_valid}}
+{\footnotesize\ttfamily \label{structsensor__frame__t_a2c9ee35c7d784cb69facbc49577e5dd8} 
+bool sensor\+\_\+frame\+\_\+t\+::radar\+\_\+valid}
+
+true \+: radar contient des données fraîches 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00116}{116}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/lexacare\+\_\+types/include/\mbox{\hyperlink{system__types_8h}{system\+\_\+types.\+h}}\end{DoxyCompactItemize}

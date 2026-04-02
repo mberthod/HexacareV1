@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="pc__diag_8h" kind="file" language="C++">
+    <compoundname>pc_diag.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="pc__diag_8c" local="yes">components/pc_diag/pc_diag.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/pc_diag/include/pc_diag.h</label>
+        <link refid="pc__diag_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>components/pc_diag/include/pc_diag.h</label>
+        <link refid="pc__diag_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>components/pc_diag/pc_diag.c</label>
+        <link refid="pc__diag_8c"/>
+      </node>
+      <node id="3">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <member refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kind="function"><name>pc_diag_task_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du diagnostic PC — USB-CDC, JSON, commandes Python. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Task_Diag_PC (Core 0, priorité 3) :<itemizedlist>
+<listitem><para>Émet toutes les 5 s un rapport JSON sur stdout (USB Serial/JTAG).</para>
+</listitem><listitem><para>Écoute les commandes JSON entrantes sur stdin.</para>
+</listitem><listitem><para>Commande &quot;download_logs&quot; : transfert de /littlefs/app.log par blocs.</para>
+</listitem></itemizedlist>
+</para>
+<para>Protocole de commande (depuis l&apos;outil Python) : → {&quot;cmd&quot;:&quot;download_logs&quot;} ← {&quot;status&quot;:&quot;ok&quot;,&quot;filename&quot;:&quot;app.log&quot;,&quot;size&quot;:XXXXX} ← [blocs bruts ou base64 du fichier] ← {&quot;status&quot;:&quot;done&quot;}</para>
+<para>→ {&quot;cmd&quot;:&quot;clear_logs&quot;} ← {&quot;status&quot;:&quot;ok&quot;}</para>
+<para>→ {&quot;cmd&quot;:&quot;get_diag&quot;} ← [rapport JSON immédiat] </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>pc_diag.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>diagnostic<sp/>PC<sp/>—<sp/>USB-CDC,<sp/>JSON,<sp/>commandes<sp/>Python.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Task_Diag_PC<sp/>(Core<sp/>0,<sp/>priorité<sp/>3)<sp/>:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Émet<sp/>toutes<sp/>les<sp/>5<sp/>s<sp/>un<sp/>rapport<sp/>JSON<sp/>sur<sp/>stdout<sp/>(USB<sp/>Serial/JTAG).</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Écoute<sp/>les<sp/>commandes<sp/>JSON<sp/>entrantes<sp/>sur<sp/>stdin.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Commande<sp/>&quot;download_logs&quot;<sp/>:<sp/>transfert<sp/>de<sp/>/littlefs/app.log<sp/>par<sp/>blocs.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Protocole<sp/>de<sp/>commande<sp/>(depuis<sp/>l&apos;outil<sp/>Python)<sp/>:</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>→<sp/>{&quot;cmd&quot;:&quot;download_logs&quot;}</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>←<sp/>{&quot;status&quot;:&quot;ok&quot;,&quot;filename&quot;:&quot;app.log&quot;,&quot;size&quot;:XXXXX}</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/>←<sp/>[blocs<sp/>bruts<sp/>ou<sp/>base64<sp/>du<sp/>fichier]</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/>←<sp/>{&quot;status&quot;:&quot;done&quot;}</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/>→<sp/>{&quot;cmd&quot;:&quot;clear_logs&quot;}</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/>←<sp/>{&quot;status&quot;:&quot;ok&quot;}</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/>→<sp/>{&quot;cmd&quot;:&quot;get_diag&quot;}</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/>←<sp/>[rapport<sp/>JSON<sp/>immédiat]</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="28"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_pc_diag<sp/>Diagnostic<sp/>PC<sp/>(JSON)</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Sortie<sp/>USB<sp/>en<sp/>JSON<sp/>lisible<sp/>+<sp/>commandes<sp/>simples<sp/>depuis<sp/>l&apos;outil<sp/>PC.</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>Ce<sp/>module<sp/>sert<sp/>de<sp/>“fenêtre”<sp/>sur<sp/>le<sp/>firmware<sp/>:</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>-<sp/>envoie<sp/>un<sp/>état<sp/>régulier<sp/>(santé<sp/>système<sp/>+<sp/>mesures<sp/>capteurs)</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>-<sp/>permet<sp/>quelques<sp/>actions<sp/>(récupérer/effacer<sp/>les<sp/>logs)<sp/>sans<sp/>recompiler</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>pc_diag_task_start</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Crée<sp/>la<sp/>tâche<sp/>Task_Diag_PC<sp/>épinglée<sp/>sur<sp/>le<sp/>Core<sp/>0.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système.</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>la<sp/>tâche<sp/>est<sp/>créée<sp/>avec<sp/>succès.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kindref="member">pc_diag_task_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="48"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_pc_diag<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/pc_diag/include/pc_diag.h"/>
+  </compounddef>
+</doxygen>

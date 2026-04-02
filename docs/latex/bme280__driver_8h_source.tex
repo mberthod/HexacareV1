@@ -1,0 +1,64 @@
+\doxysection{bme280\+\_\+driver.\+h}
+\hypertarget{bme280__driver_8h_source}{}\label{bme280__driver_8h_source}\index{components/sensor\_acq/include/bme280\_driver.h@{components/sensor\_acq/include/bme280\_driver.h}}
+\mbox{\hyperlink{bme280__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ bme280\_driver.h}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Driver\ Bosch\ BME280\ —\ Température,\ Pression,\ Humidité.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Interface\ I2C\ via\ driver/i2c\_master.h\ (ESP-\/IDF\ v5+).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00006}00006\ \textcolor{comment}{\ *\ Adresse\ I2C\ 7\ bits\ :\ 0x76\ (SDO=GND)\ ou\ 0x77\ (SDO=VDD).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00007}00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00008}00008\ \textcolor{comment}{\ *\ Caractéristiques\ :}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ -\/\ Température\ \ :\ −40\ °C\ →\ +85\ °C,\ \ \ \ \ résolution\ 0.01\ °C}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ -\/\ Pression\ \ \ \ \ :\ 300\ hPa\ →\ 1100\ hPa,\ \ résolution\ 0.18\ Pa}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ -\/\ Humidité\ \ \ \ \ :\ 0\ \%\ →\ 100\ \%\ RH,\ \ \ \ \ \ résolution\ 0.008\ \%}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ -\/\ Mode\ utilisé\ :\ Forced\ mode\ (single-\/shot)\ +\ filtre\ IIR\ ×\ 4}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00013}00013\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00015}00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00020}00020\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00021}00021\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00022}00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00023}00023\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00024}00024\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00025}00025\ \textcolor{comment}{\ *\ @ingroup\ group\_sensor\_acq}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00026}00026\ \textcolor{comment}{\ *\ @brief\ Capteur\ environnemental\ BME280\ (pression/température/humidité).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00027}00027\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00029}\mbox{\hyperlink{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4}{00029}}\ \textcolor{preprocessor}{\#define\ BME280\_I2C\_ADDR\_DEFAULT\ \ 0x76\ \ }\textcolor{comment}{/**<\ SDO\ reliée\ à\ GND\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00030}\mbox{\hyperlink{bme280__driver_8h_a7b7c6da1330193242ae0fed91f8ea6b9}{00030}}\ \textcolor{preprocessor}{\#define\ BME280\_I2C\_ADDR\_ALT\ \ \ \ \ \ 0x77\ \ }\textcolor{comment}{/**<\ SDO\ reliée\ à\ VDD\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00032}00032\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00033}00033\ \textcolor{comment}{\ *\ bme280\_init}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00034}00034\ \textcolor{comment}{\ *\ @brief\ Initialise\ le\ BME280,\ lit\ les\ coefficients\ de\ calibration,}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00035}00035\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ configure\ le\ filtre\ IIR\ ×\ 4\ et\ l'oversampling\ standard.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00036}00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00037}00037\ \textcolor{comment}{\ *\ @param\ bus\ \ \ \ \ \ Handle\ du\ bus\ I2C\ maître.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00038}00038\ \textcolor{comment}{\ *\ @param\ i2c\_addr\ Adresse\ I2C\ (BME280\_I2C\_ADDR\_DEFAULT\ ou\ \_ALT).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00039}00039\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ le\ capteur\ est\ détecté\ (chip\_id\ =\ 0x60).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00040}00040\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00041}00041\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8h_a16050495a4e02a1498ceadf9a19db1e2}{bme280\_init}}(i2c\_master\_bus\_handle\_t\ bus,\ uint8\_t\ i2c\_addr);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00043}00043\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00044}00044\ \textcolor{comment}{\ *\ bme280\_read}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00045}00045\ \textcolor{comment}{\ *\ @brief\ Déclenche\ une\ mesure\ forced-\/mode\ et\ lit\ les\ 3\ grandeurs.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00046}00046\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00047}00047\ \textcolor{comment}{\ *\ Bloque\ \string~10\ ms\ le\ temps\ de\ la\ conversion.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00048}00048\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00049}00049\ \textcolor{comment}{\ *\ @param\ temp\_c\ \ \ \ \ \ \ \ Température\ (°C).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00050}00050\ \textcolor{comment}{\ *\ @param\ pressure\_hpa\ \ Pression\ (hPa).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00051}00051\ \textcolor{comment}{\ *\ @param\ humidity\_pct\ \ Humidité\ (\%).}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00052}00052\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ succès.}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00053}00053\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00054}00054\ esp\_err\_t\ \mbox{\hyperlink{bme280__driver_8h_a898595b4f31ff7da1e14b618a804a7b5}{bme280\_read}}(\textcolor{keywordtype}{float}\ *temp\_c,\ \textcolor{keywordtype}{float}\ *pressure\_hpa,\ \textcolor{keywordtype}{float}\ *humidity\_pct);}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00056}00056\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00057}00057\ \}}
+\DoxyCodeLine{\Hypertarget{bme280__driver_8h_source_l00058}00058\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

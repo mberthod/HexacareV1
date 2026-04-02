@@ -1,0 +1,284 @@
+\doxysection{Diagnostic Matériel }
+\hypertarget{group__group__hw__diag}{}\label{group__group__hw__diag}\index{Diagnostic Matériel@{Diagnostic Matériel}}
+
+
+Vérifications au démarrage \+: bus, capteurs, et expandeur PCA9555.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{hw__diag_8c}{hw\+\_\+diag.\+c}}
+\begin{DoxyCompactList}\small\item\em Diagnostic matériel au démarrage — I2C LIDAR + UART Radar. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\+\_\+diag\+\_\+result\+\_\+t}} \{ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd}{HW\+\_\+\+DIAG\+\_\+\+OK}} = 0x00
+, \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+PARTIAL}} = 0x01
+, \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+ALL}} = 0x02
+, \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\+\_\+\+DIAG\+\_\+\+RADAR\+\_\+\+MISSING}} = 0x04
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\+\_\+diag\+\_\+result\+\_\+t}} \mbox{\hyperlink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\+\_\+diag\+\_\+run}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}{hw\+\_\+diag\+\_\+init\+\_\+sensor\+\_\+bus}} (i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t \texorpdfstring{$\ast$}{*}out\+\_\+handle)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\+\_\+diag\+\_\+pca9555\+\_\+set\+\_\+power}} (uint8\+\_\+t port1\+\_\+bit, bool enable)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Vérifications au démarrage \+: bus, capteurs, et expandeur PCA9555. 
+
+Raison d\textquotesingle{}être \+:
+\begin{DoxyItemize}
+\item détecter tôt les problèmes de câblage ou d\textquotesingle{}alimentation
+\item éviter de lancer des tâches qui bloqueraient si un périphérique est absent
+\item produire un rapport lisible (JSON) pour accélérer le diagnostic côté PC 
+\end{DoxyItemize}
+
+\label{doc-enum-members}
+\Hypertarget{group__group__hw__diag_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}\index{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_result\_t@{hw\_diag\_result\_t}}
+\index{hw\_diag\_result\_t@{hw\_diag\_result\_t}!Diagnostic Matériel@{Diagnostic Matériel}}
+\doxysubsubsection{\texorpdfstring{hw\_diag\_result\_t}{hw\_diag\_result\_t}}
+{\footnotesize\ttfamily \label{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6} 
+enum \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\+\_\+diag\+\_\+result\+\_\+t}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HW\_DIAG\_OK@{HW\_DIAG\_OK}!Diagnostic Matériel@{Diagnostic Matériel}}\index{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_OK@{HW\_DIAG\_OK}}}\Hypertarget{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd}\label{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd} 
+HW\+\_\+\+DIAG\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HW\_DIAG\_LIDAR\_PARTIAL@{HW\_DIAG\_LIDAR\_PARTIAL}!Diagnostic Matériel@{Diagnostic Matériel}}\index{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_LIDAR\_PARTIAL@{HW\_DIAG\_LIDAR\_PARTIAL}}}\Hypertarget{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}\label{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809} 
+HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+PARTIAL&Au moins un LIDAR absent \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HW\_DIAG\_LIDAR\_ALL@{HW\_DIAG\_LIDAR\_ALL}!Diagnostic Matériel@{Diagnostic Matériel}}\index{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_LIDAR\_ALL@{HW\_DIAG\_LIDAR\_ALL}}}\Hypertarget{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}\label{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc} 
+HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+ALL&Aucun LIDAR détecté \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{HW\_DIAG\_RADAR\_MISSING@{HW\_DIAG\_RADAR\_MISSING}!Diagnostic Matériel@{Diagnostic Matériel}}\index{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_RADAR\_MISSING@{HW\_DIAG\_RADAR\_MISSING}}}\Hypertarget{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}\label{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd} 
+HW\+\_\+\+DIAG\+\_\+\+RADAR\+\_\+\+MISSING&Radar LD6002 non détecté \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{hw__diag_8h_source_l00033}{33}} of file \mbox{\hyperlink{hw__diag_8h_source}{hw\+\_\+diag.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd}{HW\_DIAG\_OK}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 0x00,}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\_DIAG\_LIDAR\_PARTIAL}}\ =\ 0x01,\ \textcolor{comment}{/**<\ Au\ moins\ un\ LIDAR\ absent\ */}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\_DIAG\_LIDAR\_ALL}}\ \ \ \ \ =\ 0x02,\ \textcolor{comment}{/**<\ Aucun\ LIDAR\ détecté\ */}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\_DIAG\_RADAR\_MISSING}}\ =\ 0x04,\ \textcolor{comment}{/**<\ Radar\ LD6002\ non\ détecté\ */}}
+\DoxyCodeLine{00038\ \}\ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}};}
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{group__group__hw__diag_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}\index{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_init\_sensor\_bus@{hw\_diag\_init\_sensor\_bus}}
+\index{hw\_diag\_init\_sensor\_bus@{hw\_diag\_init\_sensor\_bus}!Diagnostic Matériel@{Diagnostic Matériel}}
+\doxysubsubsection{\texorpdfstring{hw\_diag\_init\_sensor\_bus()}{hw\_diag\_init\_sensor\_bus()}}
+{\footnotesize\ttfamily \label{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2} 
+esp\+\_\+err\+\_\+t hw\+\_\+diag\+\_\+init\+\_\+sensor\+\_\+bus (\begin{DoxyParamCaption}\item[{i2c\+\_\+master\+\_\+bus\+\_\+handle\+\_\+t \texorpdfstring{$\ast$}{*}}]{out\+\_\+handle}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{hw__diag_8c_source_l00575}{575}} of file \mbox{\hyperlink{hw__diag_8c_source}{hw\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00576\ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{hw__diag_8c_a9fa304f2c13ef98368f86651968ee7ff}{diag\_init\_i2c\_bus}}(I2C\_NUM\_1,}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pins__config_8h_aabfe18b52ad58d04d2a1cf6612c5c4fa}{PIN\_I2C1\_SDA}},\ \mbox{\hyperlink{pins__config_8h_ac270b2950c69700990747460dc1e284a}{PIN\_I2C1\_SCL}},}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_handle);}
+\DoxyCodeLine{00580\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{hw__diag_8c_source_l00096}{diag\+\_\+init\+\_\+i2c\+\_\+bus()}}, \mbox{\hyperlink{pins__config_8h_source_l00055}{PIN\+\_\+\+I2\+C1\+\_\+\+SCL}}, and \mbox{\hyperlink{pins__config_8h_source_l00054}{PIN\+\_\+\+I2\+C1\+\_\+\+SDA}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=300pt]{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}\index{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_pca9555\_set\_power@{hw\_diag\_pca9555\_set\_power}}
+\index{hw\_diag\_pca9555\_set\_power@{hw\_diag\_pca9555\_set\_power}!Diagnostic Matériel@{Diagnostic Matériel}}
+\doxysubsubsection{\texorpdfstring{hw\_diag\_pca9555\_set\_power()}{hw\_diag\_pca9555\_set\_power()}}
+{\footnotesize\ttfamily \label{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0} 
+esp\+\_\+err\+\_\+t hw\+\_\+diag\+\_\+pca9555\+\_\+set\+\_\+power (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{port1\+\_\+bit}{, }\item[{bool}]{enable}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{hw__diag_8c_source_l00585}{585}} of file \mbox{\hyperlink{hw__diag_8c_source}{hw\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00586\ \{}
+\DoxyCodeLine{00587\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}})\ \{}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}pca9555\_set\_power\ :\ bus\ PCA9555\ non\ initialisé"{}});}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{00590\ \ \ \ \ \}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)\ \{}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}}\ |=\ \ port1\_bit;}
+\DoxyCodeLine{00594\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}}\ \&=\ \string~port1\_bit;}
+\DoxyCodeLine{00596\ \ \ \ \ \}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}},\ \mbox{\hyperlink{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22}{PCA9555\_REG\_OUTPUT\_1}},\ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}});}
+\DoxyCodeLine{00599\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ Port1\ →\ 0x\%02X\ (\%s\ bit\ 0x\%02X)"{}},}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}},\ enable\ ?\ \textcolor{stringliteral}{"{}SET"{}}\ :\ \textcolor{stringliteral}{"{}CLR"{}},\ port1\_bit);}
+\DoxyCodeLine{00602\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ Port1\ écriture\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00604\ \ \ \ \ \}}
+\DoxyCodeLine{00605\ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00606\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{pins__config_8h_source_l00087}{PCA9555\+\_\+\+REG\+\_\+\+OUTPUT\+\_\+1}}, \mbox{\hyperlink{hw__diag_8c_source_l00217}{pca9555\+\_\+write\+\_\+reg()}}, \mbox{\hyperlink{hw__diag_8c_source_l00076}{s\+\_\+pca1\+\_\+out}}, \mbox{\hyperlink{hw__diag_8c_source_l00079}{s\+\_\+pca\+\_\+bus}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}\index{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_run@{hw\_diag\_run}}
+\index{hw\_diag\_run@{hw\_diag\_run}!Diagnostic Matériel@{Diagnostic Matériel}}
+\doxysubsubsection{\texorpdfstring{hw\_diag\_run()}{hw\_diag\_run()}}
+{\footnotesize\ttfamily \label{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb} 
+\mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\+\_\+diag\+\_\+result\+\_\+t}} hw\+\_\+diag\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{hw__diag_8c_source_l00508}{508}} of file \mbox{\hyperlink{hw__diag_8c_source}{hw\+\_\+diag.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00509\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}===\ Démarrage\ du\ diagnostic\ matériel\ ==="{}});}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Bus\ SPI\ LIDAR\ :\ initialise\ le\ bus\ +\ 4\ devices\ NCS\ dédiés\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00513\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{hw__diag_8c_a9e0db36c1aff47943fb56531485b8d7c}{diag\_init\_spi\_lidars}}(ctx));}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Bus\ I2C\ PCA9555\ :\ PERSISTANT\ (contrôle\ LPn\ +\ alimentation)\ -\/-\/-\/}}
+\DoxyCodeLine{00516\ \textcolor{comment}{\ \ \ \ \ *\ Ne\ pas\ détruire\ ce\ bus\ —\ il\ est\ réutilisé\ par\ hw\_diag\_pca9555\_set\_power()}}
+\DoxyCodeLine{00517\ \textcolor{comment}{\ \ \ \ \ *\ pour\ piloter\ les\ alimentations\ (POWER\_MIC,\ POWER\_RADAR,\ etc.)\ */}}
+\DoxyCodeLine{00518\ \ \ \ \ esp\_err\_t\ pca\_ret\ =\ \mbox{\hyperlink{hw__diag_8c_a9fa304f2c13ef98368f86651968ee7ff}{diag\_init\_i2c\_bus}}(I2C\_NUM\_0,}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_gad7513c4ecfaf2ea7ec9ca0fe2635fbd0}{PIN\_I2C0\_SDA}},\ \mbox{\hyperlink{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e}{PIN\_I2C0\_SCL}},}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}});}
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keywordflow}{if}\ (pca\_ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ I2C\ init\ échoué\ —\ LPn\ et\ alimentations\ non\ contrôlables"{}});}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \ \ \ \ i2c\_master\_bus\_handle\_t\ pca\_bus\ =\ \mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}};\ \textcolor{comment}{/*\ alias\ local\ pour\ lisibilité\ */}}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Lecture\ du\ sélecteur\ ROOT/NODE\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00527\ \ \ \ \ gpio\_set\_pull\_mode(\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\_ROOT\_SEL}},\ GPIO\_PULLUP\_ONLY);}
+\DoxyCodeLine{00528\ \ \ \ \ gpio\_set\_direction(\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\_ROOT\_SEL}},\ GPIO\_MODE\_INPUT);}
+\DoxyCodeLine{00529\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ =\ (gpio\_get\_level(\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\_ROOT\_SEL}})\ ==\ 0);}
+\DoxyCodeLine{00530\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Rôle\ nœud\ :\ \%s"{}},\ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ ?\ \textcolor{stringliteral}{"{}ROOT\ (passerelle)"{}}\ :\ \textcolor{stringliteral}{"{}NODE"{}});}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Scan\ des\ LIDARs\ via\ SPI\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00533\ \ \ \ \ memset(ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}},\ 0,\ \textcolor{keyword}{sizeof}(ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}));}
+\DoxyCodeLine{00534\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a5be005ad0232005e10663dc756467408}{diag\_scan\_lidars}}(ctx,\ pca\_bus);}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{comment}{/*\ Bus\ PCA9555\ conservé\ dans\ s\_pca\_bus\ —\ réutilisé\ par\ hw\_diag\_pca9555\_set\_power()\ */}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Test\ du\ radar\ (uniquement\ si\ connecté)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_RADAR}}
+\DoxyCodeLine{00540\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a0aa4f3a23544482c3431a2fba2fcf89b}{diag\_test\_radar}}(ctx);}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00542\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00543\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ LD6002\ ignoré\ (LEXACARE\_ENABLE\_RADAR=0)\ —\ boot\ +2\ s\ économisés"{}});}
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Calcul\ du\ masque\ de\ résultat\ -\/-\/-\/\ */}}
+\DoxyCodeLine{00547\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}}\ result\ =\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd}{HW\_DIAG\_OK}};}
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keywordtype}{int}\ lidar\_count\ =\ 0;}
+\DoxyCodeLine{00549\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[i])\ lidar\_count++;}
+\DoxyCodeLine{00551\ \ \ \ \ \}}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \textcolor{keywordflow}{if}\ (lidar\_count\ ==\ 0)\ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ result\ |=\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\_DIAG\_LIDAR\_ALL}};}
+\DoxyCodeLine{00555\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (lidar\_count\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}})\ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ result\ |=\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\_DIAG\_LIDAR\_PARTIAL}};}
+\DoxyCodeLine{00557\ \ \ \ \ \}}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_RADAR}}
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}})\ \{}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ result\ |=\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\_DIAG\_RADAR\_MISSING}};}
+\DoxyCodeLine{00562\ \ \ \ \ \}}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{comment}{/*\ Rapport\ JSON\ sur\ la\ console\ */}}
+\DoxyCodeLine{00566\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a758a7a73f29f623be124aa734d85c0cc}{diag\_print\_json\_report}}(ctx,\ result);}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}===\ Diagnostic\ terminé\ (mask=0x\%02X)\ ==="{}},\ result);}
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{00570\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{hw__diag_8c_source_l00096}{diag\+\_\+init\+\_\+i2c\+\_\+bus()}}, \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00475}{diag\+\_\+print\+\_\+json\+\_\+report()}}, \mbox{\hyperlink{hw__diag_8c_source_l00340}{diag\+\_\+scan\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00417}{diag\+\_\+test\+\_\+radar()}}, \mbox{\hyperlink{hw__diag_8h_source_l00036}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+ALL}}, \mbox{\hyperlink{hw__diag_8h_source_l00035}{HW\+\_\+\+DIAG\+\_\+\+LIDAR\+\_\+\+PARTIAL}}, \mbox{\hyperlink{hw__diag_8h_source_l00034}{HW\+\_\+\+DIAG\+\_\+\+OK}}, \mbox{\hyperlink{hw__diag_8h_source_l00037}{HW\+\_\+\+DIAG\+\_\+\+RADAR\+\_\+\+MISSING}}, \mbox{\hyperlink{system__types_8h_source_l00250}{sys\+\_\+context\+\_\+t\+::is\+\_\+root\+\_\+node}}, \mbox{\hyperlink{system__types_8h_source_l00046}{LIDAR\+\_\+\+NUM\+\_\+\+FRONT}}, \mbox{\hyperlink{system__types_8h_source_l00248}{sys\+\_\+context\+\_\+t\+::lidar\+\_\+ok}}, \mbox{\hyperlink{pins__config_8h_source_l00049}{PIN\+\_\+\+I2\+C0\+\_\+\+SCL}}, \mbox{\hyperlink{pins__config_8h_source_l00048}{PIN\+\_\+\+I2\+C0\+\_\+\+SDA}}, \mbox{\hyperlink{pins__config_8h_source_l00151}{PIN\+\_\+\+ROOT\+\_\+\+SEL}}, \mbox{\hyperlink{system__types_8h_source_l00249}{sys\+\_\+context\+\_\+t\+::radar\+\_\+ok}}, \mbox{\hyperlink{hw__diag_8c_source_l00079}{s\+\_\+pca\+\_\+bus}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=245pt]{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb_icgraph}
+\end{center}
+\end{figure}

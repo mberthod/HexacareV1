@@ -1,0 +1,139 @@
+\doxysection{mesh\+\_\+state\+\_\+t Struct Reference}
+\hypertarget{structmesh__state__t}{}\label{structmesh__state__t}\index{mesh\_state\_t@{mesh\_state\_t}}
+
+
+Collaboration diagram for mesh\+\_\+state\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structmesh__state__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6}{sys\+\_\+ctx}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmesh__state__t_ad90f2fb3bbe9e4d81d729d9e5061fb47}{aes\+\_\+key}} \mbox{[}\mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\+\_\+\+AES\+\_\+\+KEY\+\_\+\+LEN}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmesh__state__t_a10d1ebecf7f7ab40ff8a287c49da0c4e}{parent\+\_\+mac}} \mbox{[}6\mbox{]}
+\item 
+bool \mbox{\hyperlink{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3}{has\+\_\+parent}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmesh__state__t_a1a2a2f73ee2b4482fbe1e528e6762b71}{hop\+\_\+to\+\_\+root}}
+\item 
+\mbox{\hyperlink{structpeer__info__t}{peer\+\_\+info\+\_\+t}} \mbox{\hyperlink{structmesh__state__t_aac9ba4a1de8106fce1fe463cc0d15782}{peers}} \mbox{[}\mbox{\hyperlink{mesh__manager_8c_ae17be35a6b7dd82a1db8d1587ad22722}{ESPNOW\+\_\+\+MAX\+\_\+\+PEERS}}\mbox{]}
+\item 
+int \mbox{\hyperlink{structmesh__state__t_aafb630d4b2f82df8751df9979cd30c66}{peer\+\_\+count}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structmesh__state__t_a57427af5d84ed6fc28fe6abd033f7b1e}{own\+\_\+mac}} \mbox{[}6\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00103}{103}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structmesh__state__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structmesh__state__t_ad90f2fb3bbe9e4d81d729d9e5061fb47}\index{mesh\_state\_t@{mesh\_state\_t}!aes\_key@{aes\_key}}
+\index{aes\_key@{aes\_key}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{aes\_key}{aes\_key}}
+{\footnotesize\ttfamily \label{structmesh__state__t_ad90f2fb3bbe9e4d81d729d9e5061fb47} 
+uint8\+\_\+t mesh\+\_\+state\+\_\+t\+::aes\+\_\+key\mbox{[}\mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\+\_\+\+AES\+\_\+\+KEY\+\_\+\+LEN}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00105}{105}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+\Hypertarget{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3}\index{mesh\_state\_t@{mesh\_state\_t}!has\_parent@{has\_parent}}
+\index{has\_parent@{has\_parent}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{has\_parent}{has\_parent}}
+{\footnotesize\ttfamily \label{structmesh__state__t_a055fb3119a9bc7d423469007ed9111d3} 
+bool mesh\+\_\+state\+\_\+t\+::has\+\_\+parent}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00107}{107}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}.
+
+\Hypertarget{structmesh__state__t_a1a2a2f73ee2b4482fbe1e528e6762b71}\index{mesh\_state\_t@{mesh\_state\_t}!hop\_to\_root@{hop\_to\_root}}
+\index{hop\_to\_root@{hop\_to\_root}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{hop\_to\_root}{hop\_to\_root}}
+{\footnotesize\ttfamily \label{structmesh__state__t_a1a2a2f73ee2b4482fbe1e528e6762b71} 
+uint8\+\_\+t mesh\+\_\+state\+\_\+t\+::hop\+\_\+to\+\_\+root}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00108}{108}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+\Hypertarget{structmesh__state__t_a57427af5d84ed6fc28fe6abd033f7b1e}\index{mesh\_state\_t@{mesh\_state\_t}!own\_mac@{own\_mac}}
+\index{own\_mac@{own\_mac}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{own\_mac}{own\_mac}}
+{\footnotesize\ttfamily \label{structmesh__state__t_a57427af5d84ed6fc28fe6abd033f7b1e} 
+uint8\+\_\+t mesh\+\_\+state\+\_\+t\+::own\+\_\+mac\mbox{[}6\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00111}{111}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+\Hypertarget{structmesh__state__t_a10d1ebecf7f7ab40ff8a287c49da0c4e}\index{mesh\_state\_t@{mesh\_state\_t}!parent\_mac@{parent\_mac}}
+\index{parent\_mac@{parent\_mac}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{parent\_mac}{parent\_mac}}
+{\footnotesize\ttfamily \label{structmesh__state__t_a10d1ebecf7f7ab40ff8a287c49da0c4e} 
+uint8\+\_\+t mesh\+\_\+state\+\_\+t\+::parent\+\_\+mac\mbox{[}6\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00106}{106}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}.
+
+\Hypertarget{structmesh__state__t_aafb630d4b2f82df8751df9979cd30c66}\index{mesh\_state\_t@{mesh\_state\_t}!peer\_count@{peer\_count}}
+\index{peer\_count@{peer\_count}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{peer\_count}{peer\_count}}
+{\footnotesize\ttfamily \label{structmesh__state__t_aafb630d4b2f82df8751df9979cd30c66} 
+int mesh\+\_\+state\+\_\+t\+::peer\+\_\+count}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00110}{110}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+\Hypertarget{structmesh__state__t_aac9ba4a1de8106fce1fe463cc0d15782}\index{mesh\_state\_t@{mesh\_state\_t}!peers@{peers}}
+\index{peers@{peers}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{peers}{peers}}
+{\footnotesize\ttfamily \label{structmesh__state__t_aac9ba4a1de8106fce1fe463cc0d15782} 
+\mbox{\hyperlink{structpeer__info__t}{peer\+\_\+info\+\_\+t}} mesh\+\_\+state\+\_\+t\+::peers\mbox{[}\mbox{\hyperlink{mesh__manager_8c_ae17be35a6b7dd82a1db8d1587ad22722}{ESPNOW\+\_\+\+MAX\+\_\+\+PEERS}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00109}{109}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+\Hypertarget{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6}\index{mesh\_state\_t@{mesh\_state\_t}!sys\_ctx@{sys\_ctx}}
+\index{sys\_ctx@{sys\_ctx}!mesh\_state\_t@{mesh\_state\_t}}
+\doxysubsubsection{\texorpdfstring{sys\_ctx}{sys\_ctx}}
+{\footnotesize\ttfamily \label{structmesh__state__t_aa13f46b3f543c7839913404e64094fa6} 
+\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}}\texorpdfstring{$\ast$}{*} mesh\+\_\+state\+\_\+t\+::sys\+\_\+ctx}
+
+
+
+Definition at line \mbox{\hyperlink{mesh__manager_8c_source_l00104}{104}} of file \mbox{\hyperlink{mesh__manager_8c_source}{mesh\+\_\+manager.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/mesh\+\_\+network/\mbox{\hyperlink{mesh__manager_8c}{mesh\+\_\+manager.\+c}}\end{DoxyCompactItemize}

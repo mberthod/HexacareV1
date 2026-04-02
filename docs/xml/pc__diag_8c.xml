@@ -1,0 +1,904 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="pc__diag_8c" kind="file" language="C++">
+    <compoundname>pc_diag.c</compoundname>
+    <includes refid="pc__diag_8h" local="yes">pc_diag.h</includes>
+    <includes refid="sys__storage_8h" local="yes">sys_storage.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="yes">esp_timer.h</includes>
+    <includes local="yes">esp_heap_caps.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="yes">freertos/queue.h</includes>
+    <includes local="yes">cJSON.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">unistd.h</includes>
+    <includes local="no">fcntl.h</includes>
+    <includes local="no">errno.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>pc_diag.h</label>
+        <link refid="pc__diag_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/pc_diag/pc_diag.c</label>
+        <link refid="pc__diag_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>cJSON.h</label>
+      </node>
+      <node id="9">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="23">
+        <label>errno.h</label>
+      </node>
+      <node id="10">
+        <label>esp_err.h</label>
+      </node>
+      <node id="14">
+        <label>esp_heap_caps.h</label>
+      </node>
+      <node id="12">
+        <label>esp_log.h</label>
+      </node>
+      <node id="13">
+        <label>esp_timer.h</label>
+      </node>
+      <node id="22">
+        <label>fcntl.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="8">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="15">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="20">
+        <label>math.h</label>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="17">
+        <label>stdio.h</label>
+      </node>
+      <node id="19">
+        <label>stdlib.h</label>
+      </node>
+      <node id="18">
+        <label>string.h</label>
+      </node>
+      <node id="21">
+        <label>unistd.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structpc__diag__ctx__t" prot="public">pc_diag_ctx_t</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="pc__diag_8c_1a5486258f1f34d3baeda92a74b63c27c3" prot="public" static="no">
+        <name>TASK_STACK_SIZE</name>
+        <initializer>(12288)  /* Augmenté pour JSON LIDAR 8×32 + cJSON heap */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="63" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1a82dd0a9ae27bdb2c3cdd33bb7804861c" prot="public" static="no">
+        <name>TASK_PRIORITY</name>
+        <initializer>(3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="64" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" prot="public" static="no">
+        <name>TASK_CORE</name>
+        <initializer>(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="65" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1a713bee2cc5ebf2ba4b5d15ece162ef52" prot="public" static="no">
+        <name>SENSOR_INTERVAL_MS</name>
+        <initializer>(1000)   /* Rapport sensor : 1 s */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="66" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="66" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1a7d70610ce777e27720817466674458bb" prot="public" static="no">
+        <name>SYS_INTERVAL_MS</name>
+        <initializer>(5000)   /* Rapport sys    : 5 s */</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="67" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="67" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1a8427d0088582c17327e754f5f08c5a56" prot="public" static="no">
+        <name>CMD_BUF_SIZE</name>
+        <initializer>(256)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="68" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="68" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1ac8f274747c171179ff6baac920b7bd04" prot="public" static="no">
+        <name>LOG_TRANSFER_BLOCK_SIZE</name>
+        <initializer>(512)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="69" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="69" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" compoundref="pc__diag_8c" startline="252" endline="274">cmd_download_logs</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1aac747bed84189f8cfa509b94d488e622" prot="public" static="no">
+        <name>MAX_TASKS</name>
+        <initializer>(32)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="70" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="70" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" compoundref="pc__diag_8c" startline="207" endline="247">build_sys_json</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pc__diag_8c_1ab42679d7c2e21904778b0ed79f9da6f8" prot="public" static="no">
+        <name>AI_STATE_COUNT</name>
+        <initializer>(sizeof(<ref refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" kindref="member">ai_event_strings</ref>) / sizeof(<ref refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" kindref="member">ai_event_strings</ref>[0]))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="78" column="9" bodyfile="components/pc_diag/pc_diag.c" bodystart="78" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="pc__diag_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;pc_diag&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="58" column="19" bodyfile="components/pc_diag/pc_diag.c" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* ai_event_strings[]</definition>
+        <argsstring>[]</argsstring>
+        <name>ai_event_strings</name>
+        <initializer>= {
+    &quot;AI_NORMAL&quot;,
+    &quot;AI_CHUTE_DETECTEE&quot;,
+    &quot;AI_MOUVEMENT_ANORMAL&quot;,
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="73" column="19" bodyfile="components/pc_diag/pc_diag.c" bodystart="73" bodyend="77"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char * build_sensor_json</definition>
+        <argsstring>(pc_diag_ctx_t *ctx)</argsstring>
+        <name>build_sensor_json</name>
+        <param>
+          <type><ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="96" column="13" bodyfile="components/pc_diag/pc_diag.c" bodystart="96" bodyend="201"/>
+        <references refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" compoundref="pc__diag_8c" startline="73" endline="77">ai_event_strings</references>
+        <references refid="pc__diag_8c_1ab42679d7c2e21904778b0ed79f9da6f8" compoundref="pc__diag_8c" startline="78">AI_STATE_COUNT</references>
+        <references refid="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" compoundref="system__types_8h" startline="100">radar_data_t::breath_rate_bpm</references>
+        <references refid="structai__event__t_1abda04f94a67eac00a050985c90987309" compoundref="system__types_8h" startline="142">ai_event_t::confidence</references>
+        <references refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" compoundref="system__types_8h" startline="81">lidar_matrix_t::data</references>
+        <references refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" compoundref="system__types_8h" startline="237">sys_context_t::data_mutex</references>
+        <references refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" compoundref="system__types_8h" startline="230">sys_context_t::diag_to_pc_queue</references>
+        <references refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" compoundref="system__types_8h" startline="242">sys_context_t::enviro</references>
+        <references refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" compoundref="pc__diag_8c" startline="86">pc_diag_ctx_t::has_event</references>
+        <references refid="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" compoundref="system__types_8h" startline="98">radar_data_t::heart_phase</references>
+        <references refid="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" compoundref="system__types_8h" startline="101">radar_data_t::heart_rate_bpm</references>
+        <references refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" compoundref="system__types_8h" startline="213">enviro_data_t::humidity_bme</references>
+        <references refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" compoundref="system__types_8h" startline="210">enviro_data_t::humidity_hdc</references>
+        <references refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" compoundref="pc__diag_8c" startline="85">pc_diag_ctx_t::last_event</references>
+        <references refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" compoundref="system__types_8h" startline="238">sys_context_t::latest_sensor</references>
+        <references refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" compoundref="system__types_8h" startline="113">sensor_frame_t::lidar</references>
+        <references refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" compoundref="system__types_8h" startline="45">LIDAR_COLS</references>
+        <references refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" compoundref="system__types_8h" startline="44">LIDAR_ROWS</references>
+        <references refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" compoundref="system__types_8h" startline="245">sys_context_t::mic</references>
+        <references refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" compoundref="system__types_8h" startline="222">mic_data_t::peak</references>
+        <references refid="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" compoundref="system__types_8h" startline="103">radar_data_t::presence</references>
+        <references refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" compoundref="system__types_8h" startline="212">enviro_data_t::pressure_hpa</references>
+        <references refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" compoundref="system__types_8h" startline="114">sensor_frame_t::radar</references>
+        <references refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" compoundref="system__types_8h" startline="116">sensor_frame_t::radar_valid</references>
+        <references refid="structradar__data__t_1a701c910c93542668f4b224637db2b736" compoundref="system__types_8h" startline="97">radar_data_t::resp_phase</references>
+        <references refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" compoundref="system__types_8h" startline="221">mic_data_t::rms</references>
+        <references refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" compoundref="system__types_8h" startline="239">sys_context_t::sensor_valid</references>
+        <references refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" compoundref="system__types_8h" startline="141">ai_event_t::state</references>
+        <references refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" compoundref="pc__diag_8c" startline="84">pc_diag_ctx_t::sys_ctx</references>
+        <references refid="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" compoundref="system__types_8h" startline="102">radar_data_t::target_distance_mm</references>
+        <references refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" compoundref="system__types_8h" startline="211">enviro_data_t::temp_bme_c</references>
+        <references refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" compoundref="system__types_8h" startline="209">enviro_data_t::temp_hdc_c</references>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>char *</type>
+        <definition>static char * build_sys_json</definition>
+        <argsstring>(pc_diag_ctx_t *ctx)</argsstring>
+        <name>build_sys_json</name>
+        <param>
+          <type><ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="207" column="13" bodyfile="components/pc_diag/pc_diag.c" bodystart="207" bodyend="247"/>
+        <references refid="pc__diag_8c_1aac747bed84189f8cfa509b94d488e622" compoundref="pc__diag_8c" startline="70">MAX_TASKS</references>
+        <referencedby refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" compoundref="pc__diag_8c" startline="291" endline="318">process_command</referencedby>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void cmd_download_logs</definition>
+        <argsstring>(void)</argsstring>
+        <name>cmd_download_logs</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="252" column="13" bodyfile="components/pc_diag/pc_diag.c" bodystart="252" bodyend="274"/>
+        <references refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" compoundref="sys__storage_8h" startline="36">LOG_FILE_PATH</references>
+        <references refid="pc__diag_8c_1ac8f274747c171179ff6baac920b7bd04" compoundref="pc__diag_8c" startline="69">LOG_TRANSFER_BLOCK_SIZE</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" compoundref="pc__diag_8c" startline="291" endline="318">process_command</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void cmd_clear_logs</definition>
+        <argsstring>(void)</argsstring>
+        <name>cmd_clear_logs</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="276" column="13" bodyfile="components/pc_diag/pc_diag.c" bodystart="276" bodyend="286"/>
+        <references refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" compoundref="sys__storage_8h" startline="36">LOG_FILE_PATH</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" compoundref="pc__diag_8c" startline="291" endline="318">process_command</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void process_command</definition>
+        <argsstring>(pc_diag_ctx_t *ctx, const char *line)</argsstring>
+        <name>process_command</name>
+        <param>
+          <type><ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>line</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="291" column="13" bodyfile="components/pc_diag/pc_diag.c" bodystart="291" bodyend="318"/>
+        <references refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" compoundref="pc__diag_8c" startline="207" endline="247">build_sys_json</references>
+        <references refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" compoundref="pc__diag_8c" startline="276" endline="286">cmd_clear_logs</references>
+        <references refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" compoundref="pc__diag_8c" startline="252" endline="274">cmd_download_logs</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void task_diag_pc</definition>
+        <argsstring>(void *pvParam)</argsstring>
+        <name>task_diag_pc</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="324" column="13" bodyfile="components/pc_diag/pc_diag.c" bodystart="324" bodyend="405"/>
+        <references refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</references>
+        <references refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" compoundref="pc__diag_8c" startline="207" endline="247">build_sys_json</references>
+        <references refid="pc__diag_8c_1a8427d0088582c17327e754f5f08c5a56" compoundref="pc__diag_8c" startline="68">CMD_BUF_SIZE</references>
+        <references refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" compoundref="pc__diag_8c" startline="291" endline="318">process_command</references>
+        <references refid="pc__diag_8c_1a713bee2cc5ebf2ba4b5d15ece162ef52" compoundref="pc__diag_8c" startline="66">SENSOR_INTERVAL_MS</references>
+        <references refid="pc__diag_8c_1a7d70610ce777e27720817466674458bb" compoundref="pc__diag_8c" startline="67">SYS_INTERVAL_MS</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+      </memberdef>
+      <member refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kind="function"><name>pc_diag_task_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface PC USB-JTAG — Rapport JSON temps réel (Lexacare Studio). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Émet deux types de trames JSON vers le PC via USB Serial/JTAG :</para>
+<para>TRAME SENSOR (toutes les 1 s — données temps réel) : { &quot;type&quot;: &quot;sensor&quot;, &quot;lidar_matrix&quot;: [[...8 rangées × 32 colonnes (mm)...]], &quot;radar&quot;: { &quot;resp_phase&quot;: 0.5, &quot;heart_phase&quot;: 0.1, &quot;breath_rate&quot;: 16, &quot;heart_rate&quot;: 72, &quot;distance_mm&quot;: 1200, &quot;presence&quot;: true }, &quot;ai_event&quot;: &quot;AI_NORMAL&quot;, &quot;confidence&quot;: 0, &quot;hdc1080&quot;: { &quot;temp_c&quot;: 23.5, &quot;humidity_pct&quot;: 45.2 }, &quot;bme280&quot;: { &quot;temp_c&quot;: 23.2, &quot;pressure_hpa&quot;: 1013.2, &quot;humidity_pct&quot;: 44.8 }, &quot;mic&quot;: { &quot;rms&quot;: 1234, &quot;peak&quot;: 4096 } }</para>
+<para>TRAME SYS (toutes les 5 s — métriques firmware) : { &quot;type&quot;: &quot;sys&quot;, &quot;uptime_s&quot;: 1234, &quot;cpu_load&quot;: [45, 80], &quot;heap_free&quot;: 8700000, &quot;psram_free&quot;: 8000000, &quot;tasks_hwm&quot;: { &quot;Task_Sensor_Acq&quot;: 2048, ... } }</para>
+<para>Commandes acceptées depuis stdin (JSON + &apos;<linebreak/>
+&apos;) : {&quot;cmd&quot;:&quot;get_diag&quot;} → rapport JSON immédiat {&quot;cmd&quot;:&quot;download_logs&quot;} → transfert /spiffs/app.log {&quot;cmd&quot;:&quot;clear_logs&quot;} → suppression /spiffs/app.log </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>pc_diag.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_pc_diag</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>PC<sp/>USB-JTAG<sp/>—<sp/>Rapport<sp/>JSON<sp/>temps<sp/>réel<sp/>(Lexacare<sp/>Studio).</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Émet<sp/>deux<sp/>types<sp/>de<sp/>trames<sp/>JSON<sp/>vers<sp/>le<sp/>PC<sp/>via<sp/>USB<sp/>Serial/JTAG<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>TRAME<sp/>SENSOR<sp/>(toutes<sp/>les<sp/>1<sp/>s<sp/>—<sp/>données<sp/>temps<sp/>réel)<sp/>:</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;sensor&quot;,</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;lidar_matrix&quot;:<sp/>[[...8<sp/>rangées<sp/>×<sp/>32<sp/>colonnes<sp/>(mm)...]],</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;radar&quot;:<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;resp_phase&quot;:<sp/>0.5,<sp/>&quot;heart_phase&quot;:<sp/>0.1,</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;breath_rate&quot;:<sp/>16,<sp/>&quot;heart_rate&quot;:<sp/>72,</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;distance_mm&quot;:<sp/>1200,<sp/>&quot;presence&quot;:<sp/>true</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;ai_event&quot;:<sp/>&quot;AI_NORMAL&quot;,</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;confidence&quot;:<sp/>0,</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;hdc1080&quot;:<sp/>{<sp/>&quot;temp_c&quot;:<sp/>23.5,<sp/>&quot;humidity_pct&quot;:<sp/>45.2<sp/>},</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;bme280&quot;:<sp/><sp/>{<sp/>&quot;temp_c&quot;:<sp/>23.2,<sp/>&quot;pressure_hpa&quot;:<sp/>1013.2,<sp/>&quot;humidity_pct&quot;:<sp/>44.8<sp/>},</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;mic&quot;:<sp/><sp/><sp/><sp/><sp/>{<sp/>&quot;rms&quot;:<sp/>1234,<sp/>&quot;peak&quot;:<sp/>4096<sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>TRAME<sp/>SYS<sp/>(toutes<sp/>les<sp/>5<sp/>s<sp/>—<sp/>métriques<sp/>firmware)<sp/>:</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;type&quot;:<sp/>&quot;sys&quot;,</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;uptime_s&quot;:<sp/>1234,</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;cpu_load&quot;:<sp/>[45,<sp/>80],</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;heap_free&quot;:<sp/>8700000,</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;psram_free&quot;:<sp/>8000000,</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>&quot;tasks_hwm&quot;:<sp/>{<sp/>&quot;Task_Sensor_Acq&quot;:<sp/>2048,<sp/>...<sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>Commandes<sp/>acceptées<sp/>depuis<sp/>stdin<sp/>(JSON<sp/>+<sp/>&apos;\n&apos;)<sp/>:</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/><sp/><sp/>{&quot;cmd&quot;:&quot;get_diag&quot;}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>rapport<sp/>JSON<sp/>immédiat</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/><sp/><sp/>{&quot;cmd&quot;:&quot;download_logs&quot;}<sp/><sp/><sp/>→<sp/>transfert<sp/>/spiffs/app.log</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/><sp/><sp/>{&quot;cmd&quot;:&quot;clear_logs&quot;}<sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>suppression<sp/>/spiffs/app.log</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pc__diag_8h" kindref="compound">pc_diag.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sys__storage_8h" kindref="compound">sys_storage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_heap_caps.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/queue.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cJSON.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;unistd.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fcntl.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;errno.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="pc__diag_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;pc_diag&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>Constantes<sp/>de<sp/>la<sp/>tâche</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="pc__diag_8c_1a5486258f1f34d3baeda92a74b63c27c3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_STACK_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(12288)<sp/><sp/></highlight><highlight class="comment">/*<sp/>Augmenté<sp/>pour<sp/>JSON<sp/>LIDAR<sp/>8×32<sp/>+<sp/>cJSON<sp/>heap<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="pc__diag_8c_1a82dd0a9ae27bdb2c3cdd33bb7804861c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_PRIORITY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="pc__diag_8c_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_CORE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="pc__diag_8c_1a713bee2cc5ebf2ba4b5d15ece162ef52" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SENSOR_INTERVAL_MS<sp/><sp/><sp/><sp/><sp/><sp/>(1000)<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Rapport<sp/>sensor<sp/>:<sp/>1<sp/>s<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="pc__diag_8c_1a7d70610ce777e27720817466674458bb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SYS_INTERVAL_MS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(5000)<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Rapport<sp/>sys<sp/><sp/><sp/><sp/>:<sp/>5<sp/>s<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="pc__diag_8c_1a8427d0088582c17327e754f5f08c5a56" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CMD_BUF_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(256)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="pc__diag_8c_1ac8f274747c171179ff6baac920b7bd04" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOG_TRANSFER_BLOCK_SIZE<sp/>(512)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="pc__diag_8c_1aac747bed84189f8cfa509b94d488e622" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MAX_TASKS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(32)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Mapping<sp/>état<sp/>IA<sp/>(entier<sp/>legacy<sp/>→<sp/>string<sp/>cible)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" kindref="member">ai_event_strings</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;AI_NORMAL&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;AI_CHUTE_DETECTEE&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;AI_MOUVEMENT_ANORMAL&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="78" refid="pc__diag_8c_1ab42679d7c2e21904778b0ed79f9da6f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>AI_STATE_COUNT<sp/><sp/>(sizeof(ai_event_strings)<sp/>/<sp/>sizeof(ai_event_strings[0]))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>pc_diag_ctx_t<sp/>(interne)</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structpc__diag__ctx__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="84" refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*<ref refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" kindref="member">sys_ctx</ref>;</highlight></codeline>
+<codeline lineno="85" refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structai__event__t" kindref="compound">ai_event_t</ref><sp/><sp/><sp/><sp/><sp/><ref refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" kindref="member">last_event</ref>;</highlight></codeline>
+<codeline lineno="86" refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" kindref="member">has_event</ref>;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}<sp/><ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>build_sensor_json<sp/>(interne)</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Construit<sp/>la<sp/>trame<sp/>JSON<sp/>&quot;type:sensor&quot;<sp/>depuis<sp/>le<sp/>snapshot</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>partagé<sp/>de<sp/>sys_context_t.</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>@return<sp/>Chaîne<sp/>JSON<sp/>allouée<sp/>(libérer<sp/>avec<sp/>cJSON_free),<sp/>ou<sp/>NULL.</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" kindref="member">build_sensor_json</ref>(<ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*sys<sp/>=<sp/>ctx-&gt;<ref refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" kindref="member">sys_ctx</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*root<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!root)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;type&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;sensor&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Matrice<sp/>LIDAR<sp/>8×32<sp/>────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref><sp/>snap<sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>snap_valid<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref><sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreTake(sys-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>,<sp/>pdMS_TO_TICKS(10))<sp/>==<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>snap<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>sys-&gt;<ref refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" kindref="member">latest_sensor</ref>;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>snap_valid<sp/>=<sp/>sys-&gt;<ref refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" kindref="member">sensor_valid</ref>;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreGive(sys-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*matrix<sp/>=<sp/>cJSON_CreateArray();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>0;<sp/>row<sp/>&lt;<sp/><ref refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kindref="member">LIDAR_ROWS</ref>;<sp/>row++)<sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON<sp/>*row_arr<sp/>=<sp/>cJSON_CreateArray();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0;<sp/>col<sp/>&lt;<sp/><ref refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" kindref="member">LIDAR_COLS</ref>;<sp/>col++)<sp/>{</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>d<sp/>=<sp/>snap_valid<sp/>?<sp/>snap.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>.<ref refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" kindref="member">data</ref>[row][col]<sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToArray(row_arr,<sp/>cJSON_CreateNumber(d));</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToArray(matrix,<sp/>row_arr);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;lidar_matrix&quot;</highlight><highlight class="normal">,<sp/>matrix);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Radar<sp/>─────────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*radar<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snap_valid<sp/>&amp;&amp;<sp/>snap.<ref refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" kindref="member">radar_valid</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;resp_phase&quot;</highlight><highlight class="normal">,<sp/><sp/>snap.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>.<ref refid="structradar__data__t_1a701c910c93542668f4b224637db2b736" kindref="member">resp_phase</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;heart_phase&quot;</highlight><highlight class="normal">,<sp/>snap.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>.<ref refid="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" kindref="member">heart_phase</ref>);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;breath_rate&quot;</highlight><highlight class="normal">,<sp/>snap.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>.<ref refid="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" kindref="member">breath_rate_bpm</ref>);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;heart_rate&quot;</highlight><highlight class="normal">,<sp/><sp/>snap.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>.<ref refid="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" kindref="member">heart_rate_bpm</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;distance_mm&quot;</highlight><highlight class="normal">,<sp/>snap.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>.<ref refid="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" kindref="member">target_distance_mm</ref>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddBoolToObject<sp/><sp/>(radar,<sp/></highlight><highlight class="stringliteral">&quot;presence&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/>snap.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>.<ref refid="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" kindref="member">presence</ref>);</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;resp_phase&quot;</highlight><highlight class="normal">,<sp/><sp/>0.0);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;heart_phase&quot;</highlight><highlight class="normal">,<sp/>0.0);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;breath_rate&quot;</highlight><highlight class="normal">,<sp/>0);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;heart_rate&quot;</highlight><highlight class="normal">,<sp/><sp/>0);</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(radar,<sp/></highlight><highlight class="stringliteral">&quot;distance_mm&quot;</highlight><highlight class="normal">,<sp/>0);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddBoolToObject<sp/><sp/>(radar,<sp/></highlight><highlight class="stringliteral">&quot;presence&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;radar&quot;</highlight><highlight class="normal">,<sp/>radar);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Événement<sp/>IA<sp/>──────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Récupérer<sp/>le<sp/>dernier<sp/>événement<sp/>depuis<sp/>la<sp/>queue<sp/>de<sp/>diagnostic<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structai__event__t" kindref="compound">ai_event_t</ref><sp/>evt<sp/>=<sp/>ctx-&gt;<ref refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" kindref="member">last_event</ref>;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(xQueueReceive(sys-&gt;<ref refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" kindref="member">diag_to_pc_queue</ref>,<sp/>&amp;evt,<sp/>0)<sp/>==<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" kindref="member">last_event</ref><sp/>=<sp/>evt;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" kindref="member">has_event</ref><sp/><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>ai_state<sp/>=<sp/>(ctx-&gt;<ref refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" kindref="member">has_event</ref>)<sp/>?<sp/>ctx-&gt;<ref refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" kindref="member">last_event</ref>.<ref refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" kindref="member">state</ref><sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*ai_str<sp/>=<sp/>(ai_state<sp/>&lt;<sp/><ref refid="pc__diag_8c_1ab42679d7c2e21904778b0ed79f9da6f8" kindref="member">AI_STATE_COUNT</ref>)</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>?<sp/><ref refid="pc__diag_8c_1a3263c3a030722bc81b09a13d0cafa197" kindref="member">ai_event_strings</ref>[ai_state]</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;AI_NORMAL&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>confidence<sp/>=<sp/>(ctx-&gt;<ref refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" kindref="member">has_event</ref>)<sp/>?<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)ctx-&gt;<ref refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" kindref="member">last_event</ref>.<ref refid="structai__event__t_1abda04f94a67eac00a050985c90987309" kindref="member">confidence</ref><sp/>:<sp/>0;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;ai_event&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/>ai_str);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;confidence&quot;</highlight><highlight class="normal">,<sp/>confidence);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>HDC1080<sp/>───────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*hdc<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(snap_valid)<sp/>{</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structenviro__data__t" kindref="compound">enviro_data_t</ref><sp/>env;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structmic__data__t" kindref="compound">mic_data_t</ref><sp/><sp/><sp/><sp/>mic_data;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref><sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreTake(sys-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>,<sp/>pdMS_TO_TICKS(5))<sp/>==<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>sys-&gt;<ref refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" kindref="member">enviro</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mic_data<sp/>=<sp/>sys-&gt;<ref refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" kindref="member">mic</ref>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreGive(sys-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(&amp;env,<sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(env));</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(&amp;mic_data,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(mic_data));</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isnan(env.<ref refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" kindref="member">temp_hdc_c</ref>))</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(hdc,<sp/></highlight><highlight class="stringliteral">&quot;temp_c&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)env.<ref refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" kindref="member">temp_hdc_c</ref>);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isnan(env.<ref refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" kindref="member">humidity_hdc</ref>))</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(hdc,<sp/></highlight><highlight class="stringliteral">&quot;humidity_pct&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)env.<ref refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" kindref="member">humidity_hdc</ref>);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>BME280<sp/>───────────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON<sp/>*bme<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isnan(env.<ref refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" kindref="member">temp_bme_c</ref>))</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(bme,<sp/></highlight><highlight class="stringliteral">&quot;temp_c&quot;</highlight><highlight class="normal">,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)env.<ref refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" kindref="member">temp_bme_c</ref>);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isnan(env.<ref refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" kindref="member">pressure_hpa</ref>))</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(bme,<sp/></highlight><highlight class="stringliteral">&quot;pressure_hpa&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)env.<ref refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" kindref="member">pressure_hpa</ref>);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isnan(env.<ref refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" kindref="member">humidity_bme</ref>))</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(bme,<sp/></highlight><highlight class="stringliteral">&quot;humidity_pct&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)env.<ref refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" kindref="member">humidity_bme</ref>);</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;bme280&quot;</highlight><highlight class="normal">,<sp/>bme);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Microphone<sp/>───────────────────────────────────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON<sp/>*mic<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(mic,<sp/></highlight><highlight class="stringliteral">&quot;rms&quot;</highlight><highlight class="normal">,<sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)mic_data.<ref refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" kindref="member">rms</ref>);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(mic,<sp/></highlight><highlight class="stringliteral">&quot;peak&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)mic_data.<ref refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" kindref="member">peak</ref>);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;mic&quot;</highlight><highlight class="normal">,<sp/>mic);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;hdc1080&quot;</highlight><highlight class="normal">,<sp/>hdc);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*json_str<sp/>=<sp/>cJSON_PrintUnformatted(root);</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_Delete(root);</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>json_str;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="204"><highlight class="comment"><sp/>*<sp/>build_sys_json<sp/>(interne)</highlight></codeline>
+<codeline lineno="205"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Construit<sp/>la<sp/>trame<sp/>JSON<sp/>&quot;type:sys&quot;.</highlight></codeline>
+<codeline lineno="206"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207" refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" kindref="member">build_sys_json</ref>(<ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="208"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*root<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!root)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>NULL;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddStringToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;type&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;sys&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>uptime_us<sp/>=<sp/>esp_timer_get_time();</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;uptime_s&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)(uptime_us<sp/>/<sp/>1000000LL));</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>cpu_load<sp/>:<sp/>non<sp/>fourni<sp/>nativement<sp/>par<sp/>ESP-IDF<sp/>sans<sp/>FreeRTOS<sp/>runtime<sp/>stats.</highlight></codeline>
+<codeline lineno="218"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>On<sp/>expose<sp/>[0,<sp/>0]<sp/>en<sp/>attendant<sp/>l&apos;intégration<sp/>de<sp/>CONFIG_FREERTOS_GENERATE_RUN_TIME_STATS.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*cpu_load<sp/>=<sp/>cJSON_CreateArray();</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToArray(cpu_load,<sp/>cJSON_CreateNumber(0));</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToArray(cpu_load,<sp/>cJSON_CreateNumber(0));</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;cpu_load&quot;</highlight><highlight class="normal">,<sp/>cpu_load);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;heap_free&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)heap_caps_get_free_size(MALLOC_CAP_INTERNAL));</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;psram_free&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Tâches<sp/>FreeRTOS<sp/>—<sp/>High<sp/>Water<sp/>Mark<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>TaskStatus_t<sp/>task_statuses[<ref refid="pc__diag_8c_1aac747bed84189f8cfa509b94d488e622" kindref="member">MAX_TASKS</ref>];</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>UBaseType_t<sp/><sp/>task_count<sp/>=<sp/>uxTaskGetSystemState(task_statuses,<sp/><ref refid="pc__diag_8c_1aac747bed84189f8cfa509b94d488e622" kindref="member">MAX_TASKS</ref>,<sp/>NULL);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*tasks_hwm<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(UBaseType_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>task_count;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>HWM<sp/>en<sp/>mots<sp/>(4<sp/>octets)<sp/>→<sp/>convertir<sp/>en<sp/>octets<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>hwm_bytes<sp/>=<sp/>(uint32_t)task_statuses[i].usStackHighWaterMark</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(StackType_t);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(tasks_hwm,</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>task_statuses[i].pcTaskName,</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)hwm_bytes);</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;tasks_hwm&quot;</highlight><highlight class="normal">,<sp/>tasks_hwm);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*json_str<sp/>=<sp/>cJSON_PrintUnformatted(root);</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_Delete(root);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>json_str;</highlight></codeline>
+<codeline lineno="247"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="250"><highlight class="comment"><sp/>*<sp/>cmd_download_logs<sp/>/<sp/>cmd_clear_logs<sp/>(interne)<sp/>—<sp/>inchangés</highlight></codeline>
+<codeline lineno="251"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="252" refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" kindref="member">cmd_download_logs</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>fopen(<ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!f)<sp/>{</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;{\&quot;status\&quot;:\&quot;error\&quot;,\&quot;msg\&quot;:\&quot;Fichier<sp/>log<sp/>introuvable\&quot;}\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>fseek(f,<sp/>0,<sp/>SEEK_END);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>file_size<sp/>=<sp/>ftell(f);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>rewind(f);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;{\&quot;status\&quot;:\&quot;ok\&quot;,\&quot;filename\&quot;:\&quot;app.log\&quot;,\&quot;size\&quot;:%ld}\n&quot;</highlight><highlight class="normal">,<sp/>file_size);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>block[<ref refid="pc__diag_8c_1ac8f274747c171179ff6baac920b7bd04" kindref="member">LOG_TRANSFER_BLOCK_SIZE</ref>];</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><sp/>rb;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((rb<sp/>=<sp/>fread(block,<sp/>1,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(block),<sp/>f))<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fwrite(block,<sp/>1,<sp/>rb,<sp/>stdout);</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n{\&quot;status\&quot;:\&quot;done\&quot;}\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Transfert<sp/>log<sp/>terminé<sp/>(%ld<sp/>octets)&quot;</highlight><highlight class="normal">,<sp/>file_size);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276" refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" kindref="member">cmd_clear_logs</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="277"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ret<sp/>=<sp/>remove(<ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>);</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;{\&quot;status\&quot;:\&quot;ok\&quot;,\&quot;msg\&quot;:\&quot;Log<sp/>effacé\&quot;}\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Fichier<sp/>log<sp/>supprimé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;{\&quot;status\&quot;:\&quot;error\&quot;,\&quot;msg\&quot;:\&quot;Échec<sp/>suppression\&quot;}\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="289"><highlight class="comment"><sp/>*<sp/>process_command<sp/>(interne)</highlight></codeline>
+<codeline lineno="290"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="291" refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" kindref="member">process_command</ref>(<ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref><sp/>*ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*line)</highlight></codeline>
+<codeline lineno="292"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*cmd_json<sp/>=<sp/>cJSON_Parse(line);</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!cmd_json)<sp/>{</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Commande<sp/>JSON<sp/>invalide<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>line);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>cJSON<sp/>*cmd<sp/>=<sp/>cJSON_GetObjectItem(cmd_json,<sp/></highlight><highlight class="stringliteral">&quot;cmd&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!cJSON_IsString(cmd))<sp/>{</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_Delete(cmd_json);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*cmd_str<sp/>=<sp/>cmd-&gt;valuestring;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Commande<sp/>reçue<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>cmd_str);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"></highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(cmd_str,<sp/></highlight><highlight class="stringliteral">&quot;download_logs&quot;</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pc__diag_8c_1a54084e6e535ac4e7a8ca3a3b42974178" kindref="member">cmd_download_logs</ref>();</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(cmd_str,<sp/></highlight><highlight class="stringliteral">&quot;clear_logs&quot;</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pc__diag_8c_1a3cff5c01023ea27179dd4ef51291e0c4" kindref="member">cmd_clear_logs</ref>();</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(strcmp(cmd_str,<sp/></highlight><highlight class="stringliteral">&quot;get_diag&quot;</highlight><highlight class="normal">)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*json<sp/>=<sp/><ref refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" kindref="member">build_sys_json</ref>(ctx);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(json)<sp/>{<sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>json);<sp/>fflush(stdout);<sp/>cJSON_free(json);<sp/>}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;{\&quot;status\&quot;:\&quot;error\&quot;,\&quot;msg\&quot;:\&quot;Commande<sp/>inconnue<sp/>:<sp/>%s\&quot;}\n&quot;</highlight><highlight class="normal">,<sp/>cmd_str);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_Delete(cmd_json);</highlight></codeline>
+<codeline lineno="318"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="321"><highlight class="comment"><sp/>*<sp/>task_diag_pc<sp/>(interne)</highlight></codeline>
+<codeline lineno="322"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Tâche<sp/>FreeRTOS<sp/>—<sp/>Core<sp/>0,<sp/>priorité<sp/>3.</highlight></codeline>
+<codeline lineno="323"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324" refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" kindref="member">task_diag_pc</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParam)</highlight></codeline>
+<codeline lineno="325"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref><sp/>*ctx<sp/>=<sp/>(<ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref><sp/>*)pvParam;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Task_Diag_PC<sp/>démarrée<sp/>sur<sp/>Core<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>xPortGetCoreID());</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Stdin<sp/>non-bloquant<sp/>(IDF<sp/>6.0<sp/>/<sp/>USB<sp/>CDC)<sp/>──────────────────────</highlight></codeline>
+<codeline lineno="330"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>fgets()<sp/>peut<sp/>bloquer<sp/>indéfiniment<sp/>sur<sp/>USB<sp/>JTAG<sp/>en<sp/>ESP-IDF<sp/>6.0.</highlight></codeline>
+<codeline lineno="331"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>select()<sp/>peut<sp/>déclencher<sp/>des<sp/>allocations<sp/>VFS<sp/>récurrentes<sp/>(esp_vfs_select)</highlight></codeline>
+<codeline lineno="332"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>qui,<sp/>sur<sp/>certains<sp/>builds,<sp/>exposent<sp/>des<sp/>asserts<sp/>TLSF.</highlight></codeline>
+<codeline lineno="333"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Stratégie<sp/>:<sp/>O_NONBLOCK<sp/>+<sp/>read()<sp/>brut<sp/>+<sp/>parsing<sp/>en<sp/>mémoire.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>stdin_fd<sp/>=<sp/>fileno(stdin);</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Tentative<sp/>de<sp/>mise<sp/>en<sp/>mode<sp/>O_NONBLOCK<sp/>(peut<sp/>échouer<sp/>sur<sp/>certains<sp/>VFS)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fl<sp/>=<sp/>fcntl(stdin_fd,<sp/>F_GETFL,<sp/>0);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fl<sp/>&gt;=<sp/>0)<sp/>fcntl(stdin_fd,<sp/>F_SETFL,<sp/>fl<sp/>|<sp/>O_NONBLOCK);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>cmd_buf[<ref refid="pc__diag_8c_1a8427d0088582c17327e754f5f08c5a56" kindref="member">CMD_BUF_SIZE</ref>];<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>statique<sp/>pour<sp/>économiser<sp/>le<sp/>stack<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/>cmd_len<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>TickType_t<sp/>last_sensor<sp/>=<sp/>xTaskGetTickCount();</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>TickType_t<sp/>last_sys<sp/><sp/><sp/><sp/>=<sp/>xTaskGetTickCount();</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;JSON<sp/>démarré<sp/>:<sp/>sensor@%d<sp/>s,<sp/>sys@%d<sp/>s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pc__diag_8c_1a713bee2cc5ebf2ba4b5d15ece162ef52" kindref="member">SENSOR_INTERVAL_MS</ref><sp/>/<sp/>1000,<sp/><ref refid="pc__diag_8c_1a7d70610ce777e27720817466674458bb" kindref="member">SYS_INTERVAL_MS</ref><sp/>/<sp/>1000);</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TickType_t<sp/>now<sp/>=<sp/>xTaskGetTickCount();</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Lecture<sp/>commandes<sp/>stdin<sp/>(NON<sp/>BLOQUANT)<sp/>───────────────────</highlight></codeline>
+<codeline lineno="354"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>read()<sp/>non<sp/>bloquant<sp/>:<sp/>retourne<sp/>-1/EAGAIN<sp/>si<sp/>rien<sp/>à<sp/>lire.<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>rx[64];</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ssize_t<sp/>r<sp/>=<sp/>read(stdin_fd,<sp/>rx,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(rx));</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(r<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ssize_t<sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>r;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>rx[i];</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\r&apos;</highlight><highlight class="normal">)<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>==<sp/></highlight><highlight class="charliteral">&apos;\n&apos;</highlight><highlight class="normal"><sp/>||<sp/>cmd_len<sp/>&gt;=<sp/><ref refid="pc__diag_8c_1a8427d0088582c17327e754f5f08c5a56" kindref="member">CMD_BUF_SIZE</ref><sp/>-<sp/>1)<sp/>{</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cmd_buf[cmd_len]<sp/>=<sp/></highlight><highlight class="charliteral">&apos;\0&apos;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(cmd_len<sp/>&gt;<sp/>2)<sp/><ref refid="pc__diag_8c_1aa6214e5f1fa26e58413c4961ffb46df1" kindref="member">process_command</ref>(ctx,<sp/>cmd_buf);</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cmd_len<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cmd_buf[cmd_len++]<sp/>=<sp/>c;</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(r<sp/>&lt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(errno<sp/>==<sp/>EAGAIN<sp/>||<sp/>errno<sp/>==<sp/>EWOULDBLOCK))<sp/>{</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;read(stdin)<sp/>échoué<sp/>:<sp/>errno=%d&quot;</highlight><highlight class="normal">,<sp/>errno);</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Rapport<sp/>SENSOR<sp/>(@SENSOR_INTERVAL_MS)<sp/>────────────────────</highlight></codeline>
+<codeline lineno="378"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>Émis<sp/>en<sp/>JSON<sp/>une<sp/>ligne<sp/>:<sp/>{&quot;type&quot;:&quot;sensor&quot;,&quot;lidar_matrix&quot;:…}<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((now<sp/>-<sp/>last_sensor)<sp/>&gt;=<sp/>pdMS_TO_TICKS(<ref refid="pc__diag_8c_1a713bee2cc5ebf2ba4b5d15ece162ef52" kindref="member">SENSOR_INTERVAL_MS</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>last_sensor<sp/>=<sp/>now;</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*json<sp/>=<sp/><ref refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" kindref="member">build_sensor_json</ref>(ctx);</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(json)<sp/>{</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>json);</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(json);</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;build_sensor_json<sp/>:<sp/>allocation<sp/>échouée<sp/>(heap<sp/>?)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Rapport<sp/>SYS<sp/>(@SYS_INTERVAL_MS)<sp/>─────────────────────────</highlight></codeline>
+<codeline lineno="392"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>Émis<sp/>en<sp/>JSON<sp/>une<sp/>ligne<sp/>:<sp/>{&quot;type&quot;:&quot;sys&quot;,&quot;cpu_load&quot;:…}<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((now<sp/>-<sp/>last_sys)<sp/>&gt;=<sp/>pdMS_TO_TICKS(<ref refid="pc__diag_8c_1a7d70610ce777e27720817466674458bb" kindref="member">SYS_INTERVAL_MS</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>last_sys<sp/>=<sp/>now;</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*json<sp/>=<sp/><ref refid="pc__diag_8c_1a1a7183f10362aa141c781811ed86a9bb" kindref="member">build_sys_json</ref>(ctx);</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(json)<sp/>{</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;%s\n&quot;</highlight><highlight class="normal">,<sp/>json);</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fflush(stdout);</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(json);</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"></highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(50));<sp/></highlight><highlight class="comment">/*<sp/>Cède<sp/>le<sp/>CPU<sp/>—<sp/>50<sp/>ms<sp/>=<sp/>20<sp/>itérations/s<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="405"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="408"><highlight class="comment"><sp/>*<sp/>pc_diag_task_start</highlight></codeline>
+<codeline lineno="409"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="410" refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kindref="member">pc_diag_task_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="411"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref><sp/>*task_ctx<sp/>=<sp/>calloc(1,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structpc__diag__ctx__t" kindref="compound">pc_diag_ctx_t</ref>));</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!task_ctx)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_NO_MEM;</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/>task_ctx-&gt;<ref refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" kindref="member">sys_ctx</ref><sp/><sp/>=<sp/>ctx;</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/>task_ctx-&gt;<ref refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" kindref="member">has_event</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"></highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseType_t<sp/>ret<sp/>=<sp/>xTaskCreatePinnedToCore(</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" kindref="member">task_diag_pc</ref>,</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Task_Diag_PC&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" kindref="member">TASK_STACK_SIZE</ref>,</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>task_ctx,</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kindref="member">TASK_PRIORITY</ref>,</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NULL,</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kindref="member">TASK_CORE</ref>);</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"></highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>pdPASS)<sp/>{</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(task_ctx);</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Échec<sp/>création<sp/>Task_Diag_PC&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"></highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Task_Diag_PC<sp/>créée<sp/>(Core<sp/>%d,<sp/>prio<sp/>%d,<sp/>sensor@1Hz<sp/>sys@5Hz)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kindref="member">TASK_CORE</ref>,<sp/><ref refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kindref="member">TASK_PRIORITY</ref>);</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="435"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/pc_diag/pc_diag.c"/>
+  </compounddef>
+</doxygen>

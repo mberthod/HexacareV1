@@ -1,0 +1,355 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="ota__node_8c" kind="file" language="C++">
+    <compoundname>ota_node.c</compoundname>
+    <includes refid="ota__node_8h" local="yes">ota_node.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="yes">esp_ota_ops.h</includes>
+    <includes local="yes">esp_now.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="3">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ota_node.h</label>
+        <link refid="ota__node_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/mesh_network/ota_node.c</label>
+        <link refid="ota__node_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="10">
+        <label>esp_err.h</label>
+      </node>
+      <node id="11">
+        <label>esp_log.h</label>
+      </node>
+      <node id="13">
+        <label>esp_now.h</label>
+      </node>
+      <node id="12">
+        <label>esp_ota_ops.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="8">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="15">
+        <label>stdio.h</label>
+      </node>
+      <node id="14">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structota__state__t" prot="public">ota_state_t</innerclass>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="ota__node_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;ota_node&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/ota_node.c" line="24" column="19" bodyfile="components/mesh_network/ota_node.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" prot="public" static="yes" mutable="no">
+        <type><ref refid="structota__state__t" kindref="compound">ota_state_t</ref></type>
+        <definition>ota_state_t s_ota</definition>
+        <argsstring></argsstring>
+        <name>s_ota</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/ota_node.c" line="37" column="20" bodyfile="components/mesh_network/ota_node.c" bodystart="37" bodyend="-1"/>
+        <referencedby refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" compoundref="ota__node_8c" startline="45" endline="61">ota_node_init</referencedby>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <member refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kind="function"><name>ota_node_init</name></member>
+      <memberdef kind="function" id="ota__node_8c_1af8ea4caf0abd81ac32d84ed4819dfa6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t ota_node_process_fragment</definition>
+        <argsstring>(const ota_fragment_payload_t *frag, const uint8_t(*children_mac)[6], int child_count, const uint8_t *raw_frame, size_t frame_len)</argsstring>
+        <name>ota_node_process_fragment</name>
+        <param>
+          <type>const <ref refid="structota__fragment__payload__t" kindref="compound">ota_fragment_payload_t</ref> *</type>
+          <declname>frag</declname>
+        </param>
+        <param>
+          <type>const uint8_t(*)</type>
+          <declname>children_mac</declname>
+          <array>[6]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>child_count</declname>
+        </param>
+        <param>
+          <type>const uint8_t *</type>
+          <declname>raw_frame</declname>
+        </param>
+        <param>
+          <type>size_t</type>
+          <declname>frame_len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/ota_node.c" line="74" column="11" bodyfile="components/mesh_network/ota_node.c" bodystart="74" bodyend="166"/>
+        <references refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" compoundref="system__types_8h" startline="178">ota_fragment_payload_t::data</references>
+        <references refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" compoundref="system__types_8h" startline="175">ota_fragment_payload_t::firmware_size</references>
+        <references refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" compoundref="system__types_8h" startline="177">ota_fragment_payload_t::fragment_data_len</references>
+        <references refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" compoundref="system__types_8h" startline="176">ota_fragment_payload_t::fragment_offset</references>
+        <references refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" compoundref="system__types_8h" startline="179">ota_fragment_payload_t::is_last</references>
+        <references refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" compoundref="ota__node_8c" startline="37">s_ota</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>OTA nœud-à-nœud via ESP-NOW — fragments 200 octets. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Protocole :<orderedlist>
+<listitem><para>Réception d&apos;un fragment OTA_FRAGMENT déchiffré (<ref refid="structota__fragment__payload__t" kindref="compound">ota_fragment_payload_t</ref>).</para>
+</listitem><listitem><para>Premier fragment (offset == 0) : appel esp_ota_begin().</para>
+</listitem><listitem><para>esp_ota_write() avec les données du fragment.</para>
+</listitem><listitem><para>Retransmission immédiate du fragment brut (chiffré) aux enfants.</para>
+</listitem><listitem><para>Dernier fragment (is_last == true) : esp_ota_end() → vérification MD5 → esp_ota_set_boot_partition() → log_write(&quot;OTA terminé&quot;) → esp_restart(). </para>
+</listitem></orderedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>ota_node.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_mesh</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>OTA<sp/>nœud-à-nœud<sp/>via<sp/>ESP-NOW<sp/>—<sp/>fragments<sp/>200<sp/>octets.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Protocole<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>Réception<sp/>d&apos;un<sp/>fragment<sp/>OTA_FRAGMENT<sp/>déchiffré<sp/>(ota_fragment_payload_t).</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>Premier<sp/>fragment<sp/>(offset<sp/>==<sp/>0)<sp/>:<sp/>appel<sp/>esp_ota_begin().</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>esp_ota_write()<sp/>avec<sp/>les<sp/>données<sp/>du<sp/>fragment.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4.<sp/>Retransmission<sp/>immédiate<sp/>du<sp/>fragment<sp/>brut<sp/>(chiffré)<sp/>aux<sp/>enfants.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>5.<sp/>Dernier<sp/>fragment<sp/>(is_last<sp/>==<sp/>true)<sp/>:</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>esp_ota_end()<sp/>→<sp/>vérification<sp/>MD5<sp/>→<sp/>esp_ota_set_boot_partition()</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>log_write(&quot;OTA<sp/>terminé&quot;)<sp/>→<sp/>esp_restart().</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ota__node_8h" kindref="compound">ota_node.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_ota_ops.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_now.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="ota__node_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ota_node&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>État<sp/>interne<sp/>de<sp/>l&apos;OTA</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29" refid="structota__state__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30" refid="structota__state__t_1a304df1c1c5758c5e19304f6c911f8ecf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_ota_handle_t<sp/><sp/><sp/><sp/><ref refid="structota__state__t_1a304df1c1c5758c5e19304f6c911f8ecf" kindref="member">ota_handle</ref>;</highlight></codeline>
+<codeline lineno="31" refid="structota__state__t_1a5866222a4c4e5243fba3b04f6bc87aa0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>esp_partition_t<sp/>*<ref refid="structota__state__t_1a5866222a4c4e5243fba3b04f6bc87aa0" kindref="member">ota_partition</ref>;</highlight></codeline>
+<codeline lineno="32" refid="structota__state__t_1a78341f1043abfa1641ef3e062b4667ad" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structota__state__t_1a78341f1043abfa1641ef3e062b4667ad" kindref="member">in_progress</ref>;</highlight></codeline>
+<codeline lineno="33" refid="structota__state__t_1aeb10f45f7f5301047ef319fa06024a1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structota__state__t_1aeb10f45f7f5301047ef319fa06024a1b" kindref="member">bytes_written</ref>;</highlight></codeline>
+<codeline lineno="34" refid="structota__state__t_1a6e099ff56fd3ed7cb890c123ac612f84" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structota__state__t_1a6e099ff56fd3ed7cb890c123ac612f84" kindref="member">firmware_size</ref>;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}<sp/><ref refid="structota__state__t" kindref="compound">ota_state_t</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structota__state__t" kindref="compound">ota_state_t</ref><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>;<sp/></highlight><highlight class="comment">/*<sp/>Instance<sp/>unique<sp/>du<sp/>module<sp/>OTA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>ota_node_init</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>l&apos;état<sp/>OTA<sp/>(réinitialise<sp/>si<sp/>une<sp/>OTA<sp/>était<sp/>en<sp/>cours).</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>toujours.</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" kindref="member">ota_node_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>));</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Identification<sp/>de<sp/>la<sp/>partition<sp/>de<sp/>mise<sp/>à<sp/>jour<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition<sp/>=<sp/>esp_ota_get_next_update_partition(NULL);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition)<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Aucune<sp/>partition<sp/>OTA<sp/>disponible&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Partition<sp/>OTA<sp/>cible<sp/>:<sp/>%s<sp/>(offset<sp/>0x%08lX,<sp/>taille<sp/>%lu<sp/>Ko)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition-&gt;label,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition-&gt;address,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition-&gt;size<sp/>/<sp/>1024);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>ota_node_process_fragment</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Traite<sp/>un<sp/>fragment<sp/>OTA<sp/>et<sp/>le<sp/>retransmet<sp/>aux<sp/>enfants.</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>@param<sp/>frag<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Payload<sp/>du<sp/>fragment<sp/>(données<sp/>en<sp/>clair).</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>@param<sp/>children_mac<sp/><sp/>Tableau<sp/>des<sp/>MACs<sp/>des<sp/>enfants<sp/>(peut<sp/>être<sp/>NULL).</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>@param<sp/>child_count<sp/><sp/><sp/>Nombre<sp/>d&apos;enfants.</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>@param<sp/>raw_frame<sp/><sp/><sp/><sp/><sp/>Trame<sp/>brute<sp/>chiffrée<sp/>à<sp/>retransmettre.</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*<sp/>@param<sp/>frame_len<sp/><sp/><sp/><sp/><sp/>Longueur<sp/>de<sp/>la<sp/>trame<sp/>brute.</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>le<sp/>traitement<sp/>réussit.</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="ota__node_8c_1af8ea4caf0abd81ac32d84ed4819dfa6b" kindref="member">ota_node_process_fragment</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structota__fragment__payload__t" kindref="compound">ota_fragment_payload_t</ref><sp/>*frag,</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>(*children_mac)[6],</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>child_count,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>*raw_frame,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>frame_len)</highlight></codeline>
+<codeline lineno="79"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!frag)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_INVALID_ARG;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Pas<sp/>de<sp/>partition<sp/>OTA<sp/>—<sp/>fragment<sp/>ignoré&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Premier<sp/>fragment<sp/>:<sp/>initialisation<sp/>de<sp/>l&apos;OTA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frag-&gt;<ref refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" kindref="member">fragment_offset</ref><sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.in_progress)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Nouvelle<sp/>OTA<sp/>démarrée<sp/>—<sp/>abandon<sp/>de<sp/>l&apos;OTA<sp/>précédente&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_ota_abort(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_handle);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_ota_begin(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OTA_WITH_SEQUENTIAL_WRITES,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_handle));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.in_progress<sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.bytes_written<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.firmware_size<sp/>=<sp/>frag-&gt;<ref refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" kindref="member">firmware_size</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OTA<sp/>démarrée<sp/>—<sp/>firmware<sp/>attendu<sp/>:<sp/>%lu<sp/>octets&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frag-&gt;<ref refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" kindref="member">firmware_size</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.in_progress)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Fragment<sp/>OTA<sp/>reçu<sp/>hors<sp/>séquence<sp/>—<sp/>ignoré&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vérification<sp/>de<sp/>la<sp/>cohérence<sp/>de<sp/>l&apos;offset<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frag-&gt;<ref refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" kindref="member">fragment_offset</ref><sp/>!=<sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.bytes_written)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Fragment<sp/>hors<sp/>ordre<sp/>:<sp/>attendu<sp/>%lu,<sp/>reçu<sp/>%lu&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.bytes_written,<sp/>frag-&gt;<ref refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" kindref="member">fragment_offset</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Écriture<sp/>du<sp/>fragment<sp/>dans<sp/>la<sp/>partition<sp/>OTA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_ota_write(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_handle,</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frag-&gt;<ref refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" kindref="member">data</ref>,</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frag-&gt;<ref refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" kindref="member">fragment_data_len</ref>));</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.bytes_written<sp/>+=<sp/>frag-&gt;<ref refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" kindref="member">fragment_data_len</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OTA<sp/>:<sp/>%lu<sp/>/<sp/>%lu<sp/>octets<sp/>écrits<sp/>(%.1f%%)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.bytes_written,<sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.firmware_size,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.bytes_written<sp/>/<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.firmware_size<sp/>*<sp/>100.0f);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Retransmission<sp/>immédiate<sp/>aux<sp/>enfants<sp/>(propagation<sp/>du<sp/>fragment)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(raw_frame<sp/>&amp;&amp;<sp/>frame_len<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>child_count<sp/>&gt;<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>child_count;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>tx_ret<sp/>=<sp/>esp_now_send(children_mac[i],</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>raw_frame,<sp/>frame_len);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(tx_ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Retransmission<sp/>OTA<sp/>enfant<sp/>%d<sp/>échouée<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i,<sp/>esp_err_to_name(tx_ret));</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Fragment<sp/>retransmis<sp/>à<sp/>%d<sp/>enfant(s)&quot;</highlight><highlight class="normal">,<sp/>child_count);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Dernier<sp/>fragment<sp/>:<sp/>finalisation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frag-&gt;<ref refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" kindref="member">is_last</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Dernier<sp/>fragment<sp/>reçu<sp/>—<sp/>finalisation<sp/>OTA&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>end_ret<sp/>=<sp/>esp_ota_end(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_handle);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(end_ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;esp_ota_end<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(end_ret));</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.in_progress<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>end_ret;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>boot_ret<sp/>=<sp/>esp_ota_set_boot_partition(<ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.ota_partition);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(boot_ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;esp_ota_set_boot_partition<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_to_name(boot_ret));</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.in_progress<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>boot_ret;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;OTA<sp/>terminée<sp/>—<sp/>redémarrage<sp/>dans<sp/>1<sp/>s&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" kindref="member">s_ota</ref>.in_progress<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Délai<sp/>court<sp/>pour<sp/>laisser<sp/>les<sp/>logs<sp/>s&apos;afficher<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(1000));</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_restart();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/mesh_network/ota_node.c"/>
+  </compounddef>
+</doxygen>

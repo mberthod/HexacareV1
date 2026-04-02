@@ -1,0 +1,832 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="lidar__driver_8c" kind="file" language="C++">
+    <compoundname>lidar_driver.c</compoundname>
+    <includes refid="lidar__driver_8h" local="yes">lidar_driver.h</includes>
+    <includes refid="radar__driver_8h" local="yes">radar_driver.h</includes>
+    <includes refid="vl53l8cx__platform_8h" local="yes">vl53l8cx_platform.h</includes>
+    <includes refid="hdc1080__driver_8h" local="yes">hdc1080_driver.h</includes>
+    <includes refid="bme280__driver_8h" local="yes">bme280_driver.h</includes>
+    <includes refid="mic__driver_8h" local="yes">mic_driver.h</includes>
+    <includes refid="lexacare__config_8h" local="yes">lexacare_config.h</includes>
+    <includes refid="pins__config_8h" local="yes">pins_config.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="yes">esp_timer.h</includes>
+    <includes local="yes">esp_task_wdt.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <incdepgraph>
+      <node id="17">
+        <label>lexacare_config.h</label>
+        <link refid="lexacare__config_8h"/>
+      </node>
+      <node id="18">
+        <label>pins_config.h</label>
+        <link refid="pins__config_8h"/>
+      </node>
+      <node id="3">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>bme280_driver.h</label>
+        <link refid="bme280__driver_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>hdc1080_driver.h</label>
+        <link refid="hdc1080__driver_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lidar_driver.h</label>
+        <link refid="lidar__driver_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>mic_driver.h</label>
+        <link refid="mic__driver_8h"/>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>radar_driver.h</label>
+        <link refid="radar__driver_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>vl53l8cx_platform.h</label>
+        <link refid="vl53l8cx__platform_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="9">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="10">
+        <label>esp_err.h</label>
+      </node>
+      <node id="19">
+        <label>esp_log.h</label>
+      </node>
+      <node id="21">
+        <label>esp_task_wdt.h</label>
+      </node>
+      <node id="20">
+        <label>esp_timer.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="8">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="22">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="23">
+        <label>math.h</label>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="25">
+        <label>stdlib.h</label>
+      </node>
+      <node id="24">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structlidar__dev__t" prot="public">lidar_dev_t</innerclass>
+    <innerclass refid="structlidar__task__ctx__t" prot="public">lidar_task_ctx_t</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="lidar__driver_8c_1aa70e8d31075c59d1f4a0e5c9a8d3e9f8" prot="public" static="no">
+        <name>ENVIRO_READ_PERIOD_FRAMES</name>
+        <initializer>15</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="40" column="9" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="40" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="lidar__driver_8c_1a5528e12e4948345d88e124c165b8858d" prot="public" static="no">
+        <name>LEXA_LIDAR_STUB</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="50" column="12" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="lidar__driver_8c_1a5486258f1f34d3baeda92a74b63c27c3" prot="public" static="no">
+        <name>TASK_STACK_SIZE</name>
+        <initializer>(8192)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="71" column="9" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="lidar__driver_8c_1a82dd0a9ae27bdb2c3cdd33bb7804861c" prot="public" static="no">
+        <name>TASK_PRIORITY</name>
+        <initializer>(10)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="72" column="9" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="lidar__driver_8c_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" prot="public" static="no">
+        <name>TASK_CORE</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="73" column="9" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" prot="public" static="no">
+        <name>TASK_PERIOD_MS</name>
+        <initializer>(200)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>5 Hz — précision maximale VL53L8CX </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="74" column="9" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="74" bodyend="-1"/>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" prot="public" static="no">
+        <name>LIDAR_FREQ_HZ</name>
+        <initializer>(5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Fréquence ULD à configurer (voir init) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="75" column="9" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="75" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="lidar__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;lidar_driver&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="53" column="19" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool lidar_init_sensor</definition>
+        <argsstring>(lidar_dev_t *dev, spi_device_handle_t spi_dev, int idx)</argsstring>
+        <name>lidar_init_sensor</name>
+        <param>
+          <type><ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref> *</type>
+          <declname>dev</declname>
+        </param>
+        <param>
+          <type>spi_device_handle_t</type>
+          <declname>spi_dev</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="111" column="13" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="111" bodyend="158"/>
+        <references refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" compoundref="lidar__driver_8c" startline="82">lidar_dev_t::active</references>
+        <references refid="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" compoundref="lidar__driver_8c" startline="75">LIDAR_FREQ_HZ</references>
+        <references refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" compoundref="lidar__driver_8c" startline="81">lidar_dev_t::platform</references>
+        <references refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" compoundref="vl53l8cx__platform_8h" startline="40">VL53L8CX_Platform::spi_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</references>
+        <references refid="vl53l8cx__platform_8h_1a5687017b3245ded0e88563178c6613a7" compoundref="vl53l8cx__platform_8c" startline="31" endline="38">VL53L8CX_PlatformInit</references>
+        <references refid="vl53l8cx__api_8h_1ac573fc4071cb53a67cb65a930588519d" compoundref="vl53l8cx__api_8h" startline="63">VL53L8CX_RANGING_MODE_AUTONOMOUS</references>
+        <references refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" compoundref="vl53l8cx__api_8h" startline="44">VL53L8CX_RESOLUTION_8X8</references>
+        <references refid="vl53l8cx__api_8c_1aa498a79da766ce9f30d4518403bfbc96" compoundref="vl53l8cx__api_8c" startline="1003" endline="1014">vl53l8cx_set_ranging_frequency_hz</references>
+        <references refid="vl53l8cx__api_8c_1a90f6b7f5130cf36350701771f991bdbf" compoundref="vl53l8cx__api_8c" startline="1146" endline="1183">vl53l8cx_set_ranging_mode</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void lidar_read_sensor</definition>
+        <argsstring>(lidar_dev_t *dev, lidar_matrix_t *matrix, int col_offset)</argsstring>
+        <name>lidar_read_sensor</name>
+        <param>
+          <type><ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref> *</type>
+          <declname>dev</declname>
+        </param>
+        <param>
+          <type><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref> *</type>
+          <declname>matrix</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>col_offset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="170" column="13" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="170" bodyend="238"/>
+        <references refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" compoundref="lidar__driver_8c" startline="82">lidar_dev_t::active</references>
+        <references refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" compoundref="system__types_8h" startline="81">lidar_matrix_t::data</references>
+        <references refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" compoundref="system__types_8h" startline="45">LIDAR_COLS</references>
+        <references refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" compoundref="system__types_8h" startline="44">LIDAR_ROWS</references>
+        <references refid="vl53l8cx__api_8c_1a8d192f0f3fded5de1767f54271d8f54a" compoundref="vl53l8cx__api_8c" startline="713" endline="742">vl53l8cx_check_data_ready</references>
+        <references refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</references>
+        <references refid="platform_8h_1a31cf133aaf6b500062702a5a898eb137" compoundref="platform_8h" startline="19">VL53L8CX_NB_TARGET_PER_ZONE</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void task_sensor_acq</definition>
+        <argsstring>(void *pvParam)</argsstring>
+        <name>task_sensor_acq</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/lidar_driver.c" line="250" column="13" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="250" bodyend="370"/>
+        <references refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" compoundref="lidar__driver_8c" startline="82">lidar_dev_t::active</references>
+        <references refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" compoundref="bme280__driver_8c" startline="201" endline="236">bme280_read</references>
+        <references refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" compoundref="system__types_8h" startline="237">sys_context_t::data_mutex</references>
+        <references refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" compoundref="lidar__driver_8c" startline="95">lidar_task_ctx_t::devs</references>
+        <references refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" compoundref="system__types_8h" startline="242">sys_context_t::enviro</references>
+        <references refid="lidar__driver_8c_1aa70e8d31075c59d1f4a0e5c9a8d3e9f8" compoundref="lidar__driver_8c" startline="40">ENVIRO_READ_PERIOD_FRAMES</references>
+        <references refid="hdc1080__driver_8c_1ac89c7243caa6524ab2c35eb7133483ff" compoundref="hdc1080__driver_8c" startline="124" endline="149">hdc1080_read</references>
+        <references refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" compoundref="system__types_8h" startline="213">enviro_data_t::humidity_bme</references>
+        <references refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" compoundref="system__types_8h" startline="210">enviro_data_t::humidity_hdc</references>
+        <references refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" compoundref="system__types_8h" startline="238">sys_context_t::latest_sensor</references>
+        <references refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" compoundref="system__types_8h" startline="113">sensor_frame_t::lidar</references>
+        <references refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</references>
+        <references refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" compoundref="system__types_8h" startline="46">LIDAR_NUM_FRONT</references>
+        <references refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" compoundref="system__types_8h" startline="248">sys_context_t::lidar_ok</references>
+        <references refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" compoundref="lidar__driver_8c" startline="170" endline="238">lidar_read_sensor</references>
+        <references refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" compoundref="system__types_8h" startline="234">sys_context_t::lidar_spi</references>
+        <references refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" compoundref="system__types_8h" startline="115">sensor_frame_t::lidar_valid</references>
+        <references refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" compoundref="system__types_8h" startline="245">sys_context_t::mic</references>
+        <references refid="mic__driver_8h_1adde164c8adc09dab37730e97d3cdc818" compoundref="mic__driver_8c" startline="97" endline="133">mic_driver_read</references>
+        <references refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" compoundref="system__types_8h" startline="222">mic_data_t::peak</references>
+        <references refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" compoundref="system__types_8h" startline="212">enviro_data_t::pressure_hpa</references>
+        <references refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" compoundref="system__types_8h" startline="114">sensor_frame_t::radar</references>
+        <references refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" compoundref="radar__driver_8c" startline="169" endline="175">radar_driver_init</references>
+        <references refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" compoundref="radar__driver_8c" startline="187" endline="213">radar_driver_poll</references>
+        <references refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" compoundref="system__types_8h" startline="116">sensor_frame_t::radar_valid</references>
+        <references refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" compoundref="system__types_8h" startline="221">mic_data_t::rms</references>
+        <references refid="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" compoundref="lidar__driver_8c" startline="83">lidar_dev_t::sensor_idx</references>
+        <references refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" compoundref="system__types_8h" startline="228">sys_context_t::sensor_to_ai_queue</references>
+        <references refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" compoundref="system__types_8h" startline="239">sys_context_t::sensor_valid</references>
+        <references refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" compoundref="lidar__driver_8c" startline="96">lidar_task_ctx_t::sys_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" compoundref="lidar__driver_8c" startline="74">TASK_PERIOD_MS</references>
+        <references refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" compoundref="system__types_8h" startline="211">enviro_data_t::temp_bme_c</references>
+        <references refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" compoundref="system__types_8h" startline="209">enviro_data_t::temp_hdc_c</references>
+        <references refid="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" compoundref="system__types_8h" startline="83">lidar_matrix_t::timestamp_us</references>
+        <references refid="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" compoundref="system__types_8h" startline="84">lidar_matrix_t::valid</references>
+        <references refid="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" compoundref="system__types_8h" startline="223">mic_data_t::valid</references>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+      </memberdef>
+      <member refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kind="function"><name>lidar_driver_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Architecture dual-bus (contrainte débit) : I2C_NUM_0 → capteurs 0 &amp; 1 (lus en parallèle avec bus 1) I2C_NUM_1 → capteurs 2, 3 &amp; 4</para>
+<para>Fusion : capteur N → colonnes [N*8 .. N*8+7] de <ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref>. Cadence : 15 Hz via vTaskDelayUntil (période 66 ms). TWDT : esp_task_wdt_reset() à chaque itération.</para>
+<para>Dépendance ULD : Les appels vl53l8cx_*() nécessitent l&apos;ULD VL53L8CX de ST. Voir instructions dans <ref refid="vl53l8cx__platform_8h" kindref="compound">vl53l8cx_platform.h</ref>. Sans l&apos;ULD, compiler avec -DLIDAR_STUB_MODE pour utiliser des données simulées (développement sans matériel). </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>lidar_driver.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_sensor_acq</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Acquisition<sp/>LIDAR<sp/>VL53L8CX<sp/>—<sp/>fusion<sp/>8×32<sp/>sur<sp/>double<sp/>bus<sp/>I2C.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Architecture<sp/>dual-bus<sp/>(contrainte<sp/>débit)<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>I2C_NUM_0<sp/>→<sp/>capteurs<sp/>0<sp/>&amp;<sp/>1<sp/>(lus<sp/>en<sp/>parallèle<sp/>avec<sp/>bus<sp/>1)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>I2C_NUM_1<sp/>→<sp/>capteurs<sp/>2,<sp/>3<sp/>&amp;<sp/>4</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Fusion<sp/>:<sp/>capteur<sp/>N<sp/>→<sp/>colonnes<sp/>[N*8<sp/>..<sp/>N*8+7]<sp/>de<sp/>lidar_matrix_t.</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>Cadence<sp/>:<sp/>15<sp/>Hz<sp/>via<sp/>vTaskDelayUntil<sp/>(période<sp/>66<sp/>ms).</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>TWDT<sp/><sp/><sp/><sp/>:<sp/>esp_task_wdt_reset()<sp/>à<sp/>chaque<sp/>itération.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>Dépendance<sp/>ULD<sp/>:</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Les<sp/>appels<sp/>vl53l8cx_*()<sp/>nécessitent<sp/>l&apos;ULD<sp/>VL53L8CX<sp/>de<sp/>ST.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Voir<sp/>instructions<sp/>dans<sp/>vl53l8cx_platform.h.</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Sans<sp/>l&apos;ULD,<sp/>compiler<sp/>avec<sp/>-DLIDAR_STUB_MODE<sp/>pour<sp/>utiliser</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/>des<sp/>données<sp/>simulées<sp/>(développement<sp/>sans<sp/>matériel).</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lidar__driver_8h" kindref="compound">lidar_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="radar__driver_8h" kindref="compound">radar_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vl53l8cx__platform_8h" kindref="compound">vl53l8cx_platform.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hdc1080__driver_8h" kindref="compound">hdc1080_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="bme280__driver_8h" kindref="compound">bme280_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mic__driver_8h" kindref="compound">mic_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lexacare__config_8h" kindref="compound">lexacare_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pins__config_8h" kindref="compound">pins_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_task_wdt.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Lecture<sp/>des<sp/>capteurs<sp/>environnementaux<sp/>toutes<sp/>les<sp/>N<sp/>trames<sp/>LIDAR<sp/>(1<sp/>s<sp/>à<sp/>15<sp/>Hz)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="lidar__driver_8c_1aa70e8d31075c59d1f4a0e5c9a8d3e9f8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENVIRO_READ_PERIOD_FRAMES<sp/><sp/>15</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>LIDAR<sp/>réel<sp/>(ULD<sp/>ST)<sp/>vs<sp/>STUB<sp/>(simulé)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_LIDAR_USE_ST_ULD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>if<sp/>!defined(LEXACARE_HAVE_ST_ULD)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/><sp/><sp/>error<sp/>&quot;LEXACARE_LIDAR_USE_ST_ULD=1<sp/>mais<sp/>l&apos;ULD<sp/>ST<sp/>(STSW-IMG040)<sp/>est<sp/>absent.<sp/>Copier<sp/>l&apos;ULD<sp/>dans<sp/>components/sensor_acq/uld/<sp/>(vl53l8cx_api.c/.h)<sp/>puis<sp/>rebuild.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>include<sp/>&quot;<ref refid="vl53l8cx__api_8h" kindref="compound">vl53l8cx_api.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>LEXA_LIDAR_STUB<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50" refid="lidar__driver_8c_1a5528e12e4948345d88e124c165b8858d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>define<sp/>LEXA_LIDAR_STUB<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53" refid="lidar__driver_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;lidar_driver&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>Constantes<sp/>de<sp/>la<sp/>tâche</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>Fréquence<sp/>d&apos;acquisition<sp/>VL53L8CX<sp/>:</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/><sp/>TASK_PERIOD_MS<sp/><sp/>Fréquence<sp/><sp/>Portée<sp/>max<sp/>typique</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/>200<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/>Hz<sp/><sp/><sp/><sp/><sp/><sp/><sp/>~4000<sp/>mm<sp/>(max<sp/>précision)<sp/><sp/><sp/>←<sp/>valeur<sp/>actuelle</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/><sp/>143<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7<sp/>Hz<sp/><sp/><sp/><sp/><sp/><sp/><sp/>~3000<sp/>mm</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/><sp/>100<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/>Hz<sp/><sp/><sp/><sp/><sp/><sp/><sp/>~2500<sp/>mm</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/><sp/><sp/>67<sp/>ms<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>15<sp/>Hz<sp/><sp/><sp/><sp/><sp/><sp/><sp/>~2000<sp/>mm</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>Pour<sp/>la<sp/>détection<sp/>de<sp/>chute<sp/>(personne<sp/>debout/allongée<sp/>à<sp/>0.5–3<sp/>m),</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>5<sp/>Hz<sp/>offre<sp/>la<sp/>meilleure<sp/>sensibilité<sp/>au<sp/>bruit<sp/>de<sp/>fond<sp/>et<sp/>la<sp/>portée<sp/>max.</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>La<sp/>fréquence<sp/>ULD<sp/>(vl53l8cx_set_ranging_frequency_hz)<sp/>DOIT<sp/>correspondre.</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="lidar__driver_8c_1a5486258f1f34d3baeda92a74b63c27c3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_STACK_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(8192)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="lidar__driver_8c_1a82dd0a9ae27bdb2c3cdd33bb7804861c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_PRIORITY<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(10)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="lidar__driver_8c_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_CORE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_PERIOD_MS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(200)<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>5<sp/>Hz<sp/>—<sp/>précision<sp/>maximale<sp/>VL53L8CX<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_FREQ_HZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(5)<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Fréquence<sp/>ULD<sp/>à<sp/>configurer<sp/>(voir<sp/>init)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>lidar_dev_t<sp/>(interne)</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Contexte<sp/>par<sp/>capteur<sp/>VL53L8CX.</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structlidar__dev__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81" refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___platform" kindref="compound">VL53L8CX_Platform</ref><sp/><ref refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" kindref="member">platform</ref>;<sp/></highlight><highlight class="comment">/**&lt;<sp/>Couche<sp/>plateforme<sp/>SPI<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" kindref="member">active</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>capteur<sp/>initialisé<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" kindref="member">sensor_idx</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!LEXA_LIDAR_STUB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/>uld;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___results_data" kindref="compound">VL53L8CX_ResultsData</ref><sp/><sp/><sp/>results;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}<sp/><ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/>lidar_task_ctx_t<sp/>(interne)</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Contexte<sp/>complet<sp/>de<sp/>la<sp/>tâche<sp/>d&apos;acquisition.</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="structlidar__task__ctx__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="95" refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref><sp/><sp/><sp/><sp/><ref refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kindref="member">devs</ref>[<ref refid="system__types_8h_1a3e10a9d590d4acdf419c70a63d015aa7" kindref="member">LIDAR_NUM_TOTAL</ref>];</highlight></codeline>
+<codeline lineno="96" refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}<sp/><ref refid="structlidar__task__ctx__t" kindref="compound">lidar_task_ctx_t</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>lidar_init_sensor<sp/>(interne)</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>un<sp/>capteur<sp/>VL53L8CX<sp/>via<sp/>SPI.</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>Configure<sp/>la<sp/>résolution<sp/>8×8<sp/>et<sp/>démarre<sp/>le<sp/>ranging<sp/>continu.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>Le<sp/>handle<sp/>SPI<sp/>est<sp/>déjà<sp/>créé<sp/>par<sp/>hw_diag_run()<sp/>(spi_bus_add_device).</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>@param<sp/>dev<sp/><sp/><sp/><sp/><sp/><sp/>Contexte<sp/>du<sp/>capteur.</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*<sp/>@param<sp/>spi_dev<sp/><sp/>Handle<sp/>SPI<sp/>ESP-IDF<sp/>du<sp/>capteur<sp/>(NCS<sp/>dédié).</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>@param<sp/>idx<sp/><sp/><sp/><sp/><sp/><sp/>Index<sp/>du<sp/>capteur<sp/>(0–3).</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/>@return<sp/>true<sp/>si<sp/>l&apos;initialisation<sp/>réussit.</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111" refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" kindref="member">lidar_init_sensor</ref>(<ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref><sp/>*dev,</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spi_device_handle_t<sp/>spi_dev,</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>dev-&gt;<ref refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" kindref="member">platform</ref>.<ref refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" kindref="member">spi_dev</ref><sp/>=<sp/>spi_dev;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__platform_8h_1a5687017b3245ded0e88563178c6613a7" kindref="member">VL53L8CX_PlatformInit</ref>(&amp;dev-&gt;<ref refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" kindref="member">platform</ref>)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>échec<sp/>PlatformInit<sp/>SPI&quot;</highlight><highlight class="normal">,<sp/>idx);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!LEXA_LIDAR_STUB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;dev-&gt;uld,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(dev-&gt;uld));</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>dev-&gt;uld.<ref refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" kindref="member">platform</ref><sp/>=<sp/>dev-&gt;<ref refid="structlidar__dev__t_1a00bae151a19e111bc9c83f1cbe012384" kindref="member">platform</ref>;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" kindref="member">vl53l8cx_init</ref>(&amp;dev-&gt;uld)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>vl53l8cx_init<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>idx);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kindref="member">vl53l8cx_set_resolution</ref>(&amp;dev-&gt;uld,<sp/><ref refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" kindref="member">VL53L8CX_RESOLUTION_8X8</ref>)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>set_resolution<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>idx);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1aa498a79da766ce9f30d4518403bfbc96" kindref="member">vl53l8cx_set_ranging_frequency_hz</ref>(&amp;dev-&gt;uld,<sp/><ref refid="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" kindref="member">LIDAR_FREQ_HZ</ref>)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>set_ranging_frequency(%d<sp/>Hz)<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>idx,<sp/><ref refid="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" kindref="member">LIDAR_FREQ_HZ</ref>);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1a90f6b7f5130cf36350701771f991bdbf" kindref="member">vl53l8cx_set_ranging_mode</ref>(&amp;dev-&gt;uld,<sp/><ref refid="vl53l8cx__api_8h_1ac573fc4071cb53a67cb65a930588519d" kindref="member">VL53L8CX_RANGING_MODE_AUTONOMOUS</ref>)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>set_ranging_mode<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>idx);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" kindref="member">vl53l8cx_start_ranging</ref>(&amp;dev-&gt;uld)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>start_ranging<sp/>échoué&quot;</highlight><highlight class="normal">,<sp/>idx);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>SPI<sp/>:<sp/>ULD<sp/>ST<sp/>actif<sp/>(8×8,<sp/>%d<sp/>Hz)&quot;</highlight><highlight class="normal">,<sp/>idx,<sp/><ref refid="lidar__driver_8c_1adbaae2a1e82477cc698d2193c7f07f7f" kindref="member">LIDAR_FREQ_HZ</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>SPI<sp/>:<sp/>STUB<sp/>actif<sp/>(LEXACARE_LIDAR_USE_ST_ULD=0)&quot;</highlight><highlight class="normal">,<sp/>idx);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>dev-&gt;<ref refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" kindref="member">active</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="161"><highlight class="comment"><sp/>*<sp/>lidar_read_sensor<sp/>(interne)</highlight></codeline>
+<codeline lineno="162"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Lit<sp/>les<sp/>données<sp/>de<sp/>ranging<sp/>d&apos;un<sp/>capteur<sp/>et<sp/>les<sp/>fusionne.</highlight></codeline>
+<codeline lineno="163"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="164"><highlight class="comment"><sp/>*<sp/>Sans<sp/>ULD<sp/>:<sp/>génère<sp/>des<sp/>données<sp/>simulées<sp/>pour<sp/>valider<sp/>l&apos;architecture.</highlight></codeline>
+<codeline lineno="165"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="166"><highlight class="comment"><sp/>*<sp/>@param<sp/>dev<sp/><sp/><sp/><sp/>Contexte<sp/>du<sp/>capteur.</highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/>*<sp/>@param<sp/>matrix<sp/>Matrice<sp/>destination.</highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/>*<sp/>@param<sp/>col_offset<sp/>Décalage<sp/>colonne<sp/>(sensor_idx<sp/>*<sp/>8).</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170" refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" kindref="member">lidar_read_sensor</ref>(<ref refid="structlidar__dev__t" kindref="compound">lidar_dev_t</ref><sp/>*dev,</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref><sp/>*matrix,</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col_offset)</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dev-&gt;<ref refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" kindref="member">active</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!LEXA_LIDAR_STUB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>ready<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1a8d192f0f3fded5de1767f54271d8f54a" kindref="member">vl53l8cx_check_data_ready</ref>(&amp;dev-&gt;uld,<sp/>&amp;ready)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref><sp/>||<sp/>!ready)<sp/>{</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" kindref="member">vl53l8cx_get_ranging_data</ref>(&amp;dev-&gt;uld,<sp/>&amp;dev-&gt;results)<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>zone<sp/>=<sp/>0;<sp/>zone<sp/>&lt;<sp/>64;<sp/>zone++)<sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>zone<sp/>/<sp/>8;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>zone<sp/>%<sp/>8;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ULD<sp/>ST<sp/>:<sp/>distance_mm<sp/>est<sp/>un<sp/>tableau<sp/>1D<sp/>de<sp/>int16_t.</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>Si<sp/>NB_TARGET_PER_ZONE<sp/>&gt;<sp/>1,<sp/>on<sp/>prend<sp/>la<sp/>cible<sp/>0<sp/>(la<sp/>plus<sp/>proche).<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>zone<sp/>*<sp/>(int)<ref refid="platform_8h_1a31cf133aaf6b500062702a5a898eb137" kindref="member">VL53L8CX_NB_TARGET_PER_ZONE</ref>;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>dist<sp/>=<sp/>(uint16_t)(dev-&gt;results.distance_mm[idx]);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dist<sp/>==<sp/>0<sp/>||<sp/>dist<sp/>&gt;<sp/>4000)<sp/>dist<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matrix-&gt;<ref refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" kindref="member">data</ref>[row][col_offset<sp/>+<sp/>col]<sp/>=<sp/>dist;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Mode<sp/>STUB<sp/>:<sp/>scan<sp/>8×8<sp/>réaliste<sp/>pour<sp/>validation<sp/>visuelle<sp/>──────────</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Simule<sp/>un<sp/>arc<sp/>180°<sp/>vu<sp/>depuis<sp/>un<sp/>capteur<sp/>plafond/mur<sp/>:</highlight></codeline>
+<codeline lineno="200"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>·<sp/>Fond<sp/>(murs/sol)<sp/>à<sp/>2500–4000<sp/>mm<sp/>selon<sp/>l&apos;angle<sp/>et<sp/>la<sp/>hauteur</highlight></codeline>
+<codeline lineno="201"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>·<sp/>Distance<sp/>plus<sp/>courte<sp/>aux<sp/>rangées<sp/>basses<sp/>(sol<sp/>plus<sp/>proche)</highlight></codeline>
+<codeline lineno="202"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>·<sp/>Variation<sp/>angulaire<sp/>cohérente<sp/>sur<sp/>32<sp/>colonnes</highlight></codeline>
+<codeline lineno="203"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>·<sp/>Bruit<sp/>de<sp/>mesure<sp/>réaliste<sp/>±30<sp/>mm</highlight></codeline>
+<codeline lineno="204"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="205"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Valeurs<sp/>dans<sp/>la<sp/>plage<sp/>exploitable<sp/>par<sp/>la<sp/>heatmap<sp/>inferno<sp/>:</highlight></codeline>
+<codeline lineno="206"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>100<sp/>mm<sp/>(très<sp/>proche<sp/>/<sp/>chute)<sp/>→<sp/>4000<sp/>mm<sp/>(max<sp/>portée)</highlight></codeline>
+<codeline lineno="207"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>int32_t<sp/>s_stub_seed<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>s_stub_seed++;<sp/><sp/></highlight><highlight class="comment">/*<sp/>Compteur<sp/>pour<sp/>variation<sp/>temporelle<sp/>légère<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>0;<sp/>row<sp/>&lt;<sp/><ref refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kindref="member">LIDAR_ROWS</ref>;<sp/>row++)<sp/>{</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0;<sp/>col<sp/>&lt;<sp/>8;<sp/>col++)<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Position<sp/>angulaire<sp/>dans<sp/>l&apos;arc<sp/>180°</highlight></codeline>
+<codeline lineno="214"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>col_offset<sp/>+<sp/>col<sp/>∈<sp/>[0..31]<sp/>→<sp/>angle<sp/>∈<sp/>[0°..180°]<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle_deg<sp/>=<sp/>(float)(col_offset<sp/>+<sp/>col)<sp/>*<sp/>(180.0f<sp/>/<sp/>(<ref refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" kindref="member">LIDAR_COLS</ref><sp/>-<sp/>1));</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle_rad<sp/>=<sp/>angle_deg<sp/>*<sp/>3.14159f<sp/>/<sp/>180.0f;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Distance<sp/>de<sp/>fond<sp/>:<sp/>mur<sp/>à<sp/>~3500<sp/>mm<sp/>en<sp/>face<sp/>(90°),</highlight></codeline>
+<codeline lineno="219"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>murs<sp/>latéraux<sp/>plus<sp/>proches<sp/>(0°<sp/>et<sp/>180°)<sp/>≈<sp/>2000<sp/>mm<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>bg_mm<sp/>=<sp/>2000.0f<sp/>+<sp/>1500.0f<sp/>*<sp/>sinf(angle_rad);</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Facteur<sp/>hauteur<sp/>:<sp/>rangées<sp/>basses<sp/>(7)<sp/>=<sp/>sol,<sp/>plus<sp/>proche<sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>height_factor<sp/>=<sp/>1.0f<sp/>-<sp/>(float)row<sp/>/<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)(<ref refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kindref="member">LIDAR_ROWS</ref><sp/>-<sp/>1)<sp/>*<sp/>0.25f;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bg_mm<sp/>*=<sp/>height_factor;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Bruit<sp/>de<sp/>mesure<sp/>réaliste<sp/>±25<sp/>mm<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int32_t<sp/>noise<sp/>=<sp/>((s_stub_seed<sp/>*<sp/>1103515245<sp/>+<sp/>12345)<sp/>&amp;<sp/>0x7FFF)<sp/>%<sp/>50<sp/>-<sp/>25;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>s_stub_seed<sp/>=<sp/>s_stub_seed<sp/>*<sp/>6364136223846793005LL<sp/>+<sp/>1;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>dist<sp/>=<sp/>(uint16_t)(bg_mm<sp/>+<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)noise);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dist<sp/>&lt;<sp/>100)<sp/><sp/>dist<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dist<sp/>&gt;<sp/>4000)<sp/>dist<sp/>=<sp/>4000;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>matrix-&gt;<ref refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" kindref="member">data</ref>[row][col_offset<sp/>+<sp/>col]<sp/>=<sp/>dist;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>LEXA_LIDAR_STUB<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="241"><highlight class="comment"><sp/>*<sp/>task_sensor_acq<sp/>(interne)</highlight></codeline>
+<codeline lineno="242"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Tâche<sp/>FreeRTOS<sp/>d&apos;acquisition<sp/>capteurs<sp/>—<sp/>Core<sp/>1,<sp/>priorité<sp/>10.</highlight></codeline>
+<codeline lineno="243"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"><sp/>*<sp/>Boucle<sp/>cadencée<sp/>à<sp/>5<sp/>Hz<sp/>(vTaskDelayUntil)<sp/>—<sp/>portée<sp/>maximale<sp/>VL53L8CX.</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/>*<sp/>Appelle<sp/>radar_driver_poll()<sp/>à<sp/>chaque<sp/>itération.</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/>*<sp/>Pousse<sp/>la<sp/>sensor_frame_t<sp/>dans<sp/>sensor_to_ai_queue<sp/>(non<sp/>bloquant).</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="248"><highlight class="comment"><sp/>*<sp/>@param<sp/>pvParam<sp/>Pointeur<sp/>vers<sp/>lidar_task_ctx_t<sp/>alloué<sp/>par<sp/>lidar_driver_start.</highlight></codeline>
+<codeline lineno="249"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250" refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" kindref="member">task_sensor_acq</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParam)</highlight></codeline>
+<codeline lineno="251"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structlidar__task__ctx__t" kindref="compound">lidar_task_ctx_t</ref><sp/>*ctx<sp/>=<sp/>(<ref refid="structlidar__task__ctx__t" kindref="compound">lidar_task_ctx_t</ref><sp/>*)pvParam;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Abonnement<sp/>au<sp/>Task<sp/>Watchdog<sp/>Timer<sp/>(TWDT)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_task_wdt_add(NULL));</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Task_Sensor_Acq<sp/>démarrée<sp/>sur<sp/>Core<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>xPortGetCoreID());</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="259"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Initialisation<sp/>capteurs<sp/>(déplacée<sp/>ici<sp/>pour<sp/>éviter<sp/>de<sp/>bloquer<sp/>app_main)</highlight></codeline>
+<codeline lineno="260"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Initialisation<sp/>LIDARs<sp/>(ULD)<sp/>dans<sp/>la<sp/>tâche<sp/>capteurs…&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kindref="member">devs</ref>[i].<ref refid="structlidar__dev__t_1a101bd1955863b975cc8b4c5f9331fe96" kindref="member">sensor_idx</ref><sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>[i])<sp/>{</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kindref="member">devs</ref>[i].<ref refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" kindref="member">active</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>absent<sp/>(hw_diag)<sp/>—<sp/>ignoré&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Nourrir<sp/>le<sp/>watchdog<sp/>entre<sp/>capteurs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_task_wdt_reset());</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(10));</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" kindref="member">lidar_init_sensor</ref>(&amp;ctx-&gt;<ref refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kindref="member">devs</ref>[i],<sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" kindref="member">lidar_spi</ref>[i],<sp/>i))<sp/>{</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>:<sp/>initialisation<sp/>SPI/ULD<sp/>échouée&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kindref="member">devs</ref>[i].<ref refid="structlidar__dev__t_1a9c0fcbaec282eea1abdd89f9600bddfb" kindref="member">active</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Radar<sp/>:<sp/>uniquement<sp/>si<sp/>connecté<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_RADAR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" kindref="member">radar_driver_init</ref>());</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Radar<sp/>LD6002<sp/>désactivé<sp/>(LEXACARE_ENABLE_RADAR=0)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>TickType_t<sp/>last_wake<sp/><sp/>=<sp/>xTaskGetTickCount();</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/>frame_idx<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>du<sp/>watchdog<sp/>avant<sp/>toute<sp/>opération<sp/>bloquante<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_task_wdt_reset());</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref><sp/>frame;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(&amp;frame,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(frame));</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>.<ref refid="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" kindref="member">timestamp_us</ref><sp/>=<sp/>esp_timer_get_time();</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lecture<sp/>des<sp/>4<sp/>capteurs<sp/>frontaux<sp/>(fusion<sp/>dans<sp/>la<sp/>matrice)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" kindref="member">lidar_read_sensor</ref>(&amp;ctx-&gt;<ref refid="structlidar__task__ctx__t_1a2b27d3fb82ba861eeed29180561f539b" kindref="member">devs</ref>[i],<sp/>&amp;frame.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>,<sp/>i<sp/>*<sp/>8);</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>.<ref refid="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" kindref="member">valid</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.<ref refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" kindref="member">lidar_valid</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lecture<sp/>du<sp/>radar<sp/>(non<sp/>bloquant)<sp/>—<sp/>uniquement<sp/>si<sp/>connecté<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_RADAR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.<ref refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" kindref="member">radar_valid</ref><sp/>=<sp/><ref refid="radar__driver_8h_1ac327c41337b50efe73de8b91c2df089c" kindref="member">radar_driver_poll</ref>(&amp;frame.<ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame.<ref refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" kindref="member">radar_valid</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Envoi<sp/>dans<sp/>la<sp/>queue<sp/>AI<sp/>(non<sp/>bloquant)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(xQueueSend(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" kindref="member">sensor_to_ai_queue</ref>,<sp/>&amp;frame,<sp/>0)<sp/>!=<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;sensor_to_ai_queue<sp/>pleine<sp/>—<sp/>trame<sp/>abandonnée&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Mise<sp/>à<sp/>jour<sp/>du<sp/>snapshot<sp/>partagé<sp/>(protégé<sp/>par<sp/>mutex)<sp/>───────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref><sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreTake(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>,<sp/>pdMS_TO_TICKS(5))<sp/>==<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" kindref="member">latest_sensor</ref><sp/>=<sp/>frame;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" kindref="member">sensor_valid</ref><sp/><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreGive(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>──<sp/>Lecture<sp/>capteurs<sp/>environnementaux<sp/>(1<sp/>Hz)<sp/>───────────────────<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame_idx++;</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(frame_idx<sp/>&gt;=<sp/><ref refid="lidar__driver_8c_1aa70e8d31075c59d1f4a0e5c9a8d3e9f8" kindref="member">ENVIRO_READ_PERIOD_FRAMES</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame_idx<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structenviro__data__t" kindref="compound">enviro_data_t</ref><sp/>env<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.temp_hdc_c<sp/><sp/><sp/>=<sp/>NAN,<sp/>.humidity_hdc<sp/><sp/>=<sp/>NAN,</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.temp_bme_c<sp/><sp/><sp/>=<sp/>NAN,<sp/>.pressure_hpa<sp/><sp/>=<sp/>NAN,</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.humidity_bme<sp/>=<sp/>NAN,</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>HDC1080<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>t_hdc<sp/>=<sp/>0.0f,<sp/>h_hdc<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hdc1080__driver_8c_1ac89c7243caa6524ab2c35eb7133483ff" kindref="member">hdc1080_read</ref>(&amp;t_hdc,<sp/>&amp;h_hdc)<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env.<ref refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" kindref="member">temp_hdc_c</ref><sp/><sp/>=<sp/>t_hdc;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env.<ref refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" kindref="member">humidity_hdc</ref><sp/>=<sp/>h_hdc;</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>BME280<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>t_bme<sp/>=<sp/>0.0f,<sp/>p_bme<sp/>=<sp/>0.0f,<sp/>h_bme<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bme280__driver_8c_1a898595b4f31ff7da1e14b618a804a7b5" kindref="member">bme280_read</ref>(&amp;t_bme,<sp/>&amp;p_bme,<sp/>&amp;h_bme)<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env.<ref refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" kindref="member">temp_bme_c</ref><sp/><sp/><sp/>=<sp/>t_bme;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env.<ref refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" kindref="member">pressure_hpa</ref><sp/>=<sp/>p_bme;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>env.<ref refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" kindref="member">humidity_bme</ref><sp/>=<sp/>h_bme;</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Microphone<sp/>—<sp/>burst<sp/>rapide<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>rms<sp/>=<sp/>0,<sp/>peak<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mic_ok<sp/>=<sp/>(<ref refid="mic__driver_8h_1adde164c8adc09dab37730e97d3cdc818" kindref="member">mic_driver_read</ref>(&amp;rms,<sp/>&amp;peak)<sp/>==<sp/>ESP_OK);</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Mise<sp/>à<sp/>jour<sp/>sys_context_t<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref><sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreTake(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>,<sp/>pdMS_TO_TICKS(10))<sp/>==<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" kindref="member">enviro</ref><sp/>=<sp/>env;</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" kindref="member">mic</ref>.<ref refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" kindref="member">rms</ref><sp/><sp/><sp/>=<sp/>rms;</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" kindref="member">mic</ref>.<ref refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" kindref="member">peak</ref><sp/><sp/>=<sp/>peak;</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" kindref="member">mic</ref>.<ref refid="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" kindref="member">valid</ref><sp/>=<sp/>mic_ok;</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreGive(ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Cadence<sp/>15<sp/>Hz<sp/>via<sp/>vTaskDelayUntil<sp/>(drift-free)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelayUntil(&amp;last_wake,<sp/>pdMS_TO_TICKS(<ref refid="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" kindref="member">TASK_PERIOD_MS</ref>));</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="370"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="373"><highlight class="comment"><sp/>*<sp/>lidar_driver_start</highlight></codeline>
+<codeline lineno="374"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>les<sp/>capteurs<sp/>et<sp/>crée<sp/>Task_Sensor_Acq<sp/>sur<sp/>Core<sp/>1.</highlight></codeline>
+<codeline lineno="375"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="376"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système<sp/>(bus<sp/>I2C<sp/>+<sp/>lidar_ok[]).</highlight></codeline>
+<codeline lineno="377"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>la<sp/>tâche<sp/>est<sp/>créée<sp/>avec<sp/>succès.</highlight></codeline>
+<codeline lineno="378"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="379" refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kindref="member">lidar_driver_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="380"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structlidar__task__ctx__t" kindref="compound">lidar_task_ctx_t</ref><sp/>*task_ctx<sp/>=<sp/>calloc(1,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structlidar__task__ctx__t" kindref="compound">lidar_task_ctx_t</ref>));</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!task_ctx)<sp/>{</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_NO_MEM;</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/>task_ctx-&gt;<ref refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" kindref="member">sys_ctx</ref><sp/>=<sp/>ctx;</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Création<sp/>de<sp/>la<sp/>tâche<sp/>épinglée<sp/>sur<sp/>Core<sp/>1<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseType_t<sp/>ret<sp/>=<sp/>xTaskCreatePinnedToCore(</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" kindref="member">task_sensor_acq</ref>,</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Task_Sensor_Acq&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" kindref="member">TASK_STACK_SIZE</ref>,</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>task_ctx,</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kindref="member">TASK_PRIORITY</ref>,</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NULL,</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kindref="member">TASK_CORE</ref>);</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"></highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>pdPASS)<sp/>{</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(task_ctx);</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Échec<sp/>création<sp/>Task_Sensor_Acq&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"></highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Task_Sensor_Acq<sp/>créée<sp/>(Core<sp/>%d,<sp/>priorité<sp/>%d,<sp/>%d<sp/>Hz)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kindref="member">TASK_CORE</ref>,<sp/><ref refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kindref="member">TASK_PRIORITY</ref>,<sp/>1000<sp/>/<sp/><ref refid="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" kindref="member">TASK_PERIOD_MS</ref>);</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="406"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/lidar_driver.c"/>
+  </compounddef>
+</doxygen>

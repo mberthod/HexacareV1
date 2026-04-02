@@ -1,0 +1,19 @@
+<map id="vl53l8cx_get_resolution" name="vl53l8cx_get_resolution">
+<area shape="rect" id="Node000001" title="This function gets the current resolution (4x4 or 8x8)." alt="" coords="5,66,163,92"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a622e5a7b1ab7b329bb6eee40429599da" title="This function can be used to read &#39;extra data&#39; from DCI. Using a known index, the function fills the ..." alt="" coords="211,66,368,92"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,76,195,76,195,82,163,82"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__api_8c.html#a83dc5e403de268cad0cc04434eed9d12" title="Inner function, not available outside this file. This function is used to wait for an answer from VL5..." alt="" coords="432,28,558,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="368,65,417,58,418,63,369,70"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="622,11,759,38"/>
+<area shape="poly" id="edge6_Node000002_Node000004" title=" " alt="" coords="309,63,356,36,415,14,464,6,515,3,607,8,607,13,515,8,465,11,417,19,359,41,312,67"/>
+<area shape="rect" id="Node000007" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="416,95,574,122"/>
+<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="369,87,401,92,400,97,368,93"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="623,142,758,168"/>
+<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="317,90,362,112,417,131,515,147,607,153,607,158,514,153,415,136,360,117,315,95"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="558,39,607,32,607,38,558,44"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="623,62,758,88"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="558,55,608,61,607,67,558,60"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="807,87,874,114"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="734,36,760,47,809,76,806,81,757,52,732,41"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="728,138,791,115,793,120,730,143"/>
+</map>

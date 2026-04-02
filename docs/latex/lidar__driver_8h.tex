@@ -1,0 +1,37 @@
+\doxysection{components/sensor\+\_\+acq/include/lidar\+\_\+driver.h File Reference}
+\hypertarget{lidar__driver_8h}{}\label{lidar__driver_8h}\index{components/sensor\_acq/include/lidar\_driver.h@{components/sensor\_acq/include/lidar\_driver.h}}
+
+
+Interface publique du driver LIDAR VL53\+L8\+CX — acquisition et fusion 8×32.  
+
+
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for lidar\+\_\+driver.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lidar__driver_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{lidar__driver_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}{lidar\+\_\+driver\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface publique du driver LIDAR VL53\+L8\+CX — acquisition et fusion 8×32. 
+
+Task\+\_\+\+Sensor\+\_\+\+Acq (Core 1, priorité 10) pilote les 4 LIDARs frontaux via les deux bus I2C initialisés par \doxylink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\+\_\+diag\+\_\+run()}. 
+
+Definition in file \mbox{\hyperlink{lidar__driver_8h_source}{lidar\+\_\+driver.\+h}}.
+

@@ -1,0 +1,19 @@
+<map id="components/sensor_acq/vl53l8cx_platform.c" name="components/sensor_acq/vl53l8cx_platform.c">
+<area shape="rect" id="Node000001" title="Couche plateforme VL53L8CX — implémentation SPI via ESP&#45;IDF." alt="" coords="353,5,516,48"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8h.html" title="Couche d&#39;abstraction plateforme pour l&#39;ULD VL53L8CX de ST — interface SPI." alt="" coords="32,96,166,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="353,50,167,94,166,89,352,45"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="190,96,267,123"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="383,51,276,92,274,87,381,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="290,96,433,123"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="418,50,385,86,381,82,414,47"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="457,96,562,123"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="456,47,490,83,486,86,452,50"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="586,96,649,123"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="483,46,576,87,574,92,481,51"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="673,96,738,123"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="505,46,659,91,657,97,504,51"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,171,70,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,125,60,161,56,157,86,121"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="94,171,226,197"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="112,121,142,157,138,161,107,125"/>
+</map>

@@ -1,0 +1,17 @@
+<map id="vl53l8cx_set_resolution" name="vl53l8cx_set_resolution">
+<area shape="rect" id="Node000001" title="This function sets a new resolution (4x4 or 8x8)." alt="" coords="656,97,813,124"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="478,5,594,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="695,92,607,46,578,35,580,30,609,42,698,87"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="473,56,599,99"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="640,97,599,91,600,85,641,92"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__plugin__xtalk_8c.html#a638fa39db7d6506992b20388f9880b47" title="This function gets the Xtalk buffer. The buffer is available after using the function vl53l8cx_calibr..." alt="" coords="464,123,608,165"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="640,129,608,135,608,129,640,124"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__plugin__xtalk_8c.html#a0a1083d1f57251df3c70caabedd68f41" title="This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer." alt="" coords="464,189,608,232"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="696,134,609,180,586,191,583,186,606,175,693,129"/>
+<area shape="rect" id="Node000003" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,5,416,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="463,21,417,21,417,16,463,16"/>
+<area shape="rect" id="Node000004" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,5,248,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="280,21,248,21,248,16,280,16"/>
+<area shape="rect" id="Node000005" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,83,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="115,21,83,21,83,16,115,16"/>
+</map>

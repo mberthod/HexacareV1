@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structota__fragment__payload__t" kind="struct" language="C++" prot="public">
+    <compoundname>ota_fragment_payload_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t ota_fragment_payload_t::firmware_size</definition>
+        <argsstring></argsstring>
+        <name>firmware_size</name>
+        <qualifiedname>ota_fragment_payload_t::firmware_size</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Taille totale du firmware (octets) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="175" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="175" bodyend="-1"/>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t ota_fragment_payload_t::fragment_offset</definition>
+        <argsstring></argsstring>
+        <name>fragment_offset</name>
+        <qualifiedname>ota_fragment_payload_t::fragment_offset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Offset de ce fragment dans le firmware </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="176" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="176" bodyend="-1"/>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t ota_fragment_payload_t::fragment_data_len</definition>
+        <argsstring></argsstring>
+        <name>fragment_data_len</name>
+        <qualifiedname>ota_fragment_payload_t::fragment_data_len</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Longueur des données utiles </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="177" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="177" bodyend="-1"/>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t ota_fragment_payload_t::data[OTA_FRAGMENT_DATA_LEN]</definition>
+        <argsstring>[OTA_FRAGMENT_DATA_LEN]</argsstring>
+        <name>data</name>
+        <qualifiedname>ota_fragment_payload_t::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Données du fragment </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="178" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="178" bodyend="-1"/>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ota_fragment_payload_t::is_last</definition>
+        <argsstring></argsstring>
+        <name>is_last</name>
+        <qualifiedname>ota_fragment_payload_t::is_last</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si dernier fragment </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="179" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="179" bodyend="-1"/>
+        <referencedby refid="ota__node_8h_1af8ea4caf0abd81ac32d84ed4819dfa6b" compoundref="ota__node_8c" startline="74" endline="166">ota_node_process_fragment</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/include/system_types.h" line="174" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="174" bodyend="180"/>
+    <listofallmembers>
+      <member refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" prot="public" virt="non-virtual"><scope>ota_fragment_payload_t</scope><name>data</name></member>
+      <member refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" prot="public" virt="non-virtual"><scope>ota_fragment_payload_t</scope><name>firmware_size</name></member>
+      <member refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" prot="public" virt="non-virtual"><scope>ota_fragment_payload_t</scope><name>fragment_data_len</name></member>
+      <member refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" prot="public" virt="non-virtual"><scope>ota_fragment_payload_t</scope><name>fragment_offset</name></member>
+      <member refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" prot="public" virt="non-virtual"><scope>ota_fragment_payload_t</scope><name>is_last</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

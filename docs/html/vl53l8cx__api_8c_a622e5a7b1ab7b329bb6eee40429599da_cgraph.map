@@ -1,0 +1,17 @@
+<map id="vl53l8cx_dci_read_data" name="vl53l8cx_dci_read_data">
+<area shape="rect" id="Node000001" title="This function can be used to read &#39;extra data&#39; from DCI. Using a known index, the function fills the ..." alt="" coords="5,66,163,92"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a83dc5e403de268cad0cc04434eed9d12" title="Inner function, not available outside this file. This function is used to wait for an answer from VL5..." alt="" coords="227,28,352,71"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="163,65,212,58,212,63,164,70"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="417,11,553,38"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="104,63,151,36,210,14,259,6,309,3,402,8,402,13,309,8,260,11,211,19,153,41,107,67"/>
+<area shape="rect" id="Node000006" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="211,95,369,122"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="164,87,196,92,195,97,163,93"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="418,142,553,168"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="112,90,157,112,211,131,310,147,402,153,402,158,309,153,210,136,155,117,109,95"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="352,39,401,32,402,38,353,44"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="418,62,553,88"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="353,55,402,61,402,67,352,60"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="601,87,669,114"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="528,36,555,47,604,76,601,81,552,52,526,41"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="523,138,586,115,588,120,525,143"/>
+</map>

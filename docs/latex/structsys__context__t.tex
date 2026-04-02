@@ -1,0 +1,239 @@
+\doxysection{sys\+\_\+context\+\_\+t Struct Reference}
+\hypertarget{structsys__context__t}{}\label{structsys__context__t}\index{sys\_context\_t@{sys\_context\_t}}
+
+
+{\ttfamily \#include $<$system\+\_\+types.\+h$>$}
+
+
+
+Collaboration diagram for sys\+\_\+context\+\_\+t\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structsys__context__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978}{sensor\+\_\+to\+\_\+ai\+\_\+queue}}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}{ai\+\_\+to\+\_\+mesh\+\_\+queue}}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7}{diag\+\_\+to\+\_\+pc\+\_\+queue}}
+\item 
+Queue\+Handle\+\_\+t \mbox{\hyperlink{structsys__context__t_aff52a7e584b7d6fe202e6b010e077b14}{log\+\_\+queue}}
+\item 
+spi\+\_\+device\+\_\+handle\+\_\+t \mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{lidar\+\_\+spi}} \mbox{[}\mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\+\_\+\+NUM\+\_\+\+FRONT}}\mbox{]}
+\item 
+Semaphore\+Handle\+\_\+t \mbox{\hyperlink{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}{data\+\_\+mutex}}
+\item 
+\mbox{\hyperlink{structsensor__frame__t}{sensor\+\_\+frame\+\_\+t}} \mbox{\hyperlink{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b}{latest\+\_\+sensor}}
+\item 
+bool \mbox{\hyperlink{structsys__context__t_aeea7001274ed1c680448cf33aacf9650}{sensor\+\_\+valid}}
+\item 
+\mbox{\hyperlink{structenviro__data__t}{enviro\+\_\+data\+\_\+t}} \mbox{\hyperlink{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6}{enviro}}
+\item 
+\mbox{\hyperlink{structmic__data__t}{mic\+\_\+data\+\_\+t}} \mbox{\hyperlink{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}{mic}}
+\item 
+bool \mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\+\_\+ok}} \mbox{[}\mbox{\hyperlink{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7}{LIDAR\+\_\+\+NUM\+\_\+\+TOTAL}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\+\_\+ok}}
+\item 
+bool \mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\+\_\+root\+\_\+node}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00226}{226}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structsys__context__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}\index{sys\_context\_t@{sys\_context\_t}!ai\_to\_mesh\_queue@{ai\_to\_mesh\_queue}}
+\index{ai\_to\_mesh\_queue@{ai\_to\_mesh\_queue}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{ai\_to\_mesh\_queue}{ai\_to\_mesh\_queue}}
+{\footnotesize\ttfamily \label{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6} 
+Queue\+Handle\+\_\+t sys\+\_\+context\+\_\+t\+::ai\+\_\+to\+\_\+mesh\+\_\+queue}
+
+\doxylink{structai__event__t}{ai\+\_\+event\+\_\+t}, profondeur 8 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00229}{229}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00253}{send\+\_\+ai\+\_\+event()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}.
+
+\Hypertarget{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758}\index{sys\_context\_t@{sys\_context\_t}!data\_mutex@{data\_mutex}}
+\index{data\_mutex@{data\_mutex}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{data\_mutex}{data\_mutex}}
+{\footnotesize\ttfamily \label{structsys__context__t_a86a3358fcd69e6c0d0cdf52015de4758} 
+Semaphore\+Handle\+\_\+t sys\+\_\+context\+\_\+t\+::data\+\_\+mutex}
+
+Mutex lecture/écriture snapshot 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00237}{237}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7}\index{sys\_context\_t@{sys\_context\_t}!diag\_to\_pc\_queue@{diag\_to\_pc\_queue}}
+\index{diag\_to\_pc\_queue@{diag\_to\_pc\_queue}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{diag\_to\_pc\_queue}{diag\_to\_pc\_queue}}
+{\footnotesize\ttfamily \label{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7} 
+Queue\+Handle\+\_\+t sys\+\_\+context\+\_\+t\+::diag\+\_\+to\+\_\+pc\+\_\+queue}
+
+\doxylink{structai__event__t}{ai\+\_\+event\+\_\+t}, profondeur 8 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00230}{230}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00253}{send\+\_\+ai\+\_\+event()}}.
+
+\Hypertarget{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6}\index{sys\_context\_t@{sys\_context\_t}!enviro@{enviro}}
+\index{enviro@{enviro}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{enviro}{enviro}}
+{\footnotesize\ttfamily \label{structsys__context__t_a17e42bbd9ea1431680001c132181b1d6} 
+\mbox{\hyperlink{structenviro__data__t}{enviro\+\_\+data\+\_\+t}} sys\+\_\+context\+\_\+t\+::enviro}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00242}{242}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_a95182dfb0c0515dce7293087479f1481}\index{sys\_context\_t@{sys\_context\_t}!is\_root\_node@{is\_root\_node}}
+\index{is\_root\_node@{is\_root\_node}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{is\_root\_node}{is\_root\_node}}
+{\footnotesize\ttfamily \label{structsys__context__t_a95182dfb0c0515dce7293087479f1481} 
+bool sys\+\_\+context\+\_\+t\+::is\+\_\+root\+\_\+node}
+
+true si PIN\+\_\+\+ROOT\+\_\+\+SEL est bas au démarrage 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00250}{250}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}, \mbox{\hyperlink{mesh__manager_8c_source_l00379}{mesh\+\_\+manager\+\_\+init()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00332}{task\+\_\+mesh\+\_\+com()}}.
+
+\Hypertarget{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b}\index{sys\_context\_t@{sys\_context\_t}!latest\_sensor@{latest\_sensor}}
+\index{latest\_sensor@{latest\_sensor}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{latest\_sensor}{latest\_sensor}}
+{\footnotesize\ttfamily \label{structsys__context__t_aea43db1e1df3e560263bce7ae888d57b} 
+\mbox{\hyperlink{structsensor__frame__t}{sensor\+\_\+frame\+\_\+t}} sys\+\_\+context\+\_\+t\+::latest\+\_\+sensor}
+
+Dernière trame LIDAR + Radar + IA 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00238}{238}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}\index{sys\_context\_t@{sys\_context\_t}!lidar\_ok@{lidar\_ok}}
+\index{lidar\_ok@{lidar\_ok}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{lidar\_ok}{lidar\_ok}}
+{\footnotesize\ttfamily \label{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c} 
+bool sys\+\_\+context\+\_\+t\+::lidar\+\_\+ok\mbox{[}\mbox{\hyperlink{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7}{LIDAR\+\_\+\+NUM\+\_\+\+TOTAL}}\mbox{]}}
+
+true si le capteur i a répondu au ping 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00248}{248}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00475}{diag\+\_\+print\+\_\+json\+\_\+report()}}, \mbox{\hyperlink{hw__diag_8c_source_l00340}{diag\+\_\+scan\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}\index{sys\_context\_t@{sys\_context\_t}!lidar\_spi@{lidar\_spi}}
+\index{lidar\_spi@{lidar\_spi}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{lidar\_spi}{lidar\_spi}}
+{\footnotesize\ttfamily \label{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6} 
+spi\+\_\+device\+\_\+handle\+\_\+t sys\+\_\+context\+\_\+t\+::lidar\+\_\+spi\mbox{[}\mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\+\_\+\+NUM\+\_\+\+FRONT}}\mbox{]}}
+
+SPI device par capteur LIDAR 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00234}{234}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00340}{diag\+\_\+scan\+\_\+lidars()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_aff52a7e584b7d6fe202e6b010e077b14}\index{sys\_context\_t@{sys\_context\_t}!log\_queue@{log\_queue}}
+\index{log\_queue@{log\_queue}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{log\_queue}{log\_queue}}
+{\footnotesize\ttfamily \label{structsys__context__t_aff52a7e584b7d6fe202e6b010e077b14} 
+Queue\+Handle\+\_\+t sys\+\_\+context\+\_\+t\+::log\+\_\+queue}
+
+char\texorpdfstring{$\ast$}{*}, profondeur 16 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00231}{231}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{structsys__context__t_a04463a2972f6ffb053a72438d3947c44}\index{sys\_context\_t@{sys\_context\_t}!mic@{mic}}
+\index{mic@{mic}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{mic}{mic}}
+{\footnotesize\ttfamily \label{structsys__context__t_a04463a2972f6ffb053a72438d3947c44} 
+\mbox{\hyperlink{structmic__data__t}{mic\+\_\+data\+\_\+t}} sys\+\_\+context\+\_\+t\+::mic}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00245}{245}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}\index{sys\_context\_t@{sys\_context\_t}!radar\_ok@{radar\_ok}}
+\index{radar\_ok@{radar\_ok}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{radar\_ok}{radar\_ok}}
+{\footnotesize\ttfamily \label{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574} 
+bool sys\+\_\+context\+\_\+t\+::radar\+\_\+ok}
+
+true si une trame LD6002 valide a été reçue 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00249}{249}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00475}{diag\+\_\+print\+\_\+json\+\_\+report()}}, \mbox{\hyperlink{hw__diag_8c_source_l00417}{diag\+\_\+test\+\_\+radar()}}, and \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}.
+
+\Hypertarget{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978}\index{sys\_context\_t@{sys\_context\_t}!sensor\_to\_ai\_queue@{sensor\_to\_ai\_queue}}
+\index{sensor\_to\_ai\_queue@{sensor\_to\_ai\_queue}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{sensor\_to\_ai\_queue}{sensor\_to\_ai\_queue}}
+{\footnotesize\ttfamily \label{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978} 
+Queue\+Handle\+\_\+t sys\+\_\+context\+\_\+t\+::sensor\+\_\+to\+\_\+ai\+\_\+queue}
+
+\doxylink{structsensor__frame__t}{sensor\+\_\+frame\+\_\+t}, profondeur 4 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00228}{228}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structsys__context__t_aeea7001274ed1c680448cf33aacf9650}\index{sys\_context\_t@{sys\_context\_t}!sensor\_valid@{sensor\_valid}}
+\index{sensor\_valid@{sensor\_valid}!sys\_context\_t@{sys\_context\_t}}
+\doxysubsubsection{\texorpdfstring{sensor\_valid}{sensor\_valid}}
+{\footnotesize\ttfamily \label{structsys__context__t_aeea7001274ed1c680448cf33aacf9650} 
+bool sys\+\_\+context\+\_\+t\+::sensor\+\_\+valid}
+
+true si latest\+\_\+sensor contient des données 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00239}{239}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/lexacare\+\_\+types/include/\mbox{\hyperlink{system__types_8h}{system\+\_\+types.\+h}}\end{DoxyCompactItemize}

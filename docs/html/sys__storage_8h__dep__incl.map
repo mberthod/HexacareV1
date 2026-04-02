@@ -1,0 +1,13 @@
+<map id="components/sys_storage/include/sys_storage.h" name="components/sys_storage/include/sys_storage.h">
+<area shape="rect" id="Node000001" title="Interface publique du composant sys_storage — SPIFFS, log circulaire, panic handler." alt="" coords="363,5,530,48"/>
+<area shape="rect" id="Node000002" href="$pc__diag_8c.html" title="Interface PC USB&#45;JTAG — Rapport JSON temps réel (Lexacare Studio)." alt="" coords="5,96,147,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="349,54,159,99,148,101,147,96,158,93,347,49"/>
+<area shape="rect" id="Node000003" href="$littlefs__manager_8c.html" title="Gestion du montage SPIFFS sur la partition &quot;storage&quot;." alt="" coords="171,96,338,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="389,57,301,98,298,93,387,53"/>
+<area shape="rect" id="Node000004" href="$log__writer_8c.html" title="Log circulaire sur LittleFS — rotation automatique à 900 Ko." alt="" coords="363,96,530,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="449,64,449,96,444,96,444,64"/>
+<area shape="rect" id="Node000005" href="$panic__handler_8c.html" title="Capture des paniques système et écriture dans LittleFS." alt="" coords="555,96,722,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="507,53,595,93,593,98,504,57"/>
+<area shape="rect" id="Node000006" href="$main_8c.html" title="Point d&#39;entrée LexaCare V1 — démarrage complet du firmware." alt="" coords="746,104,838,131"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="546,46,735,93,758,101,757,106,734,99,545,51"/>
+</map>

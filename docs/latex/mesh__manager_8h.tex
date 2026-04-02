@@ -1,0 +1,46 @@
+\doxysection{components/mesh\+\_\+network/include/mesh\+\_\+manager.h File Reference}
+\hypertarget{mesh__manager_8h}{}\label{mesh__manager_8h}\index{components/mesh\_network/include/mesh\_manager.h@{components/mesh\_network/include/mesh\_manager.h}}
+
+
+Interface publique du gestionnaire de réseau maillé ESP-\/\+NOW.  
+
+
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for mesh\+\_\+manager.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{mesh__manager_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=304pt]{mesh__manager_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__mesh_ga70a67236487199c55a71f550972e2c27}{mesh\+\_\+manager\+\_\+init}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__mesh_ga9fa511aef79fa9d5e72126a40fa373a9}{mesh\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface publique du gestionnaire de réseau maillé ESP-\/\+NOW. 
+
+Topologie arborescente (Tree Mesh) \+:
+\begin{DoxyItemize}
+\item Chaque nœud maintient une liste de pairs (peers).
+\item Sélection du parent \+: peer avec le RSSI le plus élevé parmi ceux ayant un hop\+\_\+to\+\_\+root minimal.
+\item Chiffrement \+: PMK/\+LMK ESP-\/\+NOW (couche hardware) + AES-\/128-\/\+CBC sur le payload applicatif (couche logicielle, mbed\+TLS).
+\end{DoxyItemize}
+
+Clé AES-\/128 \+: Provisionnée en NVS (namespace "{}lexacare"{}, clé "{}aes\+\_\+key"{}) lors de la fabrication. Si absente, une clé par défaut est utilisée (NON recommandé en production). 
+
+Definition in file \mbox{\hyperlink{mesh__manager_8h_source}{mesh\+\_\+manager.\+h}}.
+

@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__sensor__acq" kind="group">
+    <compoundname>group_sensor_acq</compoundname>
+    <title>Acquisition Capteurs</title>
+    <innerfile refid="bme280__driver_8c">bme280_driver.c</innerfile>
+    <innerfile refid="hdc1080__driver_8c">hdc1080_driver.c</innerfile>
+    <innerfile refid="lidar__driver_8c">lidar_driver.c</innerfile>
+    <innerfile refid="mic__driver_8c">mic_driver.c</innerfile>
+    <innerfile refid="radar__driver_8c">radar_driver.c</innerfile>
+    <innerfile refid="vl53l8cx__platform_8c">vl53l8cx_platform.c</innerfile>
+    <innerclass refid="struct_v_l53_l8_c_x___platform" prot="public">VL53L8CX_Platform</innerclass>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t lidar_driver_start</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>lidar_driver_start</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/lidar_driver.h" line="43" column="11" bodyfile="components/sensor_acq/lidar_driver.c" bodystart="379" bodyend="406" declfile="components/sensor_acq/include/lidar_driver.h" declline="43" declcolumn="11"/>
+        <references refid="structlidar__task__ctx__t_1a4882f0608f077b87bcdfeca103c47cd2" compoundref="lidar__driver_8c" startline="96">lidar_task_ctx_t::sys_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" compoundref="fall__detection__ai_8cc" startline="73">TASK_CORE</references>
+        <references refid="lidar__driver_8c_1a8f177e3d19b18fe361a5a069c7ba664a" compoundref="lidar__driver_8c" startline="74">TASK_PERIOD_MS</references>
+        <references refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" compoundref="fall__detection__ai_8cc" startline="72">TASK_PRIORITY</references>
+        <references refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</references>
+        <references refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" compoundref="fall__detection__ai_8cc" startline="71">TASK_STACK_SIZE</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t mic_driver_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>mic_driver_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Acquisition audio simple (RMS + pic) pour diagnostic et indicateurs. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/mic_driver.h" line="38" column="11" bodyfile="components/sensor_acq/mic_driver.c" bodystart="36" bodyend="92" declfile="components/sensor_acq/include/mic_driver.h" declline="38" declcolumn="11"/>
+        <references refid="mic__driver_8c_1a8132ba2eecc89f58dbc91816e91dab7a" compoundref="mic__driver_8c" startline="25">MIC_BURST_SAMPLES</references>
+        <references refid="mic__driver_8c_1ae3a48988f3b530907280222c539b292a" compoundref="mic__driver_8c" startline="24">MIC_SAMPLE_RATE</references>
+        <references refid="pins__config_8h_1a49df2ceba71c16ebe4a7d8fd5aa72cab" compoundref="pins__config_8h" startline="141">PIN_MIC_SCK</references>
+        <references refid="pins__config_8h_1a6a2da9f70511fac1353ce4cd008aba68" compoundref="pins__config_8h" startline="140">PIN_MIC_SD</references>
+        <references refid="pins__config_8h_1aa61942d4d7c79c5fa394db3d554df72a" compoundref="pins__config_8h" startline="139">PIN_MIC_WS</references>
+        <references refid="mic__driver_8c_1a0df65811f4cced1438208a7ef6b4daa4" compoundref="mic__driver_8c" startline="28">s_rx_chan</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__sensor__acq_1ga271883d8b490133c9993123cc1700a72" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t radar_driver_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>radar_driver_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Driver radar HLK-LD6002 (UART + TinyFrame) — optionnel selon la configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/radar_driver.h" line="35" column="11" bodyfile="components/sensor_acq/radar_driver.c" bodystart="169" bodyend="175" declfile="components/sensor_acq/include/radar_driver.h" declline="35" declcolumn="11"/>
+        <references refid="radar__driver_8c_1a750e504aa938df40773e68a513147dc3" compoundref="radar__driver_8c" startline="56">s_parser</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="radar__driver_8c_1aa7a5950d998e44d87137de0780bd0af3" compoundref="radar__driver_8c" startline="33">UART_PORT</references>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" prot="public" static="no">
+        <name>BME280_I2C_ADDR_DEFAULT</name>
+        <initializer>0x76</initializer>
+        <briefdescription>
+<para>Capteur environnemental BME280 (pression/température/humidité). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>SDO reliée à GND </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/bme280_driver.h" line="29" column="9" bodyfile="components/sensor_acq/include/bme280_driver.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__sensor__acq_1gaf0cf6b62cc46031dbcb698408b50aa26" prot="public" static="no">
+        <name>HDC1080_I2C_ADDR</name>
+        <initializer>0x40</initializer>
+        <briefdescription>
+<para>Capteur environnemental HDC1080 (température/humidité). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Adresse I2C 7 bits du HDC1080 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/hdc1080_driver.h" line="28" column="9" bodyfile="components/sensor_acq/include/hdc1080_driver.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" compoundref="hdc1080__driver_8c" startline="72" endline="119">hdc1080_init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Lecture capteurs, fusion des données, et production de trames prêtes pour l&apos;IA. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Ce module existe pour “isoler le monde matériel” :<itemizedlist>
+<listitem><para>la partie IA reçoit une trame stable et cohérente (mêmes unités, mêmes dimensions)</para>
+</listitem><listitem><para>la partie diagnostic PC reçoit des mesures prêtes à afficher </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

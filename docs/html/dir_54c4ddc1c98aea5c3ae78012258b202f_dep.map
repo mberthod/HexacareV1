@@ -1,0 +1,12 @@
+<map id="components/hw_diag" name="components/hw_diag">
+<area shape="rect" id="node1" href="dir_f7f793e9b2e2f7b297163edcae8530d4.html" title="lexacare_types" alt="" coords="27,213,136,240"/>
+<area shape="poly" id="edge2" href="dir_000002_000010.html" alt="" coords="90,89,107,110,120,138,124,157,120,177,106,203,101,200,115,175,118,157,115,140,102,113,86,92"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000002_000010.html" title="3" alt="" coords="109,196,116,212"/>
+<area shape="rect" id="node3" href="dir_55af515a63f283de62e4186c91e13d6a.html" title="include" alt="" coords="44,139,106,165"/>
+<area shape="poly" id="edge1" href="dir_000002_000004.html" alt="" coords="80,91,78,123,73,123,74,90"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000002_000004.html" title="1" alt="" coords="81,112,88,128"/>
+<area shape="poly" id="edge3" href="dir_000004_000010.html" alt="" coords="78,166,81,197,76,198,73,166"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000004_000010.html" title="1" alt="" coords="83,186,90,202"/>
+<area shape="rect" id="clust2" href="dir_54c4ddc1c98aea5c3ae78012258b202f.html" alt="" coords="32,53,123,176"/>
+<area shape="rect" id="clust1" href="dir_409f97388efe006bc3438b95e9edef48.html" title="components" alt="" coords="16,16,147,251"/>
+</map>

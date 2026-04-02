@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__mesh" kind="group">
+    <compoundname>group_mesh</compoundname>
+    <title>Réseau maillé &amp; OTA</title>
+    <innerfile refid="mesh__manager_8c">mesh_manager.c</innerfile>
+    <innerfile refid="ota__node_8c">ota_node.c</innerfile>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t mesh_manager_init</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>mesh_manager_init</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/include/mesh_manager.h" line="49" column="11" bodyfile="components/mesh_network/mesh_manager.c" bodystart="379" bodyend="417" declfile="components/mesh_network/include/mesh_manager.h" declline="49" declcolumn="11"/>
+        <references refid="mesh__manager_8c_1a6ffaaae9cbfb91f056627a0bef5dbb5a" compoundref="mesh__manager_8c" startline="68">ESPNOW_CHANNEL</references>
+        <references refid="mesh__manager_8c_1a6067c463964e944fd80eb63f791c1544" compoundref="mesh__manager_8c" startline="249" endline="272">espnow_rx_callback</references>
+        <references refid="mesh__manager_8c_1abbef85f4a7cd603f4c63ba31a13921cb" compoundref="mesh__manager_8c" startline="294" endline="300">espnow_tx_callback</references>
+        <references refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" compoundref="system__types_8h" startline="250">sys_context_t::is_root_node</references>
+        <references refid="mesh__manager_8c_1ab4acf17e093a0b230ecc75b223c23f54" compoundref="mesh__manager_8c" startline="76" endline="79">k_pmk</references>
+        <references refid="mesh__manager_8c_1ad183ca147d5c3e6c43ab72d281d5be89" compoundref="mesh__manager_8c" startline="307" endline="324">mesh_load_aes_key</references>
+        <references refid="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" compoundref="ota__node_8c" startline="45" endline="61">ota_node_init</references>
+        <references refid="mesh__manager_8c_1a22c99a50ebf4fde1bedd60a538961e8f" compoundref="mesh__manager_8c" startline="114">s_mesh</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t mesh_task_start</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>mesh_task_start</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/include/mesh_manager.h" line="64" column="11" bodyfile="components/mesh_network/mesh_manager.c" bodystart="426" bodyend="447" declfile="components/mesh_network/include/mesh_manager.h" declline="64" declcolumn="11"/>
+        <references refid="mesh__manager_8c_1ac2d2ed01de0b5395fb9ebce429e336d4" compoundref="mesh__manager_8c" startline="72">MESH_TASK_CORE</references>
+        <references refid="mesh__manager_8c_1a9a69eb7dd21565dd92b702c0314f460f" compoundref="mesh__manager_8c" startline="71">MESH_TASK_PRIORITY</references>
+        <references refid="mesh__manager_8c_1aaf3b4792ccac909807429299fe6d23ac" compoundref="mesh__manager_8c" startline="70">MESH_TASK_STACK</references>
+        <references refid="mesh__manager_8c_1a22c99a50ebf4fde1bedd60a538961e8f" compoundref="mesh__manager_8c" startline="114">s_mesh</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="group__group__mesh_1ga9aec1f5bda1bce9d59f85f2fe7b444b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t ota_node_init</definition>
+        <argsstring>(void)</argsstring>
+        <name>ota_node_init</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Module OTA “nœud-à-nœud” utilisé par le réseau maillé. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/include/ota_node.h" line="33" column="11" bodyfile="components/mesh_network/ota_node.c" bodystart="45" bodyend="61" declfile="components/mesh_network/include/ota_node.h" declline="33" declcolumn="11"/>
+        <references refid="ota__node_8c_1a389b7bcf66969ecd3e2a40e1092ea483" compoundref="ota__node_8c" startline="37">s_ota</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" compoundref="mesh__manager_8c" startline="379" endline="417">mesh_manager_init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Communication entre nœuds (ESP-NOW), chiffrement applicatif, et mise à jour OTA. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Idée simple :<itemizedlist>
+<listitem><para>le Wi‑Fi sert ici de transport local (ESP‑NOW) pour relier des nœuds sans infrastructure</para>
+</listitem><listitem><para>la sécurité est renforcée par un chiffrement applicatif (AES) en plus d&apos;ESP‑NOW </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

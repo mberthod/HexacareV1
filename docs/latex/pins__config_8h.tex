@@ -1,0 +1,569 @@
+\doxysection{components/lexacare\+\_\+types/include/pins\+\_\+config.h File Reference}
+\hypertarget{pins__config_8h}{}\label{pins__config_8h}\index{components/lexacare\_types/include/pins\_config.h@{components/lexacare\_types/include/pins\_config.h}}
+
+
+Définition des broches GPIO et du mapping PCA9555 pour Lexa\+Care V1.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pins__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__config_gad7513c4ecfaf2ea7ec9ca0fe2635fbd0}{PIN\+\_\+\+I2\+C0\+\_\+\+SDA}}~11
+\begin{DoxyCompactList}\small\item\em Mapping “humain” entre le schéma électronique et le code. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e}{PIN\+\_\+\+I2\+C0\+\_\+\+SCL}}~12
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_aabfe18b52ad58d04d2a1cf6612c5c4fa}{PIN\+\_\+\+I2\+C1\+\_\+\+SDA}}~10
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_ac270b2950c69700990747460dc1e284a}{PIN\+\_\+\+I2\+C1\+\_\+\+SCL}}~9
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a8e3e8f37be6335b7b08ffabb49f72b7d}{LIDAR\+\_\+\+SPI\+\_\+\+HOST}}~SPI2\+\_\+\+HOST
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}{PIN\+\_\+\+LIDAR\+\_\+\+CLK}}~17
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a591add909d8fa618c6c75d7375c5e0b6}{PIN\+\_\+\+LIDAR\+\_\+\+MOSI}}~18
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a7206f7c59a37c0d551f6ae396e7ddd19}{PIN\+\_\+\+LIDAR\+\_\+\+MISO}}~21
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_aa999e725941ff90978fe96cfee88e1f2}{PIN\+\_\+\+LIDAR\+\_\+\+SYNC}}~14
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a8d4bf531079d2f0cbad53326ea8e6199}{PIN\+\_\+\+LIDAR\+\_\+\+NCS0}}~1
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a01c5ad844f2c0ec12343af1c16cacf5d}{PIN\+\_\+\+LIDAR\+\_\+\+NCS1}}~2
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_ae6e653a6750b07505a4f21a350cc7c7d}{PIN\+\_\+\+LIDAR\+\_\+\+NCS2}}~42
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a7b82939fa5f89f8a18c272ff73b838f3}{PIN\+\_\+\+LIDAR\+\_\+\+NCS3}}~41
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_abc995c26ee634eb7c2600e8bf733bd17}{PCA9555\+\_\+\+I2\+C\+\_\+\+ADDR}}~0x20
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_af865853dc8aa1041dc760a691dae54d8}{PCA9555\+\_\+\+REG\+\_\+\+OUTPUT\+\_\+0}}~0x02
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22}{PCA9555\+\_\+\+REG\+\_\+\+OUTPUT\+\_\+1}}~0x03
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_adae3362117b6490d042b16c0ab603d49}{PCA9555\+\_\+\+REG\+\_\+\+CONFIG\+\_\+0}}~0x06
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_ac84f3abe5f9291532786a1e968e530a8}{PCA9555\+\_\+\+REG\+\_\+\+CONFIG\+\_\+1}}~0x07
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_ad686bd3530de42d3ed0bee9b2b54ecee}{PCA9555\+\_\+\+BIT\+\_\+\+DIST\+\_\+\+SHUTDOWN}}~(1u $<$$<$ 0)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a7ef0d0acf832fc5efdda51daac987e35}{PCA9555\+\_\+\+BIT\+\_\+\+LPN4}}~(1u $<$$<$ 3)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a868519ce99c724b706ed64545cd9af28}{PCA9555\+\_\+\+BIT\+\_\+\+LPN3}}~(1u $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_aed877455bd33d6ad38b5c12b5e079bbf}{PCA9555\+\_\+\+BIT\+\_\+\+LPN2}}~(1u $<$$<$ 5)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a5a023f9847dba2d76fa779ab7a53483f}{PCA9555\+\_\+\+BIT\+\_\+\+LPN1}}~(1u $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a5de5d3f76f4de48e60b03e4bbc7a30f9}{PCA9555\+\_\+\+BIT\+\_\+\+RADAR\+\_\+\+LPN}}~(1u $<$$<$ 7)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a5bb7081ed093edf6f40e3681b80492a2}{PCA9555\+\_\+\+CFG0\+\_\+\+MASK}}~0x06u
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a5f2d7b2bd1e54721b51e0b001f9d17e8}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+FAN}}~(1u $<$$<$ 4)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a47d24d2c7f6e97560d968fcf372d5daa}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+RADAR}}~(1u $<$$<$ 5)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a21548209f46bfb6d3762a4abd89468b1}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+MIC}}~(1u $<$$<$ 6)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a9c75a80cfcdd852e8a918b50a6d794cc}{PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+MLX}}~(1u $<$$<$ 7)
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a6936240ee95c2cae37e50f3fa0a14b76}{PCA9555\+\_\+\+CFG1\+\_\+\+MASK}}~0x0\+Fu
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_ab13d757959922bf205d6448862bd4e12}{PIN\+\_\+\+RADAR\+\_\+\+RX}}~43
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_ad7bec6e9767c77bebd8419d6f3329be2}{PIN\+\_\+\+RADAR\+\_\+\+TX}}~44
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_aa61942d4d7c79c5fa394db3d554df72a}{PIN\+\_\+\+MIC\+\_\+\+WS}}~6
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a6a2da9f70511fac1353ce4cd008aba68}{PIN\+\_\+\+MIC\+\_\+\+SD}}~7
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a49df2ceba71c16ebe4a7d8fd5aa72cab}{PIN\+\_\+\+MIC\+\_\+\+SCK}}~8
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_aa02f2c9ba2ca7087ec63030888786f05}{PIN\+\_\+\+LED\+\_\+\+STATUS}}~38
+\item 
+\#define \mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\+\_\+\+ROOT\+\_\+\+SEL}}~35
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Définition des broches GPIO et du mapping PCA9555 pour Lexa\+Care V1. 
+
+Architecture hardware ESP32-\/\+S3-\/\+WROOM-\/2 \+:
+
+SPI2 — 4 LIDARs VL53\+L8\+CX (NCS individuels) + SYNC UART — Radar HLK-\/\+LD6002 (RX=43, TX=44) I2\+C0 — PCA9555D @0x20 (SDA=11, SCL=12) \+: LPn LIDAR + alim sous-\/systèmes I2\+C1 — MLX90640 (SDA=10, SCL=9) — réservé, driver non implémenté I2S — Microphone MEMS numérique (WS=6, SD=7, SCK=8)
+
+PCA9555D Port 0 \+: IO0.\+0 → DIST\+\_\+\+SHUTDOWN \+: shutdown VL53\+L0X (TOF simple, I2C MLX bus) IO0.\+1 → GPIO radar LD6002 — Hi-\/Z (non utilisé) IO0.\+2 → GPIO radar LD6002 — Hi-\/Z (non utilisé) IO0.\+3 → LPn\+\_\+4 \+: LPn LIDAR 4 (VL53\+L8\+CX) IO0.\+4 → LPn\+\_\+3 \+: LPn LIDAR 3 (VL53\+L8\+CX) IO0.\+5 → LPn\+\_\+2 \+: LPn LIDAR 2 (VL53\+L8\+CX) IO0.\+6 → LPn\+\_\+1 \+: LPn LIDAR 1 (VL53\+L8\+CX) IO0.\+7 → RADAR\+\_\+\+LPN \+: LPn LIDAR carte radar (option, non connecté)
+
+PCA9555D Port 1 \+: IO1.\+0–\+IO1.3 → non utilisés (Hi-\/Z) IO1.\+4 → POWER\+\_\+\+FAN \+: alimentation ventilateur IO1.\+5 → POWER\+\_\+\+RADAR \+: alimentation carte radar IO1.\+6 → POWER\+\_\+\+MIC \+: alimentation microphone IO1.\+7 → POWER\+\_\+\+MLX \+: alimentation capteur MLX
+
+IMPORTANT \+: vérifier ces assignations contre le schéma électrique final avant tout flashage sur le matériel de production. 
+
+Definition in file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{pins__config_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pins__config_8h_a8e3e8f37be6335b7b08ffabb49f72b7d}\index{pins\_config.h@{pins\_config.h}!LIDAR\_SPI\_HOST@{LIDAR\_SPI\_HOST}}
+\index{LIDAR\_SPI\_HOST@{LIDAR\_SPI\_HOST}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_SPI\_HOST}{LIDAR\_SPI\_HOST}}
+{\footnotesize\ttfamily \label{pins__config_8h_a8e3e8f37be6335b7b08ffabb49f72b7d} 
+\#define LIDAR\+\_\+\+SPI\+\_\+\+HOST~SPI2\+\_\+\+HOST}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00069}{69}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}.
+
+\Hypertarget{pins__config_8h_ad686bd3530de42d3ed0bee9b2b54ecee}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_DIST\_SHUTDOWN@{PCA9555\_BIT\_DIST\_SHUTDOWN}}
+\index{PCA9555\_BIT\_DIST\_SHUTDOWN@{PCA9555\_BIT\_DIST\_SHUTDOWN}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_DIST\_SHUTDOWN}{PCA9555\_BIT\_DIST\_SHUTDOWN}}
+{\footnotesize\ttfamily \label{pins__config_8h_ad686bd3530de42d3ed0bee9b2b54ecee} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+DIST\+\_\+\+SHUTDOWN~(1u $<$$<$ 0)}
+
+IO0.\+0 — actif = TOF en veille 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00093}{93}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a5a023f9847dba2d76fa779ab7a53483f}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN1@{PCA9555\_BIT\_LPN1}}
+\index{PCA9555\_BIT\_LPN1@{PCA9555\_BIT\_LPN1}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_LPN1}{PCA9555\_BIT\_LPN1}}
+{\footnotesize\ttfamily \label{pins__config_8h_a5a023f9847dba2d76fa779ab7a53483f} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+LPN1~(1u $<$$<$ 6)}
+
+IO0.\+6 → LPn\+\_\+1 LIDAR 1 (NCS0/\+GPIO1) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00102}{102}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_aed877455bd33d6ad38b5c12b5e079bbf}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN2@{PCA9555\_BIT\_LPN2}}
+\index{PCA9555\_BIT\_LPN2@{PCA9555\_BIT\_LPN2}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_LPN2}{PCA9555\_BIT\_LPN2}}
+{\footnotesize\ttfamily \label{pins__config_8h_aed877455bd33d6ad38b5c12b5e079bbf} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+LPN2~(1u $<$$<$ 5)}
+
+IO0.\+5 → LPn\+\_\+2 LIDAR 2 (NCS1/\+GPIO2) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00101}{101}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a868519ce99c724b706ed64545cd9af28}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN3@{PCA9555\_BIT\_LPN3}}
+\index{PCA9555\_BIT\_LPN3@{PCA9555\_BIT\_LPN3}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_LPN3}{PCA9555\_BIT\_LPN3}}
+{\footnotesize\ttfamily \label{pins__config_8h_a868519ce99c724b706ed64545cd9af28} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+LPN3~(1u $<$$<$ 4)}
+
+IO0.\+4 → LPn\+\_\+3 LIDAR 3 (NCS2/\+GPIO42) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00100}{100}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a7ef0d0acf832fc5efdda51daac987e35}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN4@{PCA9555\_BIT\_LPN4}}
+\index{PCA9555\_BIT\_LPN4@{PCA9555\_BIT\_LPN4}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_LPN4}{PCA9555\_BIT\_LPN4}}
+{\footnotesize\ttfamily \label{pins__config_8h_a7ef0d0acf832fc5efdda51daac987e35} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+LPN4~(1u $<$$<$ 3)}
+
+IO0.\+3 → LPn\+\_\+4 LIDAR 4 (NCS3/\+GPIO41) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00099}{99}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a5f2d7b2bd1e54721b51e0b001f9d17e8}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_FAN@{PCA9555\_BIT\_PWR\_FAN}}
+\index{PCA9555\_BIT\_PWR\_FAN@{PCA9555\_BIT\_PWR\_FAN}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_PWR\_FAN}{PCA9555\_BIT\_PWR\_FAN}}
+{\footnotesize\ttfamily \label{pins__config_8h_a5f2d7b2bd1e54721b51e0b001f9d17e8} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+FAN~(1u $<$$<$ 4)}
+
+IO1.\+4 → Alimentation ventilateur 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00117}{117}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+\Hypertarget{pins__config_8h_a21548209f46bfb6d3762a4abd89468b1}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_MIC@{PCA9555\_BIT\_PWR\_MIC}}
+\index{PCA9555\_BIT\_PWR\_MIC@{PCA9555\_BIT\_PWR\_MIC}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_PWR\_MIC}{PCA9555\_BIT\_PWR\_MIC}}
+{\footnotesize\ttfamily \label{pins__config_8h_a21548209f46bfb6d3762a4abd89468b1} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+MIC~(1u $<$$<$ 6)}
+
+IO1.\+6 → Alimentation microphone 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00119}{119}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+\Hypertarget{pins__config_8h_a9c75a80cfcdd852e8a918b50a6d794cc}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_MLX@{PCA9555\_BIT\_PWR\_MLX}}
+\index{PCA9555\_BIT\_PWR\_MLX@{PCA9555\_BIT\_PWR\_MLX}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_PWR\_MLX}{PCA9555\_BIT\_PWR\_MLX}}
+{\footnotesize\ttfamily \label{pins__config_8h_a9c75a80cfcdd852e8a918b50a6d794cc} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+MLX~(1u $<$$<$ 7)}
+
+IO1.\+7 → Alimentation MLX90640 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00120}{120}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+\Hypertarget{pins__config_8h_a47d24d2c7f6e97560d968fcf372d5daa}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_RADAR@{PCA9555\_BIT\_PWR\_RADAR}}
+\index{PCA9555\_BIT\_PWR\_RADAR@{PCA9555\_BIT\_PWR\_RADAR}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_PWR\_RADAR}{PCA9555\_BIT\_PWR\_RADAR}}
+{\footnotesize\ttfamily \label{pins__config_8h_a47d24d2c7f6e97560d968fcf372d5daa} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+PWR\+\_\+\+RADAR~(1u $<$$<$ 5)}
+
+IO1.\+5 → Alimentation carte radar 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00118}{118}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+\Hypertarget{pins__config_8h_a5de5d3f76f4de48e60b03e4bbc7a30f9}\index{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_RADAR\_LPN@{PCA9555\_BIT\_RADAR\_LPN}}
+\index{PCA9555\_BIT\_RADAR\_LPN@{PCA9555\_BIT\_RADAR\_LPN}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_BIT\_RADAR\_LPN}{PCA9555\_BIT\_RADAR\_LPN}}
+{\footnotesize\ttfamily \label{pins__config_8h_a5de5d3f76f4de48e60b03e4bbc7a30f9} 
+\#define PCA9555\+\_\+\+BIT\+\_\+\+RADAR\+\_\+\+LPN~(1u $<$$<$ 7)}
+
+IO0.\+7 → LPn LIDAR radar (réservé) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00105}{105}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a5bb7081ed093edf6f40e3681b80492a2}\index{pins\_config.h@{pins\_config.h}!PCA9555\_CFG0\_MASK@{PCA9555\_CFG0\_MASK}}
+\index{PCA9555\_CFG0\_MASK@{PCA9555\_CFG0\_MASK}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_CFG0\_MASK}{PCA9555\_CFG0\_MASK}}
+{\footnotesize\ttfamily \label{pins__config_8h_a5bb7081ed093edf6f40e3681b80492a2} 
+\#define PCA9555\+\_\+\+CFG0\+\_\+\+MASK~0x06u}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00112}{112}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_a6936240ee95c2cae37e50f3fa0a14b76}\index{pins\_config.h@{pins\_config.h}!PCA9555\_CFG1\_MASK@{PCA9555\_CFG1\_MASK}}
+\index{PCA9555\_CFG1\_MASK@{PCA9555\_CFG1\_MASK}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_CFG1\_MASK}{PCA9555\_CFG1\_MASK}}
+{\footnotesize\ttfamily \label{pins__config_8h_a6936240ee95c2cae37e50f3fa0a14b76} 
+\#define PCA9555\+\_\+\+CFG1\+\_\+\+MASK~0x0\+Fu}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00124}{124}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_abc995c26ee634eb7c2600e8bf733bd17}\index{pins\_config.h@{pins\_config.h}!PCA9555\_I2C\_ADDR@{PCA9555\_I2C\_ADDR}}
+\index{PCA9555\_I2C\_ADDR@{PCA9555\_I2C\_ADDR}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_I2C\_ADDR}{PCA9555\_I2C\_ADDR}}
+{\footnotesize\ttfamily \label{pins__config_8h_abc995c26ee634eb7c2600e8bf733bd17} 
+\#define PCA9555\+\_\+\+I2\+C\+\_\+\+ADDR~0x20}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00083}{83}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_adae3362117b6490d042b16c0ab603d49}\index{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_CONFIG\_0@{PCA9555\_REG\_CONFIG\_0}}
+\index{PCA9555\_REG\_CONFIG\_0@{PCA9555\_REG\_CONFIG\_0}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_REG\_CONFIG\_0}{PCA9555\_REG\_CONFIG\_0}}
+{\footnotesize\ttfamily \label{pins__config_8h_adae3362117b6490d042b16c0ab603d49} 
+\#define PCA9555\+\_\+\+REG\+\_\+\+CONFIG\+\_\+0~0x06}
+
+Config Port 0 (0=sortie, 1=entrée) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00088}{88}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_ac84f3abe5f9291532786a1e968e530a8}\index{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_CONFIG\_1@{PCA9555\_REG\_CONFIG\_1}}
+\index{PCA9555\_REG\_CONFIG\_1@{PCA9555\_REG\_CONFIG\_1}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_REG\_CONFIG\_1}{PCA9555\_REG\_CONFIG\_1}}
+{\footnotesize\ttfamily \label{pins__config_8h_ac84f3abe5f9291532786a1e968e530a8} 
+\#define PCA9555\+\_\+\+REG\+\_\+\+CONFIG\+\_\+1~0x07}
+
+Config Port 1 (0=sortie, 1=entrée) 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00089}{89}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_af865853dc8aa1041dc760a691dae54d8}\index{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_OUTPUT\_0@{PCA9555\_REG\_OUTPUT\_0}}
+\index{PCA9555\_REG\_OUTPUT\_0@{PCA9555\_REG\_OUTPUT\_0}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_REG\_OUTPUT\_0}{PCA9555\_REG\_OUTPUT\_0}}
+{\footnotesize\ttfamily \label{pins__config_8h_af865853dc8aa1041dc760a691dae54d8} 
+\#define PCA9555\+\_\+\+REG\+\_\+\+OUTPUT\+\_\+0~0x02}
+
+Sortie Port 0 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00086}{86}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}, and \mbox{\hyperlink{hw__diag_8c_source_l00312}{pca9555\+\_\+set\+\_\+lpn()}}.
+
+\Hypertarget{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22}\index{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_OUTPUT\_1@{PCA9555\_REG\_OUTPUT\_1}}
+\index{PCA9555\_REG\_OUTPUT\_1@{PCA9555\_REG\_OUTPUT\_1}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PCA9555\_REG\_OUTPUT\_1}{PCA9555\_REG\_OUTPUT\_1}}
+{\footnotesize\ttfamily \label{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22} 
+\#define PCA9555\+\_\+\+REG\+\_\+\+OUTPUT\+\_\+1~0x03}
+
+Sortie Port 1 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00087}{87}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00585}{hw\+\_\+diag\+\_\+pca9555\+\_\+set\+\_\+power()}}, and \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e}\index{pins\_config.h@{pins\_config.h}!PIN\_I2C0\_SCL@{PIN\_I2C0\_SCL}}
+\index{PIN\_I2C0\_SCL@{PIN\_I2C0\_SCL}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_I2C0\_SCL}{PIN\_I2C0\_SCL}}
+{\footnotesize\ttfamily \label{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e} 
+\#define PIN\+\_\+\+I2\+C0\+\_\+\+SCL~12}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00049}{49}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}, and \mbox{\hyperlink{hw__diag_8c_source_l00242}{pca9555\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_ac270b2950c69700990747460dc1e284a}\index{pins\_config.h@{pins\_config.h}!PIN\_I2C1\_SCL@{PIN\_I2C1\_SCL}}
+\index{PIN\_I2C1\_SCL@{PIN\_I2C1\_SCL}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_I2C1\_SCL}{PIN\_I2C1\_SCL}}
+{\footnotesize\ttfamily \label{pins__config_8h_ac270b2950c69700990747460dc1e284a} 
+\#define PIN\+\_\+\+I2\+C1\+\_\+\+SCL~9}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00055}{55}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00575}{hw\+\_\+diag\+\_\+init\+\_\+sensor\+\_\+bus()}}.
+
+\Hypertarget{pins__config_8h_aabfe18b52ad58d04d2a1cf6612c5c4fa}\index{pins\_config.h@{pins\_config.h}!PIN\_I2C1\_SDA@{PIN\_I2C1\_SDA}}
+\index{PIN\_I2C1\_SDA@{PIN\_I2C1\_SDA}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_I2C1\_SDA}{PIN\_I2C1\_SDA}}
+{\footnotesize\ttfamily \label{pins__config_8h_aabfe18b52ad58d04d2a1cf6612c5c4fa} 
+\#define PIN\+\_\+\+I2\+C1\+\_\+\+SDA~10}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00054}{54}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00575}{hw\+\_\+diag\+\_\+init\+\_\+sensor\+\_\+bus()}}.
+
+\Hypertarget{pins__config_8h_aa02f2c9ba2ca7087ec63030888786f05}\index{pins\_config.h@{pins\_config.h}!PIN\_LED\_STATUS@{PIN\_LED\_STATUS}}
+\index{PIN\_LED\_STATUS@{PIN\_LED\_STATUS}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LED\_STATUS}{PIN\_LED\_STATUS}}
+{\footnotesize\ttfamily \label{pins__config_8h_aa02f2c9ba2ca7087ec63030888786f05} 
+\#define PIN\+\_\+\+LED\+\_\+\+STATUS~38}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00146}{146}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_CLK@{PIN\_LIDAR\_CLK}}
+\index{PIN\_LIDAR\_CLK@{PIN\_LIDAR\_CLK}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_CLK}{PIN\_LIDAR\_CLK}}
+{\footnotesize\ttfamily \label{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+CLK~17}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00070}{70}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}, and \mbox{\hyperlink{hw__diag_8c_source_l00340}{diag\+\_\+scan\+\_\+lidars()}}.
+
+\Hypertarget{pins__config_8h_a7206f7c59a37c0d551f6ae396e7ddd19}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_MISO@{PIN\_LIDAR\_MISO}}
+\index{PIN\_LIDAR\_MISO@{PIN\_LIDAR\_MISO}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_MISO}{PIN\_LIDAR\_MISO}}
+{\footnotesize\ttfamily \label{pins__config_8h_a7206f7c59a37c0d551f6ae396e7ddd19} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+MISO~21}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00072}{72}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}.
+
+\Hypertarget{pins__config_8h_a591add909d8fa618c6c75d7375c5e0b6}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_MOSI@{PIN\_LIDAR\_MOSI}}
+\index{PIN\_LIDAR\_MOSI@{PIN\_LIDAR\_MOSI}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_MOSI}{PIN\_LIDAR\_MOSI}}
+{\footnotesize\ttfamily \label{pins__config_8h_a591add909d8fa618c6c75d7375c5e0b6} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+MOSI~18}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00071}{71}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}.
+
+\Hypertarget{pins__config_8h_a8d4bf531079d2f0cbad53326ea8e6199}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS0@{PIN\_LIDAR\_NCS0}}
+\index{PIN\_LIDAR\_NCS0@{PIN\_LIDAR\_NCS0}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_NCS0}{PIN\_LIDAR\_NCS0}}
+{\footnotesize\ttfamily \label{pins__config_8h_a8d4bf531079d2f0cbad53326ea8e6199} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+NCS0~1}
+
+NCS LIDAR 1 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00075}{75}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a01c5ad844f2c0ec12343af1c16cacf5d}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS1@{PIN\_LIDAR\_NCS1}}
+\index{PIN\_LIDAR\_NCS1@{PIN\_LIDAR\_NCS1}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_NCS1}{PIN\_LIDAR\_NCS1}}
+{\footnotesize\ttfamily \label{pins__config_8h_a01c5ad844f2c0ec12343af1c16cacf5d} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+NCS1~2}
+
+NCS LIDAR 2 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00076}{76}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_ae6e653a6750b07505a4f21a350cc7c7d}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS2@{PIN\_LIDAR\_NCS2}}
+\index{PIN\_LIDAR\_NCS2@{PIN\_LIDAR\_NCS2}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_NCS2}{PIN\_LIDAR\_NCS2}}
+{\footnotesize\ttfamily \label{pins__config_8h_ae6e653a6750b07505a4f21a350cc7c7d} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+NCS2~42}
+
+NCS LIDAR 3 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00077}{77}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a7b82939fa5f89f8a18c272ff73b838f3}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS3@{PIN\_LIDAR\_NCS3}}
+\index{PIN\_LIDAR\_NCS3@{PIN\_LIDAR\_NCS3}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_NCS3}{PIN\_LIDAR\_NCS3}}
+{\footnotesize\ttfamily \label{pins__config_8h_a7b82939fa5f89f8a18c272ff73b838f3} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+NCS3~41}
+
+NCS LIDAR 4 
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00078}{78}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_aa999e725941ff90978fe96cfee88e1f2}\index{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_SYNC@{PIN\_LIDAR\_SYNC}}
+\index{PIN\_LIDAR\_SYNC@{PIN\_LIDAR\_SYNC}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_LIDAR\_SYNC}{PIN\_LIDAR\_SYNC}}
+{\footnotesize\ttfamily \label{pins__config_8h_aa999e725941ff90978fe96cfee88e1f2} 
+\#define PIN\+\_\+\+LIDAR\+\_\+\+SYNC~14}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00073}{73}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+\Hypertarget{pins__config_8h_a49df2ceba71c16ebe4a7d8fd5aa72cab}\index{pins\_config.h@{pins\_config.h}!PIN\_MIC\_SCK@{PIN\_MIC\_SCK}}
+\index{PIN\_MIC\_SCK@{PIN\_MIC\_SCK}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_MIC\_SCK}{PIN\_MIC\_SCK}}
+{\footnotesize\ttfamily \label{pins__config_8h_a49df2ceba71c16ebe4a7d8fd5aa72cab} 
+\#define PIN\+\_\+\+MIC\+\_\+\+SCK~8}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00141}{141}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mic__driver_8c_source_l00036}{mic\+\_\+driver\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_a6a2da9f70511fac1353ce4cd008aba68}\index{pins\_config.h@{pins\_config.h}!PIN\_MIC\_SD@{PIN\_MIC\_SD}}
+\index{PIN\_MIC\_SD@{PIN\_MIC\_SD}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_MIC\_SD}{PIN\_MIC\_SD}}
+{\footnotesize\ttfamily \label{pins__config_8h_a6a2da9f70511fac1353ce4cd008aba68} 
+\#define PIN\+\_\+\+MIC\+\_\+\+SD~7}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00140}{140}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mic__driver_8c_source_l00036}{mic\+\_\+driver\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_aa61942d4d7c79c5fa394db3d554df72a}\index{pins\_config.h@{pins\_config.h}!PIN\_MIC\_WS@{PIN\_MIC\_WS}}
+\index{PIN\_MIC\_WS@{PIN\_MIC\_WS}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_MIC\_WS}{PIN\_MIC\_WS}}
+{\footnotesize\ttfamily \label{pins__config_8h_aa61942d4d7c79c5fa394db3d554df72a} 
+\#define PIN\+\_\+\+MIC\+\_\+\+WS~6}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00139}{139}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mic__driver_8c_source_l00036}{mic\+\_\+driver\+\_\+init()}}.
+
+\Hypertarget{pins__config_8h_ab13d757959922bf205d6448862bd4e12}\index{pins\_config.h@{pins\_config.h}!PIN\_RADAR\_RX@{PIN\_RADAR\_RX}}
+\index{PIN\_RADAR\_RX@{PIN\_RADAR\_RX}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_RADAR\_RX}{PIN\_RADAR\_RX}}
+{\footnotesize\ttfamily \label{pins__config_8h_ab13d757959922bf205d6448862bd4e12} 
+\#define PIN\+\_\+\+RADAR\+\_\+\+RX~43}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00129}{129}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00417}{diag\+\_\+test\+\_\+radar()}}.
+
+\Hypertarget{pins__config_8h_ad7bec6e9767c77bebd8419d6f3329be2}\index{pins\_config.h@{pins\_config.h}!PIN\_RADAR\_TX@{PIN\_RADAR\_TX}}
+\index{PIN\_RADAR\_TX@{PIN\_RADAR\_TX}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_RADAR\_TX}{PIN\_RADAR\_TX}}
+{\footnotesize\ttfamily \label{pins__config_8h_ad7bec6e9767c77bebd8419d6f3329be2} 
+\#define PIN\+\_\+\+RADAR\+\_\+\+TX~44}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00130}{130}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00417}{diag\+\_\+test\+\_\+radar()}}.
+
+\Hypertarget{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}\index{pins\_config.h@{pins\_config.h}!PIN\_ROOT\_SEL@{PIN\_ROOT\_SEL}}
+\index{PIN\_ROOT\_SEL@{PIN\_ROOT\_SEL}!pins\_config.h@{pins\_config.h}}
+\doxysubsubsection{\texorpdfstring{PIN\_ROOT\_SEL}{PIN\_ROOT\_SEL}}
+{\footnotesize\ttfamily \label{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1} 
+\#define PIN\+\_\+\+ROOT\+\_\+\+SEL~35}
+
+
+
+Definition at line \mbox{\hyperlink{pins__config_8h_source_l00151}{151}} of file \mbox{\hyperlink{pins__config_8h_source}{pins\+\_\+config.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}.
+

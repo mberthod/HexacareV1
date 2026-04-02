@@ -1,0 +1,17 @@
+<map id="read_regs" name="read_regs">
+<area shape="rect" id="Node000001" title=" " alt="" coords="625,22,703,49"/>
+<area shape="rect" id="Node000002" href="$bme280__driver_8c.html#a16050495a4e02a1498ceadf9a19db1e2" title=" " alt="" coords="310,22,402,49"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="609,20,576,13,521,8,465,13,403,25,402,20,464,8,521,3,577,8,610,15"/>
+<area shape="rect" id="Node000004" href="$bme280__driver_8c.html#a898595b4f31ff7da1e14b618a804a7b5" title=" " alt="" coords="471,73,570,100"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="611,57,561,75,559,70,609,52"/>
+<area shape="rect" id="Node000007" href="$bme280__driver_8c.html#a7c57f6d05791a5304f415dcefc16ba45" title=" " alt="" coords="464,22,577,49"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="609,38,577,38,577,33,609,33"/>
+<area shape="rect" id="Node000003" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,48,83,74"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="296,43,83,61,83,55,295,38"/>
+<area shape="rect" id="Node000005" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,73,416,100"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="455,89,417,89,417,84,455,84"/>
+<area shape="rect" id="Node000006" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,73,248,100"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="280,89,248,89,248,84,280,84"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="115,76,83,70,84,65,116,71"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="449,38,402,38,402,33,449,33"/>
+</map>

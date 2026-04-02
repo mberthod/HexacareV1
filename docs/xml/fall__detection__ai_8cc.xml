@@ -1,0 +1,760 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="fall__detection__ai_8cc" kind="file" language="C++">
+    <compoundname>fall_detection_ai.cc</compoundname>
+    <includes refid="fall__detection__ai_8h" local="yes">fall_detection_ai.h</includes>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">sdkconfig.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="yes">esp_task_wdt.h</includes>
+    <includes local="yes">esp_timer.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="yes">freertos/queue.h</includes>
+    <includes local="no">cstring</includes>
+    <includes local="no">cstdlib</includes>
+    <includes local="no">algorithm</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>components/ai_engine/fall_detection_ai.cc</label>
+        <link refid="fall__detection__ai_8cc"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>fall_detection_ai.h</label>
+        <link refid="fall__detection__ai_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>algorithm</label>
+      </node>
+      <node id="17">
+        <label>cstdlib</label>
+      </node>
+      <node id="16">
+        <label>cstring</label>
+      </node>
+      <node id="9">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="10">
+        <label>esp_err.h</label>
+      </node>
+      <node id="12">
+        <label>esp_log.h</label>
+      </node>
+      <node id="13">
+        <label>esp_task_wdt.h</label>
+      </node>
+      <node id="14">
+        <label>esp_timer.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="8">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="15">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="11">
+        <label>sdkconfig.h</label>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structai__task__ctx__t" prot="public">ai_task_ctx_t</innerclass>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" prot="public" static="no">
+        <name>CONFIG_AI_HISTORY_LEN</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="49" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="49" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" prot="public" static="no">
+        <name>CONFIG_AI_FALL_THRESHOLD_PERCENT</name>
+        <initializer>80</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="52" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="52" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="fall__detection__ai_8cc_1ab97049d4832a5c3943e89f3f3c3e10ef" prot="public" static="no">
+        <name>CONFIG_AI_FALL_CONFIDENCE_THRESHOLD</name>
+        <initializer>85</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="55" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="55" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" prot="public" static="no">
+        <name>TASK_STACK_SIZE</name>
+        <initializer>(12288)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="71" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="71" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" prot="public" static="no">
+        <name>TASK_PRIORITY</name>
+        <initializer>(9)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="72" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="72" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" prot="public" static="no">
+        <name>TASK_CORE</name>
+        <initializer>(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="73" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="73" bodyend="-1"/>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+        <referencedby refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" compoundref="lidar__driver_8c" startline="379" endline="406">lidar_driver_start</referencedby>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="fall__detection__ai_8cc_1aace0aabcf3303bb3a961ebd8ba4efee3" prot="public" static="no">
+        <name>FALL_DISTANCE_MAX_MM</name>
+        <initializer>1500</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="76" column="9" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="76" bodyend="-1"/>
+        <referencedby refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="fall__detection__ai_8cc_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;ai_engine&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="66" column="19" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="66" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>float</type>
+        <definition>static float threshold_avg_lower_zone</definition>
+        <argsstring>(const lidar_matrix_t *matrix)</argsstring>
+        <name>threshold_avg_lower_zone</name>
+        <param>
+          <type>const <ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref> *</type>
+          <declname>matrix</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="106" column="14" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="106" bodyend="123"/>
+        <references refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" compoundref="system__types_8h" startline="81">lidar_matrix_t::data</references>
+        <references refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" compoundref="system__types_8h" startline="45">LIDAR_COLS</references>
+        <references refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" compoundref="system__types_8h" startline="44">LIDAR_ROWS</references>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kindref="member">ai_event_state_e</ref></type>
+        <definition>static ai_event_state_e threshold_detect_fall</definition>
+        <argsstring>(ai_task_ctx_t *ctx, float current_mm, uint8_t *confidence)</argsstring>
+        <name>threshold_detect_fall</name>
+        <param>
+          <type><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>current_mm</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>confidence</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="134" column="25" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="134" bodyend="187"/>
+        <references refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" compoundref="system__types_8h" startline="125">AI_CHUTE_DETECTEE</references>
+        <references refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6" compoundref="system__types_8h" startline="126">AI_MOUVEMENT_ANORMAL</references>
+        <references refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" compoundref="system__types_8h" startline="124">AI_NORMAL</references>
+        <references refid="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" compoundref="fall__detection__ai_8cc" startline="52">CONFIG_AI_FALL_THRESHOLD_PERCENT</references>
+        <references refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" compoundref="fall__detection__ai_8cc" startline="49">CONFIG_AI_HISTORY_LEN</references>
+        <references refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" compoundref="fall__detection__ai_8cc" startline="86">ai_task_ctx_t::dist_history</references>
+        <references refid="fall__detection__ai_8cc_1aace0aabcf3303bb3a961ebd8ba4efee3" compoundref="fall__detection__ai_8cc" startline="76">FALL_DISTANCE_MAX_MM</references>
+        <references refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" compoundref="fall__detection__ai_8cc" startline="88">ai_task_ctx_t::history_full</references>
+        <references refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" compoundref="fall__detection__ai_8cc" startline="87">ai_task_ctx_t::history_head</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void send_ai_event</definition>
+        <argsstring>(const ai_task_ctx_t *ctx, const ai_event_t *event)</argsstring>
+        <name>send_ai_event</name>
+        <param>
+          <type>const <ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structai__event__t" kindref="compound">ai_event_t</ref> *</type>
+          <declname>event</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="253" column="13" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="253" bodyend="277"/>
+        <references refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" compoundref="system__types_8h" startline="125">AI_CHUTE_DETECTEE</references>
+        <references refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" compoundref="system__types_8h" startline="229">sys_context_t::ai_to_mesh_queue</references>
+        <references refid="structai__event__t_1abda04f94a67eac00a050985c90987309" compoundref="system__types_8h" startline="142">ai_event_t::confidence</references>
+        <references refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" compoundref="system__types_8h" startline="230">sys_context_t::diag_to_pc_queue</references>
+        <references refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" compoundref="system__types_8h" startline="141">ai_event_t::state</references>
+        <references refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" compoundref="fall__detection__ai_8cc" startline="83">ai_task_ctx_t::sys_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" compoundref="fall__detection__ai_8cc" startline="285" endline="353">task_ai_inference</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void task_ai_inference</definition>
+        <argsstring>(void *pvParam)</argsstring>
+        <name>task_ai_inference</name>
+        <param>
+          <type>void *</type>
+          <declname>pvParam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/ai_engine/fall_detection_ai.cc" line="285" column="13" bodyfile="components/ai_engine/fall_detection_ai.cc" bodystart="285" bodyend="353"/>
+        <references refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" compoundref="system__types_8h" startline="124">AI_NORMAL</references>
+        <references refid="fall__detection__ai_8cc_1ab97049d4832a5c3943e89f3f3c3e10ef" compoundref="fall__detection__ai_8cc" startline="55">CONFIG_AI_FALL_CONFIDENCE_THRESHOLD</references>
+        <references refid="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" compoundref="fall__detection__ai_8cc" startline="52">CONFIG_AI_FALL_THRESHOLD_PERCENT</references>
+        <references refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" compoundref="fall__detection__ai_8cc" startline="49">CONFIG_AI_HISTORY_LEN</references>
+        <references refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" compoundref="system__types_8h" startline="113">sensor_frame_t::lidar</references>
+        <references refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" compoundref="system__types_8h" startline="115">sensor_frame_t::lidar_valid</references>
+        <references refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" compoundref="fall__detection__ai_8cc" startline="253" endline="277">send_ai_event</references>
+        <references refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" compoundref="system__types_8h" startline="228">sys_context_t::sensor_to_ai_queue</references>
+        <references refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" compoundref="fall__detection__ai_8cc" startline="83">ai_task_ctx_t::sys_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" compoundref="fall__detection__ai_8cc" startline="106" endline="123">threshold_avg_lower_zone</references>
+        <references refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" compoundref="fall__detection__ai_8cc" startline="134" endline="187">threshold_detect_fall</references>
+        <referencedby refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" compoundref="fall__detection__ai_8cc" startline="362" endline="393">ai_engine_task_start</referencedby>
+      </memberdef>
+      <member refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kind="function"><name>ai_engine_task_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Moteur d&apos;inférence de détection de chute — dual-mode ESP-DL / seuil. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Ce fichier est compilé en C++ (requis pour l&apos;API ESP-DL). L&apos;interface externe est exposée via extern &quot;C&quot; pour la compatibilité avec <ref refid="main_8c" kindref="compound">main.c</ref> et les autres composants C.</para>
+<para>=== MODE MODÈLE (CONFIG_AI_USE_ESPDL_MODEL=y) === Charge /littlefs/fall_model.espdl via dl::Model::load(). Construit un Tensor&lt;int16_t&gt; 8×32×1 depuis <ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref>. Exécute model-&gt;run(). Lit la sortie softmax [P_normal, P_chute]. Si P_chute &gt; CONFIG_AI_FALL_CONFIDENCE_THRESHOLD% → AI_CHUTE_DETECTEE.</para>
+<para>=== MODE SEUIL (CONFIG_AI_USE_ESPDL_MODEL=n, défaut) === Algorithme géométrique sur <ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref> :<orderedlist>
+<listitem><para>Calcul de la distance moyenne de la zone inférieure (lignes 6-7).</para>
+</listitem><listitem><para>Comparaison avec l&apos;historique glissant (CONFIG_AI_HISTORY_LEN trames).</para>
+</listitem><listitem><para>Si variation &gt; CONFIG_AI_FALL_THRESHOLD_PERCENT% ET distance &lt; 1500 mm → AI_CHUTE_DETECTEE (confiance proportionnelle à la variation).</para>
+</listitem></orderedlist>
+</para>
+<para>=== RÈGLE DE PRIORITÉ MESH (contrainte stricte) === AI_CHUTE_DETECTEE → xQueueSendToFront(ai_to_mesh_queue, ...) Autres états → xQueueSend(ai_to_mesh_queue, ...) </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>fall_detection_ai.cc</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_ai_engine</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Moteur<sp/>d&apos;inférence<sp/>de<sp/>détection<sp/>de<sp/>chute<sp/>—<sp/>dual-mode<sp/>ESP-DL<sp/>/<sp/>seuil.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Ce<sp/>fichier<sp/>est<sp/>compilé<sp/>en<sp/>C++<sp/>(requis<sp/>pour<sp/>l&apos;API<sp/>ESP-DL).</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>L&apos;interface<sp/>externe<sp/>est<sp/>exposée<sp/>via<sp/>extern<sp/>&quot;C&quot;<sp/>pour<sp/>la<sp/>compatibilité</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>avec<sp/>main.c<sp/>et<sp/>les<sp/>autres<sp/>composants<sp/>C.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>===<sp/>MODE<sp/>MODÈLE<sp/>(CONFIG_AI_USE_ESPDL_MODEL=y)<sp/>===</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Charge<sp/>/littlefs/fall_model.espdl<sp/>via<sp/>dl::Model::load().</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Construit<sp/>un<sp/>Tensor&lt;int16_t&gt;<sp/>8×32×1<sp/>depuis<sp/>lidar_matrix_t.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Exécute<sp/>model-&gt;run().<sp/>Lit<sp/>la<sp/>sortie<sp/>softmax<sp/>[P_normal,<sp/>P_chute].</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Si<sp/>P_chute<sp/>&gt;<sp/>CONFIG_AI_FALL_CONFIDENCE_THRESHOLD%<sp/>→<sp/>AI_CHUTE_DETECTEE.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>===<sp/>MODE<sp/>SEUIL<sp/>(CONFIG_AI_USE_ESPDL_MODEL=n,<sp/>défaut)<sp/>===</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Algorithme<sp/>géométrique<sp/>sur<sp/>lidar_matrix_t<sp/>:</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>Calcul<sp/>de<sp/>la<sp/>distance<sp/>moyenne<sp/>de<sp/>la<sp/>zone<sp/>inférieure<sp/>(lignes<sp/>6-7).</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>Comparaison<sp/>avec<sp/>l&apos;historique<sp/>glissant<sp/>(CONFIG_AI_HISTORY_LEN<sp/>trames).</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>Si<sp/>variation<sp/>&gt;<sp/>CONFIG_AI_FALL_THRESHOLD_PERCENT%<sp/>ET<sp/>distance<sp/>&lt;<sp/>1500<sp/>mm</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>AI_CHUTE_DETECTEE<sp/>(confiance<sp/>proportionnelle<sp/>à<sp/>la<sp/>variation).</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>===<sp/>RÈGLE<sp/>DE<sp/>PRIORITÉ<sp/>MESH<sp/>(contrainte<sp/>stricte)<sp/>===</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/><sp/>AI_CHUTE_DETECTEE<sp/>→<sp/>xQueueSendToFront(ai_to_mesh_queue,<sp/>...)</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Autres<sp/>états<sp/><sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>xQueueSend(ai_to_mesh_queue,<sp/>...)</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fall__detection__ai_8h" kindref="compound">fall_detection_ai.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;sdkconfig.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_task_wdt.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/queue.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstring&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;cstdlib&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;algorithm&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Valeurs<sp/>par<sp/>défaut<sp/>si<sp/>Kconfig.projbuild<sp/>n&apos;a<sp/>pas<sp/>encore<sp/>été<sp/>intégré</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>au<sp/>cache<sp/>CMake<sp/>(premier<sp/>build<sp/>sans<sp/>idf.py<sp/>reconfigure).</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>Lancer<sp/>&quot;idf.py<sp/>reconfigure&quot;<sp/>puis<sp/>&quot;idf.py<sp/>build&quot;<sp/>pour<sp/>utiliser<sp/>menuconfig.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CONFIG_AI_HISTORY_LEN</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CONFIG_AI_HISTORY_LEN<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CONFIG_AI_FALL_THRESHOLD_PERCENT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CONFIG_AI_FALL_THRESHOLD_PERCENT<sp/><sp/><sp/>80</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>CONFIG_AI_FALL_CONFIDENCE_THRESHOLD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="fall__detection__ai_8cc_1ab97049d4832a5c3943e89f3f3c3e10ef" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>CONFIG_AI_FALL_CONFIDENCE_THRESHOLD<sp/>85</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Inclusion<sp/>conditionnelle<sp/>ESP-DL<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CONFIG_AI_USE_ESPDL_MODEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Décommenter<sp/>après<sp/>installation<sp/>du<sp/>composant<sp/>espressif/esp-dl<sp/>:</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>#include<sp/>&quot;dl_model_base.hpp&quot;</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="preprocessor">#warning<sp/>&quot;ESP-DL<sp/>activé<sp/>mais<sp/>les<sp/>headers<sp/>ne<sp/>sont<sp/>pas<sp/>inclus.<sp/>Installer<sp/>espressif/esp-dl<sp/>via<sp/>idf.py<sp/>update-dependencies.&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="fall__detection__ai_8cc_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ai_engine&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>Constantes<sp/>de<sp/>la<sp/>tâche</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_STACK_SIZE<sp/><sp/><sp/><sp/><sp/>(12288)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_PRIORITY<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(9)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TASK_CORE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Seuil<sp/>de<sp/>distance<sp/>sol<sp/>:<sp/>en<sp/>dessous<sp/>=<sp/>personne<sp/>allongée<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="fall__detection__ai_8cc_1aace0aabcf3303bb3a961ebd8ba4efee3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FALL_DISTANCE_MAX_MM<sp/><sp/><sp/><sp/>1500</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>ai_task_ctx_t<sp/>(interne)</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Contexte<sp/>de<sp/>la<sp/>tâche<sp/>d&apos;inférence.</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structai__task__ctx__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>{</highlight></codeline>
+<codeline lineno="83" refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*<ref refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kindref="member">sys_ctx</ref>;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Historique<sp/>pour<sp/>le<sp/>mode<sp/>seuil<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" kindref="member">dist_history</ref>[<ref refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kindref="member">CONFIG_AI_HISTORY_LEN</ref>];</highlight></codeline>
+<codeline lineno="87" refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref>;</highlight></codeline>
+<codeline lineno="88" refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" kindref="member">history_full</ref>;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CONFIG_AI_USE_ESPDL_MODEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>dl::Model<sp/>*model;<sp/>*/</highlight><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>Pointeur<sp/>vers<sp/>le<sp/>modèle<sp/>chargé<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>model_loaded;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>threshold_avg_lower_zone<sp/>(interne)</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Calcule<sp/>la<sp/>distance<sp/>moyenne<sp/>des<sp/>lignes<sp/>inférieures<sp/>(6-7)<sp/>de<sp/>la<sp/>matrice.</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>Les<sp/>lignes<sp/>du<sp/>bas<sp/>correspondent<sp/>à<sp/>la<sp/>zone<sp/>sol<sp/>—<sp/>une<sp/>distance<sp/>faible</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>et<sp/>soudaine<sp/>indique<sp/>une<sp/>personne<sp/>allongée<sp/>(chute<sp/>potentielle).</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>@param<sp/>matrix<sp/>Matrice<sp/>LIDAR<sp/>8×32.</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>@return<sp/>Distance<sp/>moyenne<sp/>en<sp/>mm<sp/>(0<sp/>si<sp/>toutes<sp/>les<sp/>zones<sp/>invalides).</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106" refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" kindref="member">threshold_avg_lower_zone</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref><sp/>*matrix)</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sum<sp/><sp/><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/>count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lignes<sp/>6<sp/>et<sp/>7<sp/>=<sp/>zone<sp/>la<sp/>plus<sp/>basse<sp/>du<sp/>champ<sp/>de<sp/>vision<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>row<sp/>=<sp/>6;<sp/>row<sp/>&lt;<sp/><ref refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kindref="member">LIDAR_ROWS</ref>;<sp/>row++)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>col<sp/>=<sp/>0;<sp/>col<sp/>&lt;<sp/><ref refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" kindref="member">LIDAR_COLS</ref>;<sp/>col++)<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/>d<sp/>=<sp/>matrix-&gt;<ref refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" kindref="member">data</ref>[row][col];</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(d<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>d<sp/>&lt;<sp/>5000)<sp/>{<sp/></highlight><highlight class="comment">/*<sp/>Filtrer<sp/>les<sp/>mesures<sp/>invalides<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sum<sp/>+=<sp/>(float)d;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>count++;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(count<sp/>&gt;<sp/>0)<sp/>?<sp/>(sum<sp/>/<sp/>(float)count)<sp/>:<sp/>0.0f;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>threshold_detect_fall<sp/>(interne)</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Algorithme<sp/>de<sp/>détection<sp/>par<sp/>seuil<sp/>sur<sp/>l&apos;historique<sp/>glissant.</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/><sp/><sp/><sp/><sp/><sp/>Contexte<sp/>de<sp/>la<sp/>tâche<sp/>(historique).</highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/>*<sp/>@param<sp/>current<sp/><sp/>Distance<sp/>moyenne<sp/>actuelle<sp/>de<sp/>la<sp/>zone<sp/>inférieure.</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/>@param<sp/>confidence<sp/>Pointeur<sp/>vers<sp/>la<sp/>confiance<sp/>calculée<sp/>(0–100).</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/>*<sp/>@return<sp/>ai_event_state_e<sp/>détecté.</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134" refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kindref="member">ai_event_state_e</ref><sp/><ref refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" kindref="member">threshold_detect_fall</ref>(<ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*ctx,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>current_mm,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>*confidence)</highlight></codeline>
+<codeline lineno="137"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Mise<sp/>à<sp/>jour<sp/>de<sp/>l&apos;historique<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" kindref="member">dist_history</ref>[ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref>]<sp/>=<sp/>current_mm;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref><sp/>=<sp/>(ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref><sp/>+<sp/>1)<sp/>%<sp/><ref refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kindref="member">CONFIG_AI_HISTORY_LEN</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref><sp/>==<sp/>0)<sp/>ctx-&gt;<ref refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" kindref="member">history_full</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/>ctx-&gt;<ref refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" kindref="member">history_full</ref><sp/>?<sp/><ref refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kindref="member">CONFIG_AI_HISTORY_LEN</ref><sp/>:<sp/>ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(len<sp/>&lt;<sp/>2)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*confidence<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Référence<sp/>=<sp/>moyenne<sp/>des<sp/>(len-1)<sp/>premières<sp/>valeurs<sp/>de<sp/>l&apos;historique<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ref_sum<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>len<sp/>-<sp/>1;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx<sp/>=<sp/>(ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref><sp/>-<sp/>len<sp/>+<sp/>i<sp/>+<sp/><ref refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kindref="member">CONFIG_AI_HISTORY_LEN</ref>)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>%<sp/><ref refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kindref="member">CONFIG_AI_HISTORY_LEN</ref>;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ref_sum<sp/>+=<sp/>ctx-&gt;<ref refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" kindref="member">dist_history</ref>[idx];</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ref_avg<sp/>=<sp/>ref_sum<sp/>/<sp/>(float)(len<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ref_avg<sp/>&lt;<sp/>1.0f)<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*confidence<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Variation<sp/>relative<sp/>entre<sp/>la<sp/>mesure<sp/>actuelle<sp/>et<sp/>la<sp/>référence<sp/>historique<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>variation_pct<sp/>=<sp/>((ref_avg<sp/>-<sp/>current_mm)<sp/>/<sp/>ref_avg)<sp/>*<sp/>100.0f;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Zone<sp/>bas:<sp/>%.0f<sp/>mm,<sp/>réf:<sp/>%.0f<sp/>mm,<sp/>variation:<sp/>%.1f%%&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>current_mm,<sp/>ref_avg,<sp/>variation_pct);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Seuil<sp/>de<sp/>chute<sp/>:<sp/>distance<sp/>faible<sp/>ET<sp/>variation<sp/>significative<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>threshold<sp/>=<sp/>(float)<ref refid="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" kindref="member">CONFIG_AI_FALL_THRESHOLD_PERCENT</ref>;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(variation_pct<sp/>&gt;=<sp/>threshold<sp/>&amp;&amp;<sp/>current_mm<sp/>&lt;<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)<ref refid="fall__detection__ai_8cc_1aace0aabcf3303bb3a961ebd8ba4efee3" kindref="member">FALL_DISTANCE_MAX_MM</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Confiance<sp/>proportionnelle<sp/>à<sp/>la<sp/>variation<sp/>au-delà<sp/>du<sp/>seuil<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>excess<sp/>=<sp/>variation_pct<sp/>-<sp/>threshold;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>conf<sp/><sp/><sp/>=<sp/>50.0f<sp/>+<sp/>(excess<sp/>/<sp/>threshold)<sp/>*<sp/>50.0f;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*confidence<sp/><sp/>=<sp/>(uint8_t)std::min(conf,<sp/>100.0f);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" kindref="member">AI_CHUTE_DETECTEE</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(variation_pct<sp/>&gt;=<sp/>threshold<sp/>*<sp/>0.5f)<sp/>{</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*confidence<sp/>=<sp/>(uint8_t)(variation_pct<sp/>/<sp/>threshold<sp/>*<sp/>40.0f);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6" kindref="member">AI_MOUVEMENT_ANORMAL</ref>;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>*confidence<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CONFIG_AI_USE_ESPDL_MODEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="191"><highlight class="comment"><sp/>*<sp/>espdl_detect_fall<sp/>(interne)</highlight></codeline>
+<codeline lineno="192"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Inférence<sp/>CNN<sp/>via<sp/>ESP-DL.</highlight></codeline>
+<codeline lineno="193"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="194"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/><sp/><sp/><sp/><sp/>Contexte<sp/>de<sp/>la<sp/>tâche<sp/>(modèle<sp/>chargé).</highlight></codeline>
+<codeline lineno="195"><highlight class="comment"><sp/>*<sp/>@param<sp/>matrix<sp/><sp/>Matrice<sp/>LIDAR<sp/>8×32.</highlight></codeline>
+<codeline lineno="196"><highlight class="comment"><sp/>*<sp/>@param<sp/>confidence<sp/>Confiance<sp/>retournée<sp/>(0–100).</highlight></codeline>
+<codeline lineno="197"><highlight class="comment"><sp/>*<sp/>@return<sp/>État<sp/>détecté.</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kindref="member">ai_event_state_e</ref><sp/>espdl_detect_fall(<ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*ctx,</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref><sp/>*matrix,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>*confidence)</highlight></codeline>
+<codeline lineno="202"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ctx-&gt;model_loaded)<sp/>{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*confidence<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Construction<sp/>du<sp/>tenseur<sp/>d&apos;entrée<sp/>int16_t<sp/>[1,<sp/>8,<sp/>32,<sp/>1]</highlight></codeline>
+<codeline lineno="209"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>(Décommenter<sp/>après<sp/>intégration<sp/>de<sp/>l&apos;ULD<sp/>ESP-DL)<sp/>:</highlight></codeline>
+<codeline lineno="210"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="211"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>int16_t<sp/>input_data[LIDAR_ROWS<sp/>*<sp/>LIDAR_COLS];</highlight></codeline>
+<codeline lineno="212"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>for<sp/>(int<sp/>r<sp/>=<sp/>0;<sp/>r<sp/>&lt;<sp/>LIDAR_ROWS;<sp/>r++)<sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>for<sp/>(int<sp/>c<sp/>=<sp/>0;<sp/>c<sp/>&lt;<sp/>LIDAR_COLS;<sp/>c++)<sp/>{</highlight></codeline>
+<codeline lineno="214"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>input_data[r<sp/>*<sp/>LIDAR_COLS<sp/>+<sp/>c]<sp/>=<sp/>(int16_t)matrix-&gt;data[r][c];</highlight></codeline>
+<codeline lineno="215"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="216"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>}</highlight></codeline>
+<codeline lineno="217"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="218"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>dl::Tensor&lt;int16_t&gt;<sp/>input;</highlight></codeline>
+<codeline lineno="219"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>input.set_shape({1,<sp/>LIDAR_ROWS,<sp/>LIDAR_COLS,<sp/>1});</highlight></codeline>
+<codeline lineno="220"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>input.set_element(input_data);</highlight></codeline>
+<codeline lineno="221"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>ctx-&gt;model-&gt;run(&amp;input);</highlight></codeline>
+<codeline lineno="223"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="224"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>dl::Tensor&lt;float&gt;<sp/>*output<sp/>=<sp/>ctx-&gt;model-&gt;get_output(0);</highlight></codeline>
+<codeline lineno="225"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>float<sp/>p_normal<sp/>=<sp/>output-&gt;get_element_ptr()[0];</highlight></codeline>
+<codeline lineno="226"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>float<sp/>p_fall<sp/><sp/><sp/>=<sp/>output-&gt;get_element_ptr()[1];</highlight></codeline>
+<codeline lineno="227"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="228"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>*confidence<sp/>=<sp/>(uint8_t)(p_fall<sp/>*<sp/>100.0f);</highlight></codeline>
+<codeline lineno="229"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>if<sp/>(*confidence<sp/>&gt;=<sp/>CONFIG_AI_FALL_CONFIDENCE_THRESHOLD)<sp/>{</highlight></codeline>
+<codeline lineno="230"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>return<sp/>AI_CHUTE_DETECTEE;</highlight></codeline>
+<codeline lineno="231"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>}</highlight></codeline>
+<codeline lineno="232"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>if<sp/>(p_fall<sp/>&gt;=<sp/>0.3f)<sp/>{</highlight></codeline>
+<codeline lineno="233"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/><sp/>return<sp/>AI_MOUVEMENT_ANORMAL;</highlight></codeline>
+<codeline lineno="234"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>}</highlight></codeline>
+<codeline lineno="235"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>*confidence<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>CONFIG_AI_USE_ESPDL_MODEL<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="243"><highlight class="comment"><sp/>*<sp/>send_ai_event<sp/>(interne)</highlight></codeline>
+<codeline lineno="244"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Pousse<sp/>un<sp/>ai_event_t<sp/>dans<sp/>les<sp/>queues<sp/>réseau<sp/>et<sp/>diagnostic.</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/>*<sp/>Règle<sp/>de<sp/>priorité<sp/>(contrainte<sp/>stricte)<sp/>:</highlight></codeline>
+<codeline lineno="247"><highlight class="comment"><sp/>*<sp/><sp/><sp/>AI_CHUTE_DETECTEE<sp/>→<sp/>xQueueSendToFront<sp/>(court-circuite<sp/>la<sp/>télémétrie)</highlight></codeline>
+<codeline lineno="248"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Autres<sp/>états<sp/><sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>xQueueSend<sp/>(FIFO<sp/>normale)</highlight></codeline>
+<codeline lineno="249"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="250"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/><sp/><sp/>Contexte<sp/>de<sp/>la<sp/>tâche.</highlight></codeline>
+<codeline lineno="251"><highlight class="comment"><sp/>*<sp/>@param<sp/>event<sp/>Événement<sp/>à<sp/>envoyer.</highlight></codeline>
+<codeline lineno="252"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253" refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" kindref="member">send_ai_event</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*ctx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structai__event__t" kindref="compound">ai_event_t</ref><sp/>*event)</highlight></codeline>
+<codeline lineno="254"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseType_t<sp/>mesh_ret,<sp/>diag_ret;</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(event-&gt;<ref refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" kindref="member">state</ref><sp/>==<sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" kindref="member">AI_CHUTE_DETECTEE</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Priorité<sp/>HAUTE<sp/>:<sp/>injection<sp/>en<sp/>tête<sp/>de<sp/>queue<sp/>réseau<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh_ret<sp/>=<sp/>xQueueSendToFront(ctx-&gt;<ref refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" kindref="member">ai_to_mesh_queue</ref>,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>event,<sp/>0);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;CHUTE<sp/>DÉTECTÉE<sp/>(confiance<sp/>%u%%)<sp/>—<sp/>priorité<sp/>mesh<sp/>activée&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>event-&gt;<ref refid="structai__event__t_1abda04f94a67eac00a050985c90987309" kindref="member">confidence</ref>);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Priorité<sp/>normale<sp/>:<sp/>FIFO<sp/>standard<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh_ret<sp/>=<sp/>xQueueSend(ctx-&gt;<ref refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" kindref="member">ai_to_mesh_queue</ref>,<sp/>event,<sp/>0);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Diagnostic<sp/>PC<sp/>:<sp/>toujours<sp/>FIFO<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>diag_ret<sp/>=<sp/>xQueueSend(ctx-&gt;<ref refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" kindref="member">diag_to_pc_queue</ref>,<sp/>event,<sp/>0);</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(mesh_ret<sp/>!=<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ai_to_mesh_queue<sp/>pleine<sp/>—<sp/>événement<sp/>perdu&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diag_ret<sp/>!=<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGD(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;diag_to_pc_queue<sp/>pleine<sp/>—<sp/>événement<sp/>perdu&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="277"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="280"><highlight class="comment"><sp/>*<sp/>task_ai_inference<sp/>(interne)</highlight></codeline>
+<codeline lineno="281"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Tâche<sp/>FreeRTOS<sp/>d&apos;inférence<sp/>—<sp/>Core<sp/>1,<sp/>priorité<sp/>9.</highlight></codeline>
+<codeline lineno="282"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="283"><highlight class="comment"><sp/>*<sp/>@param<sp/>pvParam<sp/>Pointeur<sp/>vers<sp/>ai_task_ctx_t<sp/>alloué<sp/>par<sp/>ai_engine_task_start.</highlight></codeline>
+<codeline lineno="284"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285" refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" kindref="member">task_ai_inference</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*pvParam)</highlight></codeline>
+<codeline lineno="286"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*ctx<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(pvParam);</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Abonnement<sp/>au<sp/>TWDT<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_task_wdt_add(NULL));</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CONFIG_AI_USE_ESPDL_MODEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Chargement<sp/>du<sp/>modèle<sp/>ESP-DL<sp/>depuis<sp/>LittleFS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ctx-&gt;model<sp/>=<sp/>dl::Model::load(&quot;/littlefs/fall_model.espdl&quot;,<sp/>MEM_AUTO);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>ctx-&gt;model_loaded<sp/>=<sp/>(ctx-&gt;model<sp/>!=<sp/>nullptr);<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>ctx-&gt;model_loaded<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">/*<sp/>Passer<sp/>à<sp/>true<sp/>après<sp/>intégration<sp/>de<sp/>l&apos;ULD<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ctx-&gt;model_loaded)<sp/>{</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Modèle<sp/>/littlefs/fall_model.espdl<sp/>non<sp/>trouvé<sp/>—<sp/>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;basculement<sp/>sur<sp/>mode<sp/>seuil<sp/>de<sp/>secours&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Modèle<sp/>ESP-DL<sp/>chargé<sp/>(seuil<sp/>confiance<sp/>:<sp/>%d%%)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1ab97049d4832a5c3943e89f3f3c3e10ef" kindref="member">CONFIG_AI_FALL_CONFIDENCE_THRESHOLD</ref>);</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Mode<sp/>seuil<sp/>actif<sp/>(seuil<sp/>variation<sp/>:<sp/>%d%%,<sp/>historique<sp/>:<sp/>%d<sp/>trames)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a6e36c1db9f7fca5f08e465e22d363dff" kindref="member">CONFIG_AI_FALL_THRESHOLD_PERCENT</ref>,<sp/><ref refid="fall__detection__ai_8cc_1ac699db91652aa2d43d0dc95c667d02f6" kindref="member">CONFIG_AI_HISTORY_LEN</ref>);</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Task_AI_Inference<sp/>démarrée<sp/>sur<sp/>Core<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>xPortGetCoreID());</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref><sp/>frame;</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>{</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>watchdog<sp/>même<sp/>si<sp/>aucune<sp/>trame<sp/>n&apos;arrive<sp/>encore.</highlight></codeline>
+<codeline lineno="315"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>Important<sp/>:<sp/>au<sp/>boot,<sp/>la<sp/>tâche<sp/>d&apos;acquisition<sp/>peut<sp/>démarrer<sp/>après<sp/>nous</highlight></codeline>
+<codeline lineno="316"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(ou<sp/>être<sp/>absente<sp/>si<sp/>LIDAR<sp/>KO).<sp/>Un<sp/>blocage<sp/>portMAX_DELAY<sp/>déclenche<sp/>le<sp/>TWDT.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_task_wdt_reset());</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Attente<sp/>d&apos;une<sp/>trame<sp/>capteur<sp/>avec<sp/>timeout<sp/>(permet<sp/>de<sp/>nourrir<sp/>le<sp/>TWDT)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(xQueueReceive(ctx-&gt;<ref refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kindref="member">sys_ctx</ref>-&gt;<ref refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" kindref="member">sensor_to_ai_queue</ref>,</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;frame,<sp/>pdMS_TO_TICKS(500))<sp/>!=<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!frame.<ref refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" kindref="member">lidar_valid</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">/*<sp/>Ignorer<sp/>les<sp/>trames<sp/>sans<sp/>données<sp/>LIDAR<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structai__event__t" kindref="compound">ai_event_t</ref><sp/></highlight><highlight class="keyword">event</highlight><highlight class="normal"><sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.state<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>,</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.confidence<sp/><sp/><sp/>=<sp/>0,</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.timestamp_us<sp/>=<sp/>esp_timer_get_time(),</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>CONFIG_AI_USE_ESPDL_MODEL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ctx-&gt;model_loaded)<sp/>{</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">event</highlight><highlight class="normal">.state<sp/>=<sp/>espdl_detect_fall(ctx,<sp/>&amp;frame.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>,<sp/>&amp;event.confidence);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Repli<sp/>sur<sp/>le<sp/>mode<sp/>seuil<sp/>si<sp/>le<sp/>modèle<sp/>n&apos;est<sp/>pas<sp/>disponible<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>avg<sp/>=<sp/><ref refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" kindref="member">threshold_avg_lower_zone</ref>(&amp;frame.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">event</highlight><highlight class="normal">.state<sp/>=<sp/><ref refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" kindref="member">threshold_detect_fall</ref>(ctx,<sp/>avg,<sp/>&amp;event.confidence);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>avg<sp/>=<sp/><ref refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" kindref="member">threshold_avg_lower_zone</ref>(&amp;frame.<ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>);</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">event</highlight><highlight class="normal">.state<sp/>=<sp/><ref refid="fall__detection__ai_8cc_1aac5979362939e3ba1410565e27289f35" kindref="member">threshold_detect_fall</ref>(ctx,<sp/>avg,<sp/>&amp;event.confidence);</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Envoi<sp/>des<sp/>événements<sp/>non<sp/>normaux<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(event.state<sp/>!=<sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a03716621cc9044b50d37581aefb7675a" kindref="member">send_ai_event</ref>(ctx,<sp/>&amp;event);</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="353"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="356"><highlight class="comment"><sp/>*<sp/>ai_engine_task_start<sp/>(extern<sp/>&quot;C&quot;)</highlight></codeline>
+<codeline lineno="357"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Alloue<sp/>le<sp/>contexte<sp/>et<sp/>crée<sp/>Task_AI_Inference<sp/>sur<sp/>Core<sp/>1.</highlight></codeline>
+<codeline lineno="358"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="359"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système.</highlight></codeline>
+<codeline lineno="360"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>la<sp/>tâche<sp/>est<sp/>créée<sp/>avec<sp/>succès.</highlight></codeline>
+<codeline lineno="361"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="362" refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kindref="member">ai_engine_task_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="363"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*task_ctx<sp/>=<sp/></highlight><highlight class="keyword">static_cast&lt;</highlight><highlight class="normal"><ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref><sp/>*</highlight><highlight class="keyword">&gt;</highlight><highlight class="normal">(</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>calloc(1,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structai__task__ctx__t" kindref="compound">ai_task_ctx_t</ref>)));</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!task_ctx)<sp/>{</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_NO_MEM;</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/>task_ctx-&gt;<ref refid="structai__task__ctx__t_1acb56ccc8bc7b83045ac4a566356e99fc" kindref="member">sys_ctx</ref><sp/><sp/><sp/><sp/><sp/>=<sp/>ctx;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/>task_ctx-&gt;<ref refid="structai__task__ctx__t_1a97e5c570c363d4a5e2a8533243f93361" kindref="member">history_head</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>task_ctx-&gt;<ref refid="structai__task__ctx__t_1a9ec6c7cfc7c3ea5e953c931256e05f96" kindref="member">history_full</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(task_ctx-&gt;<ref refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" kindref="member">dist_history</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(task_ctx-&gt;<ref refid="structai__task__ctx__t_1a110df8d6546e074de1d336257afb02e0" kindref="member">dist_history</ref>));</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>BaseType_t<sp/>ret<sp/>=<sp/>xTaskCreatePinnedToCore(</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a7d61a03892d2a7129fd42b1bf1d70a2f" kindref="member">task_ai_inference</ref>,</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Task_AI_Inference&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" kindref="member">TASK_STACK_SIZE</ref>,</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>task_ctx,</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kindref="member">TASK_PRIORITY</ref>,</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">nullptr</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kindref="member">TASK_CORE</ref>);</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"></highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>pdPASS)<sp/>{</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(task_ctx);</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Échec<sp/>création<sp/>Task_AI_Inference&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Task_AI_Inference<sp/>créée<sp/>(Core<sp/>%d,<sp/>priorité<sp/>%d)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" kindref="member">TASK_CORE</ref>,<sp/><ref refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" kindref="member">TASK_PRIORITY</ref>);</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="393"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/ai_engine/fall_detection_ai.cc"/>
+  </compounddef>
+</doxygen>

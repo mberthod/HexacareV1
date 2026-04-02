@@ -1,0 +1,9 @@
+<map id="process_command" name="process_command">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,137,83"/>
+<area shape="rect" id="Node000002" href="$pc__diag_8c.html#a1a7183f10362aa141c781811ed86a9bb" title=" " alt="" coords="201,5,308,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,53,188,34,189,39,123,58"/>
+<area shape="rect" id="Node000003" href="$pc__diag_8c.html#a3cff5c01023ea27179dd4ef51291e0c4" title=" " alt="" coords="198,56,310,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="137,67,182,67,182,72,137,72"/>
+<area shape="rect" id="Node000004" href="$pc__diag_8c.html#a54084e6e535ac4e7a8ca3a3b42974178" title=" " alt="" coords="185,107,324,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="123,81,189,99,188,105,121,86"/>
+</map>

@@ -1,0 +1,332 @@
+\doxysection{components/lexacare\+\_\+types/include/system\+\_\+types.h File Reference}
+\hypertarget{system__types_8h}{}\label{system__types_8h}\index{components/lexacare\_types/include/system\_types.h@{components/lexacare\_types/include/system\_types.h}}
+
+
+Contrat de données partagé entre tous les composants du firmware Lexa\+Care V1.  
+
+
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/queue.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/semphr.\+h"{}}\newline
+{\ttfamily \#include "{}driver/spi\+\_\+master.\+h"{}}\newline
+Include dependency graph for system\+\_\+types.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{system__types_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{system__types_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structradar__data__t}{radar\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structsensor__frame__t}{sensor\+\_\+frame\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structai__event__t}{ai\+\_\+event\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structlexacare__frame__t}{lexacare\+\_\+frame\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structota__fragment__payload__t}{ota\+\_\+fragment\+\_\+payload\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structenviro__data__t}{enviro\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structmic__data__t}{mic\+\_\+data\+\_\+t}}
+\item 
+struct \mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\+\_\+\+ROWS}}~8
+\begin{DoxyCompactList}\small\item\em Types partagés entre tâches (contrat de données). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\+\_\+\+COLS}}~32
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\+\_\+\+NUM\+\_\+\+FRONT}}~4
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7}{LIDAR\+\_\+\+NUM\+\_\+\+TOTAL}}~5
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a282d3c8dac6a02b3aab32ff5202543e8}{LIDAR\+\_\+\+ZONES\+\_\+\+PER\+\_\+\+SENSOR}}~64
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a857774109f46a27a91784dca72ecf7f3}{LIDAR\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+DEFAULT}}~0x29
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a86a0a1946af81ea101e0e18ffc166081}{LIDAR\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+BASE}}~0x2A
+\item 
+\#define \mbox{\hyperlink{system__types_8h_af59d6a771c78c4aa65f604a943358658}{LEXACARE\+\_\+\+AES\+\_\+\+KEY\+\_\+\+LEN}}~16
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\+\_\+\+AES\+\_\+\+IV\+\_\+\+LEN}}~16
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a5269c10eb202fc732c8565de6318828a}{LEXACARE\+\_\+\+FRAME\+\_\+\+MAGIC}}~0x\+CA5E
+\item 
+\#define \mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\+\_\+\+MAX\+\_\+\+PAYLOAD}}~128
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a9fd7d9fb92dbe0693e39db97321e8cbc}{FRAME\+\_\+\+TYPE\+\_\+\+TELEMETRY}}~0x00
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a0e1653f6e69997ed01d99fc0bdc77c78}{FRAME\+\_\+\+TYPE\+\_\+\+AI\+\_\+\+EVENT}}~0x01
+\item 
+\#define \mbox{\hyperlink{system__types_8h_ac9c5ce39f67beb1c5a4af7aa2800fd9c}{FRAME\+\_\+\+TYPE\+\_\+\+OTA\+\_\+\+FRAGMENT}}~0x02
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a2f28b080f33b7221fa06ea915fa74d18}{FRAME\+\_\+\+TYPE\+\_\+\+BEACON}}~0x03
+\item 
+\#define \mbox{\hyperlink{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571}{OTA\+\_\+\+FRAGMENT\+\_\+\+DATA\+\_\+\+LEN}}~200
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\+\_\+event\+\_\+state\+\_\+e}} \{ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\+\_\+\+NORMAL}} = 0
+, \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}{AI\+\_\+\+CHUTE\+\_\+\+DETECTEE}} = 1
+, \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6}{AI\+\_\+\+MOUVEMENT\+\_\+\+ANORMAL}} = 2
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contrat de données partagé entre tous les composants du firmware Lexa\+Care V1. 
+
+Règles d\textquotesingle{}utilisation \+:
+\begin{DoxyItemize}
+\item Ce fichier est la seule source de vérité pour les structures inter-\/tâches.
+\item Aucune variable globale \+: toutes les données partagées transitent via \doxylink{structsys__context__t}{sys\+\_\+context\+\_\+t}.
+\item Compatible C et C++ (guards extern "{}\+C"{} inclus).
+\item Inclure via le composant lexacare\+\_\+types (REQUIRES dans CMake\+Lists.\+txt). 
+\end{DoxyItemize}
+
+Definition in file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{system__types_8h_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{system__types_8h_a0e1653f6e69997ed01d99fc0bdc77c78}\index{system\_types.h@{system\_types.h}!FRAME\_TYPE\_AI\_EVENT@{FRAME\_TYPE\_AI\_EVENT}}
+\index{FRAME\_TYPE\_AI\_EVENT@{FRAME\_TYPE\_AI\_EVENT}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{FRAME\_TYPE\_AI\_EVENT}{FRAME\_TYPE\_AI\_EVENT}}
+{\footnotesize\ttfamily \label{system__types_8h_a0e1653f6e69997ed01d99fc0bdc77c78} 
+\#define FRAME\+\_\+\+TYPE\+\_\+\+AI\+\_\+\+EVENT~0x01}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00068}{68}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{system__types_8h_a2f28b080f33b7221fa06ea915fa74d18}\index{system\_types.h@{system\_types.h}!FRAME\_TYPE\_BEACON@{FRAME\_TYPE\_BEACON}}
+\index{FRAME\_TYPE\_BEACON@{FRAME\_TYPE\_BEACON}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{FRAME\_TYPE\_BEACON}{FRAME\_TYPE\_BEACON}}
+{\footnotesize\ttfamily \label{system__types_8h_a2f28b080f33b7221fa06ea915fa74d18} 
+\#define FRAME\+\_\+\+TYPE\+\_\+\+BEACON~0x03}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00070}{70}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{system__types_8h_ac9c5ce39f67beb1c5a4af7aa2800fd9c}\index{system\_types.h@{system\_types.h}!FRAME\_TYPE\_OTA\_FRAGMENT@{FRAME\_TYPE\_OTA\_FRAGMENT}}
+\index{FRAME\_TYPE\_OTA\_FRAGMENT@{FRAME\_TYPE\_OTA\_FRAGMENT}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{FRAME\_TYPE\_OTA\_FRAGMENT}{FRAME\_TYPE\_OTA\_FRAGMENT}}
+{\footnotesize\ttfamily \label{system__types_8h_ac9c5ce39f67beb1c5a4af7aa2800fd9c} 
+\#define FRAME\+\_\+\+TYPE\+\_\+\+OTA\+\_\+\+FRAGMENT~0x02}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00069}{69}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}.
+
+\Hypertarget{system__types_8h_a9fd7d9fb92dbe0693e39db97321e8cbc}\index{system\_types.h@{system\_types.h}!FRAME\_TYPE\_TELEMETRY@{FRAME\_TYPE\_TELEMETRY}}
+\index{FRAME\_TYPE\_TELEMETRY@{FRAME\_TYPE\_TELEMETRY}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{FRAME\_TYPE\_TELEMETRY}{FRAME\_TYPE\_TELEMETRY}}
+{\footnotesize\ttfamily \label{system__types_8h_a9fd7d9fb92dbe0693e39db97321e8cbc} 
+\#define FRAME\+\_\+\+TYPE\+\_\+\+TELEMETRY~0x00}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00067}{67}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}\index{system\_types.h@{system\_types.h}!LEXACARE\_AES\_IV\_LEN@{LEXACARE\_AES\_IV\_LEN}}
+\index{LEXACARE\_AES\_IV\_LEN@{LEXACARE\_AES\_IV\_LEN}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LEXACARE\_AES\_IV\_LEN}{LEXACARE\_AES\_IV\_LEN}}
+{\footnotesize\ttfamily \label{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396} 
+\#define LEXACARE\+\_\+\+AES\+\_\+\+IV\+\_\+\+LEN~16}
+
+IV AES-\/\+CBC \+: 16 octets 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00062}{62}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00153}{aes\+\_\+encrypt\+\_\+payload()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{system__types_8h_af59d6a771c78c4aa65f604a943358658}\index{system\_types.h@{system\_types.h}!LEXACARE\_AES\_KEY\_LEN@{LEXACARE\_AES\_KEY\_LEN}}
+\index{LEXACARE\_AES\_KEY\_LEN@{LEXACARE\_AES\_KEY\_LEN}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LEXACARE\_AES\_KEY\_LEN}{LEXACARE\_AES\_KEY\_LEN}}
+{\footnotesize\ttfamily \label{system__types_8h_af59d6a771c78c4aa65f604a943358658} 
+\#define LEXACARE\+\_\+\+AES\+\_\+\+KEY\+\_\+\+LEN~16}
+
+Clé AES-\/128 \+: 16 octets 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00061}{61}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00153}{aes\+\_\+encrypt\+\_\+payload()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00307}{mesh\+\_\+load\+\_\+aes\+\_\+key()}}.
+
+\Hypertarget{system__types_8h_a5269c10eb202fc732c8565de6318828a}\index{system\_types.h@{system\_types.h}!LEXACARE\_FRAME\_MAGIC@{LEXACARE\_FRAME\_MAGIC}}
+\index{LEXACARE\_FRAME\_MAGIC@{LEXACARE\_FRAME\_MAGIC}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LEXACARE\_FRAME\_MAGIC}{LEXACARE\_FRAME\_MAGIC}}
+{\footnotesize\ttfamily \label{system__types_8h_a5269c10eb202fc732c8565de6318828a} 
+\#define LEXACARE\+\_\+\+FRAME\+\_\+\+MAGIC~0x\+CA5E}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00063}{63}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}\index{system\_types.h@{system\_types.h}!LEXACARE\_MAX\_PAYLOAD@{LEXACARE\_MAX\_PAYLOAD}}
+\index{LEXACARE\_MAX\_PAYLOAD@{LEXACARE\_MAX\_PAYLOAD}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LEXACARE\_MAX\_PAYLOAD}{LEXACARE\_MAX\_PAYLOAD}}
+{\footnotesize\ttfamily \label{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c} 
+\#define LEXACARE\+\_\+\+MAX\+\_\+\+PAYLOAD~128}
+
+Payload chiffré (multiple de 16, ≤ 250 − header) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00064}{64}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00153}{aes\+\_\+encrypt\+\_\+payload()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}\index{system\_types.h@{system\_types.h}!LIDAR\_COLS@{LIDAR\_COLS}}
+\index{LIDAR\_COLS@{LIDAR\_COLS}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_COLS}{LIDAR\_COLS}}
+{\footnotesize\ttfamily \label{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49} 
+\#define LIDAR\+\_\+\+COLS~32}
+
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00045}{45}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00170}{lidar\+\_\+read\+\_\+sensor()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00106}{threshold\+\_\+avg\+\_\+lower\+\_\+zone()}}.
+
+\Hypertarget{system__types_8h_a86a0a1946af81ea101e0e18ffc166081}\index{system\_types.h@{system\_types.h}!LIDAR\_I2C\_ADDR\_BASE@{LIDAR\_I2C\_ADDR\_BASE}}
+\index{LIDAR\_I2C\_ADDR\_BASE@{LIDAR\_I2C\_ADDR\_BASE}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_I2C\_ADDR\_BASE}{LIDAR\_I2C\_ADDR\_BASE}}
+{\footnotesize\ttfamily \label{system__types_8h_a86a0a1946af81ea101e0e18ffc166081} 
+\#define LIDAR\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+BASE~0x2A}
+
+Première adresse réassignée 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00052}{52}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{system__types_8h_a857774109f46a27a91784dca72ecf7f3}\index{system\_types.h@{system\_types.h}!LIDAR\_I2C\_ADDR\_DEFAULT@{LIDAR\_I2C\_ADDR\_DEFAULT}}
+\index{LIDAR\_I2C\_ADDR\_DEFAULT@{LIDAR\_I2C\_ADDR\_DEFAULT}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_I2C\_ADDR\_DEFAULT}{LIDAR\_I2C\_ADDR\_DEFAULT}}
+{\footnotesize\ttfamily \label{system__types_8h_a857774109f46a27a91784dca72ecf7f3} 
+\#define LIDAR\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+DEFAULT~0x29}
+
+Adresse par défaut VL53\+L8\+CX (7 bits) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00051}{51}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}\index{system\_types.h@{system\_types.h}!LIDAR\_NUM\_FRONT@{LIDAR\_NUM\_FRONT}}
+\index{LIDAR\_NUM\_FRONT@{LIDAR\_NUM\_FRONT}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_NUM\_FRONT}{LIDAR\_NUM\_FRONT}}
+{\footnotesize\ttfamily \label{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df} 
+\#define LIDAR\+\_\+\+NUM\+\_\+\+FRONT~4}
+
+Capteurs alimentant la matrice 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00046}{46}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hw__diag_8c_source_l00129}{diag\+\_\+init\+\_\+spi\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00475}{diag\+\_\+print\+\_\+json\+\_\+report()}}, \mbox{\hyperlink{hw__diag_8c_source_l00340}{diag\+\_\+scan\+\_\+lidars()}}, \mbox{\hyperlink{hw__diag_8c_source_l00508}{hw\+\_\+diag\+\_\+run()}}, \mbox{\hyperlink{hw__diag_8c_source_l00312}{pca9555\+\_\+set\+\_\+lpn()}}, and \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7}\index{system\_types.h@{system\_types.h}!LIDAR\_NUM\_TOTAL@{LIDAR\_NUM\_TOTAL}}
+\index{LIDAR\_NUM\_TOTAL@{LIDAR\_NUM\_TOTAL}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_NUM\_TOTAL}{LIDAR\_NUM\_TOTAL}}
+{\footnotesize\ttfamily \label{system__types_8h_a3e10a9d590d4acdf419c70a63d015aa7} 
+\#define LIDAR\+\_\+\+NUM\+\_\+\+TOTAL~5}
+
+Total capteurs (4 frontaux + 1 sol) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00047}{47}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{system__types_8h_a282d3c8dac6a02b3aab32ff5202543e8}\index{system\_types.h@{system\_types.h}!LIDAR\_ZONES\_PER\_SENSOR@{LIDAR\_ZONES\_PER\_SENSOR}}
+\index{LIDAR\_ZONES\_PER\_SENSOR@{LIDAR\_ZONES\_PER\_SENSOR}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{LIDAR\_ZONES\_PER\_SENSOR}{LIDAR\_ZONES\_PER\_SENSOR}}
+{\footnotesize\ttfamily \label{system__types_8h_a282d3c8dac6a02b3aab32ff5202543e8} 
+\#define LIDAR\+\_\+\+ZONES\+\_\+\+PER\+\_\+\+SENSOR~64}
+
+8×8 = 64 zones par capteur 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00048}{48}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571}\index{system\_types.h@{system\_types.h}!OTA\_FRAGMENT\_DATA\_LEN@{OTA\_FRAGMENT\_DATA\_LEN}}
+\index{OTA\_FRAGMENT\_DATA\_LEN@{OTA\_FRAGMENT\_DATA\_LEN}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{OTA\_FRAGMENT\_DATA\_LEN}{OTA\_FRAGMENT\_DATA\_LEN}}
+{\footnotesize\ttfamily \label{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571} 
+\#define OTA\+\_\+\+FRAGMENT\+\_\+\+DATA\+\_\+\+LEN~200}
+
+Octets de données utiles par fragment OTA 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00073}{73}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-enum-members}
+\Hypertarget{system__types_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}\index{system\_types.h@{system\_types.h}!ai\_event\_state\_e@{ai\_event\_state\_e}}
+\index{ai\_event\_state\_e@{ai\_event\_state\_e}!system\_types.h@{system\_types.h}}
+\doxysubsubsection{\texorpdfstring{ai\_event\_state\_e}{ai\_event\_state\_e}}
+{\footnotesize\ttfamily \label{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4} 
+enum \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\+\_\+event\+\_\+state\+\_\+e}}}
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AI\_NORMAL@{AI\_NORMAL}!system\_types.h@{system\_types.h}}\index{system\_types.h@{system\_types.h}!AI\_NORMAL@{AI\_NORMAL}}}\Hypertarget{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}\label{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c} 
+AI\+\_\+\+NORMAL&Situation normale \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AI\_CHUTE\_DETECTEE@{AI\_CHUTE\_DETECTEE}!system\_types.h@{system\_types.h}}\index{system\_types.h@{system\_types.h}!AI\_CHUTE\_DETECTEE@{AI\_CHUTE\_DETECTEE}}}\Hypertarget{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}\label{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66} 
+AI\+\_\+\+CHUTE\+\_\+\+DETECTEE&Chute détectée — injection via x\+Queue\+Send\+To\+Front \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AI\_MOUVEMENT\_ANORMAL@{AI\_MOUVEMENT\_ANORMAL}!system\_types.h@{system\_types.h}}\index{system\_types.h@{system\_types.h}!AI\_MOUVEMENT\_ANORMAL@{AI\_MOUVEMENT\_ANORMAL}}}\Hypertarget{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6}\label{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6} 
+AI\+\_\+\+MOUVEMENT\+\_\+\+ANORMAL&Mouvement anormal (agitation, posture inhabituelle) \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00123}{123}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}}\ \ \ \ \ \ \ \ \ \ \ \ =\ 0,\ \textcolor{comment}{/**<\ Situation\ normale\ */}}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}{AI\_CHUTE\_DETECTEE}}\ \ \ \ =\ 1,\ \textcolor{comment}{/**<\ Chute\ détectée\ —\ injection\ via\ xQueueSendToFront\ */}}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6}{AI\_MOUVEMENT\_ANORMAL}}\ =\ 2,\ \textcolor{comment}{/**<\ Mouvement\ anormal\ (agitation,\ posture\ inhabituelle)\ */}}
+\DoxyCodeLine{00127\ \}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\_event\_state\_e}};}
+
+\end{DoxyCode}

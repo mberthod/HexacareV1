@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_v_l53_l8_c_x___motion___configuration" kind="struct" language="C++" prot="public">
+    <compoundname>VL53L8CX_Motion_Configuration</compoundname>
+    <includes refid="vl53l8cx__plugin__motion__indicator_8h" local="no">vl53l8cx_plugin_motion_indicator.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a7486f76953279897f3a5348fa37ada18" prot="public" static="no" mutable="no">
+        <type>int32_t</type>
+        <definition>int32_t VL53L8CX_Motion_Configuration::ref_bin_offset</definition>
+        <argsstring></argsstring>
+        <name>ref_bin_offset</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::ref_bin_offset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="23" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="23" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1a345eea6081124af6e2e1d076f68a1302" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="49" endline="82">vl53l8cx_motion_indicator_set_distance_motion</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1aa5161e72cc918c869b22c9a510dbc30c" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_Motion_Configuration::detection_threshold</definition>
+        <argsstring></argsstring>
+        <name>detection_threshold</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::detection_threshold</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="24" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="24" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a808306359a5457b09059ab4b34ce4471" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_Motion_Configuration::extra_noise_sigma</definition>
+        <argsstring></argsstring>
+        <name>extra_noise_sigma</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::extra_noise_sigma</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="25" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="25" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1acecfae8d7c15c666515044d16bc4e50a" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_Motion_Configuration::null_den_clip_value</definition>
+        <argsstring></argsstring>
+        <name>null_den_clip_value</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::null_den_clip_value</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="26" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="26" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a9a3dffefd9a52a67d0ca792afa8eb93c" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::mem_update_mode</definition>
+        <argsstring></argsstring>
+        <name>mem_update_mode</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::mem_update_mode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="27" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="27" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1aeda7cd72afba40bcfdce1050b88f90d1" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::mem_update_choice</definition>
+        <argsstring></argsstring>
+        <name>mem_update_choice</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::mem_update_choice</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="28" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="28" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1af087e7adb392da85180e5a2fc439a392" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::sum_span</definition>
+        <argsstring></argsstring>
+        <name>sum_span</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::sum_span</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="29" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="29" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a99a0bf5ef229d1dd2cb9179f3d1f9c86" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::feature_length</definition>
+        <argsstring></argsstring>
+        <name>feature_length</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::feature_length</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="30" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="30" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1a345eea6081124af6e2e1d076f68a1302" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="49" endline="82">vl53l8cx_motion_indicator_set_distance_motion</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a2c8cada5c0de3f2815e65a21ec360a06" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::nb_of_aggregates</definition>
+        <argsstring></argsstring>
+        <name>nb_of_aggregates</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::nb_of_aggregates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="31" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="31" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a9eef524143ea4b3cd0b42e3a87a2bac0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::nb_of_temporal_accumulations</definition>
+        <argsstring></argsstring>
+        <name>nb_of_temporal_accumulations</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::nb_of_temporal_accumulations</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="32" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1af3d935df98dcaf1f8edd4c8da0c3e9f0" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::min_nb_for_global_detection</definition>
+        <argsstring></argsstring>
+        <name>min_nb_for_global_detection</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::min_nb_for_global_detection</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="33" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a40fa7d2a4cd9a4b8a71a50feb3636e01" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::global_indicator_format_1</definition>
+        <argsstring></argsstring>
+        <name>global_indicator_format_1</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::global_indicator_format_1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="34" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="34" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a0323338f801f857935b3e6fa868a4e43" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::global_indicator_format_2</definition>
+        <argsstring></argsstring>
+        <name>global_indicator_format_2</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::global_indicator_format_2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="35" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="35" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1ad4a98b2582d306b28feeaf52643d8c38" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::spare_1</definition>
+        <argsstring></argsstring>
+        <name>spare_1</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::spare_1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="36" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="36" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1ab3fd617de375d078b4131d3ac8536064" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::spare_2</definition>
+        <argsstring></argsstring>
+        <name>spare_2</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::spare_2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="37" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="37" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a148d660c90974b30bddb22032b6332e2" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::spare_3</definition>
+        <argsstring></argsstring>
+        <name>spare_3</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::spare_3</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="38" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="38" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1abb1a0ba71fe1b191f306af2b79e497d3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="17" endline="47">vl53l8cx_motion_indicator_init</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a1dd5be6132cde1c517b21fceca211d0c" prot="public" static="no" mutable="no">
+        <type>int8_t</type>
+        <definition>int8_t VL53L8CX_Motion_Configuration::map_id[64]</definition>
+        <argsstring>[64]</argsstring>
+        <name>map_id</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::map_id</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="39" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="39" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__motion__indicator_8c_1a4975f4c09aca2787fa25e2a2410d3ff3" compoundref="vl53l8cx__plugin__motion__indicator_8c" startline="84" endline="123">vl53l8cx_motion_indicator_set_resolution</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1a04da4b63dd7c7739cd1bcb1878ec8c00" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::indicator_format_1[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>indicator_format_1</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::indicator_format_1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="40" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___motion___configuration_1ad691d6643bb00275c8d7eef7017208b6" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_Motion_Configuration::indicator_format_2[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>indicator_format_2</name>
+        <qualifiedname>VL53L8CX_Motion_Configuration::indicator_format_2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="41" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Motion indicator internal configuration structure. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Copyright (c) 2021 STMicroelectronics. All rights reserved.</para>
+<para>This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-IS. </para>
+    </detaileddescription>
+    <location file="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" line="22" column="1" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h" bodystart="22" bodyend="42"/>
+    <listofallmembers>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1aa5161e72cc918c869b22c9a510dbc30c" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>detection_threshold</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a808306359a5457b09059ab4b34ce4471" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>extra_noise_sigma</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a99a0bf5ef229d1dd2cb9179f3d1f9c86" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>feature_length</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a40fa7d2a4cd9a4b8a71a50feb3636e01" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>global_indicator_format_1</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a0323338f801f857935b3e6fa868a4e43" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>global_indicator_format_2</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a04da4b63dd7c7739cd1bcb1878ec8c00" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>indicator_format_1</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1ad691d6643bb00275c8d7eef7017208b6" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>indicator_format_2</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a1dd5be6132cde1c517b21fceca211d0c" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>map_id</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1aeda7cd72afba40bcfdce1050b88f90d1" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>mem_update_choice</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a9a3dffefd9a52a67d0ca792afa8eb93c" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>mem_update_mode</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1af3d935df98dcaf1f8edd4c8da0c3e9f0" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>min_nb_for_global_detection</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a2c8cada5c0de3f2815e65a21ec360a06" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>nb_of_aggregates</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a9eef524143ea4b3cd0b42e3a87a2bac0" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>nb_of_temporal_accumulations</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1acecfae8d7c15c666515044d16bc4e50a" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>null_den_clip_value</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a7486f76953279897f3a5348fa37ada18" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>ref_bin_offset</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1ad4a98b2582d306b28feeaf52643d8c38" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>spare_1</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1ab3fd617de375d078b4131d3ac8536064" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>spare_2</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1a148d660c90974b30bddb22032b6332e2" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>spare_3</name></member>
+      <member refid="struct_v_l53_l8_c_x___motion___configuration_1af087e7adb392da85180e5a2fc439a392" prot="public" virt="non-virtual"><scope>VL53L8CX_Motion_Configuration</scope><name>sum_span</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

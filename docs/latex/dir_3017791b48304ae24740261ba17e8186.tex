@@ -1,0 +1,75 @@
+\doxysection{components/sensor\+\_\+acq/uld Directory Reference}
+\hypertarget{dir_3017791b48304ae24740261ba17e8186}{}\label{dir_3017791b48304ae24740261ba17e8186}\index{components/sensor\_acq/uld Directory Reference@{components/sensor\_acq/uld Directory Reference}}
+Directory dependency graph for uld\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{dir_3017791b48304ae24740261ba17e8186_dep}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{platform_8h}{platform.\+h}}
+\begin{DoxyCompactList}\small\item\em Adaptateur plateforme pour l\textquotesingle{}ULD ST VL53\+L8\+CX (STSW-\/\+IMG040). \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{vl53l8cx__api_8c}{vl53l8cx\+\_\+api.\+c}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__api_8h}{vl53l8cx\+\_\+api.\+h}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__buffers_8h}{vl53l8cx\+\_\+buffers.\+h}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+h}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__plugin__motion__indicator_8c}{vl53l8cx\+\_\+plugin\+\_\+motion\+\_\+indicator.\+c}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__plugin__motion__indicator_8h}{vl53l8cx\+\_\+plugin\+\_\+motion\+\_\+indicator.\+h}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+c}}
+\item 
+file \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8h}{vl53l8cx\+\_\+plugin\+\_\+xtalk.\+h}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\hypertarget{README.md_autotoc_md0}{}\doxysubsection{\texorpdfstring{ULD ST VL53\+L8\+CX (STSW-\/\+IMG040)}{ULD ST VL53\+L8\+CX (STSW-\/\+IMG040)}}\label{README.md_autotoc_md0}
+Ce projet {\bfseries{n\textquotesingle{}embarque pas}} le driver propriétaire ST du VL53\+L8\+CX.
+
+Pour activer les {\bfseries{données réelles}} des 4 LIDAR (SPI) \+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{1)}} Télécharger le package {\bfseries{STSW-\/\+IMG040}} (VL53\+L8\+CX Ultra Lite Driver) depuis ST.
+\item {\bfseries{2)}} Copier les fichiers {\ttfamily .c/.h} de l\textquotesingle{}ULD dans ce dossier {\ttfamily components/sensor\+\_\+acq/uld/}.
+\begin{DoxyItemize}
+\item Le build détecte automatiquement {\ttfamily \doxylink{vl53l8cx__api_8c}{uld/vl53l8cx\+\_\+api.\+c}}.
+\end{DoxyItemize}
+\item {\bfseries{3)}} Activer le mode réel dans {\ttfamily \doxylink{lexacare__config_8h}{components/lexacare\+\_\+types/include/lexacare\+\_\+config.\+h}} \+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ LEXACARE\_LIDAR\_USE\_ST\_ULD\ 1}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{4)}} Rebuild / flash \+:
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{idf.py\ build\ flash\ monitor}
+
+\end{DoxyCode}
+
+
+Notes \+:
+\begin{DoxyItemize}
+\item La fréquence est fixée à {\bfseries{5 Hz}} ({\ttfamily TASK\+\_\+\+PERIOD\+\_\+\+MS=200} et {\ttfamily LIDAR\+\_\+\+FREQ\+\_\+\+HZ=5}).
+\item Le mapping est {\bfseries{8×8 par capteur}}, concaténé en {\bfseries{8×32}} (4 capteurs). 
+\end{DoxyItemize}

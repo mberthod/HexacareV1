@@ -1,0 +1,27 @@
+var annotated_dup =
+[
+    [ "ai_event_t", "structai__event__t.html", "structai__event__t" ],
+    [ "ai_task_ctx_t", "structai__task__ctx__t.html", "structai__task__ctx__t" ],
+    [ "Block_header", "union_block__header.html", "union_block__header" ],
+    [ "bme280_calib_t", "structbme280__calib__t.html", "structbme280__calib__t" ],
+    [ "enviro_data_t", "structenviro__data__t.html", "structenviro__data__t" ],
+    [ "lexacare_frame_t", "structlexacare__frame__t.html", "structlexacare__frame__t" ],
+    [ "lidar_dev_t", "structlidar__dev__t.html", "structlidar__dev__t" ],
+    [ "lidar_matrix_t", "structlidar__matrix__t.html", "structlidar__matrix__t" ],
+    [ "lidar_task_ctx_t", "structlidar__task__ctx__t.html", "structlidar__task__ctx__t" ],
+    [ "mesh_state_t", "structmesh__state__t.html", "structmesh__state__t" ],
+    [ "mic_data_t", "structmic__data__t.html", "structmic__data__t" ],
+    [ "ota_fragment_payload_t", "structota__fragment__payload__t.html", "structota__fragment__payload__t" ],
+    [ "ota_state_t", "structota__state__t.html", "structota__state__t" ],
+    [ "pc_diag_ctx_t", "structpc__diag__ctx__t.html", "structpc__diag__ctx__t" ],
+    [ "peer_info_t", "structpeer__info__t.html", "structpeer__info__t" ],
+    [ "radar_data_t", "structradar__data__t.html", "structradar__data__t" ],
+    [ "radar_parser_t", "structradar__parser__t.html", "structradar__parser__t" ],
+    [ "sensor_frame_t", "structsensor__frame__t.html", "structsensor__frame__t" ],
+    [ "sys_context_t", "structsys__context__t.html", "structsys__context__t" ],
+    [ "VL53L8CX_Configuration", "struct_v_l53_l8_c_x___configuration.html", "struct_v_l53_l8_c_x___configuration" ],
+    [ "VL53L8CX_DetectionThresholds", "struct_v_l53_l8_c_x___detection_thresholds.html", "struct_v_l53_l8_c_x___detection_thresholds" ],
+    [ "VL53L8CX_Motion_Configuration", "struct_v_l53_l8_c_x___motion___configuration.html", "struct_v_l53_l8_c_x___motion___configuration" ],
+    [ "VL53L8CX_Platform", "struct_v_l53_l8_c_x___platform.html", "struct_v_l53_l8_c_x___platform" ],
+    [ "VL53L8CX_ResultsData", "struct_v_l53_l8_c_x___results_data.html", "struct_v_l53_l8_c_x___results_data" ]
+];

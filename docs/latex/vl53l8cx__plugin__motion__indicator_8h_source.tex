@@ -1,0 +1,102 @@
+\doxysection{vl53l8cx\+\_\+plugin\+\_\+motion\+\_\+indicator.\+h}
+\hypertarget{vl53l8cx__plugin__motion__indicator_8h_source}{}\label{vl53l8cx__plugin__motion__indicator_8h_source}\index{components/sensor\_acq/uld/vl53l8cx\_plugin\_motion\_indicator.h@{components/sensor\_acq/uld/vl53l8cx\_plugin\_motion\_indicator.h}}
+\mbox{\hyperlink{vl53l8cx__plugin__motion__indicator_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00002}00002\ \textcolor{comment}{\ \ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00003}00003\ \textcolor{comment}{\ \ *\ Copyright\ (c)\ 2021\ STMicroelectronics.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00004}00004\ \textcolor{comment}{\ \ *\ All\ rights\ reserved.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00005}00005\ \textcolor{comment}{\ \ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00006}00006\ \textcolor{comment}{\ \ *\ This\ software\ is\ licensed\ under\ terms\ that\ can\ be\ found\ in\ the\ LICENSE\ file}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00007}00007\ \textcolor{comment}{\ \ *\ in\ the\ root\ directory\ of\ this\ software\ component.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00008}00008\ \textcolor{comment}{\ \ *\ If\ no\ LICENSE\ file\ comes\ with\ this\ software,\ it\ is\ provided\ AS-\/IS.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00009}00009\ \textcolor{comment}{\ \ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00010}00010\ \textcolor{comment}{\ \ ******************************************************************************}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00011}00011\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00013}00013\ \textcolor{preprocessor}{\#ifndef\ VL53L8CX\_PLUGIN\_MOTION\_INDICATOR\_H\_}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00014}00014\ \textcolor{preprocessor}{\#define\ VL53L8CX\_PLUGIN\_MOTION\_INDICATOR\_H\_}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vl53l8cx__api_8h}{vl53l8cx\_api.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00017}00017\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00018}00018\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00019}00019\ \textcolor{comment}{\ *\ @brief\ Motion\ indicator\ internal\ configuration\ structure.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00020}00020\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00022}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration}{00022}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00023}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a7486f76953279897f3a5348fa37ada18}{00023}}\ \ \ \ \ int32\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a7486f76953279897f3a5348fa37ada18}{ref\_bin\_offset}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00024}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_aa5161e72cc918c869b22c9a510dbc30c}{00024}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_aa5161e72cc918c869b22c9a510dbc30c}{detection\_threshold}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00025}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a808306359a5457b09059ab4b34ce4471}{00025}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a808306359a5457b09059ab4b34ce4471}{extra\_noise\_sigma}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00026}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_acecfae8d7c15c666515044d16bc4e50a}{00026}}\ \ \ \ \ uint32\_t\ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_acecfae8d7c15c666515044d16bc4e50a}{null\_den\_clip\_value}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00027}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a9a3dffefd9a52a67d0ca792afa8eb93c}{00027}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a9a3dffefd9a52a67d0ca792afa8eb93c}{mem\_update\_mode}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00028}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_aeda7cd72afba40bcfdce1050b88f90d1}{00028}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_aeda7cd72afba40bcfdce1050b88f90d1}{mem\_update\_choice}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00029}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_af087e7adb392da85180e5a2fc439a392}{00029}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_af087e7adb392da85180e5a2fc439a392}{sum\_span}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00030}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a99a0bf5ef229d1dd2cb9179f3d1f9c86}{00030}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a99a0bf5ef229d1dd2cb9179f3d1f9c86}{feature\_length}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00031}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a2c8cada5c0de3f2815e65a21ec360a06}{00031}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a2c8cada5c0de3f2815e65a21ec360a06}{nb\_of\_aggregates}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00032}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a9eef524143ea4b3cd0b42e3a87a2bac0}{00032}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a9eef524143ea4b3cd0b42e3a87a2bac0}{nb\_of\_temporal\_accumulations}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00033}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_af3d935df98dcaf1f8edd4c8da0c3e9f0}{00033}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_af3d935df98dcaf1f8edd4c8da0c3e9f0}{min\_nb\_for\_global\_detection}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00034}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a40fa7d2a4cd9a4b8a71a50feb3636e01}{00034}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a40fa7d2a4cd9a4b8a71a50feb3636e01}{global\_indicator\_format\_1}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00035}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a0323338f801f857935b3e6fa868a4e43}{00035}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a0323338f801f857935b3e6fa868a4e43}{global\_indicator\_format\_2}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00036}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_ad4a98b2582d306b28feeaf52643d8c38}{00036}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_ad4a98b2582d306b28feeaf52643d8c38}{spare\_1}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00037}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_ab3fd617de375d078b4131d3ac8536064}{00037}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_ab3fd617de375d078b4131d3ac8536064}{spare\_2}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00038}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a148d660c90974b30bddb22032b6332e2}{00038}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a148d660c90974b30bddb22032b6332e2}{spare\_3}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00039}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a1dd5be6132cde1c517b21fceca211d0c}{00039}}\ \ \ \ \ int8\_t\ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a1dd5be6132cde1c517b21fceca211d0c}{map\_id}}[64];}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00040}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a04da4b63dd7c7739cd1bcb1878ec8c00}{00040}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_a04da4b63dd7c7739cd1bcb1878ec8c00}{indicator\_format\_1}}[32];}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00041}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_ad691d6643bb00275c8d7eef7017208b6}{00041}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration_ad691d6643bb00275c8d7eef7017208b6}{indicator\_format\_2}}[32];}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00042}00042\ \}\mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration}{VL53L8CX\_Motion\_Configuration}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00043}00043\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00044}00044\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00045}00045\ \textcolor{comment}{\ *\ @brief\ This\ function\ is\ used\ to\ initialized\ the\ motion\ indicator.\ By\ default,}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00046}00046\ \textcolor{comment}{\ *\ indicator\ is\ programmed\ to\ monitor\ movements\ between\ 400mm\ and\ 1500mm.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00047}00047\ \textcolor{comment}{\ *\ @param\ (VL53L8CX\_Configuration)\ *p\_dev\ :\ VL53L8CX\ configuration\ structure.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00048}00048\ \textcolor{comment}{\ *\ @param\ (VL53L8CX\_Motion\_Configuration)\ *p\_motion\_config\ :\ Structure}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00049}00049\ \textcolor{comment}{\ *\ containing\ the\ initialized\ motion\ configuration.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00050}00050\ \textcolor{comment}{\ *\ @param\ (uint8\_t)\ resolution\ :\ Wanted\ resolution,\ defined\ by\ macros}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00051}00051\ \textcolor{comment}{\ *\ VL53L8CX\_RESOLUTION\_4X4\ or\ VL53L8CX\_RESOLUTION\_8X8.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00052}00052\ \textcolor{comment}{\ *\ @return\ (uint8\_t)\ status\ :\ 0\ if\ OK,\ or\ 127\ is\ the\ resolution\ is\ unknown.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00053}00053\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00055}00055\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__plugin__motion__indicator_8h_abb1a0ba71fe1b191f306af2b79e497d3}{vl53l8cx\_motion\_indicator\_init}}(}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00056}00056\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53L8CX\_Configuration}}\ \ \ \ \ \ \ \ *p\_dev,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00057}00057\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration}{VL53L8CX\_Motion\_Configuration}}\ \ *p\_motion\_config,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00058}00058\ \ \ \ \ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ resolution);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00059}00059\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00060}00060\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00061}00061\ \textcolor{comment}{\ *\ @brief\ This\ function\ can\ be\ used\ to\ change\ the\ working\ distance\ of\ motion}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00062}00062\ \textcolor{comment}{\ *\ indicator.\ By\ default,\ indicator\ is\ programmed\ to\ monitor\ movements\ between}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00063}00063\ \textcolor{comment}{\ *\ 400mm\ and\ 1500mm.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00064}00064\ \textcolor{comment}{\ *\ @param\ (VL53L8CX\_Configuration)\ *p\_dev\ :\ VL53L8CX\ configuration\ structure.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00065}00065\ \textcolor{comment}{\ *\ @param\ (VL53L8CX\_Motion\_Configuration)\ *p\_motion\_config\ :\ Structure}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00066}00066\ \textcolor{comment}{\ *\ containing\ the\ initialized\ motion\ configuration.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00067}00067\ \textcolor{comment}{\ *\ @param\ (uint16\_t)\ distance\_min\_mm\ :\ Minimum\ distance\ for\ indicator\ (min\ value\ }}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00068}00068\ \textcolor{comment}{\ *\ 400mm,\ max\ 4000mm).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00069}00069\ \textcolor{comment}{\ *\ @param\ (uint16\_t)\ distance\_max\_mm\ :\ Maximum\ distance\ for\ indicator\ (min\ value\ }}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00070}00070\ \textcolor{comment}{\ *\ 400mm,\ max\ 4000mm).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00071}00071\ \textcolor{comment}{\ *\ VL53L8CX\_RESOLUTION\_4X4\ or\ VL53L8CX\_RESOLUTION\_8X8.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00072}00072\ \textcolor{comment}{\ *\ @return\ (uint8\_t)\ status\ :\ 0\ if\ OK,\ or\ 127\ if\ an\ argument\ is\ invalid.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00073}00073\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00075}00075\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__plugin__motion__indicator_8h_a345eea6081124af6e2e1d076f68a1302}{vl53l8cx\_motion\_indicator\_set\_distance\_motion}}(}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00076}00076\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53L8CX\_Configuration}}\ \ \ \ \ \ \ \ *p\_dev,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00077}00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration}{VL53L8CX\_Motion\_Configuration}}\ \ *p\_motion\_config,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00078}00078\ \ \ \ \ \ \ \ \ uint16\_t\ \ \ \ \ \ \ \ \ \ \ \ distance\_min\_mm,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00079}00079\ \ \ \ \ \ \ \ \ uint16\_t\ \ \ \ \ \ \ \ \ \ \ \ distance\_max\_mm);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00080}00080\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00081}00081\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00082}00082\ \textcolor{comment}{\ *\ @brief\ This\ function\ is\ used\ to\ update\ the\ internal\ motion\ indicator\ map.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00083}00083\ \textcolor{comment}{\ *\ @param\ (VL53L8CX\_Configuration)\ *p\_dev\ :\ VL53L8CX\ configuration\ structure.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00084}00084\ \textcolor{comment}{\ *\ @param\ (VL53L8CX\_Motion\_Configuration)\ *p\_motion\_config\ :\ Structure}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00085}00085\ \textcolor{comment}{\ *\ containing\ the\ initialized\ motion\ configuration.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00086}00086\ \textcolor{comment}{\ *\ @param\ (uint8\_t)\ resolution\ :\ Wanted\ SCI\ resolution,\ defined\ by\ macros}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00087}00087\ \textcolor{comment}{\ *\ VL53L8CX\_RESOLUTION\_4X4\ or\ VL53L8CX\_RESOLUTION\_8X8.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00088}00088\ \textcolor{comment}{\ *\ @return\ (uint8\_t)\ status\ :\ 0\ if\ OK,\ or\ 127\ is\ the\ resolution\ is\ unknown.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00089}00089\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00091}00091\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__plugin__motion__indicator_8h_a4975f4c09aca2787fa25e2a2410d3ff3}{vl53l8cx\_motion\_indicator\_set\_resolution}}(}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00092}00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53L8CX\_Configuration}}\ \ \ \ \ \ \ \ *p\_dev,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00093}00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_v_l53_l8_c_x___motion___configuration}{VL53L8CX\_Motion\_Configuration}}\ \ *p\_motion\_config,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00094}00094\ \ \ \ \ \ \ \ \ uint8\_t\ \ \ \ \ \ \ \ \ \ \ \ \ resolution);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__plugin__motion__indicator_8h_source_l00096}00096\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ VL53L8CX\_PLUGIN\_MOTION\_INDICATOR\_H\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

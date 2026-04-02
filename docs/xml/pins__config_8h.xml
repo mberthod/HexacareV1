@@ -1,0 +1,664 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="pins__config_8h" kind="file" language="C++">
+    <compoundname>pins_config.h</compoundname>
+    <includedby refid="hw__diag_8c" local="yes">components/hw_diag/hw_diag.c</includedby>
+    <includedby refid="mesh__manager_8c" local="yes">components/mesh_network/mesh_manager.c</includedby>
+    <includedby refid="lidar__driver_8c" local="yes">components/sensor_acq/lidar_driver.c</includedby>
+    <includedby refid="mic__driver_8c" local="yes">components/sensor_acq/mic_driver.c</includedby>
+    <includedby refid="radar__driver_8c" local="yes">components/sensor_acq/radar_driver.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/hw_diag/hw_diag.c</label>
+        <link refid="hw__diag_8c"/>
+      </node>
+      <node id="1">
+        <label>components/lexacare_types/include/pins_config.h</label>
+        <link refid="pins__config_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>components/mesh_network/mesh_manager.c</label>
+        <link refid="mesh__manager_8c"/>
+      </node>
+      <node id="4">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="5">
+        <label>components/sensor_acq/mic_driver.c</label>
+        <link refid="mic__driver_8c"/>
+      </node>
+      <node id="6">
+        <label>components/sensor_acq/radar_driver.c</label>
+        <link refid="radar__driver_8c"/>
+      </node>
+      <node id="7">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <member refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" kind="define"><name>PIN_I2C0_SDA</name></member>
+      <memberdef kind="define" id="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" prot="public" static="no">
+        <name>PIN_I2C0_SCL</name>
+        <initializer>12</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="49" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="49" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1aabfe18b52ad58d04d2a1cf6612c5c4fa" prot="public" static="no">
+        <name>PIN_I2C1_SDA</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="54" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" compoundref="hw__diag_8c" startline="575" endline="580">hw_diag_init_sensor_bus</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1ac270b2950c69700990747460dc1e284a" prot="public" static="no">
+        <name>PIN_I2C1_SCL</name>
+        <initializer>9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="55" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="55" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" compoundref="hw__diag_8c" startline="575" endline="580">hw_diag_init_sensor_bus</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a8e3e8f37be6335b7b08ffabb49f72b7d" prot="public" static="no">
+        <name>LIDAR_SPI_HOST</name>
+        <initializer>SPI2_HOST</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="69" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" prot="public" static="no">
+        <name>PIN_LIDAR_CLK</name>
+        <initializer>17</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="70" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a591add909d8fa618c6c75d7375c5e0b6" prot="public" static="no">
+        <name>PIN_LIDAR_MOSI</name>
+        <initializer>18</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="71" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="71" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a7206f7c59a37c0d551f6ae396e7ddd19" prot="public" static="no">
+        <name>PIN_LIDAR_MISO</name>
+        <initializer>21</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="72" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="72" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1aa999e725941ff90978fe96cfee88e1f2" prot="public" static="no">
+        <name>PIN_LIDAR_SYNC</name>
+        <initializer>14</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="73" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a8d4bf531079d2f0cbad53326ea8e6199" prot="public" static="no">
+        <name>PIN_LIDAR_NCS0</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NCS LIDAR 1 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="75" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a01c5ad844f2c0ec12343af1c16cacf5d" prot="public" static="no">
+        <name>PIN_LIDAR_NCS1</name>
+        <initializer>2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NCS LIDAR 2 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="76" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1ae6e653a6750b07505a4f21a350cc7c7d" prot="public" static="no">
+        <name>PIN_LIDAR_NCS2</name>
+        <initializer>42</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NCS LIDAR 3 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="77" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a7b82939fa5f89f8a18c272ff73b838f3" prot="public" static="no">
+        <name>PIN_LIDAR_NCS3</name>
+        <initializer>41</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>NCS LIDAR 4 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="78" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1abc995c26ee634eb7c2600e8bf733bd17" prot="public" static="no">
+        <name>PCA9555_I2C_ADDR</name>
+        <initializer>0x20</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="83" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" prot="public" static="no">
+        <name>PCA9555_REG_OUTPUT_0</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sortie Port 0 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="86" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="86" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+        <referencedby refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" compoundref="hw__diag_8c" startline="312" endline="326">pca9555_set_lpn</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" prot="public" static="no">
+        <name>PCA9555_REG_OUTPUT_1</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sortie Port 1 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="87" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="87" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" compoundref="hw__diag_8c" startline="585" endline="606">hw_diag_pca9555_set_power</referencedby>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1adae3362117b6490d042b16c0ab603d49" prot="public" static="no">
+        <name>PCA9555_REG_CONFIG_0</name>
+        <initializer>0x06</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Config Port 0 (0=sortie, 1=entrée) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="88" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="88" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1ac84f3abe5f9291532786a1e968e530a8" prot="public" static="no">
+        <name>PCA9555_REG_CONFIG_1</name>
+        <initializer>0x07</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Config Port 1 (0=sortie, 1=entrée) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="89" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="89" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1ad686bd3530de42d3ed0bee9b2b54ecee" prot="public" static="no">
+        <name>PCA9555_BIT_DIST_SHUTDOWN</name>
+        <initializer>(1u &lt;&lt; 0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO0.0 — actif = TOF en veille </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="93" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a7ef0d0acf832fc5efdda51daac987e35" prot="public" static="no">
+        <name>PCA9555_BIT_LPN4</name>
+        <initializer>(1u &lt;&lt; 3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO0.3 → LPn_4 LIDAR 4 (NCS3/GPIO41) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="99" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a868519ce99c724b706ed64545cd9af28" prot="public" static="no">
+        <name>PCA9555_BIT_LPN3</name>
+        <initializer>(1u &lt;&lt; 4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO0.4 → LPn_3 LIDAR 3 (NCS2/GPIO42) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="100" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1aed877455bd33d6ad38b5c12b5e079bbf" prot="public" static="no">
+        <name>PCA9555_BIT_LPN2</name>
+        <initializer>(1u &lt;&lt; 5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO0.5 → LPn_2 LIDAR 2 (NCS1/GPIO2) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="101" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a5a023f9847dba2d76fa779ab7a53483f" prot="public" static="no">
+        <name>PCA9555_BIT_LPN1</name>
+        <initializer>(1u &lt;&lt; 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO0.6 → LPn_1 LIDAR 1 (NCS0/GPIO1) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="102" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a5de5d3f76f4de48e60b03e4bbc7a30f9" prot="public" static="no">
+        <name>PCA9555_BIT_RADAR_LPN</name>
+        <initializer>(1u &lt;&lt; 7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO0.7 → LPn LIDAR radar (réservé) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="105" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a5bb7081ed093edf6f40e3681b80492a2" prot="public" static="no">
+        <name>PCA9555_CFG0_MASK</name>
+        <initializer>0x06u</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="112" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="112" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a5f2d7b2bd1e54721b51e0b001f9d17e8" prot="public" static="no">
+        <name>PCA9555_BIT_PWR_FAN</name>
+        <initializer>(1u &lt;&lt; 4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO1.4 → Alimentation ventilateur </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="117" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="117" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a47d24d2c7f6e97560d968fcf372d5daa" prot="public" static="no">
+        <name>PCA9555_BIT_PWR_RADAR</name>
+        <initializer>(1u &lt;&lt; 5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO1.5 → Alimentation carte radar </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="118" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="118" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a21548209f46bfb6d3762a4abd89468b1" prot="public" static="no">
+        <name>PCA9555_BIT_PWR_MIC</name>
+        <initializer>(1u &lt;&lt; 6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO1.6 → Alimentation microphone </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="119" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="119" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a9c75a80cfcdd852e8a918b50a6d794cc" prot="public" static="no">
+        <name>PCA9555_BIT_PWR_MLX</name>
+        <initializer>(1u &lt;&lt; 7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IO1.7 → Alimentation MLX90640 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="120" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="120" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a6936240ee95c2cae37e50f3fa0a14b76" prot="public" static="no">
+        <name>PCA9555_CFG1_MASK</name>
+        <initializer>0x0Fu</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="124" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="124" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1ab13d757959922bf205d6448862bd4e12" prot="public" static="no">
+        <name>PIN_RADAR_RX</name>
+        <initializer>43</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="129" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="129" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1ad7bec6e9767c77bebd8419d6f3329be2" prot="public" static="no">
+        <name>PIN_RADAR_TX</name>
+        <initializer>44</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="130" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="130" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1aa61942d4d7c79c5fa394db3d554df72a" prot="public" static="no">
+        <name>PIN_MIC_WS</name>
+        <initializer>6</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="139" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="139" bodyend="-1"/>
+        <referencedby refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" compoundref="mic__driver_8c" startline="36" endline="92">mic_driver_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a6a2da9f70511fac1353ce4cd008aba68" prot="public" static="no">
+        <name>PIN_MIC_SD</name>
+        <initializer>7</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="140" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="140" bodyend="-1"/>
+        <referencedby refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" compoundref="mic__driver_8c" startline="36" endline="92">mic_driver_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a49df2ceba71c16ebe4a7d8fd5aa72cab" prot="public" static="no">
+        <name>PIN_MIC_SCK</name>
+        <initializer>8</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="141" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="141" bodyend="-1"/>
+        <referencedby refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" compoundref="mic__driver_8c" startline="36" endline="92">mic_driver_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1aa02f2c9ba2ca7087ec63030888786f05" prot="public" static="no">
+        <name>PIN_LED_STATUS</name>
+        <initializer>38</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="146" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" prot="public" static="no">
+        <name>PIN_ROOT_SEL</name>
+        <initializer>35</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="151" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="151" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Définition des broches GPIO et du mapping PCA9555 pour LexaCare V1. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Architecture hardware ESP32-S3-WROOM-2 :</para>
+<para>SPI2 — 4 LIDARs VL53L8CX (NCS individuels) + SYNC UART — Radar HLK-LD6002 (RX=43, TX=44) I2C0 — PCA9555D @0x20 (SDA=11, SCL=12) : LPn LIDAR + alim sous-systèmes I2C1 — MLX90640 (SDA=10, SCL=9) — réservé, driver non implémenté I2S — Microphone MEMS numérique (WS=6, SD=7, SCK=8)</para>
+<para>PCA9555D Port 0 : IO0.0 → DIST_SHUTDOWN : shutdown VL53L0X (TOF simple, I2C MLX bus) IO0.1 → GPIO radar LD6002 — Hi-Z (non utilisé) IO0.2 → GPIO radar LD6002 — Hi-Z (non utilisé) IO0.3 → LPn_4 : LPn LIDAR 4 (VL53L8CX) IO0.4 → LPn_3 : LPn LIDAR 3 (VL53L8CX) IO0.5 → LPn_2 : LPn LIDAR 2 (VL53L8CX) IO0.6 → LPn_1 : LPn LIDAR 1 (VL53L8CX) IO0.7 → RADAR_LPN : LPn LIDAR carte radar (option, non connecté)</para>
+<para>PCA9555D Port 1 : IO1.0–IO1.3 → non utilisés (Hi-Z) IO1.4 → POWER_FAN : alimentation ventilateur IO1.5 → POWER_RADAR : alimentation carte radar IO1.6 → POWER_MIC : alimentation microphone IO1.7 → POWER_MLX : alimentation capteur MLX</para>
+<para>IMPORTANT : vérifier ces assignations contre le schéma électrique final avant tout flashage sur le matériel de production. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>pins_config.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Définition<sp/>des<sp/>broches<sp/>GPIO<sp/>et<sp/>du<sp/>mapping<sp/>PCA9555<sp/>pour<sp/>LexaCare<sp/>V1.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Architecture<sp/>hardware<sp/>ESP32-S3-WROOM-2<sp/>:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/>SPI2<sp/><sp/>—<sp/>4<sp/>LIDARs<sp/>VL53L8CX<sp/>(NCS<sp/>individuels)<sp/>+<sp/>SYNC</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/>UART<sp/><sp/>—<sp/>Radar<sp/>HLK-LD6002<sp/>(RX=43,<sp/>TX=44)</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/>I2C0<sp/><sp/>—<sp/>PCA9555D<sp/>@0x20<sp/>(SDA=11,<sp/>SCL=12)<sp/>:<sp/>LPn<sp/>LIDAR<sp/>+<sp/>alim<sp/>sous-systèmes</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/>I2C1<sp/><sp/>—<sp/>MLX90640<sp/>(SDA=10,<sp/>SCL=9)<sp/>—<sp/>réservé,<sp/>driver<sp/>non<sp/>implémenté</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/>I2S<sp/><sp/><sp/>—<sp/>Microphone<sp/>MEMS<sp/>numérique<sp/>(WS=6,<sp/>SD=7,<sp/>SCK=8)</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/>PCA9555D<sp/>Port<sp/>0<sp/>:</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.0<sp/>→<sp/>DIST_SHUTDOWN<sp/>:<sp/>shutdown<sp/>VL53L0X<sp/>(TOF<sp/>simple,<sp/>I2C<sp/>MLX<sp/>bus)</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.1<sp/>→<sp/>GPIO<sp/>radar<sp/>LD6002<sp/>—<sp/>Hi-Z<sp/>(non<sp/>utilisé)</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.2<sp/>→<sp/>GPIO<sp/>radar<sp/>LD6002<sp/>—<sp/>Hi-Z<sp/>(non<sp/>utilisé)</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.3<sp/>→<sp/>LPn_4<sp/>:<sp/>LPn<sp/>LIDAR<sp/>4<sp/>(VL53L8CX)</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.4<sp/>→<sp/>LPn_3<sp/>:<sp/>LPn<sp/>LIDAR<sp/>3<sp/>(VL53L8CX)</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.5<sp/>→<sp/>LPn_2<sp/>:<sp/>LPn<sp/>LIDAR<sp/>2<sp/>(VL53L8CX)</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.6<sp/>→<sp/>LPn_1<sp/>:<sp/>LPn<sp/>LIDAR<sp/>1<sp/>(VL53L8CX)</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO0.7<sp/>→<sp/>RADAR_LPN<sp/>:<sp/>LPn<sp/>LIDAR<sp/>carte<sp/>radar<sp/>(option,<sp/>non<sp/>connecté)</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/><sp/>PCA9555D<sp/>Port<sp/>1<sp/>:</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO1.0–IO1.3<sp/>→<sp/>non<sp/>utilisés<sp/>(Hi-Z)</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO1.4<sp/>→<sp/>POWER_FAN<sp/><sp/><sp/>:<sp/>alimentation<sp/>ventilateur</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO1.5<sp/>→<sp/>POWER_RADAR<sp/>:<sp/>alimentation<sp/>carte<sp/>radar</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO1.6<sp/>→<sp/>POWER_MIC<sp/><sp/><sp/>:<sp/>alimentation<sp/>microphone</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/>IO1.7<sp/>→<sp/>POWER_MLX<sp/><sp/><sp/>:<sp/>alimentation<sp/>capteur<sp/>MLX</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>IMPORTANT<sp/>:<sp/>vérifier<sp/>ces<sp/>assignations<sp/>contre<sp/>le<sp/>schéma<sp/>électrique<sp/>final</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>avant<sp/>tout<sp/>flashage<sp/>sur<sp/>le<sp/>matériel<sp/>de<sp/>production.</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="36"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_config</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Mapping<sp/>“humain”<sp/>entre<sp/>le<sp/>schéma<sp/>électronique<sp/>et<sp/>le<sp/>code.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>Pourquoi<sp/>c&apos;est<sp/>important<sp/>:</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>-<sp/>sur<sp/>un<sp/>système<sp/>multi-capteurs,<sp/>une<sp/>seule<sp/>broche<sp/>mal<sp/>mappée<sp/>peut<sp/>rendre<sp/>tout<sp/>le<sp/>bus<sp/>muet</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>-<sp/>les<sp/>expandeurs<sp/>(PCA9555)<sp/>ajoutent<sp/>une<sp/>couche<sp/>d&apos;indirection<sp/>:<sp/>ces<sp/>defines<sp/>évitent<sp/>les<sp/>erreurs</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>Bus<sp/>I2C<sp/>0<sp/>(I2C_NUM_0)<sp/>—<sp/>PCA9555D<sp/>@0x20</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_I2C0_SDA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>11</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_I2C0_SCL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>12</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>Bus<sp/>I2C<sp/>1<sp/>(I2C_NUM_1)<sp/>—<sp/>MLX90640<sp/>(réservé,<sp/>driver<sp/>non<sp/>implémenté)</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54" refid="pins__config_8h_1aabfe18b52ad58d04d2a1cf6612c5c4fa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_I2C1_SDA<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="pins__config_8h_1ac270b2950c69700990747460dc1e284a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_I2C1_SCL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>Bus<sp/>SPI<sp/>LIDAR<sp/>(SPI2_HOST)<sp/>—<sp/>4<sp/>capteurs<sp/>VL53L8CX</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>Numérotation<sp/>hardware<sp/>vs<sp/>code<sp/>:</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/><sp/><sp/>NCS0<sp/>(GPIO1)<sp/><sp/>→<sp/>LIDAR<sp/>1<sp/>(LPn_1<sp/>=<sp/>PCA9555<sp/>IO0.6)</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/><sp/><sp/>NCS1<sp/>(GPIO2)<sp/><sp/>→<sp/>LIDAR<sp/>2<sp/>(LPn_2<sp/>=<sp/>PCA9555<sp/>IO0.5)</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/><sp/><sp/>NCS2<sp/>(GPIO42)<sp/>→<sp/>LIDAR<sp/>3<sp/>(LPn_3<sp/>=<sp/>PCA9555<sp/>IO0.4)</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/><sp/><sp/>NCS3<sp/>(GPIO41)<sp/>→<sp/>LIDAR<sp/>4<sp/>(LPn_4<sp/>=<sp/>PCA9555<sp/>IO0.3)</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/>Mode<sp/>SPI<sp/>3<sp/>(CPOL=1,<sp/>CPHA=1)<sp/>—<sp/>max<sp/>10<sp/>MHz.</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/>*<sp/>SYNC<sp/>(GPIO14)<sp/>:<sp/>synchronisation<sp/>multi-capteurs.</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="pins__config_8h_1a8e3e8f37be6335b7b08ffabb49f72b7d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_SPI_HOST<sp/><sp/><sp/><sp/><sp/><sp/>SPI2_HOST</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_CLK<sp/><sp/><sp/><sp/><sp/><sp/><sp/>17</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71" refid="pins__config_8h_1a591add909d8fa618c6c75d7375c5e0b6" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_MOSI<sp/><sp/><sp/><sp/><sp/><sp/>18</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="pins__config_8h_1a7206f7c59a37c0d551f6ae396e7ddd19" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_MISO<sp/><sp/><sp/><sp/><sp/><sp/>21</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="pins__config_8h_1aa999e725941ff90978fe96cfee88e1f2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_SYNC<sp/><sp/><sp/><sp/><sp/><sp/>14</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="pins__config_8h_1a8d4bf531079d2f0cbad53326ea8e6199" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_NCS0<sp/><sp/><sp/><sp/><sp/><sp/>1<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>NCS<sp/>LIDAR<sp/>1<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="pins__config_8h_1a01c5ad844f2c0ec12343af1c16cacf5d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_NCS1<sp/><sp/><sp/><sp/><sp/><sp/>2<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>NCS<sp/>LIDAR<sp/>2<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77" refid="pins__config_8h_1ae6e653a6750b07505a4f21a350cc7c7d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_NCS2<sp/><sp/><sp/><sp/><sp/><sp/>42<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>NCS<sp/>LIDAR<sp/>3<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="pins__config_8h_1a7b82939fa5f89f8a18c272ff73b838f3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LIDAR_NCS3<sp/><sp/><sp/><sp/><sp/><sp/>41<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>NCS<sp/>LIDAR<sp/>4<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>PCA9555D<sp/>—<sp/>Expandeur<sp/>GPIO<sp/>I2C<sp/>(@0x20,<sp/>A0=A1=A2=GND)</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="pins__config_8h_1abc995c26ee634eb7c2600e8bf733bd17" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_I2C_ADDR<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x20</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Adresses<sp/>des<sp/>registres<sp/>PCA9555<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_REG_OUTPUT_0<sp/><sp/><sp/><sp/>0x02<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Sortie<sp/>Port<sp/>0<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_REG_OUTPUT_1<sp/><sp/><sp/><sp/>0x03<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Sortie<sp/>Port<sp/>1<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88" refid="pins__config_8h_1adae3362117b6490d042b16c0ab603d49" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_REG_CONFIG_0<sp/><sp/><sp/><sp/>0x06<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Config<sp/>Port<sp/>0<sp/>(0=sortie,<sp/>1=entrée)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="pins__config_8h_1ac84f3abe5f9291532786a1e968e530a8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_REG_CONFIG_1<sp/><sp/><sp/><sp/>0x07<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Config<sp/>Port<sp/>1<sp/>(0=sortie,<sp/>1=entrée)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---<sp/>Port<sp/>0<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>IO0.0<sp/>:<sp/>DIST_SHUTDOWN<sp/>—<sp/>shutdown<sp/>VL53L0X<sp/>(TOF<sp/>simple<sp/>sur<sp/>bus<sp/>I2C<sp/>MLX)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93" refid="pins__config_8h_1ad686bd3530de42d3ed0bee9b2b54ecee" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_DIST_SHUTDOWN<sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>0)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO0.0<sp/>—<sp/>actif<sp/>=<sp/>TOF<sp/>en<sp/>veille<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>IO0.1,<sp/>IO0.2<sp/>:<sp/>GPIO<sp/>radar<sp/>LD6002<sp/>—<sp/>laissés<sp/>en<sp/>entrée<sp/>(Hi-Z)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>(pas<sp/>de<sp/>define<sp/>actif<sp/>—<sp/>configurés<sp/>en<sp/>entrée<sp/>dans<sp/>pca9555_init)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>IO0.3<sp/>–<sp/>IO0.6<sp/>:<sp/>LPn<sp/>VL53L8CX<sp/>(actif<sp/>bas<sp/>=<sp/>reset,<sp/>haut<sp/>=<sp/>opérationnel)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="pins__config_8h_1a7ef0d0acf832fc5efdda51daac987e35" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_LPN4<sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>3)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO0.3<sp/>→<sp/>LPn_4<sp/>LIDAR<sp/>4<sp/>(NCS3/GPIO41)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="pins__config_8h_1a868519ce99c724b706ed64545cd9af28" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_LPN3<sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>4)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO0.4<sp/>→<sp/>LPn_3<sp/>LIDAR<sp/>3<sp/>(NCS2/GPIO42)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="pins__config_8h_1aed877455bd33d6ad38b5c12b5e079bbf" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_LPN2<sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>5)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO0.5<sp/>→<sp/>LPn_2<sp/>LIDAR<sp/>2<sp/>(NCS1/GPIO2)<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="pins__config_8h_1a5a023f9847dba2d76fa779ab7a53483f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_LPN1<sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>6)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO0.6<sp/>→<sp/>LPn_1<sp/>LIDAR<sp/>1<sp/>(NCS0/GPIO1)<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>IO0.7<sp/>:<sp/>LPn<sp/>LIDAR<sp/>carte<sp/>radar<sp/>(option<sp/>—<sp/>non<sp/>connecté<sp/>actuellement)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105" refid="pins__config_8h_1a5de5d3f76f4de48e60b03e4bbc7a30f9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_RADAR_LPN<sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>7)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO0.7<sp/>→<sp/>LPn<sp/>LIDAR<sp/>radar<sp/>(réservé)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Masque<sp/>de<sp/>config<sp/>Port<sp/>0<sp/>:</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/><sp/><sp/>IO0.0<sp/>=<sp/>sortie<sp/>(DIST_SHUTDOWN)</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/><sp/><sp/>IO0.1,<sp/>IO0.2<sp/>=<sp/>entrée<sp/>Hi-Z<sp/>(radar<sp/>GPIO<sp/>non<sp/>utilisés)</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/><sp/><sp/>IO0.3<sp/>–<sp/>IO0.7<sp/>=<sp/>sorties<sp/>(LPn<sp/>+<sp/>RADAR_LPN)</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Config<sp/>register<sp/>:<sp/>0<sp/>=<sp/>sortie,<sp/>1<sp/>=<sp/>entrée<sp/>→<sp/>0b00000110<sp/>=<sp/>0x06<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="pins__config_8h_1a5bb7081ed093edf6f40e3681b80492a2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_CFG0_MASK<sp/><sp/><sp/>0x06u</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>---<sp/>Port<sp/>1<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>IO1.0<sp/>–<sp/>IO1.3<sp/>:<sp/>non<sp/>utilisés<sp/>—<sp/>laissés<sp/>en<sp/>entrée<sp/>(Hi-Z)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>IO1.4<sp/>–<sp/>IO1.7<sp/>:<sp/>alimentations<sp/>sous-systèmes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="pins__config_8h_1a5f2d7b2bd1e54721b51e0b001f9d17e8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_PWR_FAN<sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>4)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO1.4<sp/>→<sp/>Alimentation<sp/>ventilateur<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118" refid="pins__config_8h_1a47d24d2c7f6e97560d968fcf372d5daa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_PWR_RADAR<sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>5)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO1.5<sp/>→<sp/>Alimentation<sp/>carte<sp/>radar<sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119" refid="pins__config_8h_1a21548209f46bfb6d3762a4abd89468b1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_PWR_MIC<sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>6)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO1.6<sp/>→<sp/>Alimentation<sp/>microphone<sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="pins__config_8h_1a9c75a80cfcdd852e8a918b50a6d794cc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_BIT_PWR_MLX<sp/><sp/><sp/><sp/><sp/>(1u<sp/>&lt;&lt;<sp/>7)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IO1.7<sp/>→<sp/>Alimentation<sp/>MLX90640<sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Masque<sp/>de<sp/>config<sp/>Port<sp/>1<sp/>:</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/>*<sp/><sp/><sp/>IO1.0–IO1.3<sp/>=<sp/>entrée<sp/>Hi-Z,<sp/>IO1.4–IO1.7<sp/>=<sp/>sorties<sp/>→<sp/>0b00001111<sp/>=<sp/>0x0F<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124" refid="pins__config_8h_1a6936240ee95c2cae37e50f3fa0a14b76" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PCA9555_CFG1_MASK<sp/><sp/><sp/>0x0Fu</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*<sp/>UART<sp/>—<sp/>Radar<sp/>HLK-LD6002<sp/>(TinyFrame,<sp/>1<sp/>382<sp/>400<sp/>bauds,<sp/>UART_NUM_2)</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="pins__config_8h_1ab13d757959922bf205d6448862bd4e12" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_RADAR_RX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>43</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="pins__config_8h_1ad7bec6e9767c77bebd8419d6f3329be2" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_RADAR_TX<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>44</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/>*<sp/>Microphone<sp/>MEMS<sp/>numérique<sp/>—<sp/>interface<sp/>I2S</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/>*<sp/>MIK_WS<sp/><sp/>=<sp/>Word<sp/>Select<sp/>/<sp/>LRCK</highlight></codeline>
+<codeline lineno="135"><highlight class="comment"><sp/>*<sp/>MIK_SD<sp/><sp/>=<sp/>Serial<sp/>Data<sp/>(données<sp/>audio)</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/>*<sp/>MIC_SDK<sp/>=<sp/>Serial<sp/>Clock<sp/>/<sp/>BCLK</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/>*<sp/>(driver<sp/>non<sp/>implémenté<sp/>—<sp/>réservé)</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139" refid="pins__config_8h_1aa61942d4d7c79c5fa394db3d554df72a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_MIC_WS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="pins__config_8h_1a6a2da9f70511fac1353ce4cd008aba68" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_MIC_SD<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141" refid="pins__config_8h_1a49df2ceba71c16ebe4a7d8fd5aa72cab" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_MIC_SCK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="144"><highlight class="comment"><sp/>*<sp/>LED<sp/>de<sp/>statut<sp/>NeoPixel<sp/>WS2812</highlight></codeline>
+<codeline lineno="145"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="146" refid="pins__config_8h_1aa02f2c9ba2ca7087ec63030888786f05" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_LED_STATUS<sp/><sp/><sp/><sp/><sp/><sp/>38</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="149"><highlight class="comment"><sp/>*<sp/>Sélection<sp/>ROOT<sp/>/<sp/>NODE<sp/>(pull-up<sp/>interne,<sp/>niveau<sp/>bas<sp/>=<sp/>ROOT)</highlight></codeline>
+<codeline lineno="150"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PIN_ROOT_SEL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>35</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/lexacare_types/include/pins_config.h"/>
+  </compounddef>
+</doxygen>

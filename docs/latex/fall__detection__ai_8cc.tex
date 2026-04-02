@@ -1,0 +1,493 @@
+\doxysection{components/ai\+\_\+engine/fall\+\_\+detection\+\_\+ai.cc File Reference}
+\hypertarget{fall__detection__ai_8cc}{}\label{fall__detection__ai_8cc}\index{components/ai\_engine/fall\_detection\_ai.cc@{components/ai\_engine/fall\_detection\_ai.cc}}
+
+
+Moteur d\textquotesingle{}inférence de détection de chute — dual-\/mode ESP-\/\+DL / seuil.  
+
+
+{\ttfamily \#include "{}fall\+\_\+detection\+\_\+ai.\+h"{}}\newline
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}sdkconfig.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+task\+\_\+wdt.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/queue.\+h"{}}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+Include dependency graph for fall\+\_\+detection\+\_\+ai.\+cc\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fall__detection__ai_8cc__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structai__task__ctx__t}{ai\+\_\+task\+\_\+ctx\+\_\+t}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}{CONFIG\+\_\+\+AI\+\_\+\+HISTORY\+\_\+\+LEN}}~8
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_a6e36c1db9f7fca5f08e465e22d363dff}{CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+THRESHOLD\+\_\+\+PERCENT}}~80
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_ab97049d4832a5c3943e89f3f3c3e10ef}{CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+CONFIDENCE\+\_\+\+THRESHOLD}}~85
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_a5486258f1f34d3baeda92a74b63c27c3}{TASK\+\_\+\+STACK\+\_\+\+SIZE}}~(12288)
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\+\_\+\+PRIORITY}}~(9)
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\+\_\+\+CORE}}~(1)
+\item 
+\#define \mbox{\hyperlink{fall__detection__ai_8cc_aace0aabcf3303bb3a961ebd8ba4efee3}{FALL\+\_\+\+DISTANCE\+\_\+\+MAX\+\_\+\+MM}}~1500
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static float \mbox{\hyperlink{fall__detection__ai_8cc_a66e1e34017dece06213f4b1b97f69728}{threshold\+\_\+avg\+\_\+lower\+\_\+zone}} (const \mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}} \texorpdfstring{$\ast$}{*}matrix)
+\item 
+static \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\+\_\+event\+\_\+state\+\_\+e}} \mbox{\hyperlink{fall__detection__ai_8cc_aac5979362939e3ba1410565e27289f35}{threshold\+\_\+detect\+\_\+fall}} (\mbox{\hyperlink{structai__task__ctx__t}{ai\+\_\+task\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx, float current\+\_\+mm, uint8\+\_\+t \texorpdfstring{$\ast$}{*}confidence)
+\item 
+static void \mbox{\hyperlink{fall__detection__ai_8cc_a03716621cc9044b50d37581aefb7675a}{send\+\_\+ai\+\_\+event}} (const \mbox{\hyperlink{structai__task__ctx__t}{ai\+\_\+task\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx, const \mbox{\hyperlink{structai__event__t}{ai\+\_\+event\+\_\+t}} \texorpdfstring{$\ast$}{*}event)
+\item 
+static void \mbox{\hyperlink{fall__detection__ai_8cc_a7d61a03892d2a7129fd42b1bf1d70a2f}{task\+\_\+ai\+\_\+inference}} (void \texorpdfstring{$\ast$}{*}pv\+Param)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22}{ai\+\_\+engine\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fall__detection__ai_8cc_a5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}ai\+\_\+engine"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Moteur d\textquotesingle{}inférence de détection de chute — dual-\/mode ESP-\/\+DL / seuil. 
+
+Ce fichier est compilé en C++ (requis pour l\textquotesingle{}API ESP-\/\+DL). L\textquotesingle{}interface externe est exposée via extern "{}\+C"{} pour la compatibilité avec \doxylink{main_8c}{main.\+c} et les autres composants C.
+
+=== MODE MODÈ\+LE (CONFIG\+\_\+\+AI\+\_\+\+USE\+\_\+\+ESPDL\+\_\+\+MODEL=y) === Charge /littlefs/fall\+\_\+model.espdl via dl\+::\+Model\+::load(). Construit un Tensor$<$int16\+\_\+t$>$ 8×32×1 depuis \doxylink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}. Exécute model-\/\texorpdfstring{$>$}{>}run(). Lit la sortie softmax \mbox{[}P\+\_\+normal, P\+\_\+chute\mbox{]}. Si P\+\_\+chute \texorpdfstring{$>$}{>} CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+CONFIDENCE\+\_\+\+THRESHOLD\% → AI\+\_\+\+CHUTE\+\_\+\+DETECTEE.
+
+=== MODE SEUIL (CONFIG\+\_\+\+AI\+\_\+\+USE\+\_\+\+ESPDL\+\_\+\+MODEL=n, défaut) === Algorithme géométrique sur \doxylink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t} \+:
+\begin{DoxyEnumerate}
+\item Calcul de la distance moyenne de la zone inférieure (lignes 6-\/7).
+\item Comparaison avec l\textquotesingle{}historique glissant (CONFIG\+\_\+\+AI\+\_\+\+HISTORY\+\_\+\+LEN trames).
+\item Si variation \texorpdfstring{$>$}{>} CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+THRESHOLD\+\_\+\+PERCENT\% ET distance \texorpdfstring{$<$}{<} 1500 mm → AI\+\_\+\+CHUTE\+\_\+\+DETECTEE (confiance proportionnelle à la variation).
+\end{DoxyEnumerate}
+
+=== RÈ\+GLE DE PRIORITÉ MESH (contrainte stricte) === AI\+\_\+\+CHUTE\+\_\+\+DETECTEE → x\+Queue\+Send\+To\+Front(ai\+\_\+to\+\_\+mesh\+\_\+queue, ...) Autres états → x\+Queue\+Send(ai\+\_\+to\+\_\+mesh\+\_\+queue, ...) 
+
+Definition in file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{fall__detection__ai_8cc_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{fall__detection__ai_8cc_ab97049d4832a5c3943e89f3f3c3e10ef}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD@{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}}
+\index{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD@{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_ab97049d4832a5c3943e89f3f3c3e10ef} 
+\#define CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+CONFIDENCE\+\_\+\+THRESHOLD~85}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00055}{55}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}.
+
+\Hypertarget{fall__detection__ai_8cc_a6e36c1db9f7fca5f08e465e22d363dff}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT@{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}}
+\index{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT@{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a6e36c1db9f7fca5f08e465e22d363dff} 
+\#define CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+THRESHOLD\+\_\+\+PERCENT~80}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00052}{52}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00134}{threshold\+\_\+detect\+\_\+fall()}}.
+
+\Hypertarget{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!CONFIG\_AI\_HISTORY\_LEN@{CONFIG\_AI\_HISTORY\_LEN}}
+\index{CONFIG\_AI\_HISTORY\_LEN@{CONFIG\_AI\_HISTORY\_LEN}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{CONFIG\_AI\_HISTORY\_LEN}{CONFIG\_AI\_HISTORY\_LEN}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6} 
+\#define CONFIG\+\_\+\+AI\+\_\+\+HISTORY\+\_\+\+LEN~8}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00049}{49}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00134}{threshold\+\_\+detect\+\_\+fall()}}.
+
+\Hypertarget{fall__detection__ai_8cc_aace0aabcf3303bb3a961ebd8ba4efee3}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!FALL\_DISTANCE\_MAX\_MM@{FALL\_DISTANCE\_MAX\_MM}}
+\index{FALL\_DISTANCE\_MAX\_MM@{FALL\_DISTANCE\_MAX\_MM}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{FALL\_DISTANCE\_MAX\_MM}{FALL\_DISTANCE\_MAX\_MM}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_aace0aabcf3303bb3a961ebd8ba4efee3} 
+\#define FALL\+\_\+\+DISTANCE\+\_\+\+MAX\+\_\+\+MM~1500}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00076}{76}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00134}{threshold\+\_\+detect\+\_\+fall()}}.
+
+\Hypertarget{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TASK\_CORE@{TASK\_CORE}}
+\index{TASK\_CORE@{TASK\_CORE}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{TASK\_CORE}{TASK\_CORE}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2} 
+\#define TASK\+\_\+\+CORE~(1)}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00073}{73}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{ai\+\_\+engine\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}, and \mbox{\hyperlink{pc__diag_8c_source_l00410}{pc\+\_\+diag\+\_\+task\+\_\+start()}}.
+
+\Hypertarget{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TASK\_PRIORITY@{TASK\_PRIORITY}}
+\index{TASK\_PRIORITY@{TASK\_PRIORITY}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{TASK\_PRIORITY}{TASK\_PRIORITY}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c} 
+\#define TASK\+\_\+\+PRIORITY~(9)}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00072}{72}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{ai\+\_\+engine\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}, and \mbox{\hyperlink{pc__diag_8c_source_l00410}{pc\+\_\+diag\+\_\+task\+\_\+start()}}.
+
+\Hypertarget{fall__detection__ai_8cc_a5486258f1f34d3baeda92a74b63c27c3}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}}
+\index{TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{TASK\_STACK\_SIZE}{TASK\_STACK\_SIZE}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a5486258f1f34d3baeda92a74b63c27c3} 
+\#define TASK\+\_\+\+STACK\+\_\+\+SIZE~(12288)}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00071}{71}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{ai\+\_\+engine\+\_\+task\+\_\+start()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00379}{lidar\+\_\+driver\+\_\+start()}}, and \mbox{\hyperlink{pc__diag_8c_source_l00410}{pc\+\_\+diag\+\_\+task\+\_\+start()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{fall__detection__ai_8cc_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{fall__detection__ai_8cc_a03716621cc9044b50d37581aefb7675a}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!send\_ai\_event@{send\_ai\_event}}
+\index{send\_ai\_event@{send\_ai\_event}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{send\_ai\_event()}{send\_ai\_event()}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a03716621cc9044b50d37581aefb7675a} 
+void send\+\_\+ai\+\_\+event (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structai__task__ctx__t}{ai\+\_\+task\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{, }\item[{const \mbox{\hyperlink{structai__event__t}{ai\+\_\+event\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{event}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00253}{253}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00254\ \{}
+\DoxyCodeLine{00255\ \ \ \ \ BaseType\_t\ mesh\_ret,\ diag\_ret;}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordflow}{if}\ (event-\/>\mbox{\hyperlink{structai__event__t_a81e6991ce55e7b8c557ab557545cc522}{state}}\ ==\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}{AI\_CHUTE\_DETECTEE}})\ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Priorité\ HAUTE\ :\ injection\ en\ tête\ de\ queue\ réseau\ */}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ mesh\_ret\ =\ xQueueSendToFront(ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_acb56ccc8bc7b83045ac4a566356e99fc}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}{ai\_to\_mesh\_queue}},}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ event,\ 0);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}CHUTE\ DÉTECTÉE\ (confiance\ \%u\%\%)\ —\ priorité\ mesh\ activée"{}},}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ event-\/>\mbox{\hyperlink{structai__event__t_abda04f94a67eac00a050985c90987309}{confidence}});}
+\DoxyCodeLine{00263\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Priorité\ normale\ :\ FIFO\ standard\ */}}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ mesh\_ret\ =\ xQueueSend(ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_acb56ccc8bc7b83045ac4a566356e99fc}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a4d3a0e541f4a1f89d6963f42c9ed90a6}{ai\_to\_mesh\_queue}},\ event,\ 0);}
+\DoxyCodeLine{00266\ \ \ \ \ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{/*\ Diagnostic\ PC\ :\ toujours\ FIFO\ */}}
+\DoxyCodeLine{00269\ \ \ \ \ diag\_ret\ =\ xQueueSend(ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_acb56ccc8bc7b83045ac4a566356e99fc}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_abe84857dbc52bc5e755dbc579279e5f7}{diag\_to\_pc\_queue}},\ event,\ 0);}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordflow}{if}\ (mesh\_ret\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}ai\_to\_mesh\_queue\ pleine\ —\ événement\ perdu"{}});}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordflow}{if}\ (diag\_ret\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}diag\_to\_pc\_queue\ pleine\ —\ événement\ perdu"{}});}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{system__types_8h_source_l00125}{AI\+\_\+\+CHUTE\+\_\+\+DETECTEE}}, \mbox{\hyperlink{system__types_8h_source_l00229}{sys\+\_\+context\+\_\+t\+::ai\+\_\+to\+\_\+mesh\+\_\+queue}}, \mbox{\hyperlink{system__types_8h_source_l00142}{ai\+\_\+event\+\_\+t\+::confidence}}, \mbox{\hyperlink{system__types_8h_source_l00230}{sys\+\_\+context\+\_\+t\+::diag\+\_\+to\+\_\+pc\+\_\+queue}}, \mbox{\hyperlink{system__types_8h_source_l00141}{ai\+\_\+event\+\_\+t\+::state}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00083}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fall__detection__ai_8cc_a03716621cc9044b50d37581aefb7675a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fall__detection__ai_8cc_a7d61a03892d2a7129fd42b1bf1d70a2f}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!task\_ai\_inference@{task\_ai\_inference}}
+\index{task\_ai\_inference@{task\_ai\_inference}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{task\_ai\_inference()}{task\_ai\_inference()}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a7d61a03892d2a7129fd42b1bf1d70a2f} 
+void task\+\_\+ai\+\_\+inference (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{pv\+Param}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{285}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00286\ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \mbox{\hyperlink{structai__task__ctx__t}{ai\_task\_ctx\_t}}\ *ctx\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{structai__task__ctx__t}{ai\_task\_ctx\_t}}\ *\textcolor{keyword}{>}(pvParam);}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{/*\ Abonnement\ au\ TWDT\ */}}
+\DoxyCodeLine{00290\ \ \ \ \ ESP\_ERROR\_CHECK(esp\_task\_wdt\_add(NULL));}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_AI\_USE\_ESPDL\_MODEL}}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{comment}{/*\ Chargement\ du\ modèle\ ESP-\/DL\ depuis\ LittleFS\ */}}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{comment}{/*\ ctx-\/>model\ =\ dl::Model::load("{}/littlefs/fall\_model.espdl"{},\ MEM\_AUTO);\ */}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{comment}{/*\ ctx-\/>model\_loaded\ =\ (ctx-\/>model\ !=\ nullptr);\ */}}
+\DoxyCodeLine{00296\ \ \ \ \ ctx-\/>model\_loaded\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{/*\ Passer\ à\ true\ après\ intégration\ de\ l'ULD\ */}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ctx-\/>model\_loaded)\ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Modèle\ /littlefs/fall\_model.espdl\ non\ trouvé\ —\ "{}}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}basculement\ sur\ mode\ seuil\ de\ secours"{}});}
+\DoxyCodeLine{00300\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Modèle\ ESP-\/DL\ chargé\ (seuil\ confiance\ :\ \%d\%\%)"{}},}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_ab97049d4832a5c3943e89f3f3c3e10ef}{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}});}
+\DoxyCodeLine{00303\ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00305\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Mode\ seuil\ actif\ (seuil\ variation\ :\ \%d\%\%,\ historique\ :\ \%d\ trames)"{}},}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a6e36c1db9f7fca5f08e465e22d363dff}{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}},\ \mbox{\hyperlink{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}{CONFIG\_AI\_HISTORY\_LEN}});}
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_AI\_Inference\ démarrée\ sur\ Core\ \%d"{}},\ xPortGetCoreID());}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \mbox{\hyperlink{structsensor__frame__t}{sensor\_frame\_t}}\ frame;}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordflow}{while}\ (\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Reset\ watchdog\ même\ si\ aucune\ trame\ n'arrive\ encore.}}
+\DoxyCodeLine{00315\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ Important\ :\ au\ boot,\ la\ tâche\ d'acquisition\ peut\ démarrer\ après\ nous}}
+\DoxyCodeLine{00316\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ *\ (ou\ être\ absente\ si\ LIDAR\ KO).\ Un\ blocage\ portMAX\_DELAY\ déclenche\ le\ TWDT.\ */}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ ESP\_ERROR\_CHECK(esp\_task\_wdt\_reset());}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Attente\ d'une\ trame\ capteur\ avec\ timeout\ (permet\ de\ nourrir\ le\ TWDT)\ */}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (xQueueReceive(ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_acb56ccc8bc7b83045ac4a566356e99fc}{sys\_ctx}}-\/>\mbox{\hyperlink{structsys__context__t_a38821675c9b440bd0c6097b58c7f5978}{sensor\_to\_ai\_queue}},}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&frame,\ pdMS\_TO\_TICKS(500))\ !=\ pdTRUE)\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!frame.\mbox{\hyperlink{structsensor__frame__t_aa4b0c421639b1dcd6ee896d8b68129b1}{lidar\_valid}})\ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};\ \textcolor{comment}{/*\ Ignorer\ les\ trames\ sans\ données\ LIDAR\ */}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structai__event__t}{ai\_event\_t}}\ \textcolor{keyword}{event}\ =\ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ .state\ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}},}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ .confidence\ \ \ =\ 0,}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ .timestamp\_us\ =\ esp\_timer\_get\_time(),}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\#ifdef\ CONFIG\_AI\_USE\_ESPDL\_MODEL}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>model\_loaded)\ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.state\ =\ espdl\_detect\_fall(ctx,\ \&frame.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}},\ \&event.confidence);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Repli\ sur\ le\ mode\ seuil\ si\ le\ modèle\ n'est\ pas\ disponible\ */}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ avg\ =\ \mbox{\hyperlink{fall__detection__ai_8cc_a66e1e34017dece06213f4b1b97f69728}{threshold\_avg\_lower\_zone}}(\&frame.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}});}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.state\ =\ \mbox{\hyperlink{fall__detection__ai_8cc_aac5979362939e3ba1410565e27289f35}{threshold\_detect\_fall}}(ctx,\ avg,\ \&event.confidence);}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ avg\ =\ \mbox{\hyperlink{fall__detection__ai_8cc_a66e1e34017dece06213f4b1b97f69728}{threshold\_avg\_lower\_zone}}(\&frame.\mbox{\hyperlink{structsensor__frame__t_ae955bd6580be17bf99afadc7695d9581}{lidar}});}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keyword}{event}.state\ =\ \mbox{\hyperlink{fall__detection__ai_8cc_aac5979362939e3ba1410565e27289f35}{threshold\_detect\_fall}}(ctx,\ avg,\ \&event.confidence);}
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Envoi\ des\ événements\ non\ normaux\ */}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (event.state\ !=\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}})\ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a03716621cc9044b50d37581aefb7675a}{send\_ai\_event}}(ctx,\ \&event);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{system__types_8h_source_l00124}{AI\+\_\+\+NORMAL}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00055}{CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+CONFIDENCE\+\_\+\+THRESHOLD}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00052}{CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+THRESHOLD\+\_\+\+PERCENT}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00049}{CONFIG\+\_\+\+AI\+\_\+\+HISTORY\+\_\+\+LEN}}, \mbox{\hyperlink{system__types_8h_source_l00113}{sensor\+\_\+frame\+\_\+t\+::lidar}}, \mbox{\hyperlink{system__types_8h_source_l00115}{sensor\+\_\+frame\+\_\+t\+::lidar\+\_\+valid}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00253}{send\+\_\+ai\+\_\+event()}}, \mbox{\hyperlink{system__types_8h_source_l00228}{sys\+\_\+context\+\_\+t\+::sensor\+\_\+to\+\_\+ai\+\_\+queue}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00083}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00106}{threshold\+\_\+avg\+\_\+lower\+\_\+zone()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00134}{threshold\+\_\+detect\+\_\+fall()}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{ai\+\_\+engine\+\_\+task\+\_\+start()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=340pt]{fall__detection__ai_8cc_a7d61a03892d2a7129fd42b1bf1d70a2f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fall__detection__ai_8cc_a7d61a03892d2a7129fd42b1bf1d70a2f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fall__detection__ai_8cc_a66e1e34017dece06213f4b1b97f69728}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!threshold\_avg\_lower\_zone@{threshold\_avg\_lower\_zone}}
+\index{threshold\_avg\_lower\_zone@{threshold\_avg\_lower\_zone}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{threshold\_avg\_lower\_zone()}{threshold\_avg\_lower\_zone()}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a66e1e34017dece06213f4b1b97f69728} 
+float threshold\+\_\+avg\+\_\+lower\+\_\+zone (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structlidar__matrix__t}{lidar\+\_\+matrix\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{matrix}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00106}{106}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{float}\ sum\ \ \ =\ 0.0f;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ count\ =\ 0;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{/*\ Lignes\ 6\ et\ 7\ =\ zone\ la\ plus\ basse\ du\ champ\ de\ vision\ */}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ row\ =\ 6;\ row\ <\ \mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\_ROWS}};\ row++)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ col\ =\ 0;\ col\ <\ \mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\_COLS}};\ col++)\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ d\ =\ matrix-\/>\mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{data}}[row][col];}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (d\ >\ 0\ \&\&\ d\ <\ 5000)\ \{\ \textcolor{comment}{/*\ Filtrer\ les\ mesures\ invalides\ */}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum\ +=\ (float)d;}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count++;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordflow}{return}\ (count\ >\ 0)\ ?\ (sum\ /\ (float)count)\ :\ 0.0f;}
+\DoxyCodeLine{00123\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{system__types_8h_source_l00081}{lidar\+\_\+matrix\+\_\+t\+::data}}, \mbox{\hyperlink{system__types_8h_source_l00045}{LIDAR\+\_\+\+COLS}}, and \mbox{\hyperlink{system__types_8h_source_l00044}{LIDAR\+\_\+\+ROWS}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fall__detection__ai_8cc_a66e1e34017dece06213f4b1b97f69728_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fall__detection__ai_8cc_aac5979362939e3ba1410565e27289f35}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!threshold\_detect\_fall@{threshold\_detect\_fall}}
+\index{threshold\_detect\_fall@{threshold\_detect\_fall}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{threshold\_detect\_fall()}{threshold\_detect\_fall()}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_aac5979362939e3ba1410565e27289f35} 
+\mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4}{ai\+\_\+event\+\_\+state\+\_\+e}} threshold\+\_\+detect\+\_\+fall (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structai__task__ctx__t}{ai\+\_\+task\+\_\+ctx\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{, }\item[{float}]{current\+\_\+mm}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{confidence}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00134}{134}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{comment}{/*\ Mise\ à\ jour\ de\ l'historique\ */}}
+\DoxyCodeLine{00139\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a110df8d6546e074de1d336257afb02e0}{dist\_history}}[ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}}]\ =\ current\_mm;}
+\DoxyCodeLine{00140\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}}\ =\ (ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}}\ +\ 1)\ \%\ \mbox{\hyperlink{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}{CONFIG\_AI\_HISTORY\_LEN}};}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}}\ ==\ 0)\ ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a9ec6c7cfc7c3ea5e953c931256e05f96}{history\_full}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a9ec6c7cfc7c3ea5e953c931256e05f96}{history\_full}}\ ?\ \mbox{\hyperlink{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}{CONFIG\_AI\_HISTORY\_LEN}}\ :\ ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}};}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ <\ 2)\ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ *confidence\ =\ 0;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}};}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{/*\ Référence\ =\ moyenne\ des\ (len-\/1)\ premières\ valeurs\ de\ l'historique\ */}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{float}\ ref\_sum\ =\ 0.0f;}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ len\ -\/\ 1;\ i++)\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx\ =\ (ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}}\ -\/\ len\ +\ i\ +\ \mbox{\hyperlink{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}{CONFIG\_AI\_HISTORY\_LEN}})}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \%\ \mbox{\hyperlink{fall__detection__ai_8cc_ac699db91652aa2d43d0dc95c667d02f6}{CONFIG\_AI\_HISTORY\_LEN}};}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ ref\_sum\ +=\ ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a110df8d6546e074de1d336257afb02e0}{dist\_history}}[idx];}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{float}\ ref\_avg\ =\ ref\_sum\ /\ (float)(len\ -\/\ 1);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (ref\_avg\ <\ 1.0f)\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ *confidence\ =\ 0;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}};}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{/*\ Variation\ relative\ entre\ la\ mesure\ actuelle\ et\ la\ référence\ historique\ */}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{float}\ variation\_pct\ =\ ((ref\_avg\ -\/\ current\_mm)\ /\ ref\_avg)\ *\ 100.0f;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Zone\ bas:\ \%.0f\ mm,\ réf:\ \%.0f\ mm,\ variation:\ \%.1f\%\%"{}},}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ current\_mm,\ ref\_avg,\ variation\_pct);}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{comment}{/*\ Seuil\ de\ chute\ :\ distance\ faible\ ET\ variation\ significative\ */}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{float}\ threshold\ =\ (float)\mbox{\hyperlink{fall__detection__ai_8cc_a6e36c1db9f7fca5f08e465e22d363dff}{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (variation\_pct\ >=\ threshold\ \&\&\ current\_mm\ <\ (\textcolor{keywordtype}{float})\mbox{\hyperlink{fall__detection__ai_8cc_aace0aabcf3303bb3a961ebd8ba4efee3}{FALL\_DISTANCE\_MAX\_MM}})\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Confiance\ proportionnelle\ à\ la\ variation\ au-\/delà\ du\ seuil\ */}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ excess\ =\ variation\_pct\ -\/\ threshold;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ conf\ \ \ =\ 50.0f\ +\ (excess\ /\ threshold)\ *\ 50.0f;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ *confidence\ \ =\ (uint8\_t)std::min(conf,\ 100.0f);}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66}{AI\_CHUTE\_DETECTEE}};}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}\ (variation\_pct\ >=\ threshold\ *\ 0.5f)\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ *confidence\ =\ (uint8\_t)(variation\_pct\ /\ threshold\ *\ 40.0f);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6}{AI\_MOUVEMENT\_ANORMAL}};}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ *confidence\ =\ 0;}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{system__types_8h_a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c}{AI\_NORMAL}};}
+\DoxyCodeLine{00187\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{system__types_8h_source_l00125}{AI\+\_\+\+CHUTE\+\_\+\+DETECTEE}}, \mbox{\hyperlink{system__types_8h_source_l00126}{AI\+\_\+\+MOUVEMENT\+\_\+\+ANORMAL}}, \mbox{\hyperlink{system__types_8h_source_l00124}{AI\+\_\+\+NORMAL}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00052}{CONFIG\+\_\+\+AI\+\_\+\+FALL\+\_\+\+THRESHOLD\+\_\+\+PERCENT}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00049}{CONFIG\+\_\+\+AI\+\_\+\+HISTORY\+\_\+\+LEN}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00086}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::dist\+\_\+history}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00076}{FALL\+\_\+\+DISTANCE\+\_\+\+MAX\+\_\+\+MM}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00088}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::history\+\_\+full}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00087}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::history\+\_\+head}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fall__detection__ai_8cc_aac5979362939e3ba1410565e27289f35_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{fall__detection__ai_8cc_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{fall__detection__ai_8cc_a5a85b9c772bbeb480b209a3e6ea92b4c}\index{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TAG@{TAG}}
+\index{TAG@{TAG}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{fall__detection__ai_8cc_a5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}ai\+\_\+engine"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00066}{66}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+

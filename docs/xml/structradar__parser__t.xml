@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structradar__parser__t" kind="struct" language="C++" prot="public">
+    <compoundname>radar_parser_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structradar__parser__t_1a4c090bb75fe32c249fb87ec843b32f54" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t radar_parser_t::buf[RX_BUF_SIZE]</definition>
+        <argsstring>[RX_BUF_SIZE]</argsstring>
+        <name>buf</name>
+        <qualifiedname>radar_parser_t::buf</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="50" column="14" bodyfile="components/sensor_acq/radar_driver.c" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__parser__t_1a42d4166a7d0d6ef81df1e7e294ea11fb" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t radar_parser_t::len</definition>
+        <argsstring></argsstring>
+        <name>len</name>
+        <qualifiedname>radar_parser_t::len</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="51" column="14" bodyfile="components/sensor_acq/radar_driver.c" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__parser__t_1acb46a09babe70d1f7b8aff98928e32ec" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool radar_parser_t::updated</definition>
+        <argsstring></argsstring>
+        <name>updated</name>
+        <qualifiedname>radar_parser_t::updated</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="52" column="14" bodyfile="components/sensor_acq/radar_driver.c" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__parser__t_1aac179e103cebbf0bdd8e0b6223cb6e5d" prot="public" static="no" mutable="no">
+        <type><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref></type>
+        <definition>radar_data_t radar_parser_t::last_data</definition>
+        <argsstring></argsstring>
+        <name>last_data</name>
+        <qualifiedname>radar_parser_t::last_data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/radar_driver.c" line="53" column="18" bodyfile="components/sensor_acq/radar_driver.c" bodystart="53" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="1">
+        <label>radar_parser_t</label>
+        <link refid="structradar__parser__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>last_data</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/sensor_acq/radar_driver.c" line="49" column="1" bodyfile="components/sensor_acq/radar_driver.c" bodystart="49" bodyend="54"/>
+    <listofallmembers>
+      <member refid="structradar__parser__t_1a4c090bb75fe32c249fb87ec843b32f54" prot="public" virt="non-virtual"><scope>radar_parser_t</scope><name>buf</name></member>
+      <member refid="structradar__parser__t_1aac179e103cebbf0bdd8e0b6223cb6e5d" prot="public" virt="non-virtual"><scope>radar_parser_t</scope><name>last_data</name></member>
+      <member refid="structradar__parser__t_1a42d4166a7d0d6ef81df1e7e294ea11fb" prot="public" virt="non-virtual"><scope>radar_parser_t</scope><name>len</name></member>
+      <member refid="structradar__parser__t_1acb46a09babe70d1f7b8aff98928e32ec" prot="public" virt="non-virtual"><scope>radar_parser_t</scope><name>updated</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

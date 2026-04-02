@@ -1,0 +1,19 @@
+<map id="lidar_task_ctx_t" name="lidar_task_ctx_t">
+<area shape="rect" id="Node000001" title=" " alt="" coords="131,301,244,328"/>
+<area shape="rect" id="Node000002" href="$structlidar__dev__t.html" title=" " alt="" coords="87,203,171,229"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,241,182,300,178,302,142,244"/>
+<area shape="rect" id="Node000003" href="$struct_v_l53_l8_c_x___platform.html" title="Couche “adaptateur” SPI requise par l&#39;ULD ST (VL53L8CX)." alt="" coords="5,104,146,131"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,143,124,201,120,204,87,145"/>
+<area shape="rect" id="Node000004" href="$structsys__context__t.html" title=" " alt="" coords="242,203,346,229"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="271,242,203,303,200,299,267,238"/>
+<area shape="rect" id="Node000005" href="$structsensor__frame__t.html" title=" " alt="" coords="169,104,280,131"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="225,146,227,162,233,177,245,190,261,200,258,205,242,194,229,180,222,164,220,147"/>
+<area shape="rect" id="Node000006" href="$structlidar__matrix__t.html" title=" " alt="" coords="115,5,214,32"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="183,44,219,102,215,105,179,47"/>
+<area shape="rect" id="Node000007" href="$structradar__data__t.html" title=" " alt="" coords="238,5,332,32"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="271,47,235,105,230,102,267,44"/>
+<area shape="rect" id="Node000008" href="$structenviro__data__t.html" title=" " alt="" coords="304,104,404,131"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="344,146,324,180,307,204,302,201,320,177,339,143"/>
+<area shape="rect" id="Node000009" href="$structmic__data__t.html" title=" " alt="" coords="428,104,513,131"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="444,143,385,181,332,205,330,200,382,176,441,138"/>
+</map>

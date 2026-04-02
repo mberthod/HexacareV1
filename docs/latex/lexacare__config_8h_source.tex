@@ -1,0 +1,121 @@
+\doxysection{lexacare\+\_\+config.\+h}
+\hypertarget{lexacare__config_8h_source}{}\label{lexacare__config_8h_source}\index{components/lexacare\_types/include/lexacare\_config.h@{components/lexacare\_types/include/lexacare\_config.h}}
+\mbox{\hyperlink{lexacare__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ lexacare\_config.h}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Activation\ /\ désactivation\ des\ composants\ matériels\ LexaCare\ V1.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Modifiez\ uniquement\ ce\ fichier\ pour\ adapter\ la\ configuration\ à\ votre}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00006}00006\ \textcolor{comment}{\ *\ environnement\ de\ test\ ou\ de\ production.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00007}00007\ \textcolor{comment}{\ *\ 0\ =\ composant\ absent\ /\ non\ connecté\ /\ désactivé}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00008}00008\ \textcolor{comment}{\ *\ 1\ =\ composant\ présent\ /\ connecté\ /\ activé}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00009}00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00010}00010\ \textcolor{comment}{\ *\ Composants\ physiques\ du\ système\ :}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00011}00011\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ ┌─\ SPI2\ ─────────────────────────────────────────────────────────────┐}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ │\ \ 4\ ×\ VL53L8CX\ (CLK=17,\ MOSI=18,\ MISO=21,\ NCS0-\/3=1/2/42/41)\ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ └────────────────────────────────────────────────────────────────────┘}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00015}00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ ┌─\ I2C\_NUM\_0\ (SDA=11,\ SCL=12)\ ───────────────────────────────────────┐}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ │\ \ PCA9555D\ @0x20\ —\ LPn\ LIDAR\ +\ alimentation\ sous-\/systèmes\ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ └────────────────────────────────────────────────────────────────────┘}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00019}00019\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ ┌─\ I2C\_NUM\_1\ (SDA=10,\ SCL=9)\ —\ capteurs\ sur\ carte\ radar\ ─────────────┐}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00021}00021\ \textcolor{comment}{\ *\ \ \ │\ \ MLX90640ESF\ @0x33\ \ —\ caméra\ thermique\ 32×24\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00022}00022\ \textcolor{comment}{\ *\ \ \ │\ \ HDC1080\ \ \ \ \ @0x40\ \ —\ température\ +\ humidité\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00023}00023\ \textcolor{comment}{\ *\ \ \ │\ \ BME280\ \ \ \ \ \ @0x76\ \ —\ pression\ +\ température\ +\ humidité\ \ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00024}00024\ \textcolor{comment}{\ *\ \ \ │\ \ VL53L0X\ \ \ \ \ @0x29\ \ —\ TOF\ simple\ (géré\ via\ DIST\_SHUTDOWN\ PCA9555)\ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00025}00025\ \textcolor{comment}{\ *\ \ \ │\ \ CAT24M01W\ \ \ @0x50\ \ —\ EEPROM\ 1\ Mbit\ (réservé)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00026}00026\ \textcolor{comment}{\ *\ \ \ └────────────────────────────────────────────────────────────────────┘}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00027}00027\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00028}00028\ \textcolor{comment}{\ *\ \ \ ┌─\ UART\_NUM\_2\ (RX=43,\ TX=44)\ ────────────────────────────────────────┐}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00029}00029\ \textcolor{comment}{\ *\ \ \ │\ \ HLK-\/LD6002\ —\ radar\ vital\ signs\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00030}00030\ \textcolor{comment}{\ *\ \ \ └────────────────────────────────────────────────────────────────────┘}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00031}00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00032}00032\ \textcolor{comment}{\ *\ \ \ ┌─\ I2S\ (WS=6,\ SD=7,\ SCK=8)\ ──────────────────────────────────────────┐}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00033}00033\ \textcolor{comment}{\ *\ \ \ │\ \ Microphone\ MEMS\ numérique\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ │}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00034}00034\ \textcolor{comment}{\ *\ \ \ └────────────────────────────────────────────────────────────────────┘}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00035}00035\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00037}00037\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00038}00038\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00039}00039\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00040}00040\ \textcolor{comment}{\ *\ @defgroup\ group\_config\ Configuration\ \&\ Types}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00041}00041\ \textcolor{comment}{\ *\ @brief\ Options\ simples\ pour\ activer/désactiver\ des\ sous-\/systèmes\ et\ décrire\ les\ données\ partagées.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00042}00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00043}00043\ \textcolor{comment}{\ *\ Objectif\ :\ permettre\ de\ passer\ facilement\ d'un\ montage\ “banc\ de\ test”\ (capteurs\ partiels,}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00044}00044\ \textcolor{comment}{\ *\ modules\ absents)\ à\ un\ montage\ “production”\ sans\ modifier\ le\ code\ applicatif.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00045}00045\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00046}00046\ \textcolor{comment}{\ *\ @\{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00047}00047\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00049}00049\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00050}00050\ \textcolor{comment}{\ *\ LIDAR\ VL53L8CX\ (SPI)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00051}00051\ \textcolor{comment}{\ *\ Nombre\ de\ capteurs\ actifs\ (1–4).}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00052}00052\ \textcolor{comment}{\ *\ Les\ LPn\ des\ capteurs\ absents\ resteront\ à\ 0\ (reset).}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00053}00053\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00054}\mbox{\hyperlink{group__group__config_ga20483dea8d2a3674883e2e02d94058da}{00054}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_LIDAR\_COUNT\ \ \ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00056}00056\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00057}00057\ \textcolor{comment}{\ *\ LIDAR\ —\ Source\ des\ données\ (réel\ vs\ stub)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00058}00058\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00059}00059\ \textcolor{comment}{\ *\ 0\ =\ STUB\ (données\ simulées)\ —\ utile\ tant\ que\ l'ULD\ ST\ n'est\ pas\ intégré.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00060}00060\ \textcolor{comment}{\ *\ 1\ =\ RÉEL\ (ST\ ULD\ STSW-\/IMG040)\ —\ nécessite\ les\ sources\ ST\ dans}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00061}00061\ \textcolor{comment}{\ *\ \ \ \ \ components/sensor\_acq/uld/\ +\ CMake\ auto-\/détecté.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00062}00062\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00063}\mbox{\hyperlink{group__group__config_ga8fae42b5f7928159779f99742fdf0bd5}{00063}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_LIDAR\_USE\_ST\_ULD\ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00065}00065\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00066}00066\ \textcolor{comment}{\ *\ Radar\ HLK-\/LD6002\ (UART\_NUM\_2)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00067}00067\ \textcolor{comment}{\ *\ Mettre\ à\ 0\ quand\ le\ module\ radar\ n'est\ PAS\ connecté.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00068}00068\ \textcolor{comment}{\ *\ →\ Évite\ le\ crash\ uart\_read\_bytes\ (IWD\ spinlock\ ringbuf\ IDF\ 6.0)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00069}00069\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00070}\mbox{\hyperlink{group__group__config_ga02349f22e1562a28cb7e79fb33b609fb}{00070}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_RADAR\ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00072}00072\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00073}00073\ \textcolor{comment}{\ *\ Capteurs\ I2C\ sur\ carte\ radar\ (I2C\_NUM\_1,\ SDA=10,\ SCL=9)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00074}00074\ \textcolor{comment}{\ *\ Ces\ capteurs\ nécessitent\ que\ POWER\_RADAR\ soit\ activé.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00075}00075\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00076}\mbox{\hyperlink{group__group__config_ga01e58c65d8e2d1f09d0686d4bd9a199d}{00076}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_HDC1080\ \ \ \ \ \ \ \ 1\ \ \ }\textcolor{comment}{/**<\ @0x40\ —\ temp\ +\ humidité\ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00077}\mbox{\hyperlink{group__group__config_ga2ec6a41c4f52091ceaf3e3f448899fb5}{00077}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_BME280\ \ \ \ \ \ \ \ \ 1\ \ \ }\textcolor{comment}{/**<\ @0x76\ —\ pression\ +\ temp\ +\ hum\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00078}\mbox{\hyperlink{group__group__config_ga1e88f0418aa71aa2e74db4685116852a}{00078}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_MLX90640\ \ \ \ \ \ \ 0\ \ \ }\textcolor{comment}{/**<\ @0x33\ —\ caméra\ thermique\ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00079}\mbox{\hyperlink{group__group__config_ga4d8aad6f1e9c851b13890f4aa41a6282}{00079}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_VL53L0X\ \ \ \ \ \ \ \ 0\ \ \ }\textcolor{comment}{/**<\ @0x29\ —\ TOF\ simple\ (DIST\_SHD)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00080}\mbox{\hyperlink{group__group__config_gae865b22047a6abaad37983f4df666bc6}{00080}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_CAT24M01W\ \ \ \ \ \ 0\ \ \ }\textcolor{comment}{/**<\ @0x50\ —\ EEPROM\ 1Mbit\ \ \ \ \ \ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00082}00082\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00083}00083\ \textcolor{comment}{\ *\ Microphone\ MEMS\ I2S\ (WS=6,\ SD=7,\ SCK=8)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00084}00084\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00085}\mbox{\hyperlink{group__group__config_ga3e499e0599f689a9321c507bde1deea2}{00085}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_MIC\ \ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00086}00086\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00087}00087\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00088}00088\ \textcolor{comment}{\ *\ IA\ (détection\ chute)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00089}00089\ \textcolor{comment}{\ *\ Mettre\ à\ 0\ tant\ qu'on\ ne\ veut\ QUE\ l'image\ LIDAR.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00090}00090\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00091}\mbox{\hyperlink{group__group__config_gaafd1ce9dac19ab9802c31dce7b63ee19}{00091}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_AI\ \ \ \ \ \ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00093}00093\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00094}00094\ \textcolor{comment}{\ *\ Réseau\ mesh\ ESP-\/NOW\ +\ WiFi}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00095}00095\ \textcolor{comment}{\ *\ Mettre\ à\ 0\ pour\ un\ boot\ ultrarapide\ sans\ réseau\ (test\ capteurs\ seuls)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00096}00096\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00097}\mbox{\hyperlink{group__group__config_ga0ec2dec85070253e4cb80fa96a80ad13}{00097}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_ENABLE\_MESH\ \ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00099}00099\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00100}00100\ \textcolor{comment}{\ *\ Alimentations\ sous-\/systèmes\ via\ PCA9555\ Port\ 1}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00101}00101\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00102}00102\ \textcolor{comment}{\ *\ IMPORTANT\ :\ activer\ POWER\_RADAR\ pour\ alimenter\ les\ capteurs}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00103}00103\ \textcolor{comment}{\ *\ HDC1080,\ BME280,\ MLX90640\ et\ VL53L0X\ montés\ sur\ la\ carte\ radar.}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00104}00104\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00105}00105\ \textcolor{comment}{\ *\ IO1.4\ →\ POWER\_FAN\ \ \ \ (ventilateur)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00106}00106\ \textcolor{comment}{\ *\ IO1.5\ →\ POWER\_RADAR\ \ (carte\ radar\ +\ ses\ capteurs\ I2C)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00107}00107\ \textcolor{comment}{\ *\ IO1.6\ →\ POWER\_MIC\ \ \ \ (microphone\ MEMS)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00108}00108\ \textcolor{comment}{\ *\ IO1.7\ →\ POWER\_MLX\ \ \ \ (alimentation\ dédiée\ MLX90640\ via\ TPS22917)}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00109}00109\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00110}\mbox{\hyperlink{group__group__config_gaeea756a9c7ccd21130e7fc68116c2c31}{00110}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_PWR\_FAN\_ENABLED\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00111}\mbox{\hyperlink{group__group__config_gafcc1ee0670f4792dcf85c1c091f8da11}{00111}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_PWR\_RADAR\_ENABLED\ \ \ \ \ 1\ \ \ }\textcolor{comment}{/**<\ Alimente\ HDC1080\ +\ BME280\ !\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00112}\mbox{\hyperlink{group__group__config_ga46a950bf6649476b97a94825d33dd37d}{00112}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_PWR\_MIC\_ENABLED\ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00113}\mbox{\hyperlink{group__group__config_gab0eba4763bffc7db4b8db3eea665155d}{00113}}\ \textcolor{preprocessor}{\#define\ LEXACARE\_PWR\_MLX\_ENABLED\ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00114}00114\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{lexacare__config_8h_source_l00115}00115\ \textcolor{comment}{/**\ @\}\ */}\ \textcolor{comment}{/*\ end\ of\ group\_config\ */}}
+
+\end{DoxyCode}

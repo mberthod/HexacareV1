@@ -1,0 +1,9 @@
+<map id="vl53l8cx_set_i2c_address" name="vl53l8cx_set_i2c_address">
+<area shape="rect" id="Node000001" title="This function is used to change the I2C address of the sensor. If multiple VL53L5 sensors are connect..." alt="" coords="5,5,177,32"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#a7710197de0c7e075a4064f18baa56355" title="Écrit un octet dans un registre 16 bits du VL53L8CX." alt="" coords="225,5,359,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="177,16,209,16,209,21,177,21"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="407,5,542,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="359,16,392,16,392,21,359,21"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="590,5,658,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="543,16,575,16,575,21,543,21"/>
+</map>

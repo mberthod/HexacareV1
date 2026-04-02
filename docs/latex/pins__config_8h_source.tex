@@ -1,0 +1,158 @@
+\doxysection{pins\+\_\+config.\+h}
+\hypertarget{pins__config_8h_source}{}\label{pins__config_8h_source}\index{components/lexacare\_types/include/pins\_config.h@{components/lexacare\_types/include/pins\_config.h}}
+\mbox{\hyperlink{pins__config_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ pins\_config.h}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Définition\ des\ broches\ GPIO\ et\ du\ mapping\ PCA9555\ pour\ LexaCare\ V1.}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Architecture\ hardware\ ESP32-\/S3-\/WROOM-\/2\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00006}00006\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ SPI2\ \ —\ 4\ LIDARs\ VL53L8CX\ (NCS\ individuels)\ +\ SYNC}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ UART\ \ —\ Radar\ HLK-\/LD6002\ (RX=43,\ TX=44)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ I2C0\ \ —\ PCA9555D\ @0x20\ (SDA=11,\ SCL=12)\ :\ LPn\ LIDAR\ +\ alim\ sous-\/systèmes}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ I2C1\ \ —\ MLX90640\ (SDA=10,\ SCL=9)\ —\ réservé,\ driver\ non\ implémenté}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ I2S\ \ \ —\ Microphone\ MEMS\ numérique\ (WS=6,\ SD=7,\ SCK=8)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00012}00012\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00013}00013\ \textcolor{comment}{\ *\ \ PCA9555D\ Port\ 0\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ \ IO0.0\ →\ DIST\_SHUTDOWN\ :\ shutdown\ VL53L0X\ (TOF\ simple,\ I2C\ MLX\ bus)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00015}00015\ \textcolor{comment}{\ *\ \ \ \ IO0.1\ →\ GPIO\ radar\ LD6002\ —\ Hi-\/Z\ (non\ utilisé)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ \ IO0.2\ →\ GPIO\ radar\ LD6002\ —\ Hi-\/Z\ (non\ utilisé)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ \ IO0.3\ →\ LPn\_4\ :\ LPn\ LIDAR\ 4\ (VL53L8CX)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ \ IO0.4\ →\ LPn\_3\ :\ LPn\ LIDAR\ 3\ (VL53L8CX)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00019}00019\ \textcolor{comment}{\ *\ \ \ \ IO0.5\ →\ LPn\_2\ :\ LPn\ LIDAR\ 2\ (VL53L8CX)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ \ IO0.6\ →\ LPn\_1\ :\ LPn\ LIDAR\ 1\ (VL53L8CX)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00021}00021\ \textcolor{comment}{\ *\ \ \ \ IO0.7\ →\ RADAR\_LPN\ :\ LPn\ LIDAR\ carte\ radar\ (option,\ non\ connecté)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00022}00022\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00023}00023\ \textcolor{comment}{\ *\ \ PCA9555D\ Port\ 1\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00024}00024\ \textcolor{comment}{\ *\ \ \ \ IO1.0–IO1.3\ →\ non\ utilisés\ (Hi-\/Z)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00025}00025\ \textcolor{comment}{\ *\ \ \ \ IO1.4\ →\ POWER\_FAN\ \ \ :\ alimentation\ ventilateur}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00026}00026\ \textcolor{comment}{\ *\ \ \ \ IO1.5\ →\ POWER\_RADAR\ :\ alimentation\ carte\ radar}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00027}00027\ \textcolor{comment}{\ *\ \ \ \ IO1.6\ →\ POWER\_MIC\ \ \ :\ alimentation\ microphone}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00028}00028\ \textcolor{comment}{\ *\ \ \ \ IO1.7\ →\ POWER\_MLX\ \ \ :\ alimentation\ capteur\ MLX}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00029}00029\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00030}00030\ \textcolor{comment}{\ *\ IMPORTANT\ :\ vérifier\ ces\ assignations\ contre\ le\ schéma\ électrique\ final}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00031}00031\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ \ \ \ \ \ avant\ tout\ flashage\ sur\ le\ matériel\ de\ production.}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00034}00034\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00035}00035\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00036}00036\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00037}00037\ \textcolor{comment}{\ *\ @ingroup\ group\_config}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00038}00038\ \textcolor{comment}{\ *\ @brief\ Mapping\ “humain”\ entre\ le\ schéma\ électronique\ et\ le\ code.}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00039}00039\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00040}00040\ \textcolor{comment}{\ *\ Pourquoi\ c'est\ important\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00041}00041\ \textcolor{comment}{\ *\ -\/\ sur\ un\ système\ multi-\/capteurs,\ une\ seule\ broche\ mal\ mappée\ peut\ rendre\ tout\ le\ bus\ muet}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00042}00042\ \textcolor{comment}{\ *\ -\/\ les\ expandeurs\ (PCA9555)\ ajoutent\ une\ couche\ d'indirection\ :\ ces\ defines\ évitent\ les\ erreurs}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00043}00043\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00045}00045\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00046}00046\ \textcolor{comment}{\ *\ Bus\ I2C\ 0\ (I2C\_NUM\_0)\ —\ PCA9555D\ @0x20}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00047}00047\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00048}\mbox{\hyperlink{group__group__config_gad7513c4ecfaf2ea7ec9ca0fe2635fbd0}{00048}}\ \textcolor{preprocessor}{\#define\ PIN\_I2C0\_SDA\ \ \ \ \ \ \ \ 11}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00049}\mbox{\hyperlink{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e}{00049}}\ \textcolor{preprocessor}{\#define\ PIN\_I2C0\_SCL\ \ \ \ \ \ \ \ 12}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00051}00051\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00052}00052\ \textcolor{comment}{\ *\ Bus\ I2C\ 1\ (I2C\_NUM\_1)\ —\ MLX90640\ (réservé,\ driver\ non\ implémenté)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00053}00053\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00054}\mbox{\hyperlink{pins__config_8h_aabfe18b52ad58d04d2a1cf6612c5c4fa}{00054}}\ \textcolor{preprocessor}{\#define\ PIN\_I2C1\_SDA\ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00055}\mbox{\hyperlink{pins__config_8h_ac270b2950c69700990747460dc1e284a}{00055}}\ \textcolor{preprocessor}{\#define\ PIN\_I2C1\_SCL\ \ \ \ \ \ \ \ 9}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00057}00057\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00058}00058\ \textcolor{comment}{\ *\ Bus\ SPI\ LIDAR\ (SPI2\_HOST)\ —\ 4\ capteurs\ VL53L8CX}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00059}00059\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00060}00060\ \textcolor{comment}{\ *\ Numérotation\ hardware\ vs\ code\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00061}00061\ \textcolor{comment}{\ *\ \ \ NCS0\ (GPIO1)\ \ →\ LIDAR\ 1\ (LPn\_1\ =\ PCA9555\ IO0.6)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00062}00062\ \textcolor{comment}{\ *\ \ \ NCS1\ (GPIO2)\ \ →\ LIDAR\ 2\ (LPn\_2\ =\ PCA9555\ IO0.5)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00063}00063\ \textcolor{comment}{\ *\ \ \ NCS2\ (GPIO42)\ →\ LIDAR\ 3\ (LPn\_3\ =\ PCA9555\ IO0.4)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00064}00064\ \textcolor{comment}{\ *\ \ \ NCS3\ (GPIO41)\ →\ LIDAR\ 4\ (LPn\_4\ =\ PCA9555\ IO0.3)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00065}00065\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00066}00066\ \textcolor{comment}{\ *\ Mode\ SPI\ 3\ (CPOL=1,\ CPHA=1)\ —\ max\ 10\ MHz.}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00067}00067\ \textcolor{comment}{\ *\ SYNC\ (GPIO14)\ :\ synchronisation\ multi-\/capteurs.}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00068}00068\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00069}\mbox{\hyperlink{pins__config_8h_a8e3e8f37be6335b7b08ffabb49f72b7d}{00069}}\ \textcolor{preprocessor}{\#define\ LIDAR\_SPI\_HOST\ \ \ \ \ \ SPI2\_HOST}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00070}\mbox{\hyperlink{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}{00070}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_CLK\ \ \ \ \ \ \ 17}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00071}\mbox{\hyperlink{pins__config_8h_a591add909d8fa618c6c75d7375c5e0b6}{00071}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_MOSI\ \ \ \ \ \ 18}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00072}\mbox{\hyperlink{pins__config_8h_a7206f7c59a37c0d551f6ae396e7ddd19}{00072}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_MISO\ \ \ \ \ \ 21}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00073}\mbox{\hyperlink{pins__config_8h_aa999e725941ff90978fe96cfee88e1f2}{00073}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_SYNC\ \ \ \ \ \ 14}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00075}\mbox{\hyperlink{pins__config_8h_a8d4bf531079d2f0cbad53326ea8e6199}{00075}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_NCS0\ \ \ \ \ \ 1\ \ \ \ }\textcolor{comment}{/**<\ NCS\ LIDAR\ 1\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00076}\mbox{\hyperlink{pins__config_8h_a01c5ad844f2c0ec12343af1c16cacf5d}{00076}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_NCS1\ \ \ \ \ \ 2\ \ \ \ }\textcolor{comment}{/**<\ NCS\ LIDAR\ 2\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00077}\mbox{\hyperlink{pins__config_8h_ae6e653a6750b07505a4f21a350cc7c7d}{00077}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_NCS2\ \ \ \ \ \ 42\ \ \ }\textcolor{comment}{/**<\ NCS\ LIDAR\ 3\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00078}\mbox{\hyperlink{pins__config_8h_a7b82939fa5f89f8a18c272ff73b838f3}{00078}}\ \textcolor{preprocessor}{\#define\ PIN\_LIDAR\_NCS3\ \ \ \ \ \ 41\ \ \ }\textcolor{comment}{/**<\ NCS\ LIDAR\ 4\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00080}00080\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00081}00081\ \textcolor{comment}{\ *\ PCA9555D\ —\ Expandeur\ GPIO\ I2C\ (@0x20,\ A0=A1=A2=GND)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00082}00082\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00083}\mbox{\hyperlink{pins__config_8h_abc995c26ee634eb7c2600e8bf733bd17}{00083}}\ \textcolor{preprocessor}{\#define\ PCA9555\_I2C\_ADDR\ \ \ \ \ \ \ \ 0x20}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00085}00085\ \textcolor{comment}{/*\ Adresses\ des\ registres\ PCA9555\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00086}\mbox{\hyperlink{pins__config_8h_af865853dc8aa1041dc760a691dae54d8}{00086}}\ \textcolor{preprocessor}{\#define\ PCA9555\_REG\_OUTPUT\_0\ \ \ \ 0x02\ \ }\textcolor{comment}{/**<\ Sortie\ Port\ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00087}\mbox{\hyperlink{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22}{00087}}\ \textcolor{preprocessor}{\#define\ PCA9555\_REG\_OUTPUT\_1\ \ \ \ 0x03\ \ }\textcolor{comment}{/**<\ Sortie\ Port\ 1\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00088}\mbox{\hyperlink{pins__config_8h_adae3362117b6490d042b16c0ab603d49}{00088}}\ \textcolor{preprocessor}{\#define\ PCA9555\_REG\_CONFIG\_0\ \ \ \ 0x06\ \ }\textcolor{comment}{/**<\ Config\ Port\ 0\ (0=sortie,\ 1=entrée)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00089}\mbox{\hyperlink{pins__config_8h_ac84f3abe5f9291532786a1e968e530a8}{00089}}\ \textcolor{preprocessor}{\#define\ PCA9555\_REG\_CONFIG\_1\ \ \ \ 0x07\ \ }\textcolor{comment}{/**<\ Config\ Port\ 1\ (0=sortie,\ 1=entrée)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00091}00091\ \textcolor{comment}{/*\ -\/-\/-\/\ Port\ 0\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00092}00092\ \textcolor{comment}{/*\ IO0.0\ :\ DIST\_SHUTDOWN\ —\ shutdown\ VL53L0X\ (TOF\ simple\ sur\ bus\ I2C\ MLX)\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00093}\mbox{\hyperlink{pins__config_8h_ad686bd3530de42d3ed0bee9b2b54ecee}{00093}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_DIST\_SHUTDOWN\ \ \ (1u\ <<\ 0)\ \ }\textcolor{comment}{/**<\ IO0.0\ —\ actif\ =\ TOF\ en\ veille\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00095}00095\ \textcolor{comment}{/*\ IO0.1,\ IO0.2\ :\ GPIO\ radar\ LD6002\ —\ laissés\ en\ entrée\ (Hi-\/Z)\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00096}00096\ \textcolor{comment}{/*\ (pas\ de\ define\ actif\ —\ configurés\ en\ entrée\ dans\ pca9555\_init)\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00098}00098\ \textcolor{comment}{/*\ IO0.3\ –\ IO0.6\ :\ LPn\ VL53L8CX\ (actif\ bas\ =\ reset,\ haut\ =\ opérationnel)\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00099}\mbox{\hyperlink{pins__config_8h_a7ef0d0acf832fc5efdda51daac987e35}{00099}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_LPN4\ \ \ \ (1u\ <<\ 3)\ \ }\textcolor{comment}{/**<\ IO0.3\ →\ LPn\_4\ LIDAR\ 4\ (NCS3/GPIO41)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00100}\mbox{\hyperlink{pins__config_8h_a868519ce99c724b706ed64545cd9af28}{00100}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_LPN3\ \ \ \ (1u\ <<\ 4)\ \ }\textcolor{comment}{/**<\ IO0.4\ →\ LPn\_3\ LIDAR\ 3\ (NCS2/GPIO42)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00101}\mbox{\hyperlink{pins__config_8h_aed877455bd33d6ad38b5c12b5e079bbf}{00101}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_LPN2\ \ \ \ (1u\ <<\ 5)\ \ }\textcolor{comment}{/**<\ IO0.5\ →\ LPn\_2\ LIDAR\ 2\ (NCS1/GPIO2)\ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00102}\mbox{\hyperlink{pins__config_8h_a5a023f9847dba2d76fa779ab7a53483f}{00102}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_LPN1\ \ \ \ (1u\ <<\ 6)\ \ }\textcolor{comment}{/**<\ IO0.6\ →\ LPn\_1\ LIDAR\ 1\ (NCS0/GPIO1)\ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00104}00104\ \textcolor{comment}{/*\ IO0.7\ :\ LPn\ LIDAR\ carte\ radar\ (option\ —\ non\ connecté\ actuellement)\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00105}\mbox{\hyperlink{pins__config_8h_a5de5d3f76f4de48e60b03e4bbc7a30f9}{00105}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_RADAR\_LPN\ \ \ (1u\ <<\ 7)\ \ }\textcolor{comment}{/**<\ IO0.7\ →\ LPn\ LIDAR\ radar\ (réservé)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00107}00107\ \textcolor{comment}{/*\ Masque\ de\ config\ Port\ 0\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00108}00108\ \textcolor{comment}{\ *\ \ \ IO0.0\ =\ sortie\ (DIST\_SHUTDOWN)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00109}00109\ \textcolor{comment}{\ *\ \ \ IO0.1,\ IO0.2\ =\ entrée\ Hi-\/Z\ (radar\ GPIO\ non\ utilisés)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00110}00110\ \textcolor{comment}{\ *\ \ \ IO0.3\ –\ IO0.7\ =\ sorties\ (LPn\ +\ RADAR\_LPN)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00111}00111\ \textcolor{comment}{\ *\ \ \ Config\ register\ :\ 0\ =\ sortie,\ 1\ =\ entrée\ →\ 0b00000110\ =\ 0x06\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00112}\mbox{\hyperlink{pins__config_8h_a5bb7081ed093edf6f40e3681b80492a2}{00112}}\ \textcolor{preprocessor}{\#define\ PCA9555\_CFG0\_MASK\ \ \ 0x06u}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00114}00114\ \textcolor{comment}{/*\ -\/-\/-\/\ Port\ 1\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00115}00115\ \textcolor{comment}{/*\ IO1.0\ –\ IO1.3\ :\ non\ utilisés\ —\ laissés\ en\ entrée\ (Hi-\/Z)\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00116}00116\ \textcolor{comment}{/*\ IO1.4\ –\ IO1.7\ :\ alimentations\ sous-\/systèmes\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00117}\mbox{\hyperlink{pins__config_8h_a5f2d7b2bd1e54721b51e0b001f9d17e8}{00117}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_PWR\_FAN\ \ \ \ \ (1u\ <<\ 4)\ \ }\textcolor{comment}{/**<\ IO1.4\ →\ Alimentation\ ventilateur\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00118}\mbox{\hyperlink{pins__config_8h_a47d24d2c7f6e97560d968fcf372d5daa}{00118}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_PWR\_RADAR\ \ \ (1u\ <<\ 5)\ \ }\textcolor{comment}{/**<\ IO1.5\ →\ Alimentation\ carte\ radar\ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00119}\mbox{\hyperlink{pins__config_8h_a21548209f46bfb6d3762a4abd89468b1}{00119}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_PWR\_MIC\ \ \ \ \ (1u\ <<\ 6)\ \ }\textcolor{comment}{/**<\ IO1.6\ →\ Alimentation\ microphone\ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00120}\mbox{\hyperlink{pins__config_8h_a9c75a80cfcdd852e8a918b50a6d794cc}{00120}}\ \textcolor{preprocessor}{\#define\ PCA9555\_BIT\_PWR\_MLX\ \ \ \ \ (1u\ <<\ 7)\ \ }\textcolor{comment}{/**<\ IO1.7\ →\ Alimentation\ MLX90640\ \ \ \ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00122}00122\ \textcolor{comment}{/*\ Masque\ de\ config\ Port\ 1\ :}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00123}00123\ \textcolor{comment}{\ *\ \ \ IO1.0–IO1.3\ =\ entrée\ Hi-\/Z,\ IO1.4–IO1.7\ =\ sorties\ →\ 0b00001111\ =\ 0x0F\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00124}\mbox{\hyperlink{pins__config_8h_a6936240ee95c2cae37e50f3fa0a14b76}{00124}}\ \textcolor{preprocessor}{\#define\ PCA9555\_CFG1\_MASK\ \ \ 0x0Fu}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00125}00125\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00126}00126\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00127}00127\ \textcolor{comment}{\ *\ UART\ —\ Radar\ HLK-\/LD6002\ (TinyFrame,\ 1\ 382\ 400\ bauds,\ UART\_NUM\_2)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00128}00128\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00129}\mbox{\hyperlink{pins__config_8h_ab13d757959922bf205d6448862bd4e12}{00129}}\ \textcolor{preprocessor}{\#define\ PIN\_RADAR\_RX\ \ \ \ \ \ \ \ 43}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00130}\mbox{\hyperlink{pins__config_8h_ad7bec6e9767c77bebd8419d6f3329be2}{00130}}\ \textcolor{preprocessor}{\#define\ PIN\_RADAR\_TX\ \ \ \ \ \ \ \ 44}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00132}00132\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00133}00133\ \textcolor{comment}{\ *\ Microphone\ MEMS\ numérique\ —\ interface\ I2S}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00134}00134\ \textcolor{comment}{\ *\ MIK\_WS\ \ =\ Word\ Select\ /\ LRCK}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00135}00135\ \textcolor{comment}{\ *\ MIK\_SD\ \ =\ Serial\ Data\ (données\ audio)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00136}00136\ \textcolor{comment}{\ *\ MIC\_SDK\ =\ Serial\ Clock\ /\ BCLK}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00137}00137\ \textcolor{comment}{\ *\ (driver\ non\ implémenté\ —\ réservé)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00138}00138\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00139}\mbox{\hyperlink{pins__config_8h_aa61942d4d7c79c5fa394db3d554df72a}{00139}}\ \textcolor{preprocessor}{\#define\ PIN\_MIC\_WS\ \ \ \ \ \ \ \ \ \ 6}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00140}\mbox{\hyperlink{pins__config_8h_a6a2da9f70511fac1353ce4cd008aba68}{00140}}\ \textcolor{preprocessor}{\#define\ PIN\_MIC\_SD\ \ \ \ \ \ \ \ \ \ 7}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00141}\mbox{\hyperlink{pins__config_8h_a49df2ceba71c16ebe4a7d8fd5aa72cab}{00141}}\ \textcolor{preprocessor}{\#define\ PIN\_MIC\_SCK\ \ \ \ \ \ \ \ \ 8}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00143}00143\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00144}00144\ \textcolor{comment}{\ *\ LED\ de\ statut\ NeoPixel\ WS2812}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00145}00145\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00146}\mbox{\hyperlink{pins__config_8h_aa02f2c9ba2ca7087ec63030888786f05}{00146}}\ \textcolor{preprocessor}{\#define\ PIN\_LED\_STATUS\ \ \ \ \ \ 38}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00148}00148\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00149}00149\ \textcolor{comment}{\ *\ Sélection\ ROOT\ /\ NODE\ (pull-\/up\ interne,\ niveau\ bas\ =\ ROOT)}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00150}00150\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00151}\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{00151}}\ \textcolor{preprocessor}{\#define\ PIN\_ROOT\_SEL\ \ \ \ \ \ \ \ 35}}
+\DoxyCodeLine{\Hypertarget{pins__config_8h_source_l00152}00152\ }
+
+\end{DoxyCode}

@@ -1,0 +1,7 @@
+<map id="vl53l8cx_check_data_ready" name="vl53l8cx_check_data_ready">
+<area shape="rect" id="Node000001" title="This function checks if a new data is ready by polling I2C. If a new data is ready,..." alt="" coords="5,5,149,48"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="197,13,333,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,24,181,24,181,29,149,29"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="381,13,448,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,24,365,24,365,29,333,29"/>
+</map>

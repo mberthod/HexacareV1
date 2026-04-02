@@ -1,0 +1,17 @@
+<map id="pc_diag_ctx_t" name="pc_diag_ctx_t">
+<area shape="rect" id="Node000001" title=" " alt="" coords="252,301,354,328"/>
+<area shape="rect" id="Node000002" href="$structsys__context__t.html" title=" " alt="" coords="193,203,296,229"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="253,243,267,276,288,299,284,303,263,279,248,245"/>
+<area shape="rect" id="Node000003" href="$structsensor__frame__t.html" title=" " alt="" coords="59,104,171,131"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="129,143,140,161,155,177,175,190,197,200,195,205,172,195,151,181,136,164,124,146"/>
+<area shape="rect" id="Node000004" href="$structlidar__matrix__t.html" title=" " alt="" coords="5,5,105,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="73,44,110,102,105,105,69,47"/>
+<area shape="rect" id="Node000005" href="$structradar__data__t.html" title=" " alt="" coords="128,5,222,32"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="161,47,125,105,120,102,157,44"/>
+<area shape="rect" id="Node000006" href="$structenviro__data__t.html" title=" " alt="" coords="195,104,294,131"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="247,146,247,202,242,202,242,146"/>
+<area shape="rect" id="Node000007" href="$structmic__data__t.html" title=" " alt="" coords="318,104,403,131"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="338,143,294,181,263,204,260,200,291,177,334,139"/>
+<area shape="rect" id="Node000008" href="$structai__event__t.html" title=" " alt="" coords="320,203,401,229"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="347,244,313,302,308,300,343,241"/>
+</map>

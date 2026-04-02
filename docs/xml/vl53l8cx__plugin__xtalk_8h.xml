@@ -1,0 +1,857 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="vl53l8cx__plugin__xtalk_8h" kind="file" language="C++">
+    <compoundname>vl53l8cx_plugin_xtalk.h</compoundname>
+    <includes refid="vl53l8cx__api_8h" local="yes">vl53l8cx_api.h</includes>
+    <includedby refid="vl53l8cx__plugin__xtalk_8c" local="yes">components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c</includedby>
+    <incdepgraph>
+      <node id="6">
+        <label>vl53l8cx_platform.h</label>
+        <link refid="vl53l8cx__platform_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>platform.h</label>
+        <link refid="platform_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>vl53l8cx_api.h</label>
+        <link refid="vl53l8cx__api_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h</label>
+        <link refid="vl53l8cx__plugin__xtalk_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="5">
+        <label>stddef.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c</label>
+        <link refid="vl53l8cx__plugin__xtalk_8c"/>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h</label>
+        <link refid="vl53l8cx__plugin__xtalk_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="vl53l8cx__plugin__xtalk_8h_1af034a41d1f991766148316a5e48927da" prot="public" static="no">
+        <name>VL53L8CX_FW_NBTAR_XTALK</name>
+        <initializer>2</initializer>
+        <briefdescription>
+<para>Inner internal number of targets. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Copyright (c) 2021 STMicroelectronics. All rights reserved.</para>
+<para>This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-IS. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="23" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" prot="public" static="no">
+        <name>VL53L8CX_DCI_CAL_CFG</name>
+        <initializer>((uint16_t)0x5470U)</initializer>
+        <briefdescription>
+<para>Inner Macro for plugin. Not for user, only for development. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="32" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" bodystart="32" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" prot="public" static="no">
+        <name>VL53L8CX_DCI_XTALK_CFG</name>
+        <initializer>((uint16_t)0xAD94U)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="33" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" bodystart="33" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" compoundref="vl53l8cx__plugin__xtalk_8c" startline="332" endline="345">vl53l8cx_get_xtalk_margin</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="347" endline="367">vl53l8cx_set_xtalk_margin</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" prot="public" static="yes" mutable="no">
+        <type>const uint8_t</type>
+        <definition>const uint8_t VL53L8CX_GET_XTALK_CMD[]</definition>
+        <argsstring>[]</argsstring>
+        <name>VL53L8CX_GET_XTALK_CMD</name>
+        <initializer>= {
+	0x54, 0x00, 0x00, 0x40,
+	0x9F, 0xD8, 0x00, 0xC0,
+	0x9F, 0xE4, 0x01, 0x40,
+	0x9F, 0xF8, 0x00, 0x40,
+	0x9F, 0xFC, 0x04, 0x04,
+	0xA0, 0xFC, 0x01, 0x00,
+	0xA1, 0x0C, 0x01, 0x00,
+	0xA1, 0x1C, 0x00, 0xC0,
+	0xA1, 0x28, 0x09, 0x02,
+	0xA2, 0x48, 0x00, 0x40,
+	0xA2, 0x4C, 0x00, 0x81,
+	0xA2, 0x54, 0x00, 0x81,
+	0xA2, 0x5C, 0x00, 0x81,
+	0xA2, 0x64, 0x00, 0x81,
+	0xA2, 0x6C, 0x00, 0x84,
+	0xA2, 0x8C, 0x00, 0x82,
+	0x00, 0x00, 0x00, 0x0F,
+	0x07, 0x02, 0x00, 0x44
+}</initializer>
+        <briefdescription>
+<para>Command used to get Xtalk calibration data. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="117" column="22" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" bodystart="117" bodyend="136"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" compoundref="vl53l8cx__plugin__xtalk_8c" startline="290" endline="317">vl53l8cx_get_caldata_xtalk</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" prot="public" static="yes" mutable="no">
+        <type>const uint8_t</type>
+        <definition>const uint8_t VL53L8CX_CALIBRATE_XTALK[]</definition>
+        <argsstring>[]</argsstring>
+        <name>VL53L8CX_CALIBRATE_XTALK</name>
+        <briefdescription>
+<para>Command used to get run Xtalk calibration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="142" column="22" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" bodystart="142" bodyend="389"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8h_1a616b96ba97c939f5b72fde6f84b78177" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_calibrate_xtalk</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint16_t reflectance_percent, uint8_t nb_samples, uint16_t distance_mm)</argsstring>
+        <name>vl53l8cx_calibrate_xtalk</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>reflectance_percent</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>nb_samples</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>distance_mm</declname>
+        </param>
+        <briefdescription>
+<para>This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended is user wants to use a coverglass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint16_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reflectance_percent : Target reflectance in percent. This value is include between 1 and 99%. For a better efficiency, ST recommends a 3% target reflectance. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nb_samples : Nb of samples used for calibration. A higher number of samples means a higher accuracy, but it increases the calibration time. Minimum is 1 and maximum is 16. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint16_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance_mm : Target distance in mm. The minimum allowed distance is 600mm, and maximum is 3000mm. The target must stay in Full FOV, so short distance are easier for calibration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if calibration OK, 127 if an argument has an incorrect value, or 255 is something failed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="53" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="147" bodyend="288" declfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" declline="53" declcolumn="9"/>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="21" endline="48">_vl53l8cx_poll_for_answer</references>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" compoundref="vl53l8cx__plugin__xtalk_8c" startline="55" endline="145">_vl53l8cx_program_output_config</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9b2c9675e763360fc0c8865b31595c18" compoundref="vl53l8cx__api_8h" startline="281">VL53L8CX_Configuration::default_configuration</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9a8b925205c6e9ec22ae28ad972ab64a" compoundref="vl53l8cx__api_8h" startline="283">VL53L8CX_Configuration::default_xtalk</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" compoundref="vl53l8cx__api_8h" startline="275">VL53L8CX_Configuration::platform</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" compoundref="vl53l8cx__plugin__xtalk_8h" startline="142" endline="389">VL53L8CX_CALIBRATE_XTALK</references>
+        <references refid="vl53l8cx__api_8h_1ae857ccc32e3c8185ea47e22605283fc1" compoundref="vl53l8cx__api_8h" startline="159">VL53L8CX_CONFIGURATION_SIZE</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" compoundref="vl53l8cx__plugin__xtalk_8h" startline="32">VL53L8CX_DCI_CAL_CFG</references>
+        <references refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" compoundref="vl53l8cx__api_8c" startline="1363" endline="1379">vl53l8cx_dci_replace_data</references>
+        <references refid="vl53l8cx__api_8c_1a34666a7d3778693b09b6586c2e5ac88b" compoundref="vl53l8cx__api_8c" startline="1016" endline="1029">vl53l8cx_get_integration_time_ms</references>
+        <references refid="vl53l8cx__api_8c_1ab1329ff55825bc53ce30e1e2a65ea1ea" compoundref="vl53l8cx__api_8c" startline="990" endline="1001">vl53l8cx_get_ranging_frequency_hz</references>
+        <references refid="vl53l8cx__api_8c_1a277352277a30567f668aa0e2728b36ce" compoundref="vl53l8cx__api_8c" startline="1125" endline="1144">vl53l8cx_get_ranging_mode</references>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="vl53l8cx__api_8c_1a487baf06564d780210b117e34d8e0c41" compoundref="vl53l8cx__api_8c" startline="1055" endline="1068">vl53l8cx_get_sharpener_percent</references>
+        <references refid="vl53l8cx__api_8c_1a2718a6b0468c8a794c273344afac36c7" compoundref="vl53l8cx__api_8c" startline="1092" endline="1103">vl53l8cx_get_target_order</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" compoundref="vl53l8cx__plugin__xtalk_8h" startline="117" endline="136">VL53L8CX_GET_XTALK_CMD</references>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" compoundref="vl53l8cx__plugin__xtalk_8c" startline="332" endline="345">vl53l8cx_get_xtalk_margin</references>
+        <references refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</references>
+        <references refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" compoundref="vl53l8cx__api_8h" startline="44">VL53L8CX_RESOLUTION_8X8</references>
+        <references refid="vl53l8cx__api_8c_1abcb4f3ccc4813f4aa1851c2d5844641a" compoundref="vl53l8cx__api_8c" startline="1031" endline="1053">vl53l8cx_set_integration_time_ms</references>
+        <references refid="vl53l8cx__api_8c_1aa498a79da766ce9f30d4518403bfbc96" compoundref="vl53l8cx__api_8c" startline="1003" endline="1014">vl53l8cx_set_ranging_frequency_hz</references>
+        <references refid="vl53l8cx__api_8c_1a90f6b7f5130cf36350701771f991bdbf" compoundref="vl53l8cx__api_8c" startline="1146" endline="1183">vl53l8cx_set_ranging_mode</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8c_1a1a4fb3cfa2082032b917b539e244338a" compoundref="vl53l8cx__api_8c" startline="1070" endline="1090">vl53l8cx_set_sharpener_percent</references>
+        <references refid="vl53l8cx__api_8c_1a65ac9339ec503998ca8fc5003f649e53" compoundref="vl53l8cx__api_8c" startline="1105" endline="1123">vl53l8cx_set_target_order</references>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="347" endline="367">vl53l8cx_set_xtalk_margin</references>
+        <references refid="vl53l8cx__api_8h_1a808f141fa4ac8097df405bea9c7914ad" compoundref="vl53l8cx__api_8h" startline="95">VL53L8CX_STATUS_ERROR</references>
+        <references refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" compoundref="vl53l8cx__api_8h" startline="94">VL53L8CX_STATUS_INVALID_PARAM</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__api_8h_1a89d07e895fc3200073cf30f210197257" compoundref="vl53l8cx__api_8h" startline="91">VL53L8CX_STATUS_XTALK_FAILED</references>
+        <references refid="vl53l8cx__api_8h_1a42a5546522d7e26f08fc09394d450071" compoundref="vl53l8cx__api_8h" startline="183">VL53L8CX_UI_CMD_END</references>
+        <references refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" compoundref="vl53l8cx__api_8h" startline="182">VL53L8CX_UI_CMD_START</references>
+        <references refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" compoundref="vl53l8cx__api_8h" startline="181">VL53L8CX_UI_CMD_STATUS</references>
+        <references refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" compoundref="vl53l8cx__platform_8c" startline="147" endline="152">VL53L8CX_WaitMs</references>
+        <references refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</references>
+        <references refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" compoundref="vl53l8cx__api_8h" startline="161">VL53L8CX_XTALK_BUFFER_SIZE</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" compoundref="vl53l8cx__api_8h" startline="287">VL53L8CX_Configuration::xtalk_data</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8h_1a638fa39db7d6506992b20388f9880b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_caldata_xtalk</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t *p_xtalk_data)</argsstring>
+        <name>vl53l8cx_get_caldata_xtalk</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_xtalk_data</declname>
+        </param>
+        <briefdescription>
+<para>This function gets the Xtalk buffer. The buffer is available after using the function <ref refid="vl53l8cx__plugin__xtalk_8h_1a616b96ba97c939f5b72fde6f84b78177" kindref="member">vl53l8cx_calibrate_xtalk()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L5 configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_xtalk_data : Buffer with a size defined by macro VL53L8CX_XTALK_SIZE. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if buffer reading OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="68" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="290" bodyend="317" declfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" declline="68" declcolumn="9"/>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="21" endline="48">_vl53l8cx_poll_for_answer</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" compoundref="vl53l8cx__api_8h" startline="275">VL53L8CX_Configuration::platform</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" compoundref="vl53l8cx__plugin__xtalk_8h" startline="117" endline="136">VL53L8CX_GET_XTALK_CMD</references>
+        <references refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</references>
+        <references refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" compoundref="vl53l8cx__api_8h" startline="44">VL53L8CX_RESOLUTION_8X8</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" compoundref="vl53l8cx__api_8h" startline="182">VL53L8CX_UI_CMD_START</references>
+        <references refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" compoundref="vl53l8cx__api_8h" startline="181">VL53L8CX_UI_CMD_STATUS</references>
+        <references refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</references>
+        <references refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" compoundref="vl53l8cx__api_8h" startline="161">VL53L8CX_XTALK_BUFFER_SIZE</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8h_1a0a1083d1f57251df3c70caabedd68f41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_caldata_xtalk</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t *p_xtalk_data)</argsstring>
+        <name>vl53l8cx_set_caldata_xtalk</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_xtalk_data</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L5 configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_xtalk_data : Buffer with a size defined by macro VL53L8CX_XTALK_SIZE. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if buffer OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="81" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="319" bodyend="330" declfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" declline="81" declcolumn="9"/>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" compoundref="vl53l8cx__api_8h" startline="161">VL53L8CX_XTALK_BUFFER_SIZE</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" compoundref="vl53l8cx__api_8h" startline="287">VL53L8CX_Configuration::xtalk_data</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8h_1a93cab7c0d8a298a1c2b0206ffc1fa664" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_xtalk_margin</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint32_t *p_xtalk_margin)</argsstring>
+        <name>vl53l8cx_get_xtalk_margin</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint32_t *</type>
+          <declname>p_xtalk_margin</declname>
+        </param>
+        <briefdescription>
+<para>This function gets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint32_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_xtalk_margin : Xtalk margin in kcps/spads. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if reading OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="94" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="332" bodyend="345" declfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" declline="94" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" compoundref="vl53l8cx__plugin__xtalk_8h" startline="33">VL53L8CX_DCI_XTALK_CFG</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8h_1a8d182a0a999996a2c3606a8076ca3b9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_xtalk_margin</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint32_t xtalk_margin)</argsstring>
+        <name>vl53l8cx_set_xtalk_margin</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>xtalk_margin</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint32_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>xtalk_margin : New Xtalk margin in kcps/spads. Min value is 0 kcps/spads, and max is 10.000 kcps/spads </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if set margin is OK, or 127 is the margin is invalid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" line="109" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="347" bodyend="367" declfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h" declline="109" declcolumn="9"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" compoundref="vl53l8cx__api_8c" startline="1363" endline="1379">vl53l8cx_dci_replace_data</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" compoundref="vl53l8cx__plugin__xtalk_8h" startline="33">VL53L8CX_DCI_XTALK_CFG</references>
+        <references refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" compoundref="vl53l8cx__api_8h" startline="94">VL53L8CX_STATUS_INVALID_PARAM</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/>*<sp/>Copyright<sp/>(c)<sp/>2021<sp/>STMicroelectronics.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/><sp/>*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/>*<sp/>This<sp/>software<sp/>is<sp/>licensed<sp/>under<sp/>terms<sp/>that<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>LICENSE<sp/>file</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/>*<sp/>in<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>software<sp/>component.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/>*<sp/>If<sp/>no<sp/>LICENSE<sp/>file<sp/>comes<sp/>with<sp/>this<sp/>software,<sp/>it<sp/>is<sp/>provided<sp/>AS-IS.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/>******************************************************************************</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VL53L8CX_PLUGIN_XTALK_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_PLUGIN_XTALK_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vl53l8cx__api_8h" kindref="compound">vl53l8cx_api.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Inner<sp/>internal<sp/>number<sp/>of<sp/>targets.</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>VL53L8CX_NB_TARGET_PER_ZONE<sp/>==<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="vl53l8cx__plugin__xtalk_8h_1af034a41d1f991766148316a5e48927da" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_FW_NBTAR_XTALK<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_FW_NBTAR_XTALK<sp/>VL53L8CX_NB_TARGET_PER_ZONE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="28"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Inner<sp/>Macro<sp/>for<sp/>plugin.<sp/>Not<sp/>for<sp/>user,<sp/>only<sp/>for<sp/>development.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DCI_CAL_CFG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)0x5470U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_DCI_XTALK_CFG<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint16_t)0xAD94U)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="36"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>starts<sp/>the<sp/>VL53L8CX<sp/>sensor<sp/>in<sp/>order<sp/>to<sp/>calibrate<sp/>Xtalk.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>This<sp/>calibration<sp/>is<sp/>recommended<sp/>is<sp/>user<sp/>wants<sp/>to<sp/>use<sp/>a<sp/>coverglass.</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint16_t)<sp/>reflectance_percent<sp/>:<sp/>Target<sp/>reflectance<sp/>in<sp/>percent.<sp/>This</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/>value<sp/>is<sp/>include<sp/>between<sp/>1<sp/>and<sp/>99%.<sp/>For<sp/>a<sp/>better<sp/>efficiency,<sp/>ST<sp/>recommends<sp/>a</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>3%<sp/>target<sp/>reflectance.</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>nb_samples<sp/>:<sp/>Nb<sp/>of<sp/>samples<sp/>used<sp/>for<sp/>calibration.<sp/>A<sp/>higher</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/>number<sp/>of<sp/>samples<sp/>means<sp/>a<sp/>higher<sp/>accuracy,<sp/>but<sp/>it<sp/>increases<sp/>the<sp/>calibration</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/>time.<sp/>Minimum<sp/>is<sp/>1<sp/>and<sp/>maximum<sp/>is<sp/>16.</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint16_t)<sp/>distance_mm<sp/>:<sp/>Target<sp/>distance<sp/>in<sp/>mm.<sp/>The<sp/>minimum<sp/>allowed</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>distance<sp/>is<sp/>600mm,<sp/>and<sp/>maximum<sp/>is<sp/>3000mm.<sp/>The<sp/>target<sp/>must<sp/>stay<sp/>in<sp/>Full<sp/>FOV,</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>so<sp/>short<sp/>distance<sp/>are<sp/>easier<sp/>for<sp/>calibration.</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>calibration<sp/>OK,<sp/>127<sp/>if<sp/>an<sp/>argument<sp/>has<sp/>an</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>incorrect<sp/>value,<sp/>or<sp/>255<sp/>is<sp/>something<sp/>failed.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1a616b96ba97c939f5b72fde6f84b78177" kindref="member">vl53l8cx_calibrate_xtalk</ref>(</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reflectance_percent,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nb_samples,</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distance_mm);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="59"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>gets<sp/>the<sp/>Xtalk<sp/>buffer.<sp/>The<sp/>buffer<sp/>is<sp/>available<sp/>after</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>using<sp/>the<sp/>function<sp/>vl53l8cx_calibrate_xtalk().</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L5<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>*p_xtalk_data<sp/>:<sp/>Buffer<sp/>with<sp/>a<sp/>size<sp/>defined<sp/>by</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>macro<sp/>VL53L8CX_XTALK_SIZE.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>buffer<sp/>reading<sp/>OK</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1a638fa39db7d6506992b20388f9880b47" kindref="member">vl53l8cx_get_caldata_xtalk</ref>(</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_xtalk_data);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="72"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>sets<sp/>the<sp/>Xtalk<sp/>buffer.<sp/>This<sp/>function<sp/>can<sp/>be<sp/>used<sp/>to</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/>*<sp/>override<sp/>default<sp/>Xtalk<sp/>buffer.</highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L5<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint8_t)<sp/>*p_xtalk_data<sp/>:<sp/>Buffer<sp/>with<sp/>a<sp/>size<sp/>defined<sp/>by</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>macro<sp/>VL53L8CX_XTALK_SIZE.</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>buffer<sp/>OK</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1a0a1083d1f57251df3c70caabedd68f41" kindref="member">vl53l8cx_set_caldata_xtalk</ref>(</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_xtalk_data);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="85"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>gets<sp/>the<sp/>Xtalk<sp/>margin.<sp/>This<sp/>margin<sp/>is<sp/>used<sp/>to<sp/>increase</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*<sp/>the<sp/>Xtalk<sp/>threshold.<sp/>It<sp/>can<sp/>also<sp/>be<sp/>used<sp/>to<sp/>avoid<sp/>false<sp/>positives<sp/>after<sp/>the</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/>Xtalk<sp/>calibration.<sp/>The<sp/>default<sp/>value<sp/>is<sp/>50<sp/>kcps/spads.</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint32_t)<sp/>*p_xtalk_margin<sp/>:<sp/>Xtalk<sp/>margin<sp/>in<sp/>kcps/spads.</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>reading<sp/>OK</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1a93cab7c0d8a298a1c2b0206ffc1fa664" kindref="member">vl53l8cx_get_xtalk_margin</ref>(</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_xtalk_margin);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="98"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*<sp/>@brief<sp/>This<sp/>function<sp/>sets<sp/>the<sp/>Xtalk<sp/>margin.<sp/>This<sp/>margin<sp/>is<sp/>used<sp/>to<sp/>increase</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>the<sp/>Xtalk<sp/>threshold.<sp/>It<sp/>can<sp/>also<sp/>be<sp/>used<sp/>to<sp/>avoid<sp/>false<sp/>positives<sp/>after<sp/>the</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>Xtalk<sp/>calibration.<sp/>The<sp/>default<sp/>value<sp/>is<sp/>50<sp/>kcps/spads.</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>@param<sp/>(VL53L8CX_Configuration)<sp/>*p_dev<sp/>:<sp/>VL53L8CX<sp/>configuration<sp/>structure.</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/>*<sp/>@param<sp/>(uint32_t)<sp/>xtalk_margin<sp/>:<sp/>New<sp/>Xtalk<sp/>margin<sp/>in<sp/>kcps/spads.<sp/>Min<sp/>value<sp/>is</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/>*<sp/>0<sp/>kcps/spads,<sp/>and<sp/>max<sp/>is<sp/>10.000<sp/>kcps/spads</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/>*<sp/>@return<sp/>(uint8_t)<sp/>status<sp/>:<sp/>0<sp/>if<sp/>set<sp/>margin<sp/>is<sp/>OK,<sp/>or<sp/>127<sp/>is<sp/>the<sp/>margin<sp/>is</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/>*<sp/>invalid.</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1a8d182a0a999996a2c3606a8076ca3b9b" kindref="member">vl53l8cx_set_xtalk_margin</ref>(</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xtalk_margin);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="113"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Command<sp/>used<sp/>to<sp/>get<sp/>Xtalk<sp/>calibration<sp/>data</highlight></codeline>
+<codeline lineno="115"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x00,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>0x9F,<sp/>0xD8,<sp/>0x00,<sp/>0xC0,</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>0x9F,<sp/>0xE4,<sp/>0x01,<sp/>0x40,</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>0x9F,<sp/>0xF8,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>0x9F,<sp/>0xFC,<sp/>0x04,<sp/>0x04,</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA0,<sp/>0xFC,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA1,<sp/>0x0C,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA1,<sp/>0x1C,<sp/>0x00,<sp/>0xC0,</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA1,<sp/>0x28,<sp/>0x09,<sp/>0x02,</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x48,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x4C,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x54,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x5C,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x64,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x6C,<sp/>0x00,<sp/>0x84,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA2,<sp/>0x8C,<sp/>0x00,<sp/>0x82,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0F,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>0x07,<sp/>0x02,<sp/>0x00,<sp/>0x44</highlight></codeline>
+<codeline lineno="136"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="138"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Command<sp/>used<sp/>to<sp/>get<sp/>run<sp/>Xtalk<sp/>calibration</highlight></codeline>
+<codeline lineno="140"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" kindref="member">VL53L8CX_CALIBRATE_XTALK</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x50,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x04,<sp/>0x08,<sp/>0x08,</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x04,<sp/>0x04,</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x30,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>0x03,<sp/>0x01,<sp/>0x06,<sp/>0x03,</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x38,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0xE0,<sp/>0x01,<sp/>0x40,</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x10,<sp/>0x00,<sp/>0x10,</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0x00,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x01,</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x58,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x1A,<sp/>0x02,<sp/>0x00,</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x5C,<sp/>0x01,<sp/>0x40,</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x01,<sp/>0x00,<sp/>0x51,</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x0F,<sp/>0xA0,</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>0x0F,<sp/>0xA0,<sp/>0x03,<sp/>0xE8,</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>0x02,<sp/>0x80,<sp/>0x1F,<sp/>0x40,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x05,<sp/>0x00,</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x70,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>0x03,<sp/>0x20,<sp/>0x03,<sp/>0x20,</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x08,</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x78,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0x1B,<sp/>0x00,<sp/>0x21,</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x33,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>0x02,<sp/>0x00,<sp/>0x00,<sp/>0x01,</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x01,<sp/>0x08,<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1af034a41d1f991766148316a5e48927da" kindref="member">VL53L8CX_FW_NBTAR_XTALK</ref>,</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x88,<sp/>0x01,<sp/>0x40,</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x08,<sp/>0x00,</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x48,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0xF4,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>0x03,<sp/>0x06,<sp/>0x00,<sp/>0x10,</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>0x08,<sp/>0x08,<sp/>0x08,<sp/>0x08,</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x08,</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x60,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>0x20,<sp/>0x1F,<sp/>0x01,<sp/>0xF4,</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x1D,<sp/>0x0A,</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x70,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>0x08,<sp/>0x00,<sp/>0x1F,<sp/>0x40,</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x01,</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x78,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0xA0,<sp/>0x03,<sp/>0x20,</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x01,<sp/>0x01,<sp/>0x90,</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x80,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x28,<sp/>0x00,</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x84,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x32,<sp/>0x00,</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>0x03,<sp/>0x20,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x8C,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>0x02,<sp/>0x58,<sp/>0xFF,<sp/>0x38,</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0C,</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0x94,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x01,<sp/>0x90,<sp/>0x00,</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>0xFF,<sp/>0xFF,<sp/>0xFC,<sp/>0x00,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x04,<sp/>0x00,</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0xA4,<sp/>0x00,<sp/>0xC0,</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x80,<sp/>0x06,<sp/>0x1A,</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x80,<sp/>0x05,<sp/>0x80,</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x01,<sp/>0x06,</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0xB0,<sp/>0x00,<sp/>0xC0,</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x80,<sp/>0x06,<sp/>0x1A,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>0x19,<sp/>0x00,<sp/>0x05,<sp/>0x80,</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x01,<sp/>0x90,</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAD,<sp/>0xBC,<sp/>0x04,<sp/>0x40,</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x12,<sp/>0x00,<sp/>0x25,</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x06,</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x05,</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x05,</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x06,</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x04,</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0F,</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x5A,</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x09,</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/>0x0B,<sp/>0x0C,<sp/>0x0B,<sp/>0x0B,</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>0x03,<sp/>0x03,<sp/>0x11,<sp/>0x05,</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0x01,<sp/>0x01,<sp/>0x01,</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x0D,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x00,<sp/>0x01,<sp/>0x04,</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x04,</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x08,</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0A,</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0C,</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0D,</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0E,</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x08,</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x08,</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x10,</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x10,</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x20,</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x20,</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x06,</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x05,<sp/>0x0A,</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/>0x02,<sp/>0x00,<sp/>0x0C,<sp/>0x08,</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x40,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0xFF,</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x44,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x10,<sp/>0x04,<sp/>0x01,</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x48,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x10,<sp/>0x00,</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x4C,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x01,</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x50,<sp/>0x01,<sp/>0x40,</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x14,</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x00,<sp/>0x28,<sp/>0x00,</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>0x03,<sp/>0x20,<sp/>0x6C,<sp/>0x00,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0x64,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x01,</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xD8,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0xC8,<sp/>0x05,<sp/>0xDC,</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x0C,<sp/>0xCD,</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0x04,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x01,<sp/>0x26,<sp/>0x01,</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB5,<sp/>0x50,<sp/>0x02,<sp/>0x82,</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA3,<sp/>0xE8,<sp/>0xA3,<sp/>0xB8,</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA4,<sp/>0x38,<sp/>0xA4,<sp/>0x28,</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA6,<sp/>0x48,<sp/>0xA4,<sp/>0x48,</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>0xA7,<sp/>0x88,<sp/>0xA7,<sp/>0x48,</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAC,<sp/>0x10,<sp/>0xA7,<sp/>0x90,</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>0x99,<sp/>0xBC,<sp/>0x99,<sp/>0xB4,</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>0x9A,<sp/>0xFC,<sp/>0x9A,<sp/>0xBC,</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB5,<sp/>0xA0,<sp/>0x02,<sp/>0x82,</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x88,<sp/>0x03,<sp/>0x00,</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x82,<sp/>0x00,<sp/>0x82,</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x04,<sp/>0x04,<sp/>0x08,</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x80,<sp/>0x04,<sp/>0x01,</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>0x09,<sp/>0x02,<sp/>0x09,<sp/>0x08,</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x04,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>0x04,<sp/>0x01,<sp/>0x04,<sp/>0x01,</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB5,<sp/>0xF0,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x04,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB3,<sp/>0x9C,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>0x40,<sp/>0x00,<sp/>0x05,<sp/>0x1E,</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/>0x02,<sp/>0x1B,<sp/>0x08,<sp/>0x7C,</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>0x80,<sp/>0x00,<sp/>0x12,<sp/>0x01,</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x01,<sp/>0x08,<sp/>0x00,</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0xC0,<sp/>0x00,<sp/>0xC0,</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x60,<sp/>0x00,</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x20,<sp/>0x00,</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xA8,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x04,<sp/>0x05,</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xAC,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0x00,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x02,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xB4,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xB8,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xC0,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xC8,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/>0x08,<sp/>0x01,<sp/>0x01,<sp/>0x08,</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x08,</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>0xAE,<sp/>0xD0,<sp/>0x00,<sp/>0x81,</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/>0x01,<sp/>0x08,<sp/>0x08,<sp/>0x08,</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x01,</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB5,<sp/>0xF4,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB5,<sp/>0xFC,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x04,<sp/>0x00,<sp/>0x40,</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x08,<sp/>0x00,<sp/>0x44,</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x18,<sp/>0x00,<sp/>0x44,</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x28,<sp/>0x00,<sp/>0x44,</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x38,<sp/>0x00,<sp/>0x44,</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x48,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x58,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>0xB6,<sp/>0x68,<sp/>0x01,<sp/>0x00,</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>0x54,<sp/>0x70,<sp/>0x00,<sp/>0x80,</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x00,</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x02,</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0F,</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/>0x00,<sp/>0x01,<sp/>0x03,<sp/>0xD4</highlight></codeline>
+<codeline lineno="389"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">/*<sp/>VL53L8CX_PLUGIN_XTALK_H_<sp/>*/</highlight><highlight class="preprocessor"></highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h"/>
+  </compounddef>
+</doxygen>

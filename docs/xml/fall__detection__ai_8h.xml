@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="fall__detection__ai_8h" kind="file" language="C++">
+    <compoundname>fall_detection_ai.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="fall__detection__ai_8cc" local="yes">components/ai_engine/fall_detection_ai.cc</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>components/ai_engine/include/fall_detection_ai.h</label>
+        <link refid="fall__detection__ai_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/ai_engine/fall_detection_ai.cc</label>
+        <link refid="fall__detection__ai_8cc"/>
+      </node>
+      <node id="1">
+        <label>components/ai_engine/include/fall_detection_ai.h</label>
+        <link refid="fall__detection__ai_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <member refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kind="function"><name>ai_engine_task_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface C du moteur d&apos;inférence de détection de chute. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Ce header est inclus par du code C (<ref refid="main_8c" kindref="compound">main.c</ref>). L&apos;implémentation est en C++ (<ref refid="fall__detection__ai_8cc" kindref="compound">fall_detection_ai.cc</ref>) pour ESP-DL. Les guards extern &quot;C&quot; assurent la compatibilité de linkage.</para>
+<para>Mode de fonctionnement : Contrôlé par Kconfig (idf.py menuconfig → LexaCare AI Engine) :<itemizedlist>
+<listitem><para>CONFIG_AI_USE_ESPDL_MODEL=y → inférence CNN via ESP-DL</para>
+</listitem><listitem><para>CONFIG_AI_USE_ESPDL_MODEL=n → algorithme géométrique à seuil</para>
+</listitem></itemizedlist>
+</para>
+<para>Basculement sans recompilation complexe : idf.py menuconfig → modifier CONFIG_AI_USE_ESPDL_MODEL → idf.py build </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>fall_detection_ai.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>C<sp/>du<sp/>moteur<sp/>d&apos;inférence<sp/>de<sp/>détection<sp/>de<sp/>chute.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Ce<sp/>header<sp/>est<sp/>inclus<sp/>par<sp/>du<sp/>code<sp/>C<sp/>(main.c).</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>L&apos;implémentation<sp/>est<sp/>en<sp/>C++<sp/>(fall_detection_ai.cc)<sp/>pour<sp/>ESP-DL.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Les<sp/>guards<sp/>extern<sp/>&quot;C&quot;<sp/>assurent<sp/>la<sp/>compatibilité<sp/>de<sp/>linkage.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Mode<sp/>de<sp/>fonctionnement<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Contrôlé<sp/>par<sp/>Kconfig<sp/>(idf.py<sp/>menuconfig<sp/>→<sp/>LexaCare<sp/>AI<sp/>Engine)<sp/>:</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>CONFIG_AI_USE_ESPDL_MODEL=y<sp/><sp/>→<sp/>inférence<sp/>CNN<sp/>via<sp/>ESP-DL</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>CONFIG_AI_USE_ESPDL_MODEL=n<sp/><sp/>→<sp/>algorithme<sp/>géométrique<sp/>à<sp/>seuil</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>Basculement<sp/>sans<sp/>recompilation<sp/>complexe<sp/>:</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/>idf.py<sp/>menuconfig<sp/>→<sp/>modifier<sp/>CONFIG_AI_USE_ESPDL_MODEL<sp/>→<sp/>idf.py<sp/>build</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="27"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_ai_engine<sp/>IA<sp/>/<sp/>Détection<sp/>de<sp/>chute</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Transforme<sp/>les<sp/>mesures<sp/>capteurs<sp/>en<sp/>“état”<sp/>(normal,<sp/>chute,<sp/>anormal)<sp/>et<sp/>notifications.</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>Pourquoi<sp/>une<sp/>tâche<sp/>dédiée<sp/>:</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>-<sp/>séparer<sp/>la<sp/>logique<sp/>“métier”<sp/>(détection)<sp/>du<sp/>matériel<sp/>(capteurs)<sp/>et<sp/>du<sp/>transport<sp/>(mesh/USB)</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>-<sp/>garantir<sp/>des<sp/>délais<sp/>:<sp/>la<sp/>tâche<sp/>écoute<sp/>une<sp/>file<sp/>(queue)<sp/>et<sp/>produit<sp/>un<sp/>événement<sp/>rapidement</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/>ai_engine_task_start</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Crée<sp/>la<sp/>tâche<sp/>Task_AI_Inference<sp/>épinglée<sp/>sur<sp/>le<sp/>Core<sp/>1.</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/>La<sp/>tâche<sp/>:</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>S&apos;abonne<sp/>au<sp/>TWDT<sp/>(esp_task_wdt_add).</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Attend<sp/>sur<sp/>sensor_to_ai_queue<sp/>(portMAX_DELAY).</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Exécute<sp/>l&apos;inférence<sp/>(modèle<sp/>ou<sp/>seuil<sp/>selon<sp/>Kconfig).</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Si<sp/>AI_CHUTE_DETECTEE<sp/>→<sp/>xQueueSendToFront(ai_to_mesh_queue).</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Autres<sp/>états<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>xQueueSend(ai_to_mesh_queue).</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Pousse<sp/>également<sp/>dans<sp/>diag_to_pc_queue.</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Appelle<sp/>esp_task_wdt_reset()<sp/>à<sp/>chaque<sp/>itération.</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>Prérequis<sp/>mode<sp/>modèle<sp/>:</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Le<sp/>fichier<sp/>/littlefs/fall_model.espdl<sp/>doit<sp/>être<sp/>présent<sp/>sur<sp/>la</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/><sp/><sp/>partition<sp/>storage.<sp/>Flasher<sp/>avec<sp/>:<sp/>idf.py<sp/>storage-flash<sp/>(si<sp/>configuré).</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système.</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>la<sp/>tâche<sp/>est<sp/>créée<sp/>avec<sp/>succès.</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kindref="member">ai_engine_task_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="64"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_ai_engine<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/ai_engine/include/fall_detection_ai.h"/>
+  </compounddef>
+</doxygen>

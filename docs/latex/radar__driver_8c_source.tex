@@ -1,0 +1,219 @@
+\doxysection{radar\+\_\+driver.\+c}
+\hypertarget{radar__driver_8c_source}{}\label{radar__driver_8c_source}\index{components/sensor\_acq/radar\_driver.c@{components/sensor\_acq/radar\_driver.c}}
+\mbox{\hyperlink{radar__driver_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ radar\_driver.c}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_sensor\_acq}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Driver\ UART\ HLK-\/LD6002\ —\ protocole\ TinyFrame,\ ring\ buffer\ UART.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Protocole\ TinyFrame\ :}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ [SOF=0x01][Type\_H][Type\_L][Longueur][Données...][EOF=0x04]}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00009}00009\ \textcolor{comment}{\ *\ Types\ reconnus\ :}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ 0x0A14\ :\ Fréquence\ respiratoire\ (2\ octets\ big-\/endian,\ bpm)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ 0x0A15\ :\ Fréquence\ cardiaque\ \ \ \ (2\ octets\ big-\/endian,\ bpm)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ 0x0A16\ :\ Distance\ de\ la\ cible\ \ \ (2\ octets\ big-\/endian,\ mm)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00013}00013\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00014}00014\ \textcolor{comment}{\ *\ Le\ driver\ UART\ (UART\_NUM\_2)\ est\ déjà\ installé\ par\ hw\_diag\_run().}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00015}00015\ \textcolor{comment}{\ *\ radar\_driver\_init()\ se\ contente\ de\ réinitialiser\ l'état\ du\ parser.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00016}00016\ \textcolor{comment}{\ *\ radar\_driver\_poll()\ est\ appelé\ à\ chaque\ cycle\ de\ Task\_Sensor\_Acq.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00017}00017\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{radar__driver_8h}{radar\_driver.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pins__config_8h}{pins\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}esp\_timer.h"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ "{}driver/uart.h"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00025}00025\ \textcolor{preprocessor}{\#include\ <stdbool.h>}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00026}00026\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00028}\mbox{\hyperlink{radar__driver_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00028}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}radar\_driver"{}};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00030}00030\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00031}00031\ \textcolor{comment}{\ *\ Constantes\ du\ protocole}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00032}00032\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00033}\mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{00033}}\ \textcolor{preprocessor}{\#define\ UART\_PORT\ \ \ \ \ \ \ \ \ \ \ UART\_NUM\_2}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00034}\mbox{\hyperlink{radar__driver_8c_a690f985c933da2ce6fe62b6c61dfa662}{00034}}\ \textcolor{preprocessor}{\#define\ RX\_BUF\_SIZE\ \ \ \ \ \ \ \ \ 512}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00035}\mbox{\hyperlink{radar__driver_8c_ac972a7bb011724bcbd6b445b9a6fef2a}{00035}}\ \textcolor{preprocessor}{\#define\ TF\_SOF\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00036}\mbox{\hyperlink{radar__driver_8c_a73c9acaba0709da57963b20403746481}{00036}}\ \textcolor{preprocessor}{\#define\ TF\_EOF\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x04}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00037}\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{00037}}\ \textcolor{preprocessor}{\#define\ TF\_HEADER\_LEN\ \ \ \ \ \ \ 4\ \ \ \ }\textcolor{comment}{/**<\ SOF\ +\ Type(2)\ +\ Longueur(1)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00038}\mbox{\hyperlink{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}{00038}}\ \textcolor{preprocessor}{\#define\ TF\_FOOTER\_LEN\ \ \ \ \ \ \ 1\ \ \ \ }\textcolor{comment}{/**<\ EOF\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00039}\mbox{\hyperlink{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}{00039}}\ \textcolor{preprocessor}{\#define\ TF\_MIN\_FRAME\_LEN\ \ \ \ (TF\_HEADER\_LEN\ +\ TF\_FOOTER\_LEN)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00040}\mbox{\hyperlink{radar__driver_8c_aa1840a78150783188852dc2d48c01749}{00040}}\ \textcolor{preprocessor}{\#define\ TF\_MAX\_PAYLOAD\_LEN\ \ 64}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00042}\mbox{\hyperlink{radar__driver_8c_a6035d82d95769dda5c4f56e68aafb02d}{00042}}\ \textcolor{preprocessor}{\#define\ TF\_TYPE\_BREATH\ \ \ \ \ \ 0x0A14}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00043}\mbox{\hyperlink{radar__driver_8c_a279ac4a1e69cc4f5aa2fd1e365242ec9}{00043}}\ \textcolor{preprocessor}{\#define\ TF\_TYPE\_HEART\ \ \ \ \ \ \ 0x0A15}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00044}\mbox{\hyperlink{radar__driver_8c_a25c14416760a4a7b05818aa819d4221f}{00044}}\ \textcolor{preprocessor}{\#define\ TF\_TYPE\_DISTANCE\ \ \ \ 0x0A16}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00046}00046\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00047}00047\ \textcolor{comment}{\ *\ État\ interne\ du\ parser\ (pas\ de\ variable\ globale\ —\ static\ local)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00048}00048\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00049}\mbox{\hyperlink{structradar__parser__t}{00049}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00050}\mbox{\hyperlink{structradar__parser__t_a4c090bb75fe32c249fb87ec843b32f54}{00050}}\ \ \ \ \ uint8\_t\ \ \mbox{\hyperlink{structradar__parser__t_a4c090bb75fe32c249fb87ec843b32f54}{buf}}[\mbox{\hyperlink{radar__driver_8c_a690f985c933da2ce6fe62b6c61dfa662}{RX\_BUF\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00051}\mbox{\hyperlink{structradar__parser__t_a42d4166a7d0d6ef81df1e7e294ea11fb}{00051}}\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \ \ \mbox{\hyperlink{structradar__parser__t_a42d4166a7d0d6ef81df1e7e294ea11fb}{len}};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00052}\mbox{\hyperlink{structradar__parser__t_acb46a09babe70d1f7b8aff98928e32ec}{00052}}\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{structradar__parser__t_acb46a09babe70d1f7b8aff98928e32ec}{updated}};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00053}\mbox{\hyperlink{structradar__parser__t_aac179e103cebbf0bdd8e0b6223cb6e5d}{00053}}\ \ \ \ \ \mbox{\hyperlink{structradar__data__t}{radar\_data\_t}}\ \mbox{\hyperlink{structradar__parser__t_aac179e103cebbf0bdd8e0b6223cb6e5d}{last\_data}};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00054}00054\ \}\ \mbox{\hyperlink{structradar__parser__t}{radar\_parser\_t}};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00056}\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{00056}}\ \textcolor{keyword}{static}\ \mbox{\hyperlink{structradar__parser__t}{radar\_parser\_t}}\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}};\ \textcolor{comment}{/*\ Unique\ instance\ —\ module\ singulier\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00058}00058\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00059}00059\ \textcolor{comment}{\ *\ parse\_tinyframe\ (interne)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00060}00060\ \textcolor{comment}{\ *\ @brief\ Tente\ de\ décoder\ une\ trame\ TinyFrame\ dans\ le\ buffer.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00061}00061\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00062}00062\ \textcolor{comment}{\ *\ Si\ une\ trame\ valide\ est\ trouvée,\ met\ à\ jour\ s\_parser.last\_data.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00063}00063\ \textcolor{comment}{\ *\ Consomme\ les\ octets\ traités\ du\ buffer\ (glissement).}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00064}00064\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00065}00065\ \textcolor{comment}{\ *\ @return\ true\ si\ une\ trame\ a\ été\ décodée.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00066}00066\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00067}\mbox{\hyperlink{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}{00067}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}{parse\_tinyframe}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00068}00068\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00069}00069\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ <\ \mbox{\hyperlink{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}{TF\_MIN\_FRAME\_LEN}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00071}00071\ \ \ \ \ \textcolor{comment}{/*\ Recherche\ du\ SOF\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00072}00072\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ sof\_pos\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{while}\ (sof\_pos\ <\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ \&\&\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[sof\_pos]\ !=\ \mbox{\hyperlink{hw__diag_8c_ac972a7bb011724bcbd6b445b9a6fef2a}{TF\_SOF}})\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00074}00074\ \ \ \ \ \ \ \ \ sof\_pos++;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00075}00075\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00077}00077\ \ \ \ \ \textcolor{keywordflow}{if}\ (sof\_pos\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Supprimer\ les\ octets\ avant\ le\ SOF\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00079}00079\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ -\/=\ sof\_pos;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00080}00080\ \ \ \ \ \ \ \ \ memmove(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf,\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ sof\_pos,\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00083}00083\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ <\ \mbox{\hyperlink{radar__driver_8c_a382fbe3da3ead3519193aa1b0618e3e3}{TF\_MIN\_FRAME\_LEN}})\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00085}00085\ \ \ \ \ \textcolor{comment}{/*\ Décodage\ du\ header\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00086}00086\ \ \ \ \ uint16\_t\ type\ =\ ((uint16\_t)\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[1]\ <<\ 8)\ |\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[2];}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00087}00087\ \ \ \ \ uint8\_t\ \ plen\ =\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[3];}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00089}00089\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ de\ la\ longueur\ totale\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ frame\_len\ =\ \mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\_HEADER\_LEN}}\ +\ plen\ +\ \mbox{\hyperlink{radar__driver_8c_a638e37cd9e69ad4ca8f82c56f5aba5ca}{TF\_FOOTER\_LEN}};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{if}\ (frame\_len\ >\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf))\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Trame\ incohérente\ —\ resynchronisation\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00093}00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00094}00094\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00095}00095\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00097}00097\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ <\ frame\_len)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{/*\ Trame\ incomplète\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00099}00099\ \ \ \ \ \textcolor{comment}{/*\ Vérification\ EOF\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\_HEADER\_LEN}}\ +\ plen]\ !=\ \mbox{\hyperlink{radar__driver_8c_a73c9acaba0709da57963b20403746481}{TF\_EOF}})\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ EOF\ invalide\ :\ sauter\ d'un\ octet\ et\ réessayer\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ memmove(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf,\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ 1,\ -\/-\/\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00104}00104\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00106}00106\ \ \ \ \ \textcolor{comment}{/*\ Extraction\ des\ données\ selon\ le\ type\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00107}00107\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ *payload\ =\ \&\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf[\mbox{\hyperlink{radar__driver_8c_a44c428b23f52ab71e3060e427cb4ffc7}{TF\_HEADER\_LEN}}];}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00108}00108\ \ \ \ \ \textcolor{keywordtype}{bool}\ decoded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{switch}\ (type)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{radar__driver_8c_a6035d82d95769dda5c4f56e68aafb02d}{TF\_TYPE\_BREATH}}:}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plen\ >=\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.breath\_rate\_bpm\ =}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(((uint16\_t)payload[0]\ <<\ 8)\ |\ payload[1]);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.presence\ =\ (\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.breath\_rate\_bpm\ >\ 0);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decoded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Respiration\ :\ \%u\ bpm"{}},}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.breath\_rate\_bpm);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{radar__driver_8c_a279ac4a1e69cc4f5aa2fd1e365242ec9}{TF\_TYPE\_HEART}}:}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plen\ >=\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.heart\_rate\_bpm\ =}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(((uint16\_t)payload[0]\ <<\ 8)\ |\ payload[1]);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decoded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Cardio\ :\ \%u\ bpm"{}},}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.heart\_rate\_bpm);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{radar__driver_8c_a25c14416760a4a7b05818aa819d4221f}{TF\_TYPE\_DISTANCE}}:}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (plen\ >=\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.target\_distance\_mm\ =}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(((uint16\_t)payload[0]\ <<\ 8)\ |\ payload[1]);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decoded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGD(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Distance\ :\ \%u\ mm"{}},}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.target\_distance\_mm);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00141}00141\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGV(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Type\ TinyFrame\ inconnu\ :\ 0x\%04X"{}},\ type);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00145}00145\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00146}00146\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{if}\ (decoded)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data.timestamp\_us\ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00149}00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.updated\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00150}00150\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00152}00152\ \ \ \ \ \textcolor{comment}{/*\ Consommer\ la\ trame\ du\ buffer\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00153}00153\ \ \ \ \ memmove(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf,}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ frame\_len,}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ -\/\ frame\_len);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00156}00156\ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ -\/=\ frame\_len;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{return}\ decoded;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00159}00159\ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00161}00161\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00162}00162\ \textcolor{comment}{\ *\ radar\_driver\_init}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00163}00163\ \textcolor{comment}{\ *\ @brief\ Réinitialise\ l'état\ du\ parser\ TinyFrame.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00164}00164\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00165}00165\ \textcolor{comment}{\ *\ Le\ driver\ UART\ est\ déjà\ installé\ par\ hw\_diag\_run().}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00166}00166\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00167}00167\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ toujours.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00168}00168\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00169}\mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{00169}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\_driver\_init}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00170}00170\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00171}00171\ \ \ \ \ memset(\&\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}));}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00172}00172\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Parser\ TinyFrame\ LD6002\ initialisé\ (UART\%d,\ \%d\ bauds)"{}},}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{UART\_PORT}},\ 1382400);}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00175}00175\ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00177}00177\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00178}00178\ \textcolor{comment}{\ *\ radar\_driver\_poll}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00179}00179\ \textcolor{comment}{\ *\ @brief\ Lit\ les\ octets\ UART\ disponibles\ et\ tente\ de\ décoder\ une\ trame.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00180}00180\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00181}00181\ \textcolor{comment}{\ *\ Non\ bloquant\ :\ timeout\ =\ 0\ (retourne\ immédiatement\ si\ rien\ à\ lire).}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00182}00182\ \textcolor{comment}{\ *\ Appelé\ depuis\ la\ boucle\ de\ Task\_Sensor\_Acq.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00183}00183\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00184}00184\ \textcolor{comment}{\ *\ @param\ out\ Pointeur\ vers\ radar\_data\_t\ à\ mettre\ à\ jour\ si\ nouvelle\ trame.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00185}00185\ \textcolor{comment}{\ *\ @return\ true\ si\ de\ nouvelles\ données\ ont\ été\ décodées.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00186}00186\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00187}\mbox{\hyperlink{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c}{00187}}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{radar__driver_8c_ac327c41337b50efe73de8b91c2df089c}{radar\_driver\_poll}}(\mbox{\hyperlink{structradar__data__t}{radar\_data\_t}}\ *out)}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00188}00188\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00189}00189\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ non\ bloquante\ des\ octets\ disponibles\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00190}00190\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ available\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf)\ -\/\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00191}00191\ \ \ \ \ \textcolor{keywordflow}{if}\ (available\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ read\ =\ uart\_read\_bytes(\mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{UART\_PORT}},}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.buf\ +\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len,}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ available,}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \textcolor{comment}{/*\ timeout\ =\ 0\ ms,\ non\ bloquant\ */});}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00196}00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (read\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.len\ +=\ (size\_t)read;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00199}00199\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00201}00201\ \ \ \ \ \textcolor{comment}{/*\ Tentative\ de\ décodage\ (peut\ trouver\ plusieurs\ trames)\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00202}00202\ \ \ \ \ \textcolor{keywordtype}{bool}\ found\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00203}00203\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{radar__driver_8c_ab351bde146955f60d317c50d61e30b8b}{parse\_tinyframe}}())\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00204}00204\ \ \ \ \ \ \ \ \ found\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00205}00205\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00206}00206\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00207}00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (found\ \&\&\ out)\ \{}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00208}00208\ \ \ \ \ \ \ \ \ *out\ =\ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.last\_data;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00209}00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}.updated\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00210}00210\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00211}00211\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00212}00212\ \ \ \ \ \textcolor{keywordflow}{return}\ found;}
+\DoxyCodeLine{\Hypertarget{radar__driver_8c_source_l00213}00213\ \}}
+
+\end{DoxyCode}

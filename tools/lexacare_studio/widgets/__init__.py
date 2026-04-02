@@ -1,0 +1,1 @@
+"""Lexacare Studio — Widgets PyQtGraph."""

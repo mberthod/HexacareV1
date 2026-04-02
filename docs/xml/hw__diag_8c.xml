@@ -1,0 +1,1288 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="hw__diag_8c" kind="file" language="C++">
+    <compoundname>hw_diag.c</compoundname>
+    <includes refid="hw__diag_8h" local="yes">hw_diag.h</includes>
+    <includes refid="lexacare__config_8h" local="yes">lexacare_config.h</includes>
+    <includes refid="pins__config_8h" local="yes">pins_config.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includes local="yes">driver/i2c_master.h</includes>
+    <includes local="yes">driver/spi_master.h</includes>
+    <includes local="yes">driver/uart.h</includes>
+    <includes local="yes">driver/gpio.h</includes>
+    <includes local="yes">cJSON.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="no">string.h</includes>
+    <includes local="no">stdio.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>components/hw_diag/hw_diag.c</label>
+        <link refid="hw__diag_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>hw_diag.h</label>
+        <link refid="hw__diag_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>lexacare_config.h</label>
+        <link refid="lexacare__config_8h"/>
+      </node>
+      <node id="13">
+        <label>pins_config.h</label>
+        <link refid="pins__config_8h"/>
+      </node>
+      <node id="3">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>cJSON.h</label>
+      </node>
+      <node id="16">
+        <label>driver/gpio.h</label>
+      </node>
+      <node id="11">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="9">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="15">
+        <label>driver/uart.h</label>
+      </node>
+      <node id="10">
+        <label>esp_err.h</label>
+      </node>
+      <node id="14">
+        <label>esp_log.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="8">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="18">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="5">
+        <label>stdbool.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+      <node id="20">
+        <label>stdio.h</label>
+      </node>
+      <node id="19">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" prot="public" static="no">
+        <name>I2C_BUS_FREQ_HZ</name>
+        <initializer>400000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>400 kHz pour le PCA9555 </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="31" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="31" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" compoundref="hw__diag_8c" startline="96" endline="117">diag_init_i2c_bus</referencedby>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" prot="public" static="no">
+        <name>I2C_TIMEOUT_MS</name>
+        <initializer>10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="32" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="32" bodyend="-1"/>
+        <referencedby refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" compoundref="hdc1080__driver_8c" startline="72" endline="119">hdc1080_init</referencedby>
+        <referencedby refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" compoundref="hw__diag_8c" startline="217" endline="230">pca9555_write_reg</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" compoundref="hdc1080__driver_8c" startline="54" endline="67">read_bytes</referencedby>
+        <referencedby refid="bme280__driver_8c_1a8ebca364a0b07ee06c923efb00605bb1" compoundref="bme280__driver_8c" startline="57" endline="64">read_regs</referencedby>
+        <referencedby refid="bme280__driver_8c_1a9ddfe7eb88c71695207c1b670c57ac1c" compoundref="bme280__driver_8c" startline="51" endline="55">write_reg</referencedby>
+        <referencedby refid="hdc1080__driver_8c_1aec3bb76ffc0e6e65ff45ed34f55f3d8a" compoundref="hdc1080__driver_8c" startline="40" endline="49">write_register</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1af1f103c89b89bf816b06feb44aa4f02b" prot="public" static="no">
+        <name>LIDAR_LPN_DELAY_MS</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Délai après LPn=1 avant test SPI </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="33" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="33" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1a312094fb888f3d236cf6e006fa3c7ba7" prot="public" static="no">
+        <name>LIDAR_SPI_FREQ_HZ</name>
+        <initializer>(8 * 1000 * 1000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>8 MHz (max 10 MHz VL53L8CX) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="38" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="38" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1adb789f5997051b9571156f1bb3aebcf0" prot="public" static="no">
+        <name>LIDAR_SPI_MAX_XFER</name>
+        <initializer>(4096 + 2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="39" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="39" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1aed6921a12f142ab8c047bb8ceb66df24" prot="public" static="no">
+        <name>VL53L8CX_REG_MODEL_ID</name>
+        <initializer>0x7FFF</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="42" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1a37b0bea1b767942ed1805a599c10f547" prot="public" static="no">
+        <name>VL53L8CX_MODEL_ID</name>
+        <initializer>0xF0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="43" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" prot="public" static="no">
+        <name>RADAR_UART_PORT</name>
+        <initializer>UART_NUM_2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="56" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="56" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1a302dbd1e40e02c6740a8fc2a6adbad74" prot="public" static="no">
+        <name>RADAR_BAUD_RATE</name>
+        <initializer>1382400</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="57" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="57" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1adc96b85363aae03cea938220c12a0940" prot="public" static="no">
+        <name>RADAR_RX_BUF_SIZE</name>
+        <initializer>512</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="58" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="58" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1a5f59b14d6bd04d48eb3b0210576359ff" prot="public" static="no">
+        <name>RADAR_DETECT_TIMEOUT_MS</name>
+        <initializer>2000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="59" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="59" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" prot="public" static="no">
+        <name>TF_SOF</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>TinyFrame Start Of Frame </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="60" column="9" bodyfile="components/hw_diag/hw_diag.c" bodystart="60" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" compoundref="hw__diag_8c" startline="417" endline="466">diag_test_radar</referencedby>
+        <referencedby refid="radar__driver_8c_1ab351bde146955f60d317c50d61e30b8b" compoundref="radar__driver_8c" startline="67" endline="159">parse_tinyframe</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="hw__diag_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;hw_diag&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="26" column="19" bodyfile="components/hw_diag/hw_diag.c" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int s_ncs_pins[LIDAR_NUM_FRONT]</definition>
+        <argsstring>[LIDAR_NUM_FRONT]</argsstring>
+        <name>s_ncs_pins</name>
+        <initializer>= {
+    <ref refid="pins__config_8h_1a8d4bf531079d2f0cbad53326ea8e6199" kindref="member">PIN_LIDAR_NCS0</ref>,
+    <ref refid="pins__config_8h_1a01c5ad844f2c0ec12343af1c16cacf5d" kindref="member">PIN_LIDAR_NCS1</ref>,
+    <ref refid="pins__config_8h_1ae6e653a6750b07505a4f21a350cc7c7d" kindref="member">PIN_LIDAR_NCS2</ref>,
+    <ref refid="pins__config_8h_1a7b82939fa5f89f8a18c272ff73b838f3" kindref="member">PIN_LIDAR_NCS3</ref>,
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="46" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="46" bodyend="51"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+        <referencedby refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" compoundref="hw__diag_8c" startline="475" endline="499">diag_print_json_report</referencedby>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" prot="public" static="yes" mutable="no">
+        <type>const uint8_t</type>
+        <definition>const uint8_t s_pca_lpn_bit[LIDAR_NUM_FRONT]</definition>
+        <argsstring>[LIDAR_NUM_FRONT]</argsstring>
+        <name>s_pca_lpn_bit</name>
+        <initializer>= {
+    <ref refid="pins__config_8h_1a5a023f9847dba2d76fa779ab7a53483f" kindref="member">PCA9555_BIT_LPN1</ref>,  
+    <ref refid="pins__config_8h_1aed877455bd33d6ad38b5c12b5e079bbf" kindref="member">PCA9555_BIT_LPN2</ref>,  
+    <ref refid="pins__config_8h_1a868519ce99c724b706ed64545cd9af28" kindref="member">PCA9555_BIT_LPN3</ref>,  
+    <ref refid="pins__config_8h_1a7ef0d0acf832fc5efdda51daac987e35" kindref="member">PCA9555_BIT_LPN4</ref>,  
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="67" column="22" bodyfile="components/hw_diag/hw_diag.c" bodystart="67" bodyend="72"/>
+        <referencedby refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" compoundref="hw__diag_8c" startline="312" endline="326">pca9555_set_lpn</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" prot="public" static="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t s_pca_out</definition>
+        <argsstring></argsstring>
+        <name>s_pca_out</name>
+        <initializer>= 0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="75" column="16" bodyfile="components/hw_diag/hw_diag.c" bodystart="75" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+        <referencedby refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" compoundref="hw__diag_8c" startline="312" endline="326">pca9555_set_lpn</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" prot="public" static="yes" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t s_pca1_out</definition>
+        <argsstring></argsstring>
+        <name>s_pca1_out</name>
+        <initializer>= 0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="76" column="16" bodyfile="components/hw_diag/hw_diag.c" bodystart="76" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" compoundref="hw__diag_8c" startline="585" endline="606">hw_diag_pca9555_set_power</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" prot="public" static="yes" mutable="no">
+        <type>i2c_master_bus_handle_t</type>
+        <definition>i2c_master_bus_handle_t s_pca_bus</definition>
+        <argsstring></argsstring>
+        <name>s_pca_bus</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="79" column="32" bodyfile="components/hw_diag/hw_diag.c" bodystart="79" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" compoundref="hw__diag_8c" startline="585" endline="606">hw_diag_pca9555_set_power</referencedby>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" prot="public" static="yes" mutable="no">
+        <type>i2c_master_dev_handle_t</type>
+        <definition>i2c_master_dev_handle_t s_pca_dev</definition>
+        <argsstring></argsstring>
+        <name>s_pca_dev</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="84" column="32" bodyfile="components/hw_diag/hw_diag.c" bodystart="84" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+        <referencedby refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" compoundref="hw__diag_8c" startline="217" endline="230">pca9555_write_reg</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t diag_init_i2c_bus</definition>
+        <argsstring>(i2c_port_num_t port, int sda_pin, int scl_pin, i2c_master_bus_handle_t *handle)</argsstring>
+        <name>diag_init_i2c_bus</name>
+        <param>
+          <type>i2c_port_num_t</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sda_pin</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>scl_pin</declname>
+        </param>
+        <param>
+          <type>i2c_master_bus_handle_t *</type>
+          <declname>handle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="96" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="96" bodyend="117"/>
+        <references refid="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" compoundref="hw__diag_8c" startline="31">I2C_BUS_FREQ_HZ</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" compoundref="hw__diag_8c" startline="575" endline="580">hw_diag_init_sensor_bus</referencedby>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t diag_init_spi_lidars</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>diag_init_spi_lidars</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="129" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="129" bodyend="170"/>
+        <references refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" compoundref="system__types_8h" startline="46">LIDAR_NUM_FRONT</references>
+        <references refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" compoundref="system__types_8h" startline="234">sys_context_t::lidar_spi</references>
+        <references refid="hw__diag_8c_1a312094fb888f3d236cf6e006fa3c7ba7" compoundref="hw__diag_8c" startline="38">LIDAR_SPI_FREQ_HZ</references>
+        <references refid="pins__config_8h_1a8e3e8f37be6335b7b08ffabb49f72b7d" compoundref="pins__config_8h" startline="69">LIDAR_SPI_HOST</references>
+        <references refid="hw__diag_8c_1adb789f5997051b9571156f1bb3aebcf0" compoundref="hw__diag_8c" startline="39">LIDAR_SPI_MAX_XFER</references>
+        <references refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" compoundref="pins__config_8h" startline="70">PIN_LIDAR_CLK</references>
+        <references refid="pins__config_8h_1a7206f7c59a37c0d551f6ae396e7ddd19" compoundref="pins__config_8h" startline="72">PIN_LIDAR_MISO</references>
+        <references refid="pins__config_8h_1a591add909d8fa618c6c75d7375c5e0b6" compoundref="pins__config_8h" startline="71">PIN_LIDAR_MOSI</references>
+        <references refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" compoundref="hw__diag_8c" startline="46" endline="51">s_ncs_pins</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a1f24dd93c787375ee15df4c7aec52887" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool diag_spi_ping_lidar</definition>
+        <argsstring>(spi_device_handle_t spi)</argsstring>
+        <name>diag_spi_ping_lidar</name>
+        <param>
+          <type>spi_device_handle_t</type>
+          <declname>spi</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="183" column="13" bodyfile="components/hw_diag/hw_diag.c" bodystart="183" bodyend="203"/>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t pca9555_write_reg</definition>
+        <argsstring>(i2c_master_bus_handle_t bus, uint8_t reg, uint8_t val)</argsstring>
+        <name>pca9555_write_reg</name>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>bus</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>reg</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="217" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="217" bodyend="230"/>
+        <references refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" compoundref="hw__diag_8c" startline="32">I2C_TIMEOUT_MS</references>
+        <references refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" compoundref="hw__diag_8c" startline="84">s_pca_dev</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" compoundref="hw__diag_8c" startline="585" endline="606">hw_diag_pca9555_set_power</referencedby>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+        <referencedby refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" compoundref="hw__diag_8c" startline="312" endline="326">pca9555_set_lpn</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t pca9555_init</definition>
+        <argsstring>(i2c_master_bus_handle_t bus)</argsstring>
+        <name>pca9555_init</name>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>bus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="242" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="242" bodyend="301"/>
+        <references refid="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" compoundref="hw__diag_8c" startline="31">I2C_BUS_FREQ_HZ</references>
+        <references refid="pins__config_8h_1a5bb7081ed093edf6f40e3681b80492a2" compoundref="pins__config_8h" startline="112">PCA9555_CFG0_MASK</references>
+        <references refid="pins__config_8h_1a6936240ee95c2cae37e50f3fa0a14b76" compoundref="pins__config_8h" startline="124">PCA9555_CFG1_MASK</references>
+        <references refid="pins__config_8h_1abc995c26ee634eb7c2600e8bf733bd17" compoundref="pins__config_8h" startline="83">PCA9555_I2C_ADDR</references>
+        <references refid="pins__config_8h_1adae3362117b6490d042b16c0ab603d49" compoundref="pins__config_8h" startline="88">PCA9555_REG_CONFIG_0</references>
+        <references refid="pins__config_8h_1ac84f3abe5f9291532786a1e968e530a8" compoundref="pins__config_8h" startline="89">PCA9555_REG_CONFIG_1</references>
+        <references refid="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" compoundref="pins__config_8h" startline="86">PCA9555_REG_OUTPUT_0</references>
+        <references refid="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" compoundref="pins__config_8h" startline="87">PCA9555_REG_OUTPUT_1</references>
+        <references refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" compoundref="hw__diag_8c" startline="217" endline="230">pca9555_write_reg</references>
+        <references refid="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" compoundref="pins__config_8h" startline="49">PIN_I2C0_SCL</references>
+        <references refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" compoundref="pins__config_8h" startline="48">PIN_I2C0_SDA</references>
+        <references refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" compoundref="hw__diag_8c" startline="84">s_pca_dev</references>
+        <references refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" compoundref="hw__diag_8c" startline="75">s_pca_out</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>static esp_err_t pca9555_set_lpn</definition>
+        <argsstring>(i2c_master_bus_handle_t bus, int idx, bool active)</argsstring>
+        <name>pca9555_set_lpn</name>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>bus</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>active</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="312" column="18" bodyfile="components/hw_diag/hw_diag.c" bodystart="312" bodyend="326"/>
+        <references refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" compoundref="system__types_8h" startline="46">LIDAR_NUM_FRONT</references>
+        <references refid="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" compoundref="pins__config_8h" startline="86">PCA9555_REG_OUTPUT_0</references>
+        <references refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" compoundref="hw__diag_8c" startline="217" endline="230">pca9555_write_reg</references>
+        <references refid="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" compoundref="hw__diag_8c" startline="67" endline="72">s_pca_lpn_bit</references>
+        <references refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" compoundref="hw__diag_8c" startline="75">s_pca_out</references>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a5be005ad0232005e10663dc756467408" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void diag_scan_lidars</definition>
+        <argsstring>(sys_context_t *ctx, i2c_master_bus_handle_t pca_bus)</argsstring>
+        <name>diag_scan_lidars</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type>i2c_master_bus_handle_t</type>
+          <declname>pca_bus</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="340" column="13" bodyfile="components/hw_diag/hw_diag.c" bodystart="340" bodyend="409"/>
+        <references refid="hw__diag_8c_1a1f24dd93c787375ee15df4c7aec52887" compoundref="hw__diag_8c" startline="183" endline="203">diag_spi_ping_lidar</references>
+        <references refid="hw__diag_8c_1af1f103c89b89bf816b06feb44aa4f02b" compoundref="hw__diag_8c" startline="33">LIDAR_LPN_DELAY_MS</references>
+        <references refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" compoundref="system__types_8h" startline="46">LIDAR_NUM_FRONT</references>
+        <references refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" compoundref="system__types_8h" startline="248">sys_context_t::lidar_ok</references>
+        <references refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" compoundref="system__types_8h" startline="234">sys_context_t::lidar_spi</references>
+        <references refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</references>
+        <references refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" compoundref="hw__diag_8c" startline="312" endline="326">pca9555_set_lpn</references>
+        <references refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" compoundref="pins__config_8h" startline="70">PIN_LIDAR_CLK</references>
+        <references refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" compoundref="hw__diag_8c" startline="46" endline="51">s_ncs_pins</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void diag_test_radar</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>diag_test_radar</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="417" column="13" bodyfile="components/hw_diag/hw_diag.c" bodystart="417" bodyend="466"/>
+        <references refid="pins__config_8h_1ab13d757959922bf205d6448862bd4e12" compoundref="pins__config_8h" startline="129">PIN_RADAR_RX</references>
+        <references refid="pins__config_8h_1ad7bec6e9767c77bebd8419d6f3329be2" compoundref="pins__config_8h" startline="130">PIN_RADAR_TX</references>
+        <references refid="hw__diag_8c_1a302dbd1e40e02c6740a8fc2a6adbad74" compoundref="hw__diag_8c" startline="57">RADAR_BAUD_RATE</references>
+        <references refid="hw__diag_8c_1a5f59b14d6bd04d48eb3b0210576359ff" compoundref="hw__diag_8c" startline="59">RADAR_DETECT_TIMEOUT_MS</references>
+        <references refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" compoundref="system__types_8h" startline="249">sys_context_t::radar_ok</references>
+        <references refid="hw__diag_8c_1adc96b85363aae03cea938220c12a0940" compoundref="hw__diag_8c" startline="58">RADAR_RX_BUF_SIZE</references>
+        <references refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" compoundref="hw__diag_8c" startline="56">RADAR_UART_PORT</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" compoundref="hw__diag_8c" startline="60">TF_SOF</references>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void diag_print_json_report</definition>
+        <argsstring>(const sys_context_t *ctx, hw_diag_result_t result)</argsstring>
+        <name>diag_print_json_report</name>
+        <param>
+          <type>const <ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <param>
+          <type><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref></type>
+          <declname>result</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/hw_diag/hw_diag.c" line="475" column="13" bodyfile="components/hw_diag/hw_diag.c" bodystart="475" bodyend="499"/>
+        <references refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" compoundref="system__types_8h" startline="46">LIDAR_NUM_FRONT</references>
+        <references refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" compoundref="system__types_8h" startline="248">sys_context_t::lidar_ok</references>
+        <references refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" compoundref="system__types_8h" startline="249">sys_context_t::radar_ok</references>
+        <references refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" compoundref="hw__diag_8c" startline="46" endline="51">s_ncs_pins</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+      </memberdef>
+      <member refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kind="function"><name>hw_diag_run</name></member>
+      <member refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kind="function"><name>hw_diag_init_sensor_bus</name></member>
+      <member refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kind="function"><name>hw_diag_pca9555_set_power</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Diagnostic matériel au démarrage — I2C LIDAR + UART Radar. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Exécuté avant les tâches FreeRTOS dans <ref refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" kindref="member">app_main()</ref>. Initialise les bus I2C partagés et les stocke dans <ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> pour réutilisation par sensor_acq sans réinitialisation. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>hw_diag.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_hw_diag</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Diagnostic<sp/>matériel<sp/>au<sp/>démarrage<sp/>—<sp/>I2C<sp/>LIDAR<sp/>+<sp/>UART<sp/>Radar.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Exécuté<sp/>avant<sp/>les<sp/>tâches<sp/>FreeRTOS<sp/>dans<sp/>app_main().</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Initialise<sp/>les<sp/>bus<sp/>I2C<sp/>partagés<sp/>et<sp/>les<sp/>stocke<sp/>dans<sp/>sys_context_t</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>pour<sp/>réutilisation<sp/>par<sp/>sensor_acq<sp/>sans<sp/>réinitialisation.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hw__diag_8h" kindref="compound">hw_diag.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lexacare__config_8h" kindref="compound">lexacare_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pins__config_8h" kindref="compound">pins_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/i2c_master.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/spi_master.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/uart.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/gpio.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;cJSON.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="hw__diag_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;hw_diag&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>Paramètres<sp/>I2C<sp/>(PCA9555<sp/>uniquement)</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_BUS_FREQ_HZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>400000<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>400<sp/>kHz<sp/>pour<sp/>le<sp/>PCA9555<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>I2C_TIMEOUT_MS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="hw__diag_8c_1af1f103c89b89bf816b06feb44aa4f02b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_LPN_DELAY_MS<sp/><sp/><sp/><sp/><sp/><sp/>5<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Délai<sp/>après<sp/>LPn=1<sp/>avant<sp/>test<sp/>SPI<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>Paramètres<sp/>SPI<sp/>LIDAR</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="hw__diag_8c_1a312094fb888f3d236cf6e006fa3c7ba7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_SPI_FREQ_HZ<sp/><sp/><sp/><sp/><sp/><sp/><sp/>(8<sp/>*<sp/>1000<sp/>*<sp/>1000)<sp/></highlight><highlight class="comment">/**&lt;<sp/>8<sp/>MHz<sp/>(max<sp/>10<sp/>MHz<sp/>VL53L8CX)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="hw__diag_8c_1adb789f5997051b9571156f1bb3aebcf0" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_SPI_MAX_XFER<sp/><sp/><sp/><sp/><sp/><sp/>(4096<sp/>+<sp/>2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Registre<sp/>Model<sp/>ID<sp/>du<sp/>VL53L8CX<sp/>(0x7FFF)<sp/>→<sp/>valeur<sp/>attendue<sp/>0xF0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="hw__diag_8c_1aed6921a12f142ab8c047bb8ceb66df24" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_REG_MODEL_ID<sp/><sp/><sp/>0x7FFF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="hw__diag_8c_1a37b0bea1b767942ed1805a599c10f547" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_MODEL_ID<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xF0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Table<sp/>des<sp/>NCS<sp/>GPIO<sp/>par<sp/>index<sp/>capteur<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kindref="member">s_ncs_pins</ref>[<ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a8d4bf531079d2f0cbad53326ea8e6199" kindref="member">PIN_LIDAR_NCS0</ref>,</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a01c5ad844f2c0ec12343af1c16cacf5d" kindref="member">PIN_LIDAR_NCS1</ref>,</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1ae6e653a6750b07505a4f21a350cc7c7d" kindref="member">PIN_LIDAR_NCS2</ref>,</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a7b82939fa5f89f8a18c272ff73b838f3" kindref="member">PIN_LIDAR_NCS3</ref>,</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*<sp/>Paramètres<sp/>UART<sp/>Radar</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56" refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RADAR_UART_PORT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UART_NUM_2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="hw__diag_8c_1a302dbd1e40e02c6740a8fc2a6adbad74" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RADAR_BAUD_RATE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1382400</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="hw__diag_8c_1adc96b85363aae03cea938220c12a0940" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RADAR_RX_BUF_SIZE<sp/><sp/><sp/><sp/><sp/><sp/><sp/>512</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="hw__diag_8c_1a5f59b14d6bd04d48eb3b0210576359ff" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>RADAR_DETECT_TIMEOUT_MS<sp/>2000</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TF_SOF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x01<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>TinyFrame<sp/>Start<sp/>Of<sp/>Frame<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Mapping<sp/>NCS<sp/>array<sp/>index<sp/>→<sp/>masque<sp/>LPn<sp/>PCA9555<sp/>Port<sp/>0.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/><sp/><sp/>index<sp/>0<sp/>→<sp/>NCS0<sp/>(GPIO1)<sp/><sp/>→<sp/>LIDAR<sp/>1<sp/>→<sp/>LPn_1<sp/>=<sp/>IO0.6</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/><sp/><sp/>index<sp/>1<sp/>→<sp/>NCS1<sp/>(GPIO2)<sp/><sp/>→<sp/>LIDAR<sp/>2<sp/>→<sp/>LPn_2<sp/>=<sp/>IO0.5</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/><sp/><sp/>index<sp/>2<sp/>→<sp/>NCS2<sp/>(GPIO42)<sp/>→<sp/>LIDAR<sp/>3<sp/>→<sp/>LPn_3<sp/>=<sp/>IO0.4</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/>*<sp/><sp/><sp/>index<sp/>3<sp/>→<sp/>NCS3<sp/>(GPIO41)<sp/>→<sp/>LIDAR<sp/>4<sp/>→<sp/>LPn_4<sp/>=<sp/>IO0.3<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" kindref="member">s_pca_lpn_bit</ref>[<ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a5a023f9847dba2d76fa779ab7a53483f" kindref="member">PCA9555_BIT_LPN1</ref>,<sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>0<sp/>→<sp/>LIDAR<sp/>1<sp/>→<sp/>IO0.6<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1aed877455bd33d6ad38b5c12b5e079bbf" kindref="member">PCA9555_BIT_LPN2</ref>,<sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>1<sp/>→<sp/>LIDAR<sp/>2<sp/>→<sp/>IO0.5<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a868519ce99c724b706ed64545cd9af28" kindref="member">PCA9555_BIT_LPN3</ref>,<sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>2<sp/>→<sp/>LIDAR<sp/>3<sp/>→<sp/>IO0.4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a7ef0d0acf832fc5efdda51daac987e35" kindref="member">PCA9555_BIT_LPN4</ref>,<sp/><sp/></highlight><highlight class="comment">/*<sp/>index<sp/>3<sp/>→<sp/>LIDAR<sp/>4<sp/>→<sp/>IO0.3<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>État<sp/>courant<sp/>des<sp/>registres<sp/>de<sp/>sortie<sp/>du<sp/>PCA9555<sp/>(Port<sp/>0<sp/>et<sp/>Port<sp/>1)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kindref="member">s_pca_out</ref><sp/><sp/>=<sp/>0x00;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Port<sp/>0<sp/>—<sp/>LPn<sp/>LIDAR<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76" refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" kindref="member">s_pca1_out</ref><sp/>=<sp/>0x00;<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Port<sp/>1<sp/>—<sp/>alimentations<sp/>sous-systèmes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Handle<sp/>PCA9555<sp/>persistant<sp/>(initialisé<sp/>par<sp/>hw_diag_run,<sp/>réutilisé<sp/>ensuite)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>i2c_master_bus_handle_t<sp/><ref refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" kindref="member">s_pca_bus</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Device<sp/>handle<sp/>PCA9555<sp/>—<sp/>créé<sp/>UNE<sp/>SEULE<sp/>FOIS<sp/>dans<sp/>pca9555_init().</highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/>*<sp/>Évite<sp/>d&apos;appeler<sp/>i2c_master_bus_add_device()<sp/>à<sp/>chaque<sp/>écriture,</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/>*<sp/>ce<sp/>qui<sp/>causait<sp/>des<sp/>allocations<sp/>heap<sp/>après<sp/>WiFi<sp/>→<sp/>LoadStoreAlignment.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>i2c_master_dev_handle_t<sp/><ref refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" kindref="member">s_pca_dev</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"><sp/>*<sp/>diag_init_i2c_bus<sp/>(interne)</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>un<sp/>bus<sp/>I2C<sp/>master<sp/>avec<sp/>les<sp/>paramètres<sp/>standard.</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*<sp/>@param<sp/>port<sp/><sp/><sp/><sp/><sp/>Numéro<sp/>de<sp/>port<sp/>I2C<sp/>(I2C_NUM_0<sp/>ou<sp/>I2C_NUM_1).</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/>@param<sp/>sda_pin<sp/><sp/>Broche<sp/>SDA.</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/>@param<sp/>scl_pin<sp/><sp/>Broche<sp/>SCL.</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/>@param<sp/>handle<sp/><sp/><sp/>Pointeur<sp/>vers<sp/>le<sp/>handle<sp/>de<sp/>bus<sp/>à<sp/>remplir.</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" kindref="member">diag_init_i2c_bus</ref>(i2c_port_num_t<sp/>port,</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sda_pin,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>scl_pin,</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i2c_master_bus_handle_t<sp/>*handle)</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>i2c_master_bus_config_t<sp/>cfg<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.clk_source<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>I2C_CLK_SRC_DEFAULT,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.i2c_port<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>port,</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.sda_io_num<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>sda_pin,</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.scl_io_num<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>scl_pin,</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.glitch_ignore_cnt<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>7,</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.flags.enable_internal_pullup<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>i2c_new_master_bus(&amp;cfg,<sp/>handle);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Échec<sp/>création<sp/>bus<sp/>I2C%d<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>port,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Bus<sp/>I2C%d<sp/>initialisé<sp/>(SDA=%d,<sp/>SCL=%d,<sp/>%d<sp/>Hz)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>port,<sp/>sda_pin,<sp/>scl_pin,<sp/><ref refid="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" kindref="member">I2C_BUS_FREQ_HZ</ref>);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/>*<sp/>diag_init_spi_lidars<sp/>(interne)</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>bus<sp/>SPI<sp/>et<sp/>ajoute<sp/>les<sp/>4<sp/>devices<sp/>LIDAR.</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/>*<sp/>Chaque<sp/>LIDAR<sp/>a<sp/>son<sp/>propre<sp/>NCS<sp/>GPIO<sp/>→<sp/>handle<sp/>SPI<sp/>individuel<sp/>stocké</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/>*<sp/>dans<sp/>ctx-&gt;lidar_spi[i]<sp/>pour<sp/>réutilisation<sp/>par<sp/>sensor_acq.</highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Contexte<sp/>système<sp/>(lidar_spi[]<sp/>rempli<sp/>en<sp/>sortie).</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129" refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" kindref="member">diag_init_spi_lidars</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="130"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>spi_bus_config_t<sp/>bus_cfg<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mosi_io_num<sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="pins__config_8h_1a591add909d8fa618c6c75d7375c5e0b6" kindref="member">PIN_LIDAR_MOSI</ref>,</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.miso_io_num<sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="pins__config_8h_1a7206f7c59a37c0d551f6ae396e7ddd19" kindref="member">PIN_LIDAR_MISO</ref>,</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.sclk_io_num<sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" kindref="member">PIN_LIDAR_CLK</ref>,</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.quadwp_io_num<sp/><sp/><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.quadhd_io_num<sp/><sp/><sp/>=<sp/>-1,</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.max_transfer_sz<sp/>=<sp/><ref refid="hw__diag_8c_1adb789f5997051b9571156f1bb3aebcf0" kindref="member">LIDAR_SPI_MAX_XFER</ref>,</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>spi_bus_initialize(<ref refid="pins__config_8h_1a8e3e8f37be6335b7b08ffabb49f72b7d" kindref="member">LIDAR_SPI_HOST</ref>,<sp/>&amp;bus_cfg,<sp/>SPI_DMA_CH_AUTO);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;SPI<sp/>bus<sp/>init<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Bus<sp/>SPI<sp/>LIDAR<sp/>initialisé<sp/>(CLK=%d,<sp/>MOSI=%d,<sp/>MISO=%d,<sp/>%d<sp/>MHz)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" kindref="member">PIN_LIDAR_CLK</ref>,<sp/><ref refid="pins__config_8h_1a591add909d8fa618c6c75d7375c5e0b6" kindref="member">PIN_LIDAR_MOSI</ref>,<sp/><ref refid="pins__config_8h_1a7206f7c59a37c0d551f6ae396e7ddd19" kindref="member">PIN_LIDAR_MISO</ref>,</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a312094fb888f3d236cf6e006fa3c7ba7" kindref="member">LIDAR_SPI_FREQ_HZ</ref><sp/>/<sp/>1000000);</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>spi_device_interface_config_t<sp/>dev_cfg<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.mode<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>3,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>CPOL=1,<sp/>CPHA=1<sp/>(VL53L8CX<sp/>SPI)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.clock_speed_hz<sp/>=<sp/><ref refid="hw__diag_8c_1a312094fb888f3d236cf6e006fa3c7ba7" kindref="member">LIDAR_SPI_FREQ_HZ</ref>,</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.spics_io_num<sp/><sp/><sp/>=<sp/><ref refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kindref="member">s_ncs_pins</ref>[i],<sp/></highlight><highlight class="comment">/*<sp/>NCS<sp/>dédié<sp/>par<sp/>capteur<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.queue_size<sp/><sp/><sp/><sp/><sp/>=<sp/>1,</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ret<sp/>=<sp/>spi_bus_add_device(<ref refid="pins__config_8h_1a8e3e8f37be6335b7b08ffabb49f72b7d" kindref="member">LIDAR_SPI_HOST</ref>,<sp/>&amp;dev_cfg,<sp/>&amp;ctx-&gt;<ref refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" kindref="member">lidar_spi</ref>[i]);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;SPI<sp/>add<sp/>device<sp/>LIDAR[%d]<sp/>(NCS=GPIO%d)<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i,<sp/><ref refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kindref="member">s_ncs_pins</ref>[i],<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR[%d]<sp/>SPI<sp/>device<sp/>ajouté<sp/>(NCS=GPIO%d)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i,<sp/><ref refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kindref="member">s_ncs_pins</ref>[i]);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/>diag_spi_ping_lidar<sp/>(interne)</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Vérifie<sp/>la<sp/>présence<sp/>d&apos;un<sp/>VL53L8CX<sp/>via<sp/>lecture<sp/>du<sp/>Model<sp/>ID.</highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/>*<sp/>Lit<sp/>le<sp/>registre<sp/>0x7FFF<sp/>qui<sp/>doit<sp/>retourner<sp/>0xF0<sp/>si<sp/>le<sp/>capteur<sp/>répond.</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/>*<sp/>En<sp/>STUB<sp/>mode<sp/>(sans<sp/>ULD),<sp/>retourne<sp/>true<sp/>si<sp/>la<sp/>transaction<sp/>SPI<sp/>réussit</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/>*<sp/>et<sp/>que<sp/>MISO<sp/>n&apos;est<sp/>pas<sp/>en<sp/>flottant<sp/>(0xFF<sp/>=<sp/>absent<sp/>probable).</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="180"><highlight class="comment"><sp/>*<sp/>@param<sp/>spi<sp/>Handle<sp/>SPI<sp/>du<sp/>capteur.</highlight></codeline>
+<codeline lineno="181"><highlight class="comment"><sp/>*<sp/>@return<sp/>true<sp/>si<sp/>capteur<sp/>détecté.</highlight></codeline>
+<codeline lineno="182"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183" refid="hw__diag_8c_1a1f24dd93c787375ee15df4c7aec52887" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1a1f24dd93c787375ee15df4c7aec52887" kindref="member">diag_spi_ping_lidar</ref>(spi_device_handle_t<sp/>spi)</highlight></codeline>
+<codeline lineno="184"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lecture<sp/>registre<sp/>0x7FFF<sp/>:<sp/>TX=[0xFF][0xFF][dummy],<sp/>RX=[xx][xx][model_id]</highlight></codeline>
+<codeline lineno="186"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>(bit15=1<sp/>→<sp/>lecture,<sp/>adresse<sp/>0x7FFF<sp/>→<sp/>addr_hi=0x7F|0x80=0xFF,<sp/>addr_lo=0xFF)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>tx[3]<sp/>=<sp/>{0xFF,<sp/>0xFF,<sp/>0x00};</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>rx[3]<sp/>=<sp/>{0x00,<sp/>0x00,<sp/>0x00};</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>spi_transaction_t<sp/>t<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.length<sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(tx)<sp/>*<sp/>8,</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.tx_buffer<sp/>=<sp/>tx,</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rx_buffer<sp/>=<sp/>rx,</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>spi_device_polling_transmit(spi,<sp/>&amp;t);</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>0xFF<sp/>=<sp/>MISO<sp/>flottant<sp/>(absent)<sp/>;<sp/>0xF0<sp/>=<sp/>Model<sp/>ID<sp/>VL53L8CX<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(rx[2]<sp/>!=<sp/>0xFF);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="206"><highlight class="comment"><sp/>*<sp/>pca9555_write_reg<sp/>(interne)</highlight></codeline>
+<codeline lineno="207"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Écrit<sp/>un<sp/>octet<sp/>dans<sp/>un<sp/>registre<sp/>du<sp/>PCA9555D<sp/>via<sp/>I2C.</highlight></codeline>
+<codeline lineno="208"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="209"><highlight class="comment"><sp/>*<sp/>Utilise<sp/>s_pca_dev<sp/>créé<sp/>UNE<sp/>SEULE<sp/>FOIS<sp/>par<sp/>pca9555_init().</highlight></codeline>
+<codeline lineno="210"><highlight class="comment"><sp/>*<sp/>Pas<sp/>d&apos;allocation<sp/>heap<sp/>à<sp/>chaque<sp/>appel<sp/>→<sp/>safe<sp/>après<sp/>WiFi<sp/>init.</highlight></codeline>
+<codeline lineno="211"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="212"><highlight class="comment"><sp/>*<sp/>@param<sp/>bus<sp/><sp/>Ignoré<sp/>(conservé<sp/>pour<sp/>compat.<sp/>—<sp/>utilise<sp/>s_pca_dev).</highlight></codeline>
+<codeline lineno="213"><highlight class="comment"><sp/>*<sp/>@param<sp/>reg<sp/><sp/>Registre<sp/>cible.</highlight></codeline>
+<codeline lineno="214"><highlight class="comment"><sp/>*<sp/>@param<sp/>val<sp/><sp/>Valeur<sp/>à<sp/>écrire.</highlight></codeline>
+<codeline lineno="215"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="216"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217" refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(i2c_master_bus_handle_t<sp/>bus,</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>reg,<sp/>uint8_t<sp/>val)</highlight></codeline>
+<codeline lineno="219"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)bus;<sp/><sp/></highlight><highlight class="comment">/*<sp/>s_pca_dev<sp/>est<sp/>utilisé<sp/>directement<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" kindref="member">s_pca_dev</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;pca9555_write_reg<sp/>:<sp/>device<sp/>non<sp/>initialisé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_INVALID_STATE;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>tx[2]<sp/>=<sp/>{reg,<sp/>val};</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i2c_master_transmit(<ref refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" kindref="member">s_pca_dev</ref>,<sp/>tx,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(tx),</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pdMS_TO_TICKS(<ref refid="hw__diag_8c_1ac8c61bd2fdc391886d8da5c2de78292a" kindref="member">I2C_TIMEOUT_MS</ref>));</highlight></codeline>
+<codeline lineno="230"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="233"><highlight class="comment"><sp/>*<sp/>pca9555_init<sp/>(interne)</highlight></codeline>
+<codeline lineno="234"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>PCA9555D<sp/>:<sp/>Port<sp/>0<sp/>+<sp/>Port<sp/>1<sp/>en<sp/>sortie,<sp/>tout<sp/>à<sp/>0.</highlight></codeline>
+<codeline lineno="235"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="236"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Port<sp/>0<sp/>:<sp/>LPn<sp/>LIDAR<sp/>0–4<sp/>(tous<sp/>à<sp/>0<sp/>=<sp/>reset<sp/>global).</highlight></codeline>
+<codeline lineno="237"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Port<sp/>1<sp/>:<sp/>alimentation<sp/>sous-systèmes<sp/>(tous<sp/>à<sp/>0<sp/>=<sp/>éteints).</highlight></codeline>
+<codeline lineno="238"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="239"><highlight class="comment"><sp/>*<sp/>@param<sp/>bus<sp/><sp/>Handle<sp/>du<sp/>bus<sp/>I2C<sp/>maître.</highlight></codeline>
+<codeline lineno="240"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="241"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" kindref="member">pca9555_init</ref>(i2c_master_bus_handle_t<sp/>bus)</highlight></codeline>
+<codeline lineno="243"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Création<sp/>du<sp/>device<sp/>handle<sp/>PCA9555<sp/>—<sp/>UNE<sp/>SEULE<sp/>FOIS.</highlight></codeline>
+<codeline lineno="245"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Alloué<sp/>ici<sp/>(avant<sp/>WiFi)<sp/>pour<sp/>éviter<sp/>tout<sp/>problème<sp/>de<sp/>heap<sp/>après.</highlight></codeline>
+<codeline lineno="246"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Réutilisé<sp/>par<sp/>pca9555_write_reg()<sp/>sans<sp/>nouvelle<sp/>allocation.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" kindref="member">s_pca_dev</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>i2c_device_config_t<sp/>dev_cfg<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.dev_addr_length<sp/>=<sp/>I2C_ADDR_BIT_LEN_7,</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.device_address<sp/><sp/>=<sp/><ref refid="pins__config_8h_1abc995c26ee634eb7c2600e8bf733bd17" kindref="member">PCA9555_I2C_ADDR</ref>,</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.scl_speed_hz<sp/><sp/><sp/><sp/>=<sp/><ref refid="hw__diag_8c_1adb775a630f484c9f3c0c0568032bb873" kindref="member">I2C_BUS_FREQ_HZ</ref>,</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret_dev<sp/>=<sp/>i2c_master_bus_add_device(bus,<sp/>&amp;dev_cfg,<sp/>&amp;<ref refid="hw__diag_8c_1adbc314c434af2eef73180bf7667f45c0" kindref="member">s_pca_dev</ref>);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret_dev<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>add_device<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret_dev));</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret_dev;</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Port<sp/>0<sp/>---</highlight></codeline>
+<codeline lineno="261"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>IO0.0<sp/>=<sp/>sortie<sp/>(DIST_SHUTDOWN)</highlight></codeline>
+<codeline lineno="262"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>IO0.1,<sp/>IO0.2<sp/>=<sp/>entrée<sp/>Hi-Z<sp/>(GPIO<sp/>radar<sp/>LD6002,<sp/>non<sp/>utilisés)</highlight></codeline>
+<codeline lineno="263"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>IO0.3<sp/>–<sp/>IO0.7<sp/>=<sp/>sorties<sp/>(LPn_4,<sp/>LPn_3,<sp/>LPn_2,<sp/>LPn_1,<sp/>RADAR_LPN)</highlight></codeline>
+<codeline lineno="264"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Config<sp/>:<sp/>0<sp/>=<sp/>sortie<sp/>→<sp/>PCA9555_CFG0_MASK<sp/>=<sp/>0x06<sp/>(bits<sp/>1<sp/>et<sp/>2<sp/>en<sp/>entrée)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(bus,<sp/><ref refid="pins__config_8h_1adae3362117b6490d042b16c0ab603d49" kindref="member">PCA9555_REG_CONFIG_0</ref>,<sp/><ref refid="pins__config_8h_1a5bb7081ed093edf6f40e3681b80492a2" kindref="member">PCA9555_CFG0_MASK</ref>);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>config<sp/>Port0<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Valeur<sp/>initiale<sp/>Port<sp/>0<sp/>:</highlight></codeline>
+<codeline lineno="272"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>IO0.0<sp/>(DIST_SHUTDOWN)<sp/>=<sp/>0<sp/>→<sp/>VL53L0X<sp/>actif<sp/>(non<sp/>mis<sp/>en<sp/>veille)</highlight></codeline>
+<codeline lineno="273"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/>IO0.3–IO0.7<sp/>(LPn<sp/>+<sp/>RADAR_LPN)<sp/>=<sp/>0<sp/>→<sp/>tous<sp/>les<sp/>LIDARs<sp/>en<sp/>reset<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kindref="member">s_pca_out</ref><sp/>=<sp/>0x00;</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(bus,<sp/><ref refid="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" kindref="member">PCA9555_REG_OUTPUT_0</ref>,<sp/><ref refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kindref="member">s_pca_out</ref>);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>output<sp/>Port0<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Port<sp/>1<sp/>---</highlight></codeline>
+<codeline lineno="282"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>IO1.0–IO1.3<sp/>=<sp/>entrée<sp/>Hi-Z<sp/>(non<sp/>utilisés)</highlight></codeline>
+<codeline lineno="283"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>IO1.4–IO1.7<sp/>=<sp/>sorties<sp/>(POWER_FAN,<sp/>POWER_RADAR,<sp/>POWER_MIC,<sp/>POWER_MLX)</highlight></codeline>
+<codeline lineno="284"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Config<sp/>:<sp/>PCA9555_CFG1_MASK<sp/>=<sp/>0x0F<sp/>(bits<sp/>0–3<sp/>en<sp/>entrée,<sp/>bits<sp/>4–7<sp/>en<sp/>sortie)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(bus,<sp/><ref refid="pins__config_8h_1ac84f3abe5f9291532786a1e968e530a8" kindref="member">PCA9555_REG_CONFIG_1</ref>,<sp/><ref refid="pins__config_8h_1a6936240ee95c2cae37e50f3fa0a14b76" kindref="member">PCA9555_CFG1_MASK</ref>);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>config<sp/>Port1<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Valeur<sp/>initiale<sp/>Port<sp/>1<sp/>:<sp/>toutes<sp/>alimentations<sp/>éteintes<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/>ret<sp/>=<sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(bus,<sp/><ref refid="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" kindref="member">PCA9555_REG_OUTPUT_1</ref>,<sp/>0x00);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>output<sp/>Port1<sp/>échoué<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"></highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>initialisé<sp/>(@0x%02X,<sp/>SDA=%d,<sp/>SCL=%d)<sp/>—<sp/>Port0/1<sp/>configurés&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1abc995c26ee634eb7c2600e8bf733bd17" kindref="member">PCA9555_I2C_ADDR</ref>,<sp/><ref refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" kindref="member">PIN_I2C0_SDA</ref>,<sp/><ref refid="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" kindref="member">PIN_I2C0_SCL</ref>);</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="304"><highlight class="comment"><sp/>*<sp/>pca9555_set_lpn<sp/>(interne)</highlight></codeline>
+<codeline lineno="305"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Active<sp/>ou<sp/>désactive<sp/>le<sp/>LPn<sp/>d&apos;un<sp/>capteur<sp/>via<sp/>le<sp/>PCA9555.</highlight></codeline>
+<codeline lineno="306"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="307"><highlight class="comment"><sp/>*<sp/>@param<sp/>bus<sp/><sp/><sp/><sp/>Handle<sp/>du<sp/>bus<sp/>I2C_NUM_0.</highlight></codeline>
+<codeline lineno="308"><highlight class="comment"><sp/>*<sp/>@param<sp/>idx<sp/><sp/><sp/><sp/>Index<sp/>du<sp/>capteur<sp/>(1–4).</highlight></codeline>
+<codeline lineno="309"><highlight class="comment"><sp/>*<sp/>@param<sp/>active<sp/>true<sp/>→<sp/>LPn=1<sp/>(actif),<sp/>false<sp/>→<sp/>LPn=0<sp/>(reset).</highlight></codeline>
+<codeline lineno="310"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>succès.</highlight></codeline>
+<codeline lineno="311"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312" refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>esp_err_t<sp/><ref refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" kindref="member">pca9555_set_lpn</ref>(i2c_master_bus_handle_t<sp/>bus,</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>active)</highlight></codeline>
+<codeline lineno="314"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>idx<sp/>est<sp/>un<sp/>index<sp/>tableau<sp/>(0<sp/>=<sp/>LIDAR<sp/>1<sp/>hardware,<sp/>3<sp/>=<sp/>LIDAR<sp/>4<sp/>hardware)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(idx<sp/>&lt;<sp/>0<sp/>||<sp/>idx<sp/>&gt;=<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_INVALID_ARG;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(active)<sp/>{</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kindref="member">s_pca_out</ref><sp/>|=<sp/><sp/><ref refid="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" kindref="member">s_pca_lpn_bit</ref>[idx];</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kindref="member">s_pca_out</ref><sp/>&amp;=<sp/><ref refid="hw__diag_8c_1acd1c114a8ccfee3dd8649d0b00fedd9e" kindref="member">~s_pca_lpn_bit</ref>[idx];</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(bus,<sp/><ref refid="pins__config_8h_1af865853dc8aa1041dc760a691dae54d8" kindref="member">PCA9555_REG_OUTPUT_0</ref>,<sp/><ref refid="hw__diag_8c_1ad6445d4720fa63cc66188fedf5796e2d" kindref="member">s_pca_out</ref>);</highlight></codeline>
+<codeline lineno="326"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="329"><highlight class="comment"><sp/>*<sp/>diag_scan_lidars<sp/>(interne)</highlight></codeline>
+<codeline lineno="330"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Active<sp/>les<sp/>LIDARs<sp/>un<sp/>par<sp/>un<sp/>via<sp/>LPn<sp/>(PCA9555)<sp/>et<sp/>les<sp/>teste<sp/>en<sp/>SPI.</highlight></codeline>
+<codeline lineno="331"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="332"><highlight class="comment"><sp/>*<sp/>Tous<sp/>les<sp/>LPn<sp/>sont<sp/>gérés<sp/>par<sp/>le<sp/>PCA9555<sp/>:</highlight></codeline>
+<codeline lineno="333"><highlight class="comment"><sp/>*<sp/><sp/><sp/>LIDAR<sp/>0<sp/>:<sp/>IO7,<sp/>carte<sp/>radar<sp/>—<sp/>non<sp/>connecté,<sp/>ignoré.</highlight></codeline>
+<codeline lineno="334"><highlight class="comment"><sp/>*<sp/><sp/><sp/>LIDAR<sp/>1–3<sp/>:<sp/>IO3/IO5/IO4.</highlight></codeline>
+<codeline lineno="335"><highlight class="comment"><sp/>*<sp/>Pas<sp/>de<sp/>réassignation<sp/>d&apos;adresse<sp/>:<sp/>chaque<sp/>capteur<sp/>a<sp/>son<sp/>NCS<sp/>SPI<sp/>dédié.</highlight></codeline>
+<codeline lineno="336"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="337"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/><sp/><sp/><sp/><sp/><sp/>Contexte<sp/>système<sp/>(lidar_ok[]<sp/>rempli<sp/>en<sp/>sortie).</highlight></codeline>
+<codeline lineno="338"><highlight class="comment"><sp/>*<sp/>@param<sp/>pca_bus<sp/><sp/>Handle<sp/>du<sp/>bus<sp/>I2C<sp/>PCA9555<sp/>(NULL<sp/>=<sp/>PCA9555<sp/>non<sp/>disponible).</highlight></codeline>
+<codeline lineno="339"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340" refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" kindref="member">diag_scan_lidars</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx,</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i2c_master_bus_handle_t<sp/>pca_bus)</highlight></codeline>
+<codeline lineno="342"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Initialisation<sp/>PCA9555<sp/>:<sp/>Port<sp/>0<sp/>+<sp/>Port<sp/>1<sp/>en<sp/>sortie,<sp/>tout<sp/>à<sp/>0<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pca_bus)<sp/>{</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" kindref="member">pca9555_init</ref>(pca_bus);</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>inaccessible<sp/>—<sp/>LPn<sp/>non<sp/>contrôlables&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pca_bus<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Validation<sp/>bus<sp/>SPI<sp/>AVANT<sp/>toute<sp/>manipulation<sp/>LPN<sp/>─────────────────</highlight></codeline>
+<codeline lineno="353"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Envoie<sp/>une<sp/>trame<sp/>de<sp/>test<sp/>sur<sp/>NCS0<sp/>(LIDAR<sp/>1)<sp/>pour<sp/>confirmer<sp/>que</highlight></codeline>
+<codeline lineno="354"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>GPIO17<sp/>(CLK)<sp/>est<sp/>bien<sp/>piloté<sp/>par<sp/>le<sp/>contrôleur<sp/>SPI.</highlight></codeline>
+<codeline lineno="355"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Le<sp/>VL53L8CX<sp/>ne<sp/>répondra<sp/>pas<sp/>(LPN=0,<sp/>pas<sp/>de<sp/>firmware<sp/>ULD<sp/>chargé)</highlight></codeline>
+<codeline lineno="356"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>mais<sp/>le<sp/>CLK<sp/>doit<sp/>impérativement<sp/>bouger.<sp/>----------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>tx_test[3]<sp/>=<sp/>{0xFF,<sp/>0xFF,<sp/>0x00};</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/>rx_test[3]<sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>{0};</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>spi_transaction_t<sp/>t_test<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.length<sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(tx_test)<sp/>*<sp/>8,</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.tx_buffer<sp/>=<sp/>tx_test,</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.rx_buffer<sp/>=<sp/>rx_test,</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>spi_test<sp/>=<sp/>spi_device_polling_transmit(ctx-&gt;<ref refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" kindref="member">lidar_spi</ref>[0],<sp/>&amp;t_test);</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(spi_test<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Bus<sp/>SPI<sp/>LIDAR<sp/>validé<sp/>—<sp/>GPIO%d<sp/>(CLK)<sp/>fonctionne&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" kindref="member">PIN_LIDAR_CLK</ref>);</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Bus<sp/>SPI<sp/>LIDAR<sp/>ERREUR<sp/>:<sp/>%s<sp/>—<sp/>vérifier<sp/>GPIO%d&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_to_name(spi_test),<sp/><ref refid="pins__config_8h_1a2880db2b05dd5ee161d7605377e006d5" kindref="member">PIN_LIDAR_CLK</ref>);</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(10));<sp/></highlight><highlight class="comment">/*<sp/>Stabilisation<sp/>après<sp/>reset<sp/>global<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"></highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Scan<sp/>séquentiel<sp/>des<sp/>4<sp/>LIDARs<sp/>(index<sp/>0–3<sp/>=<sp/>LIDAR<sp/>1–4<sp/>hardware)<sp/>---</highlight></codeline>
+<codeline lineno="378"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="379"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>RÈGLE<sp/>:<sp/>le<sp/>ping<sp/>SPI<sp/>est<sp/>TOUJOURS<sp/>exécuté,<sp/>même<sp/>si<sp/>LPN<sp/>échoue.</highlight></codeline>
+<codeline lineno="380"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>La<sp/>CLK<sp/>(GPIO17)<sp/>doit<sp/>bouger<sp/>à<sp/>chaque<sp/>itération<sp/>quelle<sp/>que<sp/>soit</highlight></codeline>
+<codeline lineno="381"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>l&apos;état<sp/>du<sp/>PCA9555.<sp/>Le<sp/>LIDAR<sp/>ne<sp/>répondra<sp/>que<sp/>si<sp/>LPN=1<sp/>ET<sp/>ULD<sp/>chargé.</highlight></codeline>
+<codeline lineno="382"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>-------------------------------------------------------------------*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"></highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Activation<sp/>LPn<sp/>via<sp/>PCA9555<sp/>—<sp/>non<sp/>bloquante<sp/>pour<sp/>le<sp/>SPI<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>lpn_ok<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pca_bus)<sp/>{</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_err_t<sp/>lpn_ret<sp/>=<sp/><ref refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" kindref="member">pca9555_set_lpn</ref>(pca_bus,<sp/>i,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lpn_ret<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lpn_ok<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR%d<sp/>:<sp/>PCA9555<sp/>LPn<sp/>échoué<sp/>(%s)<sp/>—<sp/>SPI<sp/>testé<sp/>quand<sp/>même&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>+<sp/>1,<sp/>esp_err_to_name(lpn_ret));</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"></highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(<ref refid="hw__diag_8c_1af1f103c89b89bf816b06feb44aa4f02b" kindref="member">LIDAR_LPN_DELAY_MS</ref>));</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"></highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Test<sp/>SPI<sp/>inconditionnnel<sp/>—<sp/>génère<sp/>toujours<sp/>des<sp/>impulsions<sp/>sur<sp/>CLK<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>[i]<sp/>=<sp/><ref refid="hw__diag_8c_1a1f24dd93c787375ee15df4c7aec52887" kindref="member">diag_spi_ping_lidar</ref>(ctx-&gt;<ref refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" kindref="member">lidar_spi</ref>[i]);</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"></highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDAR%d<sp/>SPI<sp/>%-6s<sp/>|<sp/>NCS=GPIO%-2d<sp/>|<sp/>LPn=IO0.%d<sp/>(%s)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i<sp/>+<sp/>1,</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>[i]<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;OK&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;absent&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kindref="member">s_ncs_pins</ref>[i],</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>6<sp/>-<sp/>i,<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>LPn1=IO0.6,<sp/>LPn2=IO0.5,<sp/>LPn3=IO0.4,<sp/>LPn4=IO0.3<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>lpn_ok<sp/><sp/><sp/>?<sp/></highlight><highlight class="stringliteral">&quot;actif&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;échec&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="409"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"></highlight></codeline>
+<codeline lineno="411"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="412"><highlight class="comment"><sp/>*<sp/>diag_test_radar<sp/>(interne)</highlight></codeline>
+<codeline lineno="413"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Configure<sp/>UART2<sp/>et<sp/>attend<sp/>une<sp/>trame<sp/>TinyFrame<sp/>valide<sp/>(SOF=0x01).</highlight></codeline>
+<codeline lineno="414"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="415"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Contexte<sp/>système<sp/>(radar_ok<sp/>rempli).</highlight></codeline>
+<codeline lineno="416"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="417" refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" kindref="member">diag_test_radar</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="418"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uart_config_t<sp/>uart_cfg<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.baud_rate<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="hw__diag_8c_1a302dbd1e40e02c6740a8fc2a6adbad74" kindref="member">RADAR_BAUD_RATE</ref>,</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.data_bits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>UART_DATA_8_BITS,</highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.parity<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>UART_PARITY_DISABLE,</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.stop_bits<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>UART_STOP_BITS_1,</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.flow_ctrl<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>UART_HW_FLOWCTRL_DISABLE,</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.source_clk<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>UART_SCLK_DEFAULT,</highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"></highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(uart_driver_install(<ref refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" kindref="member">RADAR_UART_PORT</ref>,</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1adc96b85363aae03cea938220c12a0940" kindref="member">RADAR_RX_BUF_SIZE</ref>,<sp/>0,<sp/>0,<sp/>NULL,<sp/>0));</highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(uart_param_config(<ref refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" kindref="member">RADAR_UART_PORT</ref>,<sp/>&amp;uart_cfg));</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(uart_set_pin(<ref refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" kindref="member">RADAR_UART_PORT</ref>,</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1ad7bec6e9767c77bebd8419d6f3329be2" kindref="member">PIN_RADAR_TX</ref>,<sp/><ref refid="pins__config_8h_1ab13d757959922bf205d6448862bd4e12" kindref="member">PIN_RADAR_RX</ref>,</highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UART_PIN_NO_CHANGE,<sp/>UART_PIN_NO_CHANGE));</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"></highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Attente<sp/>trame<sp/>LD6002<sp/>(%d<sp/>ms,<sp/>%d<sp/>bauds)...&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a5f59b14d6bd04d48eb3b0210576359ff" kindref="member">RADAR_DETECT_TIMEOUT_MS</ref>,<sp/><ref refid="hw__diag_8c_1a302dbd1e40e02c6740a8fc2a6adbad74" kindref="member">RADAR_BAUD_RATE</ref>);</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"></highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>buf[<ref refid="hw__diag_8c_1adc96b85363aae03cea938220c12a0940" kindref="member">RADAR_RX_BUF_SIZE</ref>];</highlight></codeline>
+<codeline lineno="439"><highlight class="normal"><sp/><sp/><sp/><sp/>TickType_t<sp/>deadline<sp/>=<sp/>xTaskGetTickCount()<sp/>+</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pdMS_TO_TICKS(<ref refid="hw__diag_8c_1a5f59b14d6bd04d48eb3b0210576359ff" kindref="member">RADAR_DETECT_TIMEOUT_MS</ref>);</highlight></codeline>
+<codeline lineno="441"><highlight class="normal"><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="442"><highlight class="normal"></highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(xTaskGetTickCount()<sp/>&lt;<sp/>deadline)<sp/>{</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/>uart_read_bytes(<ref refid="hw__diag_8c_1a098eeeae1c46818ccec39da08e9cc393" kindref="member">RADAR_UART_PORT</ref>,<sp/>buf,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(buf),</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pdMS_TO_TICKS(100));</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(len<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="447"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="449"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Recherche<sp/>du<sp/>SOF<sp/>TinyFrame<sp/>(0x01)<sp/>dans<sp/>les<sp/>données<sp/>reçues<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="450"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>len;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(buf[i]<sp/>==<sp/><ref refid="hw__diag_8c_1ac972a7bb011724bcbd6b445b9a6fef2a" kindref="member">TF_SOF</ref><sp/>&amp;&amp;<sp/>(len<sp/>-<sp/>i)<sp/>&gt;=<sp/>5)<sp/>{</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Radar<sp/>LD6002<sp/>:<sp/>trame<sp/>TinyFrame<sp/>détectée<sp/>(%d<sp/>octets<sp/>reçus)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len);</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">goto</highlight><highlight class="normal"><sp/>radar_done;</highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="457"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="459"><highlight class="normal"></highlight></codeline>
+<codeline lineno="460"><highlight class="normal">radar_done:</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ctx-&gt;<ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Radar<sp/>LD6002<sp/>:<sp/>aucune<sp/>trame<sp/>reçue<sp/>dans<sp/>le<sp/>délai<sp/>imparti&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"></highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Le<sp/>driver<sp/>UART<sp/>reste<sp/>installé<sp/>(réutilisé<sp/>par<sp/>radar_driver<sp/>dans<sp/>sensor_acq)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="466"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"></highlight></codeline>
+<codeline lineno="468"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="469"><highlight class="comment"><sp/>*<sp/>diag_print_json_report<sp/>(interne)</highlight></codeline>
+<codeline lineno="470"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Formate<sp/>et<sp/>imprime<sp/>le<sp/>rapport<sp/>de<sp/>diagnostic<sp/>en<sp/>JSON.</highlight></codeline>
+<codeline lineno="471"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="472"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/><sp/><sp/><sp/><sp/>Contexte<sp/>système<sp/>contenant<sp/>les<sp/>résultats.</highlight></codeline>
+<codeline lineno="473"><highlight class="comment"><sp/>*<sp/>@param<sp/>result<sp/><sp/>Masque<sp/>hw_diag_result_t.</highlight></codeline>
+<codeline lineno="474"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="475" refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" kindref="member">diag_print_json_report</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx,</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref><sp/>result)</highlight></codeline>
+<codeline lineno="477"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*root<sp/><sp/><sp/><sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON<sp/>*lidars<sp/><sp/>=<sp/>cJSON_CreateArray();</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"></highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON<sp/>*lidar<sp/>=<sp/>cJSON_CreateObject();</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(lidar,<sp/></highlight><highlight class="stringliteral">&quot;id&quot;</highlight><highlight class="normal">,<sp/>i);</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddBoolToObject(lidar,<sp/></highlight><highlight class="stringliteral">&quot;ok&quot;</highlight><highlight class="normal">,<sp/>ctx-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>[i]);</highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(lidar,<sp/></highlight><highlight class="stringliteral">&quot;ncs_gpio&quot;</highlight><highlight class="normal">,<sp/><ref refid="hw__diag_8c_1a6011d35f982ad13ff939e8292109053c" kindref="member">s_ncs_pins</ref>[i]);</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_AddItemToArray(lidars,<sp/>lidar);</highlight></codeline>
+<codeline lineno="487"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="488"><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddItemToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;lidars&quot;</highlight><highlight class="normal">,<sp/>lidars);</highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddBoolToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;radar_ok&quot;</highlight><highlight class="normal">,<sp/>ctx-&gt;<ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref>);</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_AddNumberToObject(root,<sp/></highlight><highlight class="stringliteral">&quot;result_mask&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)result);</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"></highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*json_str<sp/>=<sp/>cJSON_Print(root);</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(json_str)<sp/>{</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Rapport<sp/>diagnostic<sp/>matériel<sp/>:\n%s&quot;</highlight><highlight class="normal">,<sp/>json_str);</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cJSON_free(json_str);</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/>cJSON_Delete(root);</highlight></codeline>
+<codeline lineno="499"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"></highlight></codeline>
+<codeline lineno="501"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="502"><highlight class="comment"><sp/>*<sp/>hw_diag_run</highlight></codeline>
+<codeline lineno="503"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Point<sp/>d&apos;entrée<sp/>du<sp/>diagnostic<sp/>matériel.</highlight></codeline>
+<codeline lineno="504"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="505"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système<sp/>à<sp/>remplir.</highlight></codeline>
+<codeline lineno="506"><highlight class="comment"><sp/>*<sp/>@return<sp/><sp/><sp/><sp/>Masque<sp/>hw_diag_result_t<sp/>(0<sp/>=<sp/>tout<sp/>OK).</highlight></codeline>
+<codeline lineno="507"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="508" refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" refkind="member"><highlight class="normal"><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref><sp/><ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx)</highlight></codeline>
+<codeline lineno="509"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="510"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;===<sp/>Démarrage<sp/>du<sp/>diagnostic<sp/>matériel<sp/>===&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="511"><highlight class="normal"></highlight></codeline>
+<codeline lineno="512"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Bus<sp/>SPI<sp/>LIDAR<sp/>:<sp/>initialise<sp/>le<sp/>bus<sp/>+<sp/>4<sp/>devices<sp/>NCS<sp/>dédiés<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="513"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" kindref="member">diag_init_spi_lidars</ref>(ctx));</highlight></codeline>
+<codeline lineno="514"><highlight class="normal"></highlight></codeline>
+<codeline lineno="515"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Bus<sp/>I2C<sp/>PCA9555<sp/>:<sp/>PERSISTANT<sp/>(contrôle<sp/>LPn<sp/>+<sp/>alimentation)<sp/>---</highlight></codeline>
+<codeline lineno="516"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Ne<sp/>pas<sp/>détruire<sp/>ce<sp/>bus<sp/>—<sp/>il<sp/>est<sp/>réutilisé<sp/>par<sp/>hw_diag_pca9555_set_power()</highlight></codeline>
+<codeline lineno="517"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>pour<sp/>piloter<sp/>les<sp/>alimentations<sp/>(POWER_MIC,<sp/>POWER_RADAR,<sp/>etc.)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>pca_ret<sp/>=<sp/><ref refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" kindref="member">diag_init_i2c_bus</ref>(I2C_NUM_0,</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" kindref="member">PIN_I2C0_SDA</ref>,<sp/><ref refid="pins__config_8h_1a0b0bd3a1375b4ee2306115d59a90e75e" kindref="member">PIN_I2C0_SCL</ref>,</highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;<ref refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" kindref="member">s_pca_bus</ref>);</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pca_ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="522"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>I2C<sp/>init<sp/>échoué<sp/>—<sp/>LPn<sp/>et<sp/>alimentations<sp/>non<sp/>contrôlables&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_bus_handle_t<sp/>pca_bus<sp/>=<sp/><ref refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" kindref="member">s_pca_bus</ref>;<sp/></highlight><highlight class="comment">/*<sp/>alias<sp/>local<sp/>pour<sp/>lisibilité<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="525"><highlight class="normal"></highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Lecture<sp/>du<sp/>sélecteur<sp/>ROOT/NODE<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/><sp/><sp/>gpio_set_pull_mode(<ref refid="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" kindref="member">PIN_ROOT_SEL</ref>,<sp/>GPIO_PULLUP_ONLY);</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/>gpio_set_direction(<ref refid="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" kindref="member">PIN_ROOT_SEL</ref>,<sp/>GPIO_MODE_INPUT);</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" kindref="member">is_root_node</ref><sp/>=<sp/>(gpio_get_level(<ref refid="pins__config_8h_1a4e5f299f8f5e2fa74e5cabfd669727f1" kindref="member">PIN_ROOT_SEL</ref>)<sp/>==<sp/>0);</highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Rôle<sp/>nœud<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>ctx-&gt;<ref refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" kindref="member">is_root_node</ref><sp/>?<sp/></highlight><highlight class="stringliteral">&quot;ROOT<sp/>(passerelle)&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;NODE&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="531"><highlight class="normal"></highlight></codeline>
+<codeline lineno="532"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Scan<sp/>des<sp/>LIDARs<sp/>via<sp/>SPI<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(ctx-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ctx-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>));</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" kindref="member">diag_scan_lidars</ref>(ctx,<sp/>pca_bus);</highlight></codeline>
+<codeline lineno="535"><highlight class="normal"></highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Bus<sp/>PCA9555<sp/>conservé<sp/>dans<sp/>s_pca_bus<sp/>—<sp/>réutilisé<sp/>par<sp/>hw_diag_pca9555_set_power()<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="537"><highlight class="normal"></highlight></codeline>
+<codeline lineno="538"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Test<sp/>du<sp/>radar<sp/>(uniquement<sp/>si<sp/>connecté)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="539"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_RADAR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a0aa4f3a23544482c3431a2fba2fcf89b" kindref="member">diag_test_radar</ref>(ctx);</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="542"><highlight class="normal"><sp/><sp/><sp/><sp/>ctx-&gt;<ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Radar<sp/>LD6002<sp/>ignoré<sp/>(LEXACARE_ENABLE_RADAR=0)<sp/>—<sp/>boot<sp/>+2<sp/>s<sp/>économisés&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="544"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="545"><highlight class="normal"></highlight></codeline>
+<codeline lineno="546"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Calcul<sp/>du<sp/>masque<sp/>de<sp/>résultat<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref><sp/>result<sp/>=<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd" kindref="member">HW_DIAG_OK</ref>;</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lidar_count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ctx-&gt;<ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>[i])<sp/>lidar_count++;</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="552"><highlight class="normal"></highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lidar_count<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>|=<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" kindref="member">HW_DIAG_LIDAR_ALL</ref>;</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lidar_count<sp/>&lt;<sp/><ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>|=<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" kindref="member">HW_DIAG_LIDAR_PARTIAL</ref>;</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"></highlight></codeline>
+<codeline lineno="559"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_RADAR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ctx-&gt;<ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>result<sp/>|=<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" kindref="member">HW_DIAG_RADAR_MISSING</ref>;</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="563"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="564"><highlight class="normal"></highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Rapport<sp/>JSON<sp/>sur<sp/>la<sp/>console<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" kindref="member">diag_print_json_report</ref>(ctx,<sp/>result);</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"></highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;===<sp/>Diagnostic<sp/>terminé<sp/>(mask=0x%02X)<sp/>===&quot;</highlight><highlight class="normal">,<sp/>result);</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="570"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="571"><highlight class="normal"></highlight></codeline>
+<codeline lineno="572"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="573"><highlight class="comment"><sp/>*<sp/>hw_diag_init_sensor_bus</highlight></codeline>
+<codeline lineno="574"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="575" refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kindref="member">hw_diag_init_sensor_bus</ref>(i2c_master_bus_handle_t<sp/>*out_handle)</highlight></codeline>
+<codeline lineno="576"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="hw__diag_8c_1a9fa304f2c13ef98368f86651968ee7ff" kindref="member">diag_init_i2c_bus</ref>(I2C_NUM_1,</highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="pins__config_8h_1aabfe18b52ad58d04d2a1cf6612c5c4fa" kindref="member">PIN_I2C1_SDA</ref>,<sp/><ref refid="pins__config_8h_1ac270b2950c69700990747460dc1e284a" kindref="member">PIN_I2C1_SCL</ref>,</highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>out_handle);</highlight></codeline>
+<codeline lineno="580"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="581"><highlight class="normal"></highlight></codeline>
+<codeline lineno="582"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="583"><highlight class="comment"><sp/>*<sp/>hw_diag_pca9555_set_power</highlight></codeline>
+<codeline lineno="584"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="585" refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kindref="member">hw_diag_pca9555_set_power</ref>(uint8_t<sp/>port1_bit,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>enable)</highlight></codeline>
+<codeline lineno="586"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" kindref="member">s_pca_bus</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;pca9555_set_power<sp/>:<sp/>bus<sp/>PCA9555<sp/>non<sp/>initialisé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_INVALID_STATE;</highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="591"><highlight class="normal"></highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(enable)<sp/>{</highlight></codeline>
+<codeline lineno="593"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" kindref="member">s_pca1_out</ref><sp/>|=<sp/><sp/>port1_bit;</highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="595"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" kindref="member">s_pca1_out</ref><sp/>&amp;=<sp/>~port1_bit;</highlight></codeline>
+<codeline lineno="596"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="597"><highlight class="normal"></highlight></codeline>
+<codeline lineno="598"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/><ref refid="hw__diag_8c_1af5ec3c62d35106c03777230cafd79d1e" kindref="member">pca9555_write_reg</ref>(<ref refid="hw__diag_8c_1ac34ca4059ab1a8746017fe79fbb55212" kindref="member">s_pca_bus</ref>,<sp/><ref refid="pins__config_8h_1a59aee66c22e76e5cb08668dd19ac3a22" kindref="member">PCA9555_REG_OUTPUT_1</ref>,<sp/><ref refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" kindref="member">s_pca1_out</ref>);</highlight></codeline>
+<codeline lineno="599"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="600"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>Port1<sp/>→<sp/>0x%02X<sp/>(%s<sp/>bit<sp/>0x%02X)&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="hw__diag_8c_1a1960c27d86b8e568bc374ccd726f668f" kindref="member">s_pca1_out</ref>,<sp/>enable<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;SET&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;CLR&quot;</highlight><highlight class="normal">,<sp/>port1_bit);</highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="603"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;PCA9555<sp/>Port1<sp/>écriture<sp/>échouée<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="604"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="605"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="606"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/hw_diag/hw_diag.c"/>
+  </compounddef>
+</doxygen>

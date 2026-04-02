@@ -1,0 +1,15 @@
+<map id="components/lexacare_types/include/system_types.h" name="components/lexacare_types/include/system_types.h">
+<area shape="rect" id="Node000001" title="Contrat de données partagé entre tous les composants du firmware LexaCare V1." alt="" coords="263,5,415,64"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,112,70,139"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="263,61,85,113,84,108,261,56"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="94,112,168,139"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="272,67,175,108,173,103,270,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="192,112,334,139"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="316,66,285,102,281,98,312,63"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="358,112,474,139"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="366,63,397,98,393,102,362,66"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="498,112,622,139"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="412,62,515,103,514,108,410,67"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="646,112,778,139"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="416,51,644,105,643,110,415,57"/>
+</map>

@@ -1,0 +1,15 @@
+<map id="components/lexacare_types/include/pins_config.h" name="components/lexacare_types/include/pins_config.h">
+<area shape="rect" id="Node000001" title="Définition des broches GPIO et du mapping PCA9555 pour LexaCare V1." alt="" coords="481,5,626,64"/>
+<area shape="rect" id="Node000002" href="$hw__diag_8c.html" title="Diagnostic matériel au démarrage — I2C LIDAR + UART Radar." alt="" coords="5,112,150,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="466,55,162,115,151,117,150,112,161,109,465,49"/>
+<area shape="rect" id="Node000003" href="$mesh__manager_8c.html" title="Gestionnaire réseau maillé ESP&#45;NOW — topologie arborescente + AES&#45;128." alt="" coords="174,112,355,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="467,67,327,114,326,109,465,62"/>
+<area shape="rect" id="Node000004" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="378,112,542,155"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="517,77,482,114,478,110,514,73"/>
+<area shape="rect" id="Node000005" href="$mic__driver_8c.html" title="Driver microphone MEMS I2S — Amplitude RMS et crête." alt="" coords="566,112,730,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="594,73,630,110,626,114,590,77"/>
+<area shape="rect" id="Node000006" href="$radar__driver_8c.html" title="Driver UART HLK&#45;LD6002 — protocole TinyFrame, ring buffer UART." alt="" coords="754,112,918,155"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="642,63,777,109,775,114,640,68"/>
+<area shape="rect" id="Node000007" href="$main_8c.html" title="Point d&#39;entrée LexaCare V1 — démarrage complet du firmware." alt="" coords="942,120,1034,147"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="642,48,778,74,930,109,954,117,953,122,929,115,777,79,641,53"/>
+</map>

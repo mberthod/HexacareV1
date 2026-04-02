@@ -1,0 +1,39 @@
+<map id="vl53l8cx_dci_replace_data" name="vl53l8cx_dci_replace_data">
+<area shape="rect" id="Node000001" title="This function can be used to replace &#39;extra data&#39; in DCI. The data can be simple data,..." alt="" coords="908,297,1082,324"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="489,356,615,399"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="992,340,979,394,955,461,938,495,917,527,892,556,861,580,816,602,775,609,733,601,686,580,660,563,637,541,600,491,574,441,558,400,563,398,579,439,605,489,641,538,664,558,689,575,735,596,775,603,814,597,859,575,888,552,913,524,934,493,951,459,974,393,987,339"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__api_8c.html#a0cd6873ce839d64145cbfb01b7a94da0" title="Mandatory function used to initialize the sensor. This function must be called after a power on,..." alt="" coords="727,5,820,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="985,283,970,232,945,168,908,102,885,72,858,46,840,35,820,28,822,23,843,30,862,42,889,69,913,99,950,166,975,231,990,282"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__plugin__detection__thresholds_8c.html#a784306df2a9c03610e120ddd67dc465d" title="This function is used to enable or disable the auto&#45;stop feature. When ToF runs in autonomous mode wi..." alt="" coords="697,123,851,165"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="972,287,923,233,892,205,859,180,838,168,840,163,861,175,896,201,927,230,976,283"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__plugin__detection__thresholds_8c.html#a8a37113c3ac519fa4234ce98ecc8f375" title="This function allows enable the detection thresholds." alt="" coords="697,189,851,232"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="953,292,859,246,832,235,834,230,861,242,955,287"/>
+<area shape="rect" id="Node000011" href="$vl53l8cx__api_8c.html#abcb4f3ccc4813f4aa1851c2d5844641a" title="This function sets a new integration time in ms. Integration time must be computed to be lower than t..." alt="" coords="693,323,854,365"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="893,329,855,334,855,329,892,324"/>
+<area shape="rect" id="Node000012" href="$vl53l8cx__api_8c.html#aa498a79da766ce9f30d4518403bfbc96" title="This function sets a new ranging frequency in Hz. Ranging frequency corresponds to the measurements f..." alt="" coords="702,56,846,99"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="980,284,961,246,934,200,900,154,858,113,841,102,844,97,862,109,904,150,938,198,966,244,984,282"/>
+<area shape="rect" id="Node000013" href="$vl53l8cx__api_8c.html#a1a4fb3cfa2082032b917b539e244338a" title="This function sets a new sharpener value in percent. Sharpener can be changed to blur more or less zo..." alt="" coords="695,389,853,432"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="955,334,861,380,834,391,832,386,859,375,953,329"/>
+<area shape="rect" id="Node000014" href="$vl53l8cx__api_8c.html#a65ac9339ec503998ca8fc5003f649e53" title="This function sets a new target order. Please use macros VL53L8CX_TARGET_ORDER_STRONGEST and VL53L8CX..." alt="" coords="707,456,841,499"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="976,338,927,392,896,421,861,446,840,458,838,453,859,442,892,417,923,388,972,335"/>
+<area shape="rect" id="Node000015" href="$vl53l8cx__api_8c.html#a01276d54349dced9ce864cad5f54950f" title="This function is used to set a periodic temperature compensation. By setting a repeat count different..." alt="" coords="688,523,860,565"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="984,339,966,378,938,424,904,471,862,513,844,524,841,520,858,509,900,468,934,421,961,375,980,337"/>
+<area shape="rect" id="Node000016" href="$vl53l8cx__plugin__xtalk_8c.html#a8d182a0a999996a2c3606a8076ca3b9b" title="This function sets the Xtalk margin. This margin is used to increase the Xtalk threshold...." alt="" coords="709,256,838,299"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="892,298,839,290,839,284,893,293"/>
+<area shape="rect" id="Node000004" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="494,60,610,87"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="713,36,610,62,609,57,711,31"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__api_8c.html#affb39664fa0b0d1e37c49ab7725a3ce4" title="This function is used to set the sensor in Low Power mode, for example if the sensor is not used duri..." alt="" coords="464,5,640,32"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="712,21,640,21,640,16,712,16"/>
+<area shape="rect" id="Node000005" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,60,416,87"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="479,76,417,76,417,71,479,71"/>
+<area shape="rect" id="Node000006" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,60,248,87"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="280,76,248,76,248,71,280,71"/>
+<area shape="rect" id="Node000007" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,60,83,87"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="115,76,83,76,83,71,115,71"/>
+<area shape="poly" id="edge11_Node000011_Node000002" title=" " alt="" coords="679,361,616,371,615,365,678,356"/>
+<area shape="poly" id="edge14_Node000012_Node000002" title=" " alt="" coords="693,110,690,113,663,141,639,173,602,242,576,307,561,356,556,355,571,305,597,239,635,170,659,138,686,109,690,105"/>
+<area shape="poly" id="edge13_Node000012_Node000004" title=" " alt="" coords="687,78,610,77,610,72,687,73"/>
+<area shape="poly" id="edge16_Node000013_Node000002" title=" " alt="" coords="679,399,615,389,616,384,680,394"/>
+<area shape="poly" id="edge18_Node000014_Node000002" title=" " alt="" coords="700,452,687,446,594,402,596,397,689,442,702,447"/>
+<area shape="poly" id="edge21_Node000016_Node000002" title=" " alt="" coords="702,308,689,313,596,358,594,353,687,308,700,303"/>
+</map>

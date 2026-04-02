@@ -1,0 +1,178 @@
+\doxysection{components/sys\+\_\+storage/panic\+\_\+handler.c File Reference}
+\hypertarget{panic__handler_8c}{}\label{panic__handler_8c}\index{components/sys\_storage/panic\_handler.c@{components/sys\_storage/panic\_handler.c}}
+
+
+Capture des paniques système et écriture dans Little\+FS.  
+
+
+{\ttfamily \#include "{}sys\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+system.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+timer.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+task\+\_\+wdt.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for panic\+\_\+handler.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{panic__handler_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}{PANIC\+\_\+\+MAGIC\+\_\+\+VALUE}}~0x\+DEADCAFEU
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60}{shutdown\+\_\+handler}} (void)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__storage_ga0f70a6a9f0f8823c86e3ddddf9902fbc}{panic\+\_\+handler\+\_\+install}} (void)
+\item 
+void \mbox{\hyperlink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{panic__handler_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}panic\+\_\+handler"{}
+\item 
+static RTC\+\_\+\+DATA\+\_\+\+ATTR uint32\+\_\+t \mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\+\_\+panic\+\_\+magic}} = 0
+\item 
+static RTC\+\_\+\+DATA\+\_\+\+ATTR char \mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\+\_\+panic\+\_\+msg}} \mbox{[}192\mbox{]}
+\item 
+static RTC\+\_\+\+DATA\+\_\+\+ATTR int64\+\_\+t \mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{s\+\_\+panic\+\_\+time\+\_\+us}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Capture des paniques système et écriture dans Little\+FS. 
+
+Architecture \+: Le système ESP-\/\+IDF ne permet pas un accès fiable au système de fichiers pendant une panique matérielle (le heap peut être corrompu). La stratégie adoptée est donc à deux niveaux \+:
+
+Niveau 1 — shutdown handler (redémarrages propres via esp\+\_\+restart()) \+: Appelé avant le reset. Écrit un message de redémarrage dans panic.\+log.
+
+Niveau 2 — RTC memory (paniques matérielles, watchdog) \+: Lors d\textquotesingle{}une panique, un flag et un message courts sont stockés en RTC\+\_\+\+DATA\+\_\+\+ATTR (survit au reset sans coupure secteur). Au prochain boot, \doxylink{group__group__storage_ga3839c23cedb95aaa10a100a6034e923f}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()} lit ce flag et l\textquotesingle{}écrit dans panic.\+log avant d\textquotesingle{}effacer le flag.
+
+Note \+: CONFIG\+\_\+\+ESP\+\_\+\+SYSTEM\+\_\+\+PANIC\+\_\+\+PRINT\+\_\+\+REBOOT=y dans sdkconfig.\+defaults garantit que le backtrace complet est imprimé sur la console UART avant le redémarrage — complément indispensable pour le débogage. 
+
+Definition in file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+
+\label{doc-define-members}
+\Hypertarget{panic__handler_8c_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}\index{panic\_handler.c@{panic\_handler.c}!PANIC\_MAGIC\_VALUE@{PANIC\_MAGIC\_VALUE}}
+\index{PANIC\_MAGIC\_VALUE@{PANIC\_MAGIC\_VALUE}!panic\_handler.c@{panic\_handler.c}}
+\doxysubsubsection{\texorpdfstring{PANIC\_MAGIC\_VALUE}{PANIC\_MAGIC\_VALUE}}
+{\footnotesize\ttfamily \label{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0} 
+\#define PANIC\+\_\+\+MAGIC\+\_\+\+VALUE~0x\+DEADCAFEU}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00043}{43}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}, and \mbox{\hyperlink{panic__handler_8c_source_l00052}{shutdown\+\_\+handler()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{panic__handler_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60}\index{panic\_handler.c@{panic\_handler.c}!shutdown\_handler@{shutdown\_handler}}
+\index{shutdown\_handler@{shutdown\_handler}!panic\_handler.c@{panic\_handler.c}}
+\doxysubsubsection{\texorpdfstring{shutdown\_handler()}{shutdown\_handler()}}
+{\footnotesize\ttfamily \label{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60} 
+void shutdown\+\_\+handler (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00052}{52}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}{s\_panic\_magic}}\ \ \ =\ \mbox{\hyperlink{panic__handler_8c_a1f6cd6498822bce5fc9bb4af92caafa0}{PANIC\_MAGIC\_VALUE}};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}{s\_panic\_time\_us}}\ =\ esp\_timer\_get\_time();}
+\DoxyCodeLine{00056\ \ \ \ \ strncpy(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}},\ \textcolor{stringliteral}{"{}Redémarrage\ propre\ via\ esp\_restart()"{}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}})\ -\/\ 1);}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}}[\textcolor{keyword}{sizeof}(\mbox{\hyperlink{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}{s\_panic\_msg}})\ -\/\ 1]\ =\ \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{00058\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{panic__handler_8c_source_l00043}{PANIC\+\_\+\+MAGIC\+\_\+\+VALUE}}, \mbox{\hyperlink{panic__handler_8c_source_l00039}{s\+\_\+panic\+\_\+magic}}, \mbox{\hyperlink{panic__handler_8c_source_l00040}{s\+\_\+panic\+\_\+msg}}, and \mbox{\hyperlink{panic__handler_8c_source_l00041}{s\+\_\+panic\+\_\+time\+\_\+us}}.
+
+
+
+Referenced by \mbox{\hyperlink{panic__handler_8c_source_l00066}{panic\+\_\+handler\+\_\+install()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{panic__handler_8c_a759cb94c3c5d356b9d7ec30c1017cb60_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{panic__handler_8c_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb}\index{panic\_handler.c@{panic\_handler.c}!s\_panic\_magic@{s\_panic\_magic}}
+\index{s\_panic\_magic@{s\_panic\_magic}!panic\_handler.c@{panic\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_panic\_magic}{s\_panic\_magic}}
+{\footnotesize\ttfamily \label{panic__handler_8c_abf2cef884f9e4766f09af2ba4c747bdb} 
+RTC\+\_\+\+DATA\+\_\+\+ATTR uint32\+\_\+t s\+\_\+panic\+\_\+magic = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00039}{39}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}, and \mbox{\hyperlink{panic__handler_8c_source_l00052}{shutdown\+\_\+handler()}}.
+
+\Hypertarget{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b}\index{panic\_handler.c@{panic\_handler.c}!s\_panic\_msg@{s\_panic\_msg}}
+\index{s\_panic\_msg@{s\_panic\_msg}!panic\_handler.c@{panic\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_panic\_msg}{s\_panic\_msg}}
+{\footnotesize\ttfamily \label{panic__handler_8c_a9f09fa3a17178c8d19064b671450879b} 
+RTC\+\_\+\+DATA\+\_\+\+ATTR char s\+\_\+panic\+\_\+msg\mbox{[}192\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00040}{40}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}, and \mbox{\hyperlink{panic__handler_8c_source_l00052}{shutdown\+\_\+handler()}}.
+
+\Hypertarget{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e}\index{panic\_handler.c@{panic\_handler.c}!s\_panic\_time\_us@{s\_panic\_time\_us}}
+\index{s\_panic\_time\_us@{s\_panic\_time\_us}!panic\_handler.c@{panic\_handler.c}}
+\doxysubsubsection{\texorpdfstring{s\_panic\_time\_us}{s\_panic\_time\_us}}
+{\footnotesize\ttfamily \label{panic__handler_8c_a368aca31667a61d92b970063e5e45c6e} 
+RTC\+\_\+\+DATA\+\_\+\+ATTR int64\+\_\+t s\+\_\+panic\+\_\+time\+\_\+us\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00041}{41}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+
+
+
+Referenced by \mbox{\hyperlink{panic__handler_8c_source_l00080}{panic\+\_\+handler\+\_\+check\+\_\+on\+\_\+boot()}}, and \mbox{\hyperlink{panic__handler_8c_source_l00052}{shutdown\+\_\+handler()}}.
+
+\Hypertarget{panic__handler_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}\index{panic\_handler.c@{panic\_handler.c}!TAG@{TAG}}
+\index{TAG@{TAG}!panic\_handler.c@{panic\_handler.c}}
+\doxysubsubsection{\texorpdfstring{TAG}{TAG}}
+{\footnotesize\ttfamily \label{panic__handler_8c_a5a85b9c772bbeb480b209a3e6ea92b4c} 
+const char\texorpdfstring{$\ast$}{*} TAG = "{}panic\+\_\+handler"{}\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \mbox{\hyperlink{panic__handler_8c_source_l00034}{34}} of file \mbox{\hyperlink{panic__handler_8c_source}{panic\+\_\+handler.\+c}}.
+

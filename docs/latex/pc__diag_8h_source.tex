@@ -1,0 +1,54 @@
+\doxysection{pc\+\_\+diag.\+h}
+\hypertarget{pc__diag_8h_source}{}\label{pc__diag_8h_source}\index{components/pc\_diag/include/pc\_diag.h@{components/pc\_diag/include/pc\_diag.h}}
+\mbox{\hyperlink{pc__diag_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ pc\_diag.h}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Interface\ publique\ du\ diagnostic\ PC\ —\ USB-\/CDC,\ JSON,\ commandes\ Python.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Task\_Diag\_PC\ (Core\ 0,\ priorité\ 3)\ :}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00006}00006\ \textcolor{comment}{\ *\ \ \ -\/\ Émet\ toutes\ les\ 5\ s\ un\ rapport\ JSON\ sur\ stdout\ (USB\ Serial/JTAG).}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ -\/\ Écoute\ les\ commandes\ JSON\ entrantes\ sur\ stdin.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00008}00008\ \textcolor{comment}{\ *\ \ \ -\/\ Commande\ "{}download\_logs"{}\ :\ transfert\ de\ /littlefs/app.log\ par\ blocs.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00009}00009\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00010}00010\ \textcolor{comment}{\ *\ Protocole\ de\ commande\ (depuis\ l'outil\ Python)\ :}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ →\ \{"{}cmd"{}:"{}download\_logs"{}\}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ ←\ \{"{}status"{}:"{}ok"{},"{}filename"{}:"{}app.log"{},"{}size"{}:XXXXX\}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00013}00013\ \textcolor{comment}{\ *\ \ \ ←\ [blocs\ bruts\ ou\ base64\ du\ fichier]}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00014}00014\ \textcolor{comment}{\ *\ \ \ ←\ \{"{}status"{}:"{}done"{}\}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00015}00015\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ →\ \{"{}cmd"{}:"{}clear\_logs"{}\}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ ←\ \{"{}status"{}:"{}ok"{}\}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00018}00018\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00019}00019\ \textcolor{comment}{\ *\ \ \ →\ \{"{}cmd"{}:"{}get\_diag"{}\}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00020}00020\ \textcolor{comment}{\ *\ \ \ ←\ [rapport\ JSON\ immédiat]}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00021}00021\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00023}00023\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00025}00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{system__types_8h}{system\_types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00027}00027\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00028}00028\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00029}00029\ \textcolor{comment}{\ *\ @defgroup\ group\_pc\_diag\ Diagnostic\ PC\ (JSON)}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00030}00030\ \textcolor{comment}{\ *\ @brief\ Sortie\ USB\ en\ JSON\ lisible\ +\ commandes\ simples\ depuis\ l'outil\ PC.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00031}00031\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00032}00032\ \textcolor{comment}{\ *\ Ce\ module\ sert\ de\ “fenêtre”\ sur\ le\ firmware\ :}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00033}00033\ \textcolor{comment}{\ *\ -\/\ envoie\ un\ état\ régulier\ (santé\ système\ +\ mesures\ capteurs)}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00034}00034\ \textcolor{comment}{\ *\ -\/\ permet\ quelques\ actions\ (récupérer/effacer\ les\ logs)\ sans\ recompiler}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00035}00035\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00036}00036\ \textcolor{comment}{\ *\ @\{}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00037}00037\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00039}00039\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00040}00040\ \textcolor{comment}{\ *\ pc\_diag\_task\_start}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00041}00041\ \textcolor{comment}{\ *\ @brief\ Crée\ la\ tâche\ Task\_Diag\_PC\ épinglée\ sur\ le\ Core\ 0.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00042}00042\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00043}00043\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00044}00044\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ la\ tâche\ est\ créée\ avec\ succès.}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00045}00045\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00046}00046\ esp\_err\_t\ \mbox{\hyperlink{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}{pc\_diag\_task\_start}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx);}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00047}00047\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{pc__diag_8h_source_l00048}00048\ \textcolor{comment}{/**\ @\}\ */}\ \textcolor{comment}{/*\ end\ of\ group\_pc\_diag\ */}}
+
+\end{DoxyCode}

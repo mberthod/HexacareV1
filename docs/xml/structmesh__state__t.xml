@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structmesh__state__t" kind="struct" language="C++" prot="public">
+    <compoundname>mesh_state_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmesh__state__t_1aa13f46b3f543c7839913404e64094fa6" prot="public" static="no" mutable="no">
+        <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+        <definition>sys_context_t* mesh_state_t::sys_ctx</definition>
+        <argsstring></argsstring>
+        <name>sys_ctx</name>
+        <qualifiedname>mesh_state_t::sys_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="104" column="20" bodyfile="components/mesh_network/mesh_manager.c" bodystart="104" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1ad90f2fb3bbe9e4d81d729d9e5061fb47" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t mesh_state_t::aes_key[LEXACARE_AES_KEY_LEN]</definition>
+        <argsstring>[LEXACARE_AES_KEY_LEN]</argsstring>
+        <name>aes_key</name>
+        <qualifiedname>mesh_state_t::aes_key</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="105" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1a10d1ebecf7f7ab40ff8a287c49da0c4e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t mesh_state_t::parent_mac[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>parent_mac</name>
+        <qualifiedname>mesh_state_t::parent_mac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="106" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="106" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1a055fb3119a9bc7d423469007ed9111d3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool mesh_state_t::has_parent</definition>
+        <argsstring></argsstring>
+        <name>has_parent</name>
+        <qualifiedname>mesh_state_t::has_parent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="107" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="107" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7f06ed05d7822427b8f2ea84cb1b33e1" compoundref="mesh__manager_8c" startline="332" endline="370">task_mesh_com</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1a1a2a2f73ee2b4482fbe1e528e6762b71" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t mesh_state_t::hop_to_root</definition>
+        <argsstring></argsstring>
+        <name>hop_to_root</name>
+        <qualifiedname>mesh_state_t::hop_to_root</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="108" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1aac9ba4a1de8106fce1fe463cc0d15782" prot="public" static="no" mutable="no">
+        <type><ref refid="structpeer__info__t" kindref="compound">peer_info_t</ref></type>
+        <definition>peer_info_t mesh_state_t::peers[ESPNOW_MAX_PEERS]</definition>
+        <argsstring>[ESPNOW_MAX_PEERS]</argsstring>
+        <name>peers</name>
+        <qualifiedname>mesh_state_t::peers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="109" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1aafb630d4b2f82df8751df9979cd30c66" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mesh_state_t::peer_count</definition>
+        <argsstring></argsstring>
+        <name>peer_count</name>
+        <qualifiedname>mesh_state_t::peer_count</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="110" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmesh__state__t_1a57427af5d84ed6fc28fe6abd033f7b1e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t mesh_state_t::own_mac[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>own_mac</name>
+        <qualifiedname>mesh_state_t::own_mac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="111" column="21" bodyfile="components/mesh_network/mesh_manager.c" bodystart="111" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="6">
+        <label>enviro_data_t</label>
+        <link refid="structenviro__data__t"/>
+      </node>
+      <node id="4">
+        <label>lidar_matrix_t</label>
+        <link refid="structlidar__matrix__t"/>
+      </node>
+      <node id="1">
+        <label>mesh_state_t</label>
+        <link refid="structmesh__state__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sys_ctx</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>peers</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>mic_data_t</label>
+        <link refid="structmic__data__t"/>
+      </node>
+      <node id="8">
+        <label>peer_info_t</label>
+        <link refid="structpeer__info__t"/>
+      </node>
+      <node id="5">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="3">
+        <label>sensor_frame_t</label>
+        <link refid="structsensor__frame__t"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lidar</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>radar</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sys_context_t</label>
+        <link refid="structsys__context__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>latest_sensor</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>enviro</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mic</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/mesh_network/mesh_manager.c" line="103" column="1" bodyfile="components/mesh_network/mesh_manager.c" bodystart="103" bodyend="112"/>
+    <listofallmembers>
+      <member refid="structmesh__state__t_1ad90f2fb3bbe9e4d81d729d9e5061fb47" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>aes_key</name></member>
+      <member refid="structmesh__state__t_1a055fb3119a9bc7d423469007ed9111d3" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>has_parent</name></member>
+      <member refid="structmesh__state__t_1a1a2a2f73ee2b4482fbe1e528e6762b71" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>hop_to_root</name></member>
+      <member refid="structmesh__state__t_1a57427af5d84ed6fc28fe6abd033f7b1e" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>own_mac</name></member>
+      <member refid="structmesh__state__t_1a10d1ebecf7f7ab40ff8a287c49da0c4e" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>parent_mac</name></member>
+      <member refid="structmesh__state__t_1aafb630d4b2f82df8751df9979cd30c66" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>peer_count</name></member>
+      <member refid="structmesh__state__t_1aac9ba4a1de8106fce1fe463cc0d15782" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>peers</name></member>
+      <member refid="structmesh__state__t_1aa13f46b3f543c7839913404e64094fa6" prot="public" virt="non-virtual"><scope>mesh_state_t</scope><name>sys_ctx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

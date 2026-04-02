@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="littlefs__manager_8c" kind="file" language="C++">
+    <compoundname>littlefs_manager.c</compoundname>
+    <includes refid="sys__storage_8h" local="yes">sys_storage.h</includes>
+    <includes local="yes">esp_spiffs.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sys_storage/littlefs_manager.c</label>
+        <link refid="littlefs__manager_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>esp_log.h</label>
+      </node>
+      <node id="4">
+        <label>esp_spiffs.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="littlefs__manager_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;storage&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/littlefs_manager.c" line="19" column="19" bodyfile="components/sys_storage/littlefs_manager.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <member refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kind="function"><name>littlefs_manager_init</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Gestion du montage SPIFFS sur la partition &quot;storage&quot;. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implémentation via esp_spiffs (built-in ESP-IDF v5.4). L&apos;API publique reste identique — les fichiers POSIX (fopen/fclose/etc.) fonctionnent de la même façon avec SPIFFS qu&apos;avec LittleFS.</para>
+<para>Note : SPIFFS ne supporte pas les répertoires. Tous les fichiers sont à la racine du point de montage (/spiffs/). </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>littlefs_manager.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_storage</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Gestion<sp/>du<sp/>montage<sp/>SPIFFS<sp/>sur<sp/>la<sp/>partition<sp/>&quot;storage&quot;.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Implémentation<sp/>via<sp/>esp_spiffs<sp/>(built-in<sp/>ESP-IDF<sp/>v5.4).</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>L&apos;API<sp/>publique<sp/>reste<sp/>identique<sp/>—<sp/>les<sp/>fichiers<sp/>POSIX<sp/>(fopen/fclose/etc.)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/>fonctionnent<sp/>de<sp/>la<sp/>même<sp/>façon<sp/>avec<sp/>SPIFFS<sp/>qu&apos;avec<sp/>LittleFS.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>Note<sp/>:<sp/>SPIFFS<sp/>ne<sp/>supporte<sp/>pas<sp/>les<sp/>répertoires.<sp/>Tous<sp/>les<sp/>fichiers</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>sont<sp/>à<sp/>la<sp/>racine<sp/>du<sp/>point<sp/>de<sp/>montage<sp/>(/spiffs/).</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sys__storage_8h" kindref="compound">sys_storage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_spiffs.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="littlefs__manager_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;storage&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>littlefs_manager_init</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Monte<sp/>la<sp/>partition<sp/>SPIFFS<sp/>avec<sp/>la<sp/>configuration<sp/>complète.</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>Utilise<sp/>esp_vfs_spiffs_conf_t<sp/>(équivalent<sp/>de<sp/>la<sp/>&quot;root<sp/>file</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>configuration&quot;<sp/>de<sp/>LittleFS)<sp/>:</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>base_path<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>STORAGE_MOUNT_POINT<sp/>(&quot;/spiffs&quot;)</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>partition_label<sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>STORAGE_PARTITION<sp/><sp/><sp/>(&quot;storage&quot;)</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>max_files<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>8</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>format_if_mount_failed<sp/>=<sp/>true</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>Après<sp/>montage,<sp/>l&apos;espace<sp/>est<sp/>vérifié<sp/>avec<sp/>esp_spiffs_info().</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>le<sp/>montage<sp/>réussit,<sp/>code<sp/>d&apos;erreur<sp/>sinon.</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kindref="member">littlefs_manager_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Configuration<sp/>complète<sp/>du<sp/>montage<sp/>SPIFFS<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>esp_vfs_spiffs_conf_t<sp/>conf<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.base_path<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kindref="member">STORAGE_MOUNT_POINT</ref>,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.partition_label<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/><ref refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kindref="member">STORAGE_PARTITION</ref>,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.max_files<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>8,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>.format_if_mount_failed<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>ret<sp/>=<sp/>esp_vfs_spiffs_register(&amp;conf);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_FAIL)<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Échec<sp/>du<sp/>montage<sp/>ou<sp/>du<sp/>formatage<sp/>de<sp/>SPIFFS&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ret<sp/>==<sp/>ESP_ERR_NOT_FOUND)<sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Partition<sp/>&apos;%s&apos;<sp/>introuvable<sp/>dans<sp/>la<sp/>table<sp/>de<sp/>partitions&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kindref="member">STORAGE_PARTITION</ref>);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Erreur<sp/>montage<sp/>SPIFFS<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,<sp/>esp_err_to_name(ret));</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ret;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Vérification<sp/>post-montage<sp/>de<sp/>l&apos;espace<sp/>disponible<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>total_bytes<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>used_bytes<sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_spiffs_info(<ref refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kindref="member">STORAGE_PARTITION</ref>,<sp/>&amp;total_bytes,<sp/>&amp;used_bytes));</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;SPIFFS<sp/>monté<sp/>sur<sp/>&apos;%s&apos;<sp/>—<sp/>%u<sp/>Ko<sp/>total,<sp/>%u<sp/>Ko<sp/>utilisés,<sp/>%u<sp/>Ko<sp/>libres&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kindref="member">STORAGE_MOUNT_POINT</ref>,</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)(total_bytes<sp/>/<sp/>1024),</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)(used_bytes<sp/><sp/>/<sp/>1024),</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal">)((total_bytes<sp/>-<sp/>used_bytes)<sp/>/<sp/>1024));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sys_storage/littlefs_manager.c"/>
+  </compounddef>
+</doxygen>

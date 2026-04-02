@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="sys__storage_8h" kind="file" language="C++">
+    <compoundname>sys_storage.h</compoundname>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="pc__diag_8c" local="yes">components/pc_diag/pc_diag.c</includedby>
+    <includedby refid="littlefs__manager_8c" local="yes">components/sys_storage/littlefs_manager.c</includedby>
+    <includedby refid="log__writer_8c" local="yes">components/sys_storage/log_writer.c</includedby>
+    <includedby refid="panic__handler_8c" local="yes">components/sys_storage/panic_handler.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>components/sys_storage/include/sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>esp_err.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/pc_diag/pc_diag.c</label>
+        <link refid="pc__diag_8c"/>
+      </node>
+      <node id="1">
+        <label>components/sys_storage/include/sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>components/sys_storage/littlefs_manager.c</label>
+        <link refid="littlefs__manager_8c"/>
+      </node>
+      <node id="4">
+        <label>components/sys_storage/log_writer.c</label>
+        <link refid="log__writer_8c"/>
+      </node>
+      <node id="5">
+        <label>components/sys_storage/panic_handler.c</label>
+        <link refid="panic__handler_8c"/>
+      </node>
+      <node id="6">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <member refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" kind="define"><name>STORAGE_MOUNT_POINT</name></member>
+      <member refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" kind="define"><name>STORAGE_PARTITION</name></member>
+      <member refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kind="define"><name>LOG_FILE_PATH</name></member>
+      <member refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" kind="define"><name>PANIC_FILE_PATH</name></member>
+      <member refid="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" kind="define"><name>LOG_MAX_SIZE_BYTES</name></member>
+      <member refid="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" kind="define"><name>LOG_TRIM_PERCENT</name></member>
+      <member refid="group__group__storage_1ga963f6be03bc9dc7db1ea5c6fa5fab9a8" kind="define"><name>LITTLEFS_MOUNT_POINT</name></member>
+      <member refid="group__group__storage_1gafc0cfe84cc1ef21ab7db1eb5bc86b484" kind="define"><name>LITTLEFS_PARTITION</name></member>
+    </sectiondef>
+    <sectiondef kind="func">
+      <member refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kind="function"><name>littlefs_manager_init</name></member>
+      <member refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kind="function"><name>log_write</name></member>
+      <member refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kind="function"><name>panic_handler_install</name></member>
+      <member refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kind="function"><name>panic_handler_check_on_boot</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du composant sys_storage — SPIFFS, log circulaire, panic handler. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Système de fichiers : SPIFFS (built-in ESP-IDF v5.4, composant &quot;spiffs&quot;). Point de montage : /spiffs Partition : &quot;storage&quot; (1 Mo, subtype spiffs dans partitions.csv)</para>
+<para>Note : la migration vers LittleFS est possible en remplaçant : esp_spiffs.h → esp_littlefs.h (composant joltwallet/esp_littlefs) esp_vfs_spiffs_conf_t → esp_vfs_littlefs_conf_t esp_vfs_spiffs_register → esp_vfs_littlefs_register esp_spiffs_info → esp_littlefs_info </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>sys_storage.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>composant<sp/>sys_storage<sp/>—<sp/>SPIFFS,<sp/>log<sp/>circulaire,<sp/>panic<sp/>handler.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Système<sp/>de<sp/>fichiers<sp/>:<sp/>SPIFFS<sp/>(built-in<sp/>ESP-IDF<sp/>v5.4,<sp/>composant<sp/>&quot;spiffs&quot;).</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Point<sp/>de<sp/>montage<sp/><sp/><sp/><sp/>:<sp/>/spiffs</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>Partition<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>&quot;storage&quot;<sp/>(1<sp/>Mo,<sp/>subtype<sp/>spiffs<sp/>dans<sp/>partitions.csv)</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Note<sp/>:<sp/>la<sp/>migration<sp/>vers<sp/>LittleFS<sp/>est<sp/>possible<sp/>en<sp/>remplaçant<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/>esp_spiffs.h<sp/>→<sp/>esp_littlefs.h<sp/>(composant<sp/>joltwallet/esp_littlefs)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/>esp_vfs_spiffs_conf_t<sp/>→<sp/>esp_vfs_littlefs_conf_t</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/>esp_vfs_spiffs_register<sp/>→<sp/>esp_vfs_littlefs_register</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/>esp_spiffs_info<sp/>→<sp/>esp_littlefs_info</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="20"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="21"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_storage<sp/>Stockage<sp/>&amp;<sp/>Logs</highlight></codeline>
+<codeline lineno="22"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Gestion<sp/>du<sp/>stockage<sp/>local<sp/>(SPIFFS)<sp/>et<sp/>mécanismes<sp/>de<sp/>log/panic.</highlight></codeline>
+<codeline lineno="23"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>Pourquoi<sp/>ce<sp/>module<sp/>existe<sp/>:</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>-<sp/>conserver<sp/>des<sp/>traces<sp/>(logs)<sp/>même<sp/>si<sp/>le<sp/>PC<sp/>n&apos;est<sp/>pas<sp/>connecté</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>-<sp/>aider<sp/>au<sp/>diagnostic<sp/>après<sp/>un<sp/>redémarrage<sp/>inattendu<sp/>(panic<sp/>handler)</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>Constantes</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="group__group__storage_1gaa4e9c38d8bf2dcf2a0a517f32b019f0e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STORAGE_MOUNT_POINT<sp/><sp/><sp/><sp/><sp/>&quot;/spiffs&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="group__group__storage_1gae8d37ae33fe87928970a494318e6ea32" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>STORAGE_PARTITION<sp/><sp/><sp/><sp/><sp/><sp/><sp/>&quot;storage&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOG_FILE_PATH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>STORAGE_MOUNT_POINT<sp/>&quot;/app.log&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="group__group__storage_1ga6e2a8058cdfef2684f05c06f78b54f61" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PANIC_FILE_PATH<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>STORAGE_MOUNT_POINT<sp/>&quot;/panic.log&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOG_MAX_SIZE_BYTES<sp/><sp/><sp/><sp/><sp/><sp/>(900UL<sp/>*<sp/>1024UL)<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Seuil<sp/>de<sp/>rotation<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LOG_TRIM_PERCENT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>%<sp/>d&apos;entrées<sp/>à<sp/>supprimer<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Alias<sp/>de<sp/>compatibilité<sp/>(maintenu<sp/>pour<sp/>les<sp/>composants<sp/>existants)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="group__group__storage_1ga963f6be03bc9dc7db1ea5c6fa5fab9a8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LITTLEFS_MOUNT_POINT<sp/><sp/><sp/><sp/>STORAGE_MOUNT_POINT</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="group__group__storage_1gafc0cfe84cc1ef21ab7db1eb5bc86b484" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LITTLEFS_PARTITION<sp/><sp/><sp/><sp/><sp/><sp/>STORAGE_PARTITION</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>littlefs_manager_init</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Monte<sp/>la<sp/>partition<sp/>SPIFFS<sp/>(&quot;storage&quot;)<sp/>sur<sp/>/spiffs.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/>*<sp/>Format<sp/>automatique<sp/>si<sp/>la<sp/>partition<sp/>n&apos;a<sp/>jamais<sp/>été<sp/>utilisée.</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/>*<sp/>Vérifie<sp/>l&apos;espace<sp/>disponible<sp/>avec<sp/>esp_spiffs_info()<sp/>après<sp/>montage.</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>le<sp/>montage<sp/>réussit,<sp/>code<sp/>d&apos;erreur<sp/>sinon.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kindref="member">littlefs_manager_init</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>log_write</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Écrit<sp/>un<sp/>message<sp/>horodaté<sp/>dans<sp/>le<sp/>log<sp/>circulaire<sp/>SPIFFS.</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>Thread-safe<sp/>(mutex<sp/>interne).<sp/>Rotation<sp/>automatique<sp/>si<sp/>le<sp/>fichier</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>dépasse<sp/>LOG_MAX_SIZE_BYTES<sp/>(suppression<sp/>des<sp/>LOG_TRIM_PERCENT%<sp/>anciens).</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>@param<sp/>msg<sp/><sp/>Message<sp/>à<sp/>journaliser<sp/>(chaîne<sp/>C<sp/>terminée<sp/>par<sp/>&apos;\0&apos;).</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK,<sp/>ESP_ERR_TIMEOUT<sp/>ou<sp/>ESP_FAIL.</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kindref="member">log_write</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/>*<sp/>panic_handler_install</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Installe<sp/>le<sp/>shutdown<sp/>handler<sp/>et<sp/>prépare<sp/>la<sp/>capture<sp/>RTC.</highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>l&apos;installation<sp/>réussit.</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kindref="member">panic_handler_install</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>panic_handler_check_on_boot</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Transcrit<sp/>le<sp/>crash<sp/>RTC<sp/>dans<sp/>panic.log<sp/>si<sp/>présent.</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/>*<sp/>Appeler<sp/>APRÈS<sp/>littlefs_manager_init().</highlight></codeline>
+<codeline lineno="81"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kindref="member">panic_handler_check_on_boot</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="84"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_storage<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/sys_storage/include/sys_storage.h"/>
+  </compounddef>
+</doxygen>

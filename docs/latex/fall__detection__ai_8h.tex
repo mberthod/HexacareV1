@@ -1,0 +1,46 @@
+\doxysection{components/ai\+\_\+engine/include/fall\+\_\+detection\+\_\+ai.h File Reference}
+\hypertarget{fall__detection__ai_8h}{}\label{fall__detection__ai_8h}\index{components/ai\_engine/include/fall\_detection\_ai.h@{components/ai\_engine/include/fall\_detection\_ai.h}}
+
+
+Interface C du moteur d\textquotesingle{}inférence de détection de chute.  
+
+
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for fall\+\_\+detection\+\_\+ai.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{fall__detection__ai_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=212pt]{fall__detection__ai_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22}{ai\+\_\+engine\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface C du moteur d\textquotesingle{}inférence de détection de chute. 
+
+Ce header est inclus par du code C (\doxylink{main_8c}{main.\+c}). L\textquotesingle{}implémentation est en C++ (\doxylink{fall__detection__ai_8cc}{fall\+\_\+detection\+\_\+ai.\+cc}) pour ESP-\/\+DL. Les guards extern "{}\+C"{} assurent la compatibilité de linkage.
+
+Mode de fonctionnement \+: Contrôlé par Kconfig (idf.\+py menuconfig → Lexa\+Care AI Engine) \+:
+\begin{DoxyItemize}
+\item CONFIG\+\_\+\+AI\+\_\+\+USE\+\_\+\+ESPDL\+\_\+\+MODEL=y → inférence CNN via ESP-\/\+DL
+\item CONFIG\+\_\+\+AI\+\_\+\+USE\+\_\+\+ESPDL\+\_\+\+MODEL=n → algorithme géométrique à seuil
+\end{DoxyItemize}
+
+Basculement sans recompilation complexe \+: idf.\+py menuconfig → modifier CONFIG\+\_\+\+AI\+\_\+\+USE\+\_\+\+ESPDL\+\_\+\+MODEL → idf.\+py build 
+
+Definition in file \mbox{\hyperlink{fall__detection__ai_8h_source}{fall\+\_\+detection\+\_\+ai.\+h}}.
+

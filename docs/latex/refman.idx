@@ -1,0 +1,889 @@
+\indexentry{Démarrage (main)@{Démarrage (main)}|hyperpage}{7}
+\indexentry{Démarrage (main)@{Démarrage (main)}!app\_main@{app\_main}|hyperpage}{7}
+\indexentry{app\_main@{app\_main}!Démarrage (main)@{Démarrage (main)}|hyperpage}{7}
+\indexentry{Démarrage (main)@{Démarrage (main)}!s\_ctx@{s\_ctx}|hyperpage}{10}
+\indexentry{s\_ctx@{s\_ctx}!Démarrage (main)@{Démarrage (main)}|hyperpage}{10}
+\indexentry{Démarrage (main)@{Démarrage (main)}!TAG@{TAG}|hyperpage}{10}
+\indexentry{TAG@{TAG}!Démarrage (main)@{Démarrage (main)}|hyperpage}{10}
+\indexentry{IA / Détection de chute@{IA / Détection de chute}|hyperpage}{11}
+\indexentry{IA / Détection de chute@{IA / Détection de chute}!ai\_engine\_task\_start@{ai\_engine\_task\_start}|hyperpage}{12}
+\indexentry{ai\_engine\_task\_start@{ai\_engine\_task\_start}!IA / Détection de chute@{IA / Détection de chute}|hyperpage}{12}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{13}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_result\_t@{hw\_diag\_result\_t}|hyperpage}{13}
+\indexentry{hw\_diag\_result\_t@{hw\_diag\_result\_t}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{13}
+\indexentry{HW\_DIAG\_OK@{HW\_DIAG\_OK}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{13}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_OK@{HW\_DIAG\_OK}|hyperpage}{13}
+\indexentry{HW\_DIAG\_LIDAR\_PARTIAL@{HW\_DIAG\_LIDAR\_PARTIAL}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{13}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_LIDAR\_PARTIAL@{HW\_DIAG\_LIDAR\_PARTIAL}|hyperpage}{13}
+\indexentry{HW\_DIAG\_LIDAR\_ALL@{HW\_DIAG\_LIDAR\_ALL}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{13}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_LIDAR\_ALL@{HW\_DIAG\_LIDAR\_ALL}|hyperpage}{13}
+\indexentry{HW\_DIAG\_RADAR\_MISSING@{HW\_DIAG\_RADAR\_MISSING}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{13}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!HW\_DIAG\_RADAR\_MISSING@{HW\_DIAG\_RADAR\_MISSING}|hyperpage}{13}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_init\_sensor\_bus@{hw\_diag\_init\_sensor\_bus}|hyperpage}{14}
+\indexentry{hw\_diag\_init\_sensor\_bus@{hw\_diag\_init\_sensor\_bus}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{14}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_pca9555\_set\_power@{hw\_diag\_pca9555\_set\_power}|hyperpage}{14}
+\indexentry{hw\_diag\_pca9555\_set\_power@{hw\_diag\_pca9555\_set\_power}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{14}
+\indexentry{Diagnostic Matériel@{Diagnostic Matériel}!hw\_diag\_run@{hw\_diag\_run}|hyperpage}{15}
+\indexentry{hw\_diag\_run@{hw\_diag\_run}!Diagnostic Matériel@{Diagnostic Matériel}|hyperpage}{15}
+\indexentry{Configuration \& Types@{Configuration \& Types}|hyperpage}{17}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_BME280@{LEXACARE\_ENABLE\_BME280}|hyperpage}{17}
+\indexentry{LEXACARE\_ENABLE\_BME280@{LEXACARE\_ENABLE\_BME280}!Configuration \& Types@{Configuration \& Types}|hyperpage}{17}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_CAT24M01W@{LEXACARE\_ENABLE\_CAT24M01W}|hyperpage}{17}
+\indexentry{LEXACARE\_ENABLE\_CAT24M01W@{LEXACARE\_ENABLE\_CAT24M01W}!Configuration \& Types@{Configuration \& Types}|hyperpage}{17}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_HDC1080@{LEXACARE\_ENABLE\_HDC1080}|hyperpage}{18}
+\indexentry{LEXACARE\_ENABLE\_HDC1080@{LEXACARE\_ENABLE\_HDC1080}!Configuration \& Types@{Configuration \& Types}|hyperpage}{18}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_MESH@{LEXACARE\_ENABLE\_MESH}|hyperpage}{18}
+\indexentry{LEXACARE\_ENABLE\_MESH@{LEXACARE\_ENABLE\_MESH}!Configuration \& Types@{Configuration \& Types}|hyperpage}{18}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_MIC@{LEXACARE\_ENABLE\_MIC}|hyperpage}{18}
+\indexentry{LEXACARE\_ENABLE\_MIC@{LEXACARE\_ENABLE\_MIC}!Configuration \& Types@{Configuration \& Types}|hyperpage}{18}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_MLX90640@{LEXACARE\_ENABLE\_MLX90640}|hyperpage}{18}
+\indexentry{LEXACARE\_ENABLE\_MLX90640@{LEXACARE\_ENABLE\_MLX90640}!Configuration \& Types@{Configuration \& Types}|hyperpage}{18}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_RADAR@{LEXACARE\_ENABLE\_RADAR}|hyperpage}{18}
+\indexentry{LEXACARE\_ENABLE\_RADAR@{LEXACARE\_ENABLE\_RADAR}!Configuration \& Types@{Configuration \& Types}|hyperpage}{18}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_ENABLE\_VL53L0X@{LEXACARE\_ENABLE\_VL53L0X}|hyperpage}{18}
+\indexentry{LEXACARE\_ENABLE\_VL53L0X@{LEXACARE\_ENABLE\_VL53L0X}!Configuration \& Types@{Configuration \& Types}|hyperpage}{18}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_LIDAR\_COUNT@{LEXACARE\_LIDAR\_COUNT}|hyperpage}{19}
+\indexentry{LEXACARE\_LIDAR\_COUNT@{LEXACARE\_LIDAR\_COUNT}!Configuration \& Types@{Configuration \& Types}|hyperpage}{19}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_PWR\_FAN\_ENABLED@{LEXACARE\_PWR\_FAN\_ENABLED}|hyperpage}{19}
+\indexentry{LEXACARE\_PWR\_FAN\_ENABLED@{LEXACARE\_PWR\_FAN\_ENABLED}!Configuration \& Types@{Configuration \& Types}|hyperpage}{19}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_PWR\_MIC\_ENABLED@{LEXACARE\_PWR\_MIC\_ENABLED}|hyperpage}{19}
+\indexentry{LEXACARE\_PWR\_MIC\_ENABLED@{LEXACARE\_PWR\_MIC\_ENABLED}!Configuration \& Types@{Configuration \& Types}|hyperpage}{19}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_PWR\_MLX\_ENABLED@{LEXACARE\_PWR\_MLX\_ENABLED}|hyperpage}{19}
+\indexentry{LEXACARE\_PWR\_MLX\_ENABLED@{LEXACARE\_PWR\_MLX\_ENABLED}!Configuration \& Types@{Configuration \& Types}|hyperpage}{19}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LEXACARE\_PWR\_RADAR\_ENABLED@{LEXACARE\_PWR\_RADAR\_ENABLED}|hyperpage}{19}
+\indexentry{LEXACARE\_PWR\_RADAR\_ENABLED@{LEXACARE\_PWR\_RADAR\_ENABLED}!Configuration \& Types@{Configuration \& Types}|hyperpage}{19}
+\indexentry{Configuration \& Types@{Configuration \& Types}!LIDAR\_ROWS@{LIDAR\_ROWS}|hyperpage}{19}
+\indexentry{LIDAR\_ROWS@{LIDAR\_ROWS}!Configuration \& Types@{Configuration \& Types}|hyperpage}{19}
+\indexentry{Configuration \& Types@{Configuration \& Types}!PIN\_I2C0\_SDA@{PIN\_I2C0\_SDA}|hyperpage}{20}
+\indexentry{PIN\_I2C0\_SDA@{PIN\_I2C0\_SDA}!Configuration \& Types@{Configuration \& Types}|hyperpage}{20}
+\indexentry{Réseau maillé \& OTA@{Réseau maillé \& OTA}|hyperpage}{20}
+\indexentry{Réseau maillé \& OTA@{Réseau maillé \& OTA}!mesh\_manager\_init@{mesh\_manager\_init}|hyperpage}{21}
+\indexentry{mesh\_manager\_init@{mesh\_manager\_init}!Réseau maillé \& OTA@{Réseau maillé \& OTA}|hyperpage}{21}
+\indexentry{Réseau maillé \& OTA@{Réseau maillé \& OTA}!mesh\_task\_start@{mesh\_task\_start}|hyperpage}{22}
+\indexentry{mesh\_task\_start@{mesh\_task\_start}!Réseau maillé \& OTA@{Réseau maillé \& OTA}|hyperpage}{22}
+\indexentry{Réseau maillé \& OTA@{Réseau maillé \& OTA}!ota\_node\_init@{ota\_node\_init}|hyperpage}{23}
+\indexentry{ota\_node\_init@{ota\_node\_init}!Réseau maillé \& OTA@{Réseau maillé \& OTA}|hyperpage}{23}
+\indexentry{Diagnostic PC (JSON)@{Diagnostic PC (JSON)}|hyperpage}{24}
+\indexentry{Diagnostic PC (JSON)@{Diagnostic PC (JSON)}!pc\_diag\_task\_start@{pc\_diag\_task\_start}|hyperpage}{24}
+\indexentry{pc\_diag\_task\_start@{pc\_diag\_task\_start}!Diagnostic PC (JSON)@{Diagnostic PC (JSON)}|hyperpage}{24}
+\indexentry{Acquisition Capteurs@{Acquisition Capteurs}|hyperpage}{25}
+\indexentry{Acquisition Capteurs@{Acquisition Capteurs}!BME280\_I2C\_ADDR\_DEFAULT@{BME280\_I2C\_ADDR\_DEFAULT}|hyperpage}{27}
+\indexentry{BME280\_I2C\_ADDR\_DEFAULT@{BME280\_I2C\_ADDR\_DEFAULT}!Acquisition Capteurs@{Acquisition Capteurs}|hyperpage}{27}
+\indexentry{Acquisition Capteurs@{Acquisition Capteurs}!HDC1080\_I2C\_ADDR@{HDC1080\_I2C\_ADDR}|hyperpage}{27}
+\indexentry{HDC1080\_I2C\_ADDR@{HDC1080\_I2C\_ADDR}!Acquisition Capteurs@{Acquisition Capteurs}|hyperpage}{27}
+\indexentry{Acquisition Capteurs@{Acquisition Capteurs}!lidar\_driver\_start@{lidar\_driver\_start}|hyperpage}{27}
+\indexentry{lidar\_driver\_start@{lidar\_driver\_start}!Acquisition Capteurs@{Acquisition Capteurs}|hyperpage}{27}
+\indexentry{Acquisition Capteurs@{Acquisition Capteurs}!mic\_driver\_init@{mic\_driver\_init}|hyperpage}{28}
+\indexentry{mic\_driver\_init@{mic\_driver\_init}!Acquisition Capteurs@{Acquisition Capteurs}|hyperpage}{28}
+\indexentry{Acquisition Capteurs@{Acquisition Capteurs}!radar\_driver\_init@{radar\_driver\_init}|hyperpage}{29}
+\indexentry{radar\_driver\_init@{radar\_driver\_init}!Acquisition Capteurs@{Acquisition Capteurs}|hyperpage}{29}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}|hyperpage}{30}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!LITTLEFS\_MOUNT\_POINT@{LITTLEFS\_MOUNT\_POINT}|hyperpage}{31}
+\indexentry{LITTLEFS\_MOUNT\_POINT@{LITTLEFS\_MOUNT\_POINT}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{31}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!LITTLEFS\_PARTITION@{LITTLEFS\_PARTITION}|hyperpage}{31}
+\indexentry{LITTLEFS\_PARTITION@{LITTLEFS\_PARTITION}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{31}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!LOG\_FILE\_PATH@{LOG\_FILE\_PATH}|hyperpage}{31}
+\indexentry{LOG\_FILE\_PATH@{LOG\_FILE\_PATH}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{31}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!LOG\_MAX\_SIZE\_BYTES@{LOG\_MAX\_SIZE\_BYTES}|hyperpage}{31}
+\indexentry{LOG\_MAX\_SIZE\_BYTES@{LOG\_MAX\_SIZE\_BYTES}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{31}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!LOG\_TRIM\_PERCENT@{LOG\_TRIM\_PERCENT}|hyperpage}{31}
+\indexentry{LOG\_TRIM\_PERCENT@{LOG\_TRIM\_PERCENT}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{31}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!PANIC\_FILE\_PATH@{PANIC\_FILE\_PATH}|hyperpage}{32}
+\indexentry{PANIC\_FILE\_PATH@{PANIC\_FILE\_PATH}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{32}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!STORAGE\_MOUNT\_POINT@{STORAGE\_MOUNT\_POINT}|hyperpage}{32}
+\indexentry{STORAGE\_MOUNT\_POINT@{STORAGE\_MOUNT\_POINT}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{32}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!STORAGE\_PARTITION@{STORAGE\_PARTITION}|hyperpage}{32}
+\indexentry{STORAGE\_PARTITION@{STORAGE\_PARTITION}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{32}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!littlefs\_manager\_init@{littlefs\_manager\_init}|hyperpage}{33}
+\indexentry{littlefs\_manager\_init@{littlefs\_manager\_init}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{33}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!log\_write@{log\_write}|hyperpage}{33}
+\indexentry{log\_write@{log\_write}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{33}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!panic\_handler\_check\_on\_boot@{panic\_handler\_check\_on\_boot}|hyperpage}{34}
+\indexentry{panic\_handler\_check\_on\_boot@{panic\_handler\_check\_on\_boot}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{34}
+\indexentry{Stockage \& Logs@{Stockage \& Logs}!panic\_handler\_install@{panic\_handler\_install}|hyperpage}{35}
+\indexentry{panic\_handler\_install@{panic\_handler\_install}!Stockage \& Logs@{Stockage \& Logs}|hyperpage}{35}
+\indexentry{ai\_event\_t@{ai\_event\_t}|hyperpage}{37}
+\indexentry{ai\_event\_t@{ai\_event\_t}!confidence@{confidence}|hyperpage}{37}
+\indexentry{confidence@{confidence}!ai\_event\_t@{ai\_event\_t}|hyperpage}{37}
+\indexentry{ai\_event\_t@{ai\_event\_t}!state@{state}|hyperpage}{37}
+\indexentry{state@{state}!ai\_event\_t@{ai\_event\_t}|hyperpage}{37}
+\indexentry{ai\_event\_t@{ai\_event\_t}!timestamp\_us@{timestamp\_us}|hyperpage}{37}
+\indexentry{timestamp\_us@{timestamp\_us}!ai\_event\_t@{ai\_event\_t}|hyperpage}{37}
+\indexentry{ai\_task\_ctx\_t@{ai\_task\_ctx\_t}|hyperpage}{38}
+\indexentry{ai\_task\_ctx\_t@{ai\_task\_ctx\_t}!dist\_history@{dist\_history}|hyperpage}{39}
+\indexentry{dist\_history@{dist\_history}!ai\_task\_ctx\_t@{ai\_task\_ctx\_t}|hyperpage}{39}
+\indexentry{ai\_task\_ctx\_t@{ai\_task\_ctx\_t}!history\_full@{history\_full}|hyperpage}{39}
+\indexentry{history\_full@{history\_full}!ai\_task\_ctx\_t@{ai\_task\_ctx\_t}|hyperpage}{39}
+\indexentry{ai\_task\_ctx\_t@{ai\_task\_ctx\_t}!history\_head@{history\_head}|hyperpage}{39}
+\indexentry{history\_head@{history\_head}!ai\_task\_ctx\_t@{ai\_task\_ctx\_t}|hyperpage}{39}
+\indexentry{ai\_task\_ctx\_t@{ai\_task\_ctx\_t}!sys\_ctx@{sys\_ctx}|hyperpage}{39}
+\indexentry{sys\_ctx@{sys\_ctx}!ai\_task\_ctx\_t@{ai\_task\_ctx\_t}|hyperpage}{39}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{39}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!H1@{H1}|hyperpage}{40}
+\indexentry{H1@{H1}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!H2@{H2}|hyperpage}{40}
+\indexentry{H2@{H2}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!H3@{H3}|hyperpage}{40}
+\indexentry{H3@{H3}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!H4@{H4}|hyperpage}{40}
+\indexentry{H4@{H4}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!H5@{H5}|hyperpage}{40}
+\indexentry{H5@{H5}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!H6@{H6}|hyperpage}{40}
+\indexentry{H6@{H6}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P1@{P1}|hyperpage}{40}
+\indexentry{P1@{P1}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{40}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P2@{P2}|hyperpage}{41}
+\indexentry{P2@{P2}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P3@{P3}|hyperpage}{41}
+\indexentry{P3@{P3}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P4@{P4}|hyperpage}{41}
+\indexentry{P4@{P4}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P5@{P5}|hyperpage}{41}
+\indexentry{P5@{P5}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P6@{P6}|hyperpage}{41}
+\indexentry{P6@{P6}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P7@{P7}|hyperpage}{41}
+\indexentry{P7@{P7}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P8@{P8}|hyperpage}{41}
+\indexentry{P8@{P8}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!P9@{P9}|hyperpage}{41}
+\indexentry{P9@{P9}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{41}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!T1@{T1}|hyperpage}{42}
+\indexentry{T1@{T1}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{42}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!T2@{T2}|hyperpage}{42}
+\indexentry{T2@{T2}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{42}
+\indexentry{bme280\_calib\_t@{bme280\_calib\_t}!T3@{T3}|hyperpage}{42}
+\indexentry{T3@{T3}!bme280\_calib\_t@{bme280\_calib\_t}|hyperpage}{42}
+\indexentry{enviro\_data\_t@{enviro\_data\_t}|hyperpage}{42}
+\indexentry{enviro\_data\_t@{enviro\_data\_t}!humidity\_bme@{humidity\_bme}|hyperpage}{43}
+\indexentry{humidity\_bme@{humidity\_bme}!enviro\_data\_t@{enviro\_data\_t}|hyperpage}{43}
+\indexentry{enviro\_data\_t@{enviro\_data\_t}!humidity\_hdc@{humidity\_hdc}|hyperpage}{43}
+\indexentry{humidity\_hdc@{humidity\_hdc}!enviro\_data\_t@{enviro\_data\_t}|hyperpage}{43}
+\indexentry{enviro\_data\_t@{enviro\_data\_t}!pressure\_hpa@{pressure\_hpa}|hyperpage}{43}
+\indexentry{pressure\_hpa@{pressure\_hpa}!enviro\_data\_t@{enviro\_data\_t}|hyperpage}{43}
+\indexentry{enviro\_data\_t@{enviro\_data\_t}!temp\_bme\_c@{temp\_bme\_c}|hyperpage}{43}
+\indexentry{temp\_bme\_c@{temp\_bme\_c}!enviro\_data\_t@{enviro\_data\_t}|hyperpage}{43}
+\indexentry{enviro\_data\_t@{enviro\_data\_t}!temp\_hdc\_c@{temp\_hdc\_c}|hyperpage}{43}
+\indexentry{temp\_hdc\_c@{temp\_hdc\_c}!enviro\_data\_t@{enviro\_data\_t}|hyperpage}{43}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{44}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!crc16@{crc16}|hyperpage}{44}
+\indexentry{crc16@{crc16}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{44}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!hop\_count@{hop\_count}|hyperpage}{44}
+\indexentry{hop\_count@{hop\_count}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{44}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!iv@{iv}|hyperpage}{44}
+\indexentry{iv@{iv}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{44}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!magic@{magic}|hyperpage}{44}
+\indexentry{magic@{magic}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{44}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!payload@{payload}|hyperpage}{45}
+\indexentry{payload@{payload}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{45}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!payload\_len@{payload\_len}|hyperpage}{45}
+\indexentry{payload\_len@{payload\_len}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{45}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!src\_mac@{src\_mac}|hyperpage}{45}
+\indexentry{src\_mac@{src\_mac}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{45}
+\indexentry{lexacare\_frame\_t@{lexacare\_frame\_t}!type@{type}|hyperpage}{45}
+\indexentry{type@{type}!lexacare\_frame\_t@{lexacare\_frame\_t}|hyperpage}{45}
+\indexentry{lidar\_dev\_t@{lidar\_dev\_t}|hyperpage}{46}
+\indexentry{lidar\_dev\_t@{lidar\_dev\_t}!active@{active}|hyperpage}{46}
+\indexentry{active@{active}!lidar\_dev\_t@{lidar\_dev\_t}|hyperpage}{46}
+\indexentry{lidar\_dev\_t@{lidar\_dev\_t}!platform@{platform}|hyperpage}{46}
+\indexentry{platform@{platform}!lidar\_dev\_t@{lidar\_dev\_t}|hyperpage}{46}
+\indexentry{lidar\_dev\_t@{lidar\_dev\_t}!sensor\_idx@{sensor\_idx}|hyperpage}{46}
+\indexentry{sensor\_idx@{sensor\_idx}!lidar\_dev\_t@{lidar\_dev\_t}|hyperpage}{46}
+\indexentry{lidar\_matrix\_t@{lidar\_matrix\_t}|hyperpage}{47}
+\indexentry{lidar\_matrix\_t@{lidar\_matrix\_t}!data@{data}|hyperpage}{47}
+\indexentry{data@{data}!lidar\_matrix\_t@{lidar\_matrix\_t}|hyperpage}{47}
+\indexentry{lidar\_matrix\_t@{lidar\_matrix\_t}!timestamp\_us@{timestamp\_us}|hyperpage}{47}
+\indexentry{timestamp\_us@{timestamp\_us}!lidar\_matrix\_t@{lidar\_matrix\_t}|hyperpage}{47}
+\indexentry{lidar\_matrix\_t@{lidar\_matrix\_t}!valid@{valid}|hyperpage}{47}
+\indexentry{valid@{valid}!lidar\_matrix\_t@{lidar\_matrix\_t}|hyperpage}{47}
+\indexentry{lidar\_matrix\_t@{lidar\_matrix\_t}!vertical\_mm@{vertical\_mm}|hyperpage}{48}
+\indexentry{vertical\_mm@{vertical\_mm}!lidar\_matrix\_t@{lidar\_matrix\_t}|hyperpage}{48}
+\indexentry{lidar\_task\_ctx\_t@{lidar\_task\_ctx\_t}|hyperpage}{48}
+\indexentry{lidar\_task\_ctx\_t@{lidar\_task\_ctx\_t}!devs@{devs}|hyperpage}{49}
+\indexentry{devs@{devs}!lidar\_task\_ctx\_t@{lidar\_task\_ctx\_t}|hyperpage}{49}
+\indexentry{lidar\_task\_ctx\_t@{lidar\_task\_ctx\_t}!sys\_ctx@{sys\_ctx}|hyperpage}{49}
+\indexentry{sys\_ctx@{sys\_ctx}!lidar\_task\_ctx\_t@{lidar\_task\_ctx\_t}|hyperpage}{49}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}|hyperpage}{49}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!aes\_key@{aes\_key}|hyperpage}{50}
+\indexentry{aes\_key@{aes\_key}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{50}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!has\_parent@{has\_parent}|hyperpage}{50}
+\indexentry{has\_parent@{has\_parent}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{50}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!hop\_to\_root@{hop\_to\_root}|hyperpage}{50}
+\indexentry{hop\_to\_root@{hop\_to\_root}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{50}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!own\_mac@{own\_mac}|hyperpage}{50}
+\indexentry{own\_mac@{own\_mac}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{50}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!parent\_mac@{parent\_mac}|hyperpage}{50}
+\indexentry{parent\_mac@{parent\_mac}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{50}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!peer\_count@{peer\_count}|hyperpage}{51}
+\indexentry{peer\_count@{peer\_count}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{51}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!peers@{peers}|hyperpage}{51}
+\indexentry{peers@{peers}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{51}
+\indexentry{mesh\_state\_t@{mesh\_state\_t}!sys\_ctx@{sys\_ctx}|hyperpage}{51}
+\indexentry{sys\_ctx@{sys\_ctx}!mesh\_state\_t@{mesh\_state\_t}|hyperpage}{51}
+\indexentry{mic\_data\_t@{mic\_data\_t}|hyperpage}{51}
+\indexentry{mic\_data\_t@{mic\_data\_t}!peak@{peak}|hyperpage}{52}
+\indexentry{peak@{peak}!mic\_data\_t@{mic\_data\_t}|hyperpage}{52}
+\indexentry{mic\_data\_t@{mic\_data\_t}!rms@{rms}|hyperpage}{52}
+\indexentry{rms@{rms}!mic\_data\_t@{mic\_data\_t}|hyperpage}{52}
+\indexentry{mic\_data\_t@{mic\_data\_t}!valid@{valid}|hyperpage}{52}
+\indexentry{valid@{valid}!mic\_data\_t@{mic\_data\_t}|hyperpage}{52}
+\indexentry{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}|hyperpage}{52}
+\indexentry{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!data@{data}|hyperpage}{53}
+\indexentry{data@{data}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}|hyperpage}{53}
+\indexentry{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!firmware\_size@{firmware\_size}|hyperpage}{53}
+\indexentry{firmware\_size@{firmware\_size}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}|hyperpage}{53}
+\indexentry{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!fragment\_data\_len@{fragment\_data\_len}|hyperpage}{53}
+\indexentry{fragment\_data\_len@{fragment\_data\_len}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}|hyperpage}{53}
+\indexentry{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!fragment\_offset@{fragment\_offset}|hyperpage}{53}
+\indexentry{fragment\_offset@{fragment\_offset}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}|hyperpage}{53}
+\indexentry{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!is\_last@{is\_last}|hyperpage}{53}
+\indexentry{is\_last@{is\_last}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}|hyperpage}{53}
+\indexentry{ota\_state\_t@{ota\_state\_t}|hyperpage}{54}
+\indexentry{ota\_state\_t@{ota\_state\_t}!bytes\_written@{bytes\_written}|hyperpage}{54}
+\indexentry{bytes\_written@{bytes\_written}!ota\_state\_t@{ota\_state\_t}|hyperpage}{54}
+\indexentry{ota\_state\_t@{ota\_state\_t}!firmware\_size@{firmware\_size}|hyperpage}{54}
+\indexentry{firmware\_size@{firmware\_size}!ota\_state\_t@{ota\_state\_t}|hyperpage}{54}
+\indexentry{ota\_state\_t@{ota\_state\_t}!in\_progress@{in\_progress}|hyperpage}{54}
+\indexentry{in\_progress@{in\_progress}!ota\_state\_t@{ota\_state\_t}|hyperpage}{54}
+\indexentry{ota\_state\_t@{ota\_state\_t}!ota\_handle@{ota\_handle}|hyperpage}{54}
+\indexentry{ota\_handle@{ota\_handle}!ota\_state\_t@{ota\_state\_t}|hyperpage}{54}
+\indexentry{ota\_state\_t@{ota\_state\_t}!ota\_partition@{ota\_partition}|hyperpage}{55}
+\indexentry{ota\_partition@{ota\_partition}!ota\_state\_t@{ota\_state\_t}|hyperpage}{55}
+\indexentry{pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}|hyperpage}{55}
+\indexentry{pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}!has\_event@{has\_event}|hyperpage}{56}
+\indexentry{has\_event@{has\_event}!pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}|hyperpage}{56}
+\indexentry{pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}!last\_event@{last\_event}|hyperpage}{56}
+\indexentry{last\_event@{last\_event}!pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}|hyperpage}{56}
+\indexentry{pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}!sys\_ctx@{sys\_ctx}|hyperpage}{56}
+\indexentry{sys\_ctx@{sys\_ctx}!pc\_diag\_ctx\_t@{pc\_diag\_ctx\_t}|hyperpage}{56}
+\indexentry{peer\_info\_t@{peer\_info\_t}|hyperpage}{56}
+\indexentry{peer\_info\_t@{peer\_info\_t}!hop\_to\_root@{hop\_to\_root}|hyperpage}{57}
+\indexentry{hop\_to\_root@{hop\_to\_root}!peer\_info\_t@{peer\_info\_t}|hyperpage}{57}
+\indexentry{peer\_info\_t@{peer\_info\_t}!is\_child@{is\_child}|hyperpage}{57}
+\indexentry{is\_child@{is\_child}!peer\_info\_t@{peer\_info\_t}|hyperpage}{57}
+\indexentry{peer\_info\_t@{peer\_info\_t}!mac@{mac}|hyperpage}{57}
+\indexentry{mac@{mac}!peer\_info\_t@{peer\_info\_t}|hyperpage}{57}
+\indexentry{peer\_info\_t@{peer\_info\_t}!rssi@{rssi}|hyperpage}{57}
+\indexentry{rssi@{rssi}!peer\_info\_t@{peer\_info\_t}|hyperpage}{57}
+\indexentry{peer\_info\_t@{peer\_info\_t}!valid@{valid}|hyperpage}{57}
+\indexentry{valid@{valid}!peer\_info\_t@{peer\_info\_t}|hyperpage}{57}
+\indexentry{radar\_data\_t@{radar\_data\_t}|hyperpage}{57}
+\indexentry{radar\_data\_t@{radar\_data\_t}!breath\_rate\_bpm@{breath\_rate\_bpm}|hyperpage}{58}
+\indexentry{breath\_rate\_bpm@{breath\_rate\_bpm}!radar\_data\_t@{radar\_data\_t}|hyperpage}{58}
+\indexentry{radar\_data\_t@{radar\_data\_t}!heart\_phase@{heart\_phase}|hyperpage}{58}
+\indexentry{heart\_phase@{heart\_phase}!radar\_data\_t@{radar\_data\_t}|hyperpage}{58}
+\indexentry{radar\_data\_t@{radar\_data\_t}!heart\_rate\_bpm@{heart\_rate\_bpm}|hyperpage}{58}
+\indexentry{heart\_rate\_bpm@{heart\_rate\_bpm}!radar\_data\_t@{radar\_data\_t}|hyperpage}{58}
+\indexentry{radar\_data\_t@{radar\_data\_t}!presence@{presence}|hyperpage}{58}
+\indexentry{presence@{presence}!radar\_data\_t@{radar\_data\_t}|hyperpage}{58}
+\indexentry{radar\_data\_t@{radar\_data\_t}!resp\_phase@{resp\_phase}|hyperpage}{59}
+\indexentry{resp\_phase@{resp\_phase}!radar\_data\_t@{radar\_data\_t}|hyperpage}{59}
+\indexentry{radar\_data\_t@{radar\_data\_t}!target\_distance\_mm@{target\_distance\_mm}|hyperpage}{59}
+\indexentry{target\_distance\_mm@{target\_distance\_mm}!radar\_data\_t@{radar\_data\_t}|hyperpage}{59}
+\indexentry{radar\_data\_t@{radar\_data\_t}!timestamp\_us@{timestamp\_us}|hyperpage}{59}
+\indexentry{timestamp\_us@{timestamp\_us}!radar\_data\_t@{radar\_data\_t}|hyperpage}{59}
+\indexentry{radar\_data\_t@{radar\_data\_t}!total\_phase@{total\_phase}|hyperpage}{59}
+\indexentry{total\_phase@{total\_phase}!radar\_data\_t@{radar\_data\_t}|hyperpage}{59}
+\indexentry{radar\_parser\_t@{radar\_parser\_t}|hyperpage}{60}
+\indexentry{radar\_parser\_t@{radar\_parser\_t}!buf@{buf}|hyperpage}{60}
+\indexentry{buf@{buf}!radar\_parser\_t@{radar\_parser\_t}|hyperpage}{60}
+\indexentry{radar\_parser\_t@{radar\_parser\_t}!last\_data@{last\_data}|hyperpage}{60}
+\indexentry{last\_data@{last\_data}!radar\_parser\_t@{radar\_parser\_t}|hyperpage}{60}
+\indexentry{radar\_parser\_t@{radar\_parser\_t}!len@{len}|hyperpage}{60}
+\indexentry{len@{len}!radar\_parser\_t@{radar\_parser\_t}|hyperpage}{60}
+\indexentry{radar\_parser\_t@{radar\_parser\_t}!updated@{updated}|hyperpage}{60}
+\indexentry{updated@{updated}!radar\_parser\_t@{radar\_parser\_t}|hyperpage}{60}
+\indexentry{sensor\_frame\_t@{sensor\_frame\_t}|hyperpage}{61}
+\indexentry{sensor\_frame\_t@{sensor\_frame\_t}!lidar@{lidar}|hyperpage}{61}
+\indexentry{lidar@{lidar}!sensor\_frame\_t@{sensor\_frame\_t}|hyperpage}{61}
+\indexentry{sensor\_frame\_t@{sensor\_frame\_t}!lidar\_valid@{lidar\_valid}|hyperpage}{61}
+\indexentry{lidar\_valid@{lidar\_valid}!sensor\_frame\_t@{sensor\_frame\_t}|hyperpage}{61}
+\indexentry{sensor\_frame\_t@{sensor\_frame\_t}!radar@{radar}|hyperpage}{62}
+\indexentry{radar@{radar}!sensor\_frame\_t@{sensor\_frame\_t}|hyperpage}{62}
+\indexentry{sensor\_frame\_t@{sensor\_frame\_t}!radar\_valid@{radar\_valid}|hyperpage}{62}
+\indexentry{radar\_valid@{radar\_valid}!sensor\_frame\_t@{sensor\_frame\_t}|hyperpage}{62}
+\indexentry{sys\_context\_t@{sys\_context\_t}|hyperpage}{62}
+\indexentry{sys\_context\_t@{sys\_context\_t}!ai\_to\_mesh\_queue@{ai\_to\_mesh\_queue}|hyperpage}{63}
+\indexentry{ai\_to\_mesh\_queue@{ai\_to\_mesh\_queue}!sys\_context\_t@{sys\_context\_t}|hyperpage}{63}
+\indexentry{sys\_context\_t@{sys\_context\_t}!data\_mutex@{data\_mutex}|hyperpage}{63}
+\indexentry{data\_mutex@{data\_mutex}!sys\_context\_t@{sys\_context\_t}|hyperpage}{63}
+\indexentry{sys\_context\_t@{sys\_context\_t}!diag\_to\_pc\_queue@{diag\_to\_pc\_queue}|hyperpage}{63}
+\indexentry{diag\_to\_pc\_queue@{diag\_to\_pc\_queue}!sys\_context\_t@{sys\_context\_t}|hyperpage}{63}
+\indexentry{sys\_context\_t@{sys\_context\_t}!enviro@{enviro}|hyperpage}{63}
+\indexentry{enviro@{enviro}!sys\_context\_t@{sys\_context\_t}|hyperpage}{63}
+\indexentry{sys\_context\_t@{sys\_context\_t}!is\_root\_node@{is\_root\_node}|hyperpage}{64}
+\indexentry{is\_root\_node@{is\_root\_node}!sys\_context\_t@{sys\_context\_t}|hyperpage}{64}
+\indexentry{sys\_context\_t@{sys\_context\_t}!latest\_sensor@{latest\_sensor}|hyperpage}{64}
+\indexentry{latest\_sensor@{latest\_sensor}!sys\_context\_t@{sys\_context\_t}|hyperpage}{64}
+\indexentry{sys\_context\_t@{sys\_context\_t}!lidar\_ok@{lidar\_ok}|hyperpage}{64}
+\indexentry{lidar\_ok@{lidar\_ok}!sys\_context\_t@{sys\_context\_t}|hyperpage}{64}
+\indexentry{sys\_context\_t@{sys\_context\_t}!lidar\_spi@{lidar\_spi}|hyperpage}{64}
+\indexentry{lidar\_spi@{lidar\_spi}!sys\_context\_t@{sys\_context\_t}|hyperpage}{64}
+\indexentry{sys\_context\_t@{sys\_context\_t}!log\_queue@{log\_queue}|hyperpage}{64}
+\indexentry{log\_queue@{log\_queue}!sys\_context\_t@{sys\_context\_t}|hyperpage}{64}
+\indexentry{sys\_context\_t@{sys\_context\_t}!mic@{mic}|hyperpage}{65}
+\indexentry{mic@{mic}!sys\_context\_t@{sys\_context\_t}|hyperpage}{65}
+\indexentry{sys\_context\_t@{sys\_context\_t}!radar\_ok@{radar\_ok}|hyperpage}{65}
+\indexentry{radar\_ok@{radar\_ok}!sys\_context\_t@{sys\_context\_t}|hyperpage}{65}
+\indexentry{sys\_context\_t@{sys\_context\_t}!sensor\_to\_ai\_queue@{sensor\_to\_ai\_queue}|hyperpage}{65}
+\indexentry{sensor\_to\_ai\_queue@{sensor\_to\_ai\_queue}!sys\_context\_t@{sys\_context\_t}|hyperpage}{65}
+\indexentry{sys\_context\_t@{sys\_context\_t}!sensor\_valid@{sensor\_valid}|hyperpage}{65}
+\indexentry{sensor\_valid@{sensor\_valid}!sys\_context\_t@{sys\_context\_t}|hyperpage}{65}
+\indexentry{VL53L8CX\_Platform@{VL53L8CX\_Platform}|hyperpage}{66}
+\indexentry{VL53L8CX\_Platform@{VL53L8CX\_Platform}!spi\_dev@{spi\_dev}|hyperpage}{66}
+\indexentry{spi\_dev@{spi\_dev}!VL53L8CX\_Platform@{VL53L8CX\_Platform}|hyperpage}{66}
+\indexentry{components/ai\_engine/fall\_detection\_ai.cc@{components/ai\_engine/fall\_detection\_ai.cc}|hyperpage}{67}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD@{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}|hyperpage}{68}
+\indexentry{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD@{CONFIG\_AI\_FALL\_CONFIDENCE\_THRESHOLD}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{68}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT@{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}|hyperpage}{68}
+\indexentry{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT@{CONFIG\_AI\_FALL\_THRESHOLD\_PERCENT}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{68}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!CONFIG\_AI\_HISTORY\_LEN@{CONFIG\_AI\_HISTORY\_LEN}|hyperpage}{69}
+\indexentry{CONFIG\_AI\_HISTORY\_LEN@{CONFIG\_AI\_HISTORY\_LEN}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{69}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!FALL\_DISTANCE\_MAX\_MM@{FALL\_DISTANCE\_MAX\_MM}|hyperpage}{69}
+\indexentry{FALL\_DISTANCE\_MAX\_MM@{FALL\_DISTANCE\_MAX\_MM}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{69}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TASK\_CORE@{TASK\_CORE}|hyperpage}{69}
+\indexentry{TASK\_CORE@{TASK\_CORE}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{69}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TASK\_PRIORITY@{TASK\_PRIORITY}|hyperpage}{69}
+\indexentry{TASK\_PRIORITY@{TASK\_PRIORITY}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{69}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}|hyperpage}{69}
+\indexentry{TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{69}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!send\_ai\_event@{send\_ai\_event}|hyperpage}{70}
+\indexentry{send\_ai\_event@{send\_ai\_event}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{70}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!task\_ai\_inference@{task\_ai\_inference}|hyperpage}{70}
+\indexentry{task\_ai\_inference@{task\_ai\_inference}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{70}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!threshold\_avg\_lower\_zone@{threshold\_avg\_lower\_zone}|hyperpage}{72}
+\indexentry{threshold\_avg\_lower\_zone@{threshold\_avg\_lower\_zone}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{72}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!threshold\_detect\_fall@{threshold\_detect\_fall}|hyperpage}{73}
+\indexentry{threshold\_detect\_fall@{threshold\_detect\_fall}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{73}
+\indexentry{fall\_detection\_ai.cc@{fall\_detection\_ai.cc}!TAG@{TAG}|hyperpage}{74}
+\indexentry{TAG@{TAG}!fall\_detection\_ai.cc@{fall\_detection\_ai.cc}|hyperpage}{74}
+\indexentry{components/ai\_engine/fall\_detection\_ai.cc@{components/ai\_engine/fall\_detection\_ai.cc}|hyperpage}{74}
+\indexentry{components/ai\_engine/include/fall\_detection\_ai.h@{components/ai\_engine/include/fall\_detection\_ai.h}|hyperpage}{79}
+\indexentry{components/ai\_engine/include/fall\_detection\_ai.h@{components/ai\_engine/include/fall\_detection\_ai.h}|hyperpage}{80}
+\indexentry{components/hw\_diag/hw\_diag.c@{components/hw\_diag/hw\_diag.c}|hyperpage}{80}
+\indexentry{hw\_diag.c@{hw\_diag.c}!I2C\_BUS\_FREQ\_HZ@{I2C\_BUS\_FREQ\_HZ}|hyperpage}{82}
+\indexentry{I2C\_BUS\_FREQ\_HZ@{I2C\_BUS\_FREQ\_HZ}!hw\_diag.c@{hw\_diag.c}|hyperpage}{82}
+\indexentry{hw\_diag.c@{hw\_diag.c}!I2C\_TIMEOUT\_MS@{I2C\_TIMEOUT\_MS}|hyperpage}{82}
+\indexentry{I2C\_TIMEOUT\_MS@{I2C\_TIMEOUT\_MS}!hw\_diag.c@{hw\_diag.c}|hyperpage}{82}
+\indexentry{hw\_diag.c@{hw\_diag.c}!LIDAR\_LPN\_DELAY\_MS@{LIDAR\_LPN\_DELAY\_MS}|hyperpage}{82}
+\indexentry{LIDAR\_LPN\_DELAY\_MS@{LIDAR\_LPN\_DELAY\_MS}!hw\_diag.c@{hw\_diag.c}|hyperpage}{82}
+\indexentry{hw\_diag.c@{hw\_diag.c}!LIDAR\_SPI\_FREQ\_HZ@{LIDAR\_SPI\_FREQ\_HZ}|hyperpage}{82}
+\indexentry{LIDAR\_SPI\_FREQ\_HZ@{LIDAR\_SPI\_FREQ\_HZ}!hw\_diag.c@{hw\_diag.c}|hyperpage}{82}
+\indexentry{hw\_diag.c@{hw\_diag.c}!LIDAR\_SPI\_MAX\_XFER@{LIDAR\_SPI\_MAX\_XFER}|hyperpage}{83}
+\indexentry{LIDAR\_SPI\_MAX\_XFER@{LIDAR\_SPI\_MAX\_XFER}!hw\_diag.c@{hw\_diag.c}|hyperpage}{83}
+\indexentry{hw\_diag.c@{hw\_diag.c}!RADAR\_BAUD\_RATE@{RADAR\_BAUD\_RATE}|hyperpage}{83}
+\indexentry{RADAR\_BAUD\_RATE@{RADAR\_BAUD\_RATE}!hw\_diag.c@{hw\_diag.c}|hyperpage}{83}
+\indexentry{hw\_diag.c@{hw\_diag.c}!RADAR\_DETECT\_TIMEOUT\_MS@{RADAR\_DETECT\_TIMEOUT\_MS}|hyperpage}{83}
+\indexentry{RADAR\_DETECT\_TIMEOUT\_MS@{RADAR\_DETECT\_TIMEOUT\_MS}!hw\_diag.c@{hw\_diag.c}|hyperpage}{83}
+\indexentry{hw\_diag.c@{hw\_diag.c}!RADAR\_RX\_BUF\_SIZE@{RADAR\_RX\_BUF\_SIZE}|hyperpage}{83}
+\indexentry{RADAR\_RX\_BUF\_SIZE@{RADAR\_RX\_BUF\_SIZE}!hw\_diag.c@{hw\_diag.c}|hyperpage}{83}
+\indexentry{hw\_diag.c@{hw\_diag.c}!RADAR\_UART\_PORT@{RADAR\_UART\_PORT}|hyperpage}{83}
+\indexentry{RADAR\_UART\_PORT@{RADAR\_UART\_PORT}!hw\_diag.c@{hw\_diag.c}|hyperpage}{83}
+\indexentry{hw\_diag.c@{hw\_diag.c}!TF\_SOF@{TF\_SOF}|hyperpage}{83}
+\indexentry{TF\_SOF@{TF\_SOF}!hw\_diag.c@{hw\_diag.c}|hyperpage}{83}
+\indexentry{hw\_diag.c@{hw\_diag.c}!VL53L8CX\_MODEL\_ID@{VL53L8CX\_MODEL\_ID}|hyperpage}{84}
+\indexentry{VL53L8CX\_MODEL\_ID@{VL53L8CX\_MODEL\_ID}!hw\_diag.c@{hw\_diag.c}|hyperpage}{84}
+\indexentry{hw\_diag.c@{hw\_diag.c}!VL53L8CX\_REG\_MODEL\_ID@{VL53L8CX\_REG\_MODEL\_ID}|hyperpage}{84}
+\indexentry{VL53L8CX\_REG\_MODEL\_ID@{VL53L8CX\_REG\_MODEL\_ID}!hw\_diag.c@{hw\_diag.c}|hyperpage}{84}
+\indexentry{hw\_diag.c@{hw\_diag.c}!diag\_init\_i2c\_bus@{diag\_init\_i2c\_bus}|hyperpage}{84}
+\indexentry{diag\_init\_i2c\_bus@{diag\_init\_i2c\_bus}!hw\_diag.c@{hw\_diag.c}|hyperpage}{84}
+\indexentry{hw\_diag.c@{hw\_diag.c}!diag\_init\_spi\_lidars@{diag\_init\_spi\_lidars}|hyperpage}{85}
+\indexentry{diag\_init\_spi\_lidars@{diag\_init\_spi\_lidars}!hw\_diag.c@{hw\_diag.c}|hyperpage}{85}
+\indexentry{hw\_diag.c@{hw\_diag.c}!diag\_print\_json\_report@{diag\_print\_json\_report}|hyperpage}{86}
+\indexentry{diag\_print\_json\_report@{diag\_print\_json\_report}!hw\_diag.c@{hw\_diag.c}|hyperpage}{86}
+\indexentry{hw\_diag.c@{hw\_diag.c}!diag\_scan\_lidars@{diag\_scan\_lidars}|hyperpage}{86}
+\indexentry{diag\_scan\_lidars@{diag\_scan\_lidars}!hw\_diag.c@{hw\_diag.c}|hyperpage}{86}
+\indexentry{hw\_diag.c@{hw\_diag.c}!diag\_spi\_ping\_lidar@{diag\_spi\_ping\_lidar}|hyperpage}{88}
+\indexentry{diag\_spi\_ping\_lidar@{diag\_spi\_ping\_lidar}!hw\_diag.c@{hw\_diag.c}|hyperpage}{88}
+\indexentry{hw\_diag.c@{hw\_diag.c}!diag\_test\_radar@{diag\_test\_radar}|hyperpage}{89}
+\indexentry{diag\_test\_radar@{diag\_test\_radar}!hw\_diag.c@{hw\_diag.c}|hyperpage}{89}
+\indexentry{hw\_diag.c@{hw\_diag.c}!pca9555\_init@{pca9555\_init}|hyperpage}{89}
+\indexentry{pca9555\_init@{pca9555\_init}!hw\_diag.c@{hw\_diag.c}|hyperpage}{89}
+\indexentry{hw\_diag.c@{hw\_diag.c}!pca9555\_set\_lpn@{pca9555\_set\_lpn}|hyperpage}{91}
+\indexentry{pca9555\_set\_lpn@{pca9555\_set\_lpn}!hw\_diag.c@{hw\_diag.c}|hyperpage}{91}
+\indexentry{hw\_diag.c@{hw\_diag.c}!pca9555\_write\_reg@{pca9555\_write\_reg}|hyperpage}{92}
+\indexentry{pca9555\_write\_reg@{pca9555\_write\_reg}!hw\_diag.c@{hw\_diag.c}|hyperpage}{92}
+\indexentry{hw\_diag.c@{hw\_diag.c}!s\_ncs\_pins@{s\_ncs\_pins}|hyperpage}{92}
+\indexentry{s\_ncs\_pins@{s\_ncs\_pins}!hw\_diag.c@{hw\_diag.c}|hyperpage}{92}
+\indexentry{hw\_diag.c@{hw\_diag.c}!s\_pca1\_out@{s\_pca1\_out}|hyperpage}{93}
+\indexentry{s\_pca1\_out@{s\_pca1\_out}!hw\_diag.c@{hw\_diag.c}|hyperpage}{93}
+\indexentry{hw\_diag.c@{hw\_diag.c}!s\_pca\_bus@{s\_pca\_bus}|hyperpage}{93}
+\indexentry{s\_pca\_bus@{s\_pca\_bus}!hw\_diag.c@{hw\_diag.c}|hyperpage}{93}
+\indexentry{hw\_diag.c@{hw\_diag.c}!s\_pca\_dev@{s\_pca\_dev}|hyperpage}{93}
+\indexentry{s\_pca\_dev@{s\_pca\_dev}!hw\_diag.c@{hw\_diag.c}|hyperpage}{93}
+\indexentry{hw\_diag.c@{hw\_diag.c}!s\_pca\_lpn\_bit@{s\_pca\_lpn\_bit}|hyperpage}{93}
+\indexentry{s\_pca\_lpn\_bit@{s\_pca\_lpn\_bit}!hw\_diag.c@{hw\_diag.c}|hyperpage}{93}
+\indexentry{hw\_diag.c@{hw\_diag.c}!s\_pca\_out@{s\_pca\_out}|hyperpage}{93}
+\indexentry{s\_pca\_out@{s\_pca\_out}!hw\_diag.c@{hw\_diag.c}|hyperpage}{93}
+\indexentry{hw\_diag.c@{hw\_diag.c}!TAG@{TAG}|hyperpage}{94}
+\indexentry{TAG@{TAG}!hw\_diag.c@{hw\_diag.c}|hyperpage}{94}
+\indexentry{components/hw\_diag/hw\_diag.c@{components/hw\_diag/hw\_diag.c}|hyperpage}{94}
+\indexentry{components/hw\_diag/include/hw\_diag.h@{components/hw\_diag/include/hw\_diag.h}|hyperpage}{101}
+\indexentry{components/hw\_diag/include/hw\_diag.h@{components/hw\_diag/include/hw\_diag.h}|hyperpage}{102}
+\indexentry{components/lexacare\_types/include/lexacare\_config.h@{components/lexacare\_types/include/lexacare\_config.h}|hyperpage}{103}
+\indexentry{components/lexacare\_types/include/lexacare\_config.h@{components/lexacare\_types/include/lexacare\_config.h}|hyperpage}{105}
+\indexentry{components/lexacare\_types/include/pins\_config.h@{components/lexacare\_types/include/pins\_config.h}|hyperpage}{106}
+\indexentry{pins\_config.h@{pins\_config.h}!LIDAR\_SPI\_HOST@{LIDAR\_SPI\_HOST}|hyperpage}{107}
+\indexentry{LIDAR\_SPI\_HOST@{LIDAR\_SPI\_HOST}!pins\_config.h@{pins\_config.h}|hyperpage}{107}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_DIST\_SHUTDOWN@{PCA9555\_BIT\_DIST\_SHUTDOWN}|hyperpage}{107}
+\indexentry{PCA9555\_BIT\_DIST\_SHUTDOWN@{PCA9555\_BIT\_DIST\_SHUTDOWN}!pins\_config.h@{pins\_config.h}|hyperpage}{107}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN1@{PCA9555\_BIT\_LPN1}|hyperpage}{108}
+\indexentry{PCA9555\_BIT\_LPN1@{PCA9555\_BIT\_LPN1}!pins\_config.h@{pins\_config.h}|hyperpage}{108}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN2@{PCA9555\_BIT\_LPN2}|hyperpage}{108}
+\indexentry{PCA9555\_BIT\_LPN2@{PCA9555\_BIT\_LPN2}!pins\_config.h@{pins\_config.h}|hyperpage}{108}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN3@{PCA9555\_BIT\_LPN3}|hyperpage}{108}
+\indexentry{PCA9555\_BIT\_LPN3@{PCA9555\_BIT\_LPN3}!pins\_config.h@{pins\_config.h}|hyperpage}{108}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_LPN4@{PCA9555\_BIT\_LPN4}|hyperpage}{108}
+\indexentry{PCA9555\_BIT\_LPN4@{PCA9555\_BIT\_LPN4}!pins\_config.h@{pins\_config.h}|hyperpage}{108}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_FAN@{PCA9555\_BIT\_PWR\_FAN}|hyperpage}{108}
+\indexentry{PCA9555\_BIT\_PWR\_FAN@{PCA9555\_BIT\_PWR\_FAN}!pins\_config.h@{pins\_config.h}|hyperpage}{108}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_MIC@{PCA9555\_BIT\_PWR\_MIC}|hyperpage}{108}
+\indexentry{PCA9555\_BIT\_PWR\_MIC@{PCA9555\_BIT\_PWR\_MIC}!pins\_config.h@{pins\_config.h}|hyperpage}{108}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_MLX@{PCA9555\_BIT\_PWR\_MLX}|hyperpage}{109}
+\indexentry{PCA9555\_BIT\_PWR\_MLX@{PCA9555\_BIT\_PWR\_MLX}!pins\_config.h@{pins\_config.h}|hyperpage}{109}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_PWR\_RADAR@{PCA9555\_BIT\_PWR\_RADAR}|hyperpage}{109}
+\indexentry{PCA9555\_BIT\_PWR\_RADAR@{PCA9555\_BIT\_PWR\_RADAR}!pins\_config.h@{pins\_config.h}|hyperpage}{109}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_BIT\_RADAR\_LPN@{PCA9555\_BIT\_RADAR\_LPN}|hyperpage}{109}
+\indexentry{PCA9555\_BIT\_RADAR\_LPN@{PCA9555\_BIT\_RADAR\_LPN}!pins\_config.h@{pins\_config.h}|hyperpage}{109}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_CFG0\_MASK@{PCA9555\_CFG0\_MASK}|hyperpage}{109}
+\indexentry{PCA9555\_CFG0\_MASK@{PCA9555\_CFG0\_MASK}!pins\_config.h@{pins\_config.h}|hyperpage}{109}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_CFG1\_MASK@{PCA9555\_CFG1\_MASK}|hyperpage}{109}
+\indexentry{PCA9555\_CFG1\_MASK@{PCA9555\_CFG1\_MASK}!pins\_config.h@{pins\_config.h}|hyperpage}{109}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_I2C\_ADDR@{PCA9555\_I2C\_ADDR}|hyperpage}{110}
+\indexentry{PCA9555\_I2C\_ADDR@{PCA9555\_I2C\_ADDR}!pins\_config.h@{pins\_config.h}|hyperpage}{110}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_CONFIG\_0@{PCA9555\_REG\_CONFIG\_0}|hyperpage}{110}
+\indexentry{PCA9555\_REG\_CONFIG\_0@{PCA9555\_REG\_CONFIG\_0}!pins\_config.h@{pins\_config.h}|hyperpage}{110}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_CONFIG\_1@{PCA9555\_REG\_CONFIG\_1}|hyperpage}{110}
+\indexentry{PCA9555\_REG\_CONFIG\_1@{PCA9555\_REG\_CONFIG\_1}!pins\_config.h@{pins\_config.h}|hyperpage}{110}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_OUTPUT\_0@{PCA9555\_REG\_OUTPUT\_0}|hyperpage}{110}
+\indexentry{PCA9555\_REG\_OUTPUT\_0@{PCA9555\_REG\_OUTPUT\_0}!pins\_config.h@{pins\_config.h}|hyperpage}{110}
+\indexentry{pins\_config.h@{pins\_config.h}!PCA9555\_REG\_OUTPUT\_1@{PCA9555\_REG\_OUTPUT\_1}|hyperpage}{110}
+\indexentry{PCA9555\_REG\_OUTPUT\_1@{PCA9555\_REG\_OUTPUT\_1}!pins\_config.h@{pins\_config.h}|hyperpage}{110}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_I2C0\_SCL@{PIN\_I2C0\_SCL}|hyperpage}{111}
+\indexentry{PIN\_I2C0\_SCL@{PIN\_I2C0\_SCL}!pins\_config.h@{pins\_config.h}|hyperpage}{111}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_I2C1\_SCL@{PIN\_I2C1\_SCL}|hyperpage}{111}
+\indexentry{PIN\_I2C1\_SCL@{PIN\_I2C1\_SCL}!pins\_config.h@{pins\_config.h}|hyperpage}{111}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_I2C1\_SDA@{PIN\_I2C1\_SDA}|hyperpage}{111}
+\indexentry{PIN\_I2C1\_SDA@{PIN\_I2C1\_SDA}!pins\_config.h@{pins\_config.h}|hyperpage}{111}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LED\_STATUS@{PIN\_LED\_STATUS}|hyperpage}{111}
+\indexentry{PIN\_LED\_STATUS@{PIN\_LED\_STATUS}!pins\_config.h@{pins\_config.h}|hyperpage}{111}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_CLK@{PIN\_LIDAR\_CLK}|hyperpage}{111}
+\indexentry{PIN\_LIDAR\_CLK@{PIN\_LIDAR\_CLK}!pins\_config.h@{pins\_config.h}|hyperpage}{111}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_MISO@{PIN\_LIDAR\_MISO}|hyperpage}{111}
+\indexentry{PIN\_LIDAR\_MISO@{PIN\_LIDAR\_MISO}!pins\_config.h@{pins\_config.h}|hyperpage}{111}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_MOSI@{PIN\_LIDAR\_MOSI}|hyperpage}{112}
+\indexentry{PIN\_LIDAR\_MOSI@{PIN\_LIDAR\_MOSI}!pins\_config.h@{pins\_config.h}|hyperpage}{112}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS0@{PIN\_LIDAR\_NCS0}|hyperpage}{112}
+\indexentry{PIN\_LIDAR\_NCS0@{PIN\_LIDAR\_NCS0}!pins\_config.h@{pins\_config.h}|hyperpage}{112}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS1@{PIN\_LIDAR\_NCS1}|hyperpage}{112}
+\indexentry{PIN\_LIDAR\_NCS1@{PIN\_LIDAR\_NCS1}!pins\_config.h@{pins\_config.h}|hyperpage}{112}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS2@{PIN\_LIDAR\_NCS2}|hyperpage}{112}
+\indexentry{PIN\_LIDAR\_NCS2@{PIN\_LIDAR\_NCS2}!pins\_config.h@{pins\_config.h}|hyperpage}{112}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_NCS3@{PIN\_LIDAR\_NCS3}|hyperpage}{112}
+\indexentry{PIN\_LIDAR\_NCS3@{PIN\_LIDAR\_NCS3}!pins\_config.h@{pins\_config.h}|hyperpage}{112}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_LIDAR\_SYNC@{PIN\_LIDAR\_SYNC}|hyperpage}{112}
+\indexentry{PIN\_LIDAR\_SYNC@{PIN\_LIDAR\_SYNC}!pins\_config.h@{pins\_config.h}|hyperpage}{112}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_MIC\_SCK@{PIN\_MIC\_SCK}|hyperpage}{113}
+\indexentry{PIN\_MIC\_SCK@{PIN\_MIC\_SCK}!pins\_config.h@{pins\_config.h}|hyperpage}{113}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_MIC\_SD@{PIN\_MIC\_SD}|hyperpage}{113}
+\indexentry{PIN\_MIC\_SD@{PIN\_MIC\_SD}!pins\_config.h@{pins\_config.h}|hyperpage}{113}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_MIC\_WS@{PIN\_MIC\_WS}|hyperpage}{113}
+\indexentry{PIN\_MIC\_WS@{PIN\_MIC\_WS}!pins\_config.h@{pins\_config.h}|hyperpage}{113}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_RADAR\_RX@{PIN\_RADAR\_RX}|hyperpage}{113}
+\indexentry{PIN\_RADAR\_RX@{PIN\_RADAR\_RX}!pins\_config.h@{pins\_config.h}|hyperpage}{113}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_RADAR\_TX@{PIN\_RADAR\_TX}|hyperpage}{113}
+\indexentry{PIN\_RADAR\_TX@{PIN\_RADAR\_TX}!pins\_config.h@{pins\_config.h}|hyperpage}{113}
+\indexentry{pins\_config.h@{pins\_config.h}!PIN\_ROOT\_SEL@{PIN\_ROOT\_SEL}|hyperpage}{113}
+\indexentry{PIN\_ROOT\_SEL@{PIN\_ROOT\_SEL}!pins\_config.h@{pins\_config.h}|hyperpage}{113}
+\indexentry{components/lexacare\_types/include/pins\_config.h@{components/lexacare\_types/include/pins\_config.h}|hyperpage}{114}
+\indexentry{components/lexacare\_types/include/system\_types.h@{components/lexacare\_types/include/system\_types.h}|hyperpage}{116}
+\indexentry{system\_types.h@{system\_types.h}!FRAME\_TYPE\_AI\_EVENT@{FRAME\_TYPE\_AI\_EVENT}|hyperpage}{117}
+\indexentry{FRAME\_TYPE\_AI\_EVENT@{FRAME\_TYPE\_AI\_EVENT}!system\_types.h@{system\_types.h}|hyperpage}{117}
+\indexentry{system\_types.h@{system\_types.h}!FRAME\_TYPE\_BEACON@{FRAME\_TYPE\_BEACON}|hyperpage}{117}
+\indexentry{FRAME\_TYPE\_BEACON@{FRAME\_TYPE\_BEACON}!system\_types.h@{system\_types.h}|hyperpage}{117}
+\indexentry{system\_types.h@{system\_types.h}!FRAME\_TYPE\_OTA\_FRAGMENT@{FRAME\_TYPE\_OTA\_FRAGMENT}|hyperpage}{117}
+\indexentry{FRAME\_TYPE\_OTA\_FRAGMENT@{FRAME\_TYPE\_OTA\_FRAGMENT}!system\_types.h@{system\_types.h}|hyperpage}{117}
+\indexentry{system\_types.h@{system\_types.h}!FRAME\_TYPE\_TELEMETRY@{FRAME\_TYPE\_TELEMETRY}|hyperpage}{118}
+\indexentry{FRAME\_TYPE\_TELEMETRY@{FRAME\_TYPE\_TELEMETRY}!system\_types.h@{system\_types.h}|hyperpage}{118}
+\indexentry{system\_types.h@{system\_types.h}!LEXACARE\_AES\_IV\_LEN@{LEXACARE\_AES\_IV\_LEN}|hyperpage}{118}
+\indexentry{LEXACARE\_AES\_IV\_LEN@{LEXACARE\_AES\_IV\_LEN}!system\_types.h@{system\_types.h}|hyperpage}{118}
+\indexentry{system\_types.h@{system\_types.h}!LEXACARE\_AES\_KEY\_LEN@{LEXACARE\_AES\_KEY\_LEN}|hyperpage}{118}
+\indexentry{LEXACARE\_AES\_KEY\_LEN@{LEXACARE\_AES\_KEY\_LEN}!system\_types.h@{system\_types.h}|hyperpage}{118}
+\indexentry{system\_types.h@{system\_types.h}!LEXACARE\_FRAME\_MAGIC@{LEXACARE\_FRAME\_MAGIC}|hyperpage}{118}
+\indexentry{LEXACARE\_FRAME\_MAGIC@{LEXACARE\_FRAME\_MAGIC}!system\_types.h@{system\_types.h}|hyperpage}{118}
+\indexentry{system\_types.h@{system\_types.h}!LEXACARE\_MAX\_PAYLOAD@{LEXACARE\_MAX\_PAYLOAD}|hyperpage}{118}
+\indexentry{LEXACARE\_MAX\_PAYLOAD@{LEXACARE\_MAX\_PAYLOAD}!system\_types.h@{system\_types.h}|hyperpage}{118}
+\indexentry{system\_types.h@{system\_types.h}!LIDAR\_COLS@{LIDAR\_COLS}|hyperpage}{118}
+\indexentry{LIDAR\_COLS@{LIDAR\_COLS}!system\_types.h@{system\_types.h}|hyperpage}{118}
+\indexentry{system\_types.h@{system\_types.h}!LIDAR\_I2C\_ADDR\_BASE@{LIDAR\_I2C\_ADDR\_BASE}|hyperpage}{119}
+\indexentry{LIDAR\_I2C\_ADDR\_BASE@{LIDAR\_I2C\_ADDR\_BASE}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{system\_types.h@{system\_types.h}!LIDAR\_I2C\_ADDR\_DEFAULT@{LIDAR\_I2C\_ADDR\_DEFAULT}|hyperpage}{119}
+\indexentry{LIDAR\_I2C\_ADDR\_DEFAULT@{LIDAR\_I2C\_ADDR\_DEFAULT}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{system\_types.h@{system\_types.h}!LIDAR\_NUM\_FRONT@{LIDAR\_NUM\_FRONT}|hyperpage}{119}
+\indexentry{LIDAR\_NUM\_FRONT@{LIDAR\_NUM\_FRONT}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{system\_types.h@{system\_types.h}!LIDAR\_NUM\_TOTAL@{LIDAR\_NUM\_TOTAL}|hyperpage}{119}
+\indexentry{LIDAR\_NUM\_TOTAL@{LIDAR\_NUM\_TOTAL}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{system\_types.h@{system\_types.h}!LIDAR\_ZONES\_PER\_SENSOR@{LIDAR\_ZONES\_PER\_SENSOR}|hyperpage}{119}
+\indexentry{LIDAR\_ZONES\_PER\_SENSOR@{LIDAR\_ZONES\_PER\_SENSOR}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{system\_types.h@{system\_types.h}!OTA\_FRAGMENT\_DATA\_LEN@{OTA\_FRAGMENT\_DATA\_LEN}|hyperpage}{119}
+\indexentry{OTA\_FRAGMENT\_DATA\_LEN@{OTA\_FRAGMENT\_DATA\_LEN}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{system\_types.h@{system\_types.h}!ai\_event\_state\_e@{ai\_event\_state\_e}|hyperpage}{119}
+\indexentry{ai\_event\_state\_e@{ai\_event\_state\_e}!system\_types.h@{system\_types.h}|hyperpage}{119}
+\indexentry{AI\_NORMAL@{AI\_NORMAL}!system\_types.h@{system\_types.h}|hyperpage}{120}
+\indexentry{system\_types.h@{system\_types.h}!AI\_NORMAL@{AI\_NORMAL}|hyperpage}{120}
+\indexentry{AI\_CHUTE\_DETECTEE@{AI\_CHUTE\_DETECTEE}!system\_types.h@{system\_types.h}|hyperpage}{120}
+\indexentry{system\_types.h@{system\_types.h}!AI\_CHUTE\_DETECTEE@{AI\_CHUTE\_DETECTEE}|hyperpage}{120}
+\indexentry{AI\_MOUVEMENT\_ANORMAL@{AI\_MOUVEMENT\_ANORMAL}!system\_types.h@{system\_types.h}|hyperpage}{120}
+\indexentry{system\_types.h@{system\_types.h}!AI\_MOUVEMENT\_ANORMAL@{AI\_MOUVEMENT\_ANORMAL}|hyperpage}{120}
+\indexentry{components/lexacare\_types/include/system\_types.h@{components/lexacare\_types/include/system\_types.h}|hyperpage}{120}
+\indexentry{components/mesh\_network/include/mesh\_manager.h@{components/mesh\_network/include/mesh\_manager.h}|hyperpage}{123}
+\indexentry{components/mesh\_network/include/mesh\_manager.h@{components/mesh\_network/include/mesh\_manager.h}|hyperpage}{124}
+\indexentry{components/mesh\_network/include/ota\_node.h@{components/mesh\_network/include/ota\_node.h}|hyperpage}{125}
+\indexentry{ota\_node.h@{ota\_node.h}!ota\_node\_process\_fragment@{ota\_node\_process\_fragment}|hyperpage}{126}
+\indexentry{ota\_node\_process\_fragment@{ota\_node\_process\_fragment}!ota\_node.h@{ota\_node.h}|hyperpage}{126}
+\indexentry{components/mesh\_network/include/ota\_node.h@{components/mesh\_network/include/ota\_node.h}|hyperpage}{127}
+\indexentry{components/mesh\_network/mesh\_manager.c@{components/mesh\_network/mesh\_manager.c}|hyperpage}{128}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!aes\_compat\_crypt\_cbc@{aes\_compat\_crypt\_cbc}|hyperpage}{130}
+\indexentry{aes\_compat\_crypt\_cbc@{aes\_compat\_crypt\_cbc}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{130}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!AES\_COMPAT\_ENCRYPT@{AES\_COMPAT\_ENCRYPT}|hyperpage}{130}
+\indexentry{AES\_COMPAT\_ENCRYPT@{AES\_COMPAT\_ENCRYPT}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{130}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!aes\_compat\_free@{aes\_compat\_free}|hyperpage}{130}
+\indexentry{aes\_compat\_free@{aes\_compat\_free}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{130}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!aes\_compat\_init@{aes\_compat\_init}|hyperpage}{130}
+\indexentry{aes\_compat\_init@{aes\_compat\_init}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{130}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!aes\_compat\_setkey@{aes\_compat\_setkey}|hyperpage}{131}
+\indexentry{aes\_compat\_setkey@{aes\_compat\_setkey}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{131}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!BEACON\_INTERVAL\_MS@{BEACON\_INTERVAL\_MS}|hyperpage}{131}
+\indexentry{BEACON\_INTERVAL\_MS@{BEACON\_INTERVAL\_MS}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{131}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!ESPNOW\_CHANNEL@{ESPNOW\_CHANNEL}|hyperpage}{131}
+\indexentry{ESPNOW\_CHANNEL@{ESPNOW\_CHANNEL}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{131}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!ESPNOW\_MAX\_PEERS@{ESPNOW\_MAX\_PEERS}|hyperpage}{131}
+\indexentry{ESPNOW\_MAX\_PEERS@{ESPNOW\_MAX\_PEERS}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{131}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!MESH\_TASK\_CORE@{MESH\_TASK\_CORE}|hyperpage}{131}
+\indexentry{MESH\_TASK\_CORE@{MESH\_TASK\_CORE}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{131}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!MESH\_TASK\_PRIORITY@{MESH\_TASK\_PRIORITY}|hyperpage}{132}
+\indexentry{MESH\_TASK\_PRIORITY@{MESH\_TASK\_PRIORITY}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{132}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!MESH\_TASK\_STACK@{MESH\_TASK\_STACK}|hyperpage}{132}
+\indexentry{MESH\_TASK\_STACK@{MESH\_TASK\_STACK}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{132}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!aes\_compat\_ctx\_t@{aes\_compat\_ctx\_t}|hyperpage}{132}
+\indexentry{aes\_compat\_ctx\_t@{aes\_compat\_ctx\_t}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{132}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!aes\_encrypt\_payload@{aes\_encrypt\_payload}|hyperpage}{132}
+\indexentry{aes\_encrypt\_payload@{aes\_encrypt\_payload}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{132}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!crc16\_ccitt@{crc16\_ccitt}|hyperpage}{133}
+\indexentry{crc16\_ccitt@{crc16\_ccitt}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{133}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!espnow\_rx\_callback@{espnow\_rx\_callback}|hyperpage}{134}
+\indexentry{espnow\_rx\_callback@{espnow\_rx\_callback}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{134}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!espnow\_tx\_callback@{espnow\_tx\_callback}|hyperpage}{134}
+\indexentry{espnow\_tx\_callback@{espnow\_tx\_callback}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{134}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!mesh\_build\_ai\_frame@{mesh\_build\_ai\_frame}|hyperpage}{135}
+\indexentry{mesh\_build\_ai\_frame@{mesh\_build\_ai\_frame}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{135}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!mesh\_load\_aes\_key@{mesh\_load\_aes\_key}|hyperpage}{136}
+\indexentry{mesh\_load\_aes\_key@{mesh\_load\_aes\_key}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{136}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!task\_mesh\_com@{task\_mesh\_com}|hyperpage}{137}
+\indexentry{task\_mesh\_com@{task\_mesh\_com}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{137}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!k\_aes\_default@{k\_aes\_default}|hyperpage}{138}
+\indexentry{k\_aes\_default@{k\_aes\_default}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{138}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!k\_broadcast\_mac@{k\_broadcast\_mac}|hyperpage}{138}
+\indexentry{k\_broadcast\_mac@{k\_broadcast\_mac}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{138}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!k\_pmk@{k\_pmk}|hyperpage}{138}
+\indexentry{k\_pmk@{k\_pmk}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{138}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!s\_mesh@{s\_mesh}|hyperpage}{139}
+\indexentry{s\_mesh@{s\_mesh}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{139}
+\indexentry{mesh\_manager.c@{mesh\_manager.c}!TAG@{TAG}|hyperpage}{139}
+\indexentry{TAG@{TAG}!mesh\_manager.c@{mesh\_manager.c}|hyperpage}{139}
+\indexentry{components/mesh\_network/mesh\_manager.c@{components/mesh\_network/mesh\_manager.c}|hyperpage}{139}
+\indexentry{components/mesh\_network/ota\_node.c@{components/mesh\_network/ota\_node.c}|hyperpage}{144}
+\indexentry{ota\_node.c@{ota\_node.c}!ota\_node\_process\_fragment@{ota\_node\_process\_fragment}|hyperpage}{146}
+\indexentry{ota\_node\_process\_fragment@{ota\_node\_process\_fragment}!ota\_node.c@{ota\_node.c}|hyperpage}{146}
+\indexentry{ota\_node.c@{ota\_node.c}!s\_ota@{s\_ota}|hyperpage}{147}
+\indexentry{s\_ota@{s\_ota}!ota\_node.c@{ota\_node.c}|hyperpage}{147}
+\indexentry{ota\_node.c@{ota\_node.c}!TAG@{TAG}|hyperpage}{147}
+\indexentry{TAG@{TAG}!ota\_node.c@{ota\_node.c}|hyperpage}{147}
+\indexentry{components/mesh\_network/ota\_node.c@{components/mesh\_network/ota\_node.c}|hyperpage}{147}
+\indexentry{components/pc\_diag/include/pc\_diag.h@{components/pc\_diag/include/pc\_diag.h}|hyperpage}{149}
+\indexentry{components/pc\_diag/include/pc\_diag.h@{components/pc\_diag/include/pc\_diag.h}|hyperpage}{151}
+\indexentry{components/pc\_diag/pc\_diag.c@{components/pc\_diag/pc\_diag.c}|hyperpage}{151}
+\indexentry{pc\_diag.c@{pc\_diag.c}!AI\_STATE\_COUNT@{AI\_STATE\_COUNT}|hyperpage}{153}
+\indexentry{AI\_STATE\_COUNT@{AI\_STATE\_COUNT}!pc\_diag.c@{pc\_diag.c}|hyperpage}{153}
+\indexentry{pc\_diag.c@{pc\_diag.c}!CMD\_BUF\_SIZE@{CMD\_BUF\_SIZE}|hyperpage}{153}
+\indexentry{CMD\_BUF\_SIZE@{CMD\_BUF\_SIZE}!pc\_diag.c@{pc\_diag.c}|hyperpage}{153}
+\indexentry{pc\_diag.c@{pc\_diag.c}!LOG\_TRANSFER\_BLOCK\_SIZE@{LOG\_TRANSFER\_BLOCK\_SIZE}|hyperpage}{153}
+\indexentry{LOG\_TRANSFER\_BLOCK\_SIZE@{LOG\_TRANSFER\_BLOCK\_SIZE}!pc\_diag.c@{pc\_diag.c}|hyperpage}{153}
+\indexentry{pc\_diag.c@{pc\_diag.c}!MAX\_TASKS@{MAX\_TASKS}|hyperpage}{153}
+\indexentry{MAX\_TASKS@{MAX\_TASKS}!pc\_diag.c@{pc\_diag.c}|hyperpage}{153}
+\indexentry{pc\_diag.c@{pc\_diag.c}!SENSOR\_INTERVAL\_MS@{SENSOR\_INTERVAL\_MS}|hyperpage}{154}
+\indexentry{SENSOR\_INTERVAL\_MS@{SENSOR\_INTERVAL\_MS}!pc\_diag.c@{pc\_diag.c}|hyperpage}{154}
+\indexentry{pc\_diag.c@{pc\_diag.c}!SYS\_INTERVAL\_MS@{SYS\_INTERVAL\_MS}|hyperpage}{154}
+\indexentry{SYS\_INTERVAL\_MS@{SYS\_INTERVAL\_MS}!pc\_diag.c@{pc\_diag.c}|hyperpage}{154}
+\indexentry{pc\_diag.c@{pc\_diag.c}!TASK\_CORE@{TASK\_CORE}|hyperpage}{154}
+\indexentry{TASK\_CORE@{TASK\_CORE}!pc\_diag.c@{pc\_diag.c}|hyperpage}{154}
+\indexentry{pc\_diag.c@{pc\_diag.c}!TASK\_PRIORITY@{TASK\_PRIORITY}|hyperpage}{154}
+\indexentry{TASK\_PRIORITY@{TASK\_PRIORITY}!pc\_diag.c@{pc\_diag.c}|hyperpage}{154}
+\indexentry{pc\_diag.c@{pc\_diag.c}!TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}|hyperpage}{154}
+\indexentry{TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}!pc\_diag.c@{pc\_diag.c}|hyperpage}{154}
+\indexentry{pc\_diag.c@{pc\_diag.c}!build\_sensor\_json@{build\_sensor\_json}|hyperpage}{155}
+\indexentry{build\_sensor\_json@{build\_sensor\_json}!pc\_diag.c@{pc\_diag.c}|hyperpage}{155}
+\indexentry{pc\_diag.c@{pc\_diag.c}!build\_sys\_json@{build\_sys\_json}|hyperpage}{156}
+\indexentry{build\_sys\_json@{build\_sys\_json}!pc\_diag.c@{pc\_diag.c}|hyperpage}{156}
+\indexentry{pc\_diag.c@{pc\_diag.c}!cmd\_clear\_logs@{cmd\_clear\_logs}|hyperpage}{157}
+\indexentry{cmd\_clear\_logs@{cmd\_clear\_logs}!pc\_diag.c@{pc\_diag.c}|hyperpage}{157}
+\indexentry{pc\_diag.c@{pc\_diag.c}!cmd\_download\_logs@{cmd\_download\_logs}|hyperpage}{158}
+\indexentry{cmd\_download\_logs@{cmd\_download\_logs}!pc\_diag.c@{pc\_diag.c}|hyperpage}{158}
+\indexentry{pc\_diag.c@{pc\_diag.c}!process\_command@{process\_command}|hyperpage}{158}
+\indexentry{process\_command@{process\_command}!pc\_diag.c@{pc\_diag.c}|hyperpage}{158}
+\indexentry{pc\_diag.c@{pc\_diag.c}!task\_diag\_pc@{task\_diag\_pc}|hyperpage}{159}
+\indexentry{task\_diag\_pc@{task\_diag\_pc}!pc\_diag.c@{pc\_diag.c}|hyperpage}{159}
+\indexentry{pc\_diag.c@{pc\_diag.c}!ai\_event\_strings@{ai\_event\_strings}|hyperpage}{161}
+\indexentry{ai\_event\_strings@{ai\_event\_strings}!pc\_diag.c@{pc\_diag.c}|hyperpage}{161}
+\indexentry{pc\_diag.c@{pc\_diag.c}!TAG@{TAG}|hyperpage}{161}
+\indexentry{TAG@{TAG}!pc\_diag.c@{pc\_diag.c}|hyperpage}{161}
+\indexentry{components/pc\_diag/pc\_diag.c@{components/pc\_diag/pc\_diag.c}|hyperpage}{162}
+\indexentry{components/sensor\_acq/bme280\_driver.c@{components/sensor\_acq/bme280\_driver.c}|hyperpage}{167}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!BME280\_CHIP\_ID@{BME280\_CHIP\_ID}|hyperpage}{168}
+\indexentry{BME280\_CHIP\_ID@{BME280\_CHIP\_ID}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{168}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!I2C\_TIMEOUT\_MS@{I2C\_TIMEOUT\_MS}|hyperpage}{168}
+\indexentry{I2C\_TIMEOUT\_MS@{I2C\_TIMEOUT\_MS}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{168}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!MEAS\_DELAY\_MS@{MEAS\_DELAY\_MS}|hyperpage}{169}
+\indexentry{MEAS\_DELAY\_MS@{MEAS\_DELAY\_MS}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{169}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CALIB\_00@{REG\_CALIB\_00}|hyperpage}{169}
+\indexentry{REG\_CALIB\_00@{REG\_CALIB\_00}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{169}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CALIB\_H1@{REG\_CALIB\_H1}|hyperpage}{169}
+\indexentry{REG\_CALIB\_H1@{REG\_CALIB\_H1}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{169}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CALIB\_H2@{REG\_CALIB\_H2}|hyperpage}{169}
+\indexentry{REG\_CALIB\_H2@{REG\_CALIB\_H2}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{169}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CHIP\_ID@{REG\_CHIP\_ID}|hyperpage}{169}
+\indexentry{REG\_CHIP\_ID@{REG\_CHIP\_ID}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{169}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CONFIG@{REG\_CONFIG}|hyperpage}{169}
+\indexentry{REG\_CONFIG@{REG\_CONFIG}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{169}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CTRL\_HUM@{REG\_CTRL\_HUM}|hyperpage}{170}
+\indexentry{REG\_CTRL\_HUM@{REG\_CTRL\_HUM}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{170}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_CTRL\_MEAS@{REG\_CTRL\_MEAS}|hyperpage}{170}
+\indexentry{REG\_CTRL\_MEAS@{REG\_CTRL\_MEAS}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{170}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_DATA\_START@{REG\_DATA\_START}|hyperpage}{170}
+\indexentry{REG\_DATA\_START@{REG\_DATA\_START}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{170}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_RESET@{REG\_RESET}|hyperpage}{170}
+\indexentry{REG\_RESET@{REG\_RESET}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{170}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!REG\_STATUS@{REG\_STATUS}|hyperpage}{170}
+\indexentry{REG\_STATUS@{REG\_STATUS}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{170}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!bme280\_init@{bme280\_init}|hyperpage}{171}
+\indexentry{bme280\_init@{bme280\_init}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{171}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!bme280\_read@{bme280\_read}|hyperpage}{172}
+\indexentry{bme280\_read@{bme280\_read}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{172}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!compensate\_humidity@{compensate\_humidity}|hyperpage}{173}
+\indexentry{compensate\_humidity@{compensate\_humidity}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{173}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!compensate\_pressure@{compensate\_pressure}|hyperpage}{174}
+\indexentry{compensate\_pressure@{compensate\_pressure}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{174}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!compensate\_temperature@{compensate\_temperature}|hyperpage}{174}
+\indexentry{compensate\_temperature@{compensate\_temperature}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{174}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!read\_calibration@{read\_calibration}|hyperpage}{175}
+\indexentry{read\_calibration@{read\_calibration}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{175}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!read\_regs@{read\_regs}|hyperpage}{176}
+\indexentry{read\_regs@{read\_regs}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{176}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!write\_reg@{write\_reg}|hyperpage}{176}
+\indexentry{write\_reg@{write\_reg}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{176}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!s\_calib@{s\_calib}|hyperpage}{177}
+\indexentry{s\_calib@{s\_calib}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{177}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!s\_dev@{s\_dev}|hyperpage}{177}
+\indexentry{s\_dev@{s\_dev}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{177}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!s\_t\_fine@{s\_t\_fine}|hyperpage}{177}
+\indexentry{s\_t\_fine@{s\_t\_fine}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{177}
+\indexentry{bme280\_driver.c@{bme280\_driver.c}!TAG@{TAG}|hyperpage}{177}
+\indexentry{TAG@{TAG}!bme280\_driver.c@{bme280\_driver.c}|hyperpage}{177}
+\indexentry{components/sensor\_acq/bme280\_driver.c@{components/sensor\_acq/bme280\_driver.c}|hyperpage}{178}
+\indexentry{components/sensor\_acq/hdc1080\_driver.c@{components/sensor\_acq/hdc1080\_driver.c}|hyperpage}{181}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!ACQ\_DELAY\_MS@{ACQ\_DELAY\_MS}|hyperpage}{182}
+\indexentry{ACQ\_DELAY\_MS@{ACQ\_DELAY\_MS}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{182}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!HDC1080\_DEVICE\_ID@{HDC1080\_DEVICE\_ID}|hyperpage}{182}
+\indexentry{HDC1080\_DEVICE\_ID@{HDC1080\_DEVICE\_ID}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{182}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!I2C\_TIMEOUT\_MS@{I2C\_TIMEOUT\_MS}|hyperpage}{182}
+\indexentry{I2C\_TIMEOUT\_MS@{I2C\_TIMEOUT\_MS}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{182}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!REG\_CONFIG@{REG\_CONFIG}|hyperpage}{182}
+\indexentry{REG\_CONFIG@{REG\_CONFIG}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{182}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!REG\_DEVICE\_ID@{REG\_DEVICE\_ID}|hyperpage}{182}
+\indexentry{REG\_DEVICE\_ID@{REG\_DEVICE\_ID}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{182}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!REG\_HUMIDITY@{REG\_HUMIDITY}|hyperpage}{183}
+\indexentry{REG\_HUMIDITY@{REG\_HUMIDITY}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{183}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!REG\_MANUF\_ID@{REG\_MANUF\_ID}|hyperpage}{183}
+\indexentry{REG\_MANUF\_ID@{REG\_MANUF\_ID}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{183}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!REG\_TEMPERATURE@{REG\_TEMPERATURE}|hyperpage}{183}
+\indexentry{REG\_TEMPERATURE@{REG\_TEMPERATURE}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{183}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!hdc1080\_init@{hdc1080\_init}|hyperpage}{183}
+\indexentry{hdc1080\_init@{hdc1080\_init}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{183}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!hdc1080\_read@{hdc1080\_read}|hyperpage}{184}
+\indexentry{hdc1080\_read@{hdc1080\_read}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{184}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!read\_bytes@{read\_bytes}|hyperpage}{185}
+\indexentry{read\_bytes@{read\_bytes}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{185}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!write\_register@{write\_register}|hyperpage}{186}
+\indexentry{write\_register@{write\_register}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{186}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!s\_dev@{s\_dev}|hyperpage}{187}
+\indexentry{s\_dev@{s\_dev}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{187}
+\indexentry{hdc1080\_driver.c@{hdc1080\_driver.c}!TAG@{TAG}|hyperpage}{187}
+\indexentry{TAG@{TAG}!hdc1080\_driver.c@{hdc1080\_driver.c}|hyperpage}{187}
+\indexentry{components/sensor\_acq/hdc1080\_driver.c@{components/sensor\_acq/hdc1080\_driver.c}|hyperpage}{187}
+\indexentry{components/sensor\_acq/include/bme280\_driver.h@{components/sensor\_acq/include/bme280\_driver.h}|hyperpage}{189}
+\indexentry{bme280\_driver.h@{bme280\_driver.h}!BME280\_I2C\_ADDR\_ALT@{BME280\_I2C\_ADDR\_ALT}|hyperpage}{190}
+\indexentry{BME280\_I2C\_ADDR\_ALT@{BME280\_I2C\_ADDR\_ALT}!bme280\_driver.h@{bme280\_driver.h}|hyperpage}{190}
+\indexentry{bme280\_driver.h@{bme280\_driver.h}!bme280\_init@{bme280\_init}|hyperpage}{190}
+\indexentry{bme280\_init@{bme280\_init}!bme280\_driver.h@{bme280\_driver.h}|hyperpage}{190}
+\indexentry{bme280\_driver.h@{bme280\_driver.h}!bme280\_read@{bme280\_read}|hyperpage}{191}
+\indexentry{bme280\_read@{bme280\_read}!bme280\_driver.h@{bme280\_driver.h}|hyperpage}{191}
+\indexentry{components/sensor\_acq/include/bme280\_driver.h@{components/sensor\_acq/include/bme280\_driver.h}|hyperpage}{193}
+\indexentry{components/sensor\_acq/include/hdc1080\_driver.h@{components/sensor\_acq/include/hdc1080\_driver.h}|hyperpage}{194}
+\indexentry{hdc1080\_driver.h@{hdc1080\_driver.h}!hdc1080\_init@{hdc1080\_init}|hyperpage}{196}
+\indexentry{hdc1080\_init@{hdc1080\_init}!hdc1080\_driver.h@{hdc1080\_driver.h}|hyperpage}{196}
+\indexentry{hdc1080\_driver.h@{hdc1080\_driver.h}!hdc1080\_read@{hdc1080\_read}|hyperpage}{197}
+\indexentry{hdc1080\_read@{hdc1080\_read}!hdc1080\_driver.h@{hdc1080\_driver.h}|hyperpage}{197}
+\indexentry{components/sensor\_acq/include/hdc1080\_driver.h@{components/sensor\_acq/include/hdc1080\_driver.h}|hyperpage}{198}
+\indexentry{components/sensor\_acq/include/lidar\_driver.h@{components/sensor\_acq/include/lidar\_driver.h}|hyperpage}{198}
+\indexentry{components/sensor\_acq/include/lidar\_driver.h@{components/sensor\_acq/include/lidar\_driver.h}|hyperpage}{200}
+\indexentry{components/sensor\_acq/include/mic\_driver.h@{components/sensor\_acq/include/mic\_driver.h}|hyperpage}{200}
+\indexentry{mic\_driver.h@{mic\_driver.h}!mic\_driver\_deinit@{mic\_driver\_deinit}|hyperpage}{201}
+\indexentry{mic\_driver\_deinit@{mic\_driver\_deinit}!mic\_driver.h@{mic\_driver.h}|hyperpage}{201}
+\indexentry{mic\_driver.h@{mic\_driver.h}!mic\_driver\_read@{mic\_driver\_read}|hyperpage}{201}
+\indexentry{mic\_driver\_read@{mic\_driver\_read}!mic\_driver.h@{mic\_driver.h}|hyperpage}{201}
+\indexentry{components/sensor\_acq/include/mic\_driver.h@{components/sensor\_acq/include/mic\_driver.h}|hyperpage}{202}
+\indexentry{components/sensor\_acq/include/radar\_driver.h@{components/sensor\_acq/include/radar\_driver.h}|hyperpage}{203}
+\indexentry{radar\_driver.h@{radar\_driver.h}!radar\_driver\_poll@{radar\_driver\_poll}|hyperpage}{204}
+\indexentry{radar\_driver\_poll@{radar\_driver\_poll}!radar\_driver.h@{radar\_driver.h}|hyperpage}{204}
+\indexentry{components/sensor\_acq/include/radar\_driver.h@{components/sensor\_acq/include/radar\_driver.h}|hyperpage}{205}
+\indexentry{components/sensor\_acq/include/vl53l8cx\_platform.h@{components/sensor\_acq/include/vl53l8cx\_platform.h}|hyperpage}{206}
+\indexentry{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_PlatformInit@{VL53L8CX\_PlatformInit}|hyperpage}{208}
+\indexentry{VL53L8CX\_PlatformInit@{VL53L8CX\_PlatformInit}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}|hyperpage}{208}
+\indexentry{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_RdByte@{VL53L8CX\_RdByte}|hyperpage}{208}
+\indexentry{VL53L8CX\_RdByte@{VL53L8CX\_RdByte}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}|hyperpage}{208}
+\indexentry{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_RdMulti@{VL53L8CX\_RdMulti}|hyperpage}{209}
+\indexentry{VL53L8CX\_RdMulti@{VL53L8CX\_RdMulti}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}|hyperpage}{209}
+\indexentry{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_WaitMs@{VL53L8CX\_WaitMs}|hyperpage}{210}
+\indexentry{VL53L8CX\_WaitMs@{VL53L8CX\_WaitMs}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}|hyperpage}{210}
+\indexentry{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_WrByte@{VL53L8CX\_WrByte}|hyperpage}{211}
+\indexentry{VL53L8CX\_WrByte@{VL53L8CX\_WrByte}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}|hyperpage}{211}
+\indexentry{vl53l8cx\_platform.h@{vl53l8cx\_platform.h}!VL53L8CX\_WrMulti@{VL53L8CX\_WrMulti}|hyperpage}{211}
+\indexentry{VL53L8CX\_WrMulti@{VL53L8CX\_WrMulti}!vl53l8cx\_platform.h@{vl53l8cx\_platform.h}|hyperpage}{211}
+\indexentry{components/sensor\_acq/include/vl53l8cx\_platform.h@{components/sensor\_acq/include/vl53l8cx\_platform.h}|hyperpage}{213}
+\indexentry{components/sensor\_acq/lidar\_driver.c@{components/sensor\_acq/lidar\_driver.c}|hyperpage}{214}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!ENVIRO\_READ\_PERIOD\_FRAMES@{ENVIRO\_READ\_PERIOD\_FRAMES}|hyperpage}{216}
+\indexentry{ENVIRO\_READ\_PERIOD\_FRAMES@{ENVIRO\_READ\_PERIOD\_FRAMES}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!LIDAR\_FREQ\_HZ@{LIDAR\_FREQ\_HZ}|hyperpage}{216}
+\indexentry{LIDAR\_FREQ\_HZ@{LIDAR\_FREQ\_HZ}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!LIDAR\_STUB\_MODE@{LIDAR\_STUB\_MODE}|hyperpage}{216}
+\indexentry{LIDAR\_STUB\_MODE@{LIDAR\_STUB\_MODE}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!TASK\_CORE@{TASK\_CORE}|hyperpage}{216}
+\indexentry{TASK\_CORE@{TASK\_CORE}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!TASK\_PERIOD\_MS@{TASK\_PERIOD\_MS}|hyperpage}{216}
+\indexentry{TASK\_PERIOD\_MS@{TASK\_PERIOD\_MS}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!TASK\_PRIORITY@{TASK\_PRIORITY}|hyperpage}{216}
+\indexentry{TASK\_PRIORITY@{TASK\_PRIORITY}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}|hyperpage}{216}
+\indexentry{TASK\_STACK\_SIZE@{TASK\_STACK\_SIZE}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{216}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!lidar\_init\_sensor@{lidar\_init\_sensor}|hyperpage}{217}
+\indexentry{lidar\_init\_sensor@{lidar\_init\_sensor}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{217}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!lidar\_read\_sensor@{lidar\_read\_sensor}|hyperpage}{218}
+\indexentry{lidar\_read\_sensor@{lidar\_read\_sensor}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{218}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!task\_sensor\_acq@{task\_sensor\_acq}|hyperpage}{219}
+\indexentry{task\_sensor\_acq@{task\_sensor\_acq}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{219}
+\indexentry{lidar\_driver.c@{lidar\_driver.c}!TAG@{TAG}|hyperpage}{221}
+\indexentry{TAG@{TAG}!lidar\_driver.c@{lidar\_driver.c}|hyperpage}{221}
+\indexentry{components/sensor\_acq/lidar\_driver.c@{components/sensor\_acq/lidar\_driver.c}|hyperpage}{222}
+\indexentry{components/sensor\_acq/mic\_driver.c@{components/sensor\_acq/mic\_driver.c}|hyperpage}{226}
+\indexentry{mic\_driver.c@{mic\_driver.c}!MIC\_BURST\_SAMPLES@{MIC\_BURST\_SAMPLES}|hyperpage}{227}
+\indexentry{MIC\_BURST\_SAMPLES@{MIC\_BURST\_SAMPLES}!mic\_driver.c@{mic\_driver.c}|hyperpage}{227}
+\indexentry{mic\_driver.c@{mic\_driver.c}!MIC\_READ\_TIMEOUT\_MS@{MIC\_READ\_TIMEOUT\_MS}|hyperpage}{227}
+\indexentry{MIC\_READ\_TIMEOUT\_MS@{MIC\_READ\_TIMEOUT\_MS}!mic\_driver.c@{mic\_driver.c}|hyperpage}{227}
+\indexentry{mic\_driver.c@{mic\_driver.c}!MIC\_SAMPLE\_RATE@{MIC\_SAMPLE\_RATE}|hyperpage}{228}
+\indexentry{MIC\_SAMPLE\_RATE@{MIC\_SAMPLE\_RATE}!mic\_driver.c@{mic\_driver.c}|hyperpage}{228}
+\indexentry{mic\_driver.c@{mic\_driver.c}!mic\_driver\_deinit@{mic\_driver\_deinit}|hyperpage}{228}
+\indexentry{mic\_driver\_deinit@{mic\_driver\_deinit}!mic\_driver.c@{mic\_driver.c}|hyperpage}{228}
+\indexentry{mic\_driver.c@{mic\_driver.c}!mic\_driver\_read@{mic\_driver\_read}|hyperpage}{228}
+\indexentry{mic\_driver\_read@{mic\_driver\_read}!mic\_driver.c@{mic\_driver.c}|hyperpage}{228}
+\indexentry{mic\_driver.c@{mic\_driver.c}!s\_buf@{s\_buf}|hyperpage}{229}
+\indexentry{s\_buf@{s\_buf}!mic\_driver.c@{mic\_driver.c}|hyperpage}{229}
+\indexentry{mic\_driver.c@{mic\_driver.c}!s\_rx\_chan@{s\_rx\_chan}|hyperpage}{229}
+\indexentry{s\_rx\_chan@{s\_rx\_chan}!mic\_driver.c@{mic\_driver.c}|hyperpage}{229}
+\indexentry{mic\_driver.c@{mic\_driver.c}!TAG@{TAG}|hyperpage}{229}
+\indexentry{TAG@{TAG}!mic\_driver.c@{mic\_driver.c}|hyperpage}{229}
+\indexentry{components/sensor\_acq/mic\_driver.c@{components/sensor\_acq/mic\_driver.c}|hyperpage}{230}
+\indexentry{components/sensor\_acq/radar\_driver.c@{components/sensor\_acq/radar\_driver.c}|hyperpage}{231}
+\indexentry{radar\_driver.c@{radar\_driver.c}!RX\_BUF\_SIZE@{RX\_BUF\_SIZE}|hyperpage}{233}
+\indexentry{RX\_BUF\_SIZE@{RX\_BUF\_SIZE}!radar\_driver.c@{radar\_driver.c}|hyperpage}{233}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_EOF@{TF\_EOF}|hyperpage}{233}
+\indexentry{TF\_EOF@{TF\_EOF}!radar\_driver.c@{radar\_driver.c}|hyperpage}{233}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_FOOTER\_LEN@{TF\_FOOTER\_LEN}|hyperpage}{233}
+\indexentry{TF\_FOOTER\_LEN@{TF\_FOOTER\_LEN}!radar\_driver.c@{radar\_driver.c}|hyperpage}{233}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_HEADER\_LEN@{TF\_HEADER\_LEN}|hyperpage}{233}
+\indexentry{TF\_HEADER\_LEN@{TF\_HEADER\_LEN}!radar\_driver.c@{radar\_driver.c}|hyperpage}{233}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_MAX\_PAYLOAD\_LEN@{TF\_MAX\_PAYLOAD\_LEN}|hyperpage}{233}
+\indexentry{TF\_MAX\_PAYLOAD\_LEN@{TF\_MAX\_PAYLOAD\_LEN}!radar\_driver.c@{radar\_driver.c}|hyperpage}{233}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_MIN\_FRAME\_LEN@{TF\_MIN\_FRAME\_LEN}|hyperpage}{234}
+\indexentry{TF\_MIN\_FRAME\_LEN@{TF\_MIN\_FRAME\_LEN}!radar\_driver.c@{radar\_driver.c}|hyperpage}{234}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_SOF@{TF\_SOF}|hyperpage}{234}
+\indexentry{TF\_SOF@{TF\_SOF}!radar\_driver.c@{radar\_driver.c}|hyperpage}{234}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_TYPE\_BREATH@{TF\_TYPE\_BREATH}|hyperpage}{234}
+\indexentry{TF\_TYPE\_BREATH@{TF\_TYPE\_BREATH}!radar\_driver.c@{radar\_driver.c}|hyperpage}{234}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_TYPE\_DISTANCE@{TF\_TYPE\_DISTANCE}|hyperpage}{234}
+\indexentry{TF\_TYPE\_DISTANCE@{TF\_TYPE\_DISTANCE}!radar\_driver.c@{radar\_driver.c}|hyperpage}{234}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TF\_TYPE\_HEART@{TF\_TYPE\_HEART}|hyperpage}{234}
+\indexentry{TF\_TYPE\_HEART@{TF\_TYPE\_HEART}!radar\_driver.c@{radar\_driver.c}|hyperpage}{234}
+\indexentry{radar\_driver.c@{radar\_driver.c}!UART\_PORT@{UART\_PORT}|hyperpage}{234}
+\indexentry{UART\_PORT@{UART\_PORT}!radar\_driver.c@{radar\_driver.c}|hyperpage}{234}
+\indexentry{radar\_driver.c@{radar\_driver.c}!parse\_tinyframe@{parse\_tinyframe}|hyperpage}{235}
+\indexentry{parse\_tinyframe@{parse\_tinyframe}!radar\_driver.c@{radar\_driver.c}|hyperpage}{235}
+\indexentry{radar\_driver.c@{radar\_driver.c}!radar\_driver\_poll@{radar\_driver\_poll}|hyperpage}{236}
+\indexentry{radar\_driver\_poll@{radar\_driver\_poll}!radar\_driver.c@{radar\_driver.c}|hyperpage}{236}
+\indexentry{radar\_driver.c@{radar\_driver.c}!s\_parser@{s\_parser}|hyperpage}{237}
+\indexentry{s\_parser@{s\_parser}!radar\_driver.c@{radar\_driver.c}|hyperpage}{237}
+\indexentry{radar\_driver.c@{radar\_driver.c}!TAG@{TAG}|hyperpage}{237}
+\indexentry{TAG@{TAG}!radar\_driver.c@{radar\_driver.c}|hyperpage}{237}
+\indexentry{components/sensor\_acq/radar\_driver.c@{components/sensor\_acq/radar\_driver.c}|hyperpage}{238}
+\indexentry{components/sensor\_acq/vl53l8cx\_platform.c@{components/sensor\_acq/vl53l8cx\_platform.c}|hyperpage}{240}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!MAX\_SPI\_TRANSFER@{MAX\_SPI\_TRANSFER}|hyperpage}{241}
+\indexentry{MAX\_SPI\_TRANSFER@{MAX\_SPI\_TRANSFER}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{241}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!PLATFORM\_TIMEOUT\_MS@{PLATFORM\_TIMEOUT\_MS}|hyperpage}{241}
+\indexentry{PLATFORM\_TIMEOUT\_MS@{PLATFORM\_TIMEOUT\_MS}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{241}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!spi\_xfer@{spi\_xfer}|hyperpage}{242}
+\indexentry{spi\_xfer@{spi\_xfer}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{242}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!VL53L8CX\_PlatformInit@{VL53L8CX\_PlatformInit}|hyperpage}{242}
+\indexentry{VL53L8CX\_PlatformInit@{VL53L8CX\_PlatformInit}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{242}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!VL53L8CX\_RdByte@{VL53L8CX\_RdByte}|hyperpage}{243}
+\indexentry{VL53L8CX\_RdByte@{VL53L8CX\_RdByte}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{243}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!VL53L8CX\_RdMulti@{VL53L8CX\_RdMulti}|hyperpage}{243}
+\indexentry{VL53L8CX\_RdMulti@{VL53L8CX\_RdMulti}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{243}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!VL53L8CX\_WaitMs@{VL53L8CX\_WaitMs}|hyperpage}{245}
+\indexentry{VL53L8CX\_WaitMs@{VL53L8CX\_WaitMs}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{245}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!VL53L8CX\_WrByte@{VL53L8CX\_WrByte}|hyperpage}{245}
+\indexentry{VL53L8CX\_WrByte@{VL53L8CX\_WrByte}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{245}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!VL53L8CX\_WrMulti@{VL53L8CX\_WrMulti}|hyperpage}{246}
+\indexentry{VL53L8CX\_WrMulti@{VL53L8CX\_WrMulti}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{246}
+\indexentry{vl53l8cx\_platform.c@{vl53l8cx\_platform.c}!TAG@{TAG}|hyperpage}{247}
+\indexentry{TAG@{TAG}!vl53l8cx\_platform.c@{vl53l8cx\_platform.c}|hyperpage}{247}
+\indexentry{components/sensor\_acq/vl53l8cx\_platform.c@{components/sensor\_acq/vl53l8cx\_platform.c}|hyperpage}{247}
+\indexentry{components/sys\_storage/include/sys\_storage.h@{components/sys\_storage/include/sys\_storage.h}|hyperpage}{249}
+\indexentry{components/sys\_storage/include/sys\_storage.h@{components/sys\_storage/include/sys\_storage.h}|hyperpage}{251}
+\indexentry{components/sys\_storage/littlefs\_manager.c@{components/sys\_storage/littlefs\_manager.c}|hyperpage}{252}
+\indexentry{littlefs\_manager.c@{littlefs\_manager.c}!TAG@{TAG}|hyperpage}{253}
+\indexentry{TAG@{TAG}!littlefs\_manager.c@{littlefs\_manager.c}|hyperpage}{253}
+\indexentry{components/sys\_storage/littlefs\_manager.c@{components/sys\_storage/littlefs\_manager.c}|hyperpage}{253}
+\indexentry{components/sys\_storage/log\_writer.c@{components/sys\_storage/log\_writer.c}|hyperpage}{254}
+\indexentry{log\_writer.c@{log\_writer.c}!log\_trim\_file@{log\_trim\_file}|hyperpage}{255}
+\indexentry{log\_trim\_file@{log\_trim\_file}!log\_writer.c@{log\_writer.c}|hyperpage}{255}
+\indexentry{log\_writer.c@{log\_writer.c}!s\_mutex@{s\_mutex}|hyperpage}{256}
+\indexentry{s\_mutex@{s\_mutex}!log\_writer.c@{log\_writer.c}|hyperpage}{256}
+\indexentry{log\_writer.c@{log\_writer.c}!TAG@{TAG}|hyperpage}{256}
+\indexentry{TAG@{TAG}!log\_writer.c@{log\_writer.c}|hyperpage}{256}
+\indexentry{components/sys\_storage/log\_writer.c@{components/sys\_storage/log\_writer.c}|hyperpage}{257}
+\indexentry{components/sys\_storage/panic\_handler.c@{components/sys\_storage/panic\_handler.c}|hyperpage}{258}
+\indexentry{panic\_handler.c@{panic\_handler.c}!PANIC\_MAGIC\_VALUE@{PANIC\_MAGIC\_VALUE}|hyperpage}{260}
+\indexentry{PANIC\_MAGIC\_VALUE@{PANIC\_MAGIC\_VALUE}!panic\_handler.c@{panic\_handler.c}|hyperpage}{260}
+\indexentry{panic\_handler.c@{panic\_handler.c}!shutdown\_handler@{shutdown\_handler}|hyperpage}{260}
+\indexentry{shutdown\_handler@{shutdown\_handler}!panic\_handler.c@{panic\_handler.c}|hyperpage}{260}
+\indexentry{panic\_handler.c@{panic\_handler.c}!s\_panic\_magic@{s\_panic\_magic}|hyperpage}{260}
+\indexentry{s\_panic\_magic@{s\_panic\_magic}!panic\_handler.c@{panic\_handler.c}|hyperpage}{260}
+\indexentry{panic\_handler.c@{panic\_handler.c}!s\_panic\_msg@{s\_panic\_msg}|hyperpage}{260}
+\indexentry{s\_panic\_msg@{s\_panic\_msg}!panic\_handler.c@{panic\_handler.c}|hyperpage}{260}
+\indexentry{panic\_handler.c@{panic\_handler.c}!s\_panic\_time\_us@{s\_panic\_time\_us}|hyperpage}{261}
+\indexentry{s\_panic\_time\_us@{s\_panic\_time\_us}!panic\_handler.c@{panic\_handler.c}|hyperpage}{261}
+\indexentry{panic\_handler.c@{panic\_handler.c}!TAG@{TAG}|hyperpage}{261}
+\indexentry{TAG@{TAG}!panic\_handler.c@{panic\_handler.c}|hyperpage}{261}
+\indexentry{components/sys\_storage/panic\_handler.c@{components/sys\_storage/panic\_handler.c}|hyperpage}{261}
+\indexentry{main/main.c@{main/main.c}|hyperpage}{262}
+\indexentry{main/main.c@{main/main.c}|hyperpage}{264}

@@ -1,0 +1,7 @@
+<map id="shutdown_handler" name="shutdown_handler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="321,5,447,32"/>
+<area shape="rect" id="Node000002" href="$group__group__storage.html#ga0f70a6a9f0f8823c86e3ddddf9902fbc" title=" " alt="" coords="131,5,273,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="305,21,273,21,273,16,305,16"/>
+<area shape="rect" id="Node000003" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,83,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,21,83,21,83,16,115,16"/>
+</map>

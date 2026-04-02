@@ -1,0 +1,291 @@
+\doxysection{Acquisition Capteurs }
+\hypertarget{group__group__sensor__acq}{}\label{group__group__sensor__acq}\index{Acquisition Capteurs@{Acquisition Capteurs}}
+
+
+Lecture capteurs, fusion des données, et production de trames prêtes pour l\textquotesingle{}IA.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{bme280__driver_8c}{bme280\+\_\+driver.\+c}}
+\begin{DoxyCompactList}\small\item\em Driver Bosch BME280 — Température, Pression, Humidité. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{hdc1080__driver_8c}{hdc1080\+\_\+driver.\+c}}
+\begin{DoxyCompactList}\small\item\em Driver HDC1080 — Température et Humidité (TI). \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{lidar__driver_8c}{lidar\+\_\+driver.\+c}}
+\begin{DoxyCompactList}\small\item\em Acquisition LIDAR VL53\+L8\+CX — fusion 8×32 sur double bus I2C. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{mic__driver_8c}{mic\+\_\+driver.\+c}}
+\begin{DoxyCompactList}\small\item\em Driver microphone MEMS I2S — Amplitude RMS et crête. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{radar__driver_8c}{radar\+\_\+driver.\+c}}
+\begin{DoxyCompactList}\small\item\em Driver UART HLK-\/\+LD6002 — protocole Tiny\+Frame, ring buffer UART. \end{DoxyCompactList}\item 
+file \mbox{\hyperlink{vl53l8cx__platform_8c}{vl53l8cx\+\_\+platform.\+c}}
+\begin{DoxyCompactList}\small\item\em Couche plateforme VL53\+L8\+CX — implémentation SPI via ESP-\/\+IDF. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}}
+\begin{DoxyCompactList}\small\item\em Couche “adaptateur” SPI requise par l\textquotesingle{}ULD ST (VL53\+L8\+CX). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4}{BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+DEFAULT}}~0x76
+\begin{DoxyCompactList}\small\item\em Capteur environnemental BME280 (pression/température/humidité). \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{group__group__sensor__acq_gaf0cf6b62cc46031dbcb698408b50aa26}{HDC1080\+\_\+\+I2\+C\+\_\+\+ADDR}}~0x40
+\begin{DoxyCompactList}\small\item\em Capteur environnemental HDC1080 (température/humidité). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}{lidar\+\_\+driver\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc}{mic\+\_\+driver\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Acquisition audio simple (RMS + pic) pour diagnostic et indicateurs. \end{DoxyCompactList}\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\+\_\+driver\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Driver radar HLK-\/\+LD6002 (UART + Tiny\+Frame) — optionnel selon la configuration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Lecture capteurs, fusion des données, et production de trames prêtes pour l\textquotesingle{}IA. 
+
+Ce module existe pour “isoler le monde matériel” \+:
+\begin{DoxyItemize}
+\item la partie IA reçoit une trame stable et cohérente (mêmes unités, mêmes dimensions)
+\item la partie diagnostic PC reçoit des mesures prêtes à afficher 
+\end{DoxyItemize}
+
+\label{doc-define-members}
+\Hypertarget{group__group__sensor__acq_doc-define-members}
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4}\index{Acquisition Capteurs@{Acquisition Capteurs}!BME280\_I2C\_ADDR\_DEFAULT@{BME280\_I2C\_ADDR\_DEFAULT}}
+\index{BME280\_I2C\_ADDR\_DEFAULT@{BME280\_I2C\_ADDR\_DEFAULT}!Acquisition Capteurs@{Acquisition Capteurs}}
+\doxysubsubsection{\texorpdfstring{BME280\_I2C\_ADDR\_DEFAULT}{BME280\_I2C\_ADDR\_DEFAULT}}
+{\footnotesize\ttfamily \label{group__group__sensor__acq_ga33dc32e20dce447778f8d22acea65fd4} 
+\#define BME280\+\_\+\+I2\+C\+\_\+\+ADDR\+\_\+\+DEFAULT~0x76}
+
+
+
+Capteur environnemental BME280 (pression/température/humidité). 
+
+SDO reliée à GND 
+
+Definition at line \mbox{\hyperlink{bme280__driver_8h_source_l00029}{29}} of file \mbox{\hyperlink{bme280__driver_8h_source}{bme280\+\_\+driver.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+\Hypertarget{group__group__sensor__acq_gaf0cf6b62cc46031dbcb698408b50aa26}\index{Acquisition Capteurs@{Acquisition Capteurs}!HDC1080\_I2C\_ADDR@{HDC1080\_I2C\_ADDR}}
+\index{HDC1080\_I2C\_ADDR@{HDC1080\_I2C\_ADDR}!Acquisition Capteurs@{Acquisition Capteurs}}
+\doxysubsubsection{\texorpdfstring{HDC1080\_I2C\_ADDR}{HDC1080\_I2C\_ADDR}}
+{\footnotesize\ttfamily \label{group__group__sensor__acq_gaf0cf6b62cc46031dbcb698408b50aa26} 
+\#define HDC1080\+\_\+\+I2\+C\+\_\+\+ADDR~0x40}
+
+
+
+Capteur environnemental HDC1080 (température/humidité). 
+
+Adresse I2C 7 bits du HDC1080 
+
+Definition at line \mbox{\hyperlink{hdc1080__driver_8h_source_l00028}{28}} of file \mbox{\hyperlink{hdc1080__driver_8h_source}{hdc1080\+\_\+driver.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{hdc1080__driver_8c_source_l00072}{hdc1080\+\_\+init()}}.
+
+
+
+\label{doc-func-members}
+\Hypertarget{group__group__sensor__acq_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457}\index{Acquisition Capteurs@{Acquisition Capteurs}!lidar\_driver\_start@{lidar\_driver\_start}}
+\index{lidar\_driver\_start@{lidar\_driver\_start}!Acquisition Capteurs@{Acquisition Capteurs}}
+\doxysubsubsection{\texorpdfstring{lidar\_driver\_start()}{lidar\_driver\_start()}}
+{\footnotesize\ttfamily \label{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457} 
+esp\+\_\+err\+\_\+t lidar\+\_\+driver\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{lidar__driver_8c_source_l00379}{379}} of file \mbox{\hyperlink{lidar__driver_8c_source}{lidar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00380\ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \mbox{\hyperlink{structlidar__task__ctx__t}{lidar\_task\_ctx\_t}}\ *task\_ctx\ =\ calloc(1,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structlidar__task__ctx__t}{lidar\_task\_ctx\_t}}));}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task\_ctx)\ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_NO\_MEM;}
+\DoxyCodeLine{00384\ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \ \ task\_ctx-\/>\mbox{\hyperlink{structlidar__task__ctx__t_a4882f0608f077b87bcdfeca103c47cd2}{sys\_ctx}}\ =\ ctx;}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{comment}{/*\ Création\ de\ la\ tâche\ épinglée\ sur\ Core\ 1\ */}}
+\DoxyCodeLine{00388\ \ \ \ \ BaseType\_t\ ret\ =\ xTaskCreatePinnedToCore(}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{lidar__driver_8c_a4111a5f42c63c264e7dbbe4ee8982826}{task\_sensor\_acq}},}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Task\_Sensor\_Acq"{}},}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a5486258f1f34d3baeda92a74b63c27c3}{TASK\_STACK\_SIZE}},}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ task\_ctx,}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\_PRIORITY}},}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ NULL,}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\_CORE}});}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ free(task\_ctx);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ création\ Task\_Sensor\_Acq"{}});}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{00401\ \ \ \ \ \}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_Sensor\_Acq\ créée\ (Core\ \%d,\ priorité\ \%d,\ \%d\ Hz)"{}},}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\_CORE}},\ \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\_PRIORITY}},\ 1000\ /\ \mbox{\hyperlink{lidar__driver_8c_a8f177e3d19b18fe361a5a069c7ba664a}{TASK\_PERIOD\_MS}});}
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00406\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{lidar__driver_8c_source_l00096}{lidar\+\_\+task\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00073}{TASK\+\_\+\+CORE}}, \mbox{\hyperlink{lidar__driver_8c_source_l00074}{TASK\+\_\+\+PERIOD\+\_\+\+MS}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00072}{TASK\+\_\+\+PRIORITY}}, \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00071}{TASK\+\_\+\+STACK\+\_\+\+SIZE}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{group__group__sensor__acq_ga395fe085276686e57cc95b3ef49c4457_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc}\index{Acquisition Capteurs@{Acquisition Capteurs}!mic\_driver\_init@{mic\_driver\_init}}
+\index{mic\_driver\_init@{mic\_driver\_init}!Acquisition Capteurs@{Acquisition Capteurs}}
+\doxysubsubsection{\texorpdfstring{mic\_driver\_init()}{mic\_driver\_init()}}
+{\footnotesize\ttfamily \label{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc} 
+esp\+\_\+err\+\_\+t mic\+\_\+driver\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Acquisition audio simple (RMS + pic) pour diagnostic et indicateurs. 
+
+
+
+Definition at line \mbox{\hyperlink{mic__driver_8c_source_l00036}{36}} of file \mbox{\hyperlink{mic__driver_8c_source}{mic\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{/*\ Création\ du\ canal\ I2S\ RX\ */}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{const}\ i2s\_chan\_config\_t\ chan\_cfg\ =\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ .id\ \ \ \ \ \ \ \ \ \ \ \ =\ I2S\_NUM\_AUTO,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ .role\ \ \ \ \ \ \ \ \ \ =\ I2S\_ROLE\_MASTER,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ .dma\_desc\_num\ \ =\ 4,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ .dma\_frame\_num\ =\ 256,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ .auto\_clear\ \ \ \ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00045\ \ \ \ \ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ esp\_err\_t\ ret\ =\ i2s\_new\_channel(\&chan\_cfg,\ NULL,\ \&\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}});}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Création\ canal\ I2S\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{/*\ Configuration\ standard\ I2S\ */}}
+\DoxyCodeLine{00054\ \ \ \ \ i2s\_std\_config\_t\ std\_cfg\ =\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ .clk\_cfg\ \ =\ I2S\_STD\_CLK\_DEFAULT\_CONFIG(\mbox{\hyperlink{mic__driver_8c_ae3a48988f3b530907280222c539b292a}{MIC\_SAMPLE\_RATE}}),}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ .slot\_cfg\ =\ I2S\_STD\_MSB\_SLOT\_DEFAULT\_CONFIG(}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I2S\_DATA\_BIT\_WIDTH\_32BIT,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ I2S\_SLOT\_MODE\_STEREO),\ \ \textcolor{comment}{/*\ Stéréo\ pour\ lire\ LRCK\ */}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ .gpio\_cfg\ =\ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ .mclk\ =\ I2S\_GPIO\_UNUSED,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ .bclk\ =\ \mbox{\hyperlink{pins__config_8h_a49df2ceba71c16ebe4a7d8fd5aa72cab}{PIN\_MIC\_SCK}},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ .ws\ \ \ =\ \mbox{\hyperlink{pins__config_8h_aa61942d4d7c79c5fa394db3d554df72a}{PIN\_MIC\_WS}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ .dout\ =\ I2S\_GPIO\_UNUSED,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ .din\ \ =\ \mbox{\hyperlink{pins__config_8h_a6a2da9f70511fac1353ce4cd008aba68}{PIN\_MIC\_SD}},}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ .invert\_flags\ =\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .mclk\_inv\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .bclk\_inv\ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .ws\_inv\ \ \ =\ \textcolor{keyword}{false},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \},}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ ret\ =\ i2s\_channel\_init\_std\_mode(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}},\ \&std\_cfg);}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Init\ mode\ standard\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ i2s\_del\_channel(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}});}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}}\ =\ NULL;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ ret\ =\ i2s\_channel\_enable(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}});}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Activation\ canal\ I2S\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ i2s\_del\_channel(\mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mic__driver_8c_a0df65811f4cced1438208a7ef6b4daa4}{s\_rx\_chan}}\ =\ NULL;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Microphone\ I2S\ initialisé\ (\%d\ Hz,\ \%d\ samples/burst)"{}},}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mic__driver_8c_ae3a48988f3b530907280222c539b292a}{MIC\_SAMPLE\_RATE}},\ \mbox{\hyperlink{mic__driver_8c_a8132ba2eecc89f58dbc91816e91dab7a}{MIC\_BURST\_SAMPLES}});}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00092\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{mic__driver_8c_source_l00025}{MIC\+\_\+\+BURST\+\_\+\+SAMPLES}}, \mbox{\hyperlink{mic__driver_8c_source_l00024}{MIC\+\_\+\+SAMPLE\+\_\+\+RATE}}, \mbox{\hyperlink{pins__config_8h_source_l00141}{PIN\+\_\+\+MIC\+\_\+\+SCK}}, \mbox{\hyperlink{pins__config_8h_source_l00140}{PIN\+\_\+\+MIC\+\_\+\+SD}}, \mbox{\hyperlink{pins__config_8h_source_l00139}{PIN\+\_\+\+MIC\+\_\+\+WS}}, \mbox{\hyperlink{mic__driver_8c_source_l00028}{s\+\_\+rx\+\_\+chan}}, and \mbox{\hyperlink{main_8c_source_l00058}{TAG}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{group__group__sensor__acq_ga929c693f9e843d4655764986f0555ccc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}\index{Acquisition Capteurs@{Acquisition Capteurs}!radar\_driver\_init@{radar\_driver\_init}}
+\index{radar\_driver\_init@{radar\_driver\_init}!Acquisition Capteurs@{Acquisition Capteurs}}
+\doxysubsubsection{\texorpdfstring{radar\_driver\_init()}{radar\_driver\_init()}}
+{\footnotesize\ttfamily \label{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72} 
+esp\+\_\+err\+\_\+t radar\+\_\+driver\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})}
+
+
+
+Driver radar HLK-\/\+LD6002 (UART + Tiny\+Frame) — optionnel selon la configuration. 
+
+
+
+Definition at line \mbox{\hyperlink{radar__driver_8c_source_l00169}{169}} of file \mbox{\hyperlink{radar__driver_8c_source}{radar\+\_\+driver.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00170\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ memset(\&\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}},\ 0,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{radar__driver_8c_a750e504aa938df40773e68a513147dc3}{s\_parser}}));}
+\DoxyCodeLine{00172\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Parser\ TinyFrame\ LD6002\ initialisé\ (UART\%d,\ \%d\ bauds)"{}},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{radar__driver_8c_aa7a5950d998e44d87137de0780bd0af3}{UART\_PORT}},\ 1382400);}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00175\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{radar__driver_8c_source_l00056}{s\+\_\+parser}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, and \mbox{\hyperlink{radar__driver_8c_source_l00033}{UART\+\_\+\+PORT}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72_icgraph}
+\end{center}
+\end{figure}

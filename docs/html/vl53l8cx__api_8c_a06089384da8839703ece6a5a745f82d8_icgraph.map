@@ -1,0 +1,24 @@
+<map id="_vl53l8cx_send_offset_data" name="_vl53l8cx_send_offset_data">
+<area shape="rect" id="Node000001" title="Inner function, not available outside this file. This function is used to set the offset data gathere..." alt="" coords="893,85,1075,112"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a0cd6873ce839d64145cbfb01b7a94da0" title="Mandatory function used to initialize the sensor. This function must be called after a power on,..." alt="" coords="720,56,813,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="878,87,813,78,814,73,878,82"/>
+<area shape="rect" id="Node000008" href="$vl53l8cx__api_8c.html#a75ec684bc81068955b37aaac1dfcf4f8" title="This function sets a new resolution (4x4 or 8x8)." alt="" coords="688,115,845,141"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="878,116,846,120,845,115,878,110"/>
+<area shape="rect" id="Node000003" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="494,56,610,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="704,72,610,72,610,67,704,67"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__api_8c.html#affb39664fa0b0d1e37c49ab7725a3ce4" title="This function is used to set the sensor in Low Power mode, for example if the sensor is not used duri..." alt="" coords="464,5,640,32"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="704,57,611,35,612,30,705,52"/>
+<area shape="rect" id="Node000004" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,56,416,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="479,72,417,72,417,67,479,67"/>
+<area shape="rect" id="Node000005" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,56,248,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="280,72,248,72,248,67,280,67"/>
+<area shape="rect" id="Node000006" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,56,83,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="115,72,83,72,83,67,115,67"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="699,113,603,86,604,81,701,107"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__plugin__xtalk_8c.html#a616b96ba97c939f5b72fde6f84b78177" title="This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended..." alt="" coords="489,107,615,149"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="672,131,615,131,615,125,672,125"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__plugin__xtalk_8c.html#a638fa39db7d6506992b20388f9880b47" title="This function gets the Xtalk buffer. The buffer is available after using the function vl53l8cx_calibr..." alt="" coords="480,173,624,216"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="707,149,624,175,622,170,705,144"/>
+<area shape="rect" id="Node000011" href="$vl53l8cx__plugin__xtalk_8c.html#a0a1083d1f57251df3c70caabedd68f41" title="This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer." alt="" coords="480,240,624,283"/>
+<area shape="poly" id="edge11_Node000008_Node000011" title=" " alt="" coords="742,154,697,192,641,230,618,242,615,237,638,226,693,188,738,150"/>
+</map>

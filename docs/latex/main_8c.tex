@@ -1,0 +1,58 @@
+\doxysection{main/main.c File Reference}
+\hypertarget{main_8c}{}\label{main_8c}\index{main/main.c@{main/main.c}}
+
+
+Point d\textquotesingle{}entrée Lexa\+Care V1 — démarrage complet du firmware.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include "{}freertos/\+Free\+RTOS.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/task.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/queue.\+h"{}}\newline
+{\ttfamily \#include "{}freertos/semphr.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+log.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+system.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+heap\+\_\+caps.\+h"{}}\newline
+{\ttfamily \#include "{}nvs\+\_\+flash.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+event.\+h"{}}\newline
+{\ttfamily \#include "{}lexacare\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}pins\+\_\+config.\+h"{}}\newline
+{\ttfamily \#include "{}hw\+\_\+diag.\+h"{}}\newline
+{\ttfamily \#include "{}lidar\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}pc\+\_\+diag.\+h"{}}\newline
+{\ttfamily \#include "{}sys\+\_\+storage.\+h"{}}\newline
+{\ttfamily \#include "{}hdc1080\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}bme280\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}mic\+\_\+driver.\+h"{}}\newline
+{\ttfamily \#include "{}mesh\+\_\+manager.\+h"{}}\newline
+Include dependency graph for main.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__group__main_ga630544a7f0a2cc40d8a7fefab7e2fe70}{app\+\_\+main}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}} = "{}main"{}
+\item 
+static \mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \mbox{\hyperlink{group__group__main_gab396c73e719fb1030b168c4121bb6676}{s\+\_\+ctx}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Point d\textquotesingle{}entrée Lexa\+Care V1 — démarrage complet du firmware. 
+
+Activer/désactiver les composants dans \+: \doxylink{lexacare__config_8h}{components/lexacare\+\_\+types/include/lexacare\+\_\+config.\+h} 
+
+Definition in file \mbox{\hyperlink{main_8c_source}{main.\+c}}.
+

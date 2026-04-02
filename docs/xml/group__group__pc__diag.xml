@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__pc__diag" kind="group">
+    <compoundname>group_pc_diag</compoundname>
+    <title>Diagnostic PC (JSON)</title>
+    <innerfile refid="pc__diag_8c">pc_diag.c</innerfile>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>esp_err_t</type>
+        <definition>esp_err_t pc_diag_task_start</definition>
+        <argsstring>(sys_context_t *ctx)</argsstring>
+        <name>pc_diag_task_start</name>
+        <param>
+          <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+          <declname>ctx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/include/pc_diag.h" line="46" column="11" bodyfile="components/pc_diag/pc_diag.c" bodystart="410" bodyend="435" declfile="components/pc_diag/include/pc_diag.h" declline="46" declcolumn="11"/>
+        <references refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" compoundref="pc__diag_8c" startline="86">pc_diag_ctx_t::has_event</references>
+        <references refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" compoundref="pc__diag_8c" startline="84">pc_diag_ctx_t::sys_ctx</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <references refid="fall__detection__ai_8cc_1a9acbd3c931eee1cac4b1f1e7cd6bb2f2" compoundref="fall__detection__ai_8cc" startline="73">TASK_CORE</references>
+        <references refid="pc__diag_8c_1ab830ffc28d0b4ab9661b47a0cd4fe943" compoundref="pc__diag_8c" startline="324" endline="405">task_diag_pc</references>
+        <references refid="fall__detection__ai_8cc_1a82dd0a9ae27bdb2c3cdd33bb7804861c" compoundref="fall__detection__ai_8cc" startline="72">TASK_PRIORITY</references>
+        <references refid="fall__detection__ai_8cc_1a5486258f1f34d3baeda92a74b63c27c3" compoundref="fall__detection__ai_8cc" startline="71">TASK_STACK_SIZE</references>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Sortie USB en JSON lisible + commandes simples depuis l&apos;outil PC. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Ce module sert de “fenêtre” sur le firmware :<itemizedlist>
+<listitem><para>envoie un état régulier (santé système + mesures capteurs)</para>
+</listitem><listitem><para>permet quelques actions (récupérer/effacer les logs) sans recompiler </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

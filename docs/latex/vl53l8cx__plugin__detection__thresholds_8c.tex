@@ -1,0 +1,413 @@
+\doxysection{components/sensor\+\_\+acq/uld/vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.c File Reference}
+\hypertarget{vl53l8cx__plugin__detection__thresholds_8c}{}\label{vl53l8cx__plugin__detection__thresholds_8c}\index{components/sensor\_acq/uld/vl53l8cx\_plugin\_detection\_thresholds.c@{components/sensor\_acq/uld/vl53l8cx\_plugin\_detection\_thresholds.c}}
+{\ttfamily \#include "{}vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+h"{}}\newline
+Include dependency graph for vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=288pt]{vl53l8cx__plugin__detection__thresholds_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_a8047236fff33ada64ae74743af9b6fbc}{vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds\+\_\+enable}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+enabled)
+\begin{DoxyCompactList}\small\item\em This function allows indicating if the detection thresholds are enabled. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_a8a37113c3ac519fa4234ce98ecc8f375}{vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+enable}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint8\+\_\+t enabled)
+\begin{DoxyCompactList}\small\item\em This function allows enable the detection thresholds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_a9feff6ad7013dd7b146c6712995a48b0}{vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, \mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds}} \texorpdfstring{$\ast$}{*}p\+\_\+thresholds)
+\begin{DoxyCompactList}\small\item\em This function allows getting the detection thresholds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_acba78b79e001bc10424bf4ab4d18bfb9}{vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, \mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds}} \texorpdfstring{$\ast$}{*}p\+\_\+thresholds)
+\begin{DoxyCompactList}\small\item\em This function allows programming the detection thresholds. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_ae4c15a43cd88235693d15493db9712bd}{vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint8\+\_\+t \texorpdfstring{$\ast$}{*}p\+\_\+auto\+\_\+stop)
+\begin{DoxyCompactList}\small\item\em This function is used to enable or disable the auto-\/stop feature. When ToF runs in autonomous mode with detection threshold, the sensor only emits an interrupt (INT pin) when a threshold is reached. Interrupt is raised when the measurement is completed. It is possible to abort the ranging without waiting for end of measurement completed by enabling the auto-\/stop. The sensor emits an interrupt and quickly aborts the measurements in progress. Please note that \doxylink{vl53l8cx__api_8c_ad4cf2ccc4b74c65048046df488da5fce}{vl53l8cx\+\_\+stop\+\_\+ranging()} function needs to be used after interrupt raised for a clean stop. This function is used to get the auto\+\_\+stop flag. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_a784306df2a9c03610e120ddd67dc465d}{vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop}} (\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}p\+\_\+dev, uint8\+\_\+t auto\+\_\+stop)
+\begin{DoxyCompactList}\small\item\em This function is used to enable or disable the auto-\/stop feature. When ToF runs in autonomous mode with detection threshold, the sensor only emits an interrupt (INT pin) when a threshold is reached. Interrupt is raised when the measurement is completed. It is possible to abort the ranging without waiting for end of measurement completed by enabling the auto-\/stop. The sensor emits an interrupt and quickly aborts the measurements in progress. Please note that \doxylink{vl53l8cx__api_8c_ad4cf2ccc4b74c65048046df488da5fce}{vl53l8cx\+\_\+stop\+\_\+ranging()} function needs to be used after interrupt raised for a clean stop. This function is used to set the auto\+\_\+stop flag. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_a9feff6ad7013dd7b146c6712995a48b0}\index{vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}!vl53l8cx\_get\_detection\_thresholds@{vl53l8cx\_get\_detection\_thresholds}}
+\index{vl53l8cx\_get\_detection\_thresholds@{vl53l8cx\_get\_detection\_thresholds}!vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_get\_detection\_thresholds()}{vl53l8cx\_get\_detection\_thresholds()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__detection__thresholds_8c_a9feff6ad7013dd7b146c6712995a48b0} 
+uint8\+\_\+t vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+thresholds}{}\end{DoxyParamCaption})}
+
+
+
+This function allows getting the detection thresholds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (\+VL53\+L8\+CX\+\_\+\+Detection\+Thresholds)} & \texorpdfstring{$\ast$}{*}p\+\_\+thresholds \+: Array of 64 thresholds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if programming is OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00059}{59}} of file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ uint8\_t\ i,\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{/*\ Get\ thresholds\ configuration\ */}}
+\DoxyCodeLine{00066\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a622e5a7b1ab7b329bb6eee40429599da}{vl53l8cx\_dci\_read\_data}}(p\_dev,\ (uint8\_t*)p\_thresholds,}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_adc5c97ffff5592acc249ee129e291417}{VL53L8CX\_DCI\_DET\_THRESH\_START}},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)\mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a3431c934f6b6fc6a3c5398e1d7ee13c0}{VL53L8CX\_NB\_THRESHOLDS}}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ *(uint16\_t)\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds}{VL53L8CX\_DetectionThresholds}}));}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ (uint8\_t)\mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a3431c934f6b6fc6a3c5398e1d7ee13c0}{VL53L8CX\_NB\_THRESHOLDS}};\ i++)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(p\_thresholds[i].measurement)}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a527c7cb13f0fb1a010a9e9e280ed4b32}{VL53L8CX\_DISTANCE\_MM}}:}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_low\_thresh\ \ /=\ 4;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_high\_thresh\ /=\ 4;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a56370b7a35933b31d2d801f496a897db}{VL53L8CX\_SIGNAL\_PER\_SPAD\_KCPS}}:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_low\_thresh\ \ /=\ 2048;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_high\_thresh\ /=\ 2048;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a26b0d73380c261a29acda36f2f95c61a}{VL53L8CX\_RANGE\_SIGMA\_MM}}:}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_low\_thresh\ \ /=\ 128;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_high\_thresh\ /=\ 128;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_aa114e13ef88cf6111be4ad98a56af4a6}{VL53L8CX\_AMBIENT\_PER\_SPAD\_KCPS}}:}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_low\_thresh\ \ /=\ 2048;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_high\_thresh\ /=\ 2048;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a509ba5bae1ca387910f5cbfc1fae1c97}{VL53L8CX\_NB\_SPADS\_ENABLED}}:}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_low\_thresh\ \ /=\ 256;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_high\_thresh\ /=\ 256;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a6b9df666c83e8a124e9e3b354ef727a7}{VL53L8CX\_MOTION\_INDICATOR}}:}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_low\_thresh\ \ /=\ 65535;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].param\_high\_thresh\ /=\ 65535;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00105\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00089}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds\+::param\+\_\+high\+\_\+thresh}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds\+::param\+\_\+low\+\_\+thresh}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00049}{VL53\+L8\+CX\+\_\+\+AMBIENT\+\_\+\+PER\+\_\+\+SPAD\+\_\+\+KCPS}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00031}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+DET\+\_\+\+THRESH\+\_\+\+START}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00046}{VL53\+L8\+CX\+\_\+\+DISTANCE\+\_\+\+MM}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00053}{VL53\+L8\+CX\+\_\+\+MOTION\+\_\+\+INDICATOR}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00052}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+SPADS\+\_\+\+ENABLED}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00023}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+THRESHOLDS}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00048}{VL53\+L8\+CX\+\_\+\+RANGE\+\_\+\+SIGMA\+\_\+\+MM}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00047}{VL53\+L8\+CX\+\_\+\+SIGNAL\+\_\+\+PER\+\_\+\+SPAD\+\_\+\+KCPS}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__detection__thresholds_8c_a9feff6ad7013dd7b146c6712995a48b0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_ae4c15a43cd88235693d15493db9712bd}\index{vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}!vl53l8cx\_get\_detection\_thresholds\_auto\_stop@{vl53l8cx\_get\_detection\_thresholds\_auto\_stop}}
+\index{vl53l8cx\_get\_detection\_thresholds\_auto\_stop@{vl53l8cx\_get\_detection\_thresholds\_auto\_stop}!vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_get\_detection\_thresholds\_auto\_stop()}{vl53l8cx\_get\_detection\_thresholds\_auto\_stop()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__detection__thresholds_8c_ae4c15a43cd88235693d15493db9712bd} 
+uint8\+\_\+t vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+auto\+\_\+stop}{}\end{DoxyParamCaption})}
+
+
+
+This function is used to enable or disable the auto-\/stop feature. When ToF runs in autonomous mode with detection threshold, the sensor only emits an interrupt (INT pin) when a threshold is reached. Interrupt is raised when the measurement is completed. It is possible to abort the ranging without waiting for end of measurement completed by enabling the auto-\/stop. The sensor emits an interrupt and quickly aborts the measurements in progress. Please note that \doxylink{vl53l8cx__api_8c_ad4cf2ccc4b74c65048046df488da5fce}{vl53l8cx\+\_\+stop\+\_\+ranging()} function needs to be used after interrupt raised for a clean stop. This function is used to get the auto\+\_\+stop flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (uint8\+\_\+t)} & \texorpdfstring{$\ast$}{*}p\+\_\+auto\+\_\+stop \+: Pointer of auto-\/stop feature, 0 disabled (default) or 1 enabled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if programming is OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00162}{162}} of file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00165\ \{}
+\DoxyCodeLine{00166\ \ \ \ \ uint8\_t\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a622e5a7b1ab7b329bb6eee40429599da}{vl53l8cx\_dci\_read\_data}}(p\_dev,\ (uint8\_t*)p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_abee27aed0af985ff05436e4a2ffa8579}{VL53L8CX\_DCI\_PIPE\_CONTROL}},\ 4);}
+\DoxyCodeLine{00170\ \ \ \ \ *p\_auto\_stop\ =\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[0x3];}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00173\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00179}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+PIPE\+\_\+\+CONTROL}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__detection__thresholds_8c_ae4c15a43cd88235693d15493db9712bd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_a8047236fff33ada64ae74743af9b6fbc}\index{vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}!vl53l8cx\_get\_detection\_thresholds\_enable@{vl53l8cx\_get\_detection\_thresholds\_enable}}
+\index{vl53l8cx\_get\_detection\_thresholds\_enable@{vl53l8cx\_get\_detection\_thresholds\_enable}!vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_get\_detection\_thresholds\_enable()}{vl53l8cx\_get\_detection\_thresholds\_enable()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__detection__thresholds_8c_a8047236fff33ada64ae74743af9b6fbc} 
+uint8\+\_\+t vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint8\+\_\+t \texorpdfstring{$\ast$}{*}}]{p\+\_\+enabled}{}\end{DoxyParamCaption})}
+
+
+
+This function allows indicating if the detection thresholds are enabled. 
+
+Copyright (c) 2021 STMicroelectronics. All rights reserved.
+
+This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-\/\+IS. 
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00015}{15}} of file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ uint8\_t\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a622e5a7b1ab7b329bb6eee40429599da}{vl53l8cx\_dci\_read\_data}}(p\_dev,\ (uint8\_t*)p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a6b9d2db8dd1a3d59e9d9aede293ffa98}{VL53L8CX\_DCI\_DET\_THRESH\_GLOBAL\_CONFIG}},\ 8);}
+\DoxyCodeLine{00023\ \ \ \ \ *p\_enabled\ =\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}}[0x1];}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00026\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00030}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+DET\+\_\+\+THRESH\+\_\+\+GLOBAL\+\_\+\+CONFIG}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__detection__thresholds_8c_a8047236fff33ada64ae74743af9b6fbc_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_acba78b79e001bc10424bf4ab4d18bfb9}\index{vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}!vl53l8cx\_set\_detection\_thresholds@{vl53l8cx\_set\_detection\_thresholds}}
+\index{vl53l8cx\_set\_detection\_thresholds@{vl53l8cx\_set\_detection\_thresholds}!vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_set\_detection\_thresholds()}{vl53l8cx\_set\_detection\_thresholds()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__detection__thresholds_8c_acba78b79e001bc10424bf4ab4d18bfb9} 
+uint8\+\_\+t vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+thresholds}{}\end{DoxyParamCaption})}
+
+
+
+This function allows programming the detection thresholds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (\+VL53\+L8\+CX\+\_\+\+Detection\+Thresholds)} & \texorpdfstring{$\ast$}{*}p\+\_\+thresholds \+: Array of 64 thresholds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if programming is OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00107}{107}} of file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ uint8\_t\ i,\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00112\ \ \ \ \ uint8\_t\ grp\_valid\_target\_cfg[]\ =\ \{0x05,\ 0x05,\ 0x05,\ 0x05,}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x05,\ 0x05,\ 0x05,\ 0x05\};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordflow}{for}(i\ =\ 0;\ i\ <\ (uint8\_t)\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a3431c934f6b6fc6a3c5398e1d7ee13c0}{VL53L8CX\_NB\_THRESHOLDS}};\ i++)}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(p\_thresholds-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a4f25aad8a1407ad6e564e73beb775529}{measurement}})}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a527c7cb13f0fb1a010a9e9e280ed4b32}{VL53L8CX\_DISTANCE\_MM}}:}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a6bc3636cc1869d06223c31a00abb1b94}{param\_low\_thresh}}\ \ *=\ 4;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a29359c75b147bff74aecf8a7a4bf066a}{param\_high\_thresh}}\ *=\ 4;}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a56370b7a35933b31d2d801f496a897db}{VL53L8CX\_SIGNAL\_PER\_SPAD\_KCPS}}:}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a6bc3636cc1869d06223c31a00abb1b94}{param\_low\_thresh}}\ \ *=\ 2048;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a29359c75b147bff74aecf8a7a4bf066a}{param\_high\_thresh}}\ *=\ 2048;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a26b0d73380c261a29acda36f2f95c61a}{VL53L8CX\_RANGE\_SIGMA\_MM}}:}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a6bc3636cc1869d06223c31a00abb1b94}{param\_low\_thresh}}\ \ *=\ 128;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a29359c75b147bff74aecf8a7a4bf066a}{param\_high\_thresh}}\ *=\ 128;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_aa114e13ef88cf6111be4ad98a56af4a6}{VL53L8CX\_AMBIENT\_PER\_SPAD\_KCPS}}:}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a6bc3636cc1869d06223c31a00abb1b94}{param\_low\_thresh}}\ \ *=\ 2048;}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a29359c75b147bff74aecf8a7a4bf066a}{param\_high\_thresh}}\ *=\ 2048;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a509ba5bae1ca387910f5cbfc1fae1c97}{VL53L8CX\_NB\_SPADS\_ENABLED}}:}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a6bc3636cc1869d06223c31a00abb1b94}{param\_low\_thresh}}\ \ *=\ 256;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a29359c75b147bff74aecf8a7a4bf066a}{param\_high\_thresh}}\ *=\ 256;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a6b9df666c83e8a124e9e3b354ef727a7}{VL53L8CX\_MOTION\_INDICATOR}}:}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a6bc3636cc1869d06223c31a00abb1b94}{param\_low\_thresh}}\ \ *=\ 65535;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ p\_thresholds[i].\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds_a29359c75b147bff74aecf8a7a4bf066a}{param\_high\_thresh}}\ *=\ 65535;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{/*\ Set\ valid\ target\ list\ */}}
+\DoxyCodeLine{00149\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a1926fbe7e66b009aede955b6225ce221}{vl53l8cx\_dci\_write\_data}}(p\_dev,\ (uint8\_t*)grp\_valid\_target\_cfg,}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a73fb30c1c9f8f019f0ae7bae08fa4125}{VL53L8CX\_DCI\_DET\_THRESH\_VALID\_STATUS}},}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)\textcolor{keyword}{sizeof}(grp\_valid\_target\_cfg));}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{/*\ Set\ thresholds\ configuration\ */}}
+\DoxyCodeLine{00154\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a1926fbe7e66b009aede955b6225ce221}{vl53l8cx\_dci\_write\_data}}(p\_dev,\ (uint8\_t*)p\_thresholds,}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_adc5c97ffff5592acc249ee129e291417}{VL53L8CX\_DCI\_DET\_THRESH\_START}},}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ (uint16\_t)(\mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a3431c934f6b6fc6a3c5398e1d7ee13c0}{VL53L8CX\_NB\_THRESHOLDS}}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_v_l53_l8_c_x___detection_thresholds}{VL53L8CX\_DetectionThresholds}})));}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00160\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00091}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds\+::measurement}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00089}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds\+::param\+\_\+high\+\_\+thresh}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+Detection\+Thresholds\+::param\+\_\+low\+\_\+thresh}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00049}{VL53\+L8\+CX\+\_\+\+AMBIENT\+\_\+\+PER\+\_\+\+SPAD\+\_\+\+KCPS}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00031}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+DET\+\_\+\+THRESH\+\_\+\+START}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00032}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+DET\+\_\+\+THRESH\+\_\+\+VALID\+\_\+\+STATUS}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01308}{vl53l8cx\+\_\+dci\+\_\+write\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00046}{VL53\+L8\+CX\+\_\+\+DISTANCE\+\_\+\+MM}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00053}{VL53\+L8\+CX\+\_\+\+MOTION\+\_\+\+INDICATOR}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00052}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+SPADS\+\_\+\+ENABLED}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00023}{VL53\+L8\+CX\+\_\+\+NB\+\_\+\+THRESHOLDS}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00048}{VL53\+L8\+CX\+\_\+\+RANGE\+\_\+\+SIGMA\+\_\+\+MM}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00047}{VL53\+L8\+CX\+\_\+\+SIGNAL\+\_\+\+PER\+\_\+\+SPAD\+\_\+\+KCPS}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__detection__thresholds_8c_acba78b79e001bc10424bf4ab4d18bfb9_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_a784306df2a9c03610e120ddd67dc465d}\index{vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}!vl53l8cx\_set\_detection\_thresholds\_auto\_stop@{vl53l8cx\_set\_detection\_thresholds\_auto\_stop}}
+\index{vl53l8cx\_set\_detection\_thresholds\_auto\_stop@{vl53l8cx\_set\_detection\_thresholds\_auto\_stop}!vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_set\_detection\_thresholds\_auto\_stop()}{vl53l8cx\_set\_detection\_thresholds\_auto\_stop()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__detection__thresholds_8c_a784306df2a9c03610e120ddd67dc465d} 
+uint8\+\_\+t vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint8\+\_\+t}]{auto\+\_\+stop}{}\end{DoxyParamCaption})}
+
+
+
+This function is used to enable or disable the auto-\/stop feature. When ToF runs in autonomous mode with detection threshold, the sensor only emits an interrupt (INT pin) when a threshold is reached. Interrupt is raised when the measurement is completed. It is possible to abort the ranging without waiting for end of measurement completed by enabling the auto-\/stop. The sensor emits an interrupt and quickly aborts the measurements in progress. Please note that \doxylink{vl53l8cx__api_8c_ad4cf2ccc4b74c65048046df488da5fce}{vl53l8cx\+\_\+stop\+\_\+ranging()} function needs to be used after interrupt raised for a clean stop. This function is used to set the auto\+\_\+stop flag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (uint8\+\_\+t)} & \texorpdfstring{$\ast$}{*}p\+\_\+auto\+\_\+stop \+: Pointer of auto-\/stop feature, 0 disabled (default) or 1 enabled. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if programming is OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00175}{175}} of file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00178\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ uint8\_t\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__api_8h_abee27aed0af985ff05436e4a2ffa8579}{VL53L8CX\_DCI\_PIPE\_CONTROL}},\ 4,}
+\DoxyCodeLine{00183\ \ \ \ \ (uint8\_t*)\&auto\_stop,\ 1,\ 0x03);}
+\DoxyCodeLine{00184\ \ \ \ \ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a30a47d8990430ecbc960040d8950c88a}{is\_auto\_stop\_enabled}}\ =\ (uint8\_t)auto\_stop;}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00187\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8h_source_l00291}{VL53\+L8\+CX\+\_\+\+Configuration\+::is\+\_\+auto\+\_\+stop\+\_\+enabled}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__api_8h_source_l00179}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+PIPE\+\_\+\+CONTROL}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01363}{vl53l8cx\+\_\+dci\+\_\+replace\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__detection__thresholds_8c_a784306df2a9c03610e120ddd67dc465d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{vl53l8cx__plugin__detection__thresholds_8c_a8a37113c3ac519fa4234ce98ecc8f375}\index{vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}!vl53l8cx\_set\_detection\_thresholds\_enable@{vl53l8cx\_set\_detection\_thresholds\_enable}}
+\index{vl53l8cx\_set\_detection\_thresholds\_enable@{vl53l8cx\_set\_detection\_thresholds\_enable}!vl53l8cx\_plugin\_detection\_thresholds.c@{vl53l8cx\_plugin\_detection\_thresholds.c}}
+\doxysubsubsection{\texorpdfstring{vl53l8cx\_set\_detection\_thresholds\_enable()}{vl53l8cx\_set\_detection\_thresholds\_enable()}}
+{\footnotesize\ttfamily \label{vl53l8cx__plugin__detection__thresholds_8c_a8a37113c3ac519fa4234ce98ecc8f375} 
+uint8\+\_\+t vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration}} \texorpdfstring{$\ast$}{*}}]{p\+\_\+dev}{, }\item[{uint8\+\_\+t}]{enabled}{}\end{DoxyParamCaption})}
+
+
+
+This function allows enable the detection thresholds. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em (\+VL53\+L8\+CX\+\_\+\+Configuration)} & \texorpdfstring{$\ast$}{*}p\+\_\+dev \+: VL53\+L8\+CX configuration structure. \\
+\hline
+{\em (uint8\+\_\+t)} & enabled \+: Set to 1 to enable, or 0 to disable thresholds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+(uint8\+\_\+t) status \+: 0 if programming is OK 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00028}{28}} of file \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source}{vl53l8cx\+\_\+plugin\+\_\+detection\+\_\+thresholds.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ uint8\_t\ tmp,\ status\ =\ \mbox{\hyperlink{vl53l8cx__api_8h_a8880e2a53baf303b140f14e2628cd15c}{VL53L8CX\_STATUS\_OK}};}
+\DoxyCodeLine{00033\ \ \ \ \ uint8\_t\ grp\_global\_config[]\ =\ \{0x01,\ 0x00,\ 0x01,\ 0x00\};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}(enabled\ ==\ (uint8\_t)1)}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ grp\_global\_config[0x01]\ =\ 0x01;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ tmp\ =\ 0x04;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ grp\_global\_config[0x01]\ =\ 0x00;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ tmp\ =\ 0x0C;}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{/*\ Set\ global\ interrupt\ config\ */}}
+\DoxyCodeLine{00047\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a6b9d2db8dd1a3d59e9d9aede293ffa98}{VL53L8CX\_DCI\_DET\_THRESH\_GLOBAL\_CONFIG}},\ 8,}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\&grp\_global\_config,\ 4,\ 0x00);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{/*\ Update\ interrupt\ config\ */}}
+\DoxyCodeLine{00052\ \ \ \ \ status\ |=\ \mbox{\hyperlink{vl53l8cx__api_8c_a4e9069c48c4beee6518c74ecefdc2573}{vl53l8cx\_dci\_replace\_data}}(p\_dev,\ p\_dev-\/>\mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\_buffer}},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_a5969bbb3c4aec39ed8afe72d2b5054ef}{VL53L8CX\_DCI\_DET\_THRESH\_CONFIG}},\ 20,}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ (uint8\_t*)\&tmp,\ 1,\ 0x11);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordflow}{return}\ status;}
+\DoxyCodeLine{00057\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00029}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+DET\+\_\+\+THRESH\+\_\+\+CONFIG}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8h_source_l00030}{VL53\+L8\+CX\+\_\+\+DCI\+\_\+\+DET\+\_\+\+THRESH\+\_\+\+GLOBAL\+\_\+\+CONFIG}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01363}{vl53l8cx\+\_\+dci\+\_\+replace\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8h_source_l00087}{VL53\+L8\+CX\+\_\+\+STATUS\+\_\+\+OK}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{vl53l8cx__plugin__detection__thresholds_8c_a8a37113c3ac519fa4234ce98ecc8f375_cgraph}
+\end{center}
+\end{figure}

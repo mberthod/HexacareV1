@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="mesh__manager_8h" kind="file" language="C++">
+    <compoundname>mesh_manager.h</compoundname>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes local="yes">esp_err.h</includes>
+    <includedby refid="mesh__manager_8c" local="yes">components/mesh_network/mesh_manager.c</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="2">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/mesh_network/include/mesh_manager.h</label>
+        <link refid="mesh__manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="9">
+        <label>esp_err.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="4">
+        <label>stdbool.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>components/mesh_network/include/mesh_manager.h</label>
+        <link refid="mesh__manager_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>components/mesh_network/mesh_manager.c</label>
+        <link refid="mesh__manager_8c"/>
+      </node>
+      <node id="3">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <member refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" kind="function"><name>mesh_manager_init</name></member>
+      <member refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" kind="function"><name>mesh_task_start</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Interface publique du gestionnaire de réseau maillé ESP-NOW. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Topologie arborescente (Tree Mesh) :<itemizedlist>
+<listitem><para>Chaque nœud maintient une liste de pairs (peers).</para>
+</listitem><listitem><para>Sélection du parent : peer avec le RSSI le plus élevé parmi ceux ayant un hop_to_root minimal.</para>
+</listitem><listitem><para>Chiffrement : PMK/LMK ESP-NOW (couche hardware) + AES-128-CBC sur le payload applicatif (couche logicielle, mbedTLS).</para>
+</listitem></itemizedlist>
+</para>
+<para>Clé AES-128 : Provisionnée en NVS (namespace &quot;lexacare&quot;, clé &quot;aes_key&quot;) lors de la fabrication. Si absente, une clé par défaut est utilisée (NON recommandé en production). </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>mesh_manager.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Interface<sp/>publique<sp/>du<sp/>gestionnaire<sp/>de<sp/>réseau<sp/>maillé<sp/>ESP-NOW.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Topologie<sp/>arborescente<sp/>(Tree<sp/>Mesh)<sp/>:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Chaque<sp/>nœud<sp/>maintient<sp/>une<sp/>liste<sp/>de<sp/>pairs<sp/>(peers).</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Sélection<sp/>du<sp/>parent<sp/>:<sp/>peer<sp/>avec<sp/>le<sp/>RSSI<sp/>le<sp/>plus<sp/>élevé<sp/>parmi<sp/>ceux</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>ayant<sp/>un<sp/>hop_to_root<sp/>minimal.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Chiffrement<sp/>:<sp/>PMK/LMK<sp/>ESP-NOW<sp/>(couche<sp/>hardware)<sp/>+<sp/>AES-128-CBC</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>sur<sp/>le<sp/>payload<sp/>applicatif<sp/>(couche<sp/>logicielle,<sp/>mbedTLS).</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>Clé<sp/>AES-128<sp/>:</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Provisionnée<sp/>en<sp/>NVS<sp/>(namespace<sp/>&quot;lexacare&quot;,<sp/>clé<sp/>&quot;aes_key&quot;)<sp/>lors</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/><sp/><sp/>de<sp/>la<sp/>fabrication.<sp/>Si<sp/>absente,<sp/>une<sp/>clé<sp/>par<sp/>défaut<sp/>est<sp/>utilisée</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/><sp/><sp/>(NON<sp/>recommandé<sp/>en<sp/>production).</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_err.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="23"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_mesh<sp/>Réseau<sp/>maillé<sp/>&amp;<sp/>OTA</highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Communication<sp/>entre<sp/>nœuds<sp/>(ESP-NOW),<sp/>chiffrement<sp/>applicatif,<sp/>et<sp/>mise<sp/>à<sp/>jour<sp/>OTA.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>Idée<sp/>simple<sp/>:</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*<sp/>-<sp/>le<sp/>Wi‑Fi<sp/>sert<sp/>ici<sp/>de<sp/>transport<sp/>local<sp/>(ESP‑NOW)<sp/>pour<sp/>relier<sp/>des<sp/>nœuds<sp/>sans<sp/>infrastructure</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>-<sp/>la<sp/>sécurité<sp/>est<sp/>renforcée<sp/>par<sp/>un<sp/>chiffrement<sp/>applicatif<sp/>(AES)<sp/>en<sp/>plus<sp/>d&apos;ESP‑NOW</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>mesh_manager_init</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Initialise<sp/>le<sp/>Wi-Fi<sp/>en<sp/>mode<sp/>Station<sp/>et<sp/>configure<sp/>ESP-NOW.</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>Séquence<sp/>:</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>esp_netif_create_default_wifi_sta().</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>esp_wifi_init()<sp/>+<sp/>esp_wifi_set_mode(WIFI_MODE_STA).</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>esp_wifi_start().</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4.<sp/>esp_now_init()<sp/>+<sp/>esp_now_set_pmk()<sp/>(PMK<sp/>16<sp/>octets).</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/><sp/><sp/>5.<sp/>Enregistrement<sp/>des<sp/>callbacks<sp/>rx/tx<sp/>ESP-NOW.</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/>*<sp/><sp/><sp/>6.<sp/>Chargement<sp/>de<sp/>la<sp/>clé<sp/>AES<sp/>depuis<sp/>NVS.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système.</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>l&apos;initialisation<sp/>réussit.</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" kindref="member">mesh_manager_init</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>mesh_task_start</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Crée<sp/>la<sp/>tâche<sp/>Task_Mesh_Com<sp/>épinglée<sp/>sur<sp/>le<sp/>Core<sp/>0.</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>La<sp/>tâche<sp/>:</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Écoute<sp/>ai_to_mesh_queue<sp/>(portMAX_DELAY).</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Chiffre<sp/>le<sp/>payload<sp/>en<sp/>AES-128-CBC<sp/>(IV<sp/>aléatoire<sp/>+<sp/>mbedTLS).</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Calcule<sp/>le<sp/>CRC16<sp/>sur<sp/>la<sp/>trame<sp/>lexacare_frame_t.</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Envoie<sp/>via<sp/>esp_now_send()<sp/>vers<sp/>le<sp/>MAC<sp/>du<sp/>pair<sp/>parent.</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/>*<sp/>@param<sp/>ctx<sp/>Pointeur<sp/>vers<sp/>le<sp/>contexte<sp/>système.</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK<sp/>si<sp/>la<sp/>tâche<sp/>est<sp/>créée<sp/>avec<sp/>succès.</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" kindref="member">mesh_task_start</ref>(<ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/>*ctx);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="66"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_mesh<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/mesh_network/include/mesh_manager.h"/>
+  </compounddef>
+</doxygen>

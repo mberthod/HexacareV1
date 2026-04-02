@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_v_l53_l8_c_x___platform" kind="struct" language="C++" prot="public">
+    <compoundname>VL53L8CX_Platform</compoundname>
+    <includes refid="vl53l8cx__platform_8h" local="no">vl53l8cx_platform.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" prot="public" static="no" mutable="no">
+        <type>spi_device_handle_t</type>
+        <definition>spi_device_handle_t VL53L8CX_Platform::spi_dev</definition>
+        <argsstring></argsstring>
+        <name>spi_dev</name>
+        <qualifiedname>VL53L8CX_Platform::spi_dev</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Handle SPI ESP-IDF du capteur </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/vl53l8cx_platform.h" line="40" column="25" bodyfile="components/sensor_acq/include/vl53l8cx_platform.h" bodystart="40" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a94523a4341cf33f408e5312a42d1123c" compoundref="lidar__driver_8c" startline="111" endline="158">lidar_init_sensor</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a5687017b3245ded0e88563178c6613a7" compoundref="vl53l8cx__platform_8c" startline="31" endline="38">VL53L8CX_PlatformInit</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</referencedby>
+        <referencedby refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___platform_1ae611f4407ec54984f5e9261fbab72a5c" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t VL53L8CX_Platform::address</definition>
+        <argsstring></argsstring>
+        <name>address</name>
+        <qualifiedname>VL53L8CX_Platform::address</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Champ requis par l&apos;ULD (mode I2C). Inutilisé en SPI. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/include/vl53l8cx_platform.h" line="41" column="14" bodyfile="components/sensor_acq/include/vl53l8cx_platform.h" bodystart="41" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a705b4dd09a2ae3c873b6f5896bb999dc" compoundref="vl53l8cx__api_8c" startline="411" endline="423">vl53l8cx_set_i2c_address</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Couche “adaptateur” SPI requise par l&apos;ULD ST (VL53L8CX). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>But : permettre d&apos;utiliser un driver ST “standard” en ne codant que les primitives SPI (lire/écrire/attendre), sans réinventer le protocole. </para>
+    </detaileddescription>
+    <location file="components/sensor_acq/include/vl53l8cx_platform.h" line="39" column="1" bodyfile="components/sensor_acq/include/vl53l8cx_platform.h" bodystart="39" bodyend="42"/>
+    <listofallmembers>
+      <member refid="struct_v_l53_l8_c_x___platform_1ae611f4407ec54984f5e9261fbab72a5c" prot="public" virt="non-virtual"><scope>VL53L8CX_Platform</scope><name>address</name></member>
+      <member refid="struct_v_l53_l8_c_x___platform_1ade1457ee6ff9ea2990060dba1afaed71" prot="public" virt="non-virtual"><scope>VL53L8CX_Platform</scope><name>spi_dev</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

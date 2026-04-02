@@ -1,0 +1,28 @@
+<map id="VL53L8CX_WrByte" name="VL53L8CX_WrByte">
+<area shape="rect" id="Node000001" title="Écrit un octet dans un registre 16 bits du VL53L8CX." alt="" coords="911,157,1045,184"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a95ba86e2de36404be425dd53513c56ae" title="This function is used to get the current sensor power mode." alt="" coords="688,5,863,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="956,146,915,99,890,74,862,53,825,35,827,30,864,48,893,70,919,95,960,143"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__api_8c.html#affb39664fa0b0d1e37c49ab7725a3ce4" title="This function is used to set the sensor in Low Power mode, for example if the sensor is not used duri..." alt="" coords="464,56,640,83"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="949,149,909,121,862,97,806,82,748,73,640,68,640,62,749,68,807,77,864,92,912,116,952,145"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__api_8c.html#a0cd6873ce839d64145cbfb01b7a94da0" title="Mandatory function used to initialize the sensor. This function must be called after a power on,..." alt="" coords="729,107,822,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="906,156,822,134,823,129,908,150"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__api_8c.html#acfc41f0aebf395dce9725a146be088bc" title=" " alt="" coords="715,157,836,184"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="896,173,836,173,836,168,896,168"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__api_8c.html#a705b4dd09a2ae3c873b6f5896bb999dc" title="This function is used to change the I2C address of the sensor. If multiple VL53L5 sensors are connect..." alt="" coords="690,208,861,235"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="908,191,832,210,831,205,906,186"/>
+<area shape="rect" id="Node000011" href="$vl53l8cx__api_8c.html#aa7a285f38be7f88d2ab894c23e58c8df" title="This function starts a ranging session. When the sensor streams, host cannot change settings &#39;on&#45;the&#45;..." alt="" coords="700,259,851,285"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="949,196,910,223,864,249,834,261,832,256,862,244,907,219,946,191"/>
+<area shape="rect" id="Node000012" href="$vl53l8cx__api_8c.html#ad4cf2ccc4b74c65048046df488da5fce" title="This function stops the ranging session. It must be used when the sensor streams, after calling vl53l..." alt="" coords="700,309,850,336"/>
+<area shape="poly" id="edge14_Node000001_Node000012" title=" " alt="" coords="962,199,922,250,895,277,864,300,840,311,838,306,862,295,891,273,918,246,958,195"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="699,39,615,58,613,53,698,33"/>
+<area shape="poly" id="edge8_Node000004_Node000003" title=" " alt="" coords="713,109,613,86,615,81,714,104"/>
+<area shape="rect" id="Node000005" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="494,183,610,209"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="714,140,689,148,589,185,587,180,687,143,713,135"/>
+<area shape="rect" id="Node000006" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,183,416,209"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="479,199,417,199,417,193,479,193"/>
+<area shape="rect" id="Node000007" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,183,248,209"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="280,199,248,199,248,193,280,193"/>
+<area shape="rect" id="Node000008" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,183,83,209"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="115,199,83,199,83,193,115,193"/>
+<area shape="poly" id="edge13_Node000011_Node000005" title=" " alt="" coords="709,256,687,249,587,212,589,207,689,244,711,251"/>
+</map>

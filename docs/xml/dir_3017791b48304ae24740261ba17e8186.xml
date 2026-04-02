@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_3017791b48304ae24740261ba17e8186" kind="dir">
+    <compoundname>components/sensor_acq/uld</compoundname>
+    <innerfile refid="platform_8h">platform.h</innerfile>
+    <innerfile refid="vl53l8cx__api_8c">vl53l8cx_api.c</innerfile>
+    <innerfile refid="vl53l8cx__api_8h">vl53l8cx_api.h</innerfile>
+    <innerfile refid="vl53l8cx__buffers_8h">vl53l8cx_buffers.h</innerfile>
+    <innerfile refid="vl53l8cx__plugin__detection__thresholds_8c">vl53l8cx_plugin_detection_thresholds.c</innerfile>
+    <innerfile refid="vl53l8cx__plugin__detection__thresholds_8h">vl53l8cx_plugin_detection_thresholds.h</innerfile>
+    <innerfile refid="vl53l8cx__plugin__motion__indicator_8c">vl53l8cx_plugin_motion_indicator.c</innerfile>
+    <innerfile refid="vl53l8cx__plugin__motion__indicator_8h">vl53l8cx_plugin_motion_indicator.h</innerfile>
+    <innerfile refid="vl53l8cx__plugin__xtalk_8c">vl53l8cx_plugin_xtalk.c</innerfile>
+    <innerfile refid="vl53l8cx__plugin__xtalk_8h">vl53l8cx_plugin_xtalk.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<sect1 id="D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/components/sensor_acq/uld/README.md_1autotoc_md0">
+<title>ULD ST VL53L8CX (STSW-IMG040)</title><para>Ce projet <bold>n&apos;embarque pas</bold> le driver propriétaire ST du VL53L8CX.</para>
+<para>Pour activer les <bold>données réelles</bold> des 4 LIDAR (SPI) :</para>
+<para><itemizedlist>
+<listitem><para><bold>1)</bold> Télécharger le package <bold>STSW-IMG040</bold> (VL53L8CX Ultra Lite Driver) depuis ST.</para>
+</listitem><listitem><para><bold>2)</bold> Copier les fichiers <computeroutput>.c/.h</computeroutput> de l&apos;ULD dans ce dossier <computeroutput>components/sensor_acq/uld/</computeroutput>.<itemizedlist>
+<listitem><para>Le build détecte automatiquement <computeroutput><ref refid="vl53l8cx__api_8c" kindref="compound">uld/vl53l8cx_api.c</ref></computeroutput>.</para>
+</listitem></itemizedlist>
+</para>
+</listitem><listitem><para><bold>3)</bold> Activer le mode réel dans <computeroutput><ref refid="lexacare__config_8h" kindref="compound">components/lexacare_types/include/lexacare_config.h</ref></computeroutput> :</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>LEXACARE_LIDAR_USE_ST_ULD<sp/>1</highlight></codeline>
+</programlisting></para>
+<para><itemizedlist>
+<listitem><para><bold>4)</bold> Rebuild / flash :</para>
+</listitem></itemizedlist>
+</para>
+<para><programlisting filename=".powershell"><codeline><highlight class="normal">idf.py<sp/>build<sp/>flash<sp/>monitor</highlight></codeline>
+</programlisting></para>
+<para>Notes :<itemizedlist>
+<listitem><para>La fréquence est fixée à <bold>5 Hz</bold> (<computeroutput>TASK_PERIOD_MS=200</computeroutput> et <computeroutput>LIDAR_FREQ_HZ=5</computeroutput>).</para>
+</listitem><listitem><para>Le mapping est <bold>8×8 par capteur</bold>, concaténé en <bold>8×32</bold> (4 capteurs). </para>
+</listitem></itemizedlist>
+</para>
+</sect1>
+    </detaileddescription>
+    <location file="components/sensor_acq/uld/"/>
+  </compounddef>
+</doxygen>

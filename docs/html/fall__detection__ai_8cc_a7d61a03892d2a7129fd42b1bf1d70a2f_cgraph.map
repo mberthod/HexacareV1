@@ -1,0 +1,9 @@
+<map id="task_ai_inference" name="task_ai_inference">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,129,83"/>
+<area shape="rect" id="Node000002" href="$fall__detection__ai_8cc.html#a03716621cc9044b50d37581aefb7675a" title=" " alt="" coords="212,5,317,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,53,196,33,197,39,123,58"/>
+<area shape="rect" id="Node000003" href="$fall__detection__ai_8cc.html#a66e1e34017dece06213f4b1b97f69728" title=" " alt="" coords="177,56,352,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="129,67,161,67,161,72,129,72"/>
+<area shape="rect" id="Node000004" href="$fall__detection__ai_8cc.html#aac5979362939e3ba1410565e27289f35" title=" " alt="" coords="194,107,335,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="123,81,195,100,194,105,121,86"/>
+</map>

@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structpc__diag__ctx__t" kind="struct" language="C++" prot="public">
+    <compoundname>pc_diag_ctx_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" prot="public" static="no" mutable="no">
+        <type><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref> *</type>
+        <definition>sys_context_t* pc_diag_ctx_t::sys_ctx</definition>
+        <argsstring></argsstring>
+        <name>sys_ctx</name>
+        <qualifiedname>pc_diag_ctx_t::sys_ctx</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="84" column="19" bodyfile="components/pc_diag/pc_diag.c" bodystart="84" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" prot="public" static="no" mutable="no">
+        <type><ref refid="structai__event__t" kindref="compound">ai_event_t</ref></type>
+        <definition>ai_event_t pc_diag_ctx_t::last_event</definition>
+        <argsstring></argsstring>
+        <name>last_event</name>
+        <qualifiedname>pc_diag_ctx_t::last_event</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="85" column="20" bodyfile="components/pc_diag/pc_diag.c" bodystart="85" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool pc_diag_ctx_t::has_event</definition>
+        <argsstring></argsstring>
+        <name>has_event</name>
+        <qualifiedname>pc_diag_ctx_t::has_event</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/pc_diag/pc_diag.c" line="86" column="20" bodyfile="components/pc_diag/pc_diag.c" bodystart="86" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" compoundref="pc__diag_8c" startline="410" endline="435">pc_diag_task_start</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>ai_event_t</label>
+        <link refid="structai__event__t"/>
+      </node>
+      <node id="6">
+        <label>enviro_data_t</label>
+        <link refid="structenviro__data__t"/>
+      </node>
+      <node id="4">
+        <label>lidar_matrix_t</label>
+        <link refid="structlidar__matrix__t"/>
+      </node>
+      <node id="7">
+        <label>mic_data_t</label>
+        <link refid="structmic__data__t"/>
+      </node>
+      <node id="1">
+        <label>pc_diag_ctx_t</label>
+        <link refid="structpc__diag__ctx__t"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>sys_ctx</edgelabel>
+        </childnode>
+        <childnode refid="8" relation="usage">
+          <edgelabel>last_event</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>radar_data_t</label>
+        <link refid="structradar__data__t"/>
+      </node>
+      <node id="3">
+        <label>sensor_frame_t</label>
+        <link refid="structsensor__frame__t"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>lidar</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>radar</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>sys_context_t</label>
+        <link refid="structsys__context__t"/>
+        <childnode refid="3" relation="usage">
+          <edgelabel>latest_sensor</edgelabel>
+        </childnode>
+        <childnode refid="6" relation="usage">
+          <edgelabel>enviro</edgelabel>
+        </childnode>
+        <childnode refid="7" relation="usage">
+          <edgelabel>mic</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="components/pc_diag/pc_diag.c" line="83" column="1" bodyfile="components/pc_diag/pc_diag.c" bodystart="83" bodyend="87"/>
+    <listofallmembers>
+      <member refid="structpc__diag__ctx__t_1a99340926ee0e4be2f5ed76b84fe61387" prot="public" virt="non-virtual"><scope>pc_diag_ctx_t</scope><name>has_event</name></member>
+      <member refid="structpc__diag__ctx__t_1ac2ff11ccda174d9fe9f594a5671cda32" prot="public" virt="non-virtual"><scope>pc_diag_ctx_t</scope><name>last_event</name></member>
+      <member refid="structpc__diag__ctx__t_1a79bef5f2311a3cd60ed3637da856dca3" prot="public" virt="non-virtual"><scope>pc_diag_ctx_t</scope><name>sys_ctx</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

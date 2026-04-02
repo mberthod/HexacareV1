@@ -1,0 +1,146 @@
+\doxysection{radar\+\_\+data\+\_\+t Struct Reference}
+\hypertarget{structradar__data__t}{}\label{structradar__data__t}\index{radar\_data\_t@{radar\_data\_t}}
+
+
+{\ttfamily \#include $<$system\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{structradar__data__t_a701c910c93542668f4b224637db2b736}{resp\+\_\+phase}}
+\item 
+float \mbox{\hyperlink{structradar__data__t_a44c6ff7879888bbd222a8e0d51385fb7}{heart\+\_\+phase}}
+\item 
+float \mbox{\hyperlink{structradar__data__t_aef77c6374300c5b7db1f80559428be9c}{total\+\_\+phase}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structradar__data__t_aff3811ac5fa450d274494b00a8793858}{breath\+\_\+rate\+\_\+bpm}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structradar__data__t_ada6473d97a325963d6f5c78ec7fe6a77}{heart\+\_\+rate\+\_\+bpm}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structradar__data__t_aa4e0441dee4e24232b4b5c83fe42252c}{target\+\_\+distance\+\_\+mm}}
+\item 
+bool \mbox{\hyperlink{structradar__data__t_ae64dbc2fcffffc265459995ed4476f1f}{presence}}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structradar__data__t_aea519eca3ff083a1f0c8911f5d9356e1}{timestamp\+\_\+us}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00096}{96}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structradar__data__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structradar__data__t_aff3811ac5fa450d274494b00a8793858}\index{radar\_data\_t@{radar\_data\_t}!breath\_rate\_bpm@{breath\_rate\_bpm}}
+\index{breath\_rate\_bpm@{breath\_rate\_bpm}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{breath\_rate\_bpm}{breath\_rate\_bpm}}
+{\footnotesize\ttfamily \label{structradar__data__t_aff3811ac5fa450d274494b00a8793858} 
+uint16\+\_\+t radar\+\_\+data\+\_\+t\+::breath\+\_\+rate\+\_\+bpm}
+
+Fréquence respiratoire (cycles/min) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00100}{100}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{structradar__data__t_a44c6ff7879888bbd222a8e0d51385fb7}\index{radar\_data\_t@{radar\_data\_t}!heart\_phase@{heart\_phase}}
+\index{heart\_phase@{heart\_phase}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{heart\_phase}{heart\_phase}}
+{\footnotesize\ttfamily \label{structradar__data__t_a44c6ff7879888bbd222a8e0d51385fb7} 
+float radar\+\_\+data\+\_\+t\+::heart\+\_\+phase}
+
+Phase cardiaque (rad) — calculée si dispo 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00098}{98}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{structradar__data__t_ada6473d97a325963d6f5c78ec7fe6a77}\index{radar\_data\_t@{radar\_data\_t}!heart\_rate\_bpm@{heart\_rate\_bpm}}
+\index{heart\_rate\_bpm@{heart\_rate\_bpm}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{heart\_rate\_bpm}{heart\_rate\_bpm}}
+{\footnotesize\ttfamily \label{structradar__data__t_ada6473d97a325963d6f5c78ec7fe6a77} 
+uint16\+\_\+t radar\+\_\+data\+\_\+t\+::heart\+\_\+rate\+\_\+bpm}
+
+Fréquence cardiaque (bpm) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00101}{101}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{structradar__data__t_ae64dbc2fcffffc265459995ed4476f1f}\index{radar\_data\_t@{radar\_data\_t}!presence@{presence}}
+\index{presence@{presence}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{presence}{presence}}
+{\footnotesize\ttfamily \label{structradar__data__t_ae64dbc2fcffffc265459995ed4476f1f} 
+bool radar\+\_\+data\+\_\+t\+::presence}
+
+true si une personne est détectée 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00103}{103}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{structradar__data__t_a701c910c93542668f4b224637db2b736}\index{radar\_data\_t@{radar\_data\_t}!resp\_phase@{resp\_phase}}
+\index{resp\_phase@{resp\_phase}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{resp\_phase}{resp\_phase}}
+{\footnotesize\ttfamily \label{structradar__data__t_a701c910c93542668f4b224637db2b736} 
+float radar\+\_\+data\+\_\+t\+::resp\+\_\+phase}
+
+Phase respiratoire (rad) — calculée si dispo 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00097}{97}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{structradar__data__t_aa4e0441dee4e24232b4b5c83fe42252c}\index{radar\_data\_t@{radar\_data\_t}!target\_distance\_mm@{target\_distance\_mm}}
+\index{target\_distance\_mm@{target\_distance\_mm}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{target\_distance\_mm}{target\_distance\_mm}}
+{\footnotesize\ttfamily \label{structradar__data__t_aa4e0441dee4e24232b4b5c83fe42252c} 
+uint16\+\_\+t radar\+\_\+data\+\_\+t\+::target\+\_\+distance\+\_\+mm}
+
+Distance de la cible (mm) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00102}{102}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}.
+
+\Hypertarget{structradar__data__t_aea519eca3ff083a1f0c8911f5d9356e1}\index{radar\_data\_t@{radar\_data\_t}!timestamp\_us@{timestamp\_us}}
+\index{timestamp\_us@{timestamp\_us}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{timestamp\_us}{timestamp\_us}}
+{\footnotesize\ttfamily \label{structradar__data__t_aea519eca3ff083a1f0c8911f5d9356e1} 
+int64\+\_\+t radar\+\_\+data\+\_\+t\+::timestamp\+\_\+us}
+
+Horodatage µs 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00104}{104}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+\Hypertarget{structradar__data__t_aef77c6374300c5b7db1f80559428be9c}\index{radar\_data\_t@{radar\_data\_t}!total\_phase@{total\_phase}}
+\index{total\_phase@{total\_phase}!radar\_data\_t@{radar\_data\_t}}
+\doxysubsubsection{\texorpdfstring{total\_phase}{total\_phase}}
+{\footnotesize\ttfamily \label{structradar__data__t_aef77c6374300c5b7db1f80559428be9c} 
+float radar\+\_\+data\+\_\+t\+::total\+\_\+phase}
+
+Phase totale (rad) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00099}{99}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/lexacare\+\_\+types/include/\mbox{\hyperlink{system__types_8h}{system\+\_\+types.\+h}}\end{DoxyCompactItemize}

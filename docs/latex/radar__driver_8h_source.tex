@@ -1,0 +1,53 @@
+\doxysection{radar\+\_\+driver.\+h}
+\hypertarget{radar__driver_8h_source}{}\label{radar__driver_8h_source}\index{components/sensor\_acq/include/radar\_driver.h@{components/sensor\_acq/include/radar\_driver.h}}
+\mbox{\hyperlink{radar__driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ radar\_driver.h}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Interface\ publique\ du\ driver\ Radar\ HLK-\/LD6002\ —\ UART\ +\ TinyFrame.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Le\ driver\ utilise\ le\ ring\ buffer\ UART\ installé\ par\ hw\_diag\_run()}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00006}00006\ \textcolor{comment}{\ *\ (uart\_driver\_install\ sur\ UART\_NUM\_2).\ Il\ parse\ le\ protocole\ TinyFrame\ :}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ SOF(0x01)\ |\ Type(2o)\ |\ Longueur(1o)\ |\ Données\ |\ EOF(0x04)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00009}00009\ \textcolor{comment}{\ *\ Types\ reconnus\ :}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ 0x0A14\ →\ breath\_rate\_bpm\ \ (uint16\ big-\/endian)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ 0x0A15\ →\ heart\_rate\_bpm\ \ \ (uint16\ big-\/endian)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ 0x0A16\ →\ target\_distance\_mm\ (uint16\ big-\/endian)}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00013}00013\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00015}00015\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{system__types_8h}{system\_types.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00019}00019\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00020}00020\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00021}00021\ \textcolor{comment}{\ *\ @ingroup\ group\_sensor\_acq}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00022}00022\ \textcolor{comment}{\ *\ @brief\ Driver\ radar\ HLK-\/LD6002\ (UART\ +\ TinyFrame)\ —\ optionnel\ selon\ la\ configuration.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00023}00023\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00025}00025\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00026}00026\ \textcolor{comment}{\ *\ radar\_driver\_start}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00027}00027\ \textcolor{comment}{\ *\ @brief\ Lance\ la\ tâche\ de\ réception\ UART\ du\ radar\ dans\ sensor\_acq.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00028}00028\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00029}00029\ \textcolor{comment}{\ *\ Le\ radar\ tourne\ dans\ la\ même\ tâche\ que\ le\ LIDAR\ (Task\_Sensor\_Acq).}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00030}00030\ \textcolor{comment}{\ *\ Cette\ fonction\ est\ appelée\ par\ lidar\_driver.c\ pour\ initialiser}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00031}00031\ \textcolor{comment}{\ *\ l'état\ interne\ du\ parser\ radar\ avant\ la\ boucle\ d'acquisition.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00032}00032\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00033}00033\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ l'initialisation\ réussit.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00034}00034\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00035}00035\ esp\_err\_t\ \mbox{\hyperlink{group__group__sensor__acq_ga271883d8b490133c9993123cc1700a72}{radar\_driver\_init}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00037}00037\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00038}00038\ \textcolor{comment}{\ *\ radar\_driver\_poll}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00039}00039\ \textcolor{comment}{\ *\ @brief\ Lit\ les\ octets\ UART\ disponibles\ et\ met\ à\ jour\ radar\_data\_t.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00040}00040\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00041}00041\ \textcolor{comment}{\ *\ À\ appeler\ périodiquement\ depuis\ la\ boucle\ de\ Task\_Sensor\_Acq.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00042}00042\ \textcolor{comment}{\ *\ Non\ bloquante\ (timeout\ UART\ =\ 0\ ms).}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00043}00043\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00044}00044\ \textcolor{comment}{\ *\ @param\ out\ Pointeur\ vers\ la\ structure\ radar\_data\_t\ à\ mettre\ à\ jour.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00045}00045\ \textcolor{comment}{\ *\ @return\ true\ si\ de\ nouvelles\ données\ ont\ été\ reçues.}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00046}00046\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{radar__driver_8h_source_l00047}00047\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{radar__driver_8h_ac327c41337b50efe73de8b91c2df089c}{radar\_driver\_poll}}(\mbox{\hyperlink{structradar__data__t}{radar\_data\_t}}\ *out);}
+
+\end{DoxyCode}

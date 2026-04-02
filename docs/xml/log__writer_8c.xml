@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="log__writer_8c" kind="file" language="C++">
+    <compoundname>log_writer.c</compoundname>
+    <includes refid="sys__storage_8h" local="yes">sys_storage.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/semphr.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_timer.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes local="no">string.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sys_storage/log_writer.c</label>
+        <link refid="log__writer_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>esp_err.h</label>
+      </node>
+      <node id="6">
+        <label>esp_log.h</label>
+      </node>
+      <node id="7">
+        <label>esp_timer.h</label>
+      </node>
+      <node id="4">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="8">
+        <label>stdio.h</label>
+      </node>
+      <node id="9">
+        <label>stdlib.h</label>
+      </node>
+      <node id="10">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="log__writer_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" prot="public" static="yes" mutable="no">
+        <type>const char *</type>
+        <definition>const char* TAG</definition>
+        <argsstring></argsstring>
+        <name>TAG</name>
+        <initializer>= &quot;log_writer&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/log_writer.c" line="27" column="22" bodyfile="components/sys_storage/log_writer.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" prot="public" static="yes" mutable="no">
+        <type>SemaphoreHandle_t</type>
+        <definition>SemaphoreHandle_t s_mutex</definition>
+        <argsstring></argsstring>
+        <name>s_mutex</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/log_writer.c" line="28" column="26" bodyfile="components/sys_storage/log_writer.c" bodystart="28" bodyend="-1"/>
+        <referencedby refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" compoundref="log__writer_8c" startline="103" endline="142">log_write</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void log_trim_file</definition>
+        <argsstring>(long file_size)</argsstring>
+        <name>log_trim_file</name>
+        <param>
+          <type>long</type>
+          <declname>file_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sys_storage/log_writer.c" line="39" column="13" bodyfile="components/sys_storage/log_writer.c" bodystart="39" bodyend="91"/>
+        <references refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" compoundref="sys__storage_8h" startline="36">LOG_FILE_PATH</references>
+        <references refid="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" compoundref="sys__storage_8h" startline="39">LOG_TRIM_PERCENT</references>
+        <references refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" compoundref="hdc1080__driver_8c" startline="54" endline="67">read_bytes</references>
+        <references refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" compoundref="main_8c" startline="58">TAG</references>
+        <referencedby refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" compoundref="log__writer_8c" startline="103" endline="142">log_write</referencedby>
+      </memberdef>
+      <member refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kind="function"><name>log_write</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Log circulaire sur LittleFS — rotation automatique à 900 Ko. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Algorithme de rotation :<orderedlist>
+<listitem><para>Ouvrir le fichier en mode &quot;a&quot; (append).</para>
+</listitem><listitem><para>Écrire le message horodaté.</para>
+</listitem><listitem><para>Si ftell() dépasse LOG_MAX_SIZE_BYTES : a. Lire tout le fichier en mémoire (allocation heap). b. Calculer le nombre d&apos;octets à ignorer (LOG_TRIM_PERCENT %). c. Avancer jusqu&apos;à la fin de la ligne correspondante. d. Réécrire le reste du fichier depuis le début.</para>
+</listitem></orderedlist>
+</para>
+<para>Thread-safety : mutex FreeRTOS créé à la première écriture. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>log_writer.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_storage</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Log<sp/>circulaire<sp/>sur<sp/>LittleFS<sp/>—<sp/>rotation<sp/>automatique<sp/>à<sp/>900<sp/>Ko.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Algorithme<sp/>de<sp/>rotation<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>Ouvrir<sp/>le<sp/>fichier<sp/>en<sp/>mode<sp/>&quot;a&quot;<sp/>(append).</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>Écrire<sp/>le<sp/>message<sp/>horodaté.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>Si<sp/>ftell()<sp/>dépasse<sp/>LOG_MAX_SIZE_BYTES<sp/>:</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>a.<sp/>Lire<sp/>tout<sp/>le<sp/>fichier<sp/>en<sp/>mémoire<sp/>(allocation<sp/>heap).</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>b.<sp/>Calculer<sp/>le<sp/>nombre<sp/>d&apos;octets<sp/>à<sp/>ignorer<sp/>(LOG_TRIM_PERCENT<sp/>%).</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>c.<sp/>Avancer<sp/>jusqu&apos;à<sp/>la<sp/>fin<sp/>de<sp/>la<sp/>ligne<sp/>correspondante.</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/>d.<sp/>Réécrire<sp/>le<sp/>reste<sp/>du<sp/>fichier<sp/>depuis<sp/>le<sp/>début.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*<sp/>Thread-safety<sp/>:<sp/>mutex<sp/>FreeRTOS<sp/>créé<sp/>à<sp/>la<sp/>première<sp/>écriture.</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sys__storage_8h" kindref="compound">sys_storage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/semphr.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_timer.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="log__writer_8c_1a5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;log_writer&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28" refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>SemaphoreHandle_t<sp/><ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>log_trim_file<sp/>(interne)</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Supprime<sp/>les<sp/>LOG_TRIM_PERCENT<sp/>%<sp/>d&apos;entrées<sp/>les<sp/>plus<sp/>anciennes.</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/>*<sp/>Appelée<sp/>uniquement<sp/>depuis<sp/>log_write()<sp/>quand<sp/>le<sp/>fichier<sp/>dépasse</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>LOG_MAX_SIZE_BYTES.<sp/>Alloue<sp/>un<sp/>buffer<sp/>temporaire<sp/>sur<sp/>le<sp/>tas.</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>@param<sp/>file_size<sp/>Taille<sp/>actuelle<sp/>du<sp/>fichier<sp/>en<sp/>octets.</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" kindref="member">log_trim_file</ref>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>file_size)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>fopen(<ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>,<sp/></highlight><highlight class="stringliteral">&quot;r&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!f)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Impossible<sp/>d&apos;ouvrir<sp/>%s<sp/>pour<sp/>rotation&quot;</highlight><highlight class="normal">,<sp/><ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Nombre<sp/>d&apos;octets<sp/>à<sp/>ignorer<sp/>(10<sp/>%<sp/>les<sp/>plus<sp/>anciens)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>skip_target<sp/>=<sp/>file_size<sp/>/<sp/><ref refid="group__group__storage_1ga6cf29cf5f005b00e6650f6e7369d3c98" kindref="member">LOG_TRIM_PERCENT</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>skipped<sp/><sp/><sp/><sp/><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>line[256];</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Avancer<sp/>jusqu&apos;à<sp/>la<sp/>fin<sp/>de<sp/>la<sp/>ligne<sp/>qui<sp/>dépasse<sp/>skip_target<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(skipped<sp/>&lt;<sp/>skip_target)<sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fgets(line,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(line),<sp/>f)<sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>skipped<sp/>+=<sp/>(long)strlen(line);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>rest_start<sp/>=<sp/>ftell(f);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>rest_size<sp/><sp/>=<sp/>file_size<sp/>-<sp/>rest_start;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rest_size<sp/>&lt;=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>remove(<ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Rotation<sp/>:<sp/>fichier<sp/>vide<sp/>après<sp/>suppression,<sp/>recréé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Lire<sp/>le<sp/>contenu<sp/>restant<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*buf<sp/>=<sp/>malloc((</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)rest_size<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!buf)<sp/>{</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Rotation<sp/>:<sp/>allocation<sp/>mémoire<sp/>échouée<sp/>(%ld<sp/>octets)&quot;</highlight><highlight class="normal">,<sp/>rest_size);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/><ref refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" kindref="member">read_bytes</ref><sp/>=<sp/>fread(buf,<sp/>1,<sp/>(</highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal">)rest_size,<sp/>f);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Réécrire<sp/>le<sp/>fichier<sp/>sans<sp/>les<sp/>entrées<sp/>supprimées<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>f<sp/>=<sp/>fopen(<ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>,<sp/></highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(f)<sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fwrite(buf,<sp/>1,<sp/><ref refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" kindref="member">read_bytes</ref>,<sp/>f);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>free(buf);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Rotation<sp/>du<sp/>log<sp/>:<sp/>%ld<sp/>octets<sp/>anciens<sp/>supprimés,<sp/>%ld<sp/>conservés&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rest_start,<sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)<ref refid="hdc1080__driver_8c_1a38989bd92a6243c8b37d8a0f354cad7d" kindref="member">read_bytes</ref>);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/>log_write</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Écrit<sp/>un<sp/>message<sp/>horodaté<sp/>dans<sp/>le<sp/>log<sp/>circulaire<sp/>LittleFS.</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/>*<sp/>Format<sp/>d&apos;une<sp/>entrée<sp/>:<sp/>&quot;[XXXXXX.XXX]<sp/>message\n&quot;</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/>*<sp/>où<sp/>XXXXXX.XXX<sp/>=<sp/>secondes<sp/>depuis<sp/>le<sp/>boot<sp/>(esp_timer_get_time<sp/>/<sp/>1e6).</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/>*<sp/>@param<sp/>msg<sp/>Message<sp/>à<sp/>journaliser<sp/>(chaîne<sp/>C<sp/>terminée<sp/>par<sp/>&apos;\0&apos;).</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/>*<sp/>@return<sp/>ESP_OK,<sp/>ESP_ERR_TIMEOUT<sp/>ou<sp/>ESP_FAIL.</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" refkind="member"><highlight class="normal">esp_err_t<sp/><ref refid="group__group__storage_1gad1c96eb9156a62e412a359bbe4069c8e" kindref="member">log_write</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*msg)</highlight></codeline>
+<codeline lineno="104"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!msg)<sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_INVALID_ARG;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Création<sp/>du<sp/>mutex<sp/>lors<sp/>du<sp/>premier<sp/>appel<sp/>(init<sp/>paresseuse)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref><sp/>=<sp/>xSemaphoreCreateMutex();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_NO_MEM;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(xSemaphoreTake(<ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref>,<sp/>pdMS_TO_TICKS(200))<sp/>!=<sp/>pdTRUE)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_ERR_TIMEOUT;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Horodatage<sp/>en<sp/>secondes<sp/>depuis<sp/>le<sp/>boot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/>us<sp/><sp/><sp/>=<sp/>esp_timer_get_time();</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/>secs<sp/>=<sp/>(double)us<sp/>/<sp/>1e6;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>FILE<sp/>*f<sp/>=<sp/>fopen(<ref refid="group__group__storage_1ga2889e8288a815b7468172bbf1cec1ead" kindref="member">LOG_FILE_PATH</ref>,<sp/></highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!f)<sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xSemaphoreGive(<ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref>);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_FAIL;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(f,<sp/></highlight><highlight class="stringliteral">&quot;[%10.3f]<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>secs,<sp/>msg);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal"><sp/>current_pos<sp/>=<sp/>ftell(f);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>fclose(f);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Déclenchement<sp/>de<sp/>la<sp/>rotation<sp/>si<sp/>le<sp/>seuil<sp/>est<sp/>dépassé<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(current_pos<sp/>&gt;=<sp/>(</highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)<ref refid="group__group__storage_1gacdf328884296fb814beeb53fba7c46dc" kindref="member">LOG_MAX_SIZE_BYTES</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="log__writer_8c_1ae0ac97690097ce6c8a58e71519ec779c" kindref="member">log_trim_file</ref>(current_pos);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>xSemaphoreGive(<ref refid="log__writer_8c_1a4745a6c436c2937dab4ddae0317cd2f3" kindref="member">s_mutex</ref>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ESP_OK;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sys_storage/log_writer.c"/>
+  </compounddef>
+</doxygen>

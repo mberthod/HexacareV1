@@ -1,0 +1,26 @@
+<map id="vl53l8cx_set_sharpener_percent" name="vl53l8cx_set_sharpener_percent">
+<area shape="rect" id="Node000001" title="This function sets a new sharpener value in percent. Sharpener can be changed to blur more or less zo..." alt="" coords="5,50,164,93"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a4e9069c48c4beee6518c74ecefdc2573" title="This function can be used to replace &#39;extra data&#39; in DCI. The data can be simple data,..." alt="" coords="212,58,386,85"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,69,196,69,196,74,164,74"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__api_8c.html#a622e5a7b1ab7b329bb6eee40429599da" title="This function can be used to read &#39;extra data&#39; from DCI. Using a known index, the function fills the ..." alt="" coords="436,33,593,60"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="386,59,420,55,420,60,387,64"/>
+<area shape="rect" id="Node000010" href="$vl53l8cx__api_8c.html#a1926fbe7e66b009aede955b6225ce221" title="This function can be used to write &#39;extra data&#39; to DCI. The data can be simple data,..." alt="" coords="434,84,594,110"/>
+<area shape="poly" id="edge11_Node000002_Node000010" title=" " alt="" coords="387,79,419,83,418,88,386,85"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__api_8c.html#a83dc5e403de268cad0cc04434eed9d12" title="Inner function, not available outside this file. This function is used to wait for an answer from VL5..." alt="" coords="659,76,784,118"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="573,58,644,75,643,81,571,63"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="849,36,985,62"/>
+<area shape="poly" id="edge7_Node000003_Node000005" title=" " alt="" coords="557,30,598,19,642,10,722,3,801,10,868,28,866,33,800,16,722,8,643,16,599,24,558,35"/>
+<area shape="rect" id="Node000008" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="642,25,801,52"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="593,41,627,39,627,45,594,46"/>
+<area shape="rect" id="Node000009" href="$vl53l8cx__platform_8c.html#a1570cfa7d62d2faec410934391b845b7" title="Écrit plusieurs octets vers un registre 16 bits du VL53L8CX." alt="" coords="654,142,789,169"/>
+<area shape="poly" id="edge9_Node000003_Node000009" title=" " alt="" coords="574,58,596,69,612,84,621,100,629,114,644,128,652,133,649,138,641,132,625,117,616,102,608,88,593,74,571,63"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="784,79,844,64,846,69,785,84"/>
+<area shape="rect" id="Node000007" href="$vl53l8cx__platform_8c.html#a03e447cf6ff03fb5be303b919a099751" title="Attend un délai en millisecondes." alt="" coords="849,86,984,113"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="784,95,834,96,834,101,784,100"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="1033,89,1100,116"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="957,60,1020,83,1018,88,956,65"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="789,148,882,138,984,122,1017,114,1018,120,986,128,883,144,790,153"/>
+<area shape="poly" id="edge12_Node000010_Node000004" title=" " alt="" coords="595,94,643,94,643,100,595,100"/>
+<area shape="poly" id="edge13_Node000010_Node000008" title=" " alt="" coords="563,80,656,54,658,59,565,86"/>
+<area shape="poly" id="edge14_Node000010_Node000009" title=" " alt="" coords="565,108,658,135,656,140,563,113"/>
+</map>

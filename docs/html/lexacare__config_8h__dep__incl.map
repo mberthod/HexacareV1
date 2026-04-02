@@ -1,0 +1,9 @@
+<map id="components/lexacare_types/include/lexacare_config.h" name="components/lexacare_types/include/lexacare_config.h">
+<area shape="rect" id="Node000001" title="Activation / désactivation des composants matériels LexaCare V1." alt="" coords="176,5,334,64"/>
+<area shape="rect" id="Node000002" href="$hw__diag_8c.html" title="Diagnostic matériel au démarrage — I2C LIDAR + UART Radar." alt="" coords="5,112,150,155"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,74,117,114,114,109,187,69"/>
+<area shape="rect" id="Node000003" href="$lidar__driver_8c.html" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="173,112,336,155"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="258,79,258,112,252,112,252,79"/>
+<area shape="rect" id="Node000004" href="$main_8c.html" title="Point d&#39;entrée LexaCare V1 — démarrage complet du firmware." alt="" coords="361,120,453,147"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="314,70,388,117,385,122,312,75"/>
+</map>

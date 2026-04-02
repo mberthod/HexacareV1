@@ -1,0 +1,7 @@
+<map id="diag_init_spi_lidars" name="diag_init_spi_lidars">
+<area shape="rect" id="Node000001" title=" " alt="" coords="273,5,404,32"/>
+<area shape="rect" id="Node000002" href="$group__group__hw__diag.html#gad0805242746ecf8545068878b9433eeb" title=" " alt="" coords="131,5,225,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="258,21,225,21,225,16,258,16"/>
+<area shape="rect" id="Node000003" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,83,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="115,21,83,21,83,16,115,16"/>
+</map>

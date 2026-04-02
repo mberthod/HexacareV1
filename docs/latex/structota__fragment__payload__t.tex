@@ -1,0 +1,106 @@
+\doxysection{ota\+\_\+fragment\+\_\+payload\+\_\+t Struct Reference}
+\hypertarget{structota__fragment__payload__t}{}\label{structota__fragment__payload__t}\index{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}}
+
+
+{\ttfamily \#include $<$system\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c}{firmware\+\_\+size}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}{fragment\+\_\+offset}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80}{fragment\+\_\+data\+\_\+len}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structota__fragment__payload__t_aff252475d43370bf718085a778c5a0a4}{data}} \mbox{[}\mbox{\hyperlink{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571}{OTA\+\_\+\+FRAGMENT\+\_\+\+DATA\+\_\+\+LEN}}\mbox{]}
+\item 
+bool \mbox{\hyperlink{structota__fragment__payload__t_aaa60401c4425aedf0f17bf9b51f223da}{is\+\_\+last}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00174}{174}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structota__fragment__payload__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structota__fragment__payload__t_aff252475d43370bf718085a778c5a0a4}\index{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!data@{data}}
+\index{data@{data}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \label{structota__fragment__payload__t_aff252475d43370bf718085a778c5a0a4} 
+uint8\+\_\+t ota\+\_\+fragment\+\_\+payload\+\_\+t\+::data\mbox{[}\mbox{\hyperlink{system__types_8h_a8aeb72dd2fb3b0da41f058d52ef69571}{OTA\+\_\+\+FRAGMENT\+\_\+\+DATA\+\_\+\+LEN}}\mbox{]}}
+
+Données du fragment 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00178}{178}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{ota__node_8c_source_l00074}{ota\+\_\+node\+\_\+process\+\_\+fragment()}}.
+
+\Hypertarget{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c}\index{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!firmware\_size@{firmware\_size}}
+\index{firmware\_size@{firmware\_size}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}}
+\doxysubsubsection{\texorpdfstring{firmware\_size}{firmware\_size}}
+{\footnotesize\ttfamily \label{structota__fragment__payload__t_acd0f1e58d304e8c4597e8af100768e0c} 
+uint32\+\_\+t ota\+\_\+fragment\+\_\+payload\+\_\+t\+::firmware\+\_\+size}
+
+Taille totale du firmware (octets) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00175}{175}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{ota__node_8c_source_l00074}{ota\+\_\+node\+\_\+process\+\_\+fragment()}}.
+
+\Hypertarget{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80}\index{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!fragment\_data\_len@{fragment\_data\_len}}
+\index{fragment\_data\_len@{fragment\_data\_len}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}}
+\doxysubsubsection{\texorpdfstring{fragment\_data\_len}{fragment\_data\_len}}
+{\footnotesize\ttfamily \label{structota__fragment__payload__t_a200c9814afca3395517f1661485a2b80} 
+uint16\+\_\+t ota\+\_\+fragment\+\_\+payload\+\_\+t\+::fragment\+\_\+data\+\_\+len}
+
+Longueur des données utiles 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00177}{177}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{ota__node_8c_source_l00074}{ota\+\_\+node\+\_\+process\+\_\+fragment()}}.
+
+\Hypertarget{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45}\index{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!fragment\_offset@{fragment\_offset}}
+\index{fragment\_offset@{fragment\_offset}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}}
+\doxysubsubsection{\texorpdfstring{fragment\_offset}{fragment\_offset}}
+{\footnotesize\ttfamily \label{structota__fragment__payload__t_a41db113b302e0ca0998bee55c1304c45} 
+uint32\+\_\+t ota\+\_\+fragment\+\_\+payload\+\_\+t\+::fragment\+\_\+offset}
+
+Offset de ce fragment dans le firmware 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00176}{176}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{ota__node_8c_source_l00074}{ota\+\_\+node\+\_\+process\+\_\+fragment()}}.
+
+\Hypertarget{structota__fragment__payload__t_aaa60401c4425aedf0f17bf9b51f223da}\index{ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}!is\_last@{is\_last}}
+\index{is\_last@{is\_last}!ota\_fragment\_payload\_t@{ota\_fragment\_payload\_t}}
+\doxysubsubsection{\texorpdfstring{is\_last}{is\_last}}
+{\footnotesize\ttfamily \label{structota__fragment__payload__t_aaa60401c4425aedf0f17bf9b51f223da} 
+bool ota\+\_\+fragment\+\_\+payload\+\_\+t\+::is\+\_\+last}
+
+true si dernier fragment 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00179}{179}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{ota__node_8c_source_l00074}{ota\+\_\+node\+\_\+process\+\_\+fragment()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/lexacare\+\_\+types/include/\mbox{\hyperlink{system__types_8h}{system\+\_\+types.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_f7f793e9b2e2f7b297163edcae8530d4" kind="dir">
+    <compoundname>components/lexacare_types</compoundname>
+    <innerdir refid="dir_88e9d770a305302d3692c2e494e7155d">components/lexacare_types/include</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/"/>
+  </compounddef>
+</doxygen>

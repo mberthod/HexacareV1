@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="platform_8h" kind="file" language="C++">
+    <compoundname>platform.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stddef.h</includes>
+    <includes refid="vl53l8cx__platform_8h" local="yes">vl53l8cx_platform.h</includes>
+    <includedby refid="vl53l8cx__api_8h" local="yes">components/sensor_acq/uld/vl53l8cx_api.h</includedby>
+    <includedby refid="vl53l8cx__buffers_8h" local="yes">components/sensor_acq/uld/vl53l8cx_buffers.h</includedby>
+    <incdepgraph>
+      <node id="4">
+        <label>vl53l8cx_platform.h</label>
+        <link refid="vl53l8cx__platform_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/uld/platform.h</label>
+        <link refid="platform_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="3">
+        <label>stddef.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>components/sensor_acq/uld/platform.h</label>
+        <link refid="platform_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>components/sensor_acq/uld/vl53l8cx_api.c</label>
+        <link refid="vl53l8cx__api_8c"/>
+      </node>
+      <node id="2">
+        <label>components/sensor_acq/uld/vl53l8cx_api.h</label>
+        <link refid="vl53l8cx__api_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>components/sensor_acq/uld/vl53l8cx_buffers.h</label>
+        <link refid="vl53l8cx__buffers_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.c</label>
+        <link refid="vl53l8cx__plugin__detection__thresholds_8c"/>
+      </node>
+      <node id="4">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_detection_thresholds.h</label>
+        <link refid="vl53l8cx__plugin__detection__thresholds_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.c</label>
+        <link refid="vl53l8cx__plugin__motion__indicator_8c"/>
+      </node>
+      <node id="6">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_motion_indicator.h</label>
+        <link refid="vl53l8cx__plugin__motion__indicator_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c</label>
+        <link refid="vl53l8cx__plugin__xtalk_8c"/>
+      </node>
+      <node id="8">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_xtalk.h</label>
+        <link refid="vl53l8cx__plugin__xtalk_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="platform_8h_1a31cf133aaf6b500062702a5a898eb137" prot="public" static="no">
+        <name>VL53L8CX_NB_TARGET_PER_ZONE</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/platform.h" line="19" column="9" bodyfile="components/sensor_acq/uld/platform.h" bodystart="19" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" compoundref="vl53l8cx__plugin__xtalk_8c" startline="55" endline="145">_vl53l8cx_program_output_config</referencedby>
+        <referencedby refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" compoundref="lidar__driver_8c" startline="170" endline="238">lidar_read_sensor</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1aa7a285f38be7f88d2ab894c23e58c8df" compoundref="vl53l8cx__api_8c" startline="514" endline="657">vl53l8cx_start_ranging</referencedby>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="platform_8h_1a999e10c40544016ca68ce5fbb3ea620c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void VL53L8CX_SwapBuffer</definition>
+        <argsstring>(uint8_t *buffer, uint16_t size)</argsstring>
+        <name>VL53L8CX_SwapBuffer</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>buffer</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+<para>Swap endianess par mots 32 bits (implémentation typique ST). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>L&apos;ULD manipule des buffers bruts (endianness capteur) et attend que la plateforme fournisse cette primitive. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/platform.h" line="34" column="20" bodyfile="components/sensor_acq/uld/platform.h" bodystart="34" bodyend="47"/>
+        <referencedby refid="vl53l8cx__api_8c_1a06089384da8839703ece6a5a745f82d8" compoundref="vl53l8cx__api_8c" startline="94" endline="157">_vl53l8cx_send_offset_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1acfd62041fa95081cc244e8f09cbed60e" compoundref="vl53l8cx__api_8c" startline="164" endline="217">_vl53l8cx_send_xtalk_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" compoundref="vl53l8cx__api_8c" startline="1308" endline="1361">vl53l8cx_dci_write_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+        <referencedby refid="vl53l8cx__api_8c_1a0cd6873ce839d64145cbfb01b7a94da0" compoundref="vl53l8cx__api_8c" startline="243" endline="409">vl53l8cx_init</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Adaptateur plateforme pour l&apos;ULD ST VL53L8CX (STSW-IMG040). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>L&apos;ULD ST inclut un fichier <computeroutput><ref refid="platform_8h" kindref="compound">platform.h</ref></computeroutput> que le client doit fournir. Dans ce firmware, la couche plateforme (SPI) est implémentée par : <ref refid="vl53l8cx__platform_8h" kindref="compound">components/sensor_acq/include/vl53l8cx_platform.h</ref></para>
+<para>Ce fichier fait le lien entre l&apos;ULD (API ST) et l&apos;implémentation ESP-IDF. </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>platform.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Adaptateur<sp/>plateforme<sp/>pour<sp/>l&apos;ULD<sp/>ST<sp/>VL53L8CX<sp/>(STSW-IMG040).</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>L&apos;ULD<sp/>ST<sp/>inclut<sp/>un<sp/>fichier<sp/>`platform.h`<sp/>que<sp/>le<sp/>client<sp/>doit<sp/>fournir.</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/>Dans<sp/>ce<sp/>firmware,<sp/>la<sp/>couche<sp/>plateforme<sp/>(SPI)<sp/>est<sp/>implémentée<sp/>par<sp/>:</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/><sp/>components/sensor_acq/include/vl53l8cx_platform.h</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>Ce<sp/>fichier<sp/>fait<sp/>le<sp/>lien<sp/>entre<sp/>l&apos;ULD<sp/>(API<sp/>ST)<sp/>et<sp/>l&apos;implémentation<sp/>ESP-IDF.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stddef.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Nombre<sp/>de<sp/>cibles<sp/>par<sp/>zone<sp/>(1<sp/>=<sp/>plus<sp/>simple/rapide,<sp/>suffisant<sp/>pour<sp/>la<sp/>matrice<sp/>8×32)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>VL53L8CX_NB_TARGET_PER_ZONE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="platform_8h_1a31cf133aaf6b500062702a5a898eb137" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>VL53L8CX_NB_TARGET_PER_ZONE<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Désactive<sp/>des<sp/>sorties<sp/>optionnelles<sp/>pour<sp/>réduire<sp/>la<sp/>charge/bandwidth<sp/>(optionnel)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>#define<sp/>VL53L8CX_DISABLE_AMBIENT_PER_SPAD<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Plateforme<sp/>SPI<sp/>+<sp/>fonctions<sp/>PAL<sp/>attendues<sp/>par<sp/>l&apos;ULD<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vl53l8cx__platform_8h" kindref="compound">vl53l8cx_platform.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="28"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Swap<sp/>endianess<sp/>par<sp/>mots<sp/>32<sp/>bits<sp/>(implémentation<sp/>typique<sp/>ST).</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>L&apos;ULD<sp/>manipule<sp/>des<sp/>buffers<sp/>bruts<sp/>(endianness<sp/>capteur)<sp/>et<sp/>attend<sp/>que<sp/>la</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*<sp/>plateforme<sp/>fournisse<sp/>cette<sp/>primitive.</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34" refid="platform_8h_1a999e10c40544016ca68ce5fbb3ea620c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="platform_8h_1a999e10c40544016ca68ce5fbb3ea620c" kindref="member">VL53L8CX_SwapBuffer</ref>(uint8_t<sp/>*buffer,<sp/>uint16_t<sp/>size)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!buffer)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Swap<sp/>par<sp/>blocs<sp/>de<sp/>4<sp/>octets<sp/>(uint32_t)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(uint16_t<sp/>i<sp/>=<sp/>0;<sp/>(uint16_t)(i<sp/>+<sp/>3U)<sp/>&lt;<sp/>size;<sp/>i<sp/>=<sp/>(uint16_t)(i<sp/>+<sp/>4U))<sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>b0<sp/>=<sp/>buffer[i<sp/>+<sp/>0U];</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>uint8_t<sp/>b1<sp/>=<sp/>buffer[i<sp/>+<sp/>1U];</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer[i<sp/>+<sp/>0U]<sp/>=<sp/>buffer[i<sp/>+<sp/>3U];</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer[i<sp/>+<sp/>1U]<sp/>=<sp/>buffer[i<sp/>+<sp/>2U];</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer[i<sp/>+<sp/>2U]<sp/>=<sp/>b1;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer[i<sp/>+<sp/>3U]<sp/>=<sp/>b0;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/uld/platform.h"/>
+  </compounddef>
+</doxygen>

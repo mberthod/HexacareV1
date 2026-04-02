@@ -1,0 +1,98 @@
+\doxysection{IA / Détection de chute }
+\hypertarget{group__group__ai__engine}{}\label{group__group__ai__engine}\index{IA / Détection de chute@{IA / Détection de chute}}
+
+
+Transforme les mesures capteurs en “état” (normal, chute, anormal) et notifications.  
+
+
+\doxysubsubsection*{Files}
+\begin{DoxyCompactItemize}
+\item 
+file \mbox{\hyperlink{fall__detection__ai_8cc}{fall\+\_\+detection\+\_\+ai.\+cc}}
+\begin{DoxyCompactList}\small\item\em Moteur d\textquotesingle{}inférence de détection de chute — dual-\/mode ESP-\/\+DL / seuil. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22}{ai\+\_\+engine\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Transforme les mesures capteurs en “état” (normal, chute, anormal) et notifications. 
+
+Pourquoi une tâche dédiée \+:
+\begin{DoxyItemize}
+\item séparer la logique “métier” (détection) du matériel (capteurs) et du transport (mesh/\+USB)
+\item garantir des délais \+: la tâche écoute une file (queue) et produit un événement rapidement 
+\end{DoxyItemize}
+
+\label{doc-func-members}
+\Hypertarget{group__group__ai__engine_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22}\index{IA / Détection de chute@{IA / Détection de chute}!ai\_engine\_task\_start@{ai\_engine\_task\_start}}
+\index{ai\_engine\_task\_start@{ai\_engine\_task\_start}!IA / Détection de chute@{IA / Détection de chute}}
+\doxysubsubsection{\texorpdfstring{ai\_engine\_task\_start()}{ai\_engine\_task\_start()}}
+{\footnotesize\ttfamily \label{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22} 
+esp\+\_\+err\+\_\+t ai\+\_\+engine\+\_\+task\+\_\+start (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}}]{ctx}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{fall__detection__ai_8cc_source_l00362}{362}} of file \mbox{\hyperlink{fall__detection__ai_8cc_source}{fall\+\_\+detection\+\_\+ai.\+cc}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00363\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \mbox{\hyperlink{structai__task__ctx__t}{ai\_task\_ctx\_t}}\ *task\_ctx\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{structai__task__ctx__t}{ai\_task\_ctx\_t}}\ *\textcolor{keyword}{>}(}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ calloc(1,\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structai__task__ctx__t}{ai\_task\_ctx\_t}})));}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{if}\ (!task\_ctx)\ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_NO\_MEM;}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ \ \ \ \ task\_ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_acb56ccc8bc7b83045ac4a566356e99fc}{sys\_ctx}}\ \ \ \ \ =\ ctx;}
+\DoxyCodeLine{00371\ \ \ \ \ task\_ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a97e5c570c363d4a5e2a8533243f93361}{history\_head}}\ =\ 0;}
+\DoxyCodeLine{00372\ \ \ \ \ task\_ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a9ec6c7cfc7c3ea5e953c931256e05f96}{history\_full}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00373\ \ \ \ \ memset(task\_ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a110df8d6546e074de1d336257afb02e0}{dist\_history}},\ 0,\ \textcolor{keyword}{sizeof}(task\_ctx-\/>\mbox{\hyperlink{structai__task__ctx__t_a110df8d6546e074de1d336257afb02e0}{dist\_history}}));}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ BaseType\_t\ ret\ =\ xTaskCreatePinnedToCore(}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a7d61a03892d2a7129fd42b1bf1d70a2f}{task\_ai\_inference}},}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Task\_AI\_Inference"{}},}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a5486258f1f34d3baeda92a74b63c27c3}{TASK\_STACK\_SIZE}},}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ task\_ctx,}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\_PRIORITY}},}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keyword}{nullptr},}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\_CORE}});}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ pdPASS)\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ free(task\_ctx);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ création\ Task\_AI\_Inference"{}});}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_FAIL;}
+\DoxyCodeLine{00388\ \ \ \ \ \}}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Task\_AI\_Inference\ créée\ (Core\ \%d,\ priorité\ \%d)"{}},}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{fall__detection__ai_8cc_a9acbd3c931eee1cac4b1f1e7cd6bb2f2}{TASK\_CORE}},\ \mbox{\hyperlink{fall__detection__ai_8cc_a82dd0a9ae27bdb2c3cdd33bb7804861c}{TASK\_PRIORITY}});}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{00393\ \}}
+
+\end{DoxyCode}
+
+
+References \mbox{\hyperlink{fall__detection__ai_8cc_source_l00086}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::dist\+\_\+history}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00088}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::history\+\_\+full}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00087}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::history\+\_\+head}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00083}{ai\+\_\+task\+\_\+ctx\+\_\+t\+::sys\+\_\+ctx}}, \mbox{\hyperlink{main_8c_source_l00058}{TAG}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00285}{task\+\_\+ai\+\_\+inference()}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00073}{TASK\+\_\+\+CORE}}, \mbox{\hyperlink{fall__detection__ai_8cc_source_l00072}{TASK\+\_\+\+PRIORITY}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00071}{TASK\+\_\+\+STACK\+\_\+\+SIZE}}.
+
+
+
+Referenced by \mbox{\hyperlink{main_8c_source_l00063}{app\+\_\+main()}}.
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=280pt]{group__group__ai__engine_ga80a3d0d60626acc74a3993aefb862a22_icgraph}
+\end{center}
+\end{figure}

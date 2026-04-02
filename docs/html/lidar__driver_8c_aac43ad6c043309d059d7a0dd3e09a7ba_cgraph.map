@@ -1,0 +1,14 @@
+<map id="lidar_read_sensor" name="lidar_read_sensor">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,129,69"/>
+<area shape="rect" id="Node000002" href="$vl53l8cx__api_8c.html#a8d192f0f3fded5de1767f54271d8f54a" title="This function checks if a new data is ready by polling I2C. If a new data is ready,..." alt="" coords="193,5,336,48"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,44,177,37,178,42,129,50"/>
+<area shape="rect" id="Node000005" href="$vl53l8cx__api_8c.html#a522352966402d8c83cfc7b4eb15f8ef9" title="This function gets the ranging data, using the selected output and the resolution." alt="" coords="177,72,352,99"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="129,62,161,67,161,73,128,68"/>
+<area shape="rect" id="Node000003" href="$vl53l8cx__platform_8c.html#af4dfb23228937a89dab5c68f81836248" title="Lit plusieurs octets depuis un registre 16 bits du VL53L8CX." alt="" coords="411,17,547,44"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="336,25,395,26,395,32,336,31"/>
+<area shape="rect" id="Node000004" href="$vl53l8cx__platform_8c.html#a8be467b932dd428e0f75d7ebf828bb4c" title=" " alt="" coords="606,17,674,44"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="548,28,591,28,591,33,548,33"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="319,69,408,46,410,51,320,74"/>
+<area shape="rect" id="Node000006" href="$platform_8h.html#a999e10c40544016ca68ce5fbb3ea620c" title="Swap endianess par mots 32 bits (implémentation typique ST)." alt="" coords="400,72,558,99"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="353,83,384,83,384,88,353,88"/>
+</map>

@@ -1,0 +1,112 @@
+\doxysection{vl53l8cx\+\_\+platform.\+h}
+\hypertarget{vl53l8cx__platform_8h_source}{}\label{vl53l8cx__platform_8h_source}\index{components/sensor\_acq/include/vl53l8cx\_platform.h@{components/sensor\_acq/include/vl53l8cx\_platform.h}}
+\mbox{\hyperlink{vl53l8cx__platform_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ vl53l8cx\_platform.h}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Couche\ d'abstraction\ plateforme\ pour\ l'ULD\ VL53L8CX\ de\ ST\ —\ interface\ SPI.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00005}00005\ \textcolor{comment}{\ *\ Implémente\ la\ Platform\ Abstraction\ Layer\ (PAL)\ exigée\ par\ l'Ultra-\/Lite\ Driver\ (ULD)}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00006}00006\ \textcolor{comment}{\ *\ VL53L8CX\ de\ STMicroelectronics,\ via\ l'API\ SPI\ master\ d'ESP-\/IDF.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00007}00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00008}00008\ \textcolor{comment}{\ *\ Protocole\ SPI\ VL53L8CX\ :}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00009}00009\ \textcolor{comment}{\ *\ \ \ -\/\ Mode\ SPI\ 3\ (CPOL=1,\ CPHA=1),\ max\ 10\ MHz,\ NCS\ actif\ bas.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00010}00010\ \textcolor{comment}{\ *\ \ \ -\/\ Adresse\ registre\ :\ 2\ octets\ big-\/endian.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00011}00011\ \textcolor{comment}{\ *\ \ \ -\/\ Écriture\ :\ bit15=0\ →\ [addr\_hi\ \&\ 0x7F][addr\_lo][data...]}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00012}00012\ \textcolor{comment}{\ *\ \ \ -\/\ Lecture\ \ :\ bit15=1\ →\ [addr\_hi\ |\ 0x80][addr\_lo][dummy...]\ →\ [xx][xx][data...]}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00013}00013\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00014}00014\ \textcolor{comment}{\ *\ INSTALLATION\ DE\ L'ULD\ :}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00015}00015\ \textcolor{comment}{\ *\ \ \ 1.\ Télécharger\ le\ VL53L8CX\ ULD\ depuis\ st.com\ (STSW-\/IMG040).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00016}00016\ \textcolor{comment}{\ *\ \ \ 2.\ Copier\ les\ fichiers\ source\ ULD\ dans\ components/sensor\_acq/uld/.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00017}00017\ \textcolor{comment}{\ *\ \ \ 3.\ Ajouter\ les\ sources\ ULD\ à\ la\ liste\ SRCS\ du\ CMakeLists.txt.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00018}00018\ \textcolor{comment}{\ *\ \ \ 4.\ Retirer\ la\ macro\ LIDAR\_STUB\_MODE\ de\ lidar\_driver.c.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00019}00019\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00021}00021\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00024}00024\ \textcolor{preprocessor}{\#include\ "{}driver/spi\_master.h"{}}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00025}00025\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00026}00026\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00027}00027\ \textcolor{comment}{\ *\ @ingroup\ group\_sensor\_acq}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00028}00028\ \textcolor{comment}{\ *\ @brief\ Couche\ “adaptateur”\ SPI\ requise\ par\ l'ULD\ ST\ (VL53L8CX).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00029}00029\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00030}00030\ \textcolor{comment}{\ *\ But\ :\ permettre\ d'utiliser\ un\ driver\ ST\ “standard”\ en\ ne\ codant\ que}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00031}00031\ \textcolor{comment}{\ *\ les\ primitives\ SPI\ (lire/écrire/attendre),\ sans\ réinventer\ le\ protocole.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00032}00032\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00034}00034\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00035}00035\ \textcolor{comment}{\ *\ VL53L8CX\_Platform}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00036}00036\ \textcolor{comment}{\ *\ @brief\ Contexte\ de\ la\ couche\ plateforme\ —\ un\ handle\ SPI\ par\ capteur.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00037}00037\ \textcolor{comment}{\ *\ \ \ \ \ \ \ \ Embarqué\ dans\ VL53L8CX\_Configuration\ de\ l'ULD.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00038}00038\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00039}\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{00039}}\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00040}\mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{00040}}\ \ \ \ \ spi\_device\_handle\_t\ \mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ade1457ee6ff9ea2990060dba1afaed71}{spi\_dev}};\ \textcolor{comment}{/**<\ Handle\ SPI\ ESP-\/IDF\ du\ capteur\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00041}\mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ae611f4407ec54984f5e9261fbab72a5c}{00041}}\ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_v_l53_l8_c_x___platform_ae611f4407ec54984f5e9261fbab72a5c}{address}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/**<\ Champ\ requis\ par\ l'ULD\ (mode\ I2C).\ Inutilisé\ en\ SPI.\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00042}00042\ \}\ \mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}};}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00044}00044\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00045}00045\ \textcolor{comment}{\ *\ Fonctions\ de\ la\ PAL\ —\ appelées\ exclusivement\ par\ l'ULD\ VL53L8CX}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00046}00046\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00047}00047\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00048}00048\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00049}00049\ \textcolor{comment}{\ *\ @brief\ Valide\ le\ handle\ SPI\ (device\ déjà\ ajouté\ au\ bus\ par\ hw\_diag).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00050}00050\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00051}00051\ \textcolor{comment}{\ *\ @param\ p\_platform\ Contexte\ plateforme\ (contient\ le\ handle\ SPI).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00052}00052\ \textcolor{comment}{\ *\ @return\ 0\ si\ succès\ (convention\ ULD\ ST).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00053}00053\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00054}00054\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__platform_8h_a5687017b3245ded0e88563178c6613a7}{VL53L8CX\_PlatformInit}}(\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}}\ *p\_platform);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00055}00055\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00056}00056\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00057}00057\ \textcolor{comment}{\ *\ @brief\ Lit\ un\ octet\ depuis\ un\ registre\ 16\ bits\ du\ VL53L8CX.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00058}00058\ \textcolor{comment}{\ *\ @param\ p\_platform\ Contexte\ plateforme.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00059}00059\ \textcolor{comment}{\ *\ @param\ RegisterAddress\ Adresse\ 16\ bits\ du\ registre.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00060}00060\ \textcolor{comment}{\ *\ @param\ p\_value\ Valeur\ lue\ (1\ octet).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00061}00061\ \textcolor{comment}{\ *\ @return\ 0\ si\ succès\ (convention\ ULD\ ST).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00062}00062\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00063}00063\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__platform_8h_a501a5073457a1982c2406543df0d073e}{VL53L8CX\_RdByte}}(\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}}\ *p\_platform,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ RegisterAddress,\ uint8\_t\ *p\_value);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00065}00065\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00066}00066\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00067}00067\ \textcolor{comment}{\ *\ @brief\ Écrit\ un\ octet\ dans\ un\ registre\ 16\ bits\ du\ VL53L8CX.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00068}00068\ \textcolor{comment}{\ *\ @param\ p\_platform\ Contexte\ plateforme.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00069}00069\ \textcolor{comment}{\ *\ @param\ RegisterAddress\ Adresse\ 16\ bits\ du\ registre.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00070}00070\ \textcolor{comment}{\ *\ @param\ value\ Octet\ à\ écrire.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00071}00071\ \textcolor{comment}{\ *\ @return\ 0\ si\ succès\ (convention\ ULD\ ST).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00072}00072\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00073}00073\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__platform_8h_a7710197de0c7e075a4064f18baa56355}{VL53L8CX\_WrByte}}(\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}}\ *p\_platform,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ RegisterAddress,\ uint8\_t\ value);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00075}00075\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00076}00076\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00077}00077\ \textcolor{comment}{\ *\ @brief\ Lit\ plusieurs\ octets\ depuis\ un\ registre\ 16\ bits\ du\ VL53L8CX.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00078}00078\ \textcolor{comment}{\ *\ @param\ p\_platform\ Contexte\ plateforme.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00079}00079\ \textcolor{comment}{\ *\ @param\ RegisterAddress\ Adresse\ 16\ bits\ du\ registre.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00080}00080\ \textcolor{comment}{\ *\ @param\ p\_values\ Buffer\ de\ sortie\ (taille\ >=\ size).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00081}00081\ \textcolor{comment}{\ *\ @param\ size\ Nombre\ d'octets\ à\ lire.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00082}00082\ \textcolor{comment}{\ *\ @return\ 0\ si\ succès\ (convention\ ULD\ ST).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00083}00083\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00084}00084\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__platform_8h_af4dfb23228937a89dab5c68f81836248}{VL53L8CX\_RdMulti}}(\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}}\ *p\_platform,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ RegisterAddress,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *p\_values,\ uint32\_t\ size);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00087}00087\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00088}00088\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00089}00089\ \textcolor{comment}{\ *\ @brief\ Écrit\ plusieurs\ octets\ vers\ un\ registre\ 16\ bits\ du\ VL53L8CX.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00090}00090\ \textcolor{comment}{\ *\ @param\ p\_platform\ Contexte\ plateforme.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00091}00091\ \textcolor{comment}{\ *\ @param\ RegisterAddress\ Adresse\ 16\ bits\ du\ registre.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00092}00092\ \textcolor{comment}{\ *\ @param\ p\_values\ Données\ à\ écrire.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00093}00093\ \textcolor{comment}{\ *\ @param\ size\ Nombre\ d'octets\ à\ écrire.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00094}00094\ \textcolor{comment}{\ *\ @return\ 0\ si\ succès\ (convention\ ULD\ ST).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00095}00095\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00096}00096\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__platform_8h_a1570cfa7d62d2faec410934391b845b7}{VL53L8CX\_WrMulti}}(\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}}\ *p\_platform,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ RegisterAddress,}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ *p\_values,\ uint32\_t\ size);}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00099}00099\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00100}00100\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00101}00101\ \textcolor{comment}{\ *\ @brief\ Attend\ un\ délai\ en\ millisecondes.}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00102}00102\ \textcolor{comment}{\ *\ @param\ p\_platform\ Contexte\ plateforme\ (non\ utilisé,\ mais\ imposé\ par\ l'ULD).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00103}00103\ \textcolor{comment}{\ *\ @param\ TimeMs\ Durée\ d'attente\ (ms).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00104}00104\ \textcolor{comment}{\ *\ @return\ 0\ si\ succès\ (convention\ ULD\ ST).}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00105}00105\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{vl53l8cx__platform_8h_source_l00106}00106\ uint8\_t\ \mbox{\hyperlink{vl53l8cx__platform_8h_a03e447cf6ff03fb5be303b919a099751}{VL53L8CX\_WaitMs}}(\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53L8CX\_Platform}}\ *p\_platform,\ uint32\_t\ TimeMs);}
+
+\end{DoxyCode}

@@ -1,0 +1,471 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="main_8c" kind="file" language="C++">
+    <compoundname>main.c</compoundname>
+    <includes local="no">string.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/task.h</includes>
+    <includes local="yes">freertos/queue.h</includes>
+    <includes local="yes">freertos/semphr.h</includes>
+    <includes local="yes">esp_log.h</includes>
+    <includes local="yes">esp_system.h</includes>
+    <includes local="yes">esp_heap_caps.h</includes>
+    <includes local="yes">nvs_flash.h</includes>
+    <includes local="yes">esp_event.h</includes>
+    <includes refid="lexacare__config_8h" local="yes">lexacare_config.h</includes>
+    <includes refid="system__types_8h" local="yes">system_types.h</includes>
+    <includes refid="pins__config_8h" local="yes">pins_config.h</includes>
+    <includes refid="hw__diag_8h" local="yes">hw_diag.h</includes>
+    <includes refid="lidar__driver_8h" local="yes">lidar_driver.h</includes>
+    <includes refid="pc__diag_8h" local="yes">pc_diag.h</includes>
+    <includes refid="sys__storage_8h" local="yes">sys_storage.h</includes>
+    <includes refid="hdc1080__driver_8h" local="yes">hdc1080_driver.h</includes>
+    <includes refid="bme280__driver_8h" local="yes">bme280_driver.h</includes>
+    <includes refid="mic__driver_8h" local="yes">mic_driver.h</includes>
+    <includes refid="mesh__manager_8h" local="yes">mesh_manager.h</includes>
+    <incdepgraph>
+      <node id="19">
+        <label>hw_diag.h</label>
+        <link refid="hw__diag_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>lexacare_config.h</label>
+        <link refid="lexacare__config_8h"/>
+      </node>
+      <node id="18">
+        <label>pins_config.h</label>
+        <link refid="pins__config_8h"/>
+      </node>
+      <node id="14">
+        <label>system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>mesh_manager.h</label>
+        <link refid="mesh__manager_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>pc_diag.h</label>
+        <link refid="pc__diag_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>bme280_driver.h</label>
+        <link refid="bme280__driver_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>hdc1080_driver.h</label>
+        <link refid="hdc1080__driver_8h"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>lidar_driver.h</label>
+        <link refid="lidar__driver_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>mic_driver.h</label>
+        <link refid="mic__driver_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>sys_storage.h</label>
+        <link refid="sys__storage_8h"/>
+        <childnode refid="20" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>driver/i2c_master.h</label>
+      </node>
+      <node id="17">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="20">
+        <label>esp_err.h</label>
+      </node>
+      <node id="12">
+        <label>esp_event.h</label>
+      </node>
+      <node id="10">
+        <label>esp_heap_caps.h</label>
+      </node>
+      <node id="8">
+        <label>esp_log.h</label>
+      </node>
+      <node id="9">
+        <label>esp_system.h</label>
+      </node>
+      <node id="4">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="7">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/task.h</label>
+      </node>
+      <node id="3">
+        <label>math.h</label>
+      </node>
+      <node id="11">
+        <label>nvs_flash.h</label>
+      </node>
+      <node id="16">
+        <label>stdbool.h</label>
+      </node>
+      <node id="15">
+        <label>stdint.h</label>
+      </node>
+      <node id="2">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <member refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kind="variable"><name>TAG</name></member>
+      <member refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kind="variable"><name>s_ctx</name></member>
+    </sectiondef>
+    <sectiondef kind="func">
+      <member refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" kind="function"><name>app_main</name></member>
+    </sectiondef>
+    <briefdescription>
+<para>Point d&apos;entrée LexaCare V1 — démarrage complet du firmware. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Activer/désactiver les composants dans : <ref refid="lexacare__config_8h" kindref="compound">components/lexacare_types/include/lexacare_config.h</ref> </para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>main.c</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Point<sp/>d&apos;entrée<sp/>LexaCare<sp/>V1<sp/>—<sp/>démarrage<sp/>complet<sp/>du<sp/>firmware.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Activer/désactiver<sp/>les<sp/>composants<sp/>dans<sp/>:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/><sp/>components/lexacare_types/include/lexacare_config.h</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="9"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>@defgroup<sp/>group_main<sp/>Démarrage<sp/>(main)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Point<sp/>d&apos;entrée<sp/>:<sp/>initialise<sp/>les<sp/>services,<sp/>lance<sp/>les<sp/>diagnostics,<sp/>puis<sp/>démarre<sp/>les<sp/>tâches.</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/>L&apos;intention<sp/>est<sp/>de<sp/>garder<sp/>une<sp/>séquence<sp/>de<sp/>boot<sp/>lisible<sp/>et<sp/>“déterministe”<sp/>:</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*<sp/>chaque<sp/>étape<sp/>prépare<sp/>la<sp/>suivante,<sp/>et<sp/>évite<sp/>de<sp/>lancer<sp/>des<sp/>tâches<sp/>si<sp/>une<sp/>dépendance<sp/>manque.</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/>*<sp/>@{</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/task.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/queue.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/semphr.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_log.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_system.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_heap_caps.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;nvs_flash.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;esp_event.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lexacare__config_8h" kindref="compound">lexacare_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="system__types_8h" kindref="compound">system_types.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pins__config_8h" kindref="compound">pins_config.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="hw__diag_8h" kindref="compound">hw_diag.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="lidar__driver_8h" kindref="compound">lidar_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="pc__diag_8h" kindref="compound">pc_diag.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="sys__storage_8h" kindref="compound">sys_storage.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_AI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="fall__detection__ai_8h" kindref="compound">fall_detection_ai.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Inclusions<sp/>conditionnelles<sp/>selon<sp/>la<sp/>config<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_HDC1080</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>include<sp/>&quot;<ref refid="hdc1080__driver_8h" kindref="compound">hdc1080_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_BME280</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>include<sp/>&quot;<ref refid="bme280__driver_8h" kindref="compound">bme280_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_MIC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>include<sp/>&quot;<ref refid="mic__driver_8h" kindref="compound">mic_driver.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_MESH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/><sp/>include<sp/>&quot;<ref refid="mesh__manager_8h" kindref="compound">mesh_manager.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;main&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Contexte<sp/>système<sp/>—<sp/>statique<sp/>(BSS)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" kindref="member">app_main</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>1.<sp/>Infrastructure<sp/>de<sp/>base</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>esp_err_t<sp/>nvs_ret<sp/>=<sp/>nvs_flash_init();</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nvs_ret<sp/>==<sp/>ESP_ERR_NVS_NO_FREE_PAGES<sp/>||</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nvs_ret<sp/>==<sp/>ESP_ERR_NVS_NEW_VERSION_FOUND)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;NVS<sp/>corrompu<sp/>—<sp/>effacement&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(nvs_flash_erase());</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nvs_ret<sp/>=<sp/>nvs_flash_init();</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(nvs_ret);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(esp_event_loop_create_default());</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>2.<sp/>Stockage<sp/>SPIFFS<sp/>+<sp/>panic<sp/>handler</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__group__storage_1gaab567d329d0ad1d073eeac57438d0f0c" kindref="member">littlefs_manager_init</ref>()<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__group__storage_1ga0f70a6a9f0f8823c86e3ddddf9902fbc" kindref="member">panic_handler_install</ref>()<sp/>==<sp/>ESP_OK)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__storage_1ga3839c23cedb95aaa10a100a6034e923f" kindref="member">panic_handler_check_on_boot</ref>();</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;SPIFFS<sp/>indisponible<sp/>—<sp/>logs<sp/>désactivés&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>3.<sp/>Diagnostic<sp/>matériel<sp/>(SPI<sp/>LIDAR<sp/>+<sp/>PCA9555<sp/>LPn)</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>));</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.enviro.temp_hdc_c<sp/><sp/><sp/>=<sp/>NAN;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.enviro.humidity_hdc<sp/>=<sp/>NAN;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.enviro.temp_bme_c<sp/><sp/><sp/>=<sp/>NAN;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.enviro.pressure_hpa<sp/>=<sp/>NAN;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.enviro.humidity_bme<sp/>=<sp/>NAN;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1ga3bf55e9ea600655cde121ee914e243d6" kindref="member">hw_diag_result_t</ref><sp/>diag<sp/>=<sp/><ref refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" kindref="member">hw_diag_run</ref>(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diag<sp/>&amp;<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc" kindref="member">HW_DIAG_LIDAR_ALL</ref>)<sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Aucun<sp/>LIDAR<sp/>—<sp/>dégradé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diag<sp/>&amp;<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809" kindref="member">HW_DIAG_LIDAR_PARTIAL</ref>)<sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;LIDARs<sp/>partiels&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(diag<sp/>&amp;<sp/><ref refid="group__group__hw__diag_1gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd" kindref="member">HW_DIAG_RADAR_MISSING</ref>)<sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Radar<sp/>absent&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>4.<sp/>Alimentations<sp/>PCA9555<sp/>—<sp/>AVANT<sp/>init<sp/>des<sp/>capteurs</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/>POWER_RADAR<sp/>alimente<sp/>HDC1080<sp/>+<sp/>BME280<sp/>sur<sp/>la<sp/>carte<sp/>radar.</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_PWR_RADAR_ENABLED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kindref="member">hw_diag_pca9555_set_power</ref>(<ref refid="pins__config_8h_1a47d24d2c7f6e97560d968fcf372d5daa" kindref="member">PCA9555_BIT_PWR_RADAR</ref>,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;POWER_RADAR<sp/>(IO1.5)<sp/>activé<sp/>—<sp/>capteurs<sp/>I2C<sp/>alimentés&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(50));<sp/><sp/></highlight><highlight class="comment">/*<sp/>Stabilisation<sp/>alimentation<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_PWR_FAN_ENABLED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kindref="member">hw_diag_pca9555_set_power</ref>(<ref refid="pins__config_8h_1a5f2d7b2bd1e54721b51e0b001f9d17e8" kindref="member">PCA9555_BIT_PWR_FAN</ref>,<sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;POWER_FAN<sp/>(IO1.4)<sp/>activé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_PWR_MLX_ENABLED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kindref="member">hw_diag_pca9555_set_power</ref>(<ref refid="pins__config_8h_1a9c75a80cfcdd852e8a918b50a6d794cc" kindref="member">PCA9555_BIT_PWR_MLX</ref>,<sp/><sp/><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;POWER_MLX<sp/>(IO1.7)<sp/>activé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(20));</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>5.<sp/>Capteurs<sp/>I2C<sp/>environnementaux<sp/>(carte<sp/>radar,<sp/>I2C_NUM_1)</highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>i2c_master_bus_handle_t<sp/>sensors_bus<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_HDC1080<sp/>||<sp/>LEXACARE_ENABLE_BME280<sp/>||<sp/>LEXACARE_ENABLE_MLX90640</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__group__hw__diag_1ga645514a9fa716fffb0d800e5014f13d2" kindref="member">hw_diag_init_sensor_bus</ref>(&amp;sensors_bus)<sp/>!=<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Bus<sp/>I2C_NUM_1<sp/>indisponible<sp/>—<sp/>capteurs<sp/>enviro<sp/>off&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_HDC1080</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sensors_bus)<sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="hdc1080__driver_8c_1a331ca8cf79867f6f9ebe86978bfc6cc5" kindref="member">hdc1080_init</ref>(sensors_bus)<sp/>==<sp/>ESP_OK)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;HDC1080<sp/>prêt<sp/>@0x40&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;HDC1080<sp/>non<sp/>détecté<sp/>@0x40&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_BME280</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sensors_bus)<sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" kindref="member">bme280_init</ref>(sensors_bus,<sp/><ref refid="group__group__sensor__acq_1ga33dc32e20dce447778f8d22acea65fd4" kindref="member">BME280_I2C_ADDR_DEFAULT</ref>)<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BME280<sp/>prêt<sp/>@0x76&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BME280<sp/>@0x76<sp/>échoué<sp/>—<sp/>essai<sp/>@0x77&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="bme280__driver_8c_1a16050495a4e02a1498ceadf9a19db1e2" kindref="member">bme280_init</ref>(sensors_bus,<sp/><ref refid="bme280__driver_8h_1a7b7c6da1330193242ae0fed91f8ea6b9" kindref="member">BME280_I2C_ADDR_ALT</ref>)<sp/>==<sp/>ESP_OK)</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BME280<sp/>prêt<sp/>@0x77&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;BME280<sp/>non<sp/>détecté&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>6.<sp/>Queues<sp/>FreeRTOS<sp/>+<sp/>mutex</highlight></codeline>
+<codeline lineno="158"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.data_mutex<sp/>=<sp/>xSemaphoreCreateMutex();</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.data_mutex)<sp/>{<sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Mutex<sp/>KO&quot;</highlight><highlight class="normal">);<sp/>esp_restart();<sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.sensor_to_ai_queue<sp/>=<sp/>xQueueCreate(4,<sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref>));</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.ai_to_mesh_queue<sp/><sp/><sp/>=<sp/>xQueueCreate(8,<sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structai__event__t" kindref="compound">ai_event_t</ref>));</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.diag_to_pc_queue<sp/><sp/><sp/>=<sp/>xQueueCreate(8,<sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structai__event__t" kindref="compound">ai_event_t</ref>));</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.log_queue<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>xQueueCreate(16,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*));</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.sensor_to_ai_queue<sp/>||<sp/>!<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.ai_to_mesh_queue<sp/>||</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>!<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.diag_to_pc_queue<sp/><sp/><sp/>||<sp/>!<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.log_queue)<sp/>{</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGE(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Queues<sp/>KO<sp/>—<sp/>redémarrage&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_restart();</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>7.<sp/>Alimentation<sp/>MIC<sp/>—<sp/>AVANT<sp/>WiFi</highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/>Toutes<sp/>les<sp/>opérations<sp/>PCA9555<sp/>(allocation<sp/>du<sp/>device<sp/>handle<sp/>I2C)</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/>doivent<sp/>être<sp/>effectuées<sp/>AVANT<sp/>mesh_manager_init().</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/>Après<sp/>WiFi,<sp/>le<sp/>heap<sp/>peut<sp/>être<sp/>fragmenté<sp/>→<sp/>LoadStoreAlignment</highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/><sp/><sp/>sur<sp/>l&apos;allocation<sp/>dans<sp/>i2c_master_bus_add_device.</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_PWR_MIC_ENABLED<sp/>&amp;&amp;<sp/>LEXACARE_ENABLE_MIC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__group__hw__diag_1ga469b1f6472782cad7c76f1a21f2aeba0" kindref="member">hw_diag_pca9555_set_power</ref>(<ref refid="pins__config_8h_1a21548209f46bfb6d3762a4abd89468b1" kindref="member">PCA9555_BIT_PWR_MIC</ref>,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">)<sp/>==<sp/>ESP_OK)<sp/>{</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;POWER_MIC<sp/>(IO1.6)<sp/>activé&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vTaskDelay(pdMS_TO_TICKS(10));</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="188"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>8.<sp/>Microphone<sp/>I2S<sp/>—<sp/>AVANT<sp/>WiFi<sp/>(évite<sp/>fragmentation<sp/>heap<sp/>TLSF)</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_MIC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="group__group__sensor__acq_1ga929c693f9e843d4655764986f0555ccc" kindref="member">mic_driver_init</ref>()<sp/>==<sp/>ESP_OK)</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Microphone<sp/>I2S<sp/>prêt&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Microphone<sp/>I2S<sp/>KO&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>9.<sp/>Réseau<sp/>mesh<sp/>ESP-NOW<sp/>—<sp/>APRÈS<sp/>toutes<sp/>les<sp/>opérations<sp/>PCA9555</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_MESH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="group__group__mesh_1ga70a67236487199c55a71f550972e2c27" kindref="member">mesh_manager_init</ref>(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>));</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Mesh<sp/>WiFi<sp/>désactivé<sp/>(LEXACARE_ENABLE_MESH=0)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="207"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>10.<sp/>Démarrage<sp/>des<sp/>tâches</highlight></codeline>
+<codeline lineno="208"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_AI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="group__group__ai__engine_1ga80a3d0d60626acc74a3993aefb862a22" kindref="member">ai_engine_task_start</ref>(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>));<sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Core<sp/>1,<sp/>prio<sp/>9<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGW(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;IA<sp/>désactivée<sp/>(LEXACARE_ENABLE_AI=0)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="group__group__sensor__acq_1ga395fe085276686e57cc95b3ef49c4457" kindref="member">lidar_driver_start</ref>(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>));<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Core<sp/>1,<sp/>prio<sp/>10<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>LEXACARE_ENABLE_MESH</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="group__group__mesh_1ga9fa511aef79fa9d5e72126a40fa373a9" kindref="member">mesh_task_start</ref>(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>));<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Core<sp/>0,<sp/>prio<sp/>8<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_ERROR_CHECK(<ref refid="group__group__pc__diag_1gad12cb16ec04cd1accc830ecde54cc828" kindref="member">pc_diag_task_start</ref>(&amp;<ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>));<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Core<sp/>0,<sp/>prio<sp/>3<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="221"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Rapport<sp/>de<sp/>démarrage</highlight></codeline>
+<codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;================================================&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>LexaCare<sp/>V1<sp/>—<sp/>Firmware<sp/>opérationnel&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>IDF<sp/>:<sp/>%s<sp/>|<sp/>Rôle<sp/>:<sp/>%s&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>esp_get_idf_version(),</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__main_1gab396c73e719fb1030b168c4121bb6676" kindref="member">s_ctx</ref>.is_root_node<sp/>?<sp/></highlight><highlight class="stringliteral">&quot;ROOT&quot;</highlight><highlight class="normal"><sp/>:<sp/></highlight><highlight class="stringliteral">&quot;NODE&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>Heap<sp/>interne<sp/>:<sp/>%lu<sp/>B<sp/>|<sp/>PSRAM<sp/>:<sp/>%lu<sp/>B&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)esp_get_free_heap_size(),</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal">)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/>Config:<sp/>LIDAR×%d<sp/>RADAR=%d<sp/>HDC=%d<sp/>BME=%d<sp/>MIC=%d<sp/>MESH=%d&quot;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" kindref="member">LEXACARE_LIDAR_COUNT</ref>,</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" kindref="member">LEXACARE_ENABLE_RADAR</ref>,</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" kindref="member">LEXACARE_ENABLE_HDC1080</ref>,</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" kindref="member">LEXACARE_ENABLE_BME280</ref>,</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" kindref="member">LEXACARE_ENABLE_MIC</ref>,</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" kindref="member">LEXACARE_ENABLE_MESH</ref>);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>ESP_LOGI(<ref refid="group__group__main_1ga5a85b9c772bbeb480b209a3e6ea92b4c" kindref="member">TAG</ref>,<sp/></highlight><highlight class="stringliteral">&quot;================================================&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="241"><highlight class="comment">/**<sp/>@}<sp/>*/</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*<sp/>end<sp/>of<sp/>group_main<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="main/main.c"/>
+  </compounddef>
+</doxygen>

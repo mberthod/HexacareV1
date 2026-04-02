@@ -1,0 +1,5 @@
+<map id="VL53L8CX_Configuration" name="VL53L8CX_Configuration">
+<area shape="rect" id="Node000001" title="Structure VL53L8CX_Configuration contains the sensor configuration. User MUST not manually change the..." alt="" coords="5,104,174,131"/>
+<area shape="rect" id="Node000002" href="$struct_v_l53_l8_c_x___platform.html" title="Couche “adaptateur” SPI requise par l&#39;ULD ST (VL53L8CX)." alt="" coords="19,5,160,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,48,92,104,87,104,87,48"/>
+</map>

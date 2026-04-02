@@ -1,0 +1,154 @@
+\doxysection{lexacare\+\_\+frame\+\_\+t Struct Reference}
+\hypertarget{structlexacare__frame__t}{}\label{structlexacare__frame__t}\index{lexacare\_frame\_t@{lexacare\_frame\_t}}
+
+
+{\ttfamily \#include $<$system\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}{magic}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}{type}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}{hop\+\_\+count}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}{src\+\_\+mac}} \mbox{[}6\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3}{iv}} \mbox{[}\mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\+\_\+\+AES\+\_\+\+IV\+\_\+\+LEN}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3}{payload}} \mbox{[}\mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\+\_\+\+MAX\+\_\+\+PAYLOAD}}\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25}{payload\+\_\+len}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlexacare__frame__t_ae5067764127ffd0809f3cf71927d3e50}{crc16}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00159}{159}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structlexacare__frame__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structlexacare__frame__t_ae5067764127ffd0809f3cf71927d3e50}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!crc16@{crc16}}
+\index{crc16@{crc16}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{crc16}{crc16}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_ae5067764127ffd0809f3cf71927d3e50} 
+uint16\+\_\+t lexacare\+\_\+frame\+\_\+t\+::crc16}
+
+CRC16-\/\+CCITT sur header + iv + payload 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00167}{167}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!hop\_count@{hop\_count}}
+\index{hop\_count@{hop\_count}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{hop\_count}{hop\_count}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_a4da01eb6defe61a355da0bfad53da934} 
+uint8\+\_\+t lexacare\+\_\+frame\+\_\+t\+::hop\+\_\+count}
+
+Nombre de sauts depuis la source 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00162}{162}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!iv@{iv}}
+\index{iv@{iv}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{iv}{iv}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_a0176f9d4f67522ab23cea18159f5a5f3} 
+uint8\+\_\+t lexacare\+\_\+frame\+\_\+t\+::iv\mbox{[}\mbox{\hyperlink{system__types_8h_a6083afe166bf0dc364ff2a9a5830d396}{LEXACARE\+\_\+\+AES\+\_\+\+IV\+\_\+\+LEN}}\mbox{]}}
+
+IV aléatoire pour AES-\/128-\/\+CBC 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00164}{164}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!magic@{magic}}
+\index{magic@{magic}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{magic}{magic}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_a2d190e6984fc48b024cbd90920751115} 
+uint16\+\_\+t lexacare\+\_\+frame\+\_\+t\+::magic}
+
+LEXACARE\+\_\+\+FRAME\+\_\+\+MAGIC (0x\+CA5E) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00160}{160}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!payload@{payload}}
+\index{payload@{payload}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{payload}{payload}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_a36c28e379c0774aaaf8691c50a5f95e3} 
+uint8\+\_\+t lexacare\+\_\+frame\+\_\+t\+::payload\mbox{[}\mbox{\hyperlink{system__types_8h_adcd1d24e8101430da0011fa688f4bf1c}{LEXACARE\+\_\+\+MAX\+\_\+\+PAYLOAD}}\mbox{]}}
+
+Payload chiffré 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00165}{165}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!payload\_len@{payload\_len}}
+\index{payload\_len@{payload\_len}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{payload\_len}{payload\_len}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_ab2ec2e5466c6af6724e3730e8b8a1d25} 
+uint16\+\_\+t lexacare\+\_\+frame\+\_\+t\+::payload\+\_\+len}
+
+Longueur du payload chiffré (octets) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00166}{166}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!src\_mac@{src\_mac}}
+\index{src\_mac@{src\_mac}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{src\_mac}{src\_mac}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_a7411c1c1379138c1233f7038d8b724c9} 
+uint8\+\_\+t lexacare\+\_\+frame\+\_\+t\+::src\+\_\+mac\mbox{[}6\mbox{]}}
+
+MAC de l\textquotesingle{}émetteur original 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00163}{163}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+\Hypertarget{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42}\index{lexacare\_frame\_t@{lexacare\_frame\_t}!type@{type}}
+\index{type@{type}!lexacare\_frame\_t@{lexacare\_frame\_t}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{structlexacare__frame__t_a0987bccd98eababb9afb1a8bcca73b42} 
+uint8\+\_\+t lexacare\+\_\+frame\+\_\+t\+::type}
+
+FRAME\+\_\+\+TYPE\+\_\+\texorpdfstring{$\ast$}{*} 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00161}{161}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{mesh__manager_8c_source_l00249}{espnow\+\_\+rx\+\_\+callback()}}, and \mbox{\hyperlink{mesh__manager_8c_source_l00210}{mesh\+\_\+build\+\_\+ai\+\_\+frame()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/lexacare\+\_\+types/include/\mbox{\hyperlink{system__types_8h}{system\+\_\+types.\+h}}\end{DoxyCompactItemize}

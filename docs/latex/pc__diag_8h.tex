@@ -1,0 +1,48 @@
+\doxysection{components/pc\+\_\+diag/include/pc\+\_\+diag.h File Reference}
+\hypertarget{pc__diag_8h}{}\label{pc__diag_8h}\index{components/pc\_diag/include/pc\_diag.h@{components/pc\_diag/include/pc\_diag.h}}
+
+
+Interface publique du diagnostic PC — USB-\/\+CDC, JSON, commandes Python.  
+
+
+{\ttfamily \#include "{}system\+\_\+types.\+h"{}}\newline
+{\ttfamily \#include "{}esp\+\_\+err.\+h"{}}\newline
+Include dependency graph for pc\+\_\+diag.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{pc__diag_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=274pt]{pc__diag_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+esp\+\_\+err\+\_\+t \mbox{\hyperlink{group__group__pc__diag_gad12cb16ec04cd1accc830ecde54cc828}{pc\+\_\+diag\+\_\+task\+\_\+start}} (\mbox{\hyperlink{structsys__context__t}{sys\+\_\+context\+\_\+t}} \texorpdfstring{$\ast$}{*}ctx)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface publique du diagnostic PC — USB-\/\+CDC, JSON, commandes Python. 
+
+Task\+\_\+\+Diag\+\_\+\+PC (Core 0, priorité 3) \+:
+\begin{DoxyItemize}
+\item Émet toutes les 5 s un rapport JSON sur stdout (USB Serial/\+JTAG).
+\item Écoute les commandes JSON entrantes sur stdin.
+\item Commande "{}download\+\_\+logs"{} \+: transfert de /littlefs/app.log par blocs.
+\end{DoxyItemize}
+
+Protocole de commande (depuis l\textquotesingle{}outil Python) \+: → \{"{}cmd"{}\+:"{}download\+\_\+logs"{}\} ← \{"{}status"{}\+:"{}ok"{},"{}filename"{}\+:"{}app.\+log"{},"{}size"{}\+:XXXXX\} ← \mbox{[}blocs bruts ou base64 du fichier\mbox{]} ← \{"{}status"{}\+:"{}done"{}\}
+
+→ \{"{}cmd"{}\+:"{}clear\+\_\+logs"{}\} ← \{"{}status"{}\+:"{}ok"{}\}
+
+→ \{"{}cmd"{}\+:"{}get\+\_\+diag"{}\} ← \mbox{[}rapport JSON immédiat\mbox{]} 
+
+Definition in file \mbox{\hyperlink{pc__diag_8h_source}{pc\+\_\+diag.\+h}}.
+

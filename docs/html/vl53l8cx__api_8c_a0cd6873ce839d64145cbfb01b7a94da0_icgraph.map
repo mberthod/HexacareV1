@@ -1,0 +1,13 @@
+<map id="vl53l8cx_init" name="vl53l8cx_init">
+<area shape="rect" id="Node000001" title="Mandatory function used to initialize the sensor. This function must be called after a power on,..." alt="" coords="688,31,781,57"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8c.html#a94523a4341cf33f408e5312a42d1123c" title=" " alt="" coords="494,5,610,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="672,38,610,29,610,24,673,33"/>
+<area shape="rect" id="Node000006" href="$vl53l8cx__api_8c.html#affb39664fa0b0d1e37c49ab7725a3ce4" title="This function is used to set the sensor in Low Power mode, for example if the sensor is not used duri..." alt="" coords="464,56,640,83"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="673,55,641,60,640,54,672,50"/>
+<area shape="rect" id="Node000003" href="$lidar__driver_8c.html#a4111a5f42c63c264e7dbbe4ee8982826" title=" " alt="" coords="296,5,416,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="479,21,417,21,417,16,479,16"/>
+<area shape="rect" id="Node000004" href="$group__group__sensor__acq.html#ga395fe085276686e57cc95b3ef49c4457" title=" " alt="" coords="131,5,248,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="280,21,248,21,248,16,280,16"/>
+<area shape="rect" id="Node000005" href="$group__group__main.html#ga630544a7f0a2cc40d8a7fefab7e2fe70" title=" " alt="" coords="5,5,83,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="115,21,83,21,83,16,115,16"/>
+</map>

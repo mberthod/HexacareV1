@@ -1,0 +1,612 @@
+\doxysection{hw\+\_\+diag.\+c}
+\hypertarget{hw__diag_8c_source}{}\label{hw__diag_8c_source}\index{components/hw\_diag/hw\_diag.c@{components/hw\_diag/hw\_diag.c}}
+\mbox{\hyperlink{hw__diag_8c}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ hw\_diag.c}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00003}00003\ \textcolor{comment}{\ *\ @ingroup\ group\_hw\_diag}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00004}00004\ \textcolor{comment}{\ *\ @brief\ Diagnostic\ matériel\ au\ démarrage\ —\ I2C\ LIDAR\ +\ UART\ Radar.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00005}00005\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00006}00006\ \textcolor{comment}{\ *\ Exécuté\ avant\ les\ tâches\ FreeRTOS\ dans\ app\_main().}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00007}00007\ \textcolor{comment}{\ *\ Initialise\ les\ bus\ I2C\ partagés\ et\ les\ stocke\ dans\ sys\_context\_t}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00008}00008\ \textcolor{comment}{\ *\ pour\ réutilisation\ par\ sensor\_acq\ sans\ réinitialisation.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00009}00009\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00010}00010\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00011}00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{hw__diag_8h}{hw\_diag.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00012}00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{lexacare__config_8h}{lexacare\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00013}00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{pins__config_8h}{pins\_config.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00014}00014\ \textcolor{preprocessor}{\#include\ "{}esp\_log.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00015}00015\ \textcolor{preprocessor}{\#include\ "{}esp\_err.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00016}00016\ \textcolor{preprocessor}{\#include\ "{}driver/i2c\_master.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00017}00017\ \textcolor{preprocessor}{\#include\ "{}driver/spi\_master.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}driver/uart.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00019}00019\ \textcolor{preprocessor}{\#include\ "{}driver/gpio.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00020}00020\ \textcolor{preprocessor}{\#include\ "{}cJSON.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00021}00021\ \textcolor{preprocessor}{\#include\ "{}freertos/FreeRTOS.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}freertos/task.h"{}}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00023}00023\ \textcolor{preprocessor}{\#include\ <string.h>}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00024}00024\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00026}\mbox{\hyperlink{hw__diag_8c_a5a85b9c772bbeb480b209a3e6ea92b4c}{00026}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}}\ =\ \textcolor{stringliteral}{"{}hw\_diag"{}};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00028}00028\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00029}00029\ \textcolor{comment}{\ *\ Paramètres\ I2C\ (PCA9555\ uniquement)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00030}00030\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00031}\mbox{\hyperlink{hw__diag_8c_adb775a630f484c9f3c0c0568032bb873}{00031}}\ \textcolor{preprocessor}{\#define\ I2C\_BUS\_FREQ\_HZ\ \ \ \ \ \ \ \ \ 400000\ \ \ }\textcolor{comment}{/**<\ 400\ kHz\ pour\ le\ PCA9555\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00032}\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{00032}}\ \textcolor{preprocessor}{\#define\ I2C\_TIMEOUT\_MS\ \ \ \ \ \ \ \ \ \ 10}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00033}\mbox{\hyperlink{hw__diag_8c_af1f103c89b89bf816b06feb44aa4f02b}{00033}}\ \textcolor{preprocessor}{\#define\ LIDAR\_LPN\_DELAY\_MS\ \ \ \ \ \ 5\ \ \ \ \ \ \ \ }\textcolor{comment}{/**<\ Délai\ après\ LPn=1\ avant\ test\ SPI\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00035}00035\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00036}00036\ \textcolor{comment}{\ *\ Paramètres\ SPI\ LIDAR}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00037}00037\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00038}\mbox{\hyperlink{hw__diag_8c_a312094fb888f3d236cf6e006fa3c7ba7}{00038}}\ \textcolor{preprocessor}{\#define\ LIDAR\_SPI\_FREQ\_HZ\ \ \ \ \ \ \ (8\ *\ 1000\ *\ 1000)\ }\textcolor{comment}{/**<\ 8\ MHz\ (max\ 10\ MHz\ VL53L8CX)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00039}\mbox{\hyperlink{hw__diag_8c_adb789f5997051b9571156f1bb3aebcf0}{00039}}\ \textcolor{preprocessor}{\#define\ LIDAR\_SPI\_MAX\_XFER\ \ \ \ \ \ (4096\ +\ 2)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00041}00041\ \textcolor{comment}{/*\ Registre\ Model\ ID\ du\ VL53L8CX\ (0x7FFF)\ →\ valeur\ attendue\ 0xF0\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00042}\mbox{\hyperlink{hw__diag_8c_aed6921a12f142ab8c047bb8ceb66df24}{00042}}\ \textcolor{preprocessor}{\#define\ VL53L8CX\_REG\_MODEL\_ID\ \ \ 0x7FFF}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00043}\mbox{\hyperlink{hw__diag_8c_a37b0bea1b767942ed1805a599c10f547}{00043}}\ \textcolor{preprocessor}{\#define\ VL53L8CX\_MODEL\_ID\ \ \ \ \ \ \ 0xF0}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00045}00045\ \textcolor{comment}{/*\ Table\ des\ NCS\ GPIO\ par\ index\ capteur\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00046}\mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{00046}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{s\_ncs\_pins}}[\mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00047}00047\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a8d4bf531079d2f0cbad53326ea8e6199}{PIN\_LIDAR\_NCS0}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00048}00048\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a01c5ad844f2c0ec12343af1c16cacf5d}{PIN\_LIDAR\_NCS1}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00049}00049\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_ae6e653a6750b07505a4f21a350cc7c7d}{PIN\_LIDAR\_NCS2}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00050}00050\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a7b82939fa5f89f8a18c272ff73b838f3}{PIN\_LIDAR\_NCS3}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00051}00051\ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00053}00053\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00054}00054\ \textcolor{comment}{\ *\ Paramètres\ UART\ Radar}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00055}00055\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00056}\mbox{\hyperlink{hw__diag_8c_a098eeeae1c46818ccec39da08e9cc393}{00056}}\ \textcolor{preprocessor}{\#define\ RADAR\_UART\_PORT\ \ \ \ \ \ \ \ \ UART\_NUM\_2}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00057}\mbox{\hyperlink{hw__diag_8c_a302dbd1e40e02c6740a8fc2a6adbad74}{00057}}\ \textcolor{preprocessor}{\#define\ RADAR\_BAUD\_RATE\ \ \ \ \ \ \ \ \ 1382400}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00058}\mbox{\hyperlink{hw__diag_8c_adc96b85363aae03cea938220c12a0940}{00058}}\ \textcolor{preprocessor}{\#define\ RADAR\_RX\_BUF\_SIZE\ \ \ \ \ \ \ 512}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00059}\mbox{\hyperlink{hw__diag_8c_a5f59b14d6bd04d48eb3b0210576359ff}{00059}}\ \textcolor{preprocessor}{\#define\ RADAR\_DETECT\_TIMEOUT\_MS\ 2000}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00060}\mbox{\hyperlink{hw__diag_8c_ac972a7bb011724bcbd6b445b9a6fef2a}{00060}}\ \textcolor{preprocessor}{\#define\ TF\_SOF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x01\ \ \ \ \ }\textcolor{comment}{/**<\ TinyFrame\ Start\ Of\ Frame\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00062}00062\ \textcolor{comment}{/*\ Mapping\ NCS\ array\ index\ →\ masque\ LPn\ PCA9555\ Port\ 0.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00063}00063\ \textcolor{comment}{\ *\ \ \ index\ 0\ →\ NCS0\ (GPIO1)\ \ →\ LIDAR\ 1\ →\ LPn\_1\ =\ IO0.6}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00064}00064\ \textcolor{comment}{\ *\ \ \ index\ 1\ →\ NCS1\ (GPIO2)\ \ →\ LIDAR\ 2\ →\ LPn\_2\ =\ IO0.5}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00065}00065\ \textcolor{comment}{\ *\ \ \ index\ 2\ →\ NCS2\ (GPIO42)\ →\ LIDAR\ 3\ →\ LPn\_3\ =\ IO0.4}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00066}00066\ \textcolor{comment}{\ *\ \ \ index\ 3\ →\ NCS3\ (GPIO41)\ →\ LIDAR\ 4\ →\ LPn\_4\ =\ IO0.3\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00067}\mbox{\hyperlink{hw__diag_8c_acd1c114a8ccfee3dd8649d0b00fedd9e}{00067}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ \mbox{\hyperlink{hw__diag_8c_acd1c114a8ccfee3dd8649d0b00fedd9e}{s\_pca\_lpn\_bit}}[\mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}}]\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00068}00068\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a5a023f9847dba2d76fa779ab7a53483f}{PCA9555\_BIT\_LPN1}},\ \ \textcolor{comment}{/*\ index\ 0\ →\ LIDAR\ 1\ →\ IO0.6\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00069}00069\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_aed877455bd33d6ad38b5c12b5e079bbf}{PCA9555\_BIT\_LPN2}},\ \ \textcolor{comment}{/*\ index\ 1\ →\ LIDAR\ 2\ →\ IO0.5\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00070}00070\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a868519ce99c724b706ed64545cd9af28}{PCA9555\_BIT\_LPN3}},\ \ \textcolor{comment}{/*\ index\ 2\ →\ LIDAR\ 3\ →\ IO0.4\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00071}00071\ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a7ef0d0acf832fc5efdda51daac987e35}{PCA9555\_BIT\_LPN4}},\ \ \textcolor{comment}{/*\ index\ 3\ →\ LIDAR\ 4\ →\ IO0.3\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00072}00072\ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00074}00074\ \textcolor{comment}{/*\ État\ courant\ des\ registres\ de\ sortie\ du\ PCA9555\ (Port\ 0\ et\ Port\ 1)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00075}\mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{00075}}\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{s\_pca\_out}}\ \ =\ 0x00;\ \ \ \textcolor{comment}{/*\ Port\ 0\ —\ LPn\ LIDAR\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00076}\mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{00076}}\ \textcolor{keyword}{static}\ uint8\_t\ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}}\ =\ 0x00;\ \ \ \textcolor{comment}{/*\ Port\ 1\ —\ alimentations\ sous-\/systèmes\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00078}00078\ \textcolor{comment}{/*\ Handle\ PCA9555\ persistant\ (initialisé\ par\ hw\_diag\_run,\ réutilisé\ ensuite)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00079}\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{00079}}\ \textcolor{keyword}{static}\ i2c\_master\_bus\_handle\_t\ \mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00081}00081\ \textcolor{comment}{/*\ Device\ handle\ PCA9555\ —\ créé\ UNE\ SEULE\ FOIS\ dans\ pca9555\_init().}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00082}00082\ \textcolor{comment}{\ *\ Évite\ d'appeler\ i2c\_master\_bus\_add\_device()\ à\ chaque\ écriture,}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00083}00083\ \textcolor{comment}{\ *\ ce\ qui\ causait\ des\ allocations\ heap\ après\ WiFi\ →\ LoadStoreAlignment.\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00084}\mbox{\hyperlink{hw__diag_8c_adbc314c434af2eef73180bf7667f45c0}{00084}}\ \textcolor{keyword}{static}\ i2c\_master\_dev\_handle\_t\ \mbox{\hyperlink{hw__diag_8c_adbc314c434af2eef73180bf7667f45c0}{s\_pca\_dev}}\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00086}00086\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00087}00087\ \textcolor{comment}{\ *\ diag\_init\_i2c\_bus\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00088}00088\ \textcolor{comment}{\ *\ @brief\ Initialise\ un\ bus\ I2C\ master\ avec\ les\ paramètres\ standard.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00089}00089\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00090}00090\ \textcolor{comment}{\ *\ @param\ port\ \ \ \ \ Numéro\ de\ port\ I2C\ (I2C\_NUM\_0\ ou\ I2C\_NUM\_1).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00091}00091\ \textcolor{comment}{\ *\ @param\ sda\_pin\ \ Broche\ SDA.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00092}00092\ \textcolor{comment}{\ *\ @param\ scl\_pin\ \ Broche\ SCL.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00093}00093\ \textcolor{comment}{\ *\ @param\ handle\ \ \ Pointeur\ vers\ le\ handle\ de\ bus\ à\ remplir.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00094}00094\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ succès.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00095}00095\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00096}\mbox{\hyperlink{hw__diag_8c_a9fa304f2c13ef98368f86651968ee7ff}{00096}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hw__diag_8c_a9fa304f2c13ef98368f86651968ee7ff}{diag\_init\_i2c\_bus}}(i2c\_port\_num\_t\ port,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ sda\_pin,\ \textcolor{keywordtype}{int}\ scl\_pin,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i2c\_master\_bus\_handle\_t\ *handle)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00099}00099\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00100}00100\ \ \ \ \ \textcolor{keyword}{const}\ i2c\_master\_bus\_config\_t\ cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00101}00101\ \ \ \ \ \ \ \ \ .clk\_source\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ I2C\_CLK\_SRC\_DEFAULT,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00102}00102\ \ \ \ \ \ \ \ \ .i2c\_port\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ port,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00103}00103\ \ \ \ \ \ \ \ \ .sda\_io\_num\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ sda\_pin,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00104}00104\ \ \ \ \ \ \ \ \ .scl\_io\_num\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ scl\_pin,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00105}00105\ \ \ \ \ \ \ \ \ .glitch\_ignore\_cnt\ \ \ \ \ \ \ \ \ \ \ \ =\ 7,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00106}00106\ \ \ \ \ \ \ \ \ .flags.enable\_internal\_pullup\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00107}00107\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00109}00109\ \ \ \ \ esp\_err\_t\ ret\ =\ i2c\_new\_master\_bus(\&cfg,\ handle);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00110}00110\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00111}00111\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Échec\ création\ bus\ I2C\%d\ :\ \%s"{}},\ port,\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00112}00112\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00113}00113\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Bus\ I2C\%d\ initialisé\ (SDA=\%d,\ SCL=\%d,\ \%d\ Hz)"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ port,\ sda\_pin,\ scl\_pin,\ \mbox{\hyperlink{hw__diag_8c_adb775a630f484c9f3c0c0568032bb873}{I2C\_BUS\_FREQ\_HZ}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00115}00115\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00116}00116\ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00117}00117\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00119}00119\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00120}00120\ \textcolor{comment}{\ *\ diag\_init\_spi\_lidars\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00121}00121\ \textcolor{comment}{\ *\ @brief\ Initialise\ le\ bus\ SPI\ et\ ajoute\ les\ 4\ devices\ LIDAR.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00122}00122\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00123}00123\ \textcolor{comment}{\ *\ Chaque\ LIDAR\ a\ son\ propre\ NCS\ GPIO\ →\ handle\ SPI\ individuel\ stocké}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00124}00124\ \textcolor{comment}{\ *\ dans\ ctx-\/>lidar\_spi[i]\ pour\ réutilisation\ par\ sensor\_acq.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00125}00125\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00126}00126\ \textcolor{comment}{\ *\ @param\ ctx\ Contexte\ système\ (lidar\_spi[]\ rempli\ en\ sortie).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00127}00127\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ succès.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00128}00128\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00129}\mbox{\hyperlink{hw__diag_8c_a9e0db36c1aff47943fb56531485b8d7c}{00129}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hw__diag_8c_a9e0db36c1aff47943fb56531485b8d7c}{diag\_init\_spi\_lidars}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00130}00130\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00131}00131\ \ \ \ \ \textcolor{keyword}{const}\ spi\_bus\_config\_t\ bus\_cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00132}00132\ \ \ \ \ \ \ \ \ .mosi\_io\_num\ \ \ \ \ =\ \mbox{\hyperlink{pins__config_8h_a591add909d8fa618c6c75d7375c5e0b6}{PIN\_LIDAR\_MOSI}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00133}00133\ \ \ \ \ \ \ \ \ .miso\_io\_num\ \ \ \ \ =\ \mbox{\hyperlink{pins__config_8h_a7206f7c59a37c0d551f6ae396e7ddd19}{PIN\_LIDAR\_MISO}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00134}00134\ \ \ \ \ \ \ \ \ .sclk\_io\_num\ \ \ \ \ =\ \mbox{\hyperlink{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}{PIN\_LIDAR\_CLK}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00135}00135\ \ \ \ \ \ \ \ \ .quadwp\_io\_num\ \ \ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00136}00136\ \ \ \ \ \ \ \ \ .quadhd\_io\_num\ \ \ =\ -\/1,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00137}00137\ \ \ \ \ \ \ \ \ .max\_transfer\_sz\ =\ \mbox{\hyperlink{hw__diag_8c_adb789f5997051b9571156f1bb3aebcf0}{LIDAR\_SPI\_MAX\_XFER}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00138}00138\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00140}00140\ \ \ \ \ esp\_err\_t\ ret\ =\ spi\_bus\_initialize(\mbox{\hyperlink{pins__config_8h_a8e3e8f37be6335b7b08ffabb49f72b7d}{LIDAR\_SPI\_HOST}},\ \&bus\_cfg,\ SPI\_DMA\_CH\_AUTO);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00142}00142\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}SPI\ bus\ init\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00143}00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00144}00144\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00146}00146\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Bus\ SPI\ LIDAR\ initialisé\ (CLK=\%d,\ MOSI=\%d,\ MISO=\%d,\ \%d\ MHz)"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}{PIN\_LIDAR\_CLK}},\ \mbox{\hyperlink{pins__config_8h_a591add909d8fa618c6c75d7375c5e0b6}{PIN\_LIDAR\_MOSI}},\ \mbox{\hyperlink{pins__config_8h_a7206f7c59a37c0d551f6ae396e7ddd19}{PIN\_LIDAR\_MISO}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a312094fb888f3d236cf6e006fa3c7ba7}{LIDAR\_SPI\_FREQ\_HZ}}\ /\ 1000000);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00150}00150\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00151}00151\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ spi\_device\_interface\_config\_t\ dev\_cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ .mode\ \ \ \ \ \ \ \ \ \ \ =\ 3,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ CPOL=1,\ CPHA=1\ (VL53L8CX\ SPI)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ .clock\_speed\_hz\ =\ \mbox{\hyperlink{hw__diag_8c_a312094fb888f3d236cf6e006fa3c7ba7}{LIDAR\_SPI\_FREQ\_HZ}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ .spics\_io\_num\ \ \ =\ \mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{s\_ncs\_pins}}[i],\ \textcolor{comment}{/*\ NCS\ dédié\ par\ capteur\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ .queue\_size\ \ \ \ \ =\ 1,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00156}00156\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00158}00158\ \ \ \ \ \ \ \ \ ret\ =\ spi\_bus\_add\_device(\mbox{\hyperlink{pins__config_8h_a8e3e8f37be6335b7b08ffabb49f72b7d}{LIDAR\_SPI\_HOST}},\ \&dev\_cfg,\ \&ctx-\/>\mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{lidar\_spi}}[i]);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00159}00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}SPI\ add\ device\ LIDAR[\%d]\ (NCS=GPIO\%d)\ échoué\ :\ \%s"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,\ \mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{s\_ncs\_pins}}[i],\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00163}00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00165}00165\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR[\%d]\ SPI\ device\ ajouté\ (NCS=GPIO\%d)"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i,\ \mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{s\_ncs\_pins}}[i]);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00167}00167\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00168}00168\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00169}00169\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00170}00170\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00172}00172\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00173}00173\ \textcolor{comment}{\ *\ diag\_spi\_ping\_lidar\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00174}00174\ \textcolor{comment}{\ *\ @brief\ Vérifie\ la\ présence\ d'un\ VL53L8CX\ via\ lecture\ du\ Model\ ID.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00175}00175\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00176}00176\ \textcolor{comment}{\ *\ Lit\ le\ registre\ 0x7FFF\ qui\ doit\ retourner\ 0xF0\ si\ le\ capteur\ répond.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00177}00177\ \textcolor{comment}{\ *\ En\ STUB\ mode\ (sans\ ULD),\ retourne\ true\ si\ la\ transaction\ SPI\ réussit}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00178}00178\ \textcolor{comment}{\ *\ et\ que\ MISO\ n'est\ pas\ en\ flottant\ (0xFF\ =\ absent\ probable).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00179}00179\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00180}00180\ \textcolor{comment}{\ *\ @param\ spi\ Handle\ SPI\ du\ capteur.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00181}00181\ \textcolor{comment}{\ *\ @return\ true\ si\ capteur\ détecté.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00182}00182\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00183}\mbox{\hyperlink{hw__diag_8c_a1f24dd93c787375ee15df4c7aec52887}{00183}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{hw__diag_8c_a1f24dd93c787375ee15df4c7aec52887}{diag\_spi\_ping\_lidar}}(spi\_device\_handle\_t\ spi)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00184}00184\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00185}00185\ \ \ \ \ \textcolor{comment}{/*\ Lecture\ registre\ 0x7FFF\ :\ TX=[0xFF][0xFF][dummy],\ RX=[xx][xx][model\_id]}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00186}00186\ \textcolor{comment}{\ \ \ \ \ *\ (bit15=1\ →\ lecture,\ adresse\ 0x7FFF\ →\ addr\_hi=0x7F|0x80=0xFF,\ addr\_lo=0xFF)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00187}00187\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ tx[3]\ =\ \{0xFF,\ 0xFF,\ 0x00\};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00188}00188\ \ \ \ \ uint8\_t\ rx[3]\ =\ \{0x00,\ 0x00,\ 0x00\};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00190}00190\ \ \ \ \ spi\_transaction\_t\ t\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00191}00191\ \ \ \ \ \ \ \ \ .length\ \ \ \ =\ \textcolor{keyword}{sizeof}(tx)\ *\ 8,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00192}00192\ \ \ \ \ \ \ \ \ .tx\_buffer\ =\ tx,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00193}00193\ \ \ \ \ \ \ \ \ .rx\_buffer\ =\ rx,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00194}00194\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00196}00196\ \ \ \ \ esp\_err\_t\ ret\ =\ spi\_device\_polling\_transmit(spi,\ \&t);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00197}00197\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00198}00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00199}00199\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00201}00201\ \ \ \ \ \textcolor{comment}{/*\ 0xFF\ =\ MISO\ flottant\ (absent)\ ;\ 0xF0\ =\ Model\ ID\ VL53L8CX\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00202}00202\ \ \ \ \ \textcolor{keywordflow}{return}\ (rx[2]\ !=\ 0xFF);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00203}00203\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00205}00205\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00206}00206\ \textcolor{comment}{\ *\ pca9555\_write\_reg\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00207}00207\ \textcolor{comment}{\ *\ @brief\ Écrit\ un\ octet\ dans\ un\ registre\ du\ PCA9555D\ via\ I2C.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00208}00208\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00209}00209\ \textcolor{comment}{\ *\ Utilise\ s\_pca\_dev\ créé\ UNE\ SEULE\ FOIS\ par\ pca9555\_init().}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00210}00210\ \textcolor{comment}{\ *\ Pas\ d'allocation\ heap\ à\ chaque\ appel\ →\ safe\ après\ WiFi\ init.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00211}00211\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00212}00212\ \textcolor{comment}{\ *\ @param\ bus\ \ Ignoré\ (conservé\ pour\ compat.\ —\ utilise\ s\_pca\_dev).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00213}00213\ \textcolor{comment}{\ *\ @param\ reg\ \ Registre\ cible.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00214}00214\ \textcolor{comment}{\ *\ @param\ val\ \ Valeur\ à\ écrire.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00215}00215\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ succès.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00216}00216\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00217}\mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{00217}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(i2c\_master\_bus\_handle\_t\ bus,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint8\_t\ reg,\ uint8\_t\ val)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00219}00219\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00220}00220\ \ \ \ \ (void)bus;\ \ \textcolor{comment}{/*\ s\_pca\_dev\ est\ utilisé\ directement\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00222}00222\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{hw__diag_8c_adbc314c434af2eef73180bf7667f45c0}{s\_pca\_dev}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00223}00223\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}pca9555\_write\_reg\ :\ device\ non\ initialisé"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00224}00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00225}00225\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00227}00227\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ tx[2]\ =\ \{reg,\ val\};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00228}00228\ \ \ \ \ \textcolor{keywordflow}{return}\ i2c\_master\_transmit(\mbox{\hyperlink{hw__diag_8c_adbc314c434af2eef73180bf7667f45c0}{s\_pca\_dev}},\ tx,\ \textcolor{keyword}{sizeof}(tx),}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_ac8c61bd2fdc391886d8da5c2de78292a}{I2C\_TIMEOUT\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00230}00230\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00232}00232\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00233}00233\ \textcolor{comment}{\ *\ pca9555\_init\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00234}00234\ \textcolor{comment}{\ *\ @brief\ Initialise\ le\ PCA9555D\ :\ Port\ 0\ +\ Port\ 1\ en\ sortie,\ tout\ à\ 0.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00235}00235\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00236}00236\ \textcolor{comment}{\ *\ \ \ Port\ 0\ :\ LPn\ LIDAR\ 0–4\ (tous\ à\ 0\ =\ reset\ global).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00237}00237\ \textcolor{comment}{\ *\ \ \ Port\ 1\ :\ alimentation\ sous-\/systèmes\ (tous\ à\ 0\ =\ éteints).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00238}00238\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00239}00239\ \textcolor{comment}{\ *\ @param\ bus\ \ Handle\ du\ bus\ I2C\ maître.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00240}00240\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ succès.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00241}00241\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00242}\mbox{\hyperlink{hw__diag_8c_a9ac07d53cf47437c185f71ca85538b8c}{00242}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hw__diag_8c_a9ac07d53cf47437c185f71ca85538b8c}{pca9555\_init}}(i2c\_master\_bus\_handle\_t\ bus)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00243}00243\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00244}00244\ \ \ \ \ \textcolor{comment}{/*\ Création\ du\ device\ handle\ PCA9555\ —\ UNE\ SEULE\ FOIS.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00245}00245\ \textcolor{comment}{\ \ \ \ \ *\ Alloué\ ici\ (avant\ WiFi)\ pour\ éviter\ tout\ problème\ de\ heap\ après.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00246}00246\ \textcolor{comment}{\ \ \ \ \ *\ Réutilisé\ par\ pca9555\_write\_reg()\ sans\ nouvelle\ allocation.\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00247}00247\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{hw__diag_8c_adbc314c434af2eef73180bf7667f45c0}{s\_pca\_dev}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00248}00248\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ i2c\_device\_config\_t\ dev\_cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00249}00249\ \ \ \ \ \ \ \ \ \ \ \ \ .dev\_addr\_length\ =\ I2C\_ADDR\_BIT\_LEN\_7,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00250}00250\ \ \ \ \ \ \ \ \ \ \ \ \ .device\_address\ \ =\ \mbox{\hyperlink{pins__config_8h_abc995c26ee634eb7c2600e8bf733bd17}{PCA9555\_I2C\_ADDR}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ .scl\_speed\_hz\ \ \ \ =\ \mbox{\hyperlink{hw__diag_8c_adb775a630f484c9f3c0c0568032bb873}{I2C\_BUS\_FREQ\_HZ}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00252}00252\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00253}00253\ \ \ \ \ \ \ \ \ esp\_err\_t\ ret\_dev\ =\ i2c\_master\_bus\_add\_device(bus,\ \&dev\_cfg,\ \&\mbox{\hyperlink{hw__diag_8c_adbc314c434af2eef73180bf7667f45c0}{s\_pca\_dev}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00254}00254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\_dev\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00255}00255\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ add\_device\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret\_dev));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00256}00256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret\_dev;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00257}00257\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00258}00258\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00260}00260\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Port\ 0\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00261}00261\ \textcolor{comment}{\ \ \ \ \ *\ IO0.0\ =\ sortie\ (DIST\_SHUTDOWN)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00262}00262\ \textcolor{comment}{\ \ \ \ \ *\ IO0.1,\ IO0.2\ =\ entrée\ Hi-\/Z\ (GPIO\ radar\ LD6002,\ non\ utilisés)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00263}00263\ \textcolor{comment}{\ \ \ \ \ *\ IO0.3\ –\ IO0.7\ =\ sorties\ (LPn\_4,\ LPn\_3,\ LPn\_2,\ LPn\_1,\ RADAR\_LPN)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00264}00264\ \textcolor{comment}{\ \ \ \ \ *\ Config\ :\ 0\ =\ sortie\ →\ PCA9555\_CFG0\_MASK\ =\ 0x06\ (bits\ 1\ et\ 2\ en\ entrée)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00265}00265\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(bus,\ \mbox{\hyperlink{pins__config_8h_adae3362117b6490d042b16c0ab603d49}{PCA9555\_REG\_CONFIG\_0}},\ \mbox{\hyperlink{pins__config_8h_a5bb7081ed093edf6f40e3681b80492a2}{PCA9555\_CFG0\_MASK}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00266}00266\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00267}00267\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ config\ Port0\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00268}00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00269}00269\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00270}00270\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00271}00271\ \ \ \ \ \textcolor{comment}{/*\ Valeur\ initiale\ Port\ 0\ :}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00272}00272\ \textcolor{comment}{\ \ \ \ \ *\ \ \ IO0.0\ (DIST\_SHUTDOWN)\ =\ 0\ →\ VL53L0X\ actif\ (non\ mis\ en\ veille)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00273}00273\ \textcolor{comment}{\ \ \ \ \ *\ \ \ IO0.3–IO0.7\ (LPn\ +\ RADAR\_LPN)\ =\ 0\ →\ tous\ les\ LIDARs\ en\ reset\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00274}00274\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{s\_pca\_out}}\ =\ 0x00;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00275}00275\ \ \ \ \ ret\ =\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(bus,\ \mbox{\hyperlink{pins__config_8h_af865853dc8aa1041dc760a691dae54d8}{PCA9555\_REG\_OUTPUT\_0}},\ \mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{s\_pca\_out}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00276}00276\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00277}00277\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ output\ Port0\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00278}00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00279}00279\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00280}00280\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00281}00281\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Port\ 1\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00282}00282\ \textcolor{comment}{\ \ \ \ \ *\ IO1.0–IO1.3\ =\ entrée\ Hi-\/Z\ (non\ utilisés)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00283}00283\ \textcolor{comment}{\ \ \ \ \ *\ IO1.4–IO1.7\ =\ sorties\ (POWER\_FAN,\ POWER\_RADAR,\ POWER\_MIC,\ POWER\_MLX)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00284}00284\ \textcolor{comment}{\ \ \ \ \ *\ Config\ :\ PCA9555\_CFG1\_MASK\ =\ 0x0F\ (bits\ 0–3\ en\ entrée,\ bits\ 4–7\ en\ sortie)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00285}00285\ \ \ \ \ ret\ =\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(bus,\ \mbox{\hyperlink{pins__config_8h_ac84f3abe5f9291532786a1e968e530a8}{PCA9555\_REG\_CONFIG\_1}},\ \mbox{\hyperlink{pins__config_8h_a6936240ee95c2cae37e50f3fa0a14b76}{PCA9555\_CFG1\_MASK}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00286}00286\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00287}00287\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ config\ Port1\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00288}00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00289}00289\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00291}00291\ \ \ \ \ \textcolor{comment}{/*\ Valeur\ initiale\ Port\ 1\ :\ toutes\ alimentations\ éteintes\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00292}00292\ \ \ \ \ ret\ =\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(bus,\ \mbox{\hyperlink{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22}{PCA9555\_REG\_OUTPUT\_1}},\ 0x00);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00293}00293\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00294}00294\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ output\ Port1\ échoué\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00295}00295\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00296}00296\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00297}00297\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00298}00298\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ initialisé\ (@0x\%02X,\ SDA=\%d,\ SCL=\%d)\ —\ Port0/1\ configurés"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pins__config_8h_abc995c26ee634eb7c2600e8bf733bd17}{PCA9555\_I2C\_ADDR}},\ \mbox{\hyperlink{group__group__config_gad7513c4ecfaf2ea7ec9ca0fe2635fbd0}{PIN\_I2C0\_SDA}},\ \mbox{\hyperlink{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e}{PIN\_I2C0\_SCL}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00300}00300\ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_OK;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00301}00301\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00302}00302\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00303}00303\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00304}00304\ \textcolor{comment}{\ *\ pca9555\_set\_lpn\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00305}00305\ \textcolor{comment}{\ *\ @brief\ Active\ ou\ désactive\ le\ LPn\ d'un\ capteur\ via\ le\ PCA9555.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00306}00306\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00307}00307\ \textcolor{comment}{\ *\ @param\ bus\ \ \ \ Handle\ du\ bus\ I2C\_NUM\_0.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00308}00308\ \textcolor{comment}{\ *\ @param\ idx\ \ \ \ Index\ du\ capteur\ (1–4).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00309}00309\ \textcolor{comment}{\ *\ @param\ active\ true\ →\ LPn=1\ (actif),\ false\ →\ LPn=0\ (reset).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00310}00310\ \textcolor{comment}{\ *\ @return\ ESP\_OK\ si\ succès.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00311}00311\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00312}\mbox{\hyperlink{hw__diag_8c_a86b85a9cd2446d46ad14589d9136ae57}{00312}}\ \textcolor{keyword}{static}\ esp\_err\_t\ \mbox{\hyperlink{hw__diag_8c_a86b85a9cd2446d46ad14589d9136ae57}{pca9555\_set\_lpn}}(i2c\_master\_bus\_handle\_t\ bus,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ idx,\ \textcolor{keywordtype}{bool}\ active)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00314}00314\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00315}00315\ \ \ \ \ \textcolor{comment}{/*\ idx\ est\ un\ index\ tableau\ (0\ =\ LIDAR\ 1\ hardware,\ 3\ =\ LIDAR\ 4\ hardware)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00316}00316\ \ \ \ \ \textcolor{keywordflow}{if}\ (idx\ <\ 0\ ||\ idx\ >=\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00317}00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_ARG;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00318}00318\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00319}00319\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00320}00320\ \ \ \ \ \textcolor{keywordflow}{if}\ (active)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00321}00321\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{s\_pca\_out}}\ |=\ \ \mbox{\hyperlink{hw__diag_8c_acd1c114a8ccfee3dd8649d0b00fedd9e}{s\_pca\_lpn\_bit}}[idx];}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00322}00322\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00323}00323\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{s\_pca\_out}}\ \&=\ \mbox{\hyperlink{hw__diag_8c_acd1c114a8ccfee3dd8649d0b00fedd9e}{\string~s\_pca\_lpn\_bit}}[idx];}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00324}00324\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00325}00325\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(bus,\ \mbox{\hyperlink{pins__config_8h_af865853dc8aa1041dc760a691dae54d8}{PCA9555\_REG\_OUTPUT\_0}},\ \mbox{\hyperlink{hw__diag_8c_ad6445d4720fa63cc66188fedf5796e2d}{s\_pca\_out}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00326}00326\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00327}00327\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00328}00328\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00329}00329\ \textcolor{comment}{\ *\ diag\_scan\_lidars\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00330}00330\ \textcolor{comment}{\ *\ @brief\ Active\ les\ LIDARs\ un\ par\ un\ via\ LPn\ (PCA9555)\ et\ les\ teste\ en\ SPI.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00331}00331\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00332}00332\ \textcolor{comment}{\ *\ Tous\ les\ LPn\ sont\ gérés\ par\ le\ PCA9555\ :}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00333}00333\ \textcolor{comment}{\ *\ \ \ LIDAR\ 0\ :\ IO7,\ carte\ radar\ —\ non\ connecté,\ ignoré.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00334}00334\ \textcolor{comment}{\ *\ \ \ LIDAR\ 1–3\ :\ IO3/IO5/IO4.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00335}00335\ \textcolor{comment}{\ *\ Pas\ de\ réassignation\ d'adresse\ :\ chaque\ capteur\ a\ son\ NCS\ SPI\ dédié.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00336}00336\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00337}00337\ \textcolor{comment}{\ *\ @param\ ctx\ \ \ \ \ \ Contexte\ système\ (lidar\_ok[]\ rempli\ en\ sortie).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00338}00338\ \textcolor{comment}{\ *\ @param\ pca\_bus\ \ Handle\ du\ bus\ I2C\ PCA9555\ (NULL\ =\ PCA9555\ non\ disponible).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00339}00339\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00340}\mbox{\hyperlink{hw__diag_8c_a5be005ad0232005e10663dc756467408}{00340}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{hw__diag_8c_a5be005ad0232005e10663dc756467408}{diag\_scan\_lidars}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00341}00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i2c\_master\_bus\_handle\_t\ pca\_bus)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00342}00342\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00343}00343\ \ \ \ \ \textcolor{comment}{/*\ Initialisation\ PCA9555\ :\ Port\ 0\ +\ Port\ 1\ en\ sortie,\ tout\ à\ 0\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00344}00344\ \ \ \ \ \textcolor{keywordflow}{if}\ (pca\_bus)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00345}00345\ \ \ \ \ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{hw__diag_8c_a9ac07d53cf47437c185f71ca85538b8c}{pca9555\_init}}(pca\_bus);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00347}00347\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ inaccessible\ —\ LPn\ non\ contrôlables"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00348}00348\ \ \ \ \ \ \ \ \ \ \ \ \ pca\_bus\ =\ NULL;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00349}00349\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00350}00350\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00351}00351\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00352}00352\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Validation\ bus\ SPI\ AVANT\ toute\ manipulation\ LPN\ ─────────────────}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00353}00353\ \textcolor{comment}{\ \ \ \ \ *\ Envoie\ une\ trame\ de\ test\ sur\ NCS0\ (LIDAR\ 1)\ pour\ confirmer\ que}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00354}00354\ \textcolor{comment}{\ \ \ \ \ *\ GPIO17\ (CLK)\ est\ bien\ piloté\ par\ le\ contrôleur\ SPI.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00355}00355\ \textcolor{comment}{\ \ \ \ \ *\ Le\ VL53L8CX\ ne\ répondra\ pas\ (LPN=0,\ pas\ de\ firmware\ ULD\ chargé)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00356}00356\ \textcolor{comment}{\ \ \ \ \ *\ mais\ le\ CLK\ doit\ impérativement\ bouger.\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00357}00357\ \ \ \ \ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00358}00358\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ tx\_test[3]\ =\ \{0xFF,\ 0xFF,\ 0x00\};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00359}00359\ \ \ \ \ \ \ \ \ uint8\_t\ rx\_test[3]\ \ \ \ \ \ \ =\ \{0\};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00360}00360\ \ \ \ \ \ \ \ \ spi\_transaction\_t\ t\_test\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00361}00361\ \ \ \ \ \ \ \ \ \ \ \ \ .length\ \ \ \ =\ \textcolor{keyword}{sizeof}(tx\_test)\ *\ 8,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ .tx\_buffer\ =\ tx\_test,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ .rx\_buffer\ =\ rx\_test,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00364}00364\ \ \ \ \ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00365}00365\ \ \ \ \ \ \ \ \ esp\_err\_t\ spi\_test\ =\ spi\_device\_polling\_transmit(ctx-\/>\mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{lidar\_spi}}[0],\ \&t\_test);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00366}00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spi\_test\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Bus\ SPI\ LIDAR\ validé\ —\ GPIO\%d\ (CLK)\ fonctionne"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}{PIN\_LIDAR\_CLK}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00369}00369\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00370}00370\ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Bus\ SPI\ LIDAR\ ERREUR\ :\ \%s\ —\ vérifier\ GPIO\%d"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00371}00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ esp\_err\_to\_name(spi\_test),\ \mbox{\hyperlink{pins__config_8h_a2880db2b05dd5ee161d7605377e006d5}{PIN\_LIDAR\_CLK}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00372}00372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00373}00373\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00375}00375\ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(10));\ \textcolor{comment}{/*\ Stabilisation\ après\ reset\ global\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00376}00376\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00377}00377\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Scan\ séquentiel\ des\ 4\ LIDARs\ (index\ 0–3\ =\ LIDAR\ 1–4\ hardware)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00378}00378\ \textcolor{comment}{\ \ \ \ \ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00379}00379\ \textcolor{comment}{\ \ \ \ \ *\ RÈGLE\ :\ le\ ping\ SPI\ est\ TOUJOURS\ exécuté,\ même\ si\ LPN\ échoue.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00380}00380\ \textcolor{comment}{\ \ \ \ \ *\ La\ CLK\ (GPIO17)\ doit\ bouger\ à\ chaque\ itération\ quelle\ que\ soit}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00381}00381\ \textcolor{comment}{\ \ \ \ \ *\ l'état\ du\ PCA9555.\ Le\ LIDAR\ ne\ répondra\ que\ si\ LPN=1\ ET\ ULD\ chargé.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00382}00382\ \textcolor{comment}{\ \ \ \ \ *\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00383}00383\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00384}00384\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00385}00385\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Activation\ LPn\ via\ PCA9555\ —\ non\ bloquante\ pour\ le\ SPI\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00386}00386\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ lpn\_ok\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00387}00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pca\_bus)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ esp\_err\_t\ lpn\_ret\ =\ \mbox{\hyperlink{hw__diag_8c_a86b85a9cd2446d46ad14589d9136ae57}{pca9555\_set\_lpn}}(pca\_bus,\ i,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (lpn\_ret\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00390}00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lpn\_ok\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00391}00391\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00392}00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR\%d\ :\ PCA9555\ LPn\ échoué\ (\%s)\ —\ SPI\ testé\ quand\ même"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ +\ 1,\ esp\_err\_to\_name(lpn\_ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00395}00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00396}00396\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00397}00397\ \ \ \ \ \ \ \ \ vTaskDelay(pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_af1f103c89b89bf816b06feb44aa4f02b}{LIDAR\_LPN\_DELAY\_MS}}));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00398}00398\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00399}00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Test\ SPI\ inconditionnnel\ —\ génère\ toujours\ des\ impulsions\ sur\ CLK\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00400}00400\ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[i]\ =\ \mbox{\hyperlink{hw__diag_8c_a1f24dd93c787375ee15df4c7aec52887}{diag\_spi\_ping\_lidar}}(ctx-\/>\mbox{\hyperlink{structsys__context__t_a4c2f527e46587daee12a6cefb08858b6}{lidar\_spi}}[i]);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00401}00401\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00402}00402\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}LIDAR\%d\ SPI\ \%-\/6s\ |\ NCS=GPIO\%-\/2d\ |\ LPn=IO0.\%d\ (\%s)"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i\ +\ 1,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[i]\ ?\ \textcolor{stringliteral}{"{}OK"{}}\ :\ \textcolor{stringliteral}{"{}absent"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{s\_ncs\_pins}}[i],}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 6\ -\/\ i,\ \ \ \textcolor{comment}{/*\ LPn1=IO0.6,\ LPn2=IO0.5,\ LPn3=IO0.4,\ LPn4=IO0.3\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00407}00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lpn\_ok\ \ \ ?\ \textcolor{stringliteral}{"{}actif"{}}\ :\ \textcolor{stringliteral}{"{}échec"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00408}00408\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00409}00409\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00410}00410\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00411}00411\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00412}00412\ \textcolor{comment}{\ *\ diag\_test\_radar\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00413}00413\ \textcolor{comment}{\ *\ @brief\ Configure\ UART2\ et\ attend\ une\ trame\ TinyFrame\ valide\ (SOF=0x01).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00414}00414\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00415}00415\ \textcolor{comment}{\ *\ @param\ ctx\ Contexte\ système\ (radar\_ok\ rempli).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00416}00416\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00417}\mbox{\hyperlink{hw__diag_8c_a0aa4f3a23544482c3431a2fba2fcf89b}{00417}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{hw__diag_8c_a0aa4f3a23544482c3431a2fba2fcf89b}{diag\_test\_radar}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00418}00418\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00419}00419\ \ \ \ \ \textcolor{keyword}{const}\ uart\_config\_t\ uart\_cfg\ =\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00420}00420\ \ \ \ \ \ \ \ \ .baud\_rate\ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{hw__diag_8c_a302dbd1e40e02c6740a8fc2a6adbad74}{RADAR\_BAUD\_RATE}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00421}00421\ \ \ \ \ \ \ \ \ .data\_bits\ \ \ \ \ \ \ \ \ \ \ =\ UART\_DATA\_8\_BITS,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00422}00422\ \ \ \ \ \ \ \ \ .parity\ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ UART\_PARITY\_DISABLE,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00423}00423\ \ \ \ \ \ \ \ \ .stop\_bits\ \ \ \ \ \ \ \ \ \ \ =\ UART\_STOP\_BITS\_1,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00424}00424\ \ \ \ \ \ \ \ \ .flow\_ctrl\ \ \ \ \ \ \ \ \ \ \ =\ UART\_HW\_FLOWCTRL\_DISABLE,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00425}00425\ \ \ \ \ \ \ \ \ .source\_clk\ \ \ \ \ \ \ \ \ \ =\ UART\_SCLK\_DEFAULT,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00426}00426\ \ \ \ \ \};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00427}00427\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00428}00428\ \ \ \ \ ESP\_ERROR\_CHECK(uart\_driver\_install(\mbox{\hyperlink{hw__diag_8c_a098eeeae1c46818ccec39da08e9cc393}{RADAR\_UART\_PORT}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_adc96b85363aae03cea938220c12a0940}{RADAR\_RX\_BUF\_SIZE}},\ 0,\ 0,\ NULL,\ 0));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00430}00430\ \ \ \ \ ESP\_ERROR\_CHECK(uart\_param\_config(\mbox{\hyperlink{hw__diag_8c_a098eeeae1c46818ccec39da08e9cc393}{RADAR\_UART\_PORT}},\ \&uart\_cfg));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00431}00431\ \ \ \ \ ESP\_ERROR\_CHECK(uart\_set\_pin(\mbox{\hyperlink{hw__diag_8c_a098eeeae1c46818ccec39da08e9cc393}{RADAR\_UART\_PORT}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00432}00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pins__config_8h_ad7bec6e9767c77bebd8419d6f3329be2}{PIN\_RADAR\_TX}},\ \mbox{\hyperlink{pins__config_8h_ab13d757959922bf205d6448862bd4e12}{PIN\_RADAR\_RX}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ UART\_PIN\_NO\_CHANGE,\ UART\_PIN\_NO\_CHANGE));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00434}00434\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00435}00435\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Attente\ trame\ LD6002\ (\%d\ ms,\ \%d\ bauds)..."{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a5f59b14d6bd04d48eb3b0210576359ff}{RADAR\_DETECT\_TIMEOUT\_MS}},\ \mbox{\hyperlink{hw__diag_8c_a302dbd1e40e02c6740a8fc2a6adbad74}{RADAR\_BAUD\_RATE}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00437}00437\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00438}00438\ \ \ \ \ uint8\_t\ buf[\mbox{\hyperlink{hw__diag_8c_adc96b85363aae03cea938220c12a0940}{RADAR\_RX\_BUF\_SIZE}}];}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00439}00439\ \ \ \ \ TickType\_t\ deadline\ =\ xTaskGetTickCount()\ +}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(\mbox{\hyperlink{hw__diag_8c_a5f59b14d6bd04d48eb3b0210576359ff}{RADAR\_DETECT\_TIMEOUT\_MS}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00441}00441\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00442}00442\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00443}00443\ \ \ \ \ \textcolor{keywordflow}{while}\ (xTaskGetTickCount()\ <\ deadline)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00444}00444\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ len\ =\ uart\_read\_bytes(\mbox{\hyperlink{hw__diag_8c_a098eeeae1c46818ccec39da08e9cc393}{RADAR\_UART\_PORT}},\ buf,\ \textcolor{keyword}{sizeof}(buf),}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00445}00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pdMS\_TO\_TICKS(100));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (len\ <=\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00448}00448\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00449}00449\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ Recherche\ du\ SOF\ TinyFrame\ (0x01)\ dans\ les\ données\ reçues\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00450}00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ len;\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (buf[i]\ ==\ \mbox{\hyperlink{hw__diag_8c_ac972a7bb011724bcbd6b445b9a6fef2a}{TF\_SOF}}\ \&\&\ (len\ -\/\ i)\ >=\ 5)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ LD6002\ :\ trame\ TinyFrame\ détectée\ (\%d\ octets\ reçus)"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ len);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{goto}\ radar\_done;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00457}00457\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00458}00458\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00459}00459\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00460}00460\ radar\_done:}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00461}00461\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00462}00462\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ LD6002\ :\ aucune\ trame\ reçue\ dans\ le\ délai\ imparti"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00463}00463\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00464}00464\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00465}00465\ \ \ \ \ \textcolor{comment}{/*\ Le\ driver\ UART\ reste\ installé\ (réutilisé\ par\ radar\_driver\ dans\ sensor\_acq)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00466}00466\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00467}00467\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00468}00468\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00469}00469\ \textcolor{comment}{\ *\ diag\_print\_json\_report\ (interne)}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00470}00470\ \textcolor{comment}{\ *\ @brief\ Formate\ et\ imprime\ le\ rapport\ de\ diagnostic\ en\ JSON.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00471}00471\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00472}00472\ \textcolor{comment}{\ *\ @param\ ctx\ \ \ \ \ Contexte\ système\ contenant\ les\ résultats.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00473}00473\ \textcolor{comment}{\ *\ @param\ result\ \ Masque\ hw\_diag\_result\_t.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00474}00474\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00475}\mbox{\hyperlink{hw__diag_8c_a758a7a73f29f623be124aa734d85c0cc}{00475}}\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{hw__diag_8c_a758a7a73f29f623be124aa734d85c0cc}{diag\_print\_json\_report}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00476}00476\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}}\ result)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00477}00477\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00478}00478\ \ \ \ \ cJSON\ *root\ \ \ \ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00479}00479\ \ \ \ \ cJSON\ *lidars\ \ =\ cJSON\_CreateArray();}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00480}00480\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00481}00481\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00482}00482\ \ \ \ \ \ \ \ \ cJSON\ *lidar\ =\ cJSON\_CreateObject();}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00483}00483\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(lidar,\ \textcolor{stringliteral}{"{}id"{}},\ i);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00484}00484\ \ \ \ \ \ \ \ \ cJSON\_AddBoolToObject(lidar,\ \textcolor{stringliteral}{"{}ok"{}},\ ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[i]);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00485}00485\ \ \ \ \ \ \ \ \ cJSON\_AddNumberToObject(lidar,\ \textcolor{stringliteral}{"{}ncs\_gpio"{}},\ \mbox{\hyperlink{hw__diag_8c_a6011d35f982ad13ff939e8292109053c}{s\_ncs\_pins}}[i]);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00486}00486\ \ \ \ \ \ \ \ \ cJSON\_AddItemToArray(lidars,\ lidar);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00487}00487\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00488}00488\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00489}00489\ \ \ \ \ cJSON\_AddItemToObject(root,\ \textcolor{stringliteral}{"{}lidars"{}},\ lidars);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00490}00490\ \ \ \ \ cJSON\_AddBoolToObject(root,\ \textcolor{stringliteral}{"{}radar\_ok"{}},\ ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00491}00491\ \ \ \ \ cJSON\_AddNumberToObject(root,\ \textcolor{stringliteral}{"{}result\_mask"{}},\ (\textcolor{keywordtype}{double})result);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00492}00492\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00493}00493\ \ \ \ \ \textcolor{keywordtype}{char}\ *json\_str\ =\ cJSON\_Print(root);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00494}00494\ \ \ \ \ \textcolor{keywordflow}{if}\ (json\_str)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00495}00495\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Rapport\ diagnostic\ matériel\ :\(\backslash\)n\%s"{}},\ json\_str);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00496}00496\ \ \ \ \ \ \ \ \ cJSON\_free(json\_str);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00497}00497\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00498}00498\ \ \ \ \ cJSON\_Delete(root);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00499}00499\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00500}00500\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00501}00501\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00502}00502\ \textcolor{comment}{\ *\ hw\_diag\_run}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00503}00503\ \textcolor{comment}{\ *\ @brief\ Point\ d'entrée\ du\ diagnostic\ matériel.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00504}00504\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00505}00505\ \textcolor{comment}{\ *\ @param\ ctx\ Pointeur\ vers\ le\ contexte\ système\ à\ remplir.}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00506}00506\ \textcolor{comment}{\ *\ @return\ \ \ \ Masque\ hw\_diag\_result\_t\ (0\ =\ tout\ OK).}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00507}00507\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00508}\mbox{\hyperlink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{00508}}\ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}}\ \mbox{\hyperlink{group__group__hw__diag_gad0805242746ecf8545068878b9433eeb}{hw\_diag\_run}}(\mbox{\hyperlink{structsys__context__t}{sys\_context\_t}}\ *ctx)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00509}00509\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00510}00510\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}===\ Démarrage\ du\ diagnostic\ matériel\ ==="{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00512}00512\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Bus\ SPI\ LIDAR\ :\ initialise\ le\ bus\ +\ 4\ devices\ NCS\ dédiés\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00513}00513\ \ \ \ \ ESP\_ERROR\_CHECK(\mbox{\hyperlink{hw__diag_8c_a9e0db36c1aff47943fb56531485b8d7c}{diag\_init\_spi\_lidars}}(ctx));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00514}00514\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00515}00515\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Bus\ I2C\ PCA9555\ :\ PERSISTANT\ (contrôle\ LPn\ +\ alimentation)\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00516}00516\ \textcolor{comment}{\ \ \ \ \ *\ Ne\ pas\ détruire\ ce\ bus\ —\ il\ est\ réutilisé\ par\ hw\_diag\_pca9555\_set\_power()}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00517}00517\ \textcolor{comment}{\ \ \ \ \ *\ pour\ piloter\ les\ alimentations\ (POWER\_MIC,\ POWER\_RADAR,\ etc.)\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00518}00518\ \ \ \ \ esp\_err\_t\ pca\_ret\ =\ \mbox{\hyperlink{hw__diag_8c_a9fa304f2c13ef98368f86651968ee7ff}{diag\_init\_i2c\_bus}}(I2C\_NUM\_0,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00519}00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{group__group__config_gad7513c4ecfaf2ea7ec9ca0fe2635fbd0}{PIN\_I2C0\_SDA}},\ \mbox{\hyperlink{pins__config_8h_a0b0bd3a1375b4ee2306115d59a90e75e}{PIN\_I2C0\_SCL}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00520}00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00521}00521\ \ \ \ \ \textcolor{keywordflow}{if}\ (pca\_ret\ !=\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00522}00522\ \ \ \ \ \ \ \ \ ESP\_LOGW(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ I2C\ init\ échoué\ —\ LPn\ et\ alimentations\ non\ contrôlables"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00523}00523\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00524}00524\ \ \ \ \ i2c\_master\_bus\_handle\_t\ pca\_bus\ =\ \mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}};\ \textcolor{comment}{/*\ alias\ local\ pour\ lisibilité\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00525}00525\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00526}00526\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Lecture\ du\ sélecteur\ ROOT/NODE\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00527}00527\ \ \ \ \ gpio\_set\_pull\_mode(\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\_ROOT\_SEL}},\ GPIO\_PULLUP\_ONLY);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00528}00528\ \ \ \ \ gpio\_set\_direction(\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\_ROOT\_SEL}},\ GPIO\_MODE\_INPUT);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00529}00529\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ =\ (gpio\_get\_level(\mbox{\hyperlink{pins__config_8h_a4e5f299f8f5e2fa74e5cabfd669727f1}{PIN\_ROOT\_SEL}})\ ==\ 0);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00530}00530\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Rôle\ nœud\ :\ \%s"{}},\ ctx-\/>\mbox{\hyperlink{structsys__context__t_a95182dfb0c0515dce7293087479f1481}{is\_root\_node}}\ ?\ \textcolor{stringliteral}{"{}ROOT\ (passerelle)"{}}\ :\ \textcolor{stringliteral}{"{}NODE"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00531}00531\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00532}00532\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Scan\ des\ LIDARs\ via\ SPI\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00533}00533\ \ \ \ \ memset(ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}},\ 0,\ \textcolor{keyword}{sizeof}(ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00534}00534\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a5be005ad0232005e10663dc756467408}{diag\_scan\_lidars}}(ctx,\ pca\_bus);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00535}00535\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00536}00536\ \ \ \ \ \textcolor{comment}{/*\ Bus\ PCA9555\ conservé\ dans\ s\_pca\_bus\ —\ réutilisé\ par\ hw\_diag\_pca9555\_set\_power()\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00537}00537\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00538}00538\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Test\ du\ radar\ (uniquement\ si\ connecté)\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00539}00539\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_RADAR}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00540}00540\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a0aa4f3a23544482c3431a2fba2fcf89b}{diag\_test\_radar}}(ctx);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00541}00541\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00542}00542\ \ \ \ \ ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00543}00543\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}Radar\ LD6002\ ignoré\ (LEXACARE\_ENABLE\_RADAR=0)\ —\ boot\ +2\ s\ économisés"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00544}00544\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00545}00545\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00546}00546\ \ \ \ \ \textcolor{comment}{/*\ -\/-\/-\/\ Calcul\ du\ masque\ de\ résultat\ -\/-\/-\/\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00547}00547\ \ \ \ \ \mbox{\hyperlink{group__group__hw__diag_ga3bf55e9ea600655cde121ee914e243d6}{hw\_diag\_result\_t}}\ result\ =\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab008851855e4bfea9f55a19fabfa6dbd}{HW\_DIAG\_OK}};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00548}00548\ \ \ \ \ \textcolor{keywordtype}{int}\ lidar\_count\ =\ 0;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00549}00549\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}};\ i++)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ctx-\/>\mbox{\hyperlink{structsys__context__t_ac7c8a12f67fad815d407a70dfe5d5a1c}{lidar\_ok}}[i])\ lidar\_count++;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00551}00551\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00552}00552\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00553}00553\ \ \ \ \ \textcolor{keywordflow}{if}\ (lidar\_count\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00554}00554\ \ \ \ \ \ \ \ \ result\ |=\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6ab8d409fd65d09d549efa809b1d170cbc}{HW\_DIAG\_LIDAR\_ALL}};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00555}00555\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (lidar\_count\ <\ \mbox{\hyperlink{system__types_8h_a18c8a761396e3a0efb2fe9bbba15f7df}{LIDAR\_NUM\_FRONT}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00556}00556\ \ \ \ \ \ \ \ \ result\ |=\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a1542a9e34306a16f299f4b976f101809}{HW\_DIAG\_LIDAR\_PARTIAL}};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00557}00557\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00558}00558\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00559}00559\ \textcolor{preprocessor}{\#if\ LEXACARE\_ENABLE\_RADAR}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00560}00560\ \ \ \ \ \textcolor{keywordflow}{if}\ (!ctx-\/>\mbox{\hyperlink{structsys__context__t_a9128708a24cc0c2eb95487b9c565f574}{radar\_ok}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00561}00561\ \ \ \ \ \ \ \ \ result\ |=\ \mbox{\hyperlink{group__group__hw__diag_gga3bf55e9ea600655cde121ee914e243d6a312e45d9307a9baa5dee12885e9cf3cd}{HW\_DIAG\_RADAR\_MISSING}};}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00562}00562\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00563}00563\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00565}00565\ \ \ \ \ \textcolor{comment}{/*\ Rapport\ JSON\ sur\ la\ console\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00566}00566\ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a758a7a73f29f623be124aa734d85c0cc}{diag\_print\_json\_report}}(ctx,\ result);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00567}00567\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00568}00568\ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}===\ Diagnostic\ terminé\ (mask=0x\%02X)\ ==="{}},\ result);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00569}00569\ \ \ \ \ \textcolor{keywordflow}{return}\ result;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00570}00570\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00571}00571\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00572}00572\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00573}00573\ \textcolor{comment}{\ *\ hw\_diag\_init\_sensor\_bus}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00574}00574\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00575}\mbox{\hyperlink{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}{00575}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__hw__diag_ga645514a9fa716fffb0d800e5014f13d2}{hw\_diag\_init\_sensor\_bus}}(i2c\_master\_bus\_handle\_t\ *out\_handle)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00576}00576\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00577}00577\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{hw__diag_8c_a9fa304f2c13ef98368f86651968ee7ff}{diag\_init\_i2c\_bus}}(I2C\_NUM\_1,}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00578}00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{pins__config_8h_aabfe18b52ad58d04d2a1cf6612c5c4fa}{PIN\_I2C1\_SDA}},\ \mbox{\hyperlink{pins__config_8h_ac270b2950c69700990747460dc1e284a}{PIN\_I2C1\_SCL}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00579}00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_handle);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00580}00580\ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00581}00581\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00582}00582\ \textcolor{comment}{/*\ ================================================================}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00583}00583\ \textcolor{comment}{\ *\ hw\_diag\_pca9555\_set\_power}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00584}00584\ \textcolor{comment}{\ *\ ================================================================\ */}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00585}\mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{00585}}\ esp\_err\_t\ \mbox{\hyperlink{group__group__hw__diag_ga469b1f6472782cad7c76f1a21f2aeba0}{hw\_diag\_pca9555\_set\_power}}(uint8\_t\ port1\_bit,\ \textcolor{keywordtype}{bool}\ enable)}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00586}00586\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00587}00587\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}})\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00588}00588\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}pca9555\_set\_power\ :\ bus\ PCA9555\ non\ initialisé"{}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00589}00589\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ESP\_ERR\_INVALID\_STATE;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00590}00590\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00591}00591\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00592}00592\ \ \ \ \ \textcolor{keywordflow}{if}\ (enable)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00593}00593\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}}\ |=\ \ port1\_bit;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00594}00594\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00595}00595\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}}\ \&=\ \string~port1\_bit;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00596}00596\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00597}00597\ }
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00598}00598\ \ \ \ \ esp\_err\_t\ ret\ =\ \mbox{\hyperlink{hw__diag_8c_af5ec3c62d35106c03777230cafd79d1e}{pca9555\_write\_reg}}(\mbox{\hyperlink{hw__diag_8c_ac34ca4059ab1a8746017fe79fbb55212}{s\_pca\_bus}},\ \mbox{\hyperlink{pins__config_8h_a59aee66c22e76e5cb08668dd19ac3a22}{PCA9555\_REG\_OUTPUT\_1}},\ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}});}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00599}00599\ \ \ \ \ \textcolor{keywordflow}{if}\ (ret\ ==\ ESP\_OK)\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00600}00600\ \ \ \ \ \ \ \ \ ESP\_LOGI(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ Port1\ →\ 0x\%02X\ (\%s\ bit\ 0x\%02X)"{}},}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00601}00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{hw__diag_8c_a1960c27d86b8e568bc374ccd726f668f}{s\_pca1\_out}},\ enable\ ?\ \textcolor{stringliteral}{"{}SET"{}}\ :\ \textcolor{stringliteral}{"{}CLR"{}},\ port1\_bit);}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00602}00602\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00603}00603\ \ \ \ \ \ \ \ \ ESP\_LOGE(\mbox{\hyperlink{group__group__main_ga5a85b9c772bbeb480b209a3e6ea92b4c}{TAG}},\ \textcolor{stringliteral}{"{}PCA9555\ Port1\ écriture\ échouée\ :\ \%s"{}},\ esp\_err\_to\_name(ret));}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00604}00604\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00605}00605\ \ \ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{\Hypertarget{hw__diag_8c_source_l00606}00606\ \}}
+
+\end{DoxyCode}

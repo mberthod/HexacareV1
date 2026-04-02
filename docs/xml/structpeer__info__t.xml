@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structpeer__info__t" kind="struct" language="C++" prot="public">
+    <compoundname>peer_info_t</compoundname>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structpeer__info__t_1a246152eec6bd6506be59823be78b5234" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t peer_info_t::mac[6]</definition>
+        <argsstring>[6]</argsstring>
+        <name>mac</name>
+        <qualifiedname>peer_info_t::mac</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="92" column="13" bodyfile="components/mesh_network/mesh_manager.c" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpeer__info__t_1a84377419838485f33d32051e26aa5f65" prot="public" static="no" mutable="no">
+        <type>int8_t</type>
+        <definition>int8_t peer_info_t::rssi</definition>
+        <argsstring></argsstring>
+        <name>rssi</name>
+        <qualifiedname>peer_info_t::rssi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="93" column="13" bodyfile="components/mesh_network/mesh_manager.c" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpeer__info__t_1a8f82766227096a7286c95dd904d573be" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t peer_info_t::hop_to_root</definition>
+        <argsstring></argsstring>
+        <name>hop_to_root</name>
+        <qualifiedname>peer_info_t::hop_to_root</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="94" column="13" bodyfile="components/mesh_network/mesh_manager.c" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpeer__info__t_1ad35211d13df7b4128d06db52ace2558d" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool peer_info_t::is_child</definition>
+        <argsstring></argsstring>
+        <name>is_child</name>
+        <qualifiedname>peer_info_t::is_child</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="95" column="13" bodyfile="components/mesh_network/mesh_manager.c" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structpeer__info__t_1a566d0f63a0533a78292fd008d8a3f9be" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool peer_info_t::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>peer_info_t::valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/mesh_network/mesh_manager.c" line="96" column="13" bodyfile="components/mesh_network/mesh_manager.c" bodystart="96" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/mesh_network/mesh_manager.c" line="91" column="1" bodyfile="components/mesh_network/mesh_manager.c" bodystart="91" bodyend="97"/>
+    <listofallmembers>
+      <member refid="structpeer__info__t_1a8f82766227096a7286c95dd904d573be" prot="public" virt="non-virtual"><scope>peer_info_t</scope><name>hop_to_root</name></member>
+      <member refid="structpeer__info__t_1ad35211d13df7b4128d06db52ace2558d" prot="public" virt="non-virtual"><scope>peer_info_t</scope><name>is_child</name></member>
+      <member refid="structpeer__info__t_1a246152eec6bd6506be59823be78b5234" prot="public" virt="non-virtual"><scope>peer_info_t</scope><name>mac</name></member>
+      <member refid="structpeer__info__t_1a84377419838485f33d32051e26aa5f65" prot="public" virt="non-virtual"><scope>peer_info_t</scope><name>rssi</name></member>
+      <member refid="structpeer__info__t_1a566d0f63a0533a78292fd008d8a3f9be" prot="public" virt="non-virtual"><scope>peer_info_t</scope><name>valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

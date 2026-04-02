@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">##<sp/>ULD<sp/>ST<sp/>VL53L8CX<sp/>(STSW-IMG040)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Ce<sp/>projet<sp/>**n&apos;embarque<sp/>pas**<sp/>le<sp/>driver<sp/>propriétaire<sp/>ST<sp/>du<sp/>VL53L8CX.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Pour<sp/>activer<sp/>les<sp/>**données<sp/>réelles**<sp/>des<sp/>4<sp/>LIDAR<sp/>(SPI)<sp/>:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**1)**<sp/>Télécharger<sp/>le<sp/>package<sp/>**STSW-IMG040**<sp/>(VL53L8CX<sp/>Ultra<sp/>Lite<sp/>Driver)<sp/>depuis<sp/>ST.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**2)**<sp/>Copier<sp/>les<sp/>fichiers<sp/>`.c/.h`<sp/>de<sp/>l&apos;ULD<sp/>dans<sp/>ce<sp/>dossier<sp/>`components/sensor_acq/uld/`.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/>-<sp/>Le<sp/>build<sp/>détecte<sp/>automatiquement<sp/>`uld/vl53l8cx_api.c`.</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**3)**<sp/>Activer<sp/>le<sp/>mode<sp/>réel<sp/>dans<sp/>`components/lexacare_types/include/lexacare_config.h`<sp/>:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>LEXACARE_LIDAR_USE_ST_ULD<sp/>1</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>**4)**<sp/>Rebuild<sp/>/<sp/>flash<sp/>:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```powershell</highlight></codeline>
+<codeline><highlight class="normal">idf.py<sp/>build<sp/>flash<sp/>monitor</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Notes<sp/>:</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>La<sp/>fréquence<sp/>est<sp/>fixée<sp/>à<sp/>**5<sp/>Hz**<sp/>(`TASK_PERIOD_MS=200`<sp/>et<sp/>`LIDAR_FREQ_HZ=5`).</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>Le<sp/>mapping<sp/>est<sp/>**8×8<sp/>par<sp/>capteur**,<sp/>concaténé<sp/>en<sp/>**8×32**<sp/>(4<sp/>capteurs).</highlight></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/uld/README.md"/>
+  </compounddef>
+</doxygen>

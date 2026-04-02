@@ -1,0 +1,682 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="system__types_8h" kind="file" language="C++">
+    <compoundname>system_types.h</compoundname>
+    <includes local="no">stdint.h</includes>
+    <includes local="no">stdbool.h</includes>
+    <includes local="yes">freertos/FreeRTOS.h</includes>
+    <includes local="yes">freertos/queue.h</includes>
+    <includes local="yes">freertos/semphr.h</includes>
+    <includes local="yes">driver/spi_master.h</includes>
+    <includedby refid="fall__detection__ai_8cc" local="yes">components/ai_engine/fall_detection_ai.cc</includedby>
+    <includedby refid="fall__detection__ai_8h" local="yes">components/ai_engine/include/fall_detection_ai.h</includedby>
+    <includedby refid="hw__diag_8h" local="yes">components/hw_diag/include/hw_diag.h</includedby>
+    <includedby refid="mesh__manager_8h" local="yes">components/mesh_network/include/mesh_manager.h</includedby>
+    <includedby refid="ota__node_8h" local="yes">components/mesh_network/include/ota_node.h</includedby>
+    <includedby refid="pc__diag_8h" local="yes">components/pc_diag/include/pc_diag.h</includedby>
+    <includedby refid="lidar__driver_8h" local="yes">components/sensor_acq/include/lidar_driver.h</includedby>
+    <includedby refid="radar__driver_8h" local="yes">components/sensor_acq/include/radar_driver.h</includedby>
+    <includedby refid="main_8c" local="yes">main/main.c</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>components/lexacare_types/include/system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="4">
+        <label>freertos/FreeRTOS.h</label>
+      </node>
+      <node id="5">
+        <label>freertos/queue.h</label>
+      </node>
+      <node id="6">
+        <label>freertos/semphr.h</label>
+      </node>
+      <node id="3">
+        <label>stdbool.h</label>
+      </node>
+      <node id="2">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>components/ai_engine/fall_detection_ai.cc</label>
+        <link refid="fall__detection__ai_8cc"/>
+      </node>
+      <node id="3">
+        <label>components/ai_engine/include/fall_detection_ai.h</label>
+        <link refid="fall__detection__ai_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>components/hw_diag/hw_diag.c</label>
+        <link refid="hw__diag_8c"/>
+      </node>
+      <node id="4">
+        <label>components/hw_diag/include/hw_diag.h</label>
+        <link refid="hw__diag_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/lexacare_types/include/system_types.h</label>
+        <link refid="system__types_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>components/mesh_network/include/mesh_manager.h</label>
+        <link refid="mesh__manager_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>components/mesh_network/include/ota_node.h</label>
+        <link refid="ota__node_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>components/mesh_network/mesh_manager.c</label>
+        <link refid="mesh__manager_8c"/>
+      </node>
+      <node id="10">
+        <label>components/mesh_network/ota_node.c</label>
+        <link refid="ota__node_8c"/>
+      </node>
+      <node id="11">
+        <label>components/pc_diag/include/pc_diag.h</label>
+        <link refid="pc__diag_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>components/pc_diag/pc_diag.c</label>
+        <link refid="pc__diag_8c"/>
+      </node>
+      <node id="13">
+        <label>components/sensor_acq/include/lidar_driver.h</label>
+        <link refid="lidar__driver_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>components/sensor_acq/include/radar_driver.h</label>
+        <link refid="radar__driver_8h"/>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>components/sensor_acq/lidar_driver.c</label>
+        <link refid="lidar__driver_8c"/>
+      </node>
+      <node id="16">
+        <label>components/sensor_acq/radar_driver.c</label>
+        <link refid="radar__driver_8c"/>
+      </node>
+      <node id="6">
+        <label>main/main.c</label>
+        <link refid="main_8c"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structlidar__matrix__t" prot="public">lidar_matrix_t</innerclass>
+    <innerclass refid="structradar__data__t" prot="public">radar_data_t</innerclass>
+    <innerclass refid="structsensor__frame__t" prot="public">sensor_frame_t</innerclass>
+    <innerclass refid="structai__event__t" prot="public">ai_event_t</innerclass>
+    <innerclass refid="structlexacare__frame__t" prot="public">lexacare_frame_t</innerclass>
+    <innerclass refid="structota__fragment__payload__t" prot="public">ota_fragment_payload_t</innerclass>
+    <innerclass refid="structenviro__data__t" prot="public">enviro_data_t</innerclass>
+    <innerclass refid="structmic__data__t" prot="public">mic_data_t</innerclass>
+    <innerclass refid="structsys__context__t" prot="public">sys_context_t</innerclass>
+    <sectiondef kind="define">
+      <member refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kind="define"><name>LIDAR_ROWS</name></member>
+      <memberdef kind="define" id="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" prot="public" static="no">
+        <name>LIDAR_COLS</name>
+        <initializer>32</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="45" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="45" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" compoundref="lidar__driver_8c" startline="170" endline="238">lidar_read_sensor</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" compoundref="fall__detection__ai_8cc" startline="106" endline="123">threshold_avg_lower_zone</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" prot="public" static="no">
+        <name>LIDAR_NUM_FRONT</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Capteurs alimentant la matrice </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="46" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="46" bodyend="-1"/>
+        <referencedby refid="hw__diag_8c_1a9e0db36c1aff47943fb56531485b8d7c" compoundref="hw__diag_8c" startline="129" endline="170">diag_init_spi_lidars</referencedby>
+        <referencedby refid="hw__diag_8c_1a758a7a73f29f623be124aa734d85c0cc" compoundref="hw__diag_8c" startline="475" endline="499">diag_print_json_report</referencedby>
+        <referencedby refid="hw__diag_8c_1a5be005ad0232005e10663dc756467408" compoundref="hw__diag_8c" startline="340" endline="409">diag_scan_lidars</referencedby>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+        <referencedby refid="hw__diag_8c_1a86b85a9cd2446d46ad14589d9136ae57" compoundref="hw__diag_8c" startline="312" endline="326">pca9555_set_lpn</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a3e10a9d590d4acdf419c70a63d015aa7" prot="public" static="no">
+        <name>LIDAR_NUM_TOTAL</name>
+        <initializer>5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Total capteurs (4 frontaux + 1 sol) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="47" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a282d3c8dac6a02b3aab32ff5202543e8" prot="public" static="no">
+        <name>LIDAR_ZONES_PER_SENSOR</name>
+        <initializer>64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>8×8 = 64 zones par capteur </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="48" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a857774109f46a27a91784dca72ecf7f3" prot="public" static="no">
+        <name>LIDAR_I2C_ADDR_DEFAULT</name>
+        <initializer>0x29</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adresse par défaut VL53L8CX (7 bits) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="51" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a86a0a1946af81ea101e0e18ffc166081" prot="public" static="no">
+        <name>LIDAR_I2C_ADDR_BASE</name>
+        <initializer>0x2A</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Première adresse réassignée </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="52" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1af59d6a771c78c4aa65f604a943358658" prot="public" static="no">
+        <name>LEXACARE_AES_KEY_LEN</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Clé AES-128 : 16 octets </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="61" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="61" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7bd75723e8320b9ecc2549738714df17" compoundref="mesh__manager_8c" startline="153" endline="200">aes_encrypt_payload</referencedby>
+        <referencedby refid="mesh__manager_8c_1ad183ca147d5c3e6c43ab72d281d5be89" compoundref="mesh__manager_8c" startline="307" endline="324">mesh_load_aes_key</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a6083afe166bf0dc364ff2a9a5830d396" prot="public" static="no">
+        <name>LEXACARE_AES_IV_LEN</name>
+        <initializer>16</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>IV AES-CBC : 16 octets </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="62" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="62" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7bd75723e8320b9ecc2549738714df17" compoundref="mesh__manager_8c" startline="153" endline="200">aes_encrypt_payload</referencedby>
+        <referencedby refid="mesh__manager_8c_1a124f00cb0eadce6a3cd802f212bfc87f" compoundref="mesh__manager_8c" startline="210" endline="241">mesh_build_ai_frame</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a5269c10eb202fc732c8565de6318828a" prot="public" static="no">
+        <name>LEXACARE_FRAME_MAGIC</name>
+        <initializer>0xCA5E</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="63" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="63" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a6067c463964e944fd80eb63f791c1544" compoundref="mesh__manager_8c" startline="249" endline="272">espnow_rx_callback</referencedby>
+        <referencedby refid="mesh__manager_8c_1a124f00cb0eadce6a3cd802f212bfc87f" compoundref="mesh__manager_8c" startline="210" endline="241">mesh_build_ai_frame</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1adcd1d24e8101430da0011fa688f4bf1c" prot="public" static="no">
+        <name>LEXACARE_MAX_PAYLOAD</name>
+        <initializer>128</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Payload chiffré (multiple de 16, ≤ 250 − header) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="64" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="64" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a7bd75723e8320b9ecc2549738714df17" compoundref="mesh__manager_8c" startline="153" endline="200">aes_encrypt_payload</referencedby>
+        <referencedby refid="mesh__manager_8c_1a124f00cb0eadce6a3cd802f212bfc87f" compoundref="mesh__manager_8c" startline="210" endline="241">mesh_build_ai_frame</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a9fd7d9fb92dbe0693e39db97321e8cbc" prot="public" static="no">
+        <name>FRAME_TYPE_TELEMETRY</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="67" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a0e1653f6e69997ed01d99fc0bdc77c78" prot="public" static="no">
+        <name>FRAME_TYPE_AI_EVENT</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="68" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="68" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a124f00cb0eadce6a3cd802f212bfc87f" compoundref="mesh__manager_8c" startline="210" endline="241">mesh_build_ai_frame</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1ac9c5ce39f67beb1c5a4af7aa2800fd9c" prot="public" static="no">
+        <name>FRAME_TYPE_OTA_FRAGMENT</name>
+        <initializer>0x02</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="69" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="69" bodyend="-1"/>
+        <referencedby refid="mesh__manager_8c_1a6067c463964e944fd80eb63f791c1544" compoundref="mesh__manager_8c" startline="249" endline="272">espnow_rx_callback</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a2f28b080f33b7221fa06ea915fa74d18" prot="public" static="no">
+        <name>FRAME_TYPE_BEACON</name>
+        <initializer>0x03</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="70" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="system__types_8h_1a8aeb72dd2fb3b0da41f058d52ef69571" prot="public" static="no">
+        <name>OTA_FRAGMENT_DATA_LEN</name>
+        <initializer>200</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Octets de données utiles par fragment OTA </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="73" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="enum">
+      <memberdef kind="enum" id="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" prot="public" static="no" strong="no">
+        <type></type>
+        <name>ai_event_state_e</name>
+        <enumvalue id="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" prot="public">
+          <name>AI_NORMAL</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Situation normale </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" prot="public">
+          <name>AI_CHUTE_DETECTEE</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Chute détectée — injection via xQueueSendToFront </para>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6" prot="public">
+          <name>AI_MOUVEMENT_ANORMAL</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+<para>Mouvement anormal (agitation, posture inhabituelle) </para>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="123" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="123" bodyend="127"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Contrat de données partagé entre tous les composants du firmware LexaCare V1. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Règles d&apos;utilisation :<itemizedlist>
+<listitem><para>Ce fichier est la seule source de vérité pour les structures inter-tâches.</para>
+</listitem><listitem><para>Aucune variable globale : toutes les données partagées transitent via <ref refid="structsys__context__t" kindref="compound">sys_context_t</ref>.</para>
+</listitem><listitem><para>Compatible C et C++ (guards extern &quot;C&quot; inclus).</para>
+</listitem><listitem><para>Inclure via le composant lexacare_types (REQUIRES dans CMakeLists.txt). </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/>*<sp/>@file<sp/>system_types.h</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Contrat<sp/>de<sp/>données<sp/>partagé<sp/>entre<sp/>tous<sp/>les<sp/>composants<sp/>du<sp/>firmware<sp/>LexaCare<sp/>V1.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>Règles<sp/>d&apos;utilisation<sp/>:</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/><sp/>-<sp/>Ce<sp/>fichier<sp/>est<sp/>la<sp/>seule<sp/>source<sp/>de<sp/>vérité<sp/>pour<sp/>les<sp/>structures<sp/>inter-tâches.</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/><sp/>-<sp/>Aucune<sp/>variable<sp/>globale<sp/>:<sp/>toutes<sp/>les<sp/>données<sp/>partagées<sp/>transitent<sp/>via<sp/>sys_context_t.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/><sp/>-<sp/>Compatible<sp/>C<sp/>et<sp/>C++<sp/>(guards<sp/>extern<sp/>&quot;C&quot;<sp/>inclus).</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/><sp/>-<sp/>Inclure<sp/>via<sp/>le<sp/>composant<sp/>lexacare_types<sp/>(REQUIRES<sp/>dans<sp/>CMakeLists.txt).</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdbool.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/FreeRTOS.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/queue.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;freertos/semphr.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;driver/spi_master.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment"></highlight></codeline>
+<codeline lineno="25"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="26"><highlight class="comment"><sp/>*<sp/>@ingroup<sp/>group_config</highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Types<sp/>partagés<sp/>entre<sp/>tâches<sp/>(contrat<sp/>de<sp/>données).</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/>*<sp/>Ce<sp/>fichier<sp/>sert<sp/>de<sp/>“langage<sp/>commun”<sp/>entre<sp/>tâches<sp/>FreeRTOS<sp/>:<sp/>si<sp/>deux<sp/>parties<sp/>du<sp/>firmware</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"><sp/>*<sp/>échangent<sp/>une<sp/>information,<sp/>elle<sp/>doit<sp/>apparaître<sp/>ici<sp/>pour<sp/>éviter<sp/>les<sp/>malentendus<sp/>(tailles,</highlight></codeline>
+<codeline lineno="31"><highlight class="comment"><sp/>*<sp/>unités,<sp/>champs<sp/>“valid”,<sp/>etc.).</highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"><sp/>*<sp/>Constantes<sp/>LIDAR</highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/>*<sp/>Architecture<sp/>:</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4<sp/>capteurs<sp/>VL53L8CX<sp/>frontaux<sp/>(8×8<sp/>zones<sp/>chacun)<sp/>concaténés</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/>*<sp/><sp/><sp/>horizontalement<sp/>→<sp/>matrice<sp/>unifiée<sp/>8<sp/>lignes<sp/>×<sp/>32<sp/>colonnes.</highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Capteur<sp/>N<sp/>occupe<sp/>les<sp/>colonnes<sp/>[N*8<sp/>..<sp/>N*8+7].</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/>*<sp/><sp/><sp/>5e<sp/>capteur<sp/>(vertical/sol)<sp/>:<sp/>flux<sp/>séparé,<sp/>non<sp/>inclus<sp/>dans<sp/>la<sp/>matrice.</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_ROWS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_COLS<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_NUM_FRONT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Capteurs<sp/>alimentant<sp/>la<sp/>matrice<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="system__types_8h_1a3e10a9d590d4acdf419c70a63d015aa7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_NUM_TOTAL<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>5<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Total<sp/>capteurs<sp/>(4<sp/>frontaux<sp/>+<sp/>1<sp/>sol)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48" refid="system__types_8h_1a282d3c8dac6a02b3aab32ff5202543e8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_ZONES_PER_SENSOR<sp/><sp/>64<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>8×8<sp/>=<sp/>64<sp/>zones<sp/>par<sp/>capteur<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Adresses<sp/>I2C<sp/>(7<sp/>bits)<sp/>allouées<sp/>dynamiquement<sp/>au<sp/>démarrage<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51" refid="system__types_8h_1a857774109f46a27a91784dca72ecf7f3" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_I2C_ADDR_DEFAULT<sp/><sp/>0x29<sp/></highlight><highlight class="comment">/**&lt;<sp/>Adresse<sp/>par<sp/>défaut<sp/>VL53L8CX<sp/>(7<sp/>bits)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="system__types_8h_1a86a0a1946af81ea101e0e18ffc166081" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LIDAR_I2C_ADDR_BASE<sp/><sp/><sp/><sp/><sp/>0x2A<sp/></highlight><highlight class="comment">/**&lt;<sp/>Première<sp/>adresse<sp/>réassignée<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/>*<sp/>Constantes<sp/>réseau<sp/>et<sp/>chiffrement<sp/>AES-128</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/>*<sp/>Le<sp/>payload<sp/>de<sp/>chaque<sp/>trame<sp/>lexacare_frame_t<sp/>est<sp/>chiffré<sp/>en</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/>*<sp/>AES-128-CBC<sp/>par<sp/>le<sp/>nœud<sp/>émetteur<sp/>(mbedTLS)<sp/>indépendamment</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/>*<sp/>du<sp/>LMK<sp/>ESP-NOW<sp/>—<sp/>garantie<sp/>de<sp/>sécurité<sp/>pour<sp/>+1000<sp/>pairs.</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="system__types_8h_1af59d6a771c78c4aa65f604a943358658" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_AES_KEY_LEN<sp/><sp/><sp/><sp/>16<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Clé<sp/>AES-128<sp/>:<sp/>16<sp/>octets<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="system__types_8h_1a6083afe166bf0dc364ff2a9a5830d396" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_AES_IV_LEN<sp/><sp/><sp/><sp/><sp/>16<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IV<sp/>AES-CBC<sp/><sp/>:<sp/>16<sp/>octets<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63" refid="system__types_8h_1a5269c10eb202fc732c8565de6318828a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_FRAME_MAGIC<sp/><sp/><sp/><sp/>0xCA5E</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="system__types_8h_1adcd1d24e8101430da0011fa688f4bf1c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LEXACARE_MAX_PAYLOAD<sp/><sp/><sp/><sp/>128<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Payload<sp/>chiffré<sp/>(multiple<sp/>de<sp/>16,<sp/>≤<sp/>250<sp/>−<sp/>header)<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>Types<sp/>de<sp/>trame<sp/>réseau<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="system__types_8h_1a9fd7d9fb92dbe0693e39db97321e8cbc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FRAME_TYPE_TELEMETRY<sp/><sp/><sp/><sp/>0x00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="system__types_8h_1a0e1653f6e69997ed01d99fc0bdc77c78" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FRAME_TYPE_AI_EVENT<sp/><sp/><sp/><sp/><sp/>0x01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69" refid="system__types_8h_1ac9c5ce39f67beb1c5a4af7aa2800fd9c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FRAME_TYPE_OTA_FRAGMENT<sp/>0x02</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="system__types_8h_1a2f28b080f33b7221fa06ea915fa74d18" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FRAME_TYPE_BEACON<sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x03</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>OTA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73" refid="system__types_8h_1a8aeb72dd2fb3b0da41f058d52ef69571" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OTA_FRAGMENT_DATA_LEN<sp/><sp/><sp/>200<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Octets<sp/>de<sp/>données<sp/>utiles<sp/>par<sp/>fragment<sp/>OTA<sp/>*/</highlight><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/>*<sp/>lidar_matrix_t</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Matrice<sp/>de<sp/>distances<sp/>fusionnées<sp/>issues<sp/>des<sp/>4<sp/>LIDARs<sp/>frontaux.</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/>*<sp/>@note<sp/><sp/>data[ligne][colonne],<sp/>distances<sp/>en<sp/>millimètres<sp/>(0<sp/>=<sp/>zone<sp/>invalide).</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="structlidar__matrix__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="81" refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" kindref="member">data</ref>[<ref refid="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" kindref="member">LIDAR_ROWS</ref>][<ref refid="system__types_8h_1aedde93e1e75248b6ed62d0bd58598d49" kindref="member">LIDAR_COLS</ref>];<sp/></highlight><highlight class="comment">/**&lt;<sp/>Distances<sp/>en<sp/>mm<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82" refid="structlidar__matrix__t_1a1cba5fb965937d1ab5f8a047d3932962" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structlidar__matrix__t_1a1cba5fb965937d1ab5f8a047d3932962" kindref="member">vertical_mm</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Distance<sp/>capteur<sp/>sol<sp/>(5e<sp/>capteur)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><sp/><ref refid="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" kindref="member">timestamp_us</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Horodatage<sp/>µs<sp/>(esp_timer_get_time)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" kindref="member">valid</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>false<sp/>si<sp/>lecture<sp/>I2C<sp/>échouée<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}<sp/><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref>;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="88"><highlight class="comment"><sp/>*<sp/>radar_data_t</highlight></codeline>
+<codeline lineno="89"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Données<sp/>extraites<sp/>du<sp/>protocole<sp/>TinyFrame<sp/>du<sp/>radar<sp/>HLK-LD6002.</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="91"><highlight class="comment"><sp/>*<sp/>Trames<sp/>supportées<sp/>:</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A14<sp/>→<sp/>breath_rate_bpm<sp/>(uint16,<sp/>big-endian)</highlight></codeline>
+<codeline lineno="93"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A15<sp/>→<sp/>heart_rate_bpm<sp/><sp/>(uint16,<sp/>big-endian)</highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/>*<sp/><sp/><sp/>0x0A16<sp/>→<sp/>target_distance_mm<sp/>(uint16,<sp/>big-endian)</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96" refid="structradar__data__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="97" refid="structradar__data__t_1a701c910c93542668f4b224637db2b736" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structradar__data__t_1a701c910c93542668f4b224637db2b736" kindref="member">resp_phase</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Phase<sp/>respiratoire<sp/>(rad)<sp/>—<sp/>calculée<sp/>si<sp/>dispo<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98" refid="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" kindref="member">heart_phase</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Phase<sp/>cardiaque<sp/>(rad)<sp/>—<sp/>calculée<sp/>si<sp/>dispo<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="structradar__data__t_1aef77c6374300c5b7db1f80559428be9c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><sp/><ref refid="structradar__data__t_1aef77c6374300c5b7db1f80559428be9c" kindref="member">total_phase</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Phase<sp/>totale<sp/>(rad)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" kindref="member">breath_rate_bpm</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Fréquence<sp/>respiratoire<sp/>(cycles/min)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101" refid="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" kindref="member">heart_rate_bpm</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Fréquence<sp/>cardiaque<sp/>(bpm)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102" refid="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" kindref="member">target_distance_mm</ref>;<sp/></highlight><highlight class="comment">/**&lt;<sp/>Distance<sp/>de<sp/>la<sp/>cible<sp/>(mm)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" kindref="member">presence</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>une<sp/>personne<sp/>est<sp/>détectée<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="structradar__data__t_1aea519eca3ff083a1f0c8911f5d9356e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><sp/><ref refid="structradar__data__t_1aea519eca3ff083a1f0c8911f5d9356e1" kindref="member">timestamp_us</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Horodatage<sp/>µs<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}<sp/><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/>*<sp/>sensor_frame_t</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Trame<sp/>composite<sp/>poussée<sp/>dans<sp/>sensor_to_ai_queue.</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Contient<sp/>les<sp/>données<sp/>LIDAR<sp/>et<sp/>radar<sp/>d&apos;un<sp/>même<sp/>cycle<sp/>d&apos;acquisition.</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112" refid="structsensor__frame__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="113" refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structlidar__matrix__t" kindref="compound">lidar_matrix_t</ref><sp/><ref refid="structsensor__frame__t_1ae955bd6580be17bf99afadc7695d9581" kindref="member">lidar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Données<sp/>LIDAR<sp/>fusionnées<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114" refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structradar__data__t" kindref="compound">radar_data_t</ref><sp/><sp/><sp/><ref refid="structsensor__frame__t_1a746140e4f24f8747756ecd920052f6b0" kindref="member">radar</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Données<sp/>radar<sp/>LD6002<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsensor__frame__t_1aa4b0c421639b1dcd6ee896d8b68129b1" kindref="member">lidar_valid</ref>;<sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>:<sp/>lidar<sp/>contient<sp/>des<sp/>données<sp/>fraîches<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsensor__frame__t_1a2c9ee35c7d784cb69facbc49577e5dd8" kindref="member">radar_valid</ref>;<sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>:<sp/>radar<sp/>contient<sp/>des<sp/>données<sp/>fraîches<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}<sp/><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref>;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/>*<sp/>ai_event_state_e</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/>*<sp/>@brief<sp/>États<sp/>détectés<sp/>par<sp/>le<sp/>moteur<sp/>d&apos;inférence<sp/>(seuil<sp/>ou<sp/>modèle).</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="124" refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a44740f43eaf7355a2ac4b8ef7d3fd61c" kindref="member">AI_NORMAL</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>=<sp/>0,<sp/></highlight><highlight class="comment">/**&lt;<sp/>Situation<sp/>normale<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125" refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4ad8ee2882d4c660ec3e0387aca57bef66" kindref="member">AI_CHUTE_DETECTEE</ref><sp/><sp/><sp/><sp/>=<sp/>1,<sp/></highlight><highlight class="comment">/**&lt;<sp/>Chute<sp/>détectée<sp/>—<sp/>injection<sp/>via<sp/>xQueueSendToFront<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4a1b97206b16bba4332174c16d89d88cb6" kindref="member">AI_MOUVEMENT_ANORMAL</ref><sp/>=<sp/>2,<sp/></highlight><highlight class="comment">/**&lt;<sp/>Mouvement<sp/>anormal<sp/>(agitation,<sp/>posture<sp/>inhabituelle)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}<sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kindref="member">ai_event_state_e</ref>;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/>*<sp/>ai_event_t</highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Événement<sp/>généré<sp/>par<sp/>Task_AI_Inference.</highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/>*<sp/>Règle<sp/>de<sp/>priorité<sp/>(contrainte<sp/>stricte)<sp/>:</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/>*<sp/><sp/><sp/>AI_CHUTE_DETECTEE<sp/><sp/>→<sp/>xQueueSendToFront(ctx-&gt;ai_to_mesh_queue,<sp/>...)</highlight></codeline>
+<codeline lineno="135"><highlight class="comment"><sp/>*<sp/><sp/><sp/>Autres<sp/>états<sp/><sp/><sp/><sp/><sp/><sp/><sp/>→<sp/>xQueueSend(ctx-&gt;ai_to_mesh_queue,<sp/>...)</highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="137"><highlight class="comment"><sp/>*<sp/>Cette<sp/>règle<sp/>garantit<sp/>que<sp/>les<sp/>alertes<sp/>de<sp/>chute<sp/>court-circuitent</highlight></codeline>
+<codeline lineno="138"><highlight class="comment"><sp/>*<sp/>la<sp/>télémétrie<sp/>normale<sp/>dans<sp/>la<sp/>file<sp/>d&apos;envoi<sp/>réseau.</highlight></codeline>
+<codeline lineno="139"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140" refid="structai__event__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="141" refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="system__types_8h_1a163d34cbf409d0fd090a93863f7ef8a4" kindref="member">ai_event_state_e</ref><sp/><ref refid="structai__event__t_1a81e6991ce55e7b8c557ab557545cc522" kindref="member">state</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>État<sp/>détecté<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="structai__event__t_1abda04f94a67eac00a050985c90987309" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structai__event__t_1abda04f94a67eac00a050985c90987309" kindref="member">confidence</ref>;<sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Confiance<sp/>0–100<sp/>%<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="structai__event__t_1a9dfc426ff75b3bbd25f05aaafbc3e84b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>int64_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structai__event__t_1a9dfc426ff75b3bbd25f05aaafbc3e84b" kindref="member">timestamp_us</ref>;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">}<sp/><ref refid="structai__event__t" kindref="compound">ai_event_t</ref>;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="147"><highlight class="comment"><sp/>*<sp/>lexacare_frame_t</highlight></codeline>
+<codeline lineno="148"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Trame<sp/>réseau<sp/>ESP-NOW<sp/>avec<sp/>payload<sp/>chiffré<sp/>AES-128-CBC.</highlight></codeline>
+<codeline lineno="149"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="150"><highlight class="comment"><sp/>*<sp/>Taille<sp/>totale<sp/>:<sp/>2+1+1+6+16+128+2+2<sp/>=<sp/>158<sp/>octets<sp/>(&lt;<sp/>250<sp/>max<sp/>ESP-NOW).</highlight></codeline>
+<codeline lineno="151"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="152"><highlight class="comment"><sp/>*<sp/>Séquence<sp/>d&apos;émission<sp/>:</highlight></codeline>
+<codeline lineno="153"><highlight class="comment"><sp/>*<sp/><sp/><sp/>1.<sp/>Sérialiser<sp/>le<sp/>payload<sp/>en<sp/>clair<sp/>dans<sp/>un<sp/>buffer<sp/>temporaire.</highlight></codeline>
+<codeline lineno="154"><highlight class="comment"><sp/>*<sp/><sp/><sp/>2.<sp/>Générer<sp/>un<sp/>IV<sp/>aléatoire<sp/>(esp_fill_random).</highlight></codeline>
+<codeline lineno="155"><highlight class="comment"><sp/>*<sp/><sp/><sp/>3.<sp/>Chiffrer<sp/>avec<sp/>mbedtls_aes_crypt_cbc<sp/>(clé<sp/>16<sp/>o<sp/>provisionnée<sp/>en<sp/>NVS).</highlight></codeline>
+<codeline lineno="156"><highlight class="comment"><sp/>*<sp/><sp/><sp/>4.<sp/>Calculer<sp/>CRC16<sp/>sur<sp/>(magic<sp/>+<sp/>type<sp/>+<sp/>hop<sp/>+<sp/>src_mac<sp/>+<sp/>iv<sp/>+<sp/>payload).</highlight></codeline>
+<codeline lineno="157"><highlight class="comment"><sp/>*<sp/><sp/><sp/>5.<sp/>Appeler<sp/>esp_now_send().</highlight></codeline>
+<codeline lineno="158"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="159" refid="structlexacare__frame__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="160" refid="structlexacare__frame__t_1a2d190e6984fc48b024cbd90920751115" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structlexacare__frame__t_1a2d190e6984fc48b024cbd90920751115" kindref="member">magic</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>LEXACARE_FRAME_MAGIC<sp/>(0xCA5E)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="161" refid="structlexacare__frame__t_1a0987bccd98eababb9afb1a8bcca73b42" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structlexacare__frame__t_1a0987bccd98eababb9afb1a8bcca73b42" kindref="member">type</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>FRAME_TYPE_*<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="162" refid="structlexacare__frame__t_1a4da01eb6defe61a355da0bfad53da934" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structlexacare__frame__t_1a4da01eb6defe61a355da0bfad53da934" kindref="member">hop_count</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Nombre<sp/>de<sp/>sauts<sp/>depuis<sp/>la<sp/>source<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="163" refid="structlexacare__frame__t_1a7411c1c1379138c1233f7038d8b724c9" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structlexacare__frame__t_1a7411c1c1379138c1233f7038d8b724c9" kindref="member">src_mac</ref>[6];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>MAC<sp/>de<sp/>l&apos;émetteur<sp/>original<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164" refid="structlexacare__frame__t_1a0176f9d4f67522ab23cea18159f5a5f3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structlexacare__frame__t_1a0176f9d4f67522ab23cea18159f5a5f3" kindref="member">iv</ref>[<ref refid="system__types_8h_1a6083afe166bf0dc364ff2a9a5830d396" kindref="member">LEXACARE_AES_IV_LEN</ref>];<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>IV<sp/>aléatoire<sp/>pour<sp/>AES-128-CBC<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="structlexacare__frame__t_1a36c28e379c0774aaaf8691c50a5f95e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structlexacare__frame__t_1a36c28e379c0774aaaf8691c50a5f95e3" kindref="member">payload</ref>[<ref refid="system__types_8h_1adcd1d24e8101430da0011fa688f4bf1c" kindref="member">LEXACARE_MAX_PAYLOAD</ref>];<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Payload<sp/>chiffré<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166" refid="structlexacare__frame__t_1ab2ec2e5466c6af6724e3730e8b8a1d25" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structlexacare__frame__t_1ab2ec2e5466c6af6724e3730e8b8a1d25" kindref="member">payload_len</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Longueur<sp/>du<sp/>payload<sp/>chiffré<sp/>(octets)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167" refid="structlexacare__frame__t_1ae5067764127ffd0809f3cf71927d3e50" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structlexacare__frame__t_1ae5067764127ffd0809f3cf71927d3e50" kindref="member">crc16</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>CRC16-CCITT<sp/>sur<sp/>header<sp/>+<sp/>iv<sp/>+<sp/>payload<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal">}<sp/><ref refid="structlexacare__frame__t" kindref="compound">lexacare_frame_t</ref>;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/>*<sp/>ota_fragment_payload_t</highlight></codeline>
+<codeline lineno="172"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Contenu<sp/>en<sp/>clair<sp/>du<sp/>payload<sp/>pour<sp/>un<sp/>fragment<sp/>OTA<sp/>(avant<sp/>chiffrement).</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174" refid="structota__fragment__payload__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="175" refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structota__fragment__payload__t_1acd0f1e58d304e8c4597e8af100768e0c" kindref="member">firmware_size</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Taille<sp/>totale<sp/>du<sp/>firmware<sp/>(octets)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176" refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structota__fragment__payload__t_1a41db113b302e0ca0998bee55c1304c45" kindref="member">fragment_offset</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Offset<sp/>de<sp/>ce<sp/>fragment<sp/>dans<sp/>le<sp/>firmware<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="177" refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="structota__fragment__payload__t_1a200c9814afca3395517f1661485a2b80" kindref="member">fragment_data_len</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Longueur<sp/>des<sp/>données<sp/>utiles<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="178" refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><ref refid="structota__fragment__payload__t_1aff252475d43370bf718085a778c5a0a4" kindref="member">data</ref>[<ref refid="system__types_8h_1a8aeb72dd2fb3b0da41f058d52ef69571" kindref="member">OTA_FRAGMENT_DATA_LEN</ref>];<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Données<sp/>du<sp/>fragment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="179" refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structota__fragment__payload__t_1aaa60401c4425aedf0f17bf9b51f223da" kindref="member">is_last</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>dernier<sp/>fragment<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}<sp/><ref refid="structota__fragment__payload__t" kindref="compound">ota_fragment_payload_t</ref>;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="183"><highlight class="comment"><sp/>*<sp/>sys_context_t</highlight></codeline>
+<codeline lineno="184"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Contexte<sp/>global<sp/>injecté<sp/>par<sp/>pointeur<sp/>dans<sp/>toutes<sp/>les<sp/>tâches.</highlight></codeline>
+<codeline lineno="185"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="186"><highlight class="comment"><sp/>*<sp/>Principe<sp/>d&apos;injection<sp/>de<sp/>dépendances<sp/>:</highlight></codeline>
+<codeline lineno="187"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Aucune<sp/>variable<sp/>globale<sp/>directe.</highlight></codeline>
+<codeline lineno="188"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Chaque<sp/>tâche<sp/>reçoit<sp/>un<sp/>pointeur<sp/>const<sp/>vers<sp/>ce<sp/>contexte.</highlight></codeline>
+<codeline lineno="189"><highlight class="comment"><sp/>*<sp/><sp/><sp/>-<sp/>Les<sp/>handles<sp/>I2C<sp/>sont<sp/>initialisés<sp/>par<sp/>hw_diag_run()<sp/>et</highlight></codeline>
+<codeline lineno="190"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/>réutilisés<sp/>par<sp/>sensor_acq<sp/>sans<sp/>réinitialisation.</highlight></codeline>
+<codeline lineno="191"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="192"><highlight class="comment"><sp/>*<sp/>Queues<sp/>et<sp/>dimensionnement<sp/>:</highlight></codeline>
+<codeline lineno="193"><highlight class="comment"><sp/>*<sp/><sp/><sp/>sensor_to_ai_queue<sp/><sp/>:<sp/>sensor_frame_t<sp/>×<sp/>4<sp/><sp/>(profondeur<sp/>conservatrice)</highlight></codeline>
+<codeline lineno="194"><highlight class="comment"><sp/>*<sp/><sp/><sp/>ai_to_mesh_queue<sp/><sp/><sp/><sp/>:<sp/>ai_event_t<sp/><sp/><sp/><sp/><sp/>×<sp/>8<sp/><sp/>(AI_CHUTE<sp/>via<sp/>xQueueSendToFront)</highlight></codeline>
+<codeline lineno="195"><highlight class="comment"><sp/>*<sp/><sp/><sp/>diag_to_pc_queue<sp/><sp/><sp/><sp/>:<sp/>ai_event_t<sp/><sp/><sp/><sp/><sp/>×<sp/>8</highlight></codeline>
+<codeline lineno="196"><highlight class="comment"><sp/>*<sp/><sp/><sp/>log_queue<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<sp/>char*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>×<sp/>16<sp/>(pointeurs<sp/>vers<sp/>chaînes<sp/>allouées)</highlight></codeline>
+<codeline lineno="197"><highlight class="comment"><sp/>*</highlight></codeline>
+<codeline lineno="198"><highlight class="comment"><sp/>*<sp/>Capteurs<sp/>environnementaux<sp/>(I2C_NUM_1,<sp/>SDA=10,<sp/>SCL=9)<sp/>:</highlight></codeline>
+<codeline lineno="199"><highlight class="comment"><sp/>*<sp/><sp/><sp/>HDC1080<sp/>:<sp/>temp/humidité<sp/>(0x40)</highlight></codeline>
+<codeline lineno="200"><highlight class="comment"><sp/>*<sp/><sp/><sp/>BME280<sp/><sp/>:<sp/>temp/pression/humidité<sp/>(0x76)</highlight></codeline>
+<codeline lineno="201"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="204"><highlight class="comment"><sp/>*<sp/>enviro_data_t</highlight></codeline>
+<codeline lineno="205"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Données<sp/>capteurs<sp/>environnementaux<sp/>(HDC1080<sp/>+<sp/>BME280).</highlight></codeline>
+<codeline lineno="206"><highlight class="comment"><sp/>*<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>NAN<sp/>dans<sp/>un<sp/>champ<sp/>=<sp/>capteur<sp/>absent<sp/>ou<sp/>lecture<sp/>échouée.</highlight></codeline>
+<codeline lineno="207"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="208" refid="structenviro__data__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="209" refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structenviro__data__t_1a2930919101311d9bb3b3110b59524b98" kindref="member">temp_hdc_c</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>HDC1080<sp/>température<sp/>(°C)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210" refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structenviro__data__t_1a795c6b7429a9d839dd0ed99340b3644b" kindref="member">humidity_hdc</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>HDC1080<sp/>humidité<sp/>relative<sp/>(%)<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="211" refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structenviro__data__t_1adbc78f374cc56209b5fafc0303e34826" kindref="member">temp_bme_c</ref>;<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>BME280<sp/><sp/>température<sp/>(°C)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="212" refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structenviro__data__t_1ad14b0a736e92e1eb6a07b81ad47a5a82" kindref="member">pressure_hpa</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>BME280<sp/><sp/>pression<sp/>(hPa)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="213" refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structenviro__data__t_1a59a9a913353bfb712c4af5f119d85e38" kindref="member">humidity_bme</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>BME280<sp/><sp/>humidité<sp/>relative<sp/>(%)<sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal">}<sp/><ref refid="structenviro__data__t" kindref="compound">enviro_data_t</ref>;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>================================================================</highlight></codeline>
+<codeline lineno="217"><highlight class="comment"><sp/>*<sp/>mic_data_t</highlight></codeline>
+<codeline lineno="218"><highlight class="comment"><sp/>*<sp/>@brief<sp/>Données<sp/>microphone<sp/>MEMS<sp/>numérique<sp/>(I2S).</highlight></codeline>
+<codeline lineno="219"><highlight class="comment"><sp/>*<sp/>================================================================<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="220" refid="structmic__data__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="221" refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" kindref="member">rms</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Amplitude<sp/>RMS<sp/>(unités<sp/>brutes<sp/>I2S)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222" refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" kindref="member">peak</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Amplitude<sp/>crête<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="223" refid="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" kindref="member">valid</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>une<sp/>lecture<sp/>valide<sp/>existe<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal">}<sp/><ref refid="structmic__data__t" kindref="compound">mic_data_t</ref>;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226" refid="structsys__context__t" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Queues<sp/>FreeRTOS<sp/>(créées<sp/>dans<sp/>app_main)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228" refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>QueueHandle_t<sp/><ref refid="structsys__context__t_1a38821675c9b440bd0c6097b58c7f5978" kindref="member">sensor_to_ai_queue</ref>;<sp/></highlight><highlight class="comment">/**&lt;<sp/>sensor_frame_t,<sp/>profondeur<sp/>4<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229" refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>QueueHandle_t<sp/><ref refid="structsys__context__t_1a4d3a0e541f4a1f89d6963f42c9ed90a6" kindref="member">ai_to_mesh_queue</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>ai_event_t,<sp/><sp/><sp/><sp/>profondeur<sp/>8<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230" refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>QueueHandle_t<sp/><ref refid="structsys__context__t_1abe84857dbc52bc5e755dbc579279e5f7" kindref="member">diag_to_pc_queue</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>ai_event_t,<sp/><sp/><sp/><sp/>profondeur<sp/>8<sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="231" refid="structsys__context__t_1aff52a7e584b7d6fe202e6b010e077b14" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>QueueHandle_t<sp/><ref refid="structsys__context__t_1aff52a7e584b7d6fe202e6b010e077b14" kindref="member">log_queue</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>char*,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>profondeur<sp/>16<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"></highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Handles<sp/>SPI<sp/>LIDAR<sp/>(initialisés<sp/>par<sp/>hw_diag_run)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="234" refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>spi_device_handle_t<sp/><ref refid="structsys__context__t_1a4c2f527e46587daee12a6cefb08858b6" kindref="member">lidar_spi</ref>[<ref refid="system__types_8h_1a18c8a761396e3a0efb2fe9bbba15f7df" kindref="member">LIDAR_NUM_FRONT</ref>];<sp/></highlight><highlight class="comment">/**&lt;<sp/>SPI<sp/>device<sp/>par<sp/>capteur<sp/>LIDAR<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Snapshot<sp/>LIDAR<sp/>partagé<sp/>(protégé<sp/>par<sp/>data_mutex)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237" refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>SemaphoreHandle_t<sp/><sp/><ref refid="structsys__context__t_1a86a3358fcd69e6c0d0cdf52015de4758" kindref="member">data_mutex</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Mutex<sp/>lecture/écriture<sp/>snapshot<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238" refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structsensor__frame__t" kindref="compound">sensor_frame_t</ref><sp/><sp/><sp/><sp/><sp/><ref refid="structsys__context__t_1aea43db1e1df3e560263bce7ae888d57b" kindref="member">latest_sensor</ref>;<sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>Dernière<sp/>trame<sp/>LIDAR<sp/>+<sp/>Radar<sp/>+<sp/>IA<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239" refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsys__context__t_1aeea7001274ed1c680448cf33aacf9650" kindref="member">sensor_valid</ref>;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>latest_sensor<sp/>contient<sp/>des<sp/>données<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Capteurs<sp/>environnementaux<sp/>(mis<sp/>à<sp/>jour<sp/>par<sp/>Task_Sensor_Acq)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242" refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structenviro__data__t" kindref="compound">enviro_data_t</ref><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsys__context__t_1a17e42bbd9ea1431680001c132181b1d6" kindref="member">enviro</ref>;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Microphone<sp/>(mis<sp/>à<sp/>jour<sp/>par<sp/>mic_driver_read)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245" refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structmic__data__t" kindref="compound">mic_data_t</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structsys__context__t_1a04463a2972f6ffb053a72438d3947c44" kindref="member">mic</ref>;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"></highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>---<sp/>Flags<sp/>d&apos;état<sp/>matériel<sp/>(remplis<sp/>par<sp/>hw_diag_run)<sp/>---<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248" refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structsys__context__t_1ac7c8a12f67fad815d407a70dfe5d5a1c" kindref="member">lidar_ok</ref>[<ref refid="system__types_8h_1a3e10a9d590d4acdf419c70a63d015aa7" kindref="member">LIDAR_NUM_TOTAL</ref>];<sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>le<sp/>capteur<sp/>i<sp/>a<sp/>répondu<sp/>au<sp/>ping<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249" refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structsys__context__t_1a9128708a24cc0c2eb95487b9c565f574" kindref="member">radar_ok</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>une<sp/>trame<sp/>LD6002<sp/>valide<sp/>a<sp/>été<sp/>reçue<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="250" refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structsys__context__t_1a95182dfb0c0515dce7293087479f1481" kindref="member">is_root_node</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/**&lt;<sp/>true<sp/>si<sp/>PIN_ROOT_SEL<sp/>est<sp/>bas<sp/>au<sp/>démarrage<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal">}<sp/><ref refid="structsys__context__t" kindref="compound">sys_context_t</ref>;</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="components/lexacare_types/include/system_types.h"/>
+  </compounddef>
+</doxygen>

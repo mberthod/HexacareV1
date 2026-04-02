@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structmic__data__t" kind="struct" language="C++" prot="public">
+    <compoundname>mic_data_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t mic_data_t::rms</definition>
+        <argsstring></argsstring>
+        <name>rms</name>
+        <qualifiedname>mic_data_t::rms</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Amplitude RMS (unités brutes I2S) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="221" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="221" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t mic_data_t::peak</definition>
+        <argsstring></argsstring>
+        <name>peak</name>
+        <qualifiedname>mic_data_t::peak</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Amplitude crête </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="222" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="222" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool mic_data_t::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>mic_data_t::valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si une lecture valide existe </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="223" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="223" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/include/system_types.h" line="220" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="220" bodyend="224"/>
+    <listofallmembers>
+      <member refid="structmic__data__t_1a6e7a1f257ffdb5a5b88a940b3bff87fe" prot="public" virt="non-virtual"><scope>mic_data_t</scope><name>peak</name></member>
+      <member refid="structmic__data__t_1af20b6346ba9519a86edf8c94710821bf" prot="public" virt="non-virtual"><scope>mic_data_t</scope><name>rms</name></member>
+      <member refid="structmic__data__t_1a2a34613342a61cc2016bc7a9778628f2" prot="public" virt="non-virtual"><scope>mic_data_t</scope><name>valid</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

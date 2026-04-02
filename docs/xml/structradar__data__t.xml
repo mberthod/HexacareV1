@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structradar__data__t" kind="struct" language="C++" prot="public">
+    <compoundname>radar_data_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structradar__data__t_1a701c910c93542668f4b224637db2b736" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float radar_data_t::resp_phase</definition>
+        <argsstring></argsstring>
+        <name>resp_phase</name>
+        <qualifiedname>radar_data_t::resp_phase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Phase respiratoire (rad) — calculée si dispo </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="97" column="13" bodyfile="components/lexacare_types/include/system_types.h" bodystart="97" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float radar_data_t::heart_phase</definition>
+        <argsstring></argsstring>
+        <name>heart_phase</name>
+        <qualifiedname>radar_data_t::heart_phase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Phase cardiaque (rad) — calculée si dispo </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="98" column="13" bodyfile="components/lexacare_types/include/system_types.h" bodystart="98" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1aef77c6374300c5b7db1f80559428be9c" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float radar_data_t::total_phase</definition>
+        <argsstring></argsstring>
+        <name>total_phase</name>
+        <qualifiedname>radar_data_t::total_phase</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Phase totale (rad) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="99" column="13" bodyfile="components/lexacare_types/include/system_types.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t radar_data_t::breath_rate_bpm</definition>
+        <argsstring></argsstring>
+        <name>breath_rate_bpm</name>
+        <qualifiedname>radar_data_t::breath_rate_bpm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Fréquence respiratoire (cycles/min) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="100" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="100" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t radar_data_t::heart_rate_bpm</definition>
+        <argsstring></argsstring>
+        <name>heart_rate_bpm</name>
+        <qualifiedname>radar_data_t::heart_rate_bpm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Fréquence cardiaque (bpm) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="101" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="101" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t radar_data_t::target_distance_mm</definition>
+        <argsstring></argsstring>
+        <name>target_distance_mm</name>
+        <qualifiedname>radar_data_t::target_distance_mm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Distance de la cible (mm) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="102" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="102" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool radar_data_t::presence</definition>
+        <argsstring></argsstring>
+        <name>presence</name>
+        <qualifiedname>radar_data_t::presence</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>true si une personne est détectée </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="103" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="103" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structradar__data__t_1aea519eca3ff083a1f0c8911f5d9356e1" prot="public" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t radar_data_t::timestamp_us</definition>
+        <argsstring></argsstring>
+        <name>timestamp_us</name>
+        <qualifiedname>radar_data_t::timestamp_us</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Horodatage µs </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="104" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/include/system_types.h" line="96" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="96" bodyend="105"/>
+    <listofallmembers>
+      <member refid="structradar__data__t_1aff3811ac5fa450d274494b00a8793858" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>breath_rate_bpm</name></member>
+      <member refid="structradar__data__t_1a44c6ff7879888bbd222a8e0d51385fb7" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>heart_phase</name></member>
+      <member refid="structradar__data__t_1ada6473d97a325963d6f5c78ec7fe6a77" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>heart_rate_bpm</name></member>
+      <member refid="structradar__data__t_1ae64dbc2fcffffc265459995ed4476f1f" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>presence</name></member>
+      <member refid="structradar__data__t_1a701c910c93542668f4b224637db2b736" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>resp_phase</name></member>
+      <member refid="structradar__data__t_1aa4e0441dee4e24232b4b5c83fe42252c" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>target_distance_mm</name></member>
+      <member refid="structradar__data__t_1aea519eca3ff083a1f0c8911f5d9356e1" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>timestamp_us</name></member>
+      <member refid="structradar__data__t_1aef77c6374300c5b7db1f80559428be9c" prot="public" virt="non-virtual"><scope>radar_data_t</scope><name>total_phase</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

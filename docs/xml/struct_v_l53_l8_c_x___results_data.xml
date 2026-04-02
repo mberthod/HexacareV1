@@ -1,0 +1,288 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="struct_v_l53_l8_c_x___results_data" kind="struct" language="C++" prot="public">
+    <compoundname>VL53L8CX_ResultsData</compoundname>
+    <includes refid="vl53l8cx__api_8h" local="no">vl53l8cx_api.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1ab648c5bd1fdc392bf3f869b88c855c16" prot="public" static="no" mutable="no">
+        <type>int8_t</type>
+        <definition>int8_t VL53L8CX_ResultsData::silicon_temp_degc</definition>
+        <argsstring></argsstring>
+        <name>silicon_temp_degc</name>
+        <qualifiedname>VL53L8CX_ResultsData::silicon_temp_degc</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="309" column="8" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="309" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a1ffd8efae5f54d3fa493424598afca10" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_ResultsData::ambient_per_spad[VL53L8CX_RESOLUTION_8X8]</definition>
+        <argsstring>[VL53L8CX_RESOLUTION_8X8]</argsstring>
+        <name>ambient_per_spad</name>
+        <qualifiedname>VL53L8CX_ResultsData::ambient_per_spad</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="313" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="313" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a710c72df15490ee27f5ba54694f3f6df" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::nb_target_detected[VL53L8CX_RESOLUTION_8X8]</definition>
+        <argsstring>[VL53L8CX_RESOLUTION_8X8]</argsstring>
+        <name>nb_target_detected</name>
+        <qualifiedname>VL53L8CX_ResultsData::nb_target_detected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="318" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="318" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1ad266872da9e56ccfa48b25d219b5c8c8" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_ResultsData::nb_spads_enabled[VL53L8CX_RESOLUTION_8X8]</definition>
+        <argsstring>[VL53L8CX_RESOLUTION_8X8]</argsstring>
+        <name>nb_spads_enabled</name>
+        <qualifiedname>VL53L8CX_ResultsData::nb_spads_enabled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="323" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="323" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a2bed9cae05ebd676db08128b3d8b4d3d" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_ResultsData::signal_per_spad[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</definition>
+        <argsstring>[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</argsstring>
+        <name>signal_per_spad</name>
+        <qualifiedname>VL53L8CX_ResultsData::signal_per_spad</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="328" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="329" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a88302491fc37cadf6cee6f108804c13f" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t VL53L8CX_ResultsData::range_sigma_mm[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</definition>
+        <argsstring>[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</argsstring>
+        <name>range_sigma_mm</name>
+        <qualifiedname>VL53L8CX_ResultsData::range_sigma_mm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="334" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="335" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a63464dedeb13da2788953679b8623a13" prot="public" static="no" mutable="no">
+        <type>int16_t</type>
+        <definition>int16_t VL53L8CX_ResultsData::distance_mm[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</definition>
+        <argsstring>[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</argsstring>
+        <name>distance_mm</name>
+        <qualifiedname>VL53L8CX_ResultsData::distance_mm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="340" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="341" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a098b5cbdfa3eb6c8795856dec40722fc" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::reflectance[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</definition>
+        <argsstring>[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</argsstring>
+        <name>reflectance</name>
+        <qualifiedname>VL53L8CX_ResultsData::reflectance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="346" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="347" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a2ab017653d003b500ad091ae002b79e9" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::target_status[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</definition>
+        <argsstring>[(VL53L8CX_RESOLUTION_8X8 *VL53L8CX_NB_TARGET_PER_ZONE)]</argsstring>
+        <name>target_status</name>
+        <qualifiedname>VL53L8CX_ResultsData::target_status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="352" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="353" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1ab37e265b8e7910dfe08cecc7c7def658" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_ResultsData::global_indicator_1</definition>
+        <argsstring></argsstring>
+        <name>global_indicator_1</name>
+        <qualifiedname>VL53L8CX_ResultsData::global_indicator_1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="360" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="360" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a49c08785fe81d9385cd59feba69ce449" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_ResultsData::global_indicator_2</definition>
+        <argsstring></argsstring>
+        <name>global_indicator_2</name>
+        <qualifiedname>VL53L8CX_ResultsData::global_indicator_2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="361" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="361" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a0dcd1767bb6a7b8b0a2f44e1ea820379" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <qualifiedname>VL53L8CX_ResultsData::status</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="362" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="362" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1aad03c6ac456ad7128ab700dfd578764e" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::nb_of_detected_aggregates</definition>
+        <argsstring></argsstring>
+        <name>nb_of_detected_aggregates</name>
+        <qualifiedname>VL53L8CX_ResultsData::nb_of_detected_aggregates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="363" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="363" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a30471b39c95e83fbd9155ce99854dccb" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::nb_of_aggregates</definition>
+        <argsstring></argsstring>
+        <name>nb_of_aggregates</name>
+        <qualifiedname>VL53L8CX_ResultsData::nb_of_aggregates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="364" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="364" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a475af0a0690969a5580014893c62b438" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t VL53L8CX_ResultsData::spare</definition>
+        <argsstring></argsstring>
+        <name>spare</name>
+        <qualifiedname>VL53L8CX_ResultsData::spare</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="365" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="365" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a9ff637a9ca76d30fb98dd4a4d903b1ce" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t VL53L8CX_ResultsData::motion[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>motion</name>
+        <qualifiedname>VL53L8CX_ResultsData::motion</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="366" column="10" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="366" bodyend="-1"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="struct_v_l53_l8_c_x___results_data_1a42b71761eedd124e98fdc86441cbcd46" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_v_l53_l8_c_x___results_data" kindref="compound">VL53L8CX_ResultsData</ref></type>
+        <definition>struct VL53L8CX_ResultsData VL53L8CX_ResultsData::motion_indicator</definition>
+        <argsstring></argsstring>
+        <name>motion_indicator</name>
+        <qualifiedname>VL53L8CX_ResultsData::motion_indicator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="367" column="18"/>
+        <referencedby refid="vl53l8cx__api_8c_1a522352966402d8c83cfc7b4eb15f8ef9" compoundref="vl53l8cx__api_8c" startline="744" endline="908">vl53l8cx_get_ranging_data</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Structure <ref refid="struct_v_l53_l8_c_x___results_data" kindref="compound">VL53L8CX_ResultsData</ref> contains the ranging results of VL53L8CX. If user wants more than 1 target per zone, the results can be split into 2 sub-groups : </para>
+    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para>Per zone results. These results are common to all targets (ambient_per_spad , nb_target_detected and nb_spads_enabled).</para>
+</listitem><listitem><para>Per target results : These results are different relative to the detected target (signal_per_spad, range_sigma_mm, distance_mm, reflectance, target_status). </para>
+</listitem></itemizedlist>
+</para>
+    </detaileddescription>
+    <location file="components/sensor_acq/uld/vl53l8cx_api.h" line="306" column="1" bodyfile="components/sensor_acq/uld/vl53l8cx_api.h" bodystart="307" bodyend="370"/>
+    <listofallmembers>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a1ffd8efae5f54d3fa493424598afca10" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>ambient_per_spad</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a63464dedeb13da2788953679b8623a13" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>distance_mm</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1ab37e265b8e7910dfe08cecc7c7def658" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>global_indicator_1</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a49c08785fe81d9385cd59feba69ce449" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>global_indicator_2</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a9ff637a9ca76d30fb98dd4a4d903b1ce" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>motion</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a42b71761eedd124e98fdc86441cbcd46" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>motion_indicator</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a30471b39c95e83fbd9155ce99854dccb" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>nb_of_aggregates</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1aad03c6ac456ad7128ab700dfd578764e" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>nb_of_detected_aggregates</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1ad266872da9e56ccfa48b25d219b5c8c8" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>nb_spads_enabled</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a710c72df15490ee27f5ba54694f3f6df" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>nb_target_detected</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a88302491fc37cadf6cee6f108804c13f" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>range_sigma_mm</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a098b5cbdfa3eb6c8795856dec40722fc" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>reflectance</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a2bed9cae05ebd676db08128b3d8b4d3d" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>signal_per_spad</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1ab648c5bd1fdc392bf3f869b88c855c16" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>silicon_temp_degc</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a475af0a0690969a5580014893c62b438" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>spare</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a0dcd1767bb6a7b8b0a2f44e1ea820379" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>status</name></member>
+      <member refid="struct_v_l53_l8_c_x___results_data_1a2ab017653d003b500ad091ae002b79e9" prot="public" virt="non-virtual"><scope>VL53L8CX_ResultsData</scope><name>target_status</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

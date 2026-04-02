@@ -1,0 +1,54 @@
+\doxysection{platform.\+h}
+\hypertarget{platform_8h_source}{}\label{platform_8h_source}\index{components/sensor\_acq/uld/platform.h@{components/sensor\_acq/uld/platform.h}}
+\mbox{\hyperlink{platform_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00001}00001\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00002}00002\ \textcolor{comment}{\ *\ @file\ platform.h}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00003}00003\ \textcolor{comment}{\ *\ @brief\ Adaptateur\ plateforme\ pour\ l'ULD\ ST\ VL53L8CX\ (STSW-\/IMG040).}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00004}00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00005}00005\ \textcolor{comment}{\ *\ L'ULD\ ST\ inclut\ un\ fichier\ \`{}platform.h`\ que\ le\ client\ doit\ fournir.}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00006}00006\ \textcolor{comment}{\ *\ Dans\ ce\ firmware,\ la\ couche\ plateforme\ (SPI)\ est\ implémentée\ par\ :}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00007}00007\ \textcolor{comment}{\ *\ \ \ components/sensor\_acq/include/vl53l8cx\_platform.h}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00008}00008\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00009}00009\ \textcolor{comment}{\ *\ Ce\ fichier\ fait\ le\ lien\ entre\ l'ULD\ (API\ ST)\ et\ l'implémentation\ ESP-\/IDF.}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00010}00010\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00012}00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00014}00014\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00015}00015\ \textcolor{preprocessor}{\#include\ <stddef.h>}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00017}00017\ \textcolor{comment}{/*\ Nombre\ de\ cibles\ par\ zone\ (1\ =\ plus\ simple/rapide,\ suffisant\ pour\ la\ matrice\ 8×32)\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00018}00018\ \textcolor{preprocessor}{\#ifndef\ VL53L8CX\_NB\_TARGET\_PER\_ZONE}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00019}\mbox{\hyperlink{platform_8h_a31cf133aaf6b500062702a5a898eb137}{00019}}\ \textcolor{preprocessor}{\#define\ VL53L8CX\_NB\_TARGET\_PER\_ZONE\ 1}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00020}00020\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00022}00022\ \textcolor{comment}{/*\ Désactive\ des\ sorties\ optionnelles\ pour\ réduire\ la\ charge/bandwidth\ (optionnel)\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00023}00023\ \textcolor{comment}{/*\ \#define\ VL53L8CX\_DISABLE\_AMBIENT\_PER\_SPAD\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00025}00025\ \textcolor{comment}{/*\ Plateforme\ SPI\ +\ fonctions\ PAL\ attendues\ par\ l'ULD\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00026}00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{vl53l8cx__platform_8h}{vl53l8cx\_platform.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00027}00027\ \textcolor{comment}{}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00028}00028\ \textcolor{comment}{/**}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00029}00029\ \textcolor{comment}{\ *\ @brief\ Swap\ endianess\ par\ mots\ 32\ bits\ (implémentation\ typique\ ST).}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00030}00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00031}00031\ \textcolor{comment}{\ *\ L'ULD\ manipule\ des\ buffers\ bruts\ (endianness\ capteur)\ et\ attend\ que\ la}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00032}00032\ \textcolor{comment}{\ *\ plateforme\ fournisse\ cette\ primitive.}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00033}00033\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00034}\mbox{\hyperlink{platform_8h_a999e10c40544016ca68ce5fbb3ea620c}{00034}}\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{platform_8h_a999e10c40544016ca68ce5fbb3ea620c}{VL53L8CX\_SwapBuffer}}(uint8\_t\ *buffer,\ uint16\_t\ size)}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00035}00035\ \{}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{if}\ (!buffer)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00038}00038\ \ \ \ \ \textcolor{comment}{/*\ Swap\ par\ blocs\ de\ 4\ octets\ (uint32\_t)\ */}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ (uint16\_t)(i\ +\ 3U)\ <\ size;\ i\ =\ (uint16\_t)(i\ +\ 4U))\ \{}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ b0\ =\ buffer[i\ +\ 0U];}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t\ b1\ =\ buffer[i\ +\ 1U];}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00042}00042\ \ \ \ \ \ \ \ \ buffer[i\ +\ 0U]\ =\ buffer[i\ +\ 3U];}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00043}00043\ \ \ \ \ \ \ \ \ buffer[i\ +\ 1U]\ =\ buffer[i\ +\ 2U];}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00044}00044\ \ \ \ \ \ \ \ \ buffer[i\ +\ 2U]\ =\ b1;}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00045}00045\ \ \ \ \ \ \ \ \ buffer[i\ +\ 3U]\ =\ b0;}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00046}00046\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00047}00047\ \}}
+\DoxyCodeLine{\Hypertarget{platform_8h_source_l00048}00048\ }
+
+\end{DoxyCode}

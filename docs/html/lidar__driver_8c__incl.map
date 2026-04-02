@@ -1,0 +1,62 @@
+<map id="components/sensor_acq/lidar_driver.c" name="components/sensor_acq/lidar_driver.c">
+<area shape="rect" id="Node000001" title="Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C." alt="" coords="783,5,946,48"/>
+<area shape="rect" id="Node000002" href="$lidar__driver_8h.html" title="Interface publique du driver LIDAR VL53L8CX — acquisition et fusion 8×32." alt="" coords="297,96,392,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="783,42,412,99,408,99,407,94,411,93,782,37"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="674,245,816,272"/>
+<area shape="poly" id="edge31_Node000001_Node000006" title=" " alt="" coords="838,50,814,72,794,97,777,131,765,167,751,230,746,229,759,166,772,129,789,95,810,68,834,46"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="390,171,465,197"/>
+<area shape="poly" id="edge28_Node000001_Node000010" title=" " alt="" coords="783,34,694,41,598,53,513,72,480,84,457,98,447,110,439,125,432,156,426,155,434,123,442,107,454,94,478,79,511,67,597,48,694,36,782,29"/>
+<area shape="rect" id="Node000011" href="$radar__driver_8h.html" title="Interface publique du driver Radar HLK&#45;LD6002 — UART + TinyFrame." alt="" coords="173,96,274,123"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="783,38,564,62,290,98,289,93,563,56,783,33"/>
+<area shape="rect" id="Node000012" href="$vl53l8cx__platform_8h.html" title="Couche d&#39;abstraction plateforme pour l&#39;ULD VL53L8CX de ST — interface SPI." alt="" coords="88,171,223,197"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="783,33,617,39,422,51,252,71,193,83,163,98,155,110,151,124,151,155,146,155,146,124,150,108,159,94,192,78,251,65,421,46,617,34,783,27"/>
+<area shape="rect" id="Node000013" href="$hdc1080__driver_8h.html" title="Driver Texas Instruments HDC1080 — Température et Humidité relative." alt="" coords="609,96,729,123"/>
+<area shape="poly" id="edge16_Node000001_Node000013" title=" " alt="" coords="815,51,714,92,712,87,813,46"/>
+<area shape="rect" id="Node000015" href="$bme280__driver_8h.html" title="Driver Bosch BME280 — Température, Pression, Humidité." alt="" coords="468,96,585,123"/>
+<area shape="poly" id="edge19_Node000001_Node000015" title=" " alt="" coords="783,50,595,95,594,89,782,45"/>
+<area shape="rect" id="Node000016" href="$mic__driver_8h.html" title="Driver microphone MEMS numérique — Interface I2S (ESP&#45;IDF v5/v6)." alt="" coords="5,96,98,123"/>
+<area shape="poly" id="edge22_Node000001_Node000016" title=" " alt="" coords="783,36,489,58,303,76,117,99,113,99,112,94,116,93,303,71,488,53,782,30"/>
+<area shape="rect" id="Node000017" href="$lexacare__config_8h.html" title="Activation / désactivation des composants matériels LexaCare V1." alt="" coords="803,96,926,123"/>
+<area shape="poly" id="edge25_Node000001_Node000017" title=" " alt="" coords="868,49,868,80,862,80,862,49"/>
+<area shape="rect" id="Node000018" href="$pins__config_8h.html" title="Définition des broches GPIO et du mapping PCA9555 pour LexaCare V1." alt="" coords="950,96,1049,123"/>
+<area shape="poly" id="edge26_Node000001_Node000018" title=" " alt="" coords="901,46,967,85,964,90,898,51"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="1073,96,1150,123"/>
+<area shape="poly" id="edge27_Node000001_Node000019" title=" " alt="" coords="929,46,1059,88,1057,93,928,51"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="1175,96,1264,123"/>
+<area shape="poly" id="edge29_Node000001_Node000020" title=" " alt="" coords="948,44,1160,92,1159,97,947,49"/>
+<area shape="rect" id="Node000021" title=" " alt="" coords="1288,96,1402,123"/>
+<area shape="poly" id="edge30_Node000001_Node000021" title=" " alt="" coords="947,39,1273,93,1272,98,947,44"/>
+<area shape="rect" id="Node000022" title=" " alt="" coords="1426,96,1531,123"/>
+<area shape="poly" id="edge32_Node000001_Node000022" title=" " alt="" coords="947,34,1154,58,1410,93,1410,98,1153,63,947,39"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="1556,96,1617,123"/>
+<area shape="poly" id="edge33_Node000001_Node000023" title=" " alt="" coords="947,29,1208,48,1373,67,1541,93,1540,98,1372,72,1208,53,947,34"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="1641,96,1705,123"/>
+<area shape="poly" id="edge34_Node000001_Node000024" title=" " alt="" coords="947,28,1076,34,1243,46,1432,65,1626,93,1625,98,1432,70,1243,51,1075,39,947,33"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="1729,96,1792,123"/>
+<area shape="poly" id="edge35_Node000001_Node000025" title=" " alt="" coords="947,27,1090,32,1279,43,1494,63,1714,93,1713,99,1493,68,1279,48,1090,37,947,32"/>
+<area shape="rect" id="Node000003" href="$system__types_8h.html" title="Contrat de données partagé entre tous les composants du firmware LexaCare V1." alt="" coords="250,171,365,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="341,124,323,158,318,156,336,122"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="361,121,404,158,400,162,357,125"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="21,245,85,272"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="264,200,100,247,99,242,262,195"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="266,245,341,272"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="309,198,308,230,302,230,304,198"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="365,192,379,195,659,241,658,246,378,200,365,198"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="364,245,480,272"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="329,196,391,234,388,239,326,200"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="504,245,628,272"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="353,195,507,238,505,243,352,200"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="109,245,242,272"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="286,200,213,240,210,235,283,196"/>
+<area shape="poly" id="edge11_Node000011_Node000003" title=" " alt="" coords="240,121,283,158,280,162,236,125"/>
+<area shape="poly" id="edge12_Node000011_Node000010" title=" " alt="" coords="260,121,378,162,376,167,258,126"/>
+<area shape="poly" id="edge14_Node000012_Node000004" title=" " alt="" coords="139,200,85,238,82,234,136,196"/>
+<area shape="poly" id="edge15_Node000012_Node000009" title=" " alt="" coords="162,197,171,230,165,231,156,199"/>
+<area shape="poly" id="edge18_Node000013_Node000010" title=" " alt="" coords="628,126,480,170,479,165,626,121"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="543,171,675,197"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="660,125,631,161,627,157,656,122"/>
+<area shape="poly" id="edge21_Node000015_Node000010" title=" " alt="" coords="511,125,458,164,455,159,507,121"/>
+<area shape="poly" id="edge20_Node000015_Node000014" title=" " alt="" coords="542,121,585,158,581,162,539,125"/>
+<area shape="poly" id="edge24_Node000016_Node000004" title=" " alt="" coords="54,123,55,230,50,230,49,123"/>
+<area shape="poly" id="edge23_Node000016_Node000010" title=" " alt="" coords="98,116,375,168,374,173,97,121"/>
+</map>

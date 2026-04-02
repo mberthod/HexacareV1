@@ -1,0 +1,801 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="vl53l8cx__plugin__xtalk_8c" kind="file" language="C++">
+    <compoundname>vl53l8cx_plugin_xtalk.c</compoundname>
+    <includes refid="vl53l8cx__plugin__xtalk_8h" local="yes">vl53l8cx_plugin_xtalk.h</includes>
+    <includes local="no">string.h</includes>
+    <incdepgraph>
+      <node id="7">
+        <label>vl53l8cx_platform.h</label>
+        <link refid="vl53l8cx__platform_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>platform.h</label>
+        <link refid="platform_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>vl53l8cx_api.h</label>
+        <link refid="vl53l8cx__api_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c</label>
+        <link refid="vl53l8cx__plugin__xtalk_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>vl53l8cx_plugin_xtalk.h</label>
+        <link refid="vl53l8cx__plugin__xtalk_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>driver/spi_master.h</label>
+      </node>
+      <node id="6">
+        <label>stddef.h</label>
+      </node>
+      <node id="5">
+        <label>stdint.h</label>
+      </node>
+      <node id="9">
+        <label>string.h</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>static uint8_t _vl53l8cx_poll_for_answer</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint16_t address, uint8_t expected_value)</argsstring>
+        <name>_vl53l8cx_poll_for_answer</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>address</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>expected_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Copyright (c) 2021 STMicroelectronics. All rights reserved.</para>
+<para>This software is licensed under terms that can be found in the LICENSE file in the root directory of this software component. If no LICENSE file comes with this software, it is provided AS-IS. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="21" column="16" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="21" bodyend="48"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" compoundref="vl53l8cx__api_8h" startline="275">VL53L8CX_Configuration::platform</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8h_1aa6cca9bd88dccaeff4d34598cb24af77" compoundref="vl53l8cx__api_8h" startline="93">VL53L8CX_MCU_ERROR</references>
+        <references refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" compoundref="vl53l8cx__platform_8c" startline="147" endline="152">VL53L8CX_WaitMs</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" compoundref="vl53l8cx__plugin__xtalk_8c" startline="290" endline="317">vl53l8cx_get_caldata_xtalk</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>static uint8_t _vl53l8cx_program_output_config</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev)</argsstring>
+        <name>_vl53l8cx_program_output_config</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="55" column="16" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="55" bodyend="145"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" compoundref="vl53l8cx__api_8h" startline="279">VL53L8CX_Configuration::data_read_size</references>
+        <references refid="union_block__header_1a088486b6dda766a17c51a48bc8ec7d21" compoundref="vl53l8cx__api_8h" startline="378">Block_header::idx</references>
+        <references refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" compoundref="vl53l8cx__api_8h" startline="377">Block_header::size</references>
+        <references refid="union_block__header_1a42c59513d7645f487db64f0cebae64e5" compoundref="vl53l8cx__api_8h" startline="376">Block_header::type</references>
+        <references refid="vl53l8cx__api_8h_1a77efea2623b3fcbbf85d8ee0c949d15b" compoundref="vl53l8cx__api_8h" startline="176">VL53L8CX_DCI_OUTPUT_CONFIG</references>
+        <references refid="vl53l8cx__api_8h_1a5861ae985bdb06db177b756370639aa7" compoundref="vl53l8cx__api_8h" startline="177">VL53L8CX_DCI_OUTPUT_ENABLES</references>
+        <references refid="vl53l8cx__api_8h_1a26836c043def406819094ccb0622c69c" compoundref="vl53l8cx__api_8h" startline="178">VL53L8CX_DCI_OUTPUT_LIST</references>
+        <references refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" compoundref="vl53l8cx__api_8c" startline="1308" endline="1361">vl53l8cx_dci_write_data</references>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="platform_8h_1a31cf133aaf6b500062702a5a898eb137" compoundref="platform_8h" startline="19">VL53L8CX_NB_TARGET_PER_ZONE</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_calibrate_xtalk</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint16_t reflectance_percent, uint8_t nb_samples, uint16_t distance_mm)</argsstring>
+        <name>vl53l8cx_calibrate_xtalk</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>reflectance_percent</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>nb_samples</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>distance_mm</declname>
+        </param>
+        <briefdescription>
+<para>This function starts the VL53L8CX sensor in order to calibrate Xtalk. This calibration is recommended is user wants to use a coverglass. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint16_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>reflectance_percent : Target reflectance in percent. This value is include between 1 and 99%. For a better efficiency, ST recommends a 3% target reflectance. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>nb_samples : Nb of samples used for calibration. A higher number of samples means a higher accuracy, but it increases the calibration time. Minimum is 1 and maximum is 16. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint16_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>distance_mm : Target distance in mm. The minimum allowed distance is 600mm, and maximum is 3000mm. The target must stay in Full FOV, so short distance are easier for calibration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if calibration OK, 127 if an argument has an incorrect value, or 255 is something failed. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="147" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="147" bodyend="288"/>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="21" endline="48">_vl53l8cx_poll_for_answer</references>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" compoundref="vl53l8cx__plugin__xtalk_8c" startline="55" endline="145">_vl53l8cx_program_output_config</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9b2c9675e763360fc0c8865b31595c18" compoundref="vl53l8cx__api_8h" startline="281">VL53L8CX_Configuration::default_configuration</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9a8b925205c6e9ec22ae28ad972ab64a" compoundref="vl53l8cx__api_8h" startline="283">VL53L8CX_Configuration::default_xtalk</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" compoundref="vl53l8cx__api_8h" startline="275">VL53L8CX_Configuration::platform</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" compoundref="vl53l8cx__plugin__xtalk_8h" startline="142" endline="389">VL53L8CX_CALIBRATE_XTALK</references>
+        <references refid="vl53l8cx__api_8h_1ae857ccc32e3c8185ea47e22605283fc1" compoundref="vl53l8cx__api_8h" startline="159">VL53L8CX_CONFIGURATION_SIZE</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" compoundref="vl53l8cx__plugin__xtalk_8h" startline="32">VL53L8CX_DCI_CAL_CFG</references>
+        <references refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" compoundref="vl53l8cx__api_8c" startline="1363" endline="1379">vl53l8cx_dci_replace_data</references>
+        <references refid="vl53l8cx__api_8c_1a34666a7d3778693b09b6586c2e5ac88b" compoundref="vl53l8cx__api_8c" startline="1016" endline="1029">vl53l8cx_get_integration_time_ms</references>
+        <references refid="vl53l8cx__api_8c_1ab1329ff55825bc53ce30e1e2a65ea1ea" compoundref="vl53l8cx__api_8c" startline="990" endline="1001">vl53l8cx_get_ranging_frequency_hz</references>
+        <references refid="vl53l8cx__api_8c_1a277352277a30567f668aa0e2728b36ce" compoundref="vl53l8cx__api_8c" startline="1125" endline="1144">vl53l8cx_get_ranging_mode</references>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="vl53l8cx__api_8c_1a487baf06564d780210b117e34d8e0c41" compoundref="vl53l8cx__api_8c" startline="1055" endline="1068">vl53l8cx_get_sharpener_percent</references>
+        <references refid="vl53l8cx__api_8c_1a2718a6b0468c8a794c273344afac36c7" compoundref="vl53l8cx__api_8c" startline="1092" endline="1103">vl53l8cx_get_target_order</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" compoundref="vl53l8cx__plugin__xtalk_8h" startline="117" endline="136">VL53L8CX_GET_XTALK_CMD</references>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" compoundref="vl53l8cx__plugin__xtalk_8c" startline="332" endline="345">vl53l8cx_get_xtalk_margin</references>
+        <references refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</references>
+        <references refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" compoundref="vl53l8cx__api_8h" startline="44">VL53L8CX_RESOLUTION_8X8</references>
+        <references refid="vl53l8cx__api_8c_1abcb4f3ccc4813f4aa1851c2d5844641a" compoundref="vl53l8cx__api_8c" startline="1031" endline="1053">vl53l8cx_set_integration_time_ms</references>
+        <references refid="vl53l8cx__api_8c_1aa498a79da766ce9f30d4518403bfbc96" compoundref="vl53l8cx__api_8c" startline="1003" endline="1014">vl53l8cx_set_ranging_frequency_hz</references>
+        <references refid="vl53l8cx__api_8c_1a90f6b7f5130cf36350701771f991bdbf" compoundref="vl53l8cx__api_8c" startline="1146" endline="1183">vl53l8cx_set_ranging_mode</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8c_1a1a4fb3cfa2082032b917b539e244338a" compoundref="vl53l8cx__api_8c" startline="1070" endline="1090">vl53l8cx_set_sharpener_percent</references>
+        <references refid="vl53l8cx__api_8c_1a65ac9339ec503998ca8fc5003f649e53" compoundref="vl53l8cx__api_8c" startline="1105" endline="1123">vl53l8cx_set_target_order</references>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="347" endline="367">vl53l8cx_set_xtalk_margin</references>
+        <references refid="vl53l8cx__api_8h_1a808f141fa4ac8097df405bea9c7914ad" compoundref="vl53l8cx__api_8h" startline="95">VL53L8CX_STATUS_ERROR</references>
+        <references refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" compoundref="vl53l8cx__api_8h" startline="94">VL53L8CX_STATUS_INVALID_PARAM</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__api_8h_1a89d07e895fc3200073cf30f210197257" compoundref="vl53l8cx__api_8h" startline="91">VL53L8CX_STATUS_XTALK_FAILED</references>
+        <references refid="vl53l8cx__api_8h_1a42a5546522d7e26f08fc09394d450071" compoundref="vl53l8cx__api_8h" startline="183">VL53L8CX_UI_CMD_END</references>
+        <references refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" compoundref="vl53l8cx__api_8h" startline="182">VL53L8CX_UI_CMD_START</references>
+        <references refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" compoundref="vl53l8cx__api_8h" startline="181">VL53L8CX_UI_CMD_STATUS</references>
+        <references refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" compoundref="vl53l8cx__platform_8c" startline="147" endline="152">VL53L8CX_WaitMs</references>
+        <references refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</references>
+        <references refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" compoundref="vl53l8cx__api_8h" startline="161">VL53L8CX_XTALK_BUFFER_SIZE</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" compoundref="vl53l8cx__api_8h" startline="287">VL53L8CX_Configuration::xtalk_data</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_caldata_xtalk</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t *p_xtalk_data)</argsstring>
+        <name>vl53l8cx_get_caldata_xtalk</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_xtalk_data</declname>
+        </param>
+        <briefdescription>
+<para>This function gets the Xtalk buffer. The buffer is available after using the function <ref refid="vl53l8cx__plugin__xtalk_8h_1a616b96ba97c939f5b72fde6f84b78177" kindref="member">vl53l8cx_calibrate_xtalk()</ref>. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L5 configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_xtalk_data : Buffer with a size defined by macro VL53L8CX_XTALK_SIZE. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if buffer reading OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="290" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="290" bodyend="317"/>
+        <references refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" compoundref="vl53l8cx__plugin__xtalk_8c" startline="21" endline="48">_vl53l8cx_poll_for_answer</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" compoundref="vl53l8cx__api_8h" startline="275">VL53L8CX_Configuration::platform</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" compoundref="vl53l8cx__plugin__xtalk_8h" startline="117" endline="136">VL53L8CX_GET_XTALK_CMD</references>
+        <references refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" compoundref="vl53l8cx__platform_8c" startline="65" endline="96">VL53L8CX_RdMulti</references>
+        <references refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" compoundref="vl53l8cx__api_8h" startline="44">VL53L8CX_RESOLUTION_8X8</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" compoundref="vl53l8cx__api_8h" startline="182">VL53L8CX_UI_CMD_START</references>
+        <references refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" compoundref="vl53l8cx__api_8h" startline="181">VL53L8CX_UI_CMD_STATUS</references>
+        <references refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" compoundref="vl53l8cx__platform_8c" startline="101" endline="127">VL53L8CX_WrMulti</references>
+        <references refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" compoundref="vl53l8cx__api_8h" startline="161">VL53L8CX_XTALK_BUFFER_SIZE</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1a0a1083d1f57251df3c70caabedd68f41" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_caldata_xtalk</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint8_t *p_xtalk_data)</argsstring>
+        <name>vl53l8cx_set_caldata_xtalk</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>p_xtalk_data</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the Xtalk buffer. This function can be used to override default Xtalk buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L5 configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint8_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_xtalk_data : Buffer with a size defined by macro VL53L8CX_XTALK_SIZE. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if buffer OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="319" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="319" bodyend="330"/>
+        <references refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" compoundref="vl53l8cx__api_8c" startline="910" endline="921">vl53l8cx_get_resolution</references>
+        <references refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" compoundref="vl53l8cx__api_8c" startline="925" endline="988">vl53l8cx_set_resolution</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <references refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" compoundref="vl53l8cx__api_8h" startline="161">VL53L8CX_XTALK_BUFFER_SIZE</references>
+        <references refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" compoundref="vl53l8cx__api_8h" startline="287">VL53L8CX_Configuration::xtalk_data</references>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_get_xtalk_margin</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint32_t *p_xtalk_margin)</argsstring>
+        <name>vl53l8cx_get_xtalk_margin</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint32_t *</type>
+          <declname>p_xtalk_margin</declname>
+        </param>
+        <briefdescription>
+<para>This function gets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint32_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_xtalk_margin : Xtalk margin in kcps/spads. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if reading OK </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="332" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="332" bodyend="345"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" compoundref="vl53l8cx__api_8c" startline="1262" endline="1306">vl53l8cx_dci_read_data</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" compoundref="vl53l8cx__plugin__xtalk_8h" startline="33">VL53L8CX_DCI_XTALK_CFG</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+      <memberdef kind="function" id="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t vl53l8cx_set_xtalk_margin</definition>
+        <argsstring>(VL53L8CX_Configuration *p_dev, uint32_t xtalk_margin)</argsstring>
+        <name>vl53l8cx_set_xtalk_margin</name>
+        <param>
+          <type><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref> *</type>
+          <declname>p_dev</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>xtalk_margin</declname>
+        </param>
+        <briefdescription>
+<para>This function sets the Xtalk margin. This margin is used to increase the Xtalk threshold. It can also be used to avoid false positives after the Xtalk calibration. The default value is 50 kcps/spads. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>(VL53L8CX_Configuration)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>*p_dev : VL53L8CX configuration structure. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>(uint32_t)</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>xtalk_margin : New Xtalk margin in kcps/spads. Min value is 0 kcps/spads, and max is 10.000 kcps/spads </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>(uint8_t) status : 0 if set margin is OK, or 127 is the margin is invalid. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" line="347" column="9" bodyfile="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c" bodystart="347" bodyend="367"/>
+        <references refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" compoundref="vl53l8cx__api_8h" startline="289">VL53L8CX_Configuration::temp_buffer</references>
+        <references refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" compoundref="vl53l8cx__api_8c" startline="1363" endline="1379">vl53l8cx_dci_replace_data</references>
+        <references refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" compoundref="vl53l8cx__plugin__xtalk_8h" startline="33">VL53L8CX_DCI_XTALK_CFG</references>
+        <references refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" compoundref="vl53l8cx__api_8h" startline="94">VL53L8CX_STATUS_INVALID_PARAM</references>
+        <references refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" compoundref="vl53l8cx__api_8h" startline="87">VL53L8CX_STATUS_OK</references>
+        <referencedby refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" compoundref="vl53l8cx__plugin__xtalk_8c" startline="147" endline="288">vl53l8cx_calibrate_xtalk</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/**</highlight></codeline>
+<codeline lineno="2"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/>*<sp/>Copyright<sp/>(c)<sp/>2021<sp/>STMicroelectronics.</highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/><sp/>*<sp/>All<sp/>rights<sp/>reserved.</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/>*<sp/>This<sp/>software<sp/>is<sp/>licensed<sp/>under<sp/>terms<sp/>that<sp/>can<sp/>be<sp/>found<sp/>in<sp/>the<sp/>LICENSE<sp/>file</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/>*<sp/>in<sp/>the<sp/>root<sp/>directory<sp/>of<sp/>this<sp/>software<sp/>component.</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/>*<sp/>If<sp/>no<sp/>LICENSE<sp/>file<sp/>comes<sp/>with<sp/>this<sp/>software,<sp/>it<sp/>is<sp/>provided<sp/>AS-IS.</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/><sp/>*</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/>******************************************************************************</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="vl53l8cx__plugin__xtalk_8h" kindref="compound">vl53l8cx_plugin_xtalk.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/>*<sp/>Inner<sp/>function,<sp/>not<sp/>available<sp/>outside<sp/>this<sp/>file.<sp/>This<sp/>function<sp/>is<sp/>used<sp/>to</highlight></codeline>
+<codeline lineno="18"><highlight class="comment"><sp/>*<sp/>wait<sp/>for<sp/>an<sp/>answer<sp/>from<sp/>VL53L5<sp/>sensor.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kindref="member">_vl53l8cx_poll_for_answer</ref>(</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>address,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>expected_value)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>timeout<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" kindref="member">VL53L8CX_RdMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>address,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/>4);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" kindref="member">VL53L8CX_WaitMs</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/>10);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>2s<sp/>timeout<sp/>or<sp/>FW<sp/>error*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((timeout<sp/>&gt;=<sp/>(uint8_t)200)<sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[2]<sp/>&gt;=<sp/>(uint8_t)<sp/>0x7f))</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8h_1aa6cca9bd88dccaeff4d34598cb24af77" kindref="member">VL53L8CX_MCU_ERROR</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timeout++;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>((p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[0x1])<sp/>!=<sp/>expected_value);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/>*<sp/>Inner<sp/>function,<sp/>not<sp/>available<sp/>outside<sp/>this<sp/>file.<sp/>This<sp/>function<sp/>is<sp/>used<sp/>to</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/>*<sp/>program<sp/>the<sp/>output<sp/>using<sp/>the<sp/>macro<sp/>defined<sp/>into<sp/>the<sp/>&apos;platform.h&apos;<sp/>file.</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" kindref="member">_vl53l8cx_program_output_config</ref>(</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>resolution,<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>i;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>header_config[2]<sp/>=<sp/>{0,<sp/>0};</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal"><ref refid="union_block__header" kindref="compound">Block_header</ref><sp/>*bh_ptr;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" kindref="member">vl53l8cx_get_resolution</ref>(p_dev,<sp/>&amp;resolution);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kindref="member">data_read_size</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Enable<sp/>mandatory<sp/>output<sp/>(meta<sp/>and<sp/>common<sp/>data)<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>output_bh_enable[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0001FFFFU,</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00000000U,</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x00000000U,</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xC0000000U};</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Send<sp/>addresses<sp/>of<sp/>possible<sp/>output<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>output[]<sp/>={</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000000DU,</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x54000040U,</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x9FD800C0U,</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x9FE40140U,</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x9FF80040U,</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x9FFC0404U,</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA0FC0100U,</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA10C0100U,</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA11C00C0U,</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA1280902U,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA2480040U,</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA24C0081U,</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA2540081U,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA25C0081U,</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA2640081U,</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA26C0084U,</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xA28C0082U};</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Update<sp/>data<sp/>size<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>(uint32_t)(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(output)/</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(uint32_t));<sp/>i++)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((output[i]<sp/>==<sp/>(uint8_t)0)<sp/></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>((output_bh_enable[i/(uint32_t)32]</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;((uint32_t)1<sp/>&lt;&lt;<sp/>(i%(uint32_t)32)))<sp/>==<sp/>(uint32_t)0))</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bh_ptr<sp/>=<sp/>(</highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal"><ref refid="union_block__header" kindref="compound">Block_header</ref><sp/>*)&amp;(output[i]);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(((uint8_t)bh_ptr-&gt;<ref refid="union_block__header_1a42c59513d7645f487db64f0cebae64e5" kindref="member">type</ref><sp/>&gt;=<sp/>(uint8_t)0x1)<sp/></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>((uint8_t)bh_ptr-&gt;<ref refid="union_block__header_1a42c59513d7645f487db64f0cebae64e5" kindref="member">type</ref><sp/>&lt;<sp/>(uint8_t)0x0d))</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((bh_ptr-&gt;<ref refid="union_block__header_1a088486b6dda766a17c51a48bc8ec7d21" kindref="member">idx</ref><sp/>&gt;=<sp/>(uint16_t)0x54d0)<sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&amp;&amp;<sp/>(bh_ptr-&gt;<ref refid="union_block__header_1a088486b6dda766a17c51a48bc8ec7d21" kindref="member">idx</ref><sp/>&lt;<sp/>(uint16_t)(0x54d0<sp/>+<sp/>960)))</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bh_ptr-&gt;<ref refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" kindref="member">size</ref><sp/>=<sp/>resolution;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bh_ptr-&gt;<ref refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" kindref="member">size</ref><sp/>=<sp/>(uint8_t)(resolution<sp/></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(uint8_t)<ref refid="platform_8h_1a31cf133aaf6b500062702a5a898eb137" kindref="member">VL53L8CX_NB_TARGET_PER_ZONE</ref>);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kindref="member">data_read_size</ref><sp/>+=<sp/>bh_ptr-&gt;<ref refid="union_block__header_1a42c59513d7645f487db64f0cebae64e5" kindref="member">type</ref><sp/>*<sp/>bh_ptr-&gt;<ref refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kindref="member">data_read_size</ref><sp/>+=<sp/>bh_ptr-&gt;<ref refid="union_block__header_1a56c506d107288a09e0fd4ed0abdd59c8" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kindref="member">data_read_size</ref><sp/>+=<sp/>(uint32_t)4;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kindref="member">data_read_size</ref><sp/>+=<sp/>(uint32_t)24;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" kindref="member">vl53l8cx_dci_write_data</ref>(p_dev,</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint8_t*)&amp;(output),<sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a26836c043def406819094ccb0622c69c" kindref="member">VL53L8CX_DCI_OUTPUT_LIST</ref>,<sp/>(uint16_t)</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(output));</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>header_config[0]<sp/>=<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a1f3343a5f16a49c6d3e6208872e0dfd0" kindref="member">data_read_size</ref>;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>header_config[1]<sp/>=<sp/>i<sp/>+<sp/>(uint32_t)1;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" kindref="member">vl53l8cx_dci_write_data</ref>(p_dev,<sp/>(uint8_t*)&amp;(header_config),</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a77efea2623b3fcbbf85d8ee0c949d15b" kindref="member">VL53L8CX_DCI_OUTPUT_CONFIG</ref>,</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(header_config));</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a1926fbe7e66b009aede955b6225ce221" kindref="member">vl53l8cx_dci_write_data</ref>(p_dev,<sp/>(uint8_t*)&amp;(output_bh_enable),</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a5861ae985bdb06db177b756370639aa7" kindref="member">VL53L8CX_DCI_OUTPUT_ENABLES</ref>,</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(output_bh_enable));</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a616b96ba97c939f5b72fde6f84b78177" kindref="member">vl53l8cx_calibrate_xtalk</ref>(</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reflectance_percent,</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nb_samples,</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint16_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distance_mm)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>timeout<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>cmd[]<sp/>=<sp/>{0x00,<sp/>0x03,<sp/>0x00,<sp/>0x00};</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>footer[]<sp/>=<sp/>{0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0F,<sp/>0x00,<sp/>0x01,<sp/>0x03,<sp/>0x04};</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>continue_loop<sp/>=<sp/>1,<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>resolution,<sp/>frequency,<sp/>target_order,<sp/>sharp_prct,<sp/>ranging_mode;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>integration_time_ms,<sp/>xtalk_margin;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>reflectance<sp/>=<sp/>reflectance_percent;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>samples<sp/>=<sp/>nb_samples;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>distance<sp/>=<sp/>distance_mm;</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>*default_xtalk_ptr;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>initial<sp/>configuration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" kindref="member">vl53l8cx_get_resolution</ref>(p_dev,<sp/>&amp;resolution);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1ab1329ff55825bc53ce30e1e2a65ea1ea" kindref="member">vl53l8cx_get_ranging_frequency_hz</ref>(p_dev,<sp/>&amp;frequency);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a34666a7d3778693b09b6586c2e5ac88b" kindref="member">vl53l8cx_get_integration_time_ms</ref>(p_dev,<sp/>&amp;integration_time_ms);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a487baf06564d780210b117e34d8e0c41" kindref="member">vl53l8cx_get_sharpener_percent</ref>(p_dev,<sp/>&amp;sharp_prct);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a2718a6b0468c8a794c273344afac36c7" kindref="member">vl53l8cx_get_target_order</ref>(p_dev,<sp/>&amp;target_order);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" kindref="member">vl53l8cx_get_xtalk_margin</ref>(p_dev,<sp/>&amp;xtalk_margin);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a277352277a30567f668aa0e2728b36ce" kindref="member">vl53l8cx_get_ranging_mode</ref>(p_dev,<sp/>&amp;ranging_mode);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Check<sp/>input<sp/>arguments<sp/>validity<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(((reflectance<sp/>&lt;<sp/>(uint16_t)1)<sp/>||<sp/>(reflectance<sp/>&gt;<sp/>(uint16_t)99))</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>((distance<sp/>&lt;<sp/>(uint16_t)600)<sp/>||<sp/>(distance<sp/>&gt;<sp/>(uint16_t)3000))</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>||<sp/>((samples<sp/>&lt;<sp/>(uint8_t)1)<sp/>||<sp/>(samples<sp/>&gt;<sp/>(uint8_t)16)))</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" kindref="member">VL53L8CX_STATUS_INVALID_PARAM</ref>;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kindref="member">vl53l8cx_set_resolution</ref>(p_dev,</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" kindref="member">VL53L8CX_RESOLUTION_8X8</ref>);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Send<sp/>Xtalk<sp/>calibration<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)memcpy(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" kindref="member">VL53L8CX_CALIBRATE_XTALK</ref>,</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" kindref="member">VL53L8CX_CALIBRATE_XTALK</ref>));</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/>0x2c28,</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="vl53l8cx__plugin__xtalk_8h_1aeb44e0540e4cb5244ad45fa479ecb65b" kindref="member">VL53L8CX_CALIBRATE_XTALK</ref>));</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kindref="member">_vl53l8cx_poll_for_answer</ref>(p_dev,</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" kindref="member">VL53L8CX_UI_CMD_STATUS</ref>,<sp/>0x3);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Format<sp/>input<sp/>argument<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>reflectance<sp/>=<sp/>reflectance<sp/>*<sp/>(uint16_t)16;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distance<sp/>=<sp/>distance<sp/>*<sp/>(uint16_t)4;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Update<sp/>required<sp/>fields<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" kindref="member">vl53l8cx_dci_replace_data</ref>(p_dev,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" kindref="member">VL53L8CX_DCI_CAL_CFG</ref>,<sp/>8,</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint8_t*)&amp;distance,<sp/>2,<sp/>0x00);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" kindref="member">vl53l8cx_dci_replace_data</ref>(p_dev,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" kindref="member">VL53L8CX_DCI_CAL_CFG</ref>,<sp/>8,</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint8_t*)&amp;reflectance,<sp/>2,0x02);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" kindref="member">vl53l8cx_dci_replace_data</ref>(p_dev,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1af56f2c5de217da4a1399361b0db9d39f" kindref="member">VL53L8CX_DCI_CAL_CFG</ref>,<sp/>8,</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint8_t*)&amp;samples,<sp/>1,<sp/>0x04);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Program<sp/>output<sp/>for<sp/>Xtalk<sp/>calibration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1ada5ef9bbc3fcdd3b8f681d08943c8d10" kindref="member">_vl53l8cx_program_output_config</ref>(p_dev);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Start<sp/>ranging<sp/>session<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a42a5546522d7e26f08fc09394d450071" kindref="member">VL53L8CX_UI_CMD_END</ref><sp/>-<sp/>(uint16_t)(4<sp/>-<sp/>1),</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint8_t*)cmd,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(cmd));</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kindref="member">_vl53l8cx_poll_for_answer</ref>(p_dev,</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" kindref="member">VL53L8CX_UI_CMD_STATUS</ref>,<sp/>0x3);</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"></highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Wait<sp/>for<sp/>end<sp/>of<sp/>calibration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" kindref="member">VL53L8CX_RdMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/>4);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[0]<sp/>!=<sp/><ref refid="vl53l8cx__api_8h_1a808f141fa4ac8097df405bea9c7914ad" kindref="member">VL53L8CX_STATUS_ERROR</ref>)</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Coverglass<sp/>too<sp/>good<sp/>for<sp/>Xtalk<sp/>calibration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[2]<sp/>&gt;=<sp/>(uint8_t)0x7f)<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(((uint16_t)(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[3]<sp/>&amp;<sp/></highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)0x80)<sp/>&gt;&gt;<sp/>7)<sp/>==<sp/>(uint16_t)1))</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>default_xtalk_ptr<sp/>=<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9a8b925205c6e9ec22ae28ad972ab64a" kindref="member">default_xtalk</ref>;</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)memcpy(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" kindref="member">xtalk_data</ref>,<sp/></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>default_xtalk_ptr,</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" kindref="member">xtalk_data</ref>));</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8h_1a89d07e895fc3200073cf30f210197257" kindref="member">VL53L8CX_STATUS_XTALK_FAILED</ref>;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>continue_loop<sp/>=<sp/>(uint8_t)0;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(timeout<sp/>&gt;=<sp/>(uint16_t)400)</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8h_1a808f141fa4ac8097df405bea9c7914ad" kindref="member">VL53L8CX_STATUS_ERROR</ref>;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>continue_loop<sp/>=<sp/>(uint8_t)0;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timeout++;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a03e447cf6ff03fb5be303b919a099751" kindref="member">VL53L8CX_WaitMs</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/>50);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(continue_loop<sp/>==<sp/>(uint8_t)1);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Save<sp/>Xtalk<sp/>data<sp/>into<sp/>the<sp/>Xtalk<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)memcpy(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>,</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>));</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/>0x2fb8,</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint16_t)</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>));</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kindref="member">_vl53l8cx_poll_for_answer</ref>(p_dev,<ref refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" kindref="member">VL53L8CX_UI_CMD_STATUS</ref>,<sp/>0x03);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" kindref="member">VL53L8CX_RdMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/><ref refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" kindref="member">VL53L8CX_UI_CMD_START</ref>,</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref><sp/>+<sp/>(uint16_t)4);</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)memcpy(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" kindref="member">xtalk_data</ref>[0]),<sp/>&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[8]),</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref><sp/>-<sp/>(uint16_t)8);</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)memcpy(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" kindref="member">xtalk_data</ref>[<ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>(uint16_t)8]),<sp/>footer,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(footer));</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>default<sp/>buffer<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/>0x2c34,</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9b2c9675e763360fc0c8865b31595c18" kindref="member">default_configuration</ref>,</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1ae857ccc32e3c8185ea47e22605283fc1" kindref="member">VL53L8CX_CONFIGURATION_SIZE</ref>);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kindref="member">_vl53l8cx_poll_for_answer</ref>(p_dev,<ref refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" kindref="member">VL53L8CX_UI_CMD_STATUS</ref>,<sp/>0x03);</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Reset<sp/>initial<sp/>configuration<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kindref="member">vl53l8cx_set_resolution</ref>(p_dev,<sp/>resolution);</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1aa498a79da766ce9f30d4518403bfbc96" kindref="member">vl53l8cx_set_ranging_frequency_hz</ref>(p_dev,<sp/>frequency);</highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1abcb4f3ccc4813f4aa1851c2d5844641a" kindref="member">vl53l8cx_set_integration_time_ms</ref>(p_dev,<sp/>integration_time_ms);</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a1a4fb3cfa2082032b917b539e244338a" kindref="member">vl53l8cx_set_sharpener_percent</ref>(p_dev,<sp/>sharp_prct);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a65ac9339ec503998ca8fc5003f649e53" kindref="member">vl53l8cx_set_target_order</ref>(p_dev,<sp/>target_order);</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" kindref="member">vl53l8cx_set_xtalk_margin</ref>(p_dev,<sp/>xtalk_margin);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a90f6b7f5130cf36350701771f991bdbf" kindref="member">vl53l8cx_set_ranging_mode</ref>(p_dev,<sp/>ranging_mode);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="288"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"></highlight></codeline>
+<codeline lineno="290" refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a638fa39db7d6506992b20388f9880b47" kindref="member">vl53l8cx_get_caldata_xtalk</ref>(</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_xtalk_data)</highlight></codeline>
+<codeline lineno="293"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>,<sp/>resolution;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>footer[]<sp/>=<sp/>{0x00,<sp/>0x00,<sp/>0x00,<sp/>0x0F,<sp/>0x00,<sp/>0x01,<sp/>0x03,<sp/>0x04};</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" kindref="member">vl53l8cx_get_resolution</ref>(p_dev,<sp/>&amp;resolution);</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kindref="member">vl53l8cx_set_resolution</ref>(p_dev,<sp/><ref refid="vl53l8cx__api_8h_1a9ceeb4d5ecdb478176b74c428e3c78a2" kindref="member">VL53L8CX_RESOLUTION_8X8</ref>);</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(void)memcpy(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>,</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>));</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1a1570cfa7d62d2faec410934391b845b7" kindref="member">VL53L8CX_WrMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/>0x2fb8,</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/><sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="vl53l8cx__plugin__xtalk_8h_1aeae226bcd520b899b7d88b50310b99d5" kindref="member">VL53L8CX_GET_XTALK_CMD</ref>));</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a46caf15b3ffb2e47f9a5d1beeb6f751b" kindref="member">_vl53l8cx_poll_for_answer</ref>(p_dev,<ref refid="vl53l8cx__api_8h_1a085dc2b61b48ed8d364612236efda914" kindref="member">VL53L8CX_UI_CMD_STATUS</ref>,<sp/>0x03);</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__platform_8h_1af4dfb23228937a89dab5c68f81836248" kindref="member">VL53L8CX_RdMulti</ref>(&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1ac0d3707cb04f4b812e77a648ee6d4e38" kindref="member">platform</ref>),<sp/><ref refid="vl53l8cx__api_8h_1a1ef45836ad668a7c7847e2b49a7dd9a0" kindref="member">VL53L8CX_UI_CMD_START</ref>,</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref><sp/>+<sp/>(uint16_t)4);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)memcpy(&amp;(p_xtalk_data[0]),<sp/>&amp;(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>[8]),</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref>-(uint16_t)8);</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)memcpy(&amp;(p_xtalk_data[<ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref><sp/>-<sp/>(uint16_t)8]),</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>footer,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(footer));</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kindref="member">vl53l8cx_set_resolution</ref>(p_dev,<sp/>resolution);</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319" refid="vl53l8cx__plugin__xtalk_8c_1a0a1083d1f57251df3c70caabedd68f41" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a0a1083d1f57251df3c70caabedd68f41" kindref="member">vl53l8cx_set_caldata_xtalk</ref>(</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint8_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_xtalk_data)</highlight></codeline>
+<codeline lineno="322"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>resolution,<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a0a552d3fdea8a1a38c1642eb7b5cc4d5" kindref="member">vl53l8cx_get_resolution</ref>(p_dev,<sp/>&amp;resolution);</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)memcpy(p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1a9fb5321ff99811f825ecda45a54e6e82" kindref="member">xtalk_data</ref>,<sp/>p_xtalk_data,<sp/><ref refid="vl53l8cx__api_8h_1a7c9f6f3d3dbee9085109c3f32015ed77" kindref="member">VL53L8CX_XTALK_BUFFER_SIZE</ref>);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a75ec684bc81068955b37aaac1dfcf4f8" kindref="member">vl53l8cx_set_resolution</ref>(p_dev,<sp/>resolution);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332" refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a93cab7c0d8a298a1c2b0206ffc1fa664" kindref="member">vl53l8cx_get_xtalk_margin</ref>(</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*p_xtalk_margin)</highlight></codeline>
+<codeline lineno="335"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a622e5a7b1ab7b329bb6eee40429599da" kindref="member">vl53l8cx_dci_read_data</ref>(p_dev,<sp/>(uint8_t*)p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" kindref="member">VL53L8CX_DCI_XTALK_CFG</ref>,<sp/>16);</highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)memcpy(p_xtalk_margin,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,<sp/>4);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>*p_xtalk_margin<sp/>=<sp/>*p_xtalk_margin/(uint32_t)2048;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"></highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="345"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"></highlight></codeline>
+<codeline lineno="347" refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="vl53l8cx__plugin__xtalk_8c_1a8d182a0a999996a2c3606a8076ca3b9b" kindref="member">vl53l8cx_set_xtalk_margin</ref>(</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_v_l53_l8_c_x___configuration" kindref="compound">VL53L8CX_Configuration</ref><sp/><sp/><sp/><sp/><sp/><sp/>*p_dev,</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xtalk_margin)</highlight></codeline>
+<codeline lineno="350"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>status<sp/>=<sp/><ref refid="vl53l8cx__api_8h_1a8880e2a53baf303b140f14e2628cd15c" kindref="member">VL53L8CX_STATUS_OK</ref>;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t<sp/>margin_kcps<sp/>=<sp/>xtalk_margin;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(margin_kcps<sp/>&gt;<sp/>(uint32_t)10000)</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8h_1a5e9841e5918ff72e9392c926e9716898" kindref="member">VL53L8CX_STATUS_INVALID_PARAM</ref>;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>margin_kcps<sp/>=<sp/>margin_kcps*(uint32_t)2048;</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>status<sp/>|=<sp/><ref refid="vl53l8cx__api_8c_1a4e9069c48c4beee6518c74ecefdc2573" kindref="member">vl53l8cx_dci_replace_data</ref>(p_dev,<sp/>p_dev-&gt;<ref refid="struct_v_l53_l8_c_x___configuration_1aef27e6190a4305eaf53d1c84f8e88f95" kindref="member">temp_buffer</ref>,</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="vl53l8cx__plugin__xtalk_8h_1abaa177db90ba502772328a3b4d990fe0" kindref="member">VL53L8CX_DCI_XTALK_CFG</ref>,<sp/>16,</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(uint8_t*)&amp;margin_kcps,<sp/>4,<sp/>0x00);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>status;</highlight></codeline>
+<codeline lineno="367"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="components/sensor_acq/uld/vl53l8cx_plugin_xtalk.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="structlidar__matrix__t" kind="struct" language="C++" prot="public">
+    <compoundname>lidar_matrix_t</compoundname>
+    <includes refid="system__types_8h" local="no">system_types.h</includes>
+    <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t lidar_matrix_t::data[LIDAR_ROWS][LIDAR_COLS]</definition>
+        <argsstring>[LIDAR_ROWS][LIDAR_COLS]</argsstring>
+        <name>data</name>
+        <qualifiedname>lidar_matrix_t::data</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Distances en mm </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="81" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="81" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" compoundref="lidar__driver_8c" startline="170" endline="238">lidar_read_sensor</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" compoundref="fall__detection__ai_8cc" startline="106" endline="123">threshold_avg_lower_zone</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structlidar__matrix__t_1a1cba5fb965937d1ab5f8a047d3932962" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t lidar_matrix_t::vertical_mm</definition>
+        <argsstring></argsstring>
+        <name>vertical_mm</name>
+        <qualifiedname>lidar_matrix_t::vertical_mm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Distance capteur sol (5e capteur) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="82" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" prot="public" static="no" mutable="no">
+        <type>int64_t</type>
+        <definition>int64_t lidar_matrix_t::timestamp_us</definition>
+        <argsstring></argsstring>
+        <name>timestamp_us</name>
+        <qualifiedname>lidar_matrix_t::timestamp_us</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Horodatage µs (esp_timer_get_time) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="83" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="83" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool lidar_matrix_t::valid</definition>
+        <argsstring></argsstring>
+        <name>valid</name>
+        <qualifiedname>lidar_matrix_t::valid</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>false si lecture I2C échouée </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="84" column="14" bodyfile="components/lexacare_types/include/system_types.h" bodystart="84" bodyend="-1"/>
+        <referencedby refid="lidar__driver_8c_1a4111a5f42c63c264e7dbbe4ee8982826" compoundref="lidar__driver_8c" startline="250" endline="370">task_sensor_acq</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="components/lexacare_types/include/system_types.h" line="80" column="1" bodyfile="components/lexacare_types/include/system_types.h" bodystart="80" bodyend="85"/>
+    <listofallmembers>
+      <member refid="structlidar__matrix__t_1a643f1fbede4af88ac40bebd58182a377" prot="public" virt="non-virtual"><scope>lidar_matrix_t</scope><name>data</name></member>
+      <member refid="structlidar__matrix__t_1ad8d425a567ee798b021a47ad1ea563f4" prot="public" virt="non-virtual"><scope>lidar_matrix_t</scope><name>timestamp_us</name></member>
+      <member refid="structlidar__matrix__t_1a4a2465a1f0aa3ac73e003754d9200fa6" prot="public" virt="non-virtual"><scope>lidar_matrix_t</scope><name>valid</name></member>
+      <member refid="structlidar__matrix__t_1a1cba5fb965937d1ab5f8a047d3932962" prot="public" virt="non-virtual"><scope>lidar_matrix_t</scope><name>vertical_mm</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

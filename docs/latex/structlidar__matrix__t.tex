@@ -1,0 +1,86 @@
+\doxysection{lidar\+\_\+matrix\+\_\+t Struct Reference}
+\hypertarget{structlidar__matrix__t}{}\label{structlidar__matrix__t}\index{lidar\_matrix\_t@{lidar\_matrix\_t}}
+
+
+{\ttfamily \#include $<$system\+\_\+types.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}{data}} \mbox{[}\mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\+\_\+\+ROWS}}\mbox{]}\mbox{[}\mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\+\_\+\+COLS}}\mbox{]}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structlidar__matrix__t_a1cba5fb965937d1ab5f8a047d3932962}{vertical\+\_\+mm}}
+\item 
+int64\+\_\+t \mbox{\hyperlink{structlidar__matrix__t_ad8d425a567ee798b021a47ad1ea563f4}{timestamp\+\_\+us}}
+\item 
+bool \mbox{\hyperlink{structlidar__matrix__t_a4a2465a1f0aa3ac73e003754d9200fa6}{valid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00080}{80}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{structlidar__matrix__t_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377}\index{lidar\_matrix\_t@{lidar\_matrix\_t}!data@{data}}
+\index{data@{data}!lidar\_matrix\_t@{lidar\_matrix\_t}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \label{structlidar__matrix__t_a643f1fbede4af88ac40bebd58182a377} 
+uint16\+\_\+t lidar\+\_\+matrix\+\_\+t\+::data\mbox{[}\mbox{\hyperlink{group__group__config_ga9f4c6016cba9a535ed4930d27b9e2e72}{LIDAR\+\_\+\+ROWS}}\mbox{]}\mbox{[}\mbox{\hyperlink{system__types_8h_aedde93e1e75248b6ed62d0bd58598d49}{LIDAR\+\_\+\+COLS}}\mbox{]}}
+
+Distances en mm 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00081}{81}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{pc__diag_8c_source_l00096}{build\+\_\+sensor\+\_\+json()}}, \mbox{\hyperlink{lidar__driver_8c_source_l00170}{lidar\+\_\+read\+\_\+sensor()}}, and \mbox{\hyperlink{fall__detection__ai_8cc_source_l00106}{threshold\+\_\+avg\+\_\+lower\+\_\+zone()}}.
+
+\Hypertarget{structlidar__matrix__t_ad8d425a567ee798b021a47ad1ea563f4}\index{lidar\_matrix\_t@{lidar\_matrix\_t}!timestamp\_us@{timestamp\_us}}
+\index{timestamp\_us@{timestamp\_us}!lidar\_matrix\_t@{lidar\_matrix\_t}}
+\doxysubsubsection{\texorpdfstring{timestamp\_us}{timestamp\_us}}
+{\footnotesize\ttfamily \label{structlidar__matrix__t_ad8d425a567ee798b021a47ad1ea563f4} 
+int64\+\_\+t lidar\+\_\+matrix\+\_\+t\+::timestamp\+\_\+us}
+
+Horodatage µs (esp\+\_\+timer\+\_\+get\+\_\+time) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00083}{83}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structlidar__matrix__t_a4a2465a1f0aa3ac73e003754d9200fa6}\index{lidar\_matrix\_t@{lidar\_matrix\_t}!valid@{valid}}
+\index{valid@{valid}!lidar\_matrix\_t@{lidar\_matrix\_t}}
+\doxysubsubsection{\texorpdfstring{valid}{valid}}
+{\footnotesize\ttfamily \label{structlidar__matrix__t_a4a2465a1f0aa3ac73e003754d9200fa6} 
+bool lidar\+\_\+matrix\+\_\+t\+::valid}
+
+false si lecture I2C échouée 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00084}{84}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{lidar__driver_8c_source_l00250}{task\+\_\+sensor\+\_\+acq()}}.
+
+\Hypertarget{structlidar__matrix__t_a1cba5fb965937d1ab5f8a047d3932962}\index{lidar\_matrix\_t@{lidar\_matrix\_t}!vertical\_mm@{vertical\_mm}}
+\index{vertical\_mm@{vertical\_mm}!lidar\_matrix\_t@{lidar\_matrix\_t}}
+\doxysubsubsection{\texorpdfstring{vertical\_mm}{vertical\_mm}}
+{\footnotesize\ttfamily \label{structlidar__matrix__t_a1cba5fb965937d1ab5f8a047d3932962} 
+uint16\+\_\+t lidar\+\_\+matrix\+\_\+t\+::vertical\+\_\+mm}
+
+Distance capteur sol (5e capteur) 
+
+Definition at line \mbox{\hyperlink{system__types_8h_source_l00082}{82}} of file \mbox{\hyperlink{system__types_8h_source}{system\+\_\+types.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/lexacare\+\_\+types/include/\mbox{\hyperlink{system__types_8h}{system\+\_\+types.\+h}}\end{DoxyCompactItemize}

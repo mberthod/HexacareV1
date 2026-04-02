@@ -1,0 +1,185 @@
+\doxysection{VL53\+L8\+CX\+\_\+\+Configuration Struct Reference}
+\hypertarget{struct_v_l53_l8_c_x___configuration}{}\label{struct_v_l53_l8_c_x___configuration}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+
+
+Structure \doxylink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration} contains the sensor configuration. User MUST not manually change these field, except for the sensor address.  
+
+
+
+
+{\ttfamily \#include $<$vl53l8cx\+\_\+api.\+h$>$}
+
+
+
+Collaboration diagram for VL53\+L8\+CX\+\_\+\+Configuration\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=206pt]{struct_v_l53_l8_c_x___configuration__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}{platform}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a55fce57b4cee980619298a85628ebfc8}{streamcount}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a1f3343a5f16a49c6d3e6208872e0dfd0}{data\+\_\+read\+\_\+size}}
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9b2c9675e763360fc0c8865b31595c18}{default\+\_\+configuration}}
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9a8b925205c6e9ec22ae28ad972ab64a}{default\+\_\+xtalk}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a0515da685c3d5e34c4c3fd292ba1ddf0}{offset\+\_\+data}} \mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_aa8a012c0df06ce35f34255e03641e56a}{VL53\+L8\+CX\+\_\+\+OFFSET\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}{xtalk\+\_\+data}} \mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}{temp\+\_\+buffer}} \mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a5bd993302a920baa998c50d8e34df152}{VL53\+L8\+CX\+\_\+\+TEMPORARY\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{struct_v_l53_l8_c_x___configuration_a30a47d8990430ecbc960040d8950c88a}{is\+\_\+auto\+\_\+stop\+\_\+enabled}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure \doxylink{struct_v_l53_l8_c_x___configuration}{VL53\+L8\+CX\+\_\+\+Configuration} contains the sensor configuration. User MUST not manually change these field, except for the sensor address. 
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00272}{272}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{struct_v_l53_l8_c_x___configuration_doc-variable-members}
+\doxysubsection{Field Documentation}
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a1f3343a5f16a49c6d3e6208872e0dfd0}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!data\_read\_size@{data\_read\_size}}
+\index{data\_read\_size@{data\_read\_size}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{data\_read\_size}{data\_read\_size}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a1f3343a5f16a49c6d3e6208872e0dfd0} 
+uint32\+\_\+t VL53\+L8\+CX\+\_\+\+Configuration\+::data\+\_\+read\+\_\+size}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00279}{279}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00055}{\+\_\+vl53l8cx\+\_\+program\+\_\+output\+\_\+config()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a9b2c9675e763360fc0c8865b31595c18}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!default\_configuration@{default\_configuration}}
+\index{default\_configuration@{default\_configuration}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{default\_configuration}{default\_configuration}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a9b2c9675e763360fc0c8865b31595c18} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} VL53\+L8\+CX\+\_\+\+Configuration\+::default\+\_\+configuration}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00281}{281}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a9a8b925205c6e9ec22ae28ad972ab64a}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!default\_xtalk@{default\_xtalk}}
+\index{default\_xtalk@{default\_xtalk}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{default\_xtalk}{default\_xtalk}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a9a8b925205c6e9ec22ae28ad972ab64a} 
+uint8\+\_\+t\texorpdfstring{$\ast$}{*} VL53\+L8\+CX\+\_\+\+Configuration\+::default\+\_\+xtalk}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00283}{283}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a30a47d8990430ecbc960040d8950c88a}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!is\_auto\_stop\_enabled@{is\_auto\_stop\_enabled}}
+\index{is\_auto\_stop\_enabled@{is\_auto\_stop\_enabled}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{is\_auto\_stop\_enabled}{is\_auto\_stop\_enabled}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a30a47d8990430ecbc960040d8950c88a} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Configuration\+::is\+\_\+auto\+\_\+stop\+\_\+enabled}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00291}{291}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00175}{vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00659}{vl53l8cx\+\_\+stop\+\_\+ranging()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a0515da685c3d5e34c4c3fd292ba1ddf0}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!offset\_data@{offset\_data}}
+\index{offset\_data@{offset\_data}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{offset\_data}{offset\_data}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a0515da685c3d5e34c4c3fd292ba1ddf0} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Configuration\+::offset\+\_\+data\mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_aa8a012c0df06ce35f34255e03641e56a}{VL53\+L8\+CX\+\_\+\+OFFSET\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00285}{285}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00094}{\+\_\+vl53l8cx\+\_\+send\+\_\+offset\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!platform@{platform}}
+\index{platform@{platform}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{platform}{platform}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_ac0d3707cb04f4b812e77a648ee6d4e38} 
+\mbox{\hyperlink{struct_v_l53_l8_c_x___platform}{VL53\+L8\+CX\+\_\+\+Platform}} VL53\+L8\+CX\+\_\+\+Configuration\+::platform}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00275}{275}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00021}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00023}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00062}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+mcu\+\_\+boot()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00094}{\+\_\+vl53l8cx\+\_\+send\+\_\+offset\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00164}{\+\_\+vl53l8cx\+\_\+send\+\_\+xtalk\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00713}{vl53l8cx\+\_\+check\+\_\+data\+\_\+ready()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01308}{vl53l8cx\+\_\+dci\+\_\+write\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00290}{vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00425}{vl53l8cx\+\_\+get\+\_\+power\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00219}{vl53l8cx\+\_\+is\+\_\+alive()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00411}{vl53l8cx\+\_\+set\+\_\+i2c\+\_\+address()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00462}{vl53l8cx\+\_\+set\+\_\+power\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00659}{vl53l8cx\+\_\+stop\+\_\+ranging()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a55fce57b4cee980619298a85628ebfc8}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!streamcount@{streamcount}}
+\index{streamcount@{streamcount}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{streamcount}{streamcount}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a55fce57b4cee980619298a85628ebfc8} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Configuration\+::streamcount}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00277}{277}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00713}{vl53l8cx\+\_\+check\+\_\+data\+\_\+ready()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!temp\_buffer@{temp\_buffer}}
+\index{temp\_buffer@{temp\_buffer}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{temp\_buffer}{temp\_buffer}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_aef27e6190a4305eaf53d1c84f8e88f95} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Configuration\+::temp\+\_\+buffer\mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a5bd993302a920baa998c50d8e34df152}{VL53\+L8\+CX\+\_\+\+TEMPORARY\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00289}{289}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00021}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00023}{\+\_\+vl53l8cx\+\_\+poll\+\_\+for\+\_\+answer()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00094}{\+\_\+vl53l8cx\+\_\+send\+\_\+offset\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00164}{\+\_\+vl53l8cx\+\_\+send\+\_\+xtalk\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00713}{vl53l8cx\+\_\+check\+\_\+data\+\_\+ready()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01262}{vl53l8cx\+\_\+dci\+\_\+read\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01308}{vl53l8cx\+\_\+dci\+\_\+write\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00290}{vl53l8cx\+\_\+get\+\_\+caldata\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00162}{vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00015}{vl53l8cx\+\_\+get\+\_\+detection\+\_\+thresholds\+\_\+enable()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01185}{vl53l8cx\+\_\+get\+\_\+external\+\_\+sync\+\_\+pin\+\_\+enable()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01016}{vl53l8cx\+\_\+get\+\_\+integration\+\_\+time\+\_\+ms()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00744}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00990}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+frequency\+\_\+hz()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01125}{vl53l8cx\+\_\+get\+\_\+ranging\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00910}{vl53l8cx\+\_\+get\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01055}{vl53l8cx\+\_\+get\+\_\+sharpener\+\_\+percent()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01092}{vl53l8cx\+\_\+get\+\_\+target\+\_\+order()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01236}{vl53l8cx\+\_\+get\+\_\+\+VHV\+\_\+repeat\+\_\+count()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00332}{vl53l8cx\+\_\+get\+\_\+xtalk\+\_\+margin()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00175}{vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+auto\+\_\+stop()}}, \mbox{\hyperlink{vl53l8cx__plugin__detection__thresholds_8c_source_l00028}{vl53l8cx\+\_\+set\+\_\+detection\+\_\+thresholds\+\_\+enable()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01207}{vl53l8cx\+\_\+set\+\_\+external\+\_\+sync\+\_\+pin\+\_\+enable()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01031}{vl53l8cx\+\_\+set\+\_\+integration\+\_\+time\+\_\+ms()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01003}{vl53l8cx\+\_\+set\+\_\+ranging\+\_\+frequency\+\_\+hz()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01146}{vl53l8cx\+\_\+set\+\_\+ranging\+\_\+mode()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00925}{vl53l8cx\+\_\+set\+\_\+resolution()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01070}{vl53l8cx\+\_\+set\+\_\+sharpener\+\_\+percent()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01105}{vl53l8cx\+\_\+set\+\_\+target\+\_\+order()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l01252}{vl53l8cx\+\_\+set\+\_\+\+VHV\+\_\+repeat\+\_\+count()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00347}{vl53l8cx\+\_\+set\+\_\+xtalk\+\_\+margin()}}, and \mbox{\hyperlink{vl53l8cx__api_8c_source_l00514}{vl53l8cx\+\_\+start\+\_\+ranging()}}.
+
+\Hypertarget{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82}\index{VL53L8CX\_Configuration@{VL53L8CX\_Configuration}!xtalk\_data@{xtalk\_data}}
+\index{xtalk\_data@{xtalk\_data}!VL53L8CX\_Configuration@{VL53L8CX\_Configuration}}
+\doxysubsubsection{\texorpdfstring{xtalk\_data}{xtalk\_data}}
+{\footnotesize\ttfamily \label{struct_v_l53_l8_c_x___configuration_a9fb5321ff99811f825ecda45a54e6e82} 
+uint8\+\_\+t VL53\+L8\+CX\+\_\+\+Configuration\+::xtalk\+\_\+data\mbox{[}\mbox{\hyperlink{vl53l8cx__api_8h_a7c9f6f3d3dbee9085109c3f32015ed77}{VL53\+L8\+CX\+\_\+\+XTALK\+\_\+\+BUFFER\+\_\+\+SIZE}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{vl53l8cx__api_8h_source_l00287}{287}} of file \mbox{\hyperlink{vl53l8cx__api_8h_source}{vl53l8cx\+\_\+api.\+h}}.
+
+
+
+Referenced by \mbox{\hyperlink{vl53l8cx__api_8c_source_l00164}{\+\_\+vl53l8cx\+\_\+send\+\_\+xtalk\+\_\+data()}}, \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00147}{vl53l8cx\+\_\+calibrate\+\_\+xtalk()}}, \mbox{\hyperlink{vl53l8cx__api_8c_source_l00243}{vl53l8cx\+\_\+init()}}, and \mbox{\hyperlink{vl53l8cx__plugin__xtalk_8c_source_l00319}{vl53l8cx\+\_\+set\+\_\+caldata\+\_\+xtalk()}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+components/sensor\+\_\+acq/uld/\mbox{\hyperlink{vl53l8cx__api_8h}{vl53l8cx\+\_\+api.\+h}}\end{DoxyCompactItemize}

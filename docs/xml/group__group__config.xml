@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="group__group__config" kind="group">
+    <compoundname>group_config</compoundname>
+    <title>Configuration &amp; Types</title>
+    <sectiondef kind="define">
+      <memberdef kind="define" id="group__group__config_1ga20483dea8d2a3674883e2e02d94058da" prot="public" static="no">
+        <name>LEXACARE_LIDAR_COUNT</name>
+        <initializer>4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="54" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="54" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga8fae42b5f7928159779f99742fdf0bd5" prot="public" static="no">
+        <name>LEXACARE_LIDAR_USE_ST_ULD</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="63" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga02349f22e1562a28cb7e79fb33b609fb" prot="public" static="no">
+        <name>LEXACARE_ENABLE_RADAR</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="70" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="70" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga01e58c65d8e2d1f09d0686d4bd9a199d" prot="public" static="no">
+        <name>LEXACARE_ENABLE_HDC1080</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>@0x40 — temp + humidité </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="76" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="76" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga2ec6a41c4f52091ceaf3e3f448899fb5" prot="public" static="no">
+        <name>LEXACARE_ENABLE_BME280</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>@0x76 — pression + temp + hum </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="77" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="77" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga1e88f0418aa71aa2e74db4685116852a" prot="public" static="no">
+        <name>LEXACARE_ENABLE_MLX90640</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>@0x33 — caméra thermique </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="78" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga4d8aad6f1e9c851b13890f4aa41a6282" prot="public" static="no">
+        <name>LEXACARE_ENABLE_VL53L0X</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>@0x29 — TOF simple (DIST_SHD) </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="79" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1gae865b22047a6abaad37983f4df666bc6" prot="public" static="no">
+        <name>LEXACARE_ENABLE_CAT24M01W</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>@0x50 — EEPROM 1Mbit </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="80" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga3e499e0599f689a9321c507bde1deea2" prot="public" static="no">
+        <name>LEXACARE_ENABLE_MIC</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="85" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="85" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1gaafd1ce9dac19ab9802c31dce7b63ee19" prot="public" static="no">
+        <name>LEXACARE_ENABLE_AI</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="91" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga0ec2dec85070253e4cb80fa96a80ad13" prot="public" static="no">
+        <name>LEXACARE_ENABLE_MESH</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="97" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="97" bodyend="-1"/>
+        <referencedby refid="group__group__main_1ga630544a7f0a2cc40d8a7fefab7e2fe70" compoundref="main_8c" startline="63" endline="239">app_main</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1gaeea756a9c7ccd21130e7fc68116c2c31" prot="public" static="no">
+        <name>LEXACARE_PWR_FAN_ENABLED</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="110" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1gafcc1ee0670f4792dcf85c1c091f8da11" prot="public" static="no">
+        <name>LEXACARE_PWR_RADAR_ENABLED</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Alimente HDC1080 + BME280 ! </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="111" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga46a950bf6649476b97a94825d33dd37d" prot="public" static="no">
+        <name>LEXACARE_PWR_MIC_ENABLED</name>
+        <initializer>1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="112" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1gab0eba4763bffc7db4b8db3eea665155d" prot="public" static="no">
+        <name>LEXACARE_PWR_MLX_ENABLED</name>
+        <initializer>0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/lexacare_config.h" line="113" column="9" bodyfile="components/lexacare_types/include/lexacare_config.h" bodystart="113" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1gad7513c4ecfaf2ea7ec9ca0fe2635fbd0" prot="public" static="no">
+        <name>PIN_I2C0_SDA</name>
+        <initializer>11</initializer>
+        <briefdescription>
+<para>Mapping “humain” entre le schéma électronique et le code. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Pourquoi c&apos;est important :<itemizedlist>
+<listitem><para>sur un système multi-capteurs, une seule broche mal mappée peut rendre tout le bus muet</para>
+</listitem><listitem><para>les expandeurs (PCA9555) ajoutent une couche d&apos;indirection : ces defines évitent les erreurs </para>
+</listitem></itemizedlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/pins_config.h" line="48" column="9" bodyfile="components/lexacare_types/include/pins_config.h" bodystart="48" bodyend="-1"/>
+        <referencedby refid="group__group__hw__diag_1gad0805242746ecf8545068878b9433eeb" compoundref="hw__diag_8c" startline="508" endline="570">hw_diag_run</referencedby>
+        <referencedby refid="hw__diag_8c_1a9ac07d53cf47437c185f71ca85538b8c" compoundref="hw__diag_8c" startline="242" endline="301">pca9555_init</referencedby>
+      </memberdef>
+      <memberdef kind="define" id="group__group__config_1ga9f4c6016cba9a535ed4930d27b9e2e72" prot="public" static="no">
+        <name>LIDAR_ROWS</name>
+        <initializer>8</initializer>
+        <briefdescription>
+<para>Types partagés entre tâches (contrat de données). </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Ce fichier sert de “langage commun” entre tâches FreeRTOS : si deux parties du firmware échangent une information, elle doit apparaître ici pour éviter les malentendus (tailles, unités, champs “valid”, etc.). </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="components/lexacare_types/include/system_types.h" line="44" column="9" bodyfile="components/lexacare_types/include/system_types.h" bodystart="44" bodyend="-1"/>
+        <referencedby refid="pc__diag_8c_1ad0a594cf95696c6c0a92ef226ff6af9b" compoundref="pc__diag_8c" startline="96" endline="201">build_sensor_json</referencedby>
+        <referencedby refid="lidar__driver_8c_1aac43ad6c043309d059d7a0dd3e09a7ba" compoundref="lidar__driver_8c" startline="170" endline="238">lidar_read_sensor</referencedby>
+        <referencedby refid="fall__detection__ai_8cc_1a66e1e34017dece06213f4b1b97f69728" compoundref="fall__detection__ai_8cc" startline="106" endline="123">threshold_avg_lower_zone</referencedby>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Options simples pour activer/désactiver des sous-systèmes et décrire les données partagées. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Objectif : permettre de passer facilement d&apos;un montage “banc de test” (capteurs partiels, modules absents) à un montage “production” sans modifier le code applicatif. </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

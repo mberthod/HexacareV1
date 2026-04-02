@@ -1,0 +1,68 @@
+\doxysection{components/lexacare\+\_\+types/include/lexacare\+\_\+config.h File Reference}
+\hypertarget{lexacare__config_8h}{}\label{lexacare__config_8h}\index{components/lexacare\_types/include/lexacare\_config.h@{components/lexacare\_types/include/lexacare\_config.h}}
+
+
+Activation / désactivation des composants matériels Lexa\+Care V1.  
+
+
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{lexacare__config_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga20483dea8d2a3674883e2e02d94058da}{LEXACARE\+\_\+\+LIDAR\+\_\+\+COUNT}}~4
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga8fae42b5f7928159779f99742fdf0bd5}{LEXACARE\+\_\+\+LIDAR\+\_\+\+USE\+\_\+\+ST\+\_\+\+ULD}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga02349f22e1562a28cb7e79fb33b609fb}{LEXACARE\+\_\+\+ENABLE\+\_\+\+RADAR}}~0
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga01e58c65d8e2d1f09d0686d4bd9a199d}{LEXACARE\+\_\+\+ENABLE\+\_\+\+HDC1080}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga2ec6a41c4f52091ceaf3e3f448899fb5}{LEXACARE\+\_\+\+ENABLE\+\_\+\+BME280}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga1e88f0418aa71aa2e74db4685116852a}{LEXACARE\+\_\+\+ENABLE\+\_\+\+MLX90640}}~0
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga4d8aad6f1e9c851b13890f4aa41a6282}{LEXACARE\+\_\+\+ENABLE\+\_\+\+VL53\+L0X}}~0
+\item 
+\#define \mbox{\hyperlink{group__group__config_gae865b22047a6abaad37983f4df666bc6}{LEXACARE\+\_\+\+ENABLE\+\_\+\+CAT24\+M01W}}~0
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga3e499e0599f689a9321c507bde1deea2}{LEXACARE\+\_\+\+ENABLE\+\_\+\+MIC}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_gaafd1ce9dac19ab9802c31dce7b63ee19}{LEXACARE\+\_\+\+ENABLE\+\_\+\+AI}}~0
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga0ec2dec85070253e4cb80fa96a80ad13}{LEXACARE\+\_\+\+ENABLE\+\_\+\+MESH}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_gaeea756a9c7ccd21130e7fc68116c2c31}{LEXACARE\+\_\+\+PWR\+\_\+\+FAN\+\_\+\+ENABLED}}~0
+\item 
+\#define \mbox{\hyperlink{group__group__config_gafcc1ee0670f4792dcf85c1c091f8da11}{LEXACARE\+\_\+\+PWR\+\_\+\+RADAR\+\_\+\+ENABLED}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_ga46a950bf6649476b97a94825d33dd37d}{LEXACARE\+\_\+\+PWR\+\_\+\+MIC\+\_\+\+ENABLED}}~1
+\item 
+\#define \mbox{\hyperlink{group__group__config_gab0eba4763bffc7db4b8db3eea665155d}{LEXACARE\+\_\+\+PWR\+\_\+\+MLX\+\_\+\+ENABLED}}~0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Activation / désactivation des composants matériels Lexa\+Care V1. 
+
+Modifiez uniquement ce fichier pour adapter la configuration à votre environnement de test ou de production. 0 = composant absent / non connecté / désactivé 1 = composant présent / connecté / activé
+
+Composants physiques du système \+:
+
+┌─ SPI2 ─────────────────────────────────────────────────────────────┐ │ 4 × VL53\+L8\+CX (CLK=17, MOSI=18, MISO=21, NCS0-\/3=1/2/42/41) │ └────────────────────────────────────────────────────────────────────┘
+
+┌─ I2\+C\+\_\+\+NUM\+\_\+0 (SDA=11, SCL=12) ───────────────────────────────────────┐ │ PCA9555D @0x20 — LPn LIDAR + alimentation sous-\/systèmes │ └────────────────────────────────────────────────────────────────────┘
+
+┌─ I2\+C\+\_\+\+NUM\+\_\+1 (SDA=10, SCL=9) — capteurs sur carte radar ─────────────┐ │ MLX90640\+ESF @0x33 — caméra thermique 32×24 │ │ HDC1080 @0x40 — température + humidité │ │ BME280 @0x76 — pression + température + humidité │ │ VL53\+L0X @0x29 — TOF simple (géré via DIST\+\_\+\+SHUTDOWN PCA9555) │ │ CAT24\+M01W @0x50 — EEPROM 1 Mbit (réservé) │ └────────────────────────────────────────────────────────────────────┘
+
+┌─ UART\+\_\+\+NUM\+\_\+2 (RX=43, TX=44) ────────────────────────────────────────┐ │ HLK-\/\+LD6002 — radar vital signs │ └────────────────────────────────────────────────────────────────────┘
+
+┌─ I2S (WS=6, SD=7, SCK=8) ──────────────────────────────────────────┐ │ Microphone MEMS numérique │ └────────────────────────────────────────────────────────────────────┘ 
+
+Definition in file \mbox{\hyperlink{lexacare__config_8h_source}{lexacare\+\_\+config.\+h}}.
+
