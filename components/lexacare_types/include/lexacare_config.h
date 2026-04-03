@@ -10,19 +10,13 @@
  * Composants physiques du système :
  *
  *   ┌─ SPI2 ─────────────────────────────────────────────────────────────┐
- *   │  4 × VL53L8CX (CLK=17, MOSI=18, MISO=21, NCS0-3=1/2/42/41)       │
+ *   │  4 × VL53L8CX (CLK=4, MOSI=15, MISO=21, NCS0-3=1/2/42/41)        │
  *   └────────────────────────────────────────────────────────────────────┘
  *
- *   ┌─ I2C_NUM_0 (SDA=11, SCL=12) ───────────────────────────────────────┐
- *   │  PCA9555D @0x20 — LPn LIDAR + alimentation sous-systèmes           │
- *   └────────────────────────────────────────────────────────────────────┘
- *
- *   ┌─ I2C_NUM_1 (SDA=10, SCL=9) — capteurs sur carte radar ─────────────┐
- *   │  MLX90640ESF @0x33  — caméra thermique 32×24                       │
- *   │  HDC1080     @0x40  — température + humidité                       │
- *   │  BME280      @0x76  — pression + température + humidité            │
- *   │  VL53L0X     @0x29  — TOF simple (géré via DIST_SHUTDOWN PCA9555)  │
- *   │  CAT24M01W   @0x50  — EEPROM 1 Mbit (réservé)                      │
+ *   ┌─ I2C_NUM_0 (SDA=11, SCL=12) — bus partagé ─────────────────────────┐
+ *   │  PCA9555D @0x20 — LPn LIDAR + alimentations sous-systèmes          │
+ *   │  HDC1080 @0x40, BME280 @0x76 — enviro (même bus)                    │
+ *   │  MLX90640 @0x33, VL53L0X @0x29, CAT24M01W @0x50 — si présents       │
  *   └────────────────────────────────────────────────────────────────────┘
  *
  *   ┌─ UART_NUM_2 (RX=43, TX=44) ────────────────────────────────────────┐
@@ -63,6 +57,14 @@
 #define LEXACARE_LIDAR_USE_ST_ULD      1
 
 /* ================================================================
+ * LIDAR — journal UART (matrice fusion + infos datasheet)
+ * 0 = désactivé (production silencieuse)
+ * 1 = ESP_LOGI périodique : grille 32×8 mm, ordre colonnes L1|L2|L4|L3, T° silicium
+ * ================================================================ */
+#define LEXACARE_LIDAR_LOG_MATRIX          1
+#define LEXACARE_LIDAR_LOG_EVERY_N_FRAMES  5   /**< ex. 5 × 5 Hz = 1 s */
+
+/* ================================================================
  * Radar HLK-LD6002 (UART_NUM_2)
  * Mettre à 0 quand le module radar n'est PAS connecté.
  * → Évite le crash uart_read_bytes (IWD spinlock ringbuf IDF 6.0)
@@ -70,8 +72,8 @@
 #define LEXACARE_ENABLE_RADAR          0
 
 /* ================================================================
- * Capteurs I2C sur carte radar (I2C_NUM_1, SDA=10, SCL=9)
- * Ces capteurs nécessitent que POWER_RADAR soit activé.
+ * Capteurs I2C environnementaux (I2C_NUM_0, SDA=11, SCL=12, bus partagé PCA9555)
+ * Ces capteurs nécessitent que POWER_RADAR soit activé si alimentés par la carte radar.
  * ================================================================ */
 #define LEXACARE_ENABLE_HDC1080        1   /**< @0x40 — temp + humidité      */
 #define LEXACARE_ENABLE_BME280         1   /**< @0x76 — pression + temp + hum */
@@ -94,7 +96,7 @@
  * Réseau mesh ESP-NOW + WiFi
  * Mettre à 0 pour un boot ultrarapide sans réseau (test capteurs seuls)
  * ================================================================ */
-#define LEXACARE_ENABLE_MESH           1
+#define LEXACARE_ENABLE_MESH           0
 
 /* ================================================================
  * Alimentations sous-systèmes via PCA9555 Port 1

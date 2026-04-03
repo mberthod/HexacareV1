@@ -28,6 +28,19 @@ CONFIG_SPIRAM_USE_MALLOC=y
 # (I2S, SPI DMA) avant/après l'init WiFi qui fragmente le heap.
 CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=32768
 
+# ------ CPU ESP32-S3 : fréquence max (240 MHz) -----------------
+# Le bus SPI LIDAR reste à 1 MHz (réglé dans pins_config.h → LIDAR_SPI_FREQ_HZ).
+CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
+# CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_160 is not set
+CONFIG_ESP32S3_DEFAULT_CPU_FREQ_240=y
+# CONFIG_ESP32S3_DEFAULT_CPU_FREQ_160 is not set
+
+# ------ Pile tâche main (app_main) ------------------------------
+# Défaut IDF 3584 o : trop petit pour hw_diag + I2C + MIC + xTaskCreate
+# → débordement silencieux, retour de app_main vers PC corrompu
+#   (Guru IllegalInstruction ~0x4dff…), logs heap incohérents.
+CONFIG_ESP_MAIN_TASK_STACK_SIZE=16384
+
 # ------ FreeRTOS : tick 1 ms -----------------------------------
 CONFIG_FREERTOS_HZ=1000
 # Statistiques d'exécution pour High Water Mark (pc_diag)

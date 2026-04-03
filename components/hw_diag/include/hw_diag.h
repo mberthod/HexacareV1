@@ -42,7 +42,7 @@ typedef enum {
  * @brief Exécute le diagnostic matériel complet et remplit sys_context_t.
  *
  * Séquence :
- *   1. Initialise I2C_NUM_0 (SDA=8, SCL=9) et I2C_NUM_1 (SDA=16, SCL=15).
+ *   1. Initialise I2C_NUM_0 (SDA=11, SCL=12) : PCA9555 + capteurs enviro.
  *   2. Met tous les LPn à 0 (reset global de tous les VL53L8CX).
  *   3. Active les LIDARs un par un : LPn=1, attente 5 ms,
  *      probe I2C à LIDAR_I2C_ADDR_DEFAULT (0x29),
@@ -58,10 +58,10 @@ hw_diag_result_t hw_diag_run(sys_context_t *ctx);
 
 /* ================================================================
  * hw_diag_init_sensor_bus
- * @brief Initialise le bus I2C_NUM_1 (SDA=10, SCL=9) dédié aux
- *        capteurs environnementaux (HDC1080, BME280, MLX90640).
+ * @brief Fournit le handle du bus I2C_NUM_0 (SDA=11, SCL=12), partagé avec
+ *        le PCA9555, pour HDC1080, BME280, MLX90640 (adresses distinctes).
  *
- * À appeler depuis app_main() après hw_diag_run().
+ * Prérequis : hw_diag_run() (crée le bus PCA9555 sur I2C0).
  * Le handle retourné doit être passé aux drivers (hdc1080_init, bme280_init).
  *
  * @param out_handle  Pointeur vers le handle de bus à remplir.

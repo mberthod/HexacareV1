@@ -33,7 +33,8 @@
  *   - S'abonne au TWDT (esp_task_wdt_add).
  *   - Configure chaque VL53L8CX détecté en résolution 8×8, ranging continu.
  *   - Cadence 15 Hz via vTaskDelayUntil.
- *   - Fusionne les 4 trames 8×8 en une lidar_matrix_t 8×32.
+ *   - Fusionne les 4 trames 8×8 en une lidar_matrix_t 8×32 (32×8 mm en largeur×hauteur),
+ *     colonnes dans l’ordre L1 | L2 | L4 | L3 (voir system_types.h).
  *   - Pousse la sensor_frame_t dans ctx->sensor_to_ai_queue (non bloquant).
  *   - Appelle esp_task_wdt_reset() à chaque itération.
  *

@@ -23,6 +23,7 @@ idf_component_register(
     INCLUDE_DIRS "include" "uld"
     REQUIRES
         lexacare_types
+        heap
         esp_driver_spi
         esp_driver_uart
         esp_driver_i2c

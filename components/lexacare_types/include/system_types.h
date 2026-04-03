@@ -36,8 +36,10 @@ extern "C" {
  *
  * Architecture :
  *   4 capteurs VL53L8CX frontaux (8×8 zones chacun) concaténés
- *   horizontalement → matrice unifiée 8 lignes × 32 colonnes.
- *   Capteur N occupe les colonnes [N*8 .. N*8+7].
+ *   horizontalement → matrice unifiée 8 lignes × 32 colonnes (vue « 32×8 » en largeur×hauteur).
+ *   Ordre de fusion (géométrie LexaCare) :
+ *     colonnes 0–7 : LIDAR 1 (idx SPI 0), 8–15 : LIDAR 2 (1),
+ *     16–23 : LIDAR 4 (3), 24–31 : LIDAR 3 (2).
  *
  *   5e capteur (vertical/sol) : flux séparé, non inclus dans la matrice.
  * ================================================================ */
@@ -195,7 +197,7 @@ typedef struct {
  *   diag_to_pc_queue    : ai_event_t     × 8
  *   log_queue           : char*          × 16 (pointeurs vers chaînes allouées)
  *
- * Capteurs environnementaux (I2C_NUM_1, SDA=10, SCL=9) :
+ * Capteurs environnementaux (I2C_NUM_0, SDA=11, SCL=12, bus partagé PCA9555) :
  *   HDC1080 : temp/humidité (0x40)
  *   BME280  : temp/pression/humidité (0x76)
  * ================================================================ */

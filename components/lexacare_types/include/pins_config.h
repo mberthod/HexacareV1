@@ -4,10 +4,11 @@
  *
  * Architecture hardware ESP32-S3-WROOM-2 :
  *
- *  SPI2  — 4 LIDARs VL53L8CX (NCS individuels) + SYNC
+ *  SPI2  — bus dédié firmware : uniquement les 4 VL53L8CX (pas d’autre périph. sur ce contrôleur)
+ *          MCLK/SCLK GPIO4, MOSI 15, MISO 21, horloge 1 MHz (LIDAR_SPI_FREQ_HZ)
  *  UART  — Radar HLK-LD6002 (RX=43, TX=44)
- *  I2C0  — PCA9555D @0x20 (SDA=11, SCL=12) : LPn LIDAR + alim sous-systèmes
- *  I2C1  — MLX90640 (SDA=10, SCL=9) — réservé, driver non implémenté
+ *  I2C0  — SDA=11, SCL=12 : PCA9555 @0x20 + HDC1080 / BME280 / autres @ distincts
+ *  I2C1  — réservé (ex. MLX90640 SDA=10, SCL=9 si bus séparé sur la carte)
  *  I2S   — Microphone MEMS numérique (WS=6, SD=7, SCK=8)
  *
  *  PCA9555D Port 0 :
@@ -43,32 +44,41 @@
  */
 
 /* ================================================================
- * Bus I2C 0 (I2C_NUM_0) — PCA9555D @0x20
+ * Bus I2C 0 (I2C_NUM_0) — SDA=11, SCL=12
+ *   PCA9555D @0x20 (LPn LIDAR, alimentations)
+ *   HDC1080 @0x40, BME280 @0x76/0x77, autres capteurs (adresses distinctes)
  * ================================================================ */
 #define PIN_I2C0_SDA        11
 #define PIN_I2C0_SCL        12
 
 /* ================================================================
- * Bus I2C 1 (I2C_NUM_1) — MLX90640 (réservé, driver non implémenté)
+ * Bus I2C 1 (I2C_NUM_1) — réservé (ex. MLX90640 sur GPIO10/9 si câblage dédié)
  * ================================================================ */
 #define PIN_I2C1_SDA        10
 #define PIN_I2C1_SCL        9
 
 /* ================================================================
- * Bus SPI LIDAR (SPI2_HOST) — 4 capteurs VL53L8CX
+ * Bus SPI LIDAR — SPI2_HOST uniquement (aucun autre driver SPI sur ce bus)
  *
- * Numérotation hardware vs code :
- *   NCS0 (GPIO1)  → LIDAR 1 (LPn_1 = PCA9555 IO0.6)
- *   NCS1 (GPIO2)  → LIDAR 2 (LPn_2 = PCA9555 IO0.5)
- *   NCS2 (GPIO42) → LIDAR 3 (LPn_3 = PCA9555 IO0.4)
- *   NCS3 (GPIO41) → LIDAR 4 (LPn_4 = PCA9555 IO0.3)
+ * Broches : MCLK/SCLK GPIO4, MOSI 15, MISO 21 — horloge LIDAR_SPI_FREQ_HZ (1 MHz).
  *
- * Mode SPI 3 (CPOL=1, CPHA=1) — max 10 MHz.
- * SYNC (GPIO14) : synchronisation multi-capteurs.
+ * NCS + LPn PCA9555 :
+ *   NCS0 GPIO1  / LPn_1 IO0.6 → LIDAR 1
+ *   NCS1 GPIO2  / LPn_2 IO0.5 → LIDAR 2
+ *   NCS2 GPIO42 / LPn_3 IO0.4 → LIDAR 3
+ *   NCS3 GPIO41 / LPn_4 IO0.3 → LIDAR 4
+ *
+ * Mode SPI 3 (CPOL=1, CPHA=1). SYNC GPIO14 (option).
+ *
+ * Câblage recommandé (VL53L8CX) :
+ *   - MISO : tirage faible vers VDD (ex. 10 kΩ) si ligne longue — repos haut = 0xFF.
+ *   - NCS : un GPIO par capteur, actif bas ; inactif = haut avant toute transaction.
  * ================================================================ */
 #define LIDAR_SPI_HOST      SPI2_HOST
-#define PIN_LIDAR_CLK       17
-#define PIN_LIDAR_MOSI      18
+#define LIDAR_SPI_FREQ_HZ   (1 * 1000 * 1000) /**< Horloge SPI LIDAR : 1 MHz (voir log hw_diag « horloge effective ») */
+#define PIN_LIDAR_CLK       4                /**< Horloge SPI (MCLK / SCLK schéma) */
+#define PIN_LIDAR_MCLK      PIN_LIDAR_CLK
+#define PIN_LIDAR_MOSI      15
 #define PIN_LIDAR_MISO      21
 #define PIN_LIDAR_SYNC      14
 

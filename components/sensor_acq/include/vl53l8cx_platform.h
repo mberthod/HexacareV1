@@ -5,11 +5,16 @@
  * Implémente la Platform Abstraction Layer (PAL) exigée par l'Ultra-Lite Driver (ULD)
  * VL53L8CX de STMicroelectronics, via l'API SPI master d'ESP-IDF.
  *
- * Protocole SPI VL53L8CX :
- *   - Mode SPI 3 (CPOL=1, CPHA=1), max 10 MHz, NCS actif bas.
- *   - Adresse registre : 2 octets big-endian.
+ * Protocole SPI VL53L8CX (datasheet) :
+ *   - Mode SPI 3 (CPOL=1, CPHA=1), max 10 MHz typ., NCS actif bas, MSB first.
+ *   - Adresse registre 16 bits, big-endian sur le fil.
  *   - Écriture : bit15=0 → [addr_hi & 0x7F][addr_lo][data...]
- *   - Lecture  : bit15=1 → [addr_hi | 0x80][addr_lo][dummy...] → [xx][xx][data...]
+ *   - Lecture  : bit15=1 → [addr_hi | 0x80][addr_lo][dummy...] → RX [xx][xx][data...]
+ *
+ * Implémentation ESP-IDF (voir vl53l8cx_platform.c) :
+ *   - Buffers TX/RX en **RAM interne DMA** (pas PSRAM) ; écritures avec buffer RX
+ *     « dummy » (full-duplex, sinon MISO peut rester à 0xFF).
+ *   - Transferts jusqu’à **0x8000+2** octets (téléchargement firmware ULD).
  *
  * INSTALLATION DE L'ULD :
  *   1. Télécharger le VL53L8CX ULD depuis st.com (STSW-IMG040).

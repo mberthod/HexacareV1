@@ -18,6 +18,7 @@
 
 #include <string.h>
 #include <math.h>
+#include <inttypes.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -121,12 +122,12 @@ void app_main(void)
 #endif
 
     /* ================================================================
-     * 5. Capteurs I2C environnementaux (carte radar, I2C_NUM_1)
+     * 5. Capteurs I2C environnementaux — même bus que PCA9555 (I2C0, SDA=11, SCL=12)
      * ================================================================ */
     i2c_master_bus_handle_t sensors_bus = NULL;
 #if LEXACARE_ENABLE_HDC1080 || LEXACARE_ENABLE_BME280 || LEXACARE_ENABLE_MLX90640
     if (hw_diag_init_sensor_bus(&sensors_bus) != ESP_OK) {
-        ESP_LOGW(TAG, "Bus I2C_NUM_1 indisponible — capteurs enviro off");
+        ESP_LOGW(TAG, "Bus I2C0 capteurs indisponible — capteurs enviro off");
     }
 #endif
 
@@ -211,7 +212,7 @@ void app_main(void)
 #else
     ESP_LOGW(TAG, "IA désactivée (LEXACARE_ENABLE_AI=0)");
 #endif
-    ESP_ERROR_CHECK(lidar_driver_start(&s_ctx));      /* Core 1, prio 10 */
+    //ESP_ERROR_CHECK(lidar_driver_start(&s_ctx));      /* Core 1, prio 10 */
 #if LEXACARE_ENABLE_MESH
     ESP_ERROR_CHECK(mesh_task_start(&s_ctx));         /* Core 0, prio 8  */
 #endif
@@ -225,9 +226,9 @@ void app_main(void)
     ESP_LOGI(TAG, "  IDF : %s | Rôle : %s",
              esp_get_idf_version(),
              s_ctx.is_root_node ? "ROOT" : "NODE");
-    ESP_LOGI(TAG, "  Heap interne : %lu B | PSRAM : %lu B",
-             (unsigned long)esp_get_free_heap_size(),
-             (unsigned long)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+    ESP_LOGI(TAG, "  Heap interne : %" PRIu32 " B | PSRAM : %" PRIu32 " B",
+             (uint32_t)heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+             (uint32_t)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
     ESP_LOGI(TAG, "  Config: LIDAR×%d RADAR=%d HDC=%d BME=%d MIC=%d MESH=%d",
              LEXACARE_LIDAR_COUNT,
              LEXACARE_ENABLE_RADAR,

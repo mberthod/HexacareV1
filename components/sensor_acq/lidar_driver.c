@@ -3,12 +3,10 @@
  * @ingroup group_sensor_acq
  * @brief Acquisition LIDAR VL53L8CX — fusion 8×32 sur double bus I2C.
  *
- * Architecture dual-bus (contrainte débit) :
- *   I2C_NUM_0 → capteurs 0 & 1 (lus en parallèle avec bus 1)
- *   I2C_NUM_1 → capteurs 2, 3 & 4
+ * LIDAR : bus SPI dédié (4 NCS). Capteurs enviro : I2C0 SDA=11 / SCL=12 (voir hw_diag).
  *
- * Fusion : capteur N → colonnes [N*8 .. N*8+7] de lidar_matrix_t.
- * Cadence : 15 Hz via vTaskDelayUntil (période 66 ms).
+ * Fusion : colonnes L1|L2|L4|L3 (voir s_fusion_phys_idx + system_types.h).
+ * Cadence : 5 Hz via vTaskDelayUntil (TASK_PERIOD_MS).
  * TWDT    : esp_task_wdt_reset() à chaque itération.
  *
  * Dépendance ULD :
@@ -32,7 +30,9 @@
 #include "esp_task_wdt.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include <inttypes.h>
 #include <math.h>
+#include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 
@@ -52,6 +52,33 @@
 
 static const char *TAG = "lidar_driver";
 
+/* Kick TWDT — ne jamais utiliser ESP_ERROR_CHECK (abort si échec). */
+static void lidar_wdt_kick(void)
+{
+    esp_err_t e = esp_task_wdt_reset();
+    if (e != ESP_OK) {
+        static uint32_t s_wdt_log;
+        if ((s_wdt_log++ & 0xFFu) == 0u) {
+            ESP_LOGW(TAG, "TWDT reset : %s", esp_err_to_name(e));
+        }
+    }
+}
+
+static void lidar_wdt_try_add_current(void)
+{
+    esp_err_t e = esp_task_wdt_add(NULL);
+    if (e == ESP_OK) {
+        return;
+    }
+    /* Déjà enregistré ou TWDT désactivé : on continue sans abort. */
+    if (e == ESP_ERR_INVALID_STATE) {
+        ESP_LOGD(TAG, "TWDT : tâche déjà enregistrée");
+        return;
+    }
+    ESP_LOGW(TAG, "TWDT add échoué : %s — pas de surveillance WDT pour cette tâche",
+             esp_err_to_name(e));
+}
+
 /* ================================================================
  * Constantes de la tâche
  * ================================================================ */
@@ -68,11 +95,19 @@ static const char *TAG = "lidar_driver";
  * 5 Hz offre la meilleure sensibilité au bruit de fond et la portée max.
  * La fréquence ULD (vl53l8cx_set_ranging_frequency_hz) DOIT correspondre.
  * ================================================================ */
-#define TASK_STACK_SIZE         (8192)
+#define TASK_STACK_SIZE         (16384) /**< ULD ST (vl53l8cx_init) : grands buffers locaux */
 #define TASK_PRIORITY           (10)
 #define TASK_CORE               (1)
 #define TASK_PERIOD_MS          (200)   /**< 5 Hz — précision maximale VL53L8CX */
 #define LIDAR_FREQ_HZ           (5)     /**< Fréquence ULD à configurer (voir init) */
+
+/**
+ * Ordre des blocs de 8 colonnes dans lidar_matrix_t (32 colonnes au total) :
+ * slot fusion 0..3 → index physique devs[] (NCS LIDAR1..4 = indices 0,1,2,3).
+ * Demandé : LIDAR1, LIDAR2, LIDAR4, LIDAR3.
+ */
+static const uint8_t s_fusion_phys_idx[LIDAR_NUM_FRONT] = { 0, 1, 3, 2 };
+
 /* ================================================================
  * lidar_dev_t (interne)
  * @brief Contexte par capteur VL53L8CX.
@@ -85,6 +120,9 @@ typedef struct {
     VL53L8CX_Configuration uld;
     VL53L8CX_ResultsData   results;
 #endif
+    /** Température silicium (VL53L8CX_ResultsData, datasheet) — ULD uniquement. */
+    int8_t            last_silicon_temp_c;
+    bool              have_silicon_temp;
 } lidar_dev_t;
 
 /* ================================================================
@@ -114,6 +152,7 @@ static bool lidar_init_sensor(lidar_dev_t *dev,
 {
     dev->platform.spi_dev = spi_dev;
 
+    lidar_wdt_kick();
     if (VL53L8CX_PlatformInit(&dev->platform) != 0) {
         ESP_LOGE(TAG, "LIDAR[%d] : échec PlatformInit SPI", idx);
         return false;
@@ -123,30 +162,37 @@ static bool lidar_init_sensor(lidar_dev_t *dev,
     memset(&dev->uld, 0, sizeof(dev->uld));
     dev->uld.platform = dev->platform;
 
+    /* vl53l8cx_init charge le firmware capteur : centaines de ms + gros transferts SPI. */
+    lidar_wdt_kick();
     if (vl53l8cx_init(&dev->uld) != VL53L8CX_STATUS_OK) {
         ESP_LOGE(TAG, "LIDAR[%d] : vl53l8cx_init échoué", idx);
         return false;
     }
+    lidar_wdt_kick();
 
     if (vl53l8cx_set_resolution(&dev->uld, VL53L8CX_RESOLUTION_8X8) != VL53L8CX_STATUS_OK) {
         ESP_LOGE(TAG, "LIDAR[%d] : set_resolution échoué", idx);
         return false;
     }
+    lidar_wdt_kick();
 
     if (vl53l8cx_set_ranging_frequency_hz(&dev->uld, LIDAR_FREQ_HZ) != VL53L8CX_STATUS_OK) {
         ESP_LOGE(TAG, "LIDAR[%d] : set_ranging_frequency(%d Hz) échoué", idx, LIDAR_FREQ_HZ);
         return false;
     }
+    lidar_wdt_kick();
 
     if (vl53l8cx_set_ranging_mode(&dev->uld, VL53L8CX_RANGING_MODE_AUTONOMOUS) != VL53L8CX_STATUS_OK) {
         ESP_LOGE(TAG, "LIDAR[%d] : set_ranging_mode échoué", idx);
         return false;
     }
+    lidar_wdt_kick();
 
     if (vl53l8cx_start_ranging(&dev->uld) != VL53L8CX_STATUS_OK) {
         ESP_LOGE(TAG, "LIDAR[%d] : start_ranging échoué", idx);
         return false;
     }
+    lidar_wdt_kick();
 
     ESP_LOGI(TAG, "LIDAR[%d] SPI : ULD ST actif (8×8, %d Hz)", idx, LIDAR_FREQ_HZ);
 #else
@@ -165,7 +211,7 @@ static bool lidar_init_sensor(lidar_dev_t *dev,
  *
  * @param dev    Contexte du capteur.
  * @param matrix Matrice destination.
- * @param col_offset Décalage colonne (sensor_idx * 8).
+ * @param col_offset Début du bloc de 8 colonnes (slot fusion × 8, ordre L1|L2|L4|L3).
  * ================================================================ */
 static void lidar_read_sensor(lidar_dev_t *dev,
                                lidar_matrix_t *matrix,
@@ -182,6 +228,9 @@ static void lidar_read_sensor(lidar_dev_t *dev,
     if (vl53l8cx_get_ranging_data(&dev->uld, &dev->results) != VL53L8CX_STATUS_OK) {
         return;
     }
+
+    dev->last_silicon_temp_c = dev->results.silicon_temp_degc;
+    dev->have_silicon_temp   = true;
 
     for (int zone = 0; zone < 64; zone++) {
         int row = zone / 8;
@@ -237,6 +286,49 @@ static void lidar_read_sensor(lidar_dev_t *dev,
 #endif /* LEXA_LIDAR_STUB */
 }
 
+#if LEXACARE_LIDAR_LOG_MATRIX
+/**
+ * Affiche la matrice fusionnée sur UART (USB-JTAG) : 8 lignes × 32 colonnes (mm).
+ * Colonnes : L1 | L2 | L4 | L3 (blocs de 8). T_silicon selon même ordre d’affichage.
+ */
+static void lidar_log_matrix_uart(const lidar_matrix_t *m, bool valid,
+                                   const lidar_dev_t *devs)
+{
+    if (!valid || !m) {
+        return;
+    }
+
+    ESP_LOGI(TAG,
+             "════════ Matrice distances 32×8 mm (col: L1 | L2 | L4 | L3) t=%" PRId64 " µs ════════",
+             (int64_t)m->timestamp_us);
+
+    for (int row = 0; row < LIDAR_ROWS; row++) {
+        char line[420];
+        int n = snprintf(line, sizeof(line), "z%d", row);
+        for (int c = 0; c < LIDAR_COLS && n < (int)sizeof(line) - 8; c++) {
+            n += snprintf(line + (size_t)n, sizeof(line) - (size_t)n, " %4u",
+                          (unsigned)m->data[row][c]);
+        }
+        ESP_LOGI(TAG, "%s", line);
+    }
+
+    static const char *const lbl[LIDAR_NUM_FRONT] = { "L1", "L2", "L4", "L3" };
+    char tline[160];
+    int p = snprintf(tline, sizeof(tline), "T_silicon (°C, doc VL53L8CX) : ");
+    for (int slot = 0; slot < LIDAR_NUM_FRONT && p < (int)sizeof(tline) - 24; slot++) {
+        uint8_t phys = s_fusion_phys_idx[slot];
+        if (devs[phys].have_silicon_temp) {
+            p += snprintf(tline + (size_t)p, sizeof(tline) - (size_t)p, "%s=%d ",
+                          lbl[slot], (int)devs[phys].last_silicon_temp_c);
+        } else {
+            p += snprintf(tline + (size_t)p, sizeof(tline) - (size_t)p, "%s=-- ", lbl[slot]);
+        }
+    }
+    ESP_LOGI(TAG, "%s", tline);
+    ESP_LOGI(TAG, "══════════════════════════════════════════════════════════════════");
+}
+#endif /* LEXACARE_LIDAR_LOG_MATRIX */
+
 /* ================================================================
  * task_sensor_acq (interne)
  * @brief Tâche FreeRTOS d'acquisition capteurs — Core 1, priorité 10.
@@ -251,8 +343,13 @@ static void task_sensor_acq(void *pvParam)
 {
     lidar_task_ctx_t *ctx = (lidar_task_ctx_t *)pvParam;
 
-    /* Abonnement au Task Watchdog Timer (TWDT) */
-    ESP_ERROR_CHECK(esp_task_wdt_add(NULL));
+    if (!ctx || !ctx->sys_ctx) {
+        ESP_LOGE(TAG, "Task_Sensor_Acq : contexte NULL — arrêt");
+        vTaskDelete(NULL);
+        return;
+    }
+
+    lidar_wdt_try_add_current();
     ESP_LOGI(TAG, "Task_Sensor_Acq démarrée sur Core %d", xPortGetCoreID());
 
     /* ================================================================
@@ -268,8 +365,13 @@ static void task_sensor_acq(void *pvParam)
             continue;
         }
 
-        /* Nourrir le watchdog entre capteurs */
-        ESP_ERROR_CHECK(esp_task_wdt_reset());
+        if (!ctx->sys_ctx->lidar_spi[i]) {
+            ESP_LOGW(TAG, "LIDAR[%d] : handle SPI NULL — ignoré", i);
+            ctx->devs[i].active = false;
+            continue;
+        }
+
+        lidar_wdt_kick();
         vTaskDelay(pdMS_TO_TICKS(10));
 
         if (!lidar_init_sensor(&ctx->devs[i], ctx->sys_ctx->lidar_spi[i], i)) {
@@ -278,31 +380,64 @@ static void task_sensor_acq(void *pvParam)
         }
     }
 
+    int active_lidars = 0;
+    for (int i = 0; i < LIDAR_NUM_FRONT; i++) {
+        if (ctx->devs[i].active) {
+            active_lidars++;
+        }
+    }
+    if (active_lidars == 0) {
+        ESP_LOGW(TAG, "Aucun LIDAR actif — boucle envoie des trames invalides (enviro/MIC actifs)");
+    } else {
+        ESP_LOGI(TAG, "%d LIDAR(s) actif(s) sur %d", active_lidars, LIDAR_NUM_FRONT);
+    }
+    ESP_LOGI(TAG,
+             "Matrice fusion : colonnes 0-7=L1, 8-15=L2, 16-23=L4, 24-31=L3 (phys. dev 0,1,3,2)");
+
     /* Radar : uniquement si connecté */
 #if LEXACARE_ENABLE_RADAR
-    ESP_ERROR_CHECK(radar_driver_init());
+    {
+        esp_err_t re = radar_driver_init();
+        if (re != ESP_OK) {
+            ESP_LOGW(TAG, "radar_driver_init : %s", esp_err_to_name(re));
+        }
+    }
 #else
     ESP_LOGI(TAG, "Radar LD6002 désactivé (LEXACARE_ENABLE_RADAR=0)");
 #endif
 
     TickType_t last_wake  = xTaskGetTickCount();
     uint32_t   frame_idx  = 0;
+#if LEXACARE_LIDAR_LOG_MATRIX
+    uint32_t   log_frame_counter = 0;
+#endif
 
     while (true) {
-        /* Reset du watchdog avant toute opération bloquante */
-        ESP_ERROR_CHECK(esp_task_wdt_reset());
+        lidar_wdt_kick();
 
         sensor_frame_t frame;
         memset(&frame, 0, sizeof(frame));
         frame.lidar.timestamp_us = esp_timer_get_time();
 
-        /* Lecture des 4 capteurs frontaux (fusion dans la matrice) */
-        for (int i = 0; i < LIDAR_NUM_FRONT; i++) {
-            lidar_read_sensor(&ctx->devs[i], &frame.lidar, i * 8);
+        /* Fusion : 4 blocs de 8 colonnes dans l’ordre L1 | L2 | L4 | L3 */
+        for (int slot = 0; slot < LIDAR_NUM_FRONT; slot++) {
+            uint8_t phys = s_fusion_phys_idx[slot];
+            lidar_read_sensor(&ctx->devs[phys], &frame.lidar, slot * 8);
         }
 
-        frame.lidar.valid = true;
-        frame.lidar_valid = true;
+        const bool lidar_ok_frame = (active_lidars > 0);
+        frame.lidar.valid   = lidar_ok_frame;
+        frame.lidar_valid   = lidar_ok_frame;
+
+#if LEXACARE_LIDAR_LOG_MATRIX
+        if (lidar_ok_frame && LEXACARE_LIDAR_LOG_EVERY_N_FRAMES > 0) {
+            log_frame_counter++;
+            if (log_frame_counter >= (uint32_t)LEXACARE_LIDAR_LOG_EVERY_N_FRAMES) {
+                log_frame_counter = 0;
+                lidar_log_matrix_uart(&frame.lidar, true, ctx->devs);
+            }
+        }
+#endif
 
         /* Lecture du radar (non bloquant) — uniquement si connecté */
 #if LEXACARE_ENABLE_RADAR
@@ -328,6 +463,7 @@ static void task_sensor_acq(void *pvParam)
         frame_idx++;
         if (frame_idx >= ENVIRO_READ_PERIOD_FRAMES) {
             frame_idx = 0;
+            lidar_wdt_kick(); /* avant I2S/I2C potentiellement longs */
             enviro_data_t env = {
                 .temp_hdc_c   = NAN, .humidity_hdc  = NAN,
                 .temp_bme_c   = NAN, .pressure_hpa  = NAN,
@@ -364,7 +500,7 @@ static void task_sensor_acq(void *pvParam)
             }
         }
 
-        /* Cadence 15 Hz via vTaskDelayUntil (drift-free) */
+        /* Cadence TASK_PERIOD_MS via vTaskDelayUntil (drift-free) */
         vTaskDelayUntil(&last_wake, pdMS_TO_TICKS(TASK_PERIOD_MS));
     }
 }

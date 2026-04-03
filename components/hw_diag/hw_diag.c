@@ -33,10 +33,10 @@ static const char *TAG = "hw_diag";
 #define LIDAR_LPN_DELAY_MS      5        /**< Délai après LPn=1 avant test SPI */
 
 /* ================================================================
- * Paramètres SPI LIDAR
+ * Paramètres SPI LIDAR (fréquence : pins_config.h → LIDAR_SPI_FREQ_HZ)
  * ================================================================ */
-#define LIDAR_SPI_FREQ_HZ       (8 * 1000 * 1000) /**< 8 MHz (max 10 MHz VL53L8CX) */
-#define LIDAR_SPI_MAX_XFER      (4096 + 2)
+/* Doit couvrir le WrMulti firmware ULD : 0x8000 octets + 2 octets d’en-tête (vl53l8cx_api.c). */
+#define LIDAR_SPI_MAX_XFER      ((int)((0x8000u + 2u)))
 
 /* Registre Model ID du VL53L8CX (0x7FFF) → valeur attendue 0xF0 */
 #define VL53L8CX_REG_MODEL_ID   0x7FFF
@@ -143,15 +143,28 @@ static esp_err_t diag_init_spi_lidars(sys_context_t *ctx)
         return ret;
     }
 
-    ESP_LOGI(TAG, "Bus SPI LIDAR initialisé (CLK=%d, MOSI=%d, MISO=%d, %d MHz)",
+    ESP_LOGI(TAG, "Bus SPI LIDAR initialisé (CLK=%d, MOSI=%d, MISO=%d, demandé %lu Hz)",
              PIN_LIDAR_CLK, PIN_LIDAR_MOSI, PIN_LIDAR_MISO,
-             LIDAR_SPI_FREQ_HZ / 1000000);
+             (unsigned long)LIDAR_SPI_FREQ_HZ);
 
     for (int i = 0; i < LIDAR_NUM_FRONT; i++) {
+        /* IDF 6 : tous les champs avant clock_speed_hz doivent être cohérents.
+         * Source XTAL (~40 MHz) : base stable pour viser 1 MHz (évite parfois ~16 MHz
+         * si la chaîne APB / prédiv ne correspond pas au calcul attendu). */
         const spi_device_interface_config_t dev_cfg = {
-            .mode           = 3,              /* CPOL=1, CPHA=1 (VL53L8CX SPI) */
-            .clock_speed_hz = LIDAR_SPI_FREQ_HZ,
-            .spics_io_num   = s_ncs_pins[i], /* NCS dédié par capteur */
+            .command_bits   = 0,
+            .address_bits   = 0,
+            .dummy_bits     = 0,
+            .mode           = 3, /* CPOL=1, CPHA=1 (VL53L8CX, datasheet) */
+            .clock_source   = SPI_CLK_SRC_XTAL,
+            .duty_cycle_pos = 128,
+            .cs_ena_pretrans = 0, /* full-duplex : ignoré par le driver IDF */
+            .cs_ena_posttrans = 2, /* ~2 demi-périodes SCK après dernier bit (marge NCS) */
+            .clock_speed_hz = (int)LIDAR_SPI_FREQ_HZ,
+            /* MISO : marge trajet PCB + esclave ; 0 laissait parfois FF si sample trop tôt */
+            .input_delay_ns = 50,
+            .spics_io_num   = s_ncs_pins[i],
+            .flags          = 0,
             .queue_size     = 1,
         };
 
@@ -162,8 +175,14 @@ static esp_err_t diag_init_spi_lidars(sys_context_t *ctx)
             return ret;
         }
 
-        ESP_LOGI(TAG, "LIDAR[%d] SPI device ajouté (NCS=GPIO%d)",
-                 i, s_ncs_pins[i]);
+        int eff_khz = 0;
+        if (spi_device_get_actual_freq(ctx->lidar_spi[i], &eff_khz) == ESP_OK) {
+            ESP_LOGI(TAG, "LIDAR[%d] SPI device OK (NCS=GPIO%d) — horloge effective ~%d kHz",
+                     i, s_ncs_pins[i], eff_khz);
+        } else {
+            ESP_LOGI(TAG, "LIDAR[%d] SPI device ajouté (NCS=GPIO%d)",
+                     i, s_ncs_pins[i]);
+        }
     }
 
     return ESP_OK;
@@ -571,12 +590,27 @@ hw_diag_result_t hw_diag_run(sys_context_t *ctx)
 
 /* ================================================================
  * hw_diag_init_sensor_bus
+ * @brief Retourne le bus I2C_NUM_0 (SDA=11, SCL=12) déjà créé pour le PCA9555.
+ *
+ * HDC1080, BME280, etc. partagent le même bus physique que le PCA9555D @0x20
+ * (adresses I2C différentes). Ne pas appeler i2c_new_master_bus deux fois sur
+ * I2C_NUM_0 avec les mêmes broches.
  * ================================================================ */
 esp_err_t hw_diag_init_sensor_bus(i2c_master_bus_handle_t *out_handle)
 {
-    return diag_init_i2c_bus(I2C_NUM_1,
-                              PIN_I2C1_SDA, PIN_I2C1_SCL,
-                              out_handle);
+    if (!out_handle) {
+        return ESP_ERR_INVALID_ARG;
+    }
+
+    if (s_pca_bus) {
+        *out_handle = s_pca_bus;
+        ESP_LOGI(TAG, "Bus I2C capteurs = I2C0 partagé (SDA=%d, SCL=%d) avec PCA9555",
+                 PIN_I2C0_SDA, PIN_I2C0_SCL);
+        return ESP_OK;
+    }
+
+    /* hw_diag_run() n'a pas initialisé le PCA (ex. test minimal) */
+    return diag_init_i2c_bus(I2C_NUM_0, PIN_I2C0_SDA, PIN_I2C0_SCL, out_handle);
 }
 
 /* ================================================================
