@@ -29,7 +29,6 @@
 #include "esp_heap_caps.h"
 #include "nvs_flash.h"
 #include "esp_event.h"
-
 #include "lexacare_config.h"
 #include "system_types.h"
 #include "pins_config.h"
@@ -212,7 +211,46 @@ void app_main(void)
 #else
     ESP_LOGW(TAG, "IA désactivée (LEXACARE_ENABLE_AI=0)");
 #endif
-    //ESP_ERROR_CHECK(lidar_driver_start(&s_ctx));      /* Core 1, prio 10 */
+    /* Ne PAS appeler esp_task_wdt_delete(NULL) ici :
+     * app_main n'est pas enregistré au TWDT (voir sdkconfig TWDT settings).
+     * Sur IDF v6.0, l'appel échoue avec ESP_ERR_NOT_FOUND et peut laisser
+     * le mutex TWDT interne dans un état partiellement acquis → deadlock
+     * dans esp_task_wdt_add() de Task_Sensor_Acq → TG1WDT_SYS_RST. */
+
+#if LEXACARE_LIDAR_USE_ST_ULD
+    /* i2c_master (PCA9555 LPn) depuis Task_Sensor_Acq → LoadStoreAlignment (IDF 6, spinlock).
+     * Pulse LPn une fois par capteur ici, dans le contexte app_main uniquement.
+     * Seuls les LIDARs présents dans LEXACARE_LIDAR_ACTIVE_MASK sont pulsés ;
+     * les autres restent en LPn=0 (reset matériel permanent). */
+    ESP_LOGI(TAG, "LPn : reset matériel VL53L8CX (masque actif=0x%02X)…",
+             (unsigned)LEXACARE_LIDAR_ACTIVE_MASK);
+    for (int li = 0; li < LIDAR_NUM_FRONT; li++) {
+        if (!(LEXACARE_LIDAR_ACTIVE_MASK & (1u << li))) {
+            continue;   /* LPn maintenu à 0 — capteur en reset */
+        }
+        (void)hw_diag_set_lidar_lpn(li, false);
+        vTaskDelay(pdMS_TO_TICKS(2));
+        (void)hw_diag_set_lidar_lpn(li, true);
+        vTaskDelay(pdMS_TO_TICKS(15));
+        ESP_LOGI(TAG, "LPn LIDAR[%d] pulsé (0→1)", li);
+    }
+#endif
+
+    /* Lancement de la tâche capteurs — ne pas utiliser ESP_ERROR_CHECK ici :
+     * un abort() dans cette séquence cause un deadlock USB CDC JTAG → IWDT. */
+    {
+        ESP_LOGI(TAG, "Création Task_Sensor_Acq (heap_int=%u o heap_psram=%u o)…",
+                 (unsigned)heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+                 (unsigned)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+        esp_err_t lidar_err = lidar_driver_start(&s_ctx);
+        if (lidar_err != ESP_OK) {
+            ESP_LOGE(TAG, "lidar_driver_start ÉCHOUÉ : %s (heap_int=%u o) — continuer sans LIDAR",
+                     esp_err_to_name(lidar_err),
+                     (unsigned)heap_caps_get_free_size(MALLOC_CAP_INTERNAL));
+        } else {
+            ESP_LOGI(TAG, "Task_Sensor_Acq créée — attente de son premier log…");
+        }
+    }
 #if LEXACARE_ENABLE_MESH
     ESP_ERROR_CHECK(mesh_task_start(&s_ctx));         /* Core 0, prio 8  */
 #endif

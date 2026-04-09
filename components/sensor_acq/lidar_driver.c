@@ -27,7 +27,6 @@
 #include "esp_log.h"
 #include "esp_err.h"
 #include "esp_timer.h"
-#include "esp_task_wdt.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include <inttypes.h>
@@ -52,31 +51,20 @@
 
 static const char *TAG = "lidar_driver";
 
-/* Kick TWDT — ne jamais utiliser ESP_ERROR_CHECK (abort si échec). */
+/* lidar_wdt_kick — simple yield pour laisser le scheduler respirer.
+ *
+ * NOTE : Task_Sensor_Acq n'est PAS enregistrée au TWDT (Task Watchdog Timer).
+ * Raison : sur IDF v6.0, esp_task_wdt_add(NULL) acquiert un mutex interne avec
+ * portMAX_DELAY. Si ce mutex est dans un état inattendu lors du démarrage de la
+ * tâche, l'appel bloque indéfiniment → starvation du tick FreeRTOS → IWDT
+ * (TG1WDT_SYS_RST) après CONFIG_ESP_INT_WDT_TIMEOUT_MS (2000 ms ici).
+ *
+ * La tâche gère elle-même sa cadence via vTaskDelayUntil (drift-free) et
+ * taskYIELD entre les opérations longues.
+ */
 static void lidar_wdt_kick(void)
 {
-    esp_err_t e = esp_task_wdt_reset();
-    if (e != ESP_OK) {
-        static uint32_t s_wdt_log;
-        if ((s_wdt_log++ & 0xFFu) == 0u) {
-            ESP_LOGW(TAG, "TWDT reset : %s", esp_err_to_name(e));
-        }
-    }
-}
-
-static void lidar_wdt_try_add_current(void)
-{
-    esp_err_t e = esp_task_wdt_add(NULL);
-    if (e == ESP_OK) {
-        return;
-    }
-    /* Déjà enregistré ou TWDT désactivé : on continue sans abort. */
-    if (e == ESP_ERR_INVALID_STATE) {
-        ESP_LOGD(TAG, "TWDT : tâche déjà enregistrée");
-        return;
-    }
-    ESP_LOGW(TAG, "TWDT add échoué : %s — pas de surveillance WDT pour cette tâche",
-             esp_err_to_name(e));
+    taskYIELD();
 }
 
 /* ================================================================
@@ -95,9 +83,10 @@ static void lidar_wdt_try_add_current(void)
  * 5 Hz offre la meilleure sensibilité au bruit de fond et la portée max.
  * La fréquence ULD (vl53l8cx_set_ranging_frequency_hz) DOIT correspondre.
  * ================================================================ */
-#define TASK_STACK_SIZE         (16384) /**< ULD ST (vl53l8cx_init) : grands buffers locaux */
+#define TASK_STACK_SIZE         (32768) /**< ULD ST (vl53l8cx_init) : grands buffers locaux — 32 Ko pour marger les appels imbriqués */
 #define TASK_PRIORITY           (10)
-#define TASK_CORE               (1)
+/* Core 0 : cohérent avec app_main / charge I2C ; LPn PCA9555 uniquement dans app_main. */
+#define TASK_CORE               (0)
 #define TASK_PERIOD_MS          (200)   /**< 5 Hz — précision maximale VL53L8CX */
 #define LIDAR_FREQ_HZ           (5)     /**< Fréquence ULD à configurer (voir init) */
 
@@ -140,6 +129,7 @@ typedef struct {
  *
  * Configure la résolution 8×8 et démarre le ranging continu.
  * Le handle SPI est déjà créé par hw_diag_run() (spi_bus_add_device).
+ * Séquence LPn (PCA9555) : exécutée dans app_main avant lidar_driver_start (pas depuis cette tâche).
  *
  * @param dev      Contexte du capteur.
  * @param spi_dev  Handle SPI ESP-IDF du capteur (NCS dédié).
@@ -152,7 +142,6 @@ static bool lidar_init_sensor(lidar_dev_t *dev,
 {
     dev->platform.spi_dev = spi_dev;
 
-    lidar_wdt_kick();
     if (VL53L8CX_PlatformInit(&dev->platform) != 0) {
         ESP_LOGE(TAG, "LIDAR[%d] : échec PlatformInit SPI", idx);
         return false;
@@ -162,37 +151,53 @@ static bool lidar_init_sensor(lidar_dev_t *dev,
     memset(&dev->uld, 0, sizeof(dev->uld));
     dev->uld.platform = dev->platform;
 
-    /* vl53l8cx_init charge le firmware capteur : centaines de ms + gros transferts SPI. */
+    /* ── vl53l8cx_init : télécharge ~32 Ko de firmware via SPI (≥ 1 s à 1 MHz).
+     * Utilise spi_device_transmit (INTR) pour les gros blocs → IWDT content. */
+    ESP_LOGI(TAG, "LIDAR[%d] >>> vl53l8cx_init() — téléchargement firmware ULD…", idx);
     lidar_wdt_kick();
-    if (vl53l8cx_init(&dev->uld) != VL53L8CX_STATUS_OK) {
-        ESP_LOGE(TAG, "LIDAR[%d] : vl53l8cx_init échoué", idx);
+    uint8_t st = vl53l8cx_init(&dev->uld);
+    lidar_wdt_kick();
+    if (st != VL53L8CX_STATUS_OK) {
+        ESP_LOGE(TAG, "LIDAR[%d] <<< vl53l8cx_init ÉCHOUÉ (status=%u)", idx, st);
         return false;
     }
-    lidar_wdt_kick();
+    ESP_LOGI(TAG, "LIDAR[%d] <<< vl53l8cx_init OK", idx);
 
-    if (vl53l8cx_set_resolution(&dev->uld, VL53L8CX_RESOLUTION_8X8) != VL53L8CX_STATUS_OK) {
-        ESP_LOGE(TAG, "LIDAR[%d] : set_resolution échoué", idx);
+    ESP_LOGI(TAG, "LIDAR[%d] >>> set_resolution(8×8)…", idx);
+    st = vl53l8cx_set_resolution(&dev->uld, VL53L8CX_RESOLUTION_8X8);
+    lidar_wdt_kick();
+    if (st != VL53L8CX_STATUS_OK) {
+        ESP_LOGE(TAG, "LIDAR[%d] <<< set_resolution ÉCHOUÉ (status=%u)", idx, st);
         return false;
     }
-    lidar_wdt_kick();
+    ESP_LOGI(TAG, "LIDAR[%d] <<< set_resolution OK", idx);
 
-    if (vl53l8cx_set_ranging_frequency_hz(&dev->uld, LIDAR_FREQ_HZ) != VL53L8CX_STATUS_OK) {
-        ESP_LOGE(TAG, "LIDAR[%d] : set_ranging_frequency(%d Hz) échoué", idx, LIDAR_FREQ_HZ);
+    ESP_LOGI(TAG, "LIDAR[%d] >>> set_ranging_frequency_hz(%d Hz)…", idx, LIDAR_FREQ_HZ);
+    st = vl53l8cx_set_ranging_frequency_hz(&dev->uld, LIDAR_FREQ_HZ);
+    lidar_wdt_kick();
+    if (st != VL53L8CX_STATUS_OK) {
+        ESP_LOGE(TAG, "LIDAR[%d] <<< set_ranging_frequency ÉCHOUÉ (status=%u)", idx, st);
         return false;
     }
-    lidar_wdt_kick();
+    ESP_LOGI(TAG, "LIDAR[%d] <<< set_ranging_frequency OK", idx);
 
-    if (vl53l8cx_set_ranging_mode(&dev->uld, VL53L8CX_RANGING_MODE_AUTONOMOUS) != VL53L8CX_STATUS_OK) {
-        ESP_LOGE(TAG, "LIDAR[%d] : set_ranging_mode échoué", idx);
+    ESP_LOGI(TAG, "LIDAR[%d] >>> set_ranging_mode(AUTONOMOUS)…", idx);
+    st = vl53l8cx_set_ranging_mode(&dev->uld, VL53L8CX_RANGING_MODE_AUTONOMOUS);
+    lidar_wdt_kick();
+    if (st != VL53L8CX_STATUS_OK) {
+        ESP_LOGE(TAG, "LIDAR[%d] <<< set_ranging_mode ÉCHOUÉ (status=%u)", idx, st);
         return false;
     }
-    lidar_wdt_kick();
+    ESP_LOGI(TAG, "LIDAR[%d] <<< set_ranging_mode OK", idx);
 
-    if (vl53l8cx_start_ranging(&dev->uld) != VL53L8CX_STATUS_OK) {
-        ESP_LOGE(TAG, "LIDAR[%d] : start_ranging échoué", idx);
+    ESP_LOGI(TAG, "LIDAR[%d] >>> start_ranging()…", idx);
+    st = vl53l8cx_start_ranging(&dev->uld);
+    lidar_wdt_kick();
+    if (st != VL53L8CX_STATUS_OK) {
+        ESP_LOGE(TAG, "LIDAR[%d] <<< start_ranging ÉCHOUÉ (status=%u)", idx, st);
         return false;
     }
-    lidar_wdt_kick();
+    ESP_LOGI(TAG, "LIDAR[%d] <<< start_ranging OK", idx);
 
     ESP_LOGI(TAG, "LIDAR[%d] SPI : ULD ST actif (8×8, %d Hz)", idx, LIDAR_FREQ_HZ);
 #else
@@ -331,7 +336,7 @@ static void lidar_log_matrix_uart(const lidar_matrix_t *m, bool valid,
 
 /* ================================================================
  * task_sensor_acq (interne)
- * @brief Tâche FreeRTOS d'acquisition capteurs — Core 1, priorité 10.
+ * @brief Tâche FreeRTOS d'acquisition capteurs — Core 0, priorité 10.
  *
  * Boucle cadencée à 5 Hz (vTaskDelayUntil) — portée maximale VL53L8CX.
  * Appelle radar_driver_poll() à chaque itération.
@@ -343,26 +348,38 @@ static void task_sensor_acq(void *pvParam)
 {
     lidar_task_ctx_t *ctx = (lidar_task_ctx_t *)pvParam;
 
+    /* Log immédiat — si cette ligne N'APPARAÎT PAS dans le terminal, le crash
+     * se produit dans lidar_driver_start() (calloc/xTaskCreatePinnedToCore)
+     * et non dans la tâche elle-même. */
+    ESP_LOGE(TAG, "!!! Task_Sensor_Acq DEMARREE Core=%d ctx=%p !!!",
+             xPortGetCoreID(), (void *)pvParam);
+
     if (!ctx || !ctx->sys_ctx) {
         ESP_LOGE(TAG, "Task_Sensor_Acq : contexte NULL — arrêt");
         vTaskDelete(NULL);
         return;
     }
 
-    lidar_wdt_try_add_current();
-    ESP_LOGI(TAG, "Task_Sensor_Acq démarrée sur Core %d", xPortGetCoreID());
+    /* PAS d'enregistrement TWDT ici — voir commentaire lidar_wdt_kick(). */
+    ESP_LOGI(TAG, "Task_Sensor_Acq prête (stack HWM sera loggé après init)");
 
     /* ================================================================
      * Initialisation capteurs (déplacée ici pour éviter de bloquer app_main)
      * ================================================================ */
-    ESP_LOGI(TAG, "Initialisation LIDARs (ULD) dans la tâche capteurs…");
+    ESP_LOGI(TAG, "Initialisation LIDARs (ULD) — masque actif=0x%02X…",
+             (unsigned)LEXACARE_LIDAR_ACTIVE_MASK);
     for (int i = 0; i < LIDAR_NUM_FRONT; i++) {
         ctx->devs[i].sensor_idx = i;
 
-        if (!ctx->sys_ctx->lidar_ok[i]) {
+        /* Capteur hors masque : LPn=0 (reset matériel), on ne charge pas l'ULD. */
+        if (!(LEXACARE_LIDAR_ACTIVE_MASK & (1u << i))) {
+            ESP_LOGI(TAG, "LIDAR[%d] : hors masque actif — ignoré (LPn=0)", i);
             ctx->devs[i].active = false;
-            ESP_LOGW(TAG, "LIDAR[%d] absent (hw_diag) — ignoré", i);
             continue;
+        }
+
+        if (!ctx->sys_ctx->lidar_ok[i]) {
+            ESP_LOGW(TAG, "LIDAR[%d] : ping diag échoué — tentative init ULD quand même", i);
         }
 
         if (!ctx->sys_ctx->lidar_spi[i]) {
@@ -393,6 +410,11 @@ static void task_sensor_acq(void *pvParam)
     }
     ESP_LOGI(TAG,
              "Matrice fusion : colonnes 0-7=L1, 8-15=L2, 16-23=L4, 24-31=L3 (phys. dev 0,1,3,2)");
+
+    /* Stack high-water mark — utile pour valider TASK_STACK_SIZE. */
+    ESP_LOGI(TAG, "Stack HWM après init : %u o restants (stack allouée : %d o)",
+             (unsigned)(uxTaskGetStackHighWaterMark(NULL) * sizeof(StackType_t)),
+             TASK_STACK_SIZE);
 
     /* Radar : uniquement si connecté */
 #if LEXACARE_ENABLE_RADAR
@@ -507,7 +529,7 @@ static void task_sensor_acq(void *pvParam)
 
 /* ================================================================
  * lidar_driver_start
- * @brief Initialise les capteurs et crée Task_Sensor_Acq sur Core 1.
+ * @brief Initialise les capteurs et crée Task_Sensor_Acq sur Core 0.
  *
  * @param ctx Pointeur vers le contexte système (bus I2C + lidar_ok[]).
  * @return ESP_OK si la tâche est créée avec succès.
@@ -520,7 +542,7 @@ esp_err_t lidar_driver_start(sys_context_t *ctx)
     }
     task_ctx->sys_ctx = ctx;
 
-    /* Création de la tâche épinglée sur Core 1 */
+    /* Création de la tâche épinglée sur Core 0 (cohérent avec init I2C PCA9555 / LPn) */
     BaseType_t ret = xTaskCreatePinnedToCore(
         task_sensor_acq,
         "Task_Sensor_Acq",

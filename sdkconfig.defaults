@@ -53,9 +53,10 @@ CONFIG_FREERTOS_USE_STATS_FORMATTING_FUNCTIONS=y
 CONFIG_ESP_SYSTEM_PANIC_PRINT_REBOOT=y
 
 # ------ Task Watchdog Timer (TWDT) -----------------------------
-# Task_Sensor_Acq et Task_AI_Inference s'y abonnent explicitement
+# Task_Sensor_Acq et Task_AI_Inference s'y abonnent explicitement.
+# Init ULD (4× VL53L8CX, gros WrMulti SPI) peut affamer app_main (TWDT) plusieurs secondes.
 CONFIG_ESP_TASK_WDT_EN=y
-CONFIG_ESP_TASK_WDT_TIMEOUT_S=10
+CONFIG_ESP_TASK_WDT_TIMEOUT_S=30
 # Ne pas surveiller les tâches idle (elles peuvent se bloquer légitimement)
 CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU0=n
 CONFIG_ESP_TASK_WDT_CHECK_IDLE_TASK_CPU1=n

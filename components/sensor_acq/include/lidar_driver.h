@@ -2,7 +2,7 @@
  * @file lidar_driver.h
  * @brief Interface publique du driver LIDAR VL53L8CX — acquisition et fusion 8×32.
  *
- * Task_Sensor_Acq (Core 1, priorité 10) pilote les 4 LIDARs frontaux
+ * Task_Sensor_Acq (Core 0, priorité 10) pilote les 4 LIDARs frontaux
  * via les deux bus I2C initialisés par hw_diag_run().
  */
 
@@ -24,7 +24,7 @@
 
 /* ================================================================
  * lidar_driver_start
- * @brief Crée la tâche Task_Sensor_Acq épinglée sur le Core 1.
+ * @brief Crée la tâche Task_Sensor_Acq épinglée sur le Core 0.
  *
  * Prérequis : hw_diag_run() doit avoir été appelée au préalable
  * pour initialiser ctx->i2c_bus0, ctx->i2c_bus1 et ctx->lidar_ok[].

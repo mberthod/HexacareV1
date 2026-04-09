@@ -1,9 +1,9 @@
 {
-    "idf.currentSetup": "C:\\esp\\v6.0\\esp-idf",
+    "idf.espIdfPath": "${env:HOME}/esp/v6.0/esp-idf",
     "idf.adapterTargetName": "esp32s3",
     "idf.customExtraVars": {
         "IDF_TARGET": "esp32s3"
     },
     "idf.flashType": "UART",
-    "idf.portWin": "COM30"
+    "idf.port": "/dev/ttyUSB0"
 }

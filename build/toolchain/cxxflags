@@ -1,7 +1,8 @@
+-specs=picolibc.specs
 -mlongcalls
 -fno-builtin-memcpy
 -fno-builtin-memset
 -fno-builtin-bzero
 -mdisable-hardware-atomics
--specs=picolibc.specs
+"-specs=/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/specs/picolibc.specs"
 -fno-rtti

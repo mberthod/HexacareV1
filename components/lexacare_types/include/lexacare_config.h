@@ -42,10 +42,26 @@
 
 /* ================================================================
  * LIDAR VL53L8CX (SPI)
- * Nombre de capteurs actifs (1–4).
- * Les LPn des capteurs absents resteront à 0 (reset).
+ * Nombre de capteurs actifs (1–4) — pour le log de boot uniquement.
+ * Les LPn des capteurs absents du masque restent à 0 (reset).
  * ================================================================ */
-#define LEXACARE_LIDAR_COUNT           4
+#define LEXACARE_LIDAR_COUNT           1
+
+/* ================================================================
+ * LIDAR — Masque des capteurs actifs
+ *
+ * Bit i = index physique SPI (0=LIDAR1/NCS0/GPIO1, 1=LIDAR2/NCS1/GPIO2,
+ *                              2=LIDAR3/NCS2/GPIO42, 3=LIDAR4/NCS3/GPIO41)
+ *
+ * Exemples :
+ *   0x0F = 4 LIDARs actifs    (production complète)
+ *   0x08 = LIDAR 4 seul       (NCS3=GPIO41, LPn4=IO0.3)
+ *   0x01 = LIDAR 1 seul       (NCS0=GPIO1,  LPn1=IO0.6)
+ *
+ * Les LIDARs absents du masque restent en LPn=0 (reset matériel)
+ * et ne reçoivent aucun appel vl53l8cx_init().
+ * ================================================================ */
+#define LEXACARE_LIDAR_ACTIVE_MASK     0x08u   /**< LIDAR 4 uniquement (index 3) */
 
 /* ================================================================
  * LIDAR — Source des données (réel vs stub)

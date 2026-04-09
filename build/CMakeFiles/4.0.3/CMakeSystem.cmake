@@ -1,9 +1,9 @@
-set(CMAKE_HOST_SYSTEM "Windows-10.0.26200")
-set(CMAKE_HOST_SYSTEM_NAME "Windows")
-set(CMAKE_HOST_SYSTEM_VERSION "10.0.26200")
-set(CMAKE_HOST_SYSTEM_PROCESSOR "AMD64")
+set(CMAKE_HOST_SYSTEM "Linux-6.17.0-20-generic")
+set(CMAKE_HOST_SYSTEM_NAME "Linux")
+set(CMAKE_HOST_SYSTEM_VERSION "6.17.0-20-generic")
+set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
-include("D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/toolchain/toolchain-esp32s3.cmake")
+include("/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/toolchain/toolchain-esp32s3.cmake")
 
 set(CMAKE_SYSTEM "Generic")
 set(CMAKE_SYSTEM_NAME "Generic")

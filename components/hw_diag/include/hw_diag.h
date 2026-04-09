@@ -9,6 +9,8 @@
 
 #pragma once
 
+#include <stdbool.h>
+
 #include "system_types.h"
 #include "esp_err.h"
 #include "driver/i2c_master.h"
@@ -86,5 +88,17 @@ esp_err_t hw_diag_init_sensor_bus(i2c_master_bus_handle_t *out_handle);
  * @return ESP_OK si succès.
  * ================================================================ */
 esp_err_t hw_diag_pca9555_set_power(uint8_t port1_bit, bool enable);
+
+/* ================================================================
+ * hw_diag_set_lidar_lpn
+ * @brief Pilote le LPn d’un VL53L8CX via PCA9555 (Port 0).
+ *
+ * Prérequis : hw_diag_run() a initialisé le bus I2C et le PCA9555.
+ *
+ * @param lidar_idx  Index 0–3 (LIDAR 1–4 hardware, aligné sur NCS/lidar_spi).
+ * @param active     false = LPn bas (reset), true = LPn haut (opérationnel).
+ * @return ESP_OK si succès, ESP_ERR_INVALID_STATE si PCA9555 indisponible.
+ * ================================================================ */
+esp_err_t hw_diag_set_lidar_lpn(int lidar_idx, bool active);
 
 /** @} */ /* end of group_hw_diag */

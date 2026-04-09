@@ -1,220 +1,227 @@
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/xtensa/libxtensa.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cxx/libcxx.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_libc/libesp_libc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/freertos/libfreertos.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hw_support/libesp_hw_support.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/heap/libheap.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/log/liblog.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/soc/libsoc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hal/libhal.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_rom/libesp_rom.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_common/libesp_common.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_system/libesp_system.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_stdio/libesp_stdio.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/xtensa/libxtensa.a
-C:/esp/v6.0/esp-idf/components/xtensa/esp32s3/libxt_hal.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/vfs/libvfs.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_uart/libesp_driver_uart.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_uart/libesp_hal_uart.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_pm/libesp_pm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpio/libesp_hal_gpio.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_timer/libesp_timer.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_timg/libesp_hal_timg.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_dma/libesp_driver_dma.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_dma/libesp_hal_dma.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_mm/libesp_mm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spi_flash/libspi_flash.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mspi/libesp_hal_mspi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_clock/libesp_hal_clock.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/bootloader_support/libbootloader_support.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/libmbedtls.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_security/libesp_security.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_security/libesp_hal_security.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/efuse/libefuse.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_partition/libesp_partition.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/app_update/libapp_update.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_app_format/libesp_app_format.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/lwip/liblwip.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/library/libmbedtls.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/library/libmbedx509.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/libtfpsacrypto.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/libmbed-builtin.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_security/libesp_security.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_mm/libesp_mm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/libeverest.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/p256-m/libp256m.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_flash/libnvs_flash.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/libmbedtls.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_dma/libesp_driver_dma.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_psram/libesp_psram.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/efuse/libefuse.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_wdt/libesp_hal_wdt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_ringbuf/libesp_ringbuf.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/vfs/libvfs.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_usb/libesp_hal_usb.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_adc/libesp_adc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2s/libesp_hal_i2s.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2c/libesp_hal_i2c.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_touch_sens/libesp_hal_touch_sens.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pmu/libesp_hal_pmu.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_client/libesp_http_client.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_event/libesp_event.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/tcp_transport/libtcp_transport.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp-tls/libesp-tls.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/http_parser/libhttp_parser.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_server/libesp_http_server.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_wifi/libesp_wifi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_phy/libesp_phy.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_netif/libesp_netif.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_coex/libesp_coex.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libcore.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libespnow.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libmesh.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libnet80211.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libpp.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libsmartconfig.a
-C:/esp/v6.0/esp-idf/components/esp_wifi/lib/esp32s3/libwapi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_ota/libesp_https_ota.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pthread/libpthread.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_stdio/libesp_stdio.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_dma/libesp_hal_dma.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_clock/libesp_hal_clock.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mspi/libesp_hal_mspi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_security/libesp_hal_security.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_app_format/libesp_app_format.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/app_update/libapp_update.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_partition/libesp_partition.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_uart/libesp_hal_uart.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_pm/libesp_pm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_timg/libesp_hal_timg.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_wdt/libesp_hal_wdt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/bootloader_support/libbootloader_support.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spi_flash/libspi_flash.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_system/libesp_system.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_common/libesp_common.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_rom/libesp_rom.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hal/libhal.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/log/liblog.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/heap/libheap.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/soc/libsoc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpio/libesp_hal_gpio.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_usb/libesp_hal_usb.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pmu/libesp_hal_pmu.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_touch_sens/libesp_hal_touch_sens.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2s/libesp_hal_i2s.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hw_support/libesp_hw_support.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/freertos/libfreertos.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_libc/libesp_libc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pthread/libpthread.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cxx/libcxx.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_timer/libesp_timer.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_ringbuf/libesp_ringbuf.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_psram/libesp_psram.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_uart/libesp_driver_uart.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_event/libesp_event.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_flash/libnvs_flash.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_phy/libesp_phy.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/lwip/liblwip.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_netif/libesp_netif.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_coex/libesp_coex.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_wifi/libesp_wifi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_spi/libesp_driver_spi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/unity/libunity.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cmock/libcmock.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/unity/libunity.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/console/libconsole.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2c/libesp_hal_i2c.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_twai/libesp_hal_twai.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/driver/libdriver.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_twai/libesp_hal_twai.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/http_parser/libhttp_parser.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp-tls/libesp-tls.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_adc/libesp_adc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_cam/libesp_hal_cam.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_cam/libesp_hal_cam.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_cam/libesp_driver_cam.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ledc/libesp_hal_ledc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_ledc/libesp_driver_ledc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ledc/libesp_hal_ledc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mcpwm/libesp_hal_mcpwm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_mcpwm/libesp_driver_mcpwm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mcpwm/libesp_hal_mcpwm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pcnt/libesp_hal_pcnt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_pcnt/libesp_driver_pcnt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pcnt/libesp_hal_pcnt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_rmt/libesp_hal_rmt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_rmt/libesp_driver_rmt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_rmt/libesp_hal_rmt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sdmmc/libsdmmc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sd_intf/libesp_driver_sd_intf.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sdmmc/libsdmmc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdm/libesp_driver_sdm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdmmc/libesp_driver_sdmmc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sd_intf/libesp_driver_sd_intf.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_spi/libesp_driver_spi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_touch_sens/libesp_driver_touch_sens.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_tsens/libesp_driver_tsens.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_twai/libesp_driver_twai.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_eth/libesp_eth.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_lcd/libesp_hal_lcd.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hid/libesp_hid.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/tcp_transport/libtcp_transport.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_client/libesp_http_client.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_server/libesp_http_server.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_ota/libesp_https_ota.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_server/libesp_https_server.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_lcd/libesp_lcd.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_lcd/libesp_hal_lcd.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protobuf-c/libprotobuf-c.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protocomm/libprotocomm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protobuf-c/libprotobuf-c.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/console/libconsole.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_local_ctrl/libesp_local_ctrl.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protocomm/libprotocomm.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_server/libesp_https_server.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wear_levelling/libwear_levelling.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/fatfs/libfatfs.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wear_levelling/libwear_levelling.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdmmc/libesp_driver_sdmmc.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/perfmon/libperfmon.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/rt/librt.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spiffs/libspiffs.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cjson/libcjson.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hw_diag/libhw_diag.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cjson/libcjson.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sensor_acq/libsensor_acq.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/ai_engine/libai_engine.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mesh_network/libmesh_network.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sys_storage/libsys_storage.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spiffs/libspiffs.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pc_diag/libpc_diag.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sys_storage/libsys_storage.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/main/libmain.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hw_diag/libhw_diag.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sensor_acq/libsensor_acq.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/ai_engine/libai_engine.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mesh_network/libmesh_network.a
-D:/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pc_diag/libpc_diag.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/xtensa/libxtensa.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cxx/libcxx.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_libc/libesp_libc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/freertos/libfreertos.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hw_support/libesp_hw_support.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/heap/libheap.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/log/liblog.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/soc/libsoc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hal/libhal.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_rom/libesp_rom.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_common/libesp_common.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_system/libesp_system.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_stdio/libesp_stdio.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/xtensa/libxtensa.a
+/home/mathieu/esp/esp-idf/components/xtensa/esp32s3/libxt_hal.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/vfs/libvfs.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_uart/libesp_driver_uart.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_uart/libesp_hal_uart.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_pm/libesp_pm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpio/libesp_hal_gpio.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_timer/libesp_timer.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_timg/libesp_hal_timg.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_systimer/libesp_hal_systimer.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_dma/libesp_driver_dma.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_dma/libesp_hal_dma.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_mm/libesp_mm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spi_flash/libspi_flash.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mspi/libesp_hal_mspi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_clock/libesp_hal_clock.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/bootloader_support/libbootloader_support.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/libmbedtls.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_security/libesp_security.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_security/libesp_hal_security.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/efuse/libefuse.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_partition/libesp_partition.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/app_update/libapp_update.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_app_format/libesp_app_format.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/lwip/liblwip.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/library/libmbedtls.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/library/libmbedx509.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/core/libtfpsacrypto.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/builtin/libmbed-builtin.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_security/libesp_security.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_mm/libesp_mm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/everest/libeverest.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/mbedtls/tf-psa-crypto/drivers/p256-m/libp256m.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_flash/libnvs_flash.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mbedtls/libmbedtls.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_dma/libesp_driver_dma.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_psram/libesp_psram.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/efuse/libefuse.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_wdt/libesp_hal_wdt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_ringbuf/libesp_ringbuf.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/vfs/libvfs.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_usb/libesp_hal_usb.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_adc/libesp_adc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2s/libesp_hal_i2s.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2c/libesp_hal_i2c.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_touch_sens/libesp_hal_touch_sens.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pmu/libesp_hal_pmu.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_client/libesp_http_client.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_event/libesp_event.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/tcp_transport/libtcp_transport.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp-tls/libesp-tls.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/http_parser/libhttp_parser.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_server/libesp_http_server.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_wifi/libesp_wifi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_phy/libesp_phy.a
+/home/mathieu/esp/esp-idf/components/esp_phy/lib/esp32s3/libbtbb.a
+/home/mathieu/esp/esp-idf/components/esp_phy/lib/esp32s3/libphy.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_netif/libesp_netif.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_coex/libesp_coex.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libcore.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libespnow.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libmesh.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libnet80211.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libpp.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libsmartconfig.a
+/home/mathieu/esp/esp-idf/components/esp_wifi/lib/esp32s3/libwapi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_ota/libesp_https_ota.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pthread/libpthread.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_stdio/libesp_stdio.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_dma/libesp_hal_dma.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpspi/libesp_hal_gpspi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_clock/libesp_hal_clock.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mspi/libesp_hal_mspi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_security/libesp_hal_security.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_app_format/libesp_app_format.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/app_update/libapp_update.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_partition/libesp_partition.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_uart/libesp_hal_uart.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_pm/libesp_pm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_timg/libesp_hal_timg.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_wdt/libesp_hal_wdt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ana_conv/libesp_hal_ana_conv.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/bootloader_support/libbootloader_support.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spi_flash/libspi_flash.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_system/libesp_system.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_common/libesp_common.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_rom/libesp_rom.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hal/libhal.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/log/liblog.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/heap/libheap.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/soc/libsoc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_gpio/libesp_hal_gpio.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_usb/libesp_hal_usb.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pmu/libesp_hal_pmu.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_systimer/libesp_hal_systimer.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_touch_sens/libesp_hal_touch_sens.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hw_support/libesp_hw_support.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/freertos/libfreertos.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_libc/libesp_libc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pthread/libpthread.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cxx/libcxx.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_timer/libesp_timer.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_ringbuf/libesp_ringbuf.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_psram/libesp_psram.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_uart/libesp_driver_uart.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_event/libesp_event.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/nvs_flash/libnvs_flash.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_phy/libesp_phy.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/lwip/liblwip.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_netif/libesp_netif.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wpa_supplicant/libwpa_supplicant.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_coex/libesp_coex.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_wifi/libesp_wifi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_spi/libesp_driver_spi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_gdbstub/libesp_gdbstub.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/unity/libunity.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cmock/libcmock.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/unity/libunity.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/console/libconsole.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2c/libesp_hal_i2c.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_twai/libesp_hal_twai.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/driver/libdriver.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_twai/libesp_hal_twai.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/http_parser/libhttp_parser.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp-tls/libesp-tls.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_adc/libesp_adc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_blockdev_util/libesp_blockdev_util.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_cam/libesp_hal_cam.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_cam/libesp_hal_cam.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_cam/libesp_driver_cam.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_i2s/libesp_hal_i2s.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ledc/libesp_hal_ledc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_ledc/libesp_driver_ledc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_ledc/libesp_hal_ledc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mcpwm/libesp_hal_mcpwm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_mcpwm/libesp_driver_mcpwm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_mcpwm/libesp_hal_mcpwm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pcnt/libesp_hal_pcnt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_pcnt/libesp_driver_pcnt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_pcnt/libesp_hal_pcnt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_rmt/libesp_hal_rmt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_rmt/libesp_driver_rmt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_rmt/libesp_hal_rmt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_sd/libesp_hal_sd.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sdmmc/libsdmmc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_sd/libesp_hal_sd.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sd_intf/libesp_driver_sd_intf.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sdmmc/libsdmmc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdm/libesp_driver_sdm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdmmc/libesp_driver_sdmmc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sd_intf/libesp_driver_sd_intf.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_spi/libesp_driver_spi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_touch_sens/libesp_driver_touch_sens.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_tsens/libesp_driver_tsens.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_twai/libesp_driver_twai.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_eth/libesp_eth.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_lcd/libesp_hal_lcd.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hid/libesp_hid.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/tcp_transport/libtcp_transport.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_client/libesp_http_client.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_http_server/libesp_http_server.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_ota/libesp_https_ota.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_server/libesp_https_server.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_lcd/libesp_lcd.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_hal_lcd/libesp_hal_lcd.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protobuf-c/libprotobuf-c.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protocomm/libprotocomm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protobuf-c/libprotobuf-c.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/console/libconsole.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_local_ctrl/libesp_local_ctrl.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/protocomm/libprotocomm.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_https_server/libesp_https_server.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wear_levelling/libwear_levelling.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/fatfs/libfatfs.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/wear_levelling/libwear_levelling.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdmmc/libesp_driver_sdmmc.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/perfmon/libperfmon.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/rt/librt.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spiffs/libspiffs.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cjson/libcjson.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hw_diag/libhw_diag.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/cjson/libcjson.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sensor_acq/libsensor_acq.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/ai_engine/libai_engine.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mesh_network/libmesh_network.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sys_storage/libsys_storage.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/spiffs/libspiffs.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pc_diag/libpc_diag.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sys_storage/libsys_storage.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/main/libmain.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/hw_diag/libhw_diag.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/sensor_acq/libsensor_acq.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/ai_engine/libai_engine.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/mesh_network/libmesh_network.a
+/media/mathieu/Nouveau nom/Hexacore/CLIENTS/LEXARO/PROJETS/LEXACARE/202508_Projet_054_Lexaro_TempCam/05_FIRMWARE/LexacareV1/build/esp-idf/pc_diag/libpc_diag.a

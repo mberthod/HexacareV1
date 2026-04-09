@@ -20,6 +20,7 @@
 #include "cJSON.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/semphr.h"
 #include <string.h>
 #include <stdio.h>
 
@@ -82,6 +83,12 @@ static i2c_master_bus_handle_t s_pca_bus = NULL;
  * Évite d'appeler i2c_master_bus_add_device() à chaque écriture,
  * ce qui causait des allocations heap après WiFi → LoadStoreAlignment. */
 static i2c_master_dev_handle_t s_pca_dev = NULL;
+
+/* Mutex + buffer TX aligné : l’I2C maître IDF peut DMA depuis le buffer ;
+ * un uint8_t tx[2] sur la pile est parfois mal aligné → corruptions / panic
+ * spinlock. Partagé entre app_main (Core 0) et Task_Sensor_Acq. */
+static SemaphoreHandle_t s_pca_i2c_mutex = NULL;
+static uint8_t s_pca_i2c_tx[4] __attribute__((aligned(4)));
 
 /* ================================================================
  * diag_init_i2c_bus (interne)
@@ -202,9 +209,13 @@ static esp_err_t diag_init_spi_lidars(sys_context_t *ctx)
 static bool diag_spi_ping_lidar(spi_device_handle_t spi)
 {
     /* Lecture registre 0x7FFF : TX=[0xFF][0xFF][dummy], RX=[xx][xx][model_id]
-     * (bit15=1 → lecture, adresse 0x7FFF → addr_hi=0x7F|0x80=0xFF, addr_lo=0xFF) */
+     * (bit15=1 → lecture, adresse 0x7FFF → addr_hi=0x7F|0x80=0xFF, addr_lo=0xFF)
+     * Valeur attendue : RX[2] = 0xF0 (Model ID VL53L8CX selon datasheet).
+     * RX[2] = 0xFF → MISO flottant (capteur absent ou LPn=0). */
     const uint8_t tx[3] = {0xFF, 0xFF, 0x00};
-    uint8_t rx[3] = {0x00, 0x00, 0x00};
+    uint8_t rx[3] = {0x55, 0x55, 0x55};   /* valeur initiale pour détecter si non écrit */
+
+    ESP_LOGI(TAG, "    ping SPI → TX: %02X %02X %02X", tx[0], tx[1], tx[2]);
 
     spi_transaction_t t = {
         .length    = sizeof(tx) * 8,
@@ -213,12 +224,43 @@ static bool diag_spi_ping_lidar(spi_device_handle_t spi)
     };
 
     esp_err_t ret = spi_device_polling_transmit(spi, &t);
+
     if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "    ping SPI ERREUR : %s", esp_err_to_name(ret));
         return false;
     }
 
-    /* 0xFF = MISO flottant (absent) ; 0xF0 = Model ID VL53L8CX */
-    return (rx[2] != 0xFF);
+    ESP_LOGI(TAG, "    ping SPI ← RX: %02X %02X %02X  (ModelID attendu=0xF0)",
+             rx[0], rx[1], rx[2]);
+
+    /* Interprétation de RX[2] :
+     *   0xF0 = Model ID VL53L8CX confirmé (LPn=1, sensor présent)
+     *   0xFF = MISO flottant HAUT (pull-up présent, capteur absent ou LPn=0)
+     *   0x00 = MISO tiré vers GND sur ce PCB (pas de pull-up, LPn=0 → sensor tristate → GND)
+     *   autre = sensor en cours de boot ROM (LPn vient d'être activé) — ULD gérera ça
+     *
+     * IMPORTANT : sur ce PCB, MISO est tiré vers GND quand aucun capteur ne drive.
+     * Ne pas interpréter 0x00 comme "présent" — réserver ce statut à ULD non chargé (début boot).
+     */
+    bool present = false;
+    if (rx[2] == 0xF0) {
+        ESP_LOGI(TAG, "    → ModelID=0xF0 CONFIRMÉ (capteur présent et LPn=1)");
+        present = true;
+    } else if (rx[2] == 0xFF) {
+        ESP_LOGW(TAG, "    → RX=0xFF : MISO flottant HAUT — capteur absent ou LPn=0");
+        present = false;
+    } else if (rx[2] == 0x00) {
+        ESP_LOGW(TAG, "    → RX=0x00 : MISO tiré vers GND (LPn=0, pas de pull-up PCB) — absent");
+        present = false;
+    } else {
+        /* Valeur non-nulle non-0xF0 : capteur en boot ROM (LPn vient d'être activé).
+         * L'ULD gère le reste de la séquence de boot. On le considère "répondant". */
+        ESP_LOGI(TAG, "    → RX=0x%02X : capteur en boot ROM (LPn=1, ULD non encore chargé) — OK",
+                 rx[2]);
+        present = true;
+    }
+
+    return present;
 }
 
 /* ================================================================
@@ -242,10 +284,18 @@ static esp_err_t pca9555_write_reg(i2c_master_bus_handle_t bus,
         ESP_LOGE(TAG, "pca9555_write_reg : device non initialisé");
         return ESP_ERR_INVALID_STATE;
     }
+    if (!s_pca_i2c_mutex) {
+        ESP_LOGE(TAG, "pca9555_write_reg : mutex non créé");
+        return ESP_ERR_INVALID_STATE;
+    }
 
-    const uint8_t tx[2] = {reg, val};
-    return i2c_master_transmit(s_pca_dev, tx, sizeof(tx),
-                               pdMS_TO_TICKS(I2C_TIMEOUT_MS));
+    xSemaphoreTake(s_pca_i2c_mutex, portMAX_DELAY);
+    s_pca_i2c_tx[0] = reg;
+    s_pca_i2c_tx[1] = val;
+    esp_err_t ret = i2c_master_transmit(s_pca_dev, s_pca_i2c_tx, 2,
+                                        pdMS_TO_TICKS(I2C_TIMEOUT_MS));
+    xSemaphoreGive(s_pca_i2c_mutex);
+    return ret;
 }
 
 /* ================================================================
@@ -260,6 +310,14 @@ static esp_err_t pca9555_write_reg(i2c_master_bus_handle_t bus,
  * ================================================================ */
 static esp_err_t pca9555_init(i2c_master_bus_handle_t bus)
 {
+    if (!s_pca_i2c_mutex) {
+        s_pca_i2c_mutex = xSemaphoreCreateMutex();
+        if (!s_pca_i2c_mutex) {
+            ESP_LOGE(TAG, "PCA9555 : création mutex I2C échouée");
+            return ESP_ERR_NO_MEM;
+        }
+    }
+
     /* Création du device handle PCA9555 — UNE SEULE FOIS.
      * Alloué ici (avant WiFi) pour éviter tout problème de heap après.
      * Réutilisé par pca9555_write_reg() sans nouvelle allocation. */
@@ -395,15 +453,21 @@ static void diag_scan_lidars(sys_context_t *ctx,
 
     /* --- Scan séquentiel des 4 LIDARs (index 0–3 = LIDAR 1–4 hardware) ---
      *
-     * RÈGLE : le ping SPI est TOUJOURS exécuté, même si LPN échoue.
-     * La CLK (GPIO17) doit bouger à chaque itération quelle que soit
-     * l'état du PCA9555. Le LIDAR ne répondra que si LPN=1 ET ULD chargé.
+     * Seuls les LIDARs présents dans LEXACARE_LIDAR_ACTIVE_MASK reçoivent
+     * LPn=1. Les autres restent en reset (LPn=0) pour ne pas consommer
+     * d'énergie ni parasiter le bus.
+     *
+     * RÈGLE : le ping SPI est TOUJOURS exécuté (génère des impulsions CLK).
+     * Le LIDAR ne répondra que si LPn=1 ET ULD chargé — les capteurs en
+     * reset apparaîtront "absents", ce qui est le comportement attendu.
      * -------------------------------------------------------------------*/
     for (int i = 0; i < LIDAR_NUM_FRONT; i++) {
 
-        /* Activation LPn via PCA9555 — non bloquante pour le SPI */
+        /* Activation LPn via PCA9555 — uniquement pour les LIDARs actifs */
+        const bool is_active = (LEXACARE_LIDAR_ACTIVE_MASK & (1u << i)) != 0u;
         bool lpn_ok = false;
-        if (pca_bus) {
+
+        if (pca_bus && is_active) {
             esp_err_t lpn_ret = pca9555_set_lpn(pca_bus, i, true);
             if (lpn_ret == ESP_OK) {
                 lpn_ok = true;
@@ -411,6 +475,10 @@ static void diag_scan_lidars(sys_context_t *ctx,
                 ESP_LOGW(TAG, "LIDAR%d : PCA9555 LPn échoué (%s) — SPI testé quand même",
                          i + 1, esp_err_to_name(lpn_ret));
             }
+        } else if (!is_active) {
+            /* LPn reste à 0 : capteur maintenu en reset matériel */
+            ESP_LOGI(TAG, "LIDAR%d : hors masque actif — LPn maintenu à 0 (reset)",
+                     i + 1);
         }
 
         vTaskDelay(pdMS_TO_TICKS(LIDAR_LPN_DELAY_MS));
@@ -423,7 +491,7 @@ static void diag_scan_lidars(sys_context_t *ctx,
                  ctx->lidar_ok[i] ? "OK" : "absent",
                  s_ncs_pins[i],
                  6 - i,   /* LPn1=IO0.6, LPn2=IO0.5, LPn3=IO0.4, LPn4=IO0.3 */
-                 lpn_ok   ? "actif" : "échec");
+                 is_active ? (lpn_ok ? "actif" : "échec") : "désactivé (mask)");
     }
 }
 
@@ -616,6 +684,15 @@ esp_err_t hw_diag_init_sensor_bus(i2c_master_bus_handle_t *out_handle)
 /* ================================================================
  * hw_diag_pca9555_set_power
  * ================================================================ */
+esp_err_t hw_diag_set_lidar_lpn(int lidar_idx, bool active)
+{
+    if (!s_pca_bus) {
+        ESP_LOGW(TAG, "set_lidar_lpn[%d] : PCA9555 non initialisé", lidar_idx);
+        return ESP_ERR_INVALID_STATE;
+    }
+    return pca9555_set_lpn(s_pca_bus, lidar_idx, active);
+}
+
 esp_err_t hw_diag_pca9555_set_power(uint8_t port1_bit, bool enable)
 {
     if (!s_pca_bus) {
