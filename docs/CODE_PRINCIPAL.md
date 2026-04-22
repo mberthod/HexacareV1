@@ -1,6 +1,6 @@
 # Documentation du code applicatif — mbh-firmware
 
-Ce document décrit le **flux runtime** du répertoire `main/` et les **macros de mode** qui le conditionnent. L’arborescence générale et l’état d’implémentation des composants sous `components/` sont synthétisés dans `ETAT_CODE.md`. Vue produit et schéma radio : `README.md`.
+Ce document décrit le **flux runtime** du répertoire `main/` et les **macros de mode** qui le conditionnent. Pour la **matrice complète des environnements PlatformIO**, l’**architecture détaillée** et le **matériel cible**, voir `README.md`. L’état d’implémentation des composants et les risques mesh : `ETAT_CODE.md`.
 
 Les constantes matérielles (GPIO, MFCC, bus) sont dans `lexa_config.h`. Les seuils applicatifs, l’identité mesh et les flags de build sont dans `app_config.h`.
 
