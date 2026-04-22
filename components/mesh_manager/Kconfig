@@ -1,0 +1,43 @@
+menu "Mesh Manager"
+
+    config MESH_PRIMARY_LOSS_THRESHOLD_PCT
+        int "Loss threshold to trigger fallback (%)"
+        default 20
+        range 5 90
+        help
+            Si la fraction de paquets ESP-NOW non-ACK dépasse ce seuil sur
+            la fenêtre glissante, bascule en WIFI-MESH.
+
+    config MESH_LOSS_WINDOW_MS
+        int "Loss measurement window (ms)"
+        default 10000
+        range 1000 60000
+
+    config MESH_LOSS_MIN_SAMPLES
+        int "Min packets in window before evaluating loss"
+        default 20
+        range 5 1000
+        help
+            Empêche une bascule déclenchée par 1 échec sur 2 paquets.
+
+    config MESH_PROBE_INTERVAL_MS
+        int "Probe interval when in fallback (ms)"
+        default 60000
+        range 10000 600000
+
+    config MESH_PROBE_CONSECUTIVE_OK
+        int "Consecutive successful probes to restore Primary"
+        default 3
+        range 1 10
+
+    config MESH_PROBE_RSSI_MIN_DBM
+        int "Min RSSI (dBm) to accept return to Primary"
+        default -80
+        range -100 -40
+
+    config MESH_TX_QUEUE_DEPTH
+        int "TX queue depth per priority"
+        default 16
+        range 4 64
+
+endmenu

@@ -1,0 +1,10 @@
+# Après `pio run -e production`. Chaînes entre guillemets : YAML interprète sinon `-xx` comme un autre niveau de liste.
+CompileFlags:
+  CompilationDatabase: .pio/build/production
+  Remove:
+    - "-mlongcalls"
+    - "-mdisable-hardware-atomics"
+    - "-fno-tree-switch-conversion"
+    - "-fstrict-volatile-bitfields"
+    - "-fzero-init-padding-bits=all"
+    - "-fno-malloc-dce"

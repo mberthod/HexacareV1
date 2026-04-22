@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/mathieu/Bureau/Lexacare/firmware/build/CMakeFiles/bootloader
+/home/mathieu/Bureau/Lexacare/firmware/build/CMakeFiles/bootloader.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/CMakeFiles/bootloader-complete.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/mathieu/Bureau/Lexacare/firmware/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

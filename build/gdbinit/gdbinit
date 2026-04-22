@@ -1,0 +1,2 @@
+source /home/mathieu/Bureau/Lexacare/firmware/build/gdbinit/symbols
+source /home/mathieu/Bureau/Lexacare/firmware/build/gdbinit/connect

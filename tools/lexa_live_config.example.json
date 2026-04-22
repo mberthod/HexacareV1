@@ -1,0 +1,82 @@
+{
+  "_comment": "Schéma télémétrie USB v3 : lignes LXJS + JSON (lexa_telem_schema_version 3). Pas de LXCS/LXCL sur production_usb_telemetry. Champs audio_left/audio_right (int16), lidar_matrix (mm uint16), thermal_image (float32, zéros si pas de MLX).",
+  "comment_firmware": "Env PlatformIO production_usb_telemetry : MBH_MODE_FULL + MBH_USB_TELEMETRY_STREAM — flux LXJS JSON ~1 Hz (gros messages). Débit USB élevé : préférer python3 tools/lexa_live_monitor.py plutôt que le moniteur série IDE.",
+  "serial": {
+    "port": "/dev/ttyACM0",
+    "baudrate": 2000000,
+    "read_chunk": 32768,
+    "comment": "Omettre read_chunk ou omettre la clé pour défaut 32768. Ne pas mettre read_chunk à null (sinon erreur côté moniteur sur les anciennes versions). Sur /dev/ttyACM le baud est souvent ignoré ; sur adaptateur UART, 921600–2000000 selon câble. read_chunk plus grand aide le démultiplexage."
+  },
+  "buffers": {
+    "audio_waveform_samples": 8000,
+    "sensor_curve_points": 400,
+    "lidar_fps_hint_ms": 80,
+    "lidar_mm_max": 4000
+  },
+  "sensor_conn_leds": [
+    {"json_key": "conn_ds3231", "label": "DS3231"},
+    {"json_key": "conn_cat24", "label": "EEPROM"},
+    {"json_key": "conn_bme280", "label": "BME280"},
+    {"json_key": "conn_hdc1080", "label": "HDC1080"},
+    {"json_key": "conn_tmp117", "label": "TMP117"},
+    {"json_key": "conn_vl53l0", "label": "VL53L0"},
+    {"json_key": "conn_mlx90640", "label": "MLX90640"}
+  ],
+  "telemetry": {
+    "vision_fall_level": {
+      "json_key": "vision_fall_pct",
+      "label": "Chute (vision)",
+      "widget": "progress_lidar"
+    },
+    "audio_fall_level": {
+      "json_key": "audio_fall_pct",
+      "label": "Chute (audio)",
+      "widget": "progress_audio"
+    }
+  },
+  "sensor_curves": [
+    {
+      "json_key": "ds3231_temp_c",
+      "label": "DS3231 °C",
+      "color": "#f472b6"
+    },
+    {
+      "json_key": "hdc1080_temp_c",
+      "label": "HDC1080 °C",
+      "color": "#34d399"
+    },
+    {
+      "json_key": "hdc1080_rh_pct",
+      "label": "HDC1080 HR %",
+      "color": "#38bdf8"
+    },
+    {
+      "json_key": "tmp117_temp_c",
+      "label": "TMP117 °C",
+      "color": "#fbbf24"
+    },
+    {
+      "json_key": "bme280_temp_c",
+      "label": "BME280 °C",
+      "color": "#a78bfa"
+    },
+    {
+      "json_key": "bme280_h_pa",
+      "label": "BME280 hPa",
+      "color": "#94a3b8"
+    },
+    {
+      "json_key": "bme280_rh_pct",
+      "label": "BME280 HR %",
+      "color": "#2dd4bf"
+    }
+  ],
+  "display_fields": {
+    "lexa_telem_schema_version": "Schéma télém.",
+    "lexa_usb_telemetry_envelope": "Enveloppe",
+    "uptime_ms": "Uptime (ms)",
+    "json_seq": "Seq JSON",
+    "conn_ds3231": "conn DS3231",
+    "conn_mlx90640": "conn MLX90640"
+  }
+}

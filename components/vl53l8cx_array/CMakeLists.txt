@@ -1,0 +1,17 @@
+idf_component_register(
+    SRCS
+        "src/vl53l8cx_array.c"
+        "src/vl53l8cx_platform_esp_idf.c"
+        "uld/vl53l8cx_api.c"
+        "uld/vl53l8cx_platform.c"
+    INCLUDE_DIRS
+        "include"
+        "uld"
+    REQUIRES
+        driver
+        esp_driver_spi
+        esp_driver_gpio
+        pca9555_io
+        esp_timer
+        freertos
+)
